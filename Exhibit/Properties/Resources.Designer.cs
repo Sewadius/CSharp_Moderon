@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Exhibit.Properties {
+namespace Moderon.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Exhibit.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Exhibit.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Moderon.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -66,6 +66,16 @@ namespace Exhibit.Properties {
         internal static System.Drawing.Bitmap logo_footer {
             get {
                 object obj = ResourceManager.GetObject("logo-footer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pngtree_green_checkmark_error_image_2284668 {
+            get {
+                object obj = ResourceManager.GetObject("pngtree-green-checkmark-error-image_2284668", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

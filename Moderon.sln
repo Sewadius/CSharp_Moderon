@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moderon", "Exhibit\Moderon.csproj", "{2A826C04-B4AD-40FC-8437-1435764A709B}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupModeron", "Setup1\Setup1.vdproj", "{43C67596-293B-4E95-85B0-90A57C97E0F4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A826C04-B4AD-40FC-8437-1435764A709B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A826C04-B4AD-40FC-8437-1435764A709B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A826C04-B4AD-40FC-8437-1435764A709B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A826C04-B4AD-40FC-8437-1435764A709B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43C67596-293B-4E95-85B0-90A57C97E0F4}.Debug|Any CPU.ActiveCfg = Debug
+		{43C67596-293B-4E95-85B0-90A57C97E0F4}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {54701DB7-EC39-4C6B-A4E6-6DAC2E279C4E}
+	EndGlobalSection
+EndGlobal
