@@ -139,6 +139,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="README.md" />
     <None Include="Resources\logo-footer.png" />
   </ItemGroup>
   <ItemGroup>
@@ -213,6 +214,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\pngtree-green-checkmark-error-image_2284668.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="imgs\logo_moderon_HVAC.png" />
+    <Content Include="imgs\logo_moderon_color_curves.png" />
+    <Content Include="imgs\logo_moderon_green_color_curves.png" />
+    <Content Include="imgs\logo_moderon_grey_color_curves.png" />
+    <Content Include="imgs\logo_moderon_white_color_curves.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
