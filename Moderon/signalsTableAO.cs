@@ -4,6 +4,9 @@ using System.Windows.Forms;
 
 namespace Moderon
 {
+    /// <summary>
+    /// Класс для аналоговых выходов
+    /// </summary>
     class Ao
     {
         public string Name { get; private set; }
@@ -113,7 +116,7 @@ namespace Moderon
             }
             else // Выбран сигнал AO
             {
-                name = String.Concat(AO1_combo.SelectedItem);
+                name = string.Concat(AO1_combo.SelectedItem);
                 ao_find = list_ao.Find(x => x.Name == name);
                 list_ao.Remove(list_ao.Find(x => x.Name == name)); // Удаление из списка
                 if (ao_find != null)
@@ -165,7 +168,7 @@ namespace Moderon
             }
             else // Выбран сигнал AO
             {
-                name = String.Concat(AO2_combo.SelectedItem);
+                name = string.Concat(AO2_combo.SelectedItem);
                 ao_find = list_ao.Find(x => x.Name == name);
                 list_ao.Remove(list_ao.Find(x => x.Name == name)); // Удаление из списка
                 if (ao_find != null)
@@ -217,7 +220,7 @@ namespace Moderon
             }
             else // Выбран сигнал AO
             {
-                name = String.Concat(AO3_combo.SelectedItem);
+                name = string.Concat(AO3_combo.SelectedItem);
                 ao_find = list_ao.Find(x => x.Name == name);
                 list_ao.Remove(list_ao.Find(x => x.Name == name)); // Удаление из списка
                 if (ao_find != null)
@@ -269,7 +272,7 @@ namespace Moderon
             }
             else // Выбран сигнал AO
             {
-                name = String.Concat(AO1bl1_combo.SelectedItem);
+                name = string.Concat(AO1bl1_combo.SelectedItem);
                 ao_find = list_ao.Find(x => x.Name == name);
                 list_ao.Remove(list_ao.Find(x => x.Name == name)); // Удаление из списка
                 if (ao_find != null)
@@ -321,7 +324,7 @@ namespace Moderon
             }
             else // Выбран сигнал AO
             {
-                name = String.Concat(AO2bl1_combo.SelectedItem);
+                name = string.Concat(AO2bl1_combo.SelectedItem);
                 ao_find = list_ao.Find(x => x.Name == name);
                 list_ao.Remove(list_ao.Find(x => x.Name == name)); // Удаление из списка
                 if (ao_find != null)
@@ -373,7 +376,7 @@ namespace Moderon
             }
             else // Выбран сигнал AO
             {
-                name = String.Concat(AO3bl1_combo.SelectedItem);
+                name = string.Concat(AO3bl1_combo.SelectedItem);
                 ao_find = list_ao.Find(x => x.Name == name);
                 list_ao.Remove(list_ao.Find(x => x.Name == name)); // Удаление из списка
                 if (ao_find != null)
@@ -425,7 +428,7 @@ namespace Moderon
             }
             else // Выбран сигнал AO
             {
-                name = String.Concat(AO1bl2_combo.SelectedItem);
+                name = string.Concat(AO1bl2_combo.SelectedItem);
                 ao_find = list_ao.Find(x => x.Name == name);
                 list_ao.Remove(list_ao.Find(x => x.Name == name)); // Удаление из списка
                 if (ao_find != null)
@@ -477,7 +480,7 @@ namespace Moderon
             }
             else // Выбран сигнал AO
             {
-                name = String.Concat(AO2bl2_combo.SelectedItem);
+                name = string.Concat(AO2bl2_combo.SelectedItem);
                 ao_find = list_ao.Find(x => x.Name == name);
                 list_ao.Remove(list_ao.Find(x => x.Name == name)); // Удаление из списка
                 if (ao_find != null)
@@ -529,7 +532,7 @@ namespace Moderon
             }
             else // Выбран сигнал AO
             {
-                name = String.Concat(AO3bl2_combo.SelectedItem);
+                name = string.Concat(AO3bl2_combo.SelectedItem);
                 ao_find = list_ao.Find(x => x.Name == name);
                 list_ao.Remove(list_ao.Find(x => x.Name == name)); // Удаление из списка
                 if (ao_find != null)
@@ -581,7 +584,7 @@ namespace Moderon
             }
             else // Выбран сигнал AO
             {
-                name = String.Concat(AO1bl3_combo.SelectedItem);
+                name = string.Concat(AO1bl3_combo.SelectedItem);
                 ao_find = list_ao.Find(x => x.Name == name);
                 list_ao.Remove(list_ao.Find(x => x.Name == name)); // Удаление из списка
                 if (ao_find != null)
@@ -633,7 +636,7 @@ namespace Moderon
             }
             else // Выбран сигнал AO
             {
-                name = String.Concat(AO2bl3_combo.SelectedItem);
+                name = string.Concat(AO2bl3_combo.SelectedItem);
                 ao_find = list_ao.Find(x => x.Name == name);
                 list_ao.Remove(list_ao.Find(x => x.Name == name)); // Удаление из списка
                 if (ao_find != null)
@@ -685,7 +688,7 @@ namespace Moderon
             }
             else // Выбран сигнал AO
             {
-                name = String.Concat(AO3bl3_combo.SelectedItem);
+                name = string.Concat(AO3bl3_combo.SelectedItem);
                 ao_find = list_ao.Find(x => x.Name == name);
                 list_ao.Remove(list_ao.Find(x => x.Name == name)); // Удаление из списка
                 if (ao_find != null)

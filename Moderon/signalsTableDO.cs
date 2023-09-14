@@ -7,6 +7,9 @@ using System.Collections.Generic;
 
 namespace Moderon
 {
+    /// <summary>
+    /// Класс для дискретных выходов
+    /// </summary>
     class Do
     {
         public string Name { get; private set; }
@@ -22,7 +25,10 @@ namespace Moderon
             Name = name; Code = code; Active = active;
         }
         public Do() { }
+        /// <summary>Выбор дискретного выхода</summary>
         public void Select() => Active = false;
+        
+        /// <summary>Освобождение дискретного выхода</summary>
         public void Dispose() => Active = true;
     }
 
@@ -34,6 +40,8 @@ namespace Moderon
         /// <value>true</value>
         bool initialComboSignals = true; // Начальная расстановка
         bool subDOcondition = false; // Условие при удалении DO
+
+        /// <summary>Начальная установка для подписей</summary>
         static string notSelected = "Не выбрано";
 
         // Сохранение наименования выбранного элемента для ПЛК

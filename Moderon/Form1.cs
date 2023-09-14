@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Text;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
@@ -16,16 +9,23 @@ namespace Moderon
 {
     public partial class Form1 : Form
     {
-        private const int height = 280; // Высота для панелей настройки элементов
-        private bool hintEnabled = true; // Подсказки выбраны по умолчанию
-        private bool showCode = true; // Код сигнала отображается по умолчанию
-        private bool fromSignalsMove = false; // Переход из панели выбора сигналов
-        double s_prDamp = 0; // Площадь для приточной заслонки
-        double s_outDamp = 0; // Площадь для вытяжной заслонки
-        double s_recircDamp = 0; // Площадь для рециркуляционной заслонки
-        int torq_prDamp = 0; // Крутящий момент для приточной заслонки
-        int torq_outDamp = 0; // Крутящий момент для вытяжной заслонки
-        int torq_recircDamp = 0; // Крутящий момент для рециркуляционной заслонки
+        private const int height = 280;             // Высота для панелей настройки элементов
+
+        readonly private bool showCode = true;      // Код сигнала отображается по умолчанию
+        
+        private bool 
+            hintEnabled = true,                     // Подсказки выбраны по умолчанию
+            fromSignalsMove = false;                // Переход из панели выбора сигналов
+        
+        double 
+            s_prDamp = 0,                           // Площадь для приточной заслонки
+            s_outDamp = 0,                          // Площадь для вытяжной заслонки
+            s_recircDamp = 0;                       // Площадь для рециркуляционной заслонки
+        
+        int 
+            torq_prDamp = 0,                        // Крутящий момент для приточной заслонки
+            torq_outDamp = 0,                       // Крутящий момент для вытяжной заслонки
+            torq_recircDamp = 0;                    // Крутящий момент для рециркуляционной заслонки
 
         // Класс для всплывающих подсказок (основные элементы)
         readonly ToolTip toolTip = new ToolTip
@@ -58,111 +58,88 @@ namespace Moderon
         // Изменение размера формы
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
-            const int deltaW_tabControl = 245; // Промежуток по ширине, панель с вкладками tabControl1
-            const int deltaH_tabControl = 155; // Промежуток по высоте, панель с вкладками tabControl1
-            const int deltaW_FanPanel = 278; // Промежуток по ширине, панель приточного вентилятора prFanPanel
-            const int deltaW_panel = 210; // Промежуток по ширине, панель с выбором элементов panel1
-            const int height_panel1 = 120; // Высота для панели panel1
-            var s1 = new Size(Size.Width - deltaW_tabControl, Size.Height - deltaH_tabControl);
-            var s2 = new Size(Size.Width - deltaW_FanPanel, prFanPanel.Height);
-            var s3 = new Size(Size.Width - deltaW_FanPanel, outFanPanel.Height);
-            var s4 = new Size(Size.Width - deltaW_FanPanel, filterPanel.Height);
-            var s5 = new Size(Size.Width - deltaW_FanPanel, sensorsPanel.Height);
-            var s6 = new Size(Size.Width - deltaW_FanPanel, dampPanel.Height);
-            var s7 = new Size(Size.Width - deltaW_FanPanel, heatPanel.Height);
-            var s8 = new Size(Size.Width - deltaW_FanPanel, coolPanel.Height);
-            var s9 = new Size(Size.Width - deltaW_FanPanel, humidPanel.Height);
-            var s10 = new Size(Size.Width - deltaW_FanPanel, recircPanel.Height);
-            var s11 = new Size(Size.Width - deltaW_FanPanel, recupPanel.Height);
-            var s12 = new Size(Size.Width - deltaW_FanPanel, secHeatPanel.Height);
-            var p1 = new Point(Size.Width - deltaW_panel, height_panel1);
-            // Изменение размеров
-            tabControl1.Size = s1; // Изменение размера панели с вкладками
-            prFanPanel.Size = s2;
-            outFanPanel.Size = s3;
-            filterPanel.Size = s4;
-            sensorsPanel.Size = s5;
-            dampPanel.Size = s6;
-            heatPanel.Size = s7;
-            coolPanel.Size = s8;
-            humidPanel.Size = s9;
-            recircPanel.Size = s10;
-            recupPanel.Size = s11;
-            secHeatPanel.Size = s12;
-            // Изменение положения
-            panelElements.Location = p1;
-            PicturesMove(Size.Width); // Перемещение изображений
-            PDF_ReSize(Size.Width, Size.Height); // Область для отображения PDF
-            SignalsTableReSize(Size.Width, Size.Height); // Таблица сигналов
+            const int 
+                deltaW_tabControl = 245,            // Промежуток по ширине, панель с вкладками tabControl1
+                deltaH_tabControl = 155,            // Промежуток по высоте, панель с вкладками tabControl1
+                deltaW_FanPanel = 278,              // Промежуток по ширине, панель приточного вентилятора prFanPanel
+                deltaW_panel = 210,                 // Промежуток по ширине, панель с выбором элементов panel1
+                height_panel1 = 120;                // Высота для панели panel1
+
+            // Изменение размеров для панелей
+            tabControl1.Size = new Size(Size.Width - deltaW_tabControl, Size.Height - deltaH_tabControl);
+            prFanPanel.Size = new Size(Size.Width - deltaW_FanPanel, prFanPanel.Height);
+            outFanPanel.Size = new Size(Size.Width - deltaW_FanPanel, outFanPanel.Height);
+            filterPanel.Size = new Size(Size.Width - deltaW_FanPanel, filterPanel.Height);
+            sensorsPanel.Size = new Size(Size.Width - deltaW_FanPanel, sensorsPanel.Height);
+            dampPanel.Size = new Size(Size.Width - deltaW_FanPanel, dampPanel.Height);
+            heatPanel.Size = new Size(Size.Width - deltaW_FanPanel, heatPanel.Height);
+            coolPanel.Size = new Size(Size.Width - deltaW_FanPanel, coolPanel.Height);
+            humidPanel.Size = new Size(Size.Width - deltaW_FanPanel, humidPanel.Height);
+            recircPanel.Size = new Size(Size.Width - deltaW_FanPanel, recircPanel.Height);
+            recupPanel.Size = new Size(Size.Width - deltaW_FanPanel, recupPanel.Height);
+            secHeatPanel.Size = new Size(Size.Width - deltaW_FanPanel, secHeatPanel.Height);
+
+            // Положение для панели элементов
+            panelElements.Location = new Point(Size.Width - deltaW_panel, height_panel1);
+
+            PicturesMove(Size.Width);                       // Перемещение изображений
+            PDF_ReSize(Size.Width, Size.Height);            // Область для отображения PDF
+            SignalsTableReSize(Size.Width, Size.Height);    // Таблица сигналов
         }
 
-        // Переменещение изображений элементов 
+        /// <summary>Переменещение изображений элементов </summary>
         private void PicturesMove(int width)
         {
-            const int fan_height = 3;
-            const int fan1_delta = 458;
-            const int fan2_delta = 437;
-            const int filter_delta = 409;
-            const int sensors_delta = 411;
-            const int damp_delta = 421;
-            const int heat_delta = 416;
-            const int humid_delta = 449;
-            const int recirc_delta = 418;
-            const int recup_delta = 398;
-            const int secHeat_delta = 416;
-            const int recup_2_delta = 507;
 
-            var p1 = new Point(width - fan1_delta, fan_height);
-            var p2 = new Point(width - fan2_delta, fan_height);
-            var p3 = new Point(width - filter_delta, fan_height);
-            var p4 = new Point(width - sensors_delta, fan_height);
-            var p5 = new Point(width - damp_delta, fan_height);
-            var p6 = new Point(width - heat_delta, fan_height);
-            var p7 = new Point(width - heat_delta, fan_height);
-            var p8 = new Point(width - humid_delta, fan_height);
-            var p9 = new Point(width - recirc_delta, fan_height);
-            var p10 = new Point(width - recup_delta, fan_height);
-            var p11 = new Point(width - secHeat_delta, fan_height);
-            var p12 = new Point(width - recup_2_delta, fan_height);
-            fanPicture1.Location = p1;
-            fanPicture2.Location = p2;
-            filterPicture.Location = p3;
-            sensorPicture.Location = p4;
-            dampPicture.Location = p5; 
-            heatPicture.Location = p6;
-            coolPicture.Location = p7;
-            humidPicture.Location = p8;
-            recircPicture.Location = p9;
-            heatAddPicture.Location = p11;
+            const int 
+                fan_height = 3,
+                fan1_delta = 458,
+                fan2_delta = 437,
+                filter_delta = 409,
+                sensors_delta = 411,
+                damp_delta = 421,
+                heat_delta = 416,
+                humid_delta = 449,
+                recirc_delta = 418,
+                recup_delta = 398,
+                secHeat_delta = 416,
+                recup_2_delta = 507;
+
+            // Положения для элементов
+            fanPicture1.Location = new Point(width - fan1_delta, fan_height);
+            fanPicture2.Location = new Point(width - fan2_delta, fan_height);
+            filterPicture.Location = new Point(width - filter_delta, fan_height);
+            sensorPicture.Location = new Point(width - sensors_delta, fan_height);
+            dampPicture.Location = new Point(width - damp_delta, fan_height);
+            heatPicture.Location = new Point(width - heat_delta, fan_height);
+            coolPicture.Location = new Point(width - heat_delta, fan_height);
+            humidPicture.Location = new Point(width - humid_delta, fan_height);
+            recircPicture.Location = new Point(width - recirc_delta, fan_height);
+            heatAddPicture.Location = new Point(width - secHeat_delta, fan_height);
+
             // Два варианта для рекуператора
-            if (recupTypeCombo.SelectedIndex == 0)
-                recupPicture.Location = p10;
-            else
-                recupPicture.Location = p12;
+            recupPicture.Location = recupTypeCombo.SelectedIndex == 0 ? 
+                new Point(width - recup_delta, fan_height) : new Point(width - recup_2_delta, fan_height);
         }
 
         ///<summary>Изменение размера области для отображения руковоства PDF</summary>
         private void PDF_ReSize(int width, int height)
         {
-            helpPanel.Width = width - 50;
-            helpPanel.Height = height - 50;
-            axAcroPDF1.Width = helpPanel.Width;
-            axAcroPDF1.Height = helpPanel.Height - 140;
+            helpPanel.Size = new Size(width - 50, height - 50);
+            axAcroPDF1.Size = new Size(helpPanel.Width, helpPanel.Height - 140);
         }
 
         ///<summary>Изменение размера области для таблицы сигналов</summary>
         private void SignalsTableReSize(int width, int height)
         {
-            signalsPanel.Width = width - 50;
-            signalsPanel.Height = height - 150;
-            tabControlSignals.Width = signalsPanel.Width - 20;
-            tabControlSignals.Height = signalsPanel.Height - 50;
+            signalsPanel.Size = new Size(width - 50, height - 150);
+            tabControlSignals.Size = new Size(signalsPanel.Width - 20, signalsPanel.Height - 50);
         }
 
         ///<summary>Изначальный выбор для comboBox</summary>
         private void SelectComboBoxesInitial()
         {
-            comboSysType.SelectedItem = "П-система"; // Выбор системы изначально
+            comboSysType.SelectedItem = "П-система";        // Выбор типа системы изначально
             filterPrCombo.SelectedItem = "1";
             filterOutCombo.SelectedItem = "0";
             prFanPowCombo.SelectedItem = "380 В";
@@ -193,7 +170,7 @@ namespace Moderon
             fireTypeCombo.SelectedItem = "НО";
         }
 
-        // Установка размера для панелей настройки элементов
+        /// <summary>Установка размера для панелей настройки элементов</summary>
         private void SizePanels()
         {
             watHeatPanel.Height = height;
@@ -202,14 +179,13 @@ namespace Moderon
             rotorRecupPanel.Height = height;
         }
 
-        // Установка размера формы
+        /// <summary>Установка размера основной формы</summary>
         private void SizeForm()
         {
-            this.Width = 995;
-            this.Height = 680; // 610, 630
+            Width = 995; Height = 680;
         }
 
-        // Очистка для подписей кодов у comboBox входов/выходов
+        /// <summary>Очистка для подписей кодов у comboBox входов/выходов</summary>
         private void ClearIO_codes()
         {
             // Сигналы DO, ПЛК
@@ -258,7 +234,7 @@ namespace Moderon
             DI5bl3_lab.Text = "";
         }
 
-        // Выход из программы, "Выход" в меню
+        /// <summary>Выход из программы, "Выход" в меню</summary>
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             const string message = "Вы действительно хотите выйти?";
@@ -268,7 +244,7 @@ namespace Moderon
             if (result == DialogResult.Yes) this.Close(); // Выход из приложения
         }
 
-        // При загрузке Form1, всплывающие подсказки
+        /// <summary>При загрузке Form1, всплывающие подсказки</summary>
         private void Form1_Load(object sender, EventArgs e)
         {
             string ai_sig = "Добавляет AI сигнал";
@@ -335,13 +311,13 @@ namespace Moderon
         }
 
         ///<summary>Проверка выбора опций для разблокировки типа системы</summary>
-
         private void CheckOptions()
         {
             List<bool> options = new List<bool> {
                 filterCheck.Checked,
                 dampCheck.Checked,
                 heaterCheck.Checked,
+                addHeatCheck.Checked,
                 coolerCheck.Checked,
                 humidCheck.Checked,
                 recircCheck.Checked,
@@ -426,6 +402,37 @@ namespace Moderon
             HumidCheck_signalsDOCheckedChanged(this, e); // Сигналы DO ПЛК
             HumidCheck_signalsAOCheckedChanged(this, e); // Сигналы AO ПЛК
             HumidCheck_signalsDICheckedChanged(this, e); // Сигналы DI ПЛК
+        }
+
+        ///<summary>Выбрали дополнительный нагреватель</summary>
+        private void AddHeatCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            if (addHeatCheck.Checked) // Выбрали второй нагрев
+            {
+                if (comboSysType.Enabled) comboSysType.Enabled = false;
+                addHeatPage.Parent = tabControl1;
+                dehumModeCheck.Show();
+                prChanSensCheck.Checked = true;
+                prChanSensCheck.Enabled = false;
+            }
+            else // Отмена выбора второго нагрева
+            {
+                addHeatPage.Parent = null;
+                dehumModeCheck.Hide();
+                if (!heaterCheck.Checked && !coolerCheck.Checked) // Нет выбранного нагревателя и охладителя
+                {
+                    prChanSensCheck.Checked = false;
+                    prChanSensCheck.Enabled = true;
+                }
+                CheckOptions();
+            }
+            CheckHumidSensors(); // Проверка датчиков влажности
+            AddHeatCheck_cmdCheckedChanged(this, e); // Командное слово
+            if (ignoreEvents) return;
+            AddHeatCheck_signalsDOCheckedChanged(this, e); // Сигналы DO ПЛК
+            AddHeatCheck_signalsAOCheckedChanged(this, e); // Сигналы AO ПЛК
+            AddHeatCheck_signalsDICheckedChanged(this, e); // Сигналы DI ПЛК
+            AddHeatCheck_signalsAICheckedChanged(this, e); // Сигналы AI ПЛК
         }
 
         ///<summary>Выбрали рециркуляцию</summary>
@@ -967,35 +974,6 @@ namespace Moderon
                 confAddHeatPumpCheck.Enabled = false;
             }
             PumpAddHeatCheck_cmdCheckedChanged(this, e); // Командное слово
-        }
-
-        ///<summary>Выбрали догреватель</summary>
-        private void AddHeatCheck_CheckedChanged(object sender, EventArgs e)
-        {
-            if (addHeatCheck.Checked) // Выбрали второй нагрев
-            {
-                addHeatPage.Parent = tabControl1;
-                dehumModeCheck.Show();
-                prChanSensCheck.Checked = true;
-                prChanSensCheck.Enabled = false;
-            }
-            else // Отмена выбора второго нагрева
-            {
-                addHeatPage.Parent = null;
-                dehumModeCheck.Hide();
-                if (!heaterCheck.Checked && !coolerCheck.Checked) // Нет выбранного нагревателя и охладителя
-                {
-                    prChanSensCheck.Checked = false;
-                    prChanSensCheck.Enabled = true;
-                }
-            }
-            CheckHumidSensors(); // Проверка датчиков влажности
-            AddHeatCheck_cmdCheckedChanged(this, e); // Командное слово
-            if (ignoreEvents) return;
-            AddHeatCheck_signalsDOCheckedChanged(this, e); // Сигналы DO ПЛК
-            AddHeatCheck_signalsAOCheckedChanged(this, e); // Сигналы AO ПЛК
-            AddHeatCheck_signalsDICheckedChanged(this, e); // Сигналы DI ПЛК
-            AddHeatCheck_signalsAICheckedChanged(this, e); // Сигналы AI ПЛК
         }
 
         ///<summary>Выбрали вытяжную воздушную заслонку</summary>
