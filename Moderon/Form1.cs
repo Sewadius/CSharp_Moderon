@@ -9,12 +9,11 @@ namespace Moderon
 {
     public partial class Form1 : Form
     {
-        private const int height = 280;             // Высота для панелей настройки элементов
-
+        private const int HEIGHT = 280;             // Высота для панелей настройки элементов
         readonly private bool showCode = true;      // Код сигнала отображается по умолчанию
         
         private bool 
-            hintEnabled = true,                     // Подсказки выбраны по умолчанию
+            hintEnabled = true,                     // Отображение подсказок выбрано по умолчанию
             fromSignalsMove = false;                // Переход из панели выбора сигналов
         
         double 
@@ -30,19 +29,13 @@ namespace Moderon
         // Класс для всплывающих подсказок (основные элементы)
         readonly ToolTip toolTip = new ToolTip
         {
-            AutoPopDelay = 3000,
-            InitialDelay = 1000,
-            ReshowDelay = 500,
-            ShowAlways = true
+            AutoPopDelay = 3000, InitialDelay = 1000, ReshowDelay = 500, ShowAlways = true
         };
 
         // Класс для всплывающих подсказок (зеленые галочки подбора приводов)
         readonly ToolTip driveTip = new ToolTip
         {
-            AutoPopDelay = 3000,
-            InitialDelay = 1000,
-            ReshowDelay = 500,
-            ShowAlways = true
+            AutoPopDelay = 3000, InitialDelay = 1000, ReshowDelay = 500, ShowAlways = true
         };
 
         public Form1()
@@ -51,8 +44,9 @@ namespace Moderon
             BlockTabControlInitial();       // Скрытие вкладок элементов
             SelectComboBoxesInitial();      // Изначальный выбор для comboBox
             SizePanels();                   // Изменение размера панелей
-            SizeForm();                     // Изменение размера основной формы
             ClearIO_codes();                // Очистка наименования кодов для входов/выходов
+            
+            Size = new Size(995, 680);      // Размер для основной формы
         }
 
         // Изменение размера формы
@@ -66,7 +60,7 @@ namespace Moderon
                 height_panel1 = 120;                // Высота для панели panel1
 
             // Изменение размеров для панелей
-            tabControl1.Size = new Size(Size.Width - deltaW_tabControl, Size.Height - deltaH_tabControl);
+            mainPage.Size = new Size(Size.Width - deltaW_tabControl, Size.Height - deltaH_tabControl);
             prFanPanel.Size = new Size(Size.Width - deltaW_FanPanel, prFanPanel.Height);
             outFanPanel.Size = new Size(Size.Width - deltaW_FanPanel, outFanPanel.Height);
             filterPanel.Size = new Size(Size.Width - deltaW_FanPanel, filterPanel.Height);
@@ -92,18 +86,9 @@ namespace Moderon
         {
 
             const int 
-                fan_height = 3,
-                fan1_delta = 458,
-                fan2_delta = 437,
-                filter_delta = 409,
-                sensors_delta = 411,
-                damp_delta = 421,
-                heat_delta = 416,
-                humid_delta = 449,
-                recirc_delta = 418,
-                recup_delta = 398,
-                secHeat_delta = 416,
-                recup_2_delta = 507;
+                fan_height = 3, fan1_delta = 458, fan2_delta = 437, filter_delta = 409,
+                sensors_delta = 411, damp_delta = 421, heat_delta = 416, humid_delta = 449,
+                recirc_delta = 418, recup_delta = 398, secHeat_delta = 416, recup_2_delta = 507;
 
             // Положения для элементов
             fanPicture1.Location = new Point(width - fan1_delta, fan_height);
@@ -139,121 +124,101 @@ namespace Moderon
         ///<summary>Изначальный выбор для comboBox</summary>
         private void SelectComboBoxesInitial()
         {
-            comboSysType.SelectedItem = "П-система";        // Выбор типа системы изначально
-            filterPrCombo.SelectedItem = "1";
-            filterOutCombo.SelectedItem = "0";
-            prFanPowCombo.SelectedItem = "380 В";
-            prFanControlCombo.SelectedItem = "Внешние контакты";
-            outFanPowCombo.SelectedItem = "380 В";
-            outFanControlCombo.SelectedItem = "Внешние контакты";
-            prDampPowCombo.SelectedItem = "24 В";
-            outDampPowCombo.SelectedItem = "24 В";
-            heatTypeCombo.SelectedItem = "Водяной";
-            powPumpCombo.SelectedItem = "230 В";
-            elHeatStagesCombo.SelectedItem = "1";
-            thermSwitchCombo.SelectedItem = "0";
-            coolTypeCombo.SelectedItem = "Фреоновый";
-            frCoolStagesCombo.SelectedItem = "1";
-            powWatCoolCombo.SelectedItem = "24 В";
-            humidTypeCombo.SelectedItem = "Паровой";
-            recircPowCombo.SelectedItem = "24 В";
-            recupTypeCombo.SelectedItem = "Роторный";
-            rotorPowCombo.SelectedItem = "230 В";
-            heatAddTypeCombo.SelectedItem = "Водяной";
-            elHeatAddStagesCombo.SelectedItem = "1";
-            thermAddSwitchCombo.SelectedItem = "0";
-            powPumpAddCombo.SelectedItem = "230 В";
-            bypassPlastCombo.SelectedItem = "Нет";
-            firstStHeatCombo.SelectedItem = "Дискретное";
-            firstStAddHeatCombo.SelectedItem = "Дискретное";
-            comboReadType.SelectedItem = "Все сигналы";
-            fireTypeCombo.SelectedItem = "НО";
+            var elements = new List<ComboBox>()
+            {
+                comboSysType, filterPrCombo, filterOutCombo, prFanPowCombo, prFanControlCombo,
+                outFanPowCombo, outFanControlCombo, prDampPowCombo, outDampPowCombo, heatTypeCombo,
+                powPumpCombo, elHeatStagesCombo, thermSwitchCombo, coolTypeCombo, frCoolStagesCombo,
+                powWatCoolCombo, humidTypeCombo, recircPowCombo, recupTypeCombo, rotorPowCombo,
+                heatAddTypeCombo, elHeatAddStagesCombo, thermAddSwitchCombo, powPumpAddCombo,
+                bypassPlastCombo, firstStHeatCombo, firstStAddHeatCombo, comboReadType, fireTypeCombo
+            };
+
+            foreach (var element in elements) element.SelectedIndex = 0;
+            
         }
 
         /// <summary>Установка размера для панелей настройки элементов</summary>
         private void SizePanels()
         {
-            watHeatPanel.Height = height;
-            steamHumidPanel.Height = height;
-            watAddHeatPanel.Height = height;
-            rotorRecupPanel.Height = height;
-        }
+            var panels = new List<Panel>()
+            {
+                watHeatPanel, steamHumidPanel, watAddHeatPanel, rotorRecupPanel
+            };
 
-        /// <summary>Установка размера основной формы</summary>
-        private void SizeForm()
-        {
-            Width = 995; Height = 680;
+            foreach (var panel in panels) panel.Height = HEIGHT;
+            
         }
 
         /// <summary>Очистка для подписей кодов у comboBox входов/выходов</summary>
         private void ClearIO_codes()
         {
-            // Сигналы DO, ПЛК
-            DO1_lab.Text = ""; DO2_lab.Text = ""; DO3_lab.Text = ""; DO4_lab.Text = "";
-            DO5_lab.Text = ""; DO6_lab.Text = ""; DO7_lab.Text = "";
-            // Сигналы DO, блок 1
-            DO1bl1_lab.Text = ""; DO2bl1_lab.Text = ""; DO3bl1_lab.Text = ""; DO4bl1_lab.Text = "";
-            DO5bl1_lab.Text = ""; DO6bl1_lab.Text = ""; DO7bl1_lab.Text = "";
-            // Сигналы DO, блок 2
-            DO1bl2_lab.Text = ""; DO2bl2_lab.Text = ""; DO3bl2_lab.Text = ""; DO4bl2_lab.Text = "";
-            DO5bl2_lab.Text = ""; DO6bl2_lab.Text = ""; DO7bl2_lab.Text = "";
-            // Сигналы DO, блок 3
-            DO1bl3_lab.Text = ""; DO2bl3_lab.Text = ""; DO3bl3_lab.Text = ""; DO4bl3_lab.Text = "";
-            DO5bl3_lab.Text = ""; DO6bl3_lab.Text = ""; DO7bl3_lab.Text = "";
-            // Сигналы AO, ПЛК
-            AO1_lab.Text = ""; AO2_lab.Text = ""; AO3_lab.Text = "";
-            // Сигналы AO, блок 1
-            AO1bl1_lab.Text = ""; AO2bl1_lab.Text = ""; AO3bl1_lab.Text = "";
-            // Сигналы AO, блок 2
-            AO1bl2_lab.Text = ""; AO2bl2_lab.Text = ""; AO3bl2_lab.Text = "";
-            // Сигнаыл AO, блок 3
-            AO1bl3_lab.Text = ""; AO2bl3_lab.Text = ""; AO3bl3_lab.Text = "";
-            // Сигналы AI, ПЛК
-            AI1_lab.Text = ""; AI2_lab.Text = ""; AI3_lab.Text = ""; AI4_lab.Text = "";
-            AI5_lab.Text = ""; AI6_lab.Text = "";
-            // Сигналы AI, блок 1
-            AI1bl1_lab.Text = ""; AI2bl1_lab.Text = ""; AI3bl1_lab.Text = ""; AI4bl1_lab.Text = "";
-            AI5bl1_lab.Text = ""; AI6bl1_lab.Text = "";
-            // Сигналы AI, блок 2
-            AI1bl2_lab.Text = ""; AI2bl2_lab.Text = ""; AI3bl2_lab.Text = ""; AI4bl2_lab.Text = "";
-            AI5bl2_lab.Text = ""; AI6bl2_lab.Text = "";
-            // Сигналы AI, блок 3
-            AI1bl3_lab.Text = ""; AI2bl3_lab.Text = ""; AI3bl3_lab.Text = ""; AI4bl3_lab.Text = "";
-            AI5bl3_lab.Text = ""; AI6bl3_lab.Text = "";
-            // Сигналы DI, ПЛК
-            DI1_lab.Text = ""; DI2_lab.Text = ""; DI3_lab.Text = ""; DI4_lab.Text = "";
-            DI5_lab.Text = "";
-            // Сигналы DI, блок 1
-            DI1bl1_lab.Text = ""; DI2bl1_lab.Text = ""; DI3bl1_lab.Text = ""; DI4bl1_lab.Text = "";
-            DI5bl1_lab.Text = "";
-            // Сигналы DI, блок 2
-            DI1bl2_lab.Text = ""; DI2bl2_lab.Text = ""; DI3bl2_lab.Text = ""; DI4bl2_lab.Text = "";
-            DI5bl2_lab.Text = "";
-            // Сигналы DI, блок 3
-            DI1bl3_lab.Text = ""; DI2bl3_lab.Text = ""; DI3bl3_lab.Text = ""; DI4bl3_lab.Text = "";
-            DI5bl3_lab.Text = "";
+            var do_signals = new List<Label>() 
+            {
+                DO1_lab, DO2_lab, DO3_lab, DO4_lab, DO5_lab, DO6_lab, DO7_lab,
+                DO1bl1_lab, DO2bl1_lab, DO3bl1_lab, DO4bl1_lab, DO5bl1_lab, DO6bl1_lab, DO7bl1_lab,
+                DO1bl2_lab, DO2bl2_lab, DO3bl2_lab, DO4bl2_lab, DO5bl2_lab, DO6bl2_lab, DO7bl2_lab,
+                DO1bl3_lab, DO2bl3_lab, DO3bl3_lab, DO4bl3_lab, DO5bl3_lab, DO6bl3_lab, DO7bl3_lab
+            };
+
+            var ao_signals = new List<Label>()
+            {
+                AO1_lab, AO2_lab, AO3_lab, 
+                AO1bl1_lab, AO2bl1_lab, AO3bl1_lab, 
+                AO1bl2_lab, AO2bl2_lab, AO3bl2_lab, 
+                AO1bl3_lab, AO2bl3_lab, AO3bl3_lab 
+            };
+
+            var ai_signals = new List<Label>()
+            {
+                AI1_lab, AI2_lab, AI3_lab, AI4_lab, AI5_lab, AI6_lab, 
+                AI1bl1_lab, AI2bl1_lab, AI3bl1_lab, AI4bl1_lab, AI5bl1_lab, AI6bl1_lab, 
+                AI1bl2_lab, AI2bl2_lab, AI3bl2_lab, AI4bl2_lab, AI5bl2_lab, AI6bl2_lab,
+                AI1bl3_lab, AI2bl3_lab, AI3bl3_lab, AI4bl3_lab, AI5bl3_lab, AI6bl3_lab 
+            };
+
+            var di_signals = new List<Label>()
+            {
+                DI1_lab, DI2_lab, DI3_lab, DI4_lab, DI5_lab, 
+                DI1bl1_lab, DI2bl1_lab, DI3bl1_lab, DI4bl1_lab, DI5bl1_lab, 
+                DI1bl2_lab, DI2bl2_lab, DI3bl2_lab, DI4bl2_lab, DI5bl2_lab,
+                DI1bl3_lab, DI2bl3_lab, DI3bl3_lab, DI4bl3_lab, DI5bl3_lab 
+            };
+
+            List<Label> signals = do_signals.Concat(ao_signals)
+                .Concat(ai_signals).Concat(di_signals).ToList();
+
+            foreach (var label in signals) label.Text = ""; 
         }
 
         /// <summary>Выход из программы, "Выход" в меню</summary>
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            const string message = "Вы действительно хотите выйти?";
-            const string caption = "Выход";
-            var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, 
+            const string 
+                MESSAGE = "Вы действительно хотите выйти?",
+                CAPTION = "Выход";
+
+            var result = MessageBox.Show(MESSAGE, CAPTION, MessageBoxButtons.YesNo, 
                 MessageBoxIcon.Question);
-            if (result == DialogResult.Yes) this.Close(); // Выход из приложения
+
+            if (result == DialogResult.Yes) Close(); // Выход из приложения
         }
 
-        /// <summary>При загрузке Form1, всплывающие подсказки</summary>
+        /// <summary>Назначение подсказок при загрузке Form1</summary>
         private void Form1_Load(object sender, EventArgs e)
         {
-            string ai_sig = "Добавляет AI сигнал";
-            string di_sig = "Добавляет DI сигнал";
-            string do_sig = "Добавляет DO сигнал";
-            string ao_sig = "Добавляет AO сигнал";
-            string ps = "Добавляет DI сигнал и датчик давления";
-            string drive = "Привод добавлен в спецификацию";
+            string 
+                ai_sig = "Добавляет AI сигнал",
+                di_sig = "Добавляет DI сигнал",
+                do_sig = "Добавляет DO сигнал",
+                ao_sig = "Добавляет AO сигнал",
+                ps = "Добавляет DI сигнал и датчик давления",
+                drive = "Привод добавлен в спецификацию";
+
             toolTip.Active = hintEnabled;
+
+
+
             // Датчики
             toolTip.SetToolTip(prChanSensCheck, ai_sig);
             toolTip.SetToolTip(roomTempSensCheck, ai_sig);
@@ -289,7 +254,7 @@ namespace Moderon
             driveTip.SetToolTip(markOutDampPanel, drive);
             driveTip.SetToolTip(markRecircPanel, drive);
             // Изменение размера для tabControl выбора оборудования
-            tabControl1.Height = 465; 
+            mainPage.Height = 465; 
             Form1_InitCmdWord(this, e); // Подготовка командных слов
             Form1_InitSignals(this, e); // Подготовка сигналов ПЛК
             // Изменения для панели данных записи 
@@ -300,49 +265,43 @@ namespace Moderon
         /// <summary>Скрытие всех вкладок элементов</summary>
         private void BlockTabControlInitial()
         {
-            filterPage.Parent = null;
-            dampPage.Parent = null;
-            heatPage.Parent = null;
-            coolPage.Parent = null;
-            humidPage.Parent = null;
-            recircPage.Parent = null;
-            recupPage.Parent = null;
-            addHeatPage.Parent = null;
+            var pages = new List<TabPage>()
+            {
+                filterPage, dampPage, heatPage, coolPage, humidPage,
+                recircPage, recupPage, addHeatPage
+            };
+
+            foreach (var el in pages) el.Parent = null;
         }
 
         ///<summary>Проверка выбора опций для разблокировки типа системы</summary>
         private void CheckOptions()
         {
             List<bool> options = new List<bool> {
-                filterCheck.Checked,
-                dampCheck.Checked,
-                heaterCheck.Checked,
-                addHeatCheck.Checked,
-                coolerCheck.Checked,
-                humidCheck.Checked,
-                recircCheck.Checked,
-                recupCheck.Checked
+                filterCheck.Checked, dampCheck.Checked, heaterCheck.Checked,
+                addHeatCheck.Checked, coolerCheck.Checked, humidCheck.Checked,
+                recircCheck.Checked, recupCheck.Checked
             };
 
-            if (options.All(el => el == false))
-                comboSysType.Enabled = true;
+            if (options.All(el => el == false)) comboSysType.Enabled = true;
         }
 
         ///<summary>Выбрали нагреватель</summary>
         private void HeaterCheck_CheckedChanged(object sender, EventArgs e)
         {
-            if (heaterCheck.Checked)
-            {   // Выбрали нагреватель
+            if (heaterCheck.Checked)                        // Выбрали нагреватель
+            {   
                 if (comboSysType.Enabled) comboSysType.Enabled = false;
-                heatPage.Parent = tabControl1;
+                heatPage.Parent = mainPage;
                 prChanSensCheck.Checked = true;
                 prChanSensCheck.Enabled = false;
             }
-            else
-            {   // Отмена выбора нагревателя
+            else                                            // Отмена выбора нагревателя
+            {   
                 heatPage.Parent = null;
                 CheckOptions();
-                if (!coolerCheck.Checked && !addHeatCheck.Checked) // Не выбран охладитель и второй нагреватель
+                // Не выбран охладитель и второй нагреватель
+                if (!coolerCheck.Checked && !addHeatCheck.Checked) 
                 {
                     prChanSensCheck.Checked = false;
                     prChanSensCheck.Enabled = true;
@@ -350,107 +309,109 @@ namespace Moderon
             }
             HeaterCheck_cmdCheckedChanged(this, e); // Командное слово
             if (ignoreEvents) return;
-            HeaterCheck_signalsDOCheckedChanged(this, e); // Сигналы DO ПЛК
-            HeaterCheck_signalsAOCheckedChanged(this, e); // Сигналы AO ПЛК
-            HeaterCheck_signalsDICheckedChanged(this, e); // Сигналы DI ПЛК
-            HeaterCheck_signalsAICheckedChanged(this, e); // Сигналы AI ПЛК
+            HeaterCheck_signalsDOCheckedChanged(this, e);   // Сигналы DO ПЛК
+            HeaterCheck_signalsAOCheckedChanged(this, e);   // Сигналы AO ПЛК
+            HeaterCheck_signalsDICheckedChanged(this, e);   // Сигналы DI ПЛК
+            HeaterCheck_signalsAICheckedChanged(this, e);   // Сигналы AI ПЛК
         }
 
         ///<summary>Выбрали охладитель</summary>
         private void CoolerCheck_CheckedChanged(object sender, EventArgs e)
         {
-            if (coolerCheck.Checked)
-            { // Выбрали охладитель
+            if (coolerCheck.Checked)                        // Выбрали охладитель
+            { 
                 if (comboSysType.Enabled) comboSysType.Enabled = false;
-                coolPage.Parent = tabControl1;
+                coolPage.Parent = mainPage;
                 prChanSensCheck.Checked = true;
                 prChanSensCheck.Enabled = false;
             }
-            else
-            { // Отмена выбора охладителя
+            else                                            // Отмена выбора охладителя
+            { 
                 coolPage.Parent = null;
                 CheckOptions();
-                if (!heaterCheck.Checked && !addHeatCheck.Checked) // Не выбран нагреватель и второй нагреватель
+                // Не выбран нагреватель и второй нагреватель
+                if (!heaterCheck.Checked && !addHeatCheck.Checked) 
                 {
                     prChanSensCheck.Checked = false;
                     prChanSensCheck.Enabled = true;
                 }
             }
-            CoolerCheck_cmdCheckedChanged(this, e); // Командное слово
+            CoolerCheck_cmdCheckedChanged(this, e);         // Командное слово
             if (ignoreEvents) return;
-            CoolerCheck_signalsDOCheckedChanged(this, e); // Сигналы DO ПЛК
-            CoolerCheck_signalsAOCheckedChanged(this, e); // Сигналы AO ПЛК
-            CoolerCheck_signalsDICheckedChanged(this, e); // Сигналы DI ПЛК
+            CoolerCheck_signalsDOCheckedChanged(this, e);   // Сигналы DO ПЛК
+            CoolerCheck_signalsAOCheckedChanged(this, e);   // Сигналы AO ПЛК
+            CoolerCheck_signalsDICheckedChanged(this, e);   // Сигналы DI ПЛК
         }
 
         ///<summary>Выбрали увлажнитель</summary>
         private void HumidCheck_CheckedChanged(object sender, EventArgs e)
         {
-            if (humidCheck.Checked)
+            if (humidCheck.Checked)                         // Выбрали увлажнитель
             {
                 if (comboSysType.Enabled) comboSysType.Enabled = false;
-                humidPage.Parent = tabControl1;
+                humidPage.Parent = mainPage;
             }
-            else
+            else                                            // Отмена выбора увлажнителя   
             {
                 humidPage.Parent = null;
                 CheckOptions();
             }
-            CheckHumidSensors(); // Проверка датчиков влажности
-            HumidCheck_cmdCheckedChanged(this, e); // Командное слово
+            CheckHumidSensors();                            // Проверка датчиков влажности
+            HumidCheck_cmdCheckedChanged(this, e);          // Командное слово
             if (ignoreEvents) return;
-            HumidCheck_signalsDOCheckedChanged(this, e); // Сигналы DO ПЛК
-            HumidCheck_signalsAOCheckedChanged(this, e); // Сигналы AO ПЛК
-            HumidCheck_signalsDICheckedChanged(this, e); // Сигналы DI ПЛК
+            HumidCheck_signalsDOCheckedChanged(this, e);    // Сигналы DO ПЛК
+            HumidCheck_signalsAOCheckedChanged(this, e);    // Сигналы AO ПЛК
+            HumidCheck_signalsDICheckedChanged(this, e);    // Сигналы DI ПЛК
         }
 
         ///<summary>Выбрали дополнительный нагреватель</summary>
         private void AddHeatCheck_CheckedChanged(object sender, EventArgs e)
         {
-            if (addHeatCheck.Checked) // Выбрали второй нагрев
+            if (addHeatCheck.Checked)                       // Выбрали второй нагрев
             {
                 if (comboSysType.Enabled) comboSysType.Enabled = false;
-                addHeatPage.Parent = tabControl1;
+                addHeatPage.Parent = mainPage;
                 dehumModeCheck.Show();
                 prChanSensCheck.Checked = true;
                 prChanSensCheck.Enabled = false;
             }
-            else // Отмена выбора второго нагрева
+            else                                            // Отмена выбора второго нагрева
             {
                 addHeatPage.Parent = null;
                 dehumModeCheck.Hide();
-                if (!heaterCheck.Checked && !coolerCheck.Checked) // Нет выбранного нагревателя и охладителя
+                // Нет выбранного нагревателя и охладителя
+                if (!heaterCheck.Checked && !coolerCheck.Checked) 
                 {
                     prChanSensCheck.Checked = false;
                     prChanSensCheck.Enabled = true;
                 }
                 CheckOptions();
             }
-            CheckHumidSensors(); // Проверка датчиков влажности
-            AddHeatCheck_cmdCheckedChanged(this, e); // Командное слово
+            CheckHumidSensors();                            // Проверка датчиков влажности
+            AddHeatCheck_cmdCheckedChanged(this, e);        // Командное слово
             if (ignoreEvents) return;
-            AddHeatCheck_signalsDOCheckedChanged(this, e); // Сигналы DO ПЛК
-            AddHeatCheck_signalsAOCheckedChanged(this, e); // Сигналы AO ПЛК
-            AddHeatCheck_signalsDICheckedChanged(this, e); // Сигналы DI ПЛК
-            AddHeatCheck_signalsAICheckedChanged(this, e); // Сигналы AI ПЛК
+            AddHeatCheck_signalsDOCheckedChanged(this, e);  // Сигналы DO ПЛК
+            AddHeatCheck_signalsAOCheckedChanged(this, e);  // Сигналы AO ПЛК
+            AddHeatCheck_signalsDICheckedChanged(this, e);  // Сигналы DI ПЛК
+            AddHeatCheck_signalsAICheckedChanged(this, e);  // Сигналы AI ПЛК
         }
 
         ///<summary>Выбрали рециркуляцию</summary>
         private void RecircCheck_CheckedChanged(object sender, EventArgs e)
         {
-            if (recircCheck.Checked)
+            if (recircCheck.Checked)                        // Выбрали рециркуляцию
             {
                 if (comboSysType.Enabled) comboSysType.Enabled = false;
-                recircPage.Parent = tabControl1;
+                recircPage.Parent = mainPage;
             }
-            else
+            else                                            // Отмена выбора рециркуляции
             {
                 recircPage.Parent = null;
                 CheckOptions();
             }
-            RecircCheck_cmdCheckedChanged(this, e); // Командное слово
+            RecircCheck_cmdCheckedChanged(this, e);         // Командное слово
             if (ignoreEvents) return;
-            RecircCheck_signalsAOCheckedChanged(this, e); // Сигналы AO ПЛК
+            RecircCheck_signalsAOCheckedChanged(this, e);   // Сигналы AO ПЛК
         }
 
         ///<summary>Выбрали рекуператор</summary>
@@ -459,7 +420,7 @@ namespace Moderon
             if (recupCheck.Checked) // Выбран рекуператор
             {
                 if (comboSysType.Enabled) comboSysType.Enabled = false;
-                recupPage.Parent = tabControl1;
+                recupPage.Parent = mainPage;
                 defRecupSensPanel.Show();
                 // Выбор и блокировка приточного канального датчика температуры
                 if (!prChanSensCheck.Checked) prChanSensCheck.Checked = true;
@@ -467,106 +428,98 @@ namespace Moderon
             }
             else // Отмена выбора рекуператора
             {
-                prChanSensCheck.Enabled = true; // Разблокировка канального датчика температуры
+                prChanSensCheck.Enabled = true;             // Разблокировка канального датчика температуры
                 recupPage.Parent = null;
                 defRecupSensPanel.Hide();
                 CheckOptions();
             }
-            RecupCheck_cmdCheckedChanged(this, e); // Командное слово
+            RecupCheck_cmdCheckedChanged(this, e);          // Командное слово
             if (ignoreEvents) return;
-            RecupCheck_signalsDOCheckedChanged(this, e); // Сигналы DO ПЛК
-            RecupCheck_signalsAOCheckedChanged(this, e); // Сигналы AO ПЛК
-            RecupCheck_signalsDICheckedChanged(this, e); // Сигналы DI ПЛК
-            RecupCheck_signalsAICheckedChanged(this, e); // Сигналы AI ПЛК
+            RecupCheck_signalsDOCheckedChanged(this, e);    // Сигналы DO ПЛК
+            RecupCheck_signalsAOCheckedChanged(this, e);    // Сигналы AO ПЛК
+            RecupCheck_signalsDICheckedChanged(this, e);    // Сигналы DI ПЛК
+            RecupCheck_signalsAICheckedChanged(this, e);    // Сигналы AI ПЛК
         }
 
         ///<summary>Нажали на кнопку "Сброс"</summary>
         private void ResetButton_Click(object sender, EventArgs e)
         {
-            comboSysType.Enabled = true; // Разблокировка выбора типа системы
-            comboSysType.SelectedIndex = 0; // Выбор приточной системы
-            filterCheck.Checked = false;
-            dampCheck.Checked = false;
-            heaterCheck.Checked = false;
-            addHeatCheck.Checked = false;
-            coolerCheck.Checked = false;
-            humidCheck.Checked = false;
-            recircCheck.Checked = false;
-            recupCheck.Checked = false;
-            // Блокировка для рециркуляции и рекуператора
-            recircCheck.Enabled = false;
-            recupCheck.Enabled = false;
-            outFanPanel.Hide();
-            SelectComboBoxesInitial(); // Возврат к изначальным значения выбора
-            // Блокровка датчиков для ПВ-системы
-            outChanSensCheck.Enabled = false;
-            outChanSensCheck.Checked = false;
-            // Блокировка элементов
-            prFanControlCombo.Enabled = false;
-            outFanControlCombo.Enabled = false;
-            chanHumSensCheck.Enabled = false;
-            roomHumSensCheck.Enabled = false;
-            fireTypeCombo.Enabled = false;
-            ResetElementsOptions(); // Сброс настроек для элементов
-            ResetButton_signalsDOClick(this, e); // Сброс сигналов ПЛК, DO
-            ResetButton_signalsAOClick(this, e); // Сброс сигналов ПЛК, AO
-            ResetButton_signalsDIClick(this, e); // Сброс сигналов ПЛК, DI
-            ResetButton_signalsAIClick(this, e); // Сброс сигналов ПЛК, AI
-            ClearIO_codes(); // Очистка кодов для comboBox
-            // Сброс опции для таблицы сигналов
-            showWriteBoxCheck.Checked = false;
-            Form1_InitSignals(this, e); // Начальная расстановка сигналов
+            comboSysType.Enabled = true;                    // Разблокировка выбора типа системы
+            comboSysType.SelectedIndex = 0;                 // Выбор приточной системы
+
+            var mainOptions = new List<CheckBox>()
+            {
+                filterCheck, dampCheck, heaterCheck, addHeatCheck, showWriteBoxCheck,
+                coolerCheck, humidCheck, recircCheck, recupCheck, outChanSensCheck
+            };
+
+            var checkElements = new List<CheckBox>()
+            {
+                recircCheck, recupCheck, chanHumSensCheck, roomHumSensCheck, outChanSensCheck
+            };
+
+            var comboElements = new List<ComboBox>()
+            {
+                prFanControlCombo, outFanControlCombo, fireTypeCombo
+            };
+            
+            foreach (var el in mainOptions) el.Checked = false;
+            foreach (var el in checkElements) el.Enabled = false;
+            foreach (var el in comboElements) el.Enabled = false;
+            
+            outFanPanel.Hide();                             // Скрытие панели вытяжного вентилятора
+            SelectComboBoxesInitial();                      // Возврат к изначальным значения выбора
+            ResetElementsOptions();                         // Сброс настроек для элементов
+            ResetButton_signalsDOClick(this, e);            // Сброс сигналов ПЛК, DO
+            ResetButton_signalsAOClick(this, e);            // Сброс сигналов ПЛК, AO
+            ResetButton_signalsDIClick(this, e);            // Сброс сигналов ПЛК, DI
+            ResetButton_signalsAIClick(this, e);            // Сброс сигналов ПЛК, AI
+            ClearIO_codes();                                // Очистка кодов для comboBox
+            Form1_InitSignals(this, e);                     // Начальная расстановка сигналов
         }
 
         ///<summary>Сброс настроек для всего оборудования</summary>
         private void ResetElementsOptions()
         {
-            ResetFansOptions();         // Сброс настроек для вентиляторов
-            ResetDampOptions();         // Сброс настроек для заслонок
-            ResetHeaterOptions();       // Сброс настроек для нагревателя
-            ResetAddHeaterOptions();    // Сброс настроек для доп нагрева
-            ResetCoolerOptions();       // Сброс настроек для охладителя
-            ResetHumidOptions();        // Сброс настроек для увлажнителя
-            ResetRecircOptions();       // Сброс настроек для рециркуляции
-            ResetRecupOpitons();        // Сброс настроек для рекуператора
-            ResetSensors();             // Сброс настроек для датчиков
+            ResetFansOptions();                             // Сброс настроек для вентиляторов
+            ResetDampOptions();                             // Сброс настроек для заслонок
+            ResetHeaterOptions();                           // Сброс настроек для нагревателя
+            ResetAddHeaterOptions();                        // Сброс настроек для доп нагрева
+            ResetCoolerOptions();                           // Сброс настроек для охладителя
+            ResetHumidOptions();                            // Сброс настроек для увлажнителя
+            ResetRecircOptions();                           // Сброс настроек для рециркуляции
+            ResetRecupOpitons();                            // Сброс настроек для рекуператора
+            ResetSensors();                                 // Сброс настроек для датчиков
         }
 
+        /// <summary>Сброс настроек для вентиляторов</summary>
         private void ResetFansOptions()
         {
-            // Приточный вентилятор
-            prFanPSCheck.Checked = false;
-            prFanFC_check.Checked = false;
-            powPrFanBox.Text = "1,5";
-            prFanThermoCheck.Checked = false;
-            curDefPrFanCheck.Checked = false;
-            checkResPrFan.Checked = false;
-            powPrResFanBox.Text = "1,5";
-            prFanPowSupCheck.Checked = false;
-            prFanAlarmCheck.Checked = false;
-            prFanStStopCheck.Checked = false;
-            prFanSpeedCheck.Checked = false;
+            var fanPrOutOptions = new List<CheckBox>()
+            {
+                prFanPSCheck, prFanFC_check, prFanThermoCheck, curDefPrFanCheck, checkResPrFan, 
+                prFanPowSupCheck, prFanAlarmCheck, prFanStStopCheck, prFanSpeedCheck,
+                outFanPSCheck, outFanFC_check, outFanThermoCheck, curDefOutFanCheck, checkResOutFan,
+                outFanPowSupCheck, outFanAlarmCheck, outFanStStopCheck, outFanSpeedCheck
+            };
 
-            // Вытяжной вентилятор
-            outFanPSCheck.Checked = false;
-            outFanFC_check.Checked = false;
-            powOutFanBox.Text = "1,5";
-            outFanThermoCheck.Checked = false;
-            curDefOutFanCheck.Checked = false;
-            checkResOutFan.Checked = false;
-            powOutResFanBox.Text = "1,5";
-            outFanPowSupCheck.Checked = false;
-            outFanAlarmCheck.Checked = false;
-            outFanStStopCheck.Checked = false;
-            outFanSpeedCheck.Checked = false;
+            var fanTextBox = new List<TextBox>()
+            {
+                powPrFanBox, powPrResFanBox, powOutFanBox, powOutResFanBox
+            };
+
+            foreach (var el in fanPrOutOptions) el.Checked = false;
+            foreach (var el in fanTextBox) el.Text = "1,5";
         }
 
+        /// <summary>Сброс настроек для воздушных заслонок</summary>
         private void ResetDampOptions()
         {
             b_prDampBox.Text = "";
             h_prDampBox.Text = "";
             b_outDampBox.Text = "";
             h_outDampBox.Text = "";
+
             confPrDampCheck.Checked = false;
             heatPrDampCheck.Checked = false;
             springRetPrDampCheck.Checked = false;
@@ -665,7 +618,7 @@ namespace Moderon
             if (filterCheck.Checked) // Выбрали фильтр
             {
                 if (comboSysType.Enabled) comboSysType.Enabled = false;
-                filterPage.Parent = tabControl1;
+                filterPage.Parent = mainPage;
                 sigFilAlarmCheck.Enabled = true; // Разблокировка сигнала "Загрязнение фильтра"
             }
             else // Отмена выбора фильтра
@@ -686,7 +639,7 @@ namespace Moderon
             if (dampCheck.Checked) // Выбрана заслонка
             {
                 if (comboSysType.Enabled) comboSysType.Enabled = false;
-                dampPage.Parent = tabControl1;
+                dampPage.Parent = mainPage;
             }
             else // Отмена выбора заслонки
             {
@@ -1014,7 +967,7 @@ namespace Moderon
         private void ToolStripMenuItem_load_Click(object sender, EventArgs e)
         {
             Point p1 = new Point(15, 90);
-            tabControl1.Hide(); // Скрытие панели опций элементов
+            mainPage.Hide(); // Скрытие панели опций элементов
             signalsPanel.Hide(); // Скрытие панели распределения сигналов
             helpPanel.Hide(); // Скрытие панели отображения помощи
             parameterPanel.Hide(); // Скрытие панели параметров
@@ -1031,7 +984,7 @@ namespace Moderon
         private void ToolStripMenuItem_parameter_Click(object sender, EventArgs e)
         {
             Point p1 = new Point(15, 90);
-            tabControl1.Hide(); // Скрытие панели опций элементов
+            mainPage.Hide(); // Скрытие панели опций элементов
             signalsPanel.Hide(); // Скрытие панели распределения сигналов
             helpPanel.Hide(); // Скрытие панели отображения помощи
             loadPanel.Hide(); // Скрытие панели настроек
@@ -1047,7 +1000,7 @@ namespace Moderon
         private void ToolStripMenuItem_help_Click(object sender, EventArgs e)
         {
             Point p1 = new Point(15, 90);
-            tabControl1.Hide(); // Скрытие панели опций элементов
+            mainPage.Hide(); // Скрытие панели опций элементов
             signalsPanel.Hide(); // Скрытие панели распределения сигналов
             parameterPanel.Hide(); // Скрытие панели параметров
             label_comboSysType.Text = "ПОМОЩЬ И РУВОДСТВО";
@@ -1070,7 +1023,7 @@ namespace Moderon
             if (!fromSignalsMove) // Переход был не из панели выбора сигналов
             {
                 loadPanel.Hide(); // Скрытие панели настроек
-                tabControl1.Show(); // Отображение панели опции элементов 
+                mainPage.Show(); // Отображение панели опции элементов 
                 label_comboSysType.Text = "ТИП СИСТЕМЫ";
                 comboSysType.Show();
                 panelElements.Show();
@@ -1087,7 +1040,7 @@ namespace Moderon
         {
             helpPanel.Hide(); // Скрытие панели помощи
             loadPanel.Hide(); // Скрытие панели настроек
-            tabControl1.Show(); panelElements.Show();
+            mainPage.Show(); panelElements.Show();
             label_comboSysType.Text = "ТИП СИСТЕМЫ";
             comboSysType.Show();
             formSignalsButton.Show(); // Отображение кнопки "Сформировать"
@@ -1097,7 +1050,7 @@ namespace Moderon
         private void BackParameterButton_Click(object sender, EventArgs e)
         {
             parameterPanel.Hide(); // Скрытие панели параметров
-            tabControl1.Show(); panelElements.Show();
+            mainPage.Show(); panelElements.Show();
             label_comboSysType.Text = "ТИП СИСТЕМЫ";
             comboSysType.Show();
             formSignalsButton.Show(); // Отображение кнопки "Сформировать"

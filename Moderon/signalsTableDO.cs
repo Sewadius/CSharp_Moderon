@@ -120,7 +120,7 @@ namespace Moderon
         public void FormSignalsButton_Click(object sender, EventArgs e)
         {
             var p1 = new Point(15, 90);
-            tabControl1.Hide();
+            mainPage.Hide();
             loadPanel.Hide();
             label_comboSysType.Text = "ТАБЛИЦА СИГНАЛОВ";
             comboSysType.Hide(); panelElements.Hide();
@@ -135,7 +135,7 @@ namespace Moderon
         private void BackSignalsButton_Click(object sender, EventArgs e)
         {
             signalsPanel.Hide();
-            tabControl1.Show();
+            mainPage.Show();
             label_comboSysType.Text = "ТИП СИСТЕМЫ";
             comboSysType.Show();
             panelElements.Show();

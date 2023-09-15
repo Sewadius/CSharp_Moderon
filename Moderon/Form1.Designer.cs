@@ -39,7 +39,7 @@
             this.ToolStripMenuItem_parameter = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem_help = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.mainPage = new System.Windows.Forms.TabControl();
             this.sensorsPage = new System.Windows.Forms.TabPage();
             this.sensorsPanel = new System.Windows.Forms.Panel();
             this.fireTypeCombo = new System.Windows.Forms.ComboBox();
@@ -631,7 +631,7 @@
             this.parameterPanel = new System.Windows.Forms.Panel();
             this.backParameterButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.mainPage.SuspendLayout();
             this.sensorsPage.SuspendLayout();
             this.sensorsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sensorPicture)).BeginInit();
@@ -791,23 +791,23 @@
             this.aboutToolStripMenuItem.Text = "О программе";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
-            // tabControl1
+            // mainPage
             // 
-            this.tabControl1.Controls.Add(this.sensorsPage);
-            this.tabControl1.Controls.Add(this.fanPage);
-            this.tabControl1.Controls.Add(this.filterPage);
-            this.tabControl1.Controls.Add(this.dampPage);
-            this.tabControl1.Controls.Add(this.heatPage);
-            this.tabControl1.Controls.Add(this.coolPage);
-            this.tabControl1.Controls.Add(this.humidPage);
-            this.tabControl1.Controls.Add(this.recircPage);
-            this.tabControl1.Controls.Add(this.recupPage);
-            this.tabControl1.Controls.Add(this.addHeatPage);
-            this.tabControl1.Location = new System.Drawing.Point(15, 90);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(750, 441);
-            this.tabControl1.TabIndex = 1;
+            this.mainPage.Controls.Add(this.sensorsPage);
+            this.mainPage.Controls.Add(this.fanPage);
+            this.mainPage.Controls.Add(this.filterPage);
+            this.mainPage.Controls.Add(this.dampPage);
+            this.mainPage.Controls.Add(this.heatPage);
+            this.mainPage.Controls.Add(this.coolPage);
+            this.mainPage.Controls.Add(this.humidPage);
+            this.mainPage.Controls.Add(this.recircPage);
+            this.mainPage.Controls.Add(this.recupPage);
+            this.mainPage.Controls.Add(this.addHeatPage);
+            this.mainPage.Location = new System.Drawing.Point(15, 90);
+            this.mainPage.Name = "mainPage";
+            this.mainPage.SelectedIndex = 0;
+            this.mainPage.Size = new System.Drawing.Size(750, 441);
+            this.mainPage.TabIndex = 1;
             // 
             // sensorsPage
             // 
@@ -868,7 +868,7 @@
             this.label169.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label169.Location = new System.Drawing.Point(15, 386);
             this.label169.Name = "label169";
-            this.label169.Size = new System.Drawing.Size(204, 16);
+            this.label169.Size = new System.Drawing.Size(203, 16);
             this.label169.TabIndex = 61;
             this.label169.Text = "Тип пожарной сигнализации";
             // 
@@ -879,7 +879,7 @@
             this.label138.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label138.Location = new System.Drawing.Point(350, 294);
             this.label138.Name = "label138";
-            this.label138.Size = new System.Drawing.Size(184, 16);
+            this.label138.Size = new System.Drawing.Size(183, 16);
             this.label138.TabIndex = 60;
             this.label138.Text = "ВНЕШНИЕ СИГНАЛЫ DO";
             // 
@@ -953,7 +953,7 @@
             this.label136.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label136.Location = new System.Drawing.Point(15, 294);
             this.label136.Name = "label136";
-            this.label136.Size = new System.Drawing.Size(179, 16);
+            this.label136.Size = new System.Drawing.Size(178, 16);
             this.label136.TabIndex = 54;
             this.label136.Text = "ВНЕШНИЕ СИГНАЛЫ DI";
             // 
@@ -1049,7 +1049,7 @@
             this.label42.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label42.Location = new System.Drawing.Point(15, 14);
             this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(301, 16);
+            this.label42.Size = new System.Drawing.Size(300, 16);
             this.label42.TabIndex = 15;
             this.label42.Text = "ДАТЧИКИ ТЕМПЕРАТУРЫ И ВЛАЖНОСТИ";
             // 
@@ -1062,7 +1062,7 @@
             this.fanPage.Location = new System.Drawing.Point(4, 22);
             this.fanPage.Name = "fanPage";
             this.fanPage.Padding = new System.Windows.Forms.Padding(3);
-            this.fanPage.Size = new System.Drawing.Size(742, 8);
+            this.fanPage.Size = new System.Drawing.Size(742, 415);
             this.fanPage.TabIndex = 0;
             this.fanPage.Text = "ВЕНТИЛЯТОР";
             // 
@@ -1190,7 +1190,7 @@
             this.labelResOutFan_2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelResOutFan_2.Location = new System.Drawing.Point(650, 374);
             this.labelResOutFan_2.Name = "labelResOutFan_2";
-            this.labelResOutFan_2.Size = new System.Drawing.Size(31, 16);
+            this.labelResOutFan_2.Size = new System.Drawing.Size(30, 16);
             this.labelResOutFan_2.TabIndex = 45;
             this.labelResOutFan_2.Text = "кВт";
             this.labelResOutFan_2.Visible = false;
@@ -1213,7 +1213,7 @@
             this.labelResOutFan.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelResOutFan.Location = new System.Drawing.Point(350, 374);
             this.labelResOutFan.Name = "labelResOutFan";
-            this.labelResOutFan.Size = new System.Drawing.Size(233, 16);
+            this.labelResOutFan.Size = new System.Drawing.Size(232, 16);
             this.labelResOutFan.TabIndex = 43;
             this.labelResOutFan.Text = "Мощность резервного двигателя";
             this.labelResOutFan.Visible = false;
@@ -1237,7 +1237,7 @@
             this.label32.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label32.Location = new System.Drawing.Point(249, 94);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(31, 16);
+            this.label32.Size = new System.Drawing.Size(30, 16);
             this.label32.TabIndex = 41;
             this.label32.Text = "кВт";
             // 
@@ -1258,7 +1258,7 @@
             this.label33.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label33.Location = new System.Drawing.Point(15, 94);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(168, 16);
+            this.label33.Size = new System.Drawing.Size(167, 16);
             this.label33.TabIndex = 39;
             this.label33.Text = "Мощность вентилятора";
             // 
@@ -1287,7 +1287,7 @@
             this.label11.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label11.Location = new System.Drawing.Point(15, 294);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(140, 16);
+            this.label11.Size = new System.Drawing.Size(139, 16);
             this.label11.TabIndex = 25;
             this.label11.Text = "Вид управления ПЧ";
             // 
@@ -1338,7 +1338,7 @@
             this.label12.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label12.Location = new System.Drawing.Point(15, 54);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(155, 16);
+            this.label12.Size = new System.Drawing.Size(154, 16);
             this.label12.TabIndex = 21;
             this.label12.Text = "Питание вентилятора";
             // 
@@ -1349,7 +1349,7 @@
             this.label4.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.Location = new System.Drawing.Point(15, 14);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(194, 16);
+            this.label4.Size = new System.Drawing.Size(193, 16);
             this.label4.TabIndex = 14;
             this.label4.Text = "ВЫТЯЖНОЙ ВЕНТИЛЯТОР";
             // 
@@ -1464,7 +1464,7 @@
             this.labelResPrFan_2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelResPrFan_2.Location = new System.Drawing.Point(650, 374);
             this.labelResPrFan_2.Name = "labelResPrFan_2";
-            this.labelResPrFan_2.Size = new System.Drawing.Size(31, 16);
+            this.labelResPrFan_2.Size = new System.Drawing.Size(30, 16);
             this.labelResPrFan_2.TabIndex = 42;
             this.labelResPrFan_2.Text = "кВт";
             this.labelResPrFan_2.Visible = false;
@@ -1487,7 +1487,7 @@
             this.labelResPrFan.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelResPrFan.Location = new System.Drawing.Point(350, 374);
             this.labelResPrFan.Name = "labelResPrFan";
-            this.labelResPrFan.Size = new System.Drawing.Size(233, 16);
+            this.labelResPrFan.Size = new System.Drawing.Size(232, 16);
             this.labelResPrFan.TabIndex = 40;
             this.labelResPrFan.Text = "Мощность резервного двигателя";
             this.labelResPrFan.Visible = false;
@@ -1511,7 +1511,7 @@
             this.label30.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label30.Location = new System.Drawing.Point(249, 94);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(31, 16);
+            this.label30.Size = new System.Drawing.Size(30, 16);
             this.label30.TabIndex = 38;
             this.label30.Text = "кВт";
             // 
@@ -1532,7 +1532,7 @@
             this.label31.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label31.Location = new System.Drawing.Point(15, 94);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(168, 16);
+            this.label31.Size = new System.Drawing.Size(167, 16);
             this.label31.TabIndex = 36;
             this.label31.Text = "Мощность вентилятора";
             // 
@@ -1561,7 +1561,7 @@
             this.label10.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label10.Location = new System.Drawing.Point(15, 294);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(140, 16);
+            this.label10.Size = new System.Drawing.Size(139, 16);
             this.label10.TabIndex = 19;
             this.label10.Text = "Вид управления ПЧ";
             // 
@@ -1612,7 +1612,7 @@
             this.label9.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label9.Location = new System.Drawing.Point(15, 54);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(155, 16);
+            this.label9.Size = new System.Drawing.Size(154, 16);
             this.label9.TabIndex = 15;
             this.label9.Text = "Питание вентилятора";
             // 
@@ -1623,7 +1623,7 @@
             this.label3.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.Location = new System.Drawing.Point(15, 14);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(201, 16);
+            this.label3.Size = new System.Drawing.Size(200, 16);
             this.label3.TabIndex = 14;
             this.label3.Text = "ПРИТОЧНЫЙ ВЕНТИЛЯТОР";
             // 
@@ -1645,7 +1645,7 @@
             this.filterPage.Controls.Add(this.filterPanel);
             this.filterPage.Location = new System.Drawing.Point(4, 22);
             this.filterPage.Name = "filterPage";
-            this.filterPage.Size = new System.Drawing.Size(742, 8);
+            this.filterPage.Size = new System.Drawing.Size(742, 415);
             this.filterPage.TabIndex = 6;
             this.filterPage.Text = "ФИЛЬТР";
             // 
@@ -1708,7 +1708,7 @@
             this.label7.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label7.Location = new System.Drawing.Point(12, 14);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(261, 16);
+            this.label7.Size = new System.Drawing.Size(260, 16);
             this.label7.TabIndex = 19;
             this.label7.Text = "ВЫТЯЖНОЙ ВОЗДУШНЫЙ ФИЛЬТР";
             // 
@@ -1719,7 +1719,7 @@
             this.label8.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label8.Location = new System.Drawing.Point(11, 54);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(229, 16);
+            this.label8.Size = new System.Drawing.Size(228, 16);
             this.label8.TabIndex = 20;
             this.label8.Text = "Количество вытяжных фильтров";
             // 
@@ -1748,7 +1748,7 @@
             this.label6.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label6.Location = new System.Drawing.Point(15, 54);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(233, 16);
+            this.label6.Size = new System.Drawing.Size(232, 16);
             this.label6.TabIndex = 16;
             this.label6.Text = "Количество приточных фильтров";
             // 
@@ -1759,7 +1759,7 @@
             this.label5.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label5.Location = new System.Drawing.Point(15, 14);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(268, 16);
+            this.label5.Size = new System.Drawing.Size(267, 16);
             this.label5.TabIndex = 15;
             this.label5.Text = "ПРИТОЧНЫЙ ВОЗДУШНЫЙ ФИЛЬТР";
             // 
@@ -1768,7 +1768,7 @@
             this.dampPage.Controls.Add(this.dampPanel);
             this.dampPage.Location = new System.Drawing.Point(4, 22);
             this.dampPage.Name = "dampPage";
-            this.dampPage.Size = new System.Drawing.Size(742, 8);
+            this.dampPage.Size = new System.Drawing.Size(742, 415);
             this.dampPage.TabIndex = 7;
             this.dampPage.Text = "ЗАСЛОНКА";
             // 
@@ -1813,7 +1813,7 @@
             this.prDampTorqLabel.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.prDampTorqLabel.Location = new System.Drawing.Point(317, 174);
             this.prDampTorqLabel.Name = "prDampTorqLabel";
-            this.prDampTorqLabel.Size = new System.Drawing.Size(135, 16);
+            this.prDampTorqLabel.Size = new System.Drawing.Size(134, 16);
             this.prDampTorqLabel.TabIndex = 35;
             this.prDampTorqLabel.Text = "Крутящий момент:";
             this.prDampTorqLabel.Visible = false;
@@ -1837,7 +1837,7 @@
             this.prDampSLabel.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.prDampSLabel.Location = new System.Drawing.Point(317, 134);
             this.prDampSLabel.Name = "prDampSLabel";
-            this.prDampSLabel.Size = new System.Drawing.Size(142, 16);
+            this.prDampSLabel.Size = new System.Drawing.Size(141, 16);
             this.prDampSLabel.TabIndex = 33;
             this.prDampSLabel.Text = "Площадь заслонки:";
             this.prDampSLabel.Visible = false;
@@ -1849,7 +1849,7 @@
             this.label168.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label168.Location = new System.Drawing.Point(461, 94);
             this.label168.Name = "label168";
-            this.label168.Size = new System.Drawing.Size(25, 16);
+            this.label168.Size = new System.Drawing.Size(24, 16);
             this.label168.TabIndex = 32;
             this.label168.Text = "см";
             // 
@@ -1860,7 +1860,7 @@
             this.label167.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label167.Location = new System.Drawing.Point(461, 53);
             this.label167.Name = "label167";
-            this.label167.Size = new System.Drawing.Size(25, 16);
+            this.label167.Size = new System.Drawing.Size(24, 16);
             this.label167.TabIndex = 31;
             this.label167.Text = "см";
             // 
@@ -1891,7 +1891,7 @@
             this.label166.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label166.Location = new System.Drawing.Point(317, 94);
             this.label166.Name = "label166";
-            this.label166.Size = new System.Drawing.Size(79, 16);
+            this.label166.Size = new System.Drawing.Size(78, 16);
             this.label166.TabIndex = 28;
             this.label166.Text = "Высота, h ";
             // 
@@ -1902,7 +1902,7 @@
             this.label158.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label158.Location = new System.Drawing.Point(317, 53);
             this.label158.Name = "label158";
-            this.label158.Size = new System.Drawing.Size(79, 16);
+            this.label158.Size = new System.Drawing.Size(78, 16);
             this.label158.TabIndex = 27;
             this.label158.Text = "Ширина, b";
             // 
@@ -1957,7 +1957,7 @@
             this.outDampTorqLabel.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.outDampTorqLabel.Location = new System.Drawing.Point(317, 174);
             this.outDampTorqLabel.Name = "outDampTorqLabel";
-            this.outDampTorqLabel.Size = new System.Drawing.Size(135, 16);
+            this.outDampTorqLabel.Size = new System.Drawing.Size(134, 16);
             this.outDampTorqLabel.TabIndex = 36;
             this.outDampTorqLabel.Text = "Крутящий момент:";
             this.outDampTorqLabel.Visible = false;
@@ -1969,7 +1969,7 @@
             this.outDampSLabel.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.outDampSLabel.Location = new System.Drawing.Point(317, 134);
             this.outDampSLabel.Name = "outDampSLabel";
-            this.outDampSLabel.Size = new System.Drawing.Size(142, 16);
+            this.outDampSLabel.Size = new System.Drawing.Size(141, 16);
             this.outDampSLabel.TabIndex = 41;
             this.outDampSLabel.Text = "Площадь заслонки:";
             this.outDampSLabel.Visible = false;
@@ -1994,7 +1994,7 @@
             this.cmhOutDampLabel.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.cmhOutDampLabel.Location = new System.Drawing.Point(461, 94);
             this.cmhOutDampLabel.Name = "cmhOutDampLabel";
-            this.cmhOutDampLabel.Size = new System.Drawing.Size(25, 16);
+            this.cmhOutDampLabel.Size = new System.Drawing.Size(24, 16);
             this.cmhOutDampLabel.TabIndex = 40;
             this.cmhOutDampLabel.Text = "см";
             this.cmhOutDampLabel.Visible = false;
@@ -2018,7 +2018,7 @@
             this.cmbOutDampLabel.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.cmbOutDampLabel.Location = new System.Drawing.Point(461, 53);
             this.cmbOutDampLabel.Name = "cmbOutDampLabel";
-            this.cmbOutDampLabel.Size = new System.Drawing.Size(25, 16);
+            this.cmbOutDampLabel.Size = new System.Drawing.Size(24, 16);
             this.cmbOutDampLabel.TabIndex = 39;
             this.cmbOutDampLabel.Text = "см";
             this.cmbOutDampLabel.Visible = false;
@@ -2054,7 +2054,7 @@
             this.label15.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label15.Location = new System.Drawing.Point(15, 14);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(276, 16);
+            this.label15.Size = new System.Drawing.Size(275, 16);
             this.label15.TabIndex = 27;
             this.label15.Text = "ВЫТЯЖНАЯ ВОЗДУШНАЯ ЗАСЛОНКА";
             // 
@@ -2089,7 +2089,7 @@
             this.hOutDampLabel.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.hOutDampLabel.Location = new System.Drawing.Point(317, 94);
             this.hOutDampLabel.Name = "hOutDampLabel";
-            this.hOutDampLabel.Size = new System.Drawing.Size(79, 16);
+            this.hOutDampLabel.Size = new System.Drawing.Size(78, 16);
             this.hOutDampLabel.TabIndex = 36;
             this.hOutDampLabel.Text = "Высота, h ";
             this.hOutDampLabel.Visible = false;
@@ -2101,7 +2101,7 @@
             this.label16.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label16.Location = new System.Drawing.Point(15, 94);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(204, 16);
+            this.label16.Size = new System.Drawing.Size(203, 16);
             this.label16.TabIndex = 27;
             this.label16.Text = "Питание вытяжной заслонки";
             // 
@@ -2112,7 +2112,7 @@
             this.bOutDampLabel.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bOutDampLabel.Location = new System.Drawing.Point(317, 53);
             this.bOutDampLabel.Name = "bOutDampLabel";
-            this.bOutDampLabel.Size = new System.Drawing.Size(79, 16);
+            this.bOutDampLabel.Size = new System.Drawing.Size(78, 16);
             this.bOutDampLabel.TabIndex = 35;
             this.bOutDampLabel.Text = "Ширина, b";
             this.bOutDampLabel.Visible = false;
@@ -2183,7 +2183,7 @@
             this.label14.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label14.Location = new System.Drawing.Point(15, 53);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(208, 16);
+            this.label14.Size = new System.Drawing.Size(207, 16);
             this.label14.TabIndex = 17;
             this.label14.Text = "Питание приточной заслонки";
             // 
@@ -2194,7 +2194,7 @@
             this.label13.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label13.Location = new System.Drawing.Point(15, 13);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(281, 16);
+            this.label13.Size = new System.Drawing.Size(280, 16);
             this.label13.TabIndex = 16;
             this.label13.Text = "ПРИТОЧНАЯ ВОЗДУШНАЯ ЗАСЛОНКА";
             // 
@@ -2204,7 +2204,7 @@
             this.heatPage.Location = new System.Drawing.Point(4, 22);
             this.heatPage.Name = "heatPage";
             this.heatPage.Padding = new System.Windows.Forms.Padding(3);
-            this.heatPage.Size = new System.Drawing.Size(742, 8);
+            this.heatPage.Size = new System.Drawing.Size(742, 415);
             this.heatPage.TabIndex = 1;
             this.heatPage.Text = "НАГРЕВАТЕЛЬ";
             // 
@@ -2273,7 +2273,7 @@
             this.label38.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label38.Location = new System.Drawing.Point(12, 94);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(177, 16);
+            this.label38.Size = new System.Drawing.Size(176, 16);
             this.label38.TabIndex = 36;
             this.label38.Text = "Управление 1-й ступени";
             // 
@@ -2284,7 +2284,7 @@
             this.label24.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label24.Location = new System.Drawing.Point(307, 174);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(31, 16);
+            this.label24.Size = new System.Drawing.Size(30, 16);
             this.label24.TabIndex = 35;
             this.label24.Text = "кВт";
             // 
@@ -2305,7 +2305,7 @@
             this.label23.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label23.Location = new System.Drawing.Point(11, 174);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(229, 16);
+            this.label23.Size = new System.Drawing.Size(228, 16);
             this.label23.TabIndex = 33;
             this.label23.Text = "Номинальная мощность ступени";
             // 
@@ -2334,7 +2334,7 @@
             this.label22.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label22.Location = new System.Drawing.Point(11, 134);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(231, 16);
+            this.label22.Size = new System.Drawing.Size(230, 16);
             this.label22.TabIndex = 31;
             this.label22.Text = "Количество термовыключателей";
             // 
@@ -2365,7 +2365,7 @@
             this.label21.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label21.Location = new System.Drawing.Point(11, 54);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(176, 16);
+            this.label21.Size = new System.Drawing.Size(175, 16);
             this.label21.TabIndex = 29;
             this.label21.Text = "Число ступеней нагрева";
             // 
@@ -2376,7 +2376,7 @@
             this.label20.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label20.Location = new System.Drawing.Point(11, 14);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(241, 16);
+            this.label20.Size = new System.Drawing.Size(240, 16);
             this.label20.TabIndex = 29;
             this.label20.Text = "ЭЛЕКТРИЧЕСКИЙ НАГРЕВАТЕЛЬ";
             // 
@@ -2457,7 +2457,7 @@
             this.label19.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label19.Location = new System.Drawing.Point(16, 94);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(117, 16);
+            this.label19.Size = new System.Drawing.Size(116, 16);
             this.label19.TabIndex = 26;
             this.label19.Text = "Питание насоса";
             // 
@@ -2480,7 +2480,7 @@
             this.label18.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label18.Location = new System.Drawing.Point(14, 18);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(190, 16);
+            this.label18.Size = new System.Drawing.Size(189, 16);
             this.label18.TabIndex = 17;
             this.label18.Text = "ВОДЯНОЙ НАГРЕВАТЕЛЬ";
             // 
@@ -2508,7 +2508,7 @@
             this.label17.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label17.Location = new System.Drawing.Point(8, 11);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(123, 16);
+            this.label17.Size = new System.Drawing.Size(122, 16);
             this.label17.TabIndex = 18;
             this.label17.Text = "Тип нагревателя";
             // 
@@ -2518,7 +2518,7 @@
             this.coolPage.Location = new System.Drawing.Point(4, 22);
             this.coolPage.Name = "coolPage";
             this.coolPage.Padding = new System.Windows.Forms.Padding(3);
-            this.coolPage.Size = new System.Drawing.Size(742, 8);
+            this.coolPage.Size = new System.Drawing.Size(742, 415);
             this.coolPage.TabIndex = 2;
             this.coolPage.Text = "ОХЛАДИТЕЛЬ";
             // 
@@ -2594,7 +2594,7 @@
             this.label29.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label29.Location = new System.Drawing.Point(10, 54);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(185, 16);
+            this.label29.Size = new System.Drawing.Size(184, 16);
             this.label29.TabIndex = 20;
             this.label29.Text = "Питание привода вентиля";
             // 
@@ -2605,7 +2605,7 @@
             this.label28.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label28.Location = new System.Drawing.Point(10, 14);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(186, 16);
+            this.label28.Size = new System.Drawing.Size(185, 16);
             this.label28.TabIndex = 19;
             this.label28.Text = "ВОДЯНОЙ ОХЛАДИТЕЛЬ";
             // 
@@ -2698,7 +2698,7 @@
             this.label27.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label27.Location = new System.Drawing.Point(15, 54);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(155, 16);
+            this.label27.Size = new System.Drawing.Size(154, 16);
             this.label27.TabIndex = 30;
             this.label27.Text = "Количество ступеней";
             // 
@@ -2709,7 +2709,7 @@
             this.label26.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label26.Location = new System.Drawing.Point(15, 14);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(209, 16);
+            this.label26.Size = new System.Drawing.Size(208, 16);
             this.label26.TabIndex = 18;
             this.label26.Text = "ФРЕОНОВЫЙ ОХЛАДИТЕЛЬ";
             // 
@@ -2736,7 +2736,7 @@
             this.label25.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label25.Location = new System.Drawing.Point(6, 13);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(116, 16);
+            this.label25.Size = new System.Drawing.Size(115, 16);
             this.label25.TabIndex = 30;
             this.label25.Text = "Тип охладителя";
             // 
@@ -2746,7 +2746,7 @@
             this.humidPage.Location = new System.Drawing.Point(4, 22);
             this.humidPage.Name = "humidPage";
             this.humidPage.Padding = new System.Windows.Forms.Padding(3);
-            this.humidPage.Size = new System.Drawing.Size(742, 8);
+            this.humidPage.Size = new System.Drawing.Size(742, 415);
             this.humidPage.TabIndex = 3;
             this.humidPage.Text = "УВЛАЖНИТЕЛЬ";
             // 
@@ -2804,7 +2804,7 @@
             this.label36.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label36.Location = new System.Drawing.Point(10, 14);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(199, 16);
+            this.label36.Size = new System.Drawing.Size(198, 16);
             this.label36.TabIndex = 20;
             this.label36.Text = "СОТОВЫЙ УВЛАЖНИТЕЛЬ";
             // 
@@ -2868,7 +2868,7 @@
             this.label35.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label35.Location = new System.Drawing.Point(10, 14);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(198, 16);
+            this.label35.Size = new System.Drawing.Size(197, 16);
             this.label35.TabIndex = 19;
             this.label35.Text = "ПАРОВОЙ УВЛАЖНИТЕЛЬ";
             // 
@@ -2896,7 +2896,7 @@
             this.label34.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label34.Location = new System.Drawing.Point(6, 14);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(128, 16);
+            this.label34.Size = new System.Drawing.Size(127, 16);
             this.label34.TabIndex = 32;
             this.label34.Text = "Тип увлажнителя";
             // 
@@ -2906,7 +2906,7 @@
             this.recircPage.Location = new System.Drawing.Point(4, 22);
             this.recircPage.Name = "recircPage";
             this.recircPage.Padding = new System.Windows.Forms.Padding(3);
-            this.recircPage.Size = new System.Drawing.Size(742, 8);
+            this.recircPage.Size = new System.Drawing.Size(742, 415);
             this.recircPage.TabIndex = 4;
             this.recircPage.Text = "РЕЦИРКУЛЯЦИЯ";
             // 
@@ -2949,7 +2949,7 @@
             this.recircTorqLabel.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.recircTorqLabel.Location = new System.Drawing.Point(317, 174);
             this.recircTorqLabel.Name = "recircTorqLabel";
-            this.recircTorqLabel.Size = new System.Drawing.Size(135, 16);
+            this.recircTorqLabel.Size = new System.Drawing.Size(134, 16);
             this.recircTorqLabel.TabIndex = 47;
             this.recircTorqLabel.Text = "Крутящий момент:";
             this.recircTorqLabel.Visible = false;
@@ -2961,7 +2961,7 @@
             this.recircSLabel.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.recircSLabel.Location = new System.Drawing.Point(317, 134);
             this.recircSLabel.Name = "recircSLabel";
-            this.recircSLabel.Size = new System.Drawing.Size(142, 16);
+            this.recircSLabel.Size = new System.Drawing.Size(141, 16);
             this.recircSLabel.TabIndex = 46;
             this.recircSLabel.Text = "Площадь заслонки:";
             this.recircSLabel.Visible = false;
@@ -2973,7 +2973,7 @@
             this.label170.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label170.Location = new System.Drawing.Point(461, 94);
             this.label170.Name = "label170";
-            this.label170.Size = new System.Drawing.Size(25, 16);
+            this.label170.Size = new System.Drawing.Size(24, 16);
             this.label170.TabIndex = 45;
             this.label170.Text = "см";
             // 
@@ -2984,7 +2984,7 @@
             this.label171.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label171.Location = new System.Drawing.Point(461, 53);
             this.label171.Name = "label171";
-            this.label171.Size = new System.Drawing.Size(25, 16);
+            this.label171.Size = new System.Drawing.Size(24, 16);
             this.label171.TabIndex = 44;
             this.label171.Text = "см";
             // 
@@ -3015,7 +3015,7 @@
             this.label172.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label172.Location = new System.Drawing.Point(317, 94);
             this.label172.Name = "label172";
-            this.label172.Size = new System.Drawing.Size(79, 16);
+            this.label172.Size = new System.Drawing.Size(78, 16);
             this.label172.TabIndex = 41;
             this.label172.Text = "Высота, h ";
             // 
@@ -3026,7 +3026,7 @@
             this.label175.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label175.Location = new System.Drawing.Point(317, 53);
             this.label175.Name = "label175";
-            this.label175.Size = new System.Drawing.Size(79, 16);
+            this.label175.Size = new System.Drawing.Size(78, 16);
             this.label175.TabIndex = 40;
             this.label175.Text = "Ширина, b";
             // 
@@ -3091,7 +3091,7 @@
             this.label41.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label41.Location = new System.Drawing.Point(12, 94);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(132, 16);
+            this.label41.Size = new System.Drawing.Size(131, 16);
             this.label41.TabIndex = 34;
             this.label41.Text = "Питание заслонки";
             // 
@@ -3102,7 +3102,7 @@
             this.label39.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label39.Location = new System.Drawing.Point(12, 14);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(255, 16);
+            this.label39.Size = new System.Drawing.Size(254, 16);
             this.label39.TabIndex = 16;
             this.label39.Text = "РЕЦИРКУЛЯЦИОННАЯ ЗАСЛОНКА";
             // 
@@ -3111,7 +3111,7 @@
             this.recupPage.Controls.Add(this.recupPanel);
             this.recupPage.Location = new System.Drawing.Point(4, 22);
             this.recupPage.Name = "recupPage";
-            this.recupPage.Size = new System.Drawing.Size(742, 8);
+            this.recupPage.Size = new System.Drawing.Size(742, 415);
             this.recupPage.TabIndex = 5;
             this.recupPage.Text = "РЕКУПЕРАТОР";
             // 
@@ -3169,7 +3169,7 @@
             this.label49.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label49.Location = new System.Drawing.Point(12, 17);
             this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(187, 16);
+            this.label49.Size = new System.Drawing.Size(186, 16);
             this.label49.TabIndex = 51;
             this.label49.Text = "ЗАЩИТА ОТ ЗАМОРОЗКИ";
             // 
@@ -3220,7 +3220,7 @@
             this.label48.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label48.Location = new System.Drawing.Point(13, 14);
             this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(238, 16);
+            this.label48.Size = new System.Drawing.Size(237, 16);
             this.label48.TabIndex = 43;
             this.label48.Text = "ПЛАСТИНЧАТЫЙ РЕКУПЕРАТОР";
             // 
@@ -3231,7 +3231,7 @@
             this.label37.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label37.Location = new System.Drawing.Point(13, 54);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(156, 16);
+            this.label37.Size = new System.Drawing.Size(155, 16);
             this.label37.TabIndex = 42;
             this.label37.Text = "Байпас рекуператора";
             // 
@@ -3279,7 +3279,7 @@
             this.label50.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label50.Location = new System.Drawing.Point(12, 14);
             this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(218, 16);
+            this.label50.Size = new System.Drawing.Size(217, 16);
             this.label50.TabIndex = 43;
             this.label50.Text = "ГЛИКОЛЕВЫЙ РЕКУПЕРАТОР";
             // 
@@ -3351,7 +3351,7 @@
             this.label46.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label46.Location = new System.Drawing.Point(229, 90);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(31, 16);
+            this.label46.Size = new System.Drawing.Size(30, 16);
             this.label46.TabIndex = 41;
             this.label46.Text = "кВт";
             // 
@@ -3372,7 +3372,7 @@
             this.label47.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label47.Location = new System.Drawing.Point(12, 94);
             this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(151, 16);
+            this.label47.Size = new System.Drawing.Size(150, 16);
             this.label47.TabIndex = 39;
             this.label47.Text = "Мощность двигателя";
             // 
@@ -3399,7 +3399,7 @@
             this.label45.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label45.Location = new System.Drawing.Point(12, 54);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(164, 16);
+            this.label45.Size = new System.Drawing.Size(163, 16);
             this.label45.TabIndex = 23;
             this.label45.Text = "Питание рекуператора";
             // 
@@ -3410,7 +3410,7 @@
             this.label44.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label44.Location = new System.Drawing.Point(12, 14);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(198, 16);
+            this.label44.Size = new System.Drawing.Size(197, 16);
             this.label44.TabIndex = 18;
             this.label44.Text = "РОТОРНЫЙ РЕКУПЕРАТОР";
             // 
@@ -3439,7 +3439,7 @@
             this.label43.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label43.Location = new System.Drawing.Point(7, 12);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(133, 16);
+            this.label43.Size = new System.Drawing.Size(132, 16);
             this.label43.TabIndex = 30;
             this.label43.Text = "Тип рекуператора";
             // 
@@ -3518,7 +3518,7 @@
             this.label40.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label40.Location = new System.Drawing.Point(9, 94);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(177, 16);
+            this.label40.Size = new System.Drawing.Size(176, 16);
             this.label40.TabIndex = 38;
             this.label40.Text = "Управление 1-й ступени";
             // 
@@ -3529,7 +3529,7 @@
             this.label51.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label51.Location = new System.Drawing.Point(305, 174);
             this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(31, 16);
+            this.label51.Size = new System.Drawing.Size(30, 16);
             this.label51.TabIndex = 35;
             this.label51.Text = "кВт";
             // 
@@ -3550,7 +3550,7 @@
             this.label52.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label52.Location = new System.Drawing.Point(9, 174);
             this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(229, 16);
+            this.label52.Size = new System.Drawing.Size(228, 16);
             this.label52.TabIndex = 33;
             this.label52.Text = "Номинальная мощность ступени";
             // 
@@ -3579,7 +3579,7 @@
             this.label53.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label53.Location = new System.Drawing.Point(9, 134);
             this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(231, 16);
+            this.label53.Size = new System.Drawing.Size(230, 16);
             this.label53.TabIndex = 31;
             this.label53.Text = "Количество термовыключателей";
             // 
@@ -3610,7 +3610,7 @@
             this.label54.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label54.Location = new System.Drawing.Point(9, 54);
             this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(176, 16);
+            this.label54.Size = new System.Drawing.Size(175, 16);
             this.label54.TabIndex = 29;
             this.label54.Text = "Число ступеней нагрева";
             // 
@@ -3621,7 +3621,7 @@
             this.label55.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label55.Location = new System.Drawing.Point(9, 14);
             this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(304, 16);
+            this.label55.Size = new System.Drawing.Size(303, 16);
             this.label55.TabIndex = 29;
             this.label55.Text = "ВТОРОЙ ЭЛЕКТРИЧЕСКИЙ НАГРЕВАТЕЛЬ";
             // 
@@ -3714,7 +3714,7 @@
             this.label56.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label56.Location = new System.Drawing.Point(13, 134);
             this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(117, 16);
+            this.label56.Size = new System.Drawing.Size(116, 16);
             this.label56.TabIndex = 26;
             this.label56.Text = "Питание насоса";
             // 
@@ -3737,7 +3737,7 @@
             this.label57.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label57.Location = new System.Drawing.Point(14, 14);
             this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(253, 16);
+            this.label57.Size = new System.Drawing.Size(252, 16);
             this.label57.TabIndex = 17;
             this.label57.Text = "ВТОРОЙ ВОДЯНОЙ НАГРЕВАТЕЛЬ";
             // 
@@ -3765,7 +3765,7 @@
             this.label58.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label58.Location = new System.Drawing.Point(6, 12);
             this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(181, 16);
+            this.label58.Size = new System.Drawing.Size(180, 16);
             this.label58.TabIndex = 18;
             this.label58.Text = "Тип второго нагревателя";
             // 
@@ -3775,7 +3775,7 @@
             this.label_comboSysType.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label_comboSysType.Location = new System.Drawing.Point(244, 49);
             this.label_comboSysType.Name = "label_comboSysType";
-            this.label_comboSysType.Size = new System.Drawing.Size(113, 16);
+            this.label_comboSysType.Size = new System.Drawing.Size(112, 16);
             this.label_comboSysType.TabIndex = 3;
             this.label_comboSysType.Text = "ТИП СИСТЕМЫ";
             // 
@@ -3803,7 +3803,7 @@
             this.label2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.Location = new System.Drawing.Point(15, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(156, 16);
+            this.label2.Size = new System.Drawing.Size(155, 16);
             this.label2.TabIndex = 5;
             this.label2.Text = "ВЫБОР ЭЛЕМЕНТОВ";
             // 
@@ -4168,7 +4168,7 @@
             this.label1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(28, 17);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(137, 16);
+            this.label1.Size = new System.Drawing.Size(136, 16);
             this.label1.TabIndex = 45;
             this.label1.Text = "НАСТРОЙКА СЕТИ";
             // 
@@ -7870,7 +7870,7 @@
             this.label140.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label140.Location = new System.Drawing.Point(25, 18);
             this.label140.Name = "label140";
-            this.label140.Size = new System.Drawing.Size(315, 16);
+            this.label140.Size = new System.Drawing.Size(314, 16);
             this.label140.TabIndex = 64;
             this.label140.Text = "РУКОВОДСТВО ПО ПРОГРАММЕ ONI HVAC";
             // 
@@ -7949,7 +7949,7 @@
             this.Controls.Add(this.comboSysType);
             this.Controls.Add(this.label_comboSysType);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.mainPage);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -7960,7 +7960,7 @@
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
+            this.mainPage.ResumeLayout(false);
             this.sensorsPage.ResumeLayout(false);
             this.sensorsPanel.ResumeLayout(false);
             this.sensorsPanel.PerformLayout();
@@ -8093,7 +8093,7 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_help;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_parameter;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl mainPage;
         private System.Windows.Forms.TabPage fanPage;
         private System.Windows.Forms.TabPage heatPage;
         private System.Windows.Forms.PictureBox pictureBox1;
