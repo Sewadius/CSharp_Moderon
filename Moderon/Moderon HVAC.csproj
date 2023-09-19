@@ -89,10 +89,10 @@
     <Compile Include="modbusTCP.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resource11.Designer.cs">
+    <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Resource1.resx</DependentUpon>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="signalsTableAI.cs" />
     <Compile Include="signalsTableAO.cs" />
@@ -106,22 +106,9 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormInfo.resx">
-      <DependentUpon>FormInfo.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <EmbeddedResource Include="Resource1.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource11.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="changes.md" />
     <None Include="packages.config" />
@@ -140,7 +127,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
-    <None Include="Resources\logo-footer.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\fan.png" />
@@ -213,14 +199,15 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\pngtree-green-checkmark-error-image_2284668.png" />
+    <None Include="Resources\green_check.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="imgs\logo_moderon_HVAC.png" />
-    <Content Include="imgs\logo_moderon_color_curves.png" />
-    <Content Include="imgs\logo_moderon_green_color_curves.png" />
-    <Content Include="imgs\logo_moderon_grey_color_curves.png" />
-    <Content Include="imgs\logo_moderon_white_color_curves.png" />
+    <None Include="imgs\info_screen.png" />
+    <Content Include="imgs\logo_HVAC.png" />
+    <Content Include="imgs\logo_moderon.png" />
+    <Content Include="imgs\logo_green.png" />
+    <Content Include="imgs\logo_grey.png" />
+    <Content Include="imgs\logo_white.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

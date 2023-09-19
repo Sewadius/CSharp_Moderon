@@ -4,22 +4,7 @@ using System.Collections.Generic;
 
 namespace Moderon
 {
-    class Di
-    {
-        public string Name { get; private set; }
-        public ushort Code { get; private set; }
-        public bool Active { get; private set; } = true; // Свободен по умолчанию
-        public Di(string name, ushort code)
-        {
-            Name = name; Code = code;
-        }
-        public Di(string name, ushort code, bool active)
-        {
-            Name = name; Code = code; Active = active;
-        }
-        public void Select() => Active = false;
-        public void Dispose() => Active = true;
-    }
+
 
     public partial class Form1 : Form
     {
@@ -4689,5 +4674,22 @@ namespace Moderon
                 SubFromCombosDI(code_1);
             }
         }
+    }
+
+    class Di
+    {
+        public string Name { get; private set; }
+        public ushort Code { get; private set; }
+        public bool Active { get; private set; } = true; // Свободен по умолчанию
+        public Di(string name, ushort code)
+        {
+            Name = name; Code = code;
+        }
+        public Di(string name, ushort code, bool active)
+        {
+            Name = name; Code = code; Active = active;
+        }
+        public void Select() => Active = false;
+        public void Dispose() => Active = true;
     }
 }

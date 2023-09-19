@@ -845,7 +845,7 @@
             // 
             // fireTypeCombo
             // 
-            this.fireTypeCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.fireTypeCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.fireTypeCombo.DisplayMember = "380 В";
             this.fireTypeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.fireTypeCombo.Enabled = false;
@@ -971,7 +971,7 @@
             // 
             // sensorPicture
             // 
-            this.sensorPicture.Image = global::Moderon.Resource1.sensorTemp;
+            this.sensorPicture.Image = global::Moderon.Properties.Resources.sensorTemp;
             this.sensorPicture.Location = new System.Drawing.Point(584, 3);
             this.sensorPicture.Name = "sensorPicture";
             this.sensorPicture.Size = new System.Drawing.Size(130, 172);
@@ -1151,7 +1151,7 @@
             // 
             // fanPicture2
             // 
-            this.fanPicture2.Image = global::Moderon.Resource1.fan_2;
+            this.fanPicture2.Image = global::Moderon.Properties.Resources.fan_2;
             this.fanPicture2.Location = new System.Drawing.Point(558, 3);
             this.fanPicture2.Name = "fanPicture2";
             this.fanPicture2.Size = new System.Drawing.Size(156, 242);
@@ -1264,7 +1264,7 @@
             // 
             // outFanControlCombo
             // 
-            this.outFanControlCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.outFanControlCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.outFanControlCombo.DisplayMember = "Внешние контакты";
             this.outFanControlCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.outFanControlCombo.Enabled = false;
@@ -1317,7 +1317,7 @@
             // 
             // outFanPowCombo
             // 
-            this.outFanPowCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.outFanPowCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.outFanPowCombo.DisplayMember = "380 В";
             this.outFanPowCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.outFanPowCombo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -1425,7 +1425,7 @@
             // fanPicture1
             // 
             this.fanPicture1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.fanPicture1.Image = global::Moderon.Resource1.fan;
+            this.fanPicture1.Image = global::Moderon.Properties.Resources.fan;
             this.fanPicture1.Location = new System.Drawing.Point(537, 3);
             this.fanPicture1.Name = "fanPicture1";
             this.fanPicture1.Size = new System.Drawing.Size(177, 200);
@@ -1538,7 +1538,7 @@
             // 
             // prFanControlCombo
             // 
-            this.prFanControlCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.prFanControlCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.prFanControlCombo.DisplayMember = "Внешние контакты";
             this.prFanControlCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.prFanControlCombo.Enabled = false;
@@ -1591,7 +1591,7 @@
             // 
             // prFanPowCombo
             // 
-            this.prFanPowCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.prFanPowCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.prFanPowCombo.DisplayMember = "380 В";
             this.prFanPowCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.prFanPowCombo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -1663,7 +1663,7 @@
             // 
             // filterPicture
             // 
-            this.filterPicture.Image = global::Moderon.Resource1.filter;
+            this.filterPicture.Image = global::Moderon.Properties.Resources.filter;
             this.filterPicture.Location = new System.Drawing.Point(586, 3);
             this.filterPicture.Name = "filterPicture";
             this.filterPicture.Size = new System.Drawing.Size(128, 218);
@@ -1684,7 +1684,7 @@
             // 
             // filterOutCombo
             // 
-            this.filterOutCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.filterOutCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.filterOutCombo.DisplayMember = "0";
             this.filterOutCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.filterOutCombo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -1725,7 +1725,7 @@
             // 
             // filterPrCombo
             // 
-            this.filterPrCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.filterPrCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.filterPrCombo.DisplayMember = "1";
             this.filterPrCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.filterPrCombo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -1798,7 +1798,7 @@
             // 
             // markPrDampPanel
             // 
-            this.markPrDampPanel.BackgroundImage = global::Moderon.Properties.Resources.pngtree_green_checkmark_error_image_2284668;
+            this.markPrDampPanel.BackgroundImage = global::Moderon.Properties.Resources.green_check;
             this.markPrDampPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.markPrDampPanel.Location = new System.Drawing.Point(497, 166);
             this.markPrDampPanel.Name = "markPrDampPanel";
@@ -1908,7 +1908,7 @@
             // 
             // dampPicture
             // 
-            this.dampPicture.Image = global::Moderon.Resource1.damp;
+            this.dampPicture.Image = global::Moderon.Properties.Resources.damp;
             this.dampPicture.Location = new System.Drawing.Point(574, 3);
             this.dampPicture.Name = "dampPicture";
             this.dampPicture.Size = new System.Drawing.Size(140, 237);
@@ -1942,7 +1942,7 @@
             // 
             // markOutDampPanel
             // 
-            this.markOutDampPanel.BackgroundImage = global::Moderon.Properties.Resources.pngtree_green_checkmark_error_image_2284668;
+            this.markOutDampPanel.BackgroundImage = global::Moderon.Properties.Resources.green_check;
             this.markOutDampPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.markOutDampPanel.Location = new System.Drawing.Point(493, 166);
             this.markOutDampPanel.Name = "markOutDampPanel";
@@ -2119,7 +2119,7 @@
             // 
             // outDampPowCombo
             // 
-            this.outDampPowCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.outDampPowCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.outDampPowCombo.DisplayMember = "24 В";
             this.outDampPowCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.outDampPowCombo.Enabled = false;
@@ -2161,7 +2161,7 @@
             // 
             // prDampPowCombo
             // 
-            this.prDampPowCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.prDampPowCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.prDampPowCombo.DisplayMember = "24 В";
             this.prDampPowCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.prDampPowCombo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -2222,7 +2222,7 @@
             // 
             // heatPicture
             // 
-            this.heatPicture.Image = global::Moderon.Resource1.waterHeater;
+            this.heatPicture.Image = global::Moderon.Properties.Resources.waterHeater;
             this.heatPicture.Location = new System.Drawing.Point(579, 3);
             this.heatPicture.Name = "heatPicture";
             this.heatPicture.Size = new System.Drawing.Size(129, 222);
@@ -2250,7 +2250,7 @@
             // 
             // firstStHeatCombo
             // 
-            this.firstStHeatCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.firstStHeatCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.firstStHeatCombo.DisplayMember = "Дискретное";
             this.firstStHeatCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.firstStHeatCombo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -2311,7 +2311,7 @@
             // 
             // thermSwitchCombo
             // 
-            this.thermSwitchCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.thermSwitchCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.thermSwitchCombo.DisplayMember = "0";
             this.thermSwitchCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.thermSwitchCombo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -2340,7 +2340,7 @@
             // 
             // elHeatStagesCombo
             // 
-            this.elHeatStagesCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.elHeatStagesCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.elHeatStagesCombo.DisplayMember = "1";
             this.elHeatStagesCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.elHeatStagesCombo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -2436,7 +2436,7 @@
             // 
             // powPumpCombo
             // 
-            this.powPumpCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.powPumpCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.powPumpCombo.DisplayMember = "220 В";
             this.powPumpCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.powPumpCombo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -2486,7 +2486,7 @@
             // 
             // heatTypeCombo
             // 
-            this.heatTypeCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.heatTypeCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.heatTypeCombo.DisplayMember = "Водяной";
             this.heatTypeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.heatTypeCombo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -2536,7 +2536,7 @@
             // 
             // coolPicture
             // 
-            this.coolPicture.Image = global::Moderon.Resource1.freonCooler;
+            this.coolPicture.Image = global::Moderon.Properties.Resources.freonCooler;
             this.coolPicture.Location = new System.Drawing.Point(579, 3);
             this.coolPicture.Name = "coolPicture";
             this.coolPicture.Size = new System.Drawing.Size(138, 218);
@@ -2573,7 +2573,7 @@
             // 
             // powWatCoolCombo
             // 
-            this.powWatCoolCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.powWatCoolCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.powWatCoolCombo.DisplayMember = "24 В";
             this.powWatCoolCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.powWatCoolCombo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -2674,7 +2674,7 @@
             // 
             // frCoolStagesCombo
             // 
-            this.frCoolStagesCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.frCoolStagesCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.frCoolStagesCombo.DisplayMember = "1";
             this.frCoolStagesCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.frCoolStagesCombo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -2715,7 +2715,7 @@
             // 
             // coolTypeCombo
             // 
-            this.coolTypeCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.coolTypeCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.coolTypeCombo.DisplayMember = "Фреоновый";
             this.coolTypeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.coolTypeCombo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -2764,7 +2764,7 @@
             // 
             // humidPicture
             // 
-            this.humidPicture.Image = global::Moderon.Resource1.humid;
+            this.humidPicture.Image = global::Moderon.Properties.Resources.humid;
             this.humidPicture.Location = new System.Drawing.Point(546, 3);
             this.humidPicture.Name = "humidPicture";
             this.humidPicture.Size = new System.Drawing.Size(165, 216);
@@ -2874,7 +2874,7 @@
             // 
             // humidTypeCombo
             // 
-            this.humidTypeCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.humidTypeCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.humidTypeCombo.DisplayMember = "Паровой";
             this.humidTypeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.humidTypeCombo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -2934,7 +2934,7 @@
             // 
             // markRecircPanel
             // 
-            this.markRecircPanel.BackgroundImage = global::Moderon.Properties.Resources.pngtree_green_checkmark_error_image_2284668;
+            this.markRecircPanel.BackgroundImage = global::Moderon.Properties.Resources.green_check;
             this.markRecircPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.markRecircPanel.Location = new System.Drawing.Point(497, 166);
             this.markRecircPanel.Name = "markRecircPanel";
@@ -3044,7 +3044,7 @@
             // 
             // recircPicture
             // 
-            this.recircPicture.Image = global::Moderon.Resource1.damp;
+            this.recircPicture.Image = global::Moderon.Properties.Resources.damp;
             this.recircPicture.Location = new System.Drawing.Point(577, 3);
             this.recircPicture.Name = "recircPicture";
             this.recircPicture.Size = new System.Drawing.Size(140, 237);
@@ -3069,7 +3069,7 @@
             // 
             // recircPowCombo
             // 
-            this.recircPowCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.recircPowCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.recircPowCombo.DisplayMember = "24 В";
             this.recircPowCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.recircPowCombo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -3131,7 +3131,7 @@
             // 
             // recupPicture
             // 
-            this.recupPicture.Image = global::Moderon.Resource1.rotorRecup;
+            this.recupPicture.Image = global::Moderon.Properties.Resources.rotorRecup;
             this.recupPicture.Location = new System.Drawing.Point(597, 3);
             this.recupPicture.Name = "recupPicture";
             this.recupPicture.Size = new System.Drawing.Size(117, 221);
@@ -3197,7 +3197,7 @@
             // 
             // bypassPlastCombo
             // 
-            this.bypassPlastCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.bypassPlastCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.bypassPlastCombo.DisplayMember = "Нет";
             this.bypassPlastCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.bypassPlastCombo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -3378,7 +3378,7 @@
             // 
             // rotorPowCombo
             // 
-            this.rotorPowCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.rotorPowCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.rotorPowCombo.DisplayMember = "220 В";
             this.rotorPowCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.rotorPowCombo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -3416,7 +3416,7 @@
             // 
             // recupTypeCombo
             // 
-            this.recupTypeCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.recupTypeCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.recupTypeCombo.DisplayMember = "Роторный";
             this.recupTypeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.recupTypeCombo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -3467,7 +3467,7 @@
             // 
             // heatAddPicture
             // 
-            this.heatAddPicture.Image = global::Moderon.Resource1.waterHeater;
+            this.heatAddPicture.Image = global::Moderon.Properties.Resources.waterHeater;
             this.heatAddPicture.Location = new System.Drawing.Point(579, 3);
             this.heatAddPicture.Name = "heatAddPicture";
             this.heatAddPicture.Size = new System.Drawing.Size(129, 222);
@@ -3495,7 +3495,7 @@
             // 
             // firstStAddHeatCombo
             // 
-            this.firstStAddHeatCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.firstStAddHeatCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.firstStAddHeatCombo.DisplayMember = "Дискретное";
             this.firstStAddHeatCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.firstStAddHeatCombo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -3556,7 +3556,7 @@
             // 
             // thermAddSwitchCombo
             // 
-            this.thermAddSwitchCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.thermAddSwitchCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.thermAddSwitchCombo.DisplayMember = "0";
             this.thermAddSwitchCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.thermAddSwitchCombo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -3585,7 +3585,7 @@
             // 
             // elHeatAddStagesCombo
             // 
-            this.elHeatAddStagesCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.elHeatAddStagesCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.elHeatAddStagesCombo.DisplayMember = "1";
             this.elHeatAddStagesCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.elHeatAddStagesCombo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -3693,7 +3693,7 @@
             // 
             // powPumpAddCombo
             // 
-            this.powPumpAddCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.powPumpAddCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.powPumpAddCombo.DisplayMember = "220 В";
             this.powPumpAddCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.powPumpAddCombo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -3743,7 +3743,7 @@
             // 
             // heatAddTypeCombo
             // 
-            this.heatAddTypeCombo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.heatAddTypeCombo.BackColor = System.Drawing.Color.DarkGreen;
             this.heatAddTypeCombo.DisplayMember = "Водяной";
             this.heatAddTypeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.heatAddTypeCombo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -3781,7 +3781,7 @@
             // 
             // comboSysType
             // 
-            this.comboSysType.BackColor = System.Drawing.Color.MidnightBlue;
+            this.comboSysType.BackColor = System.Drawing.Color.DarkGreen;
             this.comboSysType.DisplayMember = "ПВ-система";
             this.comboSysType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboSysType.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -3917,7 +3917,7 @@
             // 
             // resetButton
             // 
-            this.resetButton.BackColor = System.Drawing.Color.MidnightBlue;
+            this.resetButton.BackColor = System.Drawing.Color.DarkGreen;
             this.resetButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.resetButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.resetButton.ForeColor = System.Drawing.Color.White;
@@ -3958,7 +3958,7 @@
             // 
             // saveBinFileButton
             // 
-            this.saveBinFileButton.BackColor = System.Drawing.Color.MidnightBlue;
+            this.saveBinFileButton.BackColor = System.Drawing.Color.DarkGreen;
             this.saveBinFileButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.saveBinFileButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.saveBinFileButton.ForeColor = System.Drawing.Color.White;
@@ -3984,7 +3984,7 @@
             // 
             // connectBtn
             // 
-            this.connectBtn.BackColor = System.Drawing.Color.MidnightBlue;
+            this.connectBtn.BackColor = System.Drawing.Color.DarkGreen;
             this.connectBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.connectBtn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.connectBtn.ForeColor = System.Drawing.Color.White;
@@ -4050,7 +4050,7 @@
             // 
             // formNetButton
             // 
-            this.formNetButton.BackColor = System.Drawing.Color.MidnightBlue;
+            this.formNetButton.BackColor = System.Drawing.Color.DarkGreen;
             this.formNetButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.formNetButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.formNetButton.ForeColor = System.Drawing.Color.White;
@@ -4065,7 +4065,7 @@
             // 
             // writeNetButton
             // 
-            this.writeNetButton.BackColor = System.Drawing.Color.MidnightBlue;
+            this.writeNetButton.BackColor = System.Drawing.Color.DarkGreen;
             this.writeNetButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.writeNetButton.Enabled = false;
             this.writeNetButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -4099,7 +4099,7 @@
             // 
             // readNetBtn
             // 
-            this.readNetBtn.BackColor = System.Drawing.Color.MidnightBlue;
+            this.readNetBtn.BackColor = System.Drawing.Color.DarkGreen;
             this.readNetBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.readNetBtn.Enabled = false;
             this.readNetBtn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -4174,7 +4174,7 @@
             // 
             // backOptionsButton
             // 
-            this.backOptionsButton.BackColor = System.Drawing.Color.MidnightBlue;
+            this.backOptionsButton.BackColor = System.Drawing.Color.DarkGreen;
             this.backOptionsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.backOptionsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.backOptionsButton.ForeColor = System.Drawing.Color.White;
@@ -4202,7 +4202,7 @@
             // 
             // formSignalsButton
             // 
-            this.formSignalsButton.BackColor = System.Drawing.Color.MidnightBlue;
+            this.formSignalsButton.BackColor = System.Drawing.Color.DarkGreen;
             this.formSignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.formSignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.formSignalsButton.ForeColor = System.Drawing.Color.White;
@@ -4230,7 +4230,7 @@
             // loadToExl
             // 
             this.loadToExl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.loadToExl.BackColor = System.Drawing.Color.MidnightBlue;
+            this.loadToExl.BackColor = System.Drawing.Color.DarkGreen;
             this.loadToExl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loadToExl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadToExl.ForeColor = System.Drawing.Color.White;
@@ -4245,7 +4245,7 @@
             // nextSignalsButton
             // 
             this.nextSignalsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.nextSignalsButton.BackColor = System.Drawing.Color.MidnightBlue;
+            this.nextSignalsButton.BackColor = System.Drawing.Color.DarkGreen;
             this.nextSignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.nextSignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nextSignalsButton.ForeColor = System.Drawing.Color.White;
@@ -7831,7 +7831,7 @@
             // backSignalsButton
             // 
             this.backSignalsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.backSignalsButton.BackColor = System.Drawing.Color.MidnightBlue;
+            this.backSignalsButton.BackColor = System.Drawing.Color.DarkGreen;
             this.backSignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.backSignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.backSignalsButton.ForeColor = System.Drawing.Color.White;
@@ -7888,7 +7888,7 @@
             // 
             // backHelpButton
             // 
-            this.backHelpButton.BackColor = System.Drawing.Color.MidnightBlue;
+            this.backHelpButton.BackColor = System.Drawing.Color.DarkGreen;
             this.backHelpButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.backHelpButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.backHelpButton.ForeColor = System.Drawing.Color.White;
@@ -7902,8 +7902,8 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Moderon.Resource1.pictureBox;
-            this.pictureBox1.InitialImage = global::Moderon.Resource1.pictureBox;
+            this.pictureBox1.Image = global::Moderon.Properties.Resources.pictureBox;
+            this.pictureBox1.InitialImage = global::Moderon.Properties.Resources.pictureBox;
             this.pictureBox1.Location = new System.Drawing.Point(15, 29);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(207, 57);
@@ -7923,7 +7923,7 @@
             // 
             // backParameterButton
             // 
-            this.backParameterButton.BackColor = System.Drawing.Color.MidnightBlue;
+            this.backParameterButton.BackColor = System.Drawing.Color.DarkGreen;
             this.backParameterButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.backParameterButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.backParameterButton.ForeColor = System.Drawing.Color.White;
