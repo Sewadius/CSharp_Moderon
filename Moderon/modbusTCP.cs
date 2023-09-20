@@ -1,12 +1,8 @@
 using System;
-using System.Collections;
-using System.Text;
-using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using System.Threading;
 
-// Вспомогательный класс для подключения к ПЛК  
+// Вспомогательный класс для подключения к ПЛК через протокол Modbus TCP
 
 /// <summary>
 /// Modbus TCP common driver class. 

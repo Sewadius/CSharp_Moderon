@@ -121,7 +121,7 @@ namespace Moderon
         {
             var p1 = new Point(15, 90);
             mainPage.Hide();
-            loadPanel.Hide();
+            loadModbusPanel.Hide();
             label_comboSysType.Text = "ТАБЛИЦА СИГНАЛОВ";
             comboSysType.Hide(); panelElements.Hide();
             signalsPanel.Location = p1;
@@ -338,7 +338,7 @@ namespace Moderon
             {
                 signalsReadyLabel.Text = "Карта входов/выходов сформирована";
                 signalsReadyLabel.ForeColor = Color.Green;
-                nextSignalsButton.Show(); // Кнопка "Далее"
+                loadPLC_SignalsButton.Show(); // Кнопка "Далее"
                 loadToExl.Show(); // Кнопка экспорта таблицы сигналов в Excel
                 saveSpecToolStripMenuItem.Enabled = true; // Возможность сохранить спецификацию
             } 
@@ -346,7 +346,7 @@ namespace Moderon
             {
                 signalsReadyLabel.Text = "Карта входов/выходов некорректна";
                 signalsReadyLabel.ForeColor = Color.Red;
-                nextSignalsButton.Hide(); // Кнопка "Далее"
+                loadPLC_SignalsButton.Hide(); // Кнопка "Далее"
                 loadToExl.Hide(); // Скрытие кнопки экспорта таблицы сигналов в Excel
                 saveSpecToolStripMenuItem.Enabled = false; // Невозможность сохранить спецификацию
             }

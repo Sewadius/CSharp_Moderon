@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             this.closeInfoButton = new System.Windows.Forms.Button();
-            this.panelInfo = new System.Windows.Forms.Panel();
+            this.pictureBoxInfo = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInfo)).BeginInit();
             this.SuspendLayout();
             // 
             // closeInfoButton
@@ -39,7 +40,7 @@
             this.closeInfoButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.closeInfoButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.closeInfoButton.ForeColor = System.Drawing.Color.White;
-            this.closeInfoButton.Location = new System.Drawing.Point(328, 424);
+            this.closeInfoButton.Location = new System.Drawing.Point(206, 303);
             this.closeInfoButton.Name = "closeInfoButton";
             this.closeInfoButton.Size = new System.Drawing.Size(94, 27);
             this.closeInfoButton.TabIndex = 63;
@@ -47,20 +48,24 @@
             this.closeInfoButton.UseVisualStyleBackColor = false;
             this.closeInfoButton.Click += new System.EventHandler(this.CloseInfoButton_Click);
             // 
-            // panelInfo
+            // pictureBoxInfo
             // 
-            this.panelInfo.BackgroundImage = global::Moderon.Properties.Resources.info_screen;
-            this.panelInfo.Location = new System.Drawing.Point(12, 12);
-            this.panelInfo.Name = "panelInfo";
-            this.panelInfo.Size = new System.Drawing.Size(714, 402);
-            this.panelInfo.TabIndex = 64;
+            this.pictureBoxInfo.BackColor = System.Drawing.SystemColors.Control;
+            this.pictureBoxInfo.Image = global::Moderon.Properties.Resources.info_screen;
+            this.pictureBoxInfo.InitialImage = global::Moderon.Properties.Resources.info_screen;
+            this.pictureBoxInfo.Location = new System.Drawing.Point(12, 12);
+            this.pictureBoxInfo.Name = "pictureBoxInfo";
+            this.pictureBoxInfo.Size = new System.Drawing.Size(502, 276);
+            this.pictureBoxInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxInfo.TabIndex = 64;
+            this.pictureBoxInfo.TabStop = false;
             // 
             // FormInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(750, 461);
-            this.Controls.Add(this.panelInfo);
+            this.ClientSize = new System.Drawing.Size(520, 342);
+            this.Controls.Add(this.pictureBoxInfo);
             this.Controls.Add(this.closeInfoButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -69,6 +74,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "О программе";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInfo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -76,6 +82,6 @@
         #endregion
 
         private System.Windows.Forms.Button closeInfoButton;
-        private System.Windows.Forms.Panel panelInfo;
+        private System.Windows.Forms.PictureBox pictureBoxInfo;
     }
 }

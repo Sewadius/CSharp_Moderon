@@ -47,6 +47,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo_HVAC.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="GemBox.Spreadsheet, Version=47.0.0.1013, Culture=neutral, PublicKeyToken=b1b72c69714d4847, processorArchitecture=MSIL">
       <HintPath>..\packages\GemBox.Spreadsheet.47.0.1013\lib\net35\GemBox.Spreadsheet.dll</HintPath>
@@ -105,6 +108,9 @@
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInfo.resx">
+      <DependentUpon>FormInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -165,9 +171,6 @@
     <None Include="Resources\sensorTemp.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\pictureBox.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.7.2 %28x86 и x64%29</ProductName>
@@ -202,6 +205,7 @@
     <None Include="Resources\green_check.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="logo_HVAC.ico" />
     <None Include="imgs\info_screen.png" />
     <Content Include="imgs\logo_HVAC.png" />
     <Content Include="imgs\logo_moderon.png" />

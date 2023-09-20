@@ -273,7 +273,6 @@
             this.label57 = new System.Windows.Forms.Label();
             this.heatAddTypeCombo = new System.Windows.Forms.ComboBox();
             this.label58 = new System.Windows.Forms.Label();
-            this.label_comboSysType = new System.Windows.Forms.Label();
             this.comboSysType = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.heaterCheck = new System.Windows.Forms.CheckBox();
@@ -286,7 +285,7 @@
             this.filterCheck = new System.Windows.Forms.CheckBox();
             this.dampCheck = new System.Windows.Forms.CheckBox();
             this.resetButton = new System.Windows.Forms.Button();
-            this.loadPanel = new System.Windows.Forms.Panel();
+            this.loadModbusPanel = new System.Windows.Forms.Panel();
             this.saveBinFileButton = new System.Windows.Forms.Button();
             this.showWriteBoxCheck = new System.Windows.Forms.CheckBox();
             this.connectBtn = new System.Windows.Forms.Button();
@@ -310,7 +309,7 @@
             this.formSignalsButton = new System.Windows.Forms.Button();
             this.signalsPanel = new System.Windows.Forms.Panel();
             this.loadToExl = new System.Windows.Forms.Button();
-            this.nextSignalsButton = new System.Windows.Forms.Button();
+            this.loadPLC_SignalsButton = new System.Windows.Forms.Button();
             this.signalsReadyLabel = new System.Windows.Forms.Label();
             this.tabControlSignals = new System.Windows.Forms.TabControl();
             this.tabAI = new System.Windows.Forms.TabPage();
@@ -623,13 +622,22 @@
             this.label64 = new System.Windows.Forms.Label();
             this.backSignalsButton = new System.Windows.Forms.Button();
             this.helpPanel = new System.Windows.Forms.Panel();
-            this.axAcroPDF1 = new AxAcroPDFLib.AxAcroPDF();
+            this.PDF_manual = new AxAcroPDFLib.AxAcroPDF();
             this.label140 = new System.Windows.Forms.Label();
-            this.linkOniWeb = new System.Windows.Forms.LinkLabel();
+            this.linkModeronWeb = new System.Windows.Forms.LinkLabel();
             this.backHelpButton = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.parameterPanel = new System.Windows.Forms.Panel();
             this.backParameterButton = new System.Windows.Forms.Button();
+            this.label_comboSysType = new System.Windows.Forms.Label();
+            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
+            this.loadCanPanel = new System.Windows.Forms.Panel();
+            this.netOptionLabel = new System.Windows.Forms.Label();
+            this.label173 = new System.Windows.Forms.Label();
+            this.canSelectBox = new System.Windows.Forms.TextBox();
+            this.canAddressBox = new System.Windows.Forms.TextBox();
+            this.label174 = new System.Windows.Forms.Label();
+            this.label176 = new System.Windows.Forms.Label();
+            this.speedCanCombo = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.sensorsPage.SuspendLayout();
@@ -679,7 +687,7 @@
             this.elAddHeatPanel.SuspendLayout();
             this.watAddHeatPanel.SuspendLayout();
             this.panelElements.SuspendLayout();
-            this.loadPanel.SuspendLayout();
+            this.loadModbusPanel.SuspendLayout();
             this.signalsPanel.SuspendLayout();
             this.tabControlSignals.SuspendLayout();
             this.tabAI.SuspendLayout();
@@ -699,9 +707,10 @@
             this.block2_DOpanel.SuspendLayout();
             this.block1_DOpanel.SuspendLayout();
             this.helpPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PDF_manual)).BeginInit();
             this.parameterPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
+            this.loadCanPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -803,10 +812,10 @@
             this.mainPage.Controls.Add(this.recircPage);
             this.mainPage.Controls.Add(this.recupPage);
             this.mainPage.Controls.Add(this.addHeatPage);
-            this.mainPage.Location = new System.Drawing.Point(15, 90);
+            this.mainPage.Location = new System.Drawing.Point(15, 75);
             this.mainPage.Name = "mainPage";
             this.mainPage.SelectedIndex = 0;
-            this.mainPage.Size = new System.Drawing.Size(750, 441);
+            this.mainPage.Size = new System.Drawing.Size(750, 33);
             this.mainPage.TabIndex = 1;
             // 
             // sensorsPage
@@ -815,7 +824,7 @@
             this.sensorsPage.Controls.Add(this.sensorsPanel);
             this.sensorsPage.Location = new System.Drawing.Point(4, 22);
             this.sensorsPage.Name = "sensorsPage";
-            this.sensorsPage.Size = new System.Drawing.Size(742, 415);
+            this.sensorsPage.Size = new System.Drawing.Size(742, 7);
             this.sensorsPage.TabIndex = 9;
             this.sensorsPage.Text = "ДАТЧИКИ/СИГНАЛЫ";
             // 
@@ -840,7 +849,7 @@
             this.sensorsPanel.Controls.Add(this.label42);
             this.sensorsPanel.Location = new System.Drawing.Point(3, 3);
             this.sensorsPanel.Name = "sensorsPanel";
-            this.sensorsPanel.Size = new System.Drawing.Size(717, 489);
+            this.sensorsPanel.Size = new System.Drawing.Size(717, 479);
             this.sensorsPanel.TabIndex = 3;
             // 
             // fireTypeCombo
@@ -866,7 +875,7 @@
             this.label169.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label169.AutoSize = true;
             this.label169.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label169.Location = new System.Drawing.Point(15, 386);
+            this.label169.Location = new System.Drawing.Point(15, 381);
             this.label169.Name = "label169";
             this.label169.Size = new System.Drawing.Size(203, 16);
             this.label169.TabIndex = 61;
@@ -877,7 +886,7 @@
             this.label138.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label138.AutoSize = true;
             this.label138.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label138.Location = new System.Drawing.Point(350, 294);
+            this.label138.Location = new System.Drawing.Point(350, 289);
             this.label138.Name = "label138";
             this.label138.Size = new System.Drawing.Size(183, 16);
             this.label138.TabIndex = 60;
@@ -951,7 +960,7 @@
             this.label136.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label136.AutoSize = true;
             this.label136.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label136.Location = new System.Drawing.Point(15, 294);
+            this.label136.Location = new System.Drawing.Point(15, 289);
             this.label136.Name = "label136";
             this.label136.Size = new System.Drawing.Size(178, 16);
             this.label136.TabIndex = 54;
@@ -1047,7 +1056,7 @@
             this.label42.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label42.AutoSize = true;
             this.label42.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label42.Location = new System.Drawing.Point(15, 14);
+            this.label42.Location = new System.Drawing.Point(15, 9);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(300, 16);
             this.label42.TabIndex = 15;
@@ -1062,7 +1071,7 @@
             this.fanPage.Location = new System.Drawing.Point(4, 22);
             this.fanPage.Name = "fanPage";
             this.fanPage.Padding = new System.Windows.Forms.Padding(3);
-            this.fanPage.Size = new System.Drawing.Size(742, 415);
+            this.fanPage.Size = new System.Drawing.Size(742, 7);
             this.fanPage.TabIndex = 0;
             this.fanPage.Text = "ВЕНТИЛЯТОР";
             // 
@@ -1645,7 +1654,7 @@
             this.filterPage.Controls.Add(this.filterPanel);
             this.filterPage.Location = new System.Drawing.Point(4, 22);
             this.filterPage.Name = "filterPage";
-            this.filterPage.Size = new System.Drawing.Size(742, 415);
+            this.filterPage.Size = new System.Drawing.Size(742, 7);
             this.filterPage.TabIndex = 6;
             this.filterPage.Text = "ФИЛЬТР";
             // 
@@ -1768,7 +1777,7 @@
             this.dampPage.Controls.Add(this.dampPanel);
             this.dampPage.Location = new System.Drawing.Point(4, 22);
             this.dampPage.Name = "dampPage";
-            this.dampPage.Size = new System.Drawing.Size(742, 415);
+            this.dampPage.Size = new System.Drawing.Size(742, 7);
             this.dampPage.TabIndex = 7;
             this.dampPage.Text = "ЗАСЛОНКА";
             // 
@@ -2204,7 +2213,7 @@
             this.heatPage.Location = new System.Drawing.Point(4, 22);
             this.heatPage.Name = "heatPage";
             this.heatPage.Padding = new System.Windows.Forms.Padding(3);
-            this.heatPage.Size = new System.Drawing.Size(742, 415);
+            this.heatPage.Size = new System.Drawing.Size(742, 7);
             this.heatPage.TabIndex = 1;
             this.heatPage.Text = "НАГРЕВАТЕЛЬ";
             // 
@@ -2518,7 +2527,7 @@
             this.coolPage.Location = new System.Drawing.Point(4, 22);
             this.coolPage.Name = "coolPage";
             this.coolPage.Padding = new System.Windows.Forms.Padding(3);
-            this.coolPage.Size = new System.Drawing.Size(742, 415);
+            this.coolPage.Size = new System.Drawing.Size(742, 7);
             this.coolPage.TabIndex = 2;
             this.coolPage.Text = "ОХЛАДИТЕЛЬ";
             // 
@@ -2746,7 +2755,7 @@
             this.humidPage.Location = new System.Drawing.Point(4, 22);
             this.humidPage.Name = "humidPage";
             this.humidPage.Padding = new System.Windows.Forms.Padding(3);
-            this.humidPage.Size = new System.Drawing.Size(742, 415);
+            this.humidPage.Size = new System.Drawing.Size(742, 7);
             this.humidPage.TabIndex = 3;
             this.humidPage.Text = "УВЛАЖНИТЕЛЬ";
             // 
@@ -2906,7 +2915,7 @@
             this.recircPage.Location = new System.Drawing.Point(4, 22);
             this.recircPage.Name = "recircPage";
             this.recircPage.Padding = new System.Windows.Forms.Padding(3);
-            this.recircPage.Size = new System.Drawing.Size(742, 415);
+            this.recircPage.Size = new System.Drawing.Size(742, 7);
             this.recircPage.TabIndex = 4;
             this.recircPage.Text = "РЕЦИРКУЛЯЦИЯ";
             // 
@@ -3111,7 +3120,7 @@
             this.recupPage.Controls.Add(this.recupPanel);
             this.recupPage.Location = new System.Drawing.Point(4, 22);
             this.recupPage.Name = "recupPage";
-            this.recupPage.Size = new System.Drawing.Size(742, 415);
+            this.recupPage.Size = new System.Drawing.Size(742, 7);
             this.recupPage.TabIndex = 5;
             this.recupPage.Text = "РЕКУПЕРАТОР";
             // 
@@ -3449,7 +3458,7 @@
             this.addHeatPage.Controls.Add(this.secHeatPanel);
             this.addHeatPage.Location = new System.Drawing.Point(4, 22);
             this.addHeatPage.Name = "addHeatPage";
-            this.addHeatPage.Size = new System.Drawing.Size(742, 415);
+            this.addHeatPage.Size = new System.Drawing.Size(742, 7);
             this.addHeatPage.TabIndex = 8;
             this.addHeatPage.Text = "ДОП НАГРЕВ";
             // 
@@ -3769,16 +3778,6 @@
             this.label58.TabIndex = 18;
             this.label58.Text = "Тип второго нагревателя";
             // 
-            // label_comboSysType
-            // 
-            this.label_comboSysType.AutoSize = true;
-            this.label_comboSysType.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label_comboSysType.Location = new System.Drawing.Point(244, 49);
-            this.label_comboSysType.Name = "label_comboSysType";
-            this.label_comboSysType.Size = new System.Drawing.Size(112, 16);
-            this.label_comboSysType.TabIndex = 3;
-            this.label_comboSysType.Text = "ТИП СИСТЕМЫ";
-            // 
             // comboSysType
             // 
             this.comboSysType.BackColor = System.Drawing.Color.DarkGreen;
@@ -3788,11 +3787,11 @@
             this.comboSysType.ForeColor = System.Drawing.Color.White;
             this.comboSysType.FormattingEnabled = true;
             this.comboSysType.Items.AddRange(new object[] {
-            "П-система",
-            "ПВ-система"});
-            this.comboSysType.Location = new System.Drawing.Point(373, 46);
+            "Приточная система",
+            "Приточно-вытяжная система"});
+            this.comboSysType.Location = new System.Drawing.Point(152, 46);
             this.comboSysType.Name = "comboSysType";
-            this.comboSysType.Size = new System.Drawing.Size(104, 21);
+            this.comboSysType.Size = new System.Drawing.Size(252, 21);
             this.comboSysType.TabIndex = 4;
             this.comboSysType.SelectedIndexChanged += new System.EventHandler(this.ComboSysType_SelectedIndexChanged);
             // 
@@ -3929,32 +3928,32 @@
             this.resetButton.UseVisualStyleBackColor = false;
             this.resetButton.Click += new System.EventHandler(this.ResetButton_Click);
             // 
-            // loadPanel
+            // loadModbusPanel
             // 
-            this.loadPanel.Controls.Add(this.saveBinFileButton);
-            this.loadPanel.Controls.Add(this.showWriteBoxCheck);
-            this.loadPanel.Controls.Add(this.connectBtn);
-            this.loadPanel.Controls.Add(this.labelWriteNetTextBox);
-            this.loadPanel.Controls.Add(this.label137);
-            this.loadPanel.Controls.Add(this.comboReadType);
-            this.loadPanel.Controls.Add(this.connectCheck);
-            this.loadPanel.Controls.Add(this.formNetButton);
-            this.loadPanel.Controls.Add(this.writeNetButton);
-            this.loadPanel.Controls.Add(this.writeNetTextBox);
-            this.loadPanel.Controls.Add(this.dataNetTextBox);
-            this.loadPanel.Controls.Add(this.readNetBtn);
-            this.loadPanel.Controls.Add(this.connectLabel);
-            this.loadPanel.Controls.Add(this.netPortBox);
-            this.loadPanel.Controls.Add(this.label60);
-            this.loadPanel.Controls.Add(this.ipAddressBox);
-            this.loadPanel.Controls.Add(this.label59);
-            this.loadPanel.Controls.Add(this.label1);
-            this.loadPanel.Controls.Add(this.backOptionsButton);
-            this.loadPanel.Location = new System.Drawing.Point(15, 549);
-            this.loadPanel.Name = "loadPanel";
-            this.loadPanel.Size = new System.Drawing.Size(749, 44);
-            this.loadPanel.TabIndex = 12;
-            this.loadPanel.Visible = false;
+            this.loadModbusPanel.Controls.Add(this.saveBinFileButton);
+            this.loadModbusPanel.Controls.Add(this.showWriteBoxCheck);
+            this.loadModbusPanel.Controls.Add(this.connectBtn);
+            this.loadModbusPanel.Controls.Add(this.labelWriteNetTextBox);
+            this.loadModbusPanel.Controls.Add(this.label137);
+            this.loadModbusPanel.Controls.Add(this.comboReadType);
+            this.loadModbusPanel.Controls.Add(this.connectCheck);
+            this.loadModbusPanel.Controls.Add(this.formNetButton);
+            this.loadModbusPanel.Controls.Add(this.writeNetButton);
+            this.loadModbusPanel.Controls.Add(this.writeNetTextBox);
+            this.loadModbusPanel.Controls.Add(this.dataNetTextBox);
+            this.loadModbusPanel.Controls.Add(this.readNetBtn);
+            this.loadModbusPanel.Controls.Add(this.connectLabel);
+            this.loadModbusPanel.Controls.Add(this.netPortBox);
+            this.loadModbusPanel.Controls.Add(this.label60);
+            this.loadModbusPanel.Controls.Add(this.ipAddressBox);
+            this.loadModbusPanel.Controls.Add(this.label59);
+            this.loadModbusPanel.Controls.Add(this.label1);
+            this.loadModbusPanel.Controls.Add(this.backOptionsButton);
+            this.loadModbusPanel.Location = new System.Drawing.Point(15, 251);
+            this.loadModbusPanel.Name = "loadModbusPanel";
+            this.loadModbusPanel.Size = new System.Drawing.Size(749, 397);
+            this.loadModbusPanel.TabIndex = 12;
+            this.loadModbusPanel.Visible = false;
             // 
             // saveBinFileButton
             // 
@@ -4206,24 +4205,24 @@
             this.formSignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.formSignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.formSignalsButton.ForeColor = System.Drawing.Color.White;
-            this.formSignalsButton.Location = new System.Drawing.Point(503, 44);
+            this.formSignalsButton.Location = new System.Drawing.Point(427, 42);
             this.formSignalsButton.Name = "formSignalsButton";
-            this.formSignalsButton.Size = new System.Drawing.Size(143, 27);
+            this.formSignalsButton.Size = new System.Drawing.Size(191, 27);
             this.formSignalsButton.TabIndex = 15;
-            this.formSignalsButton.Text = "СФОРМИРОВАТЬ IO";
+            this.formSignalsButton.Text = "ТАБЛИЦА IO И ЗАГРУЗКА";
             this.formSignalsButton.UseVisualStyleBackColor = false;
             this.formSignalsButton.Click += new System.EventHandler(this.FormSignalsButton_Click);
             // 
             // signalsPanel
             // 
             this.signalsPanel.Controls.Add(this.loadToExl);
-            this.signalsPanel.Controls.Add(this.nextSignalsButton);
+            this.signalsPanel.Controls.Add(this.loadPLC_SignalsButton);
             this.signalsPanel.Controls.Add(this.signalsReadyLabel);
             this.signalsPanel.Controls.Add(this.tabControlSignals);
             this.signalsPanel.Controls.Add(this.backSignalsButton);
-            this.signalsPanel.Location = new System.Drawing.Point(19, 735);
+            this.signalsPanel.Location = new System.Drawing.Point(15, 152);
             this.signalsPanel.Name = "signalsPanel";
-            this.signalsPanel.Size = new System.Drawing.Size(750, 59);
+            this.signalsPanel.Size = new System.Drawing.Size(750, 36);
             this.signalsPanel.TabIndex = 16;
             this.signalsPanel.Visible = false;
             // 
@@ -4234,7 +4233,7 @@
             this.loadToExl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loadToExl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadToExl.ForeColor = System.Drawing.Color.White;
-            this.loadToExl.Location = new System.Drawing.Point(561, 27);
+            this.loadToExl.Location = new System.Drawing.Point(561, 4);
             this.loadToExl.Name = "loadToExl";
             this.loadToExl.Size = new System.Drawing.Size(173, 27);
             this.loadToExl.TabIndex = 61;
@@ -4242,20 +4241,20 @@
             this.loadToExl.UseVisualStyleBackColor = false;
             this.loadToExl.Click += new System.EventHandler(this.LoadToExl_Click);
             // 
-            // nextSignalsButton
+            // loadPLC_SignalsButton
             // 
-            this.nextSignalsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.nextSignalsButton.BackColor = System.Drawing.Color.DarkGreen;
-            this.nextSignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.nextSignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nextSignalsButton.ForeColor = System.Drawing.Color.White;
-            this.nextSignalsButton.Location = new System.Drawing.Point(454, 27);
-            this.nextSignalsButton.Name = "nextSignalsButton";
-            this.nextSignalsButton.Size = new System.Drawing.Size(94, 27);
-            this.nextSignalsButton.TabIndex = 60;
-            this.nextSignalsButton.Text = "ДАЛЕЕ";
-            this.nextSignalsButton.UseVisualStyleBackColor = false;
-            this.nextSignalsButton.Click += new System.EventHandler(this.NextSignalsButton_Click);
+            this.loadPLC_SignalsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.loadPLC_SignalsButton.BackColor = System.Drawing.Color.DarkGreen;
+            this.loadPLC_SignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.loadPLC_SignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.loadPLC_SignalsButton.ForeColor = System.Drawing.Color.White;
+            this.loadPLC_SignalsButton.Location = new System.Drawing.Point(408, 4);
+            this.loadPLC_SignalsButton.Name = "loadPLC_SignalsButton";
+            this.loadPLC_SignalsButton.Size = new System.Drawing.Size(147, 27);
+            this.loadPLC_SignalsButton.TabIndex = 60;
+            this.loadPLC_SignalsButton.Text = "ЗАГРУЗИТЬ В ПЛК";
+            this.loadPLC_SignalsButton.UseVisualStyleBackColor = false;
+            this.loadPLC_SignalsButton.Click += new System.EventHandler(this.loadPLC_SignalsButton_Click);
             // 
             // signalsReadyLabel
             // 
@@ -4263,7 +4262,7 @@
             this.signalsReadyLabel.AutoSize = true;
             this.signalsReadyLabel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.signalsReadyLabel.ForeColor = System.Drawing.Color.Green;
-            this.signalsReadyLabel.Location = new System.Drawing.Point(123, 33);
+            this.signalsReadyLabel.Location = new System.Drawing.Point(123, 10);
             this.signalsReadyLabel.Name = "signalsReadyLabel";
             this.signalsReadyLabel.Size = new System.Drawing.Size(272, 14);
             this.signalsReadyLabel.TabIndex = 23;
@@ -7835,7 +7834,7 @@
             this.backSignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.backSignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.backSignalsButton.ForeColor = System.Drawing.Color.White;
-            this.backSignalsButton.Location = new System.Drawing.Point(10, 27);
+            this.backSignalsButton.Location = new System.Drawing.Point(10, 4);
             this.backSignalsButton.Name = "backSignalsButton";
             this.backSignalsButton.Size = new System.Drawing.Size(94, 27);
             this.backSignalsButton.TabIndex = 58;
@@ -7845,24 +7844,24 @@
             // 
             // helpPanel
             // 
-            this.helpPanel.Controls.Add(this.axAcroPDF1);
+            this.helpPanel.Controls.Add(this.PDF_manual);
             this.helpPanel.Controls.Add(this.label140);
-            this.helpPanel.Controls.Add(this.linkOniWeb);
+            this.helpPanel.Controls.Add(this.linkModeronWeb);
             this.helpPanel.Controls.Add(this.backHelpButton);
-            this.helpPanel.Location = new System.Drawing.Point(15, 630);
+            this.helpPanel.Location = new System.Drawing.Point(15, 201);
             this.helpPanel.Name = "helpPanel";
-            this.helpPanel.Size = new System.Drawing.Size(746, 23);
+            this.helpPanel.Size = new System.Drawing.Size(746, 27);
             this.helpPanel.TabIndex = 17;
             this.helpPanel.Visible = false;
             // 
-            // axAcroPDF1
+            // PDF_manual
             // 
-            this.axAcroPDF1.Enabled = true;
-            this.axAcroPDF1.Location = new System.Drawing.Point(24, 40);
-            this.axAcroPDF1.Name = "axAcroPDF1";
-            this.axAcroPDF1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAcroPDF1.OcxState")));
-            this.axAcroPDF1.Size = new System.Drawing.Size(710, 398);
-            this.axAcroPDF1.TabIndex = 66;
+            this.PDF_manual.Enabled = true;
+            this.PDF_manual.Location = new System.Drawing.Point(24, 40);
+            this.PDF_manual.Name = "PDF_manual";
+            this.PDF_manual.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("PDF_manual.OcxState")));
+            this.PDF_manual.Size = new System.Drawing.Size(710, 346);
+            this.PDF_manual.TabIndex = 66;
             // 
             // label140
             // 
@@ -7870,21 +7869,21 @@
             this.label140.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label140.Location = new System.Drawing.Point(25, 18);
             this.label140.Name = "label140";
-            this.label140.Size = new System.Drawing.Size(314, 16);
+            this.label140.Size = new System.Drawing.Size(359, 16);
             this.label140.TabIndex = 64;
-            this.label140.Text = "РУКОВОДСТВО ПО ПРОГРАММЕ ONI HVAC";
+            this.label140.Text = "РУКОВОДСТВО ПО ПРОГРАММЕ MODERON HVAC";
             // 
-            // linkOniWeb
+            // linkModeronWeb
             // 
-            this.linkOniWeb.AutoSize = true;
-            this.linkOniWeb.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.linkOniWeb.Location = new System.Drawing.Point(372, 18);
-            this.linkOniWeb.Name = "linkOniWeb";
-            this.linkOniWeb.Size = new System.Drawing.Size(117, 14);
-            this.linkOniWeb.TabIndex = 63;
-            this.linkOniWeb.TabStop = true;
-            this.linkOniWeb.Text = "Сайт ONI System";
-            this.linkOniWeb.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkOniWeb_LinkClicked);
+            this.linkModeronWeb.AutoSize = true;
+            this.linkModeronWeb.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.linkModeronWeb.Location = new System.Drawing.Point(418, 18);
+            this.linkModeronWeb.Name = "linkModeronWeb";
+            this.linkModeronWeb.Size = new System.Drawing.Size(165, 14);
+            this.linkModeronWeb.TabIndex = 63;
+            this.linkModeronWeb.TabStop = true;
+            this.linkModeronWeb.Text = "Сайт компании Moderon";
+            this.linkModeronWeb.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkOniWeb_LinkClicked);
             // 
             // backHelpButton
             // 
@@ -7892,7 +7891,7 @@
             this.backHelpButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.backHelpButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.backHelpButton.ForeColor = System.Drawing.Color.White;
-            this.backHelpButton.Location = new System.Drawing.Point(533, 9);
+            this.backHelpButton.Location = new System.Drawing.Point(638, 9);
             this.backHelpButton.Name = "backHelpButton";
             this.backHelpButton.Size = new System.Drawing.Size(94, 27);
             this.backHelpButton.TabIndex = 62;
@@ -7900,22 +7899,11 @@
             this.backHelpButton.UseVisualStyleBackColor = false;
             this.backHelpButton.Click += new System.EventHandler(this.BackHelpButton_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Moderon.Properties.Resources.pictureBox;
-            this.pictureBox1.InitialImage = global::Moderon.Properties.Resources.pictureBox;
-            this.pictureBox1.Location = new System.Drawing.Point(15, 29);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(207, 57);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            // 
             // parameterPanel
             // 
             this.parameterPanel.Controls.Add(this.backParameterButton);
             this.parameterPanel.Controls.Add(this.showHintCheck);
-            this.parameterPanel.Location = new System.Drawing.Point(15, 599);
+            this.parameterPanel.Location = new System.Drawing.Point(15, 114);
             this.parameterPanel.Name = "parameterPanel";
             this.parameterPanel.Size = new System.Drawing.Size(750, 25);
             this.parameterPanel.TabIndex = 18;
@@ -7935,20 +7923,124 @@
             this.backParameterButton.UseVisualStyleBackColor = false;
             this.backParameterButton.Click += new System.EventHandler(this.BackParameterButton_Click);
             // 
+            // label_comboSysType
+            // 
+            this.label_comboSysType.AutoSize = true;
+            this.label_comboSysType.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_comboSysType.Location = new System.Drawing.Point(19, 47);
+            this.label_comboSysType.Name = "label_comboSysType";
+            this.label_comboSysType.Size = new System.Drawing.Size(112, 16);
+            this.label_comboSysType.TabIndex = 19;
+            this.label_comboSysType.Text = "ТИП СИСТЕМЫ";
+            // 
+            // pictureBoxLogo
+            // 
+            this.pictureBoxLogo.Image = global::Moderon.Properties.Resources.logo_moderon;
+            this.pictureBoxLogo.InitialImage = global::Moderon.Properties.Resources.logo_moderon;
+            this.pictureBoxLogo.Location = new System.Drawing.Point(783, 27);
+            this.pictureBoxLogo.Name = "pictureBoxLogo";
+            this.pictureBoxLogo.Size = new System.Drawing.Size(184, 57);
+            this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxLogo.TabIndex = 2;
+            this.pictureBoxLogo.TabStop = false;
+            // 
+            // loadCanPanel
+            // 
+            this.loadCanPanel.Controls.Add(this.speedCanCombo);
+            this.loadCanPanel.Controls.Add(this.label176);
+            this.loadCanPanel.Controls.Add(this.canAddressBox);
+            this.loadCanPanel.Controls.Add(this.label174);
+            this.loadCanPanel.Controls.Add(this.canSelectBox);
+            this.loadCanPanel.Controls.Add(this.label173);
+            this.loadCanPanel.Controls.Add(this.netOptionLabel);
+            this.loadCanPanel.Location = new System.Drawing.Point(15, 663);
+            this.loadCanPanel.Name = "loadCanPanel";
+            this.loadCanPanel.Size = new System.Drawing.Size(749, 306);
+            this.loadCanPanel.TabIndex = 45;
+            this.loadCanPanel.Visible = false;
+            // 
+            // netOptionLabel
+            // 
+            this.netOptionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.netOptionLabel.AutoSize = true;
+            this.netOptionLabel.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.netOptionLabel.Location = new System.Drawing.Point(28, 17);
+            this.netOptionLabel.Name = "netOptionLabel";
+            this.netOptionLabel.Size = new System.Drawing.Size(136, 16);
+            this.netOptionLabel.TabIndex = 46;
+            this.netOptionLabel.Text = "НАСТРОЙКА СЕТИ";
+            // 
+            // label173
+            // 
+            this.label173.AutoSize = true;
+            this.label173.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label173.Location = new System.Drawing.Point(28, 53);
+            this.label173.Name = "label173";
+            this.label173.Size = new System.Drawing.Size(71, 14);
+            this.label173.TabIndex = 47;
+            this.label173.Text = "COM порт";
+            // 
+            // canSelectBox
+            // 
+            this.canSelectBox.Location = new System.Drawing.Point(120, 51);
+            this.canSelectBox.Name = "canSelectBox";
+            this.canSelectBox.Size = new System.Drawing.Size(122, 21);
+            this.canSelectBox.TabIndex = 48;
+            // 
+            // canAddressBox
+            // 
+            this.canAddressBox.Location = new System.Drawing.Point(120, 87);
+            this.canAddressBox.Name = "canAddressBox";
+            this.canAddressBox.Size = new System.Drawing.Size(122, 21);
+            this.canAddressBox.TabIndex = 50;
+            // 
+            // label174
+            // 
+            this.label174.AutoSize = true;
+            this.label174.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label174.Location = new System.Drawing.Point(28, 89);
+            this.label174.Name = "label174";
+            this.label174.Size = new System.Drawing.Size(45, 14);
+            this.label174.TabIndex = 49;
+            this.label174.Text = "Адрес";
+            // 
+            // label176
+            // 
+            this.label176.AutoSize = true;
+            this.label176.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label176.Location = new System.Drawing.Point(28, 125);
+            this.label176.Name = "label176";
+            this.label176.Size = new System.Drawing.Size(67, 14);
+            this.label176.TabIndex = 51;
+            this.label176.Text = "Скорость";
+            // 
+            // speedCanCombo
+            // 
+            this.speedCanCombo.FormattingEnabled = true;
+            this.speedCanCombo.Items.AddRange(new object[] {
+            "9600",
+            "19200",
+            "38400"});
+            this.speedCanCombo.Location = new System.Drawing.Point(120, 123);
+            this.speedCanCombo.Name = "speedCanCombo";
+            this.speedCanCombo.Size = new System.Drawing.Size(121, 21);
+            this.speedCanCombo.TabIndex = 52;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(979, 838);
+            this.ClientSize = new System.Drawing.Size(979, 1061);
+            this.Controls.Add(this.loadCanPanel);
+            this.Controls.Add(this.label_comboSysType);
             this.Controls.Add(this.parameterPanel);
             this.Controls.Add(this.helpPanel);
             this.Controls.Add(this.signalsPanel);
             this.Controls.Add(this.formSignalsButton);
-            this.Controls.Add(this.loadPanel);
+            this.Controls.Add(this.loadModbusPanel);
             this.Controls.Add(this.panelElements);
             this.Controls.Add(this.comboSysType);
-            this.Controls.Add(this.label_comboSysType);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pictureBoxLogo);
             this.Controls.Add(this.mainPage);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -8034,8 +8126,8 @@
             this.watAddHeatPanel.PerformLayout();
             this.panelElements.ResumeLayout(false);
             this.panelElements.PerformLayout();
-            this.loadPanel.ResumeLayout(false);
-            this.loadPanel.PerformLayout();
+            this.loadModbusPanel.ResumeLayout(false);
+            this.loadModbusPanel.PerformLayout();
             this.signalsPanel.ResumeLayout(false);
             this.signalsPanel.PerformLayout();
             this.tabControlSignals.ResumeLayout(false);
@@ -8073,10 +8165,12 @@
             this.block1_DOpanel.PerformLayout();
             this.helpPanel.ResumeLayout(false);
             this.helpPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PDF_manual)).EndInit();
             this.parameterPanel.ResumeLayout(false);
             this.parameterPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
+            this.loadCanPanel.ResumeLayout(false);
+            this.loadCanPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -8096,9 +8190,8 @@
         private System.Windows.Forms.TabControl mainPage;
         private System.Windows.Forms.TabPage fanPage;
         private System.Windows.Forms.TabPage heatPage;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBoxLogo;
         private System.Windows.Forms.PictureBox fanPicture1;
-        private System.Windows.Forms.Label label_comboSysType;
         private System.Windows.Forms.ComboBox comboSysType;
         private System.Windows.Forms.Panel prFanPanel;
         private System.Windows.Forms.Label label2;
@@ -8291,7 +8384,7 @@
         private System.Windows.Forms.CheckBox pumpAddHeatCheck;
         private System.Windows.Forms.CheckBox addHeatCheck;
         private System.Windows.Forms.PictureBox sensorPicture;
-        private System.Windows.Forms.Panel loadPanel;
+        private System.Windows.Forms.Panel loadModbusPanel;
         private System.Windows.Forms.CheckBox showHintCheck;
         private System.Windows.Forms.Button backOptionsButton;
         private System.Windows.Forms.TextBox netPortBox;
@@ -8549,14 +8642,14 @@
         private System.Windows.Forms.Label DI4bl1_lab;
         private System.Windows.Forms.CheckBox connectCheck;
         private System.Windows.Forms.ComboBox comboReadType;
-        private System.Windows.Forms.Button nextSignalsButton;
+        private System.Windows.Forms.Button loadPLC_SignalsButton;
         private System.Windows.Forms.Label labelWriteNetTextBox;
         private System.Windows.Forms.Label label137;
         private System.Windows.Forms.Panel helpPanel;
         private System.Windows.Forms.Button backHelpButton;
-        private System.Windows.Forms.LinkLabel linkOniWeb;
+        private System.Windows.Forms.LinkLabel linkModeronWeb;
         private System.Windows.Forms.Label label140;
-        private AxAcroPDFLib.AxAcroPDF axAcroPDF1;
+        private AxAcroPDFLib.AxAcroPDF PDF_manual;
         private System.Windows.Forms.Button loadToExl;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label AI6bl3_lab;
@@ -8685,6 +8778,15 @@
         private System.Windows.Forms.Label label138;
         private System.Windows.Forms.CheckBox fireCheck;
         private System.Windows.Forms.Button saveBinFileButton;
+        private System.Windows.Forms.Label label_comboSysType;
+        private System.Windows.Forms.Panel loadCanPanel;
+        private System.Windows.Forms.Label label173;
+        private System.Windows.Forms.Label netOptionLabel;
+        private System.Windows.Forms.TextBox canSelectBox;
+        private System.Windows.Forms.TextBox canAddressBox;
+        private System.Windows.Forms.Label label174;
+        private System.Windows.Forms.ComboBox speedCanCombo;
+        private System.Windows.Forms.Label label176;
     }
 }
 

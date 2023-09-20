@@ -10,7 +10,8 @@ namespace Moderon
     public partial class Form1 : Form
     {
         private const int HEIGHT = 280;                         // Высота для панелей настройки элементов
-        private Point PANEL_POSITION = new Point(3, 36);        // Позиция для панелей элементов
+        private Point MENU_POSITION = new Point(3, 36);         // Позиция для меню элементов
+        private Point PANEL_POSITION = new Point(15, 90);       // Позиция для остальных панелей
         readonly private bool showCode = true;                  // Код сигнала отображается по умолчанию
         
         private bool 
@@ -112,7 +113,7 @@ namespace Moderon
         private void PDF_ReSize(int width, int height)
         {
             helpPanel.Size = new Size(width - 50, height - 50);
-            axAcroPDF1.Size = new Size(helpPanel.Width, helpPanel.Height - 140);
+            PDF_manual.Size = new Size(helpPanel.Width, helpPanel.Height - 140);
         }
 
         ///<summary>Изменение размера области для таблицы сигналов</summary>
@@ -681,13 +682,13 @@ namespace Moderon
             {
                 watHeatPanel.Hide(); elHeatPanel.Show();
                 heatPicture.Image = Properties.Resources.electroHeater;
-                elHeatPanel.Location = PANEL_POSITION;
+                elHeatPanel.Location = MENU_POSITION;
             }
             else // Водяной калорифер
             {
                 elHeatPanel.Hide(); watHeatPanel.Show();
                 heatPicture.Image = Properties.Resources.waterHeater;
-                watHeatPanel.Location = PANEL_POSITION;
+                watHeatPanel.Location = MENU_POSITION;
             }
             HeatTypeCombo_cmdSelectedIndexChanged(this, e); // Командное слово
             if (ignoreEvents) return;
@@ -704,13 +705,13 @@ namespace Moderon
             {
                 frCoolPanel.Hide(); watCoolPanel.Show();
                 coolPicture.Image = Properties.Resources.waterCooler;
-                watCoolPanel.Location = PANEL_POSITION;
+                watCoolPanel.Location = MENU_POSITION;
             }
             else // Фреоновый охладитель
             {
                 watCoolPanel.Hide(); frCoolPanel.Show();
                 coolPicture.Image = Properties.Resources.freonCooler;
-                frCoolPanel.Location = PANEL_POSITION;
+                frCoolPanel.Location = MENU_POSITION;
             }
             CheckHumidSensors(); // Проверка датчиков влажности
             CoolTypeCombo_cmdSelectedIndexChanged(this, e); // Командное слово
@@ -726,12 +727,12 @@ namespace Moderon
             if (humidTypeCombo.SelectedIndex == 1) // Сотовый увлажнитель
             {
                 steamHumidPanel.Hide(); cellHumidPanel.Show();
-                cellHumidPanel.Location = PANEL_POSITION;
+                cellHumidPanel.Location = MENU_POSITION;
             }
             else // Паровой увлажнитель
             {
                 cellHumidPanel.Hide(); steamHumidPanel.Show();
-                steamHumidPanel.Location = PANEL_POSITION;
+                steamHumidPanel.Location = MENU_POSITION;
             }
             HumidTypeCombo_cmdSelectedIndexChanged(this, e); // Командное слово
             if (ignoreEvents) return;
@@ -752,7 +753,7 @@ namespace Moderon
                 recupPicture.Image = Properties.Resources.plastRecup;
                 recupPicture.Size = new Size(226, 215);
                 recupPicture.Location =  p1;
-                plastRecupPanel.Location = PANEL_POSITION;
+                plastRecupPanel.Location = MENU_POSITION;
             }
             else if (recupTypeCombo.SelectedIndex == 0) // Роторный
             {
@@ -761,7 +762,7 @@ namespace Moderon
                 recupPicture.Image = Properties.Resources.rotorRecup;
                 recupPicture.Size = new Size(117, 221);
                 recupPicture.Location = p1;
-                rotorRecupPanel.Location = PANEL_POSITION;
+                rotorRecupPanel.Location = MENU_POSITION;
             }
             else if (recupTypeCombo.SelectedIndex == 2) // Гликолевый
             {
@@ -770,7 +771,7 @@ namespace Moderon
                 recupPicture.Image = Properties.Resources.plastRecup;
                 recupPicture.Size = new Size(226, 215);
                 recupPicture.Location = p1;
-                glikRecupPanel.Location = PANEL_POSITION;
+                glikRecupPanel.Location = MENU_POSITION;
             }
             RecupTypeCombo_cmdSelectedIndexChanged(this, e); // Командное слово
             if (ignoreEvents) return;
@@ -822,13 +823,13 @@ namespace Moderon
             {
                 watAddHeatPanel.Hide(); elAddHeatPanel.Show();
                 heatAddPicture.Image = Properties.Resources.electroHeater;
-                elAddHeatPanel.Location = PANEL_POSITION;
+                elAddHeatPanel.Location = MENU_POSITION;
             }
             else // Водный калорифер
             {
                 elAddHeatPanel.Hide(); watAddHeatPanel.Show();
                 heatAddPicture.Image = Properties.Resources.waterHeater;
-                watAddHeatPanel.Location = PANEL_POSITION;
+                watAddHeatPanel.Location = MENU_POSITION;
             }
             HeatAddTypeCombo_cmdSelectedIndexChanged(this, e); // Командное слово
             if (ignoreEvents) return;
@@ -980,16 +981,15 @@ namespace Moderon
         ///<summary>Нажали на вкладку "Настройка"</summary>
         private void ToolStripMenuItem_load_Click(object sender, EventArgs e)
         {
-            Point p1 = new Point(15, 90);
             mainPage.Hide();                                    // Скрытие панели опций элементов
             signalsPanel.Hide();                                // Скрытие панели распределения сигналов
             helpPanel.Hide();                                   // Скрытие панели отображения помощи
             parameterPanel.Hide();                              // Скрытие панели параметров
             label_comboSysType.Text = "ЗАГРУЗКА ПРОГРАММЫ";
             comboSysType.Hide(); panelElements.Hide();
-            loadPanel.Location = p1;
-            loadPanel.Height = 468; // 390
-            loadPanel.Show();
+            loadModbusPanel.Location = PANEL_POSITION;
+            loadModbusPanel.Height = 468; // 390
+            loadModbusPanel.Show();
             formSignalsButton.Hide(); // Скрытие кнопки "Сформировать"
             //ToolStripMenuItem_help.Enabled = false;
         }
@@ -997,14 +997,13 @@ namespace Moderon
         ///<summary>Нажали на вкладку "Параметры"</summary>
         private void ToolStripMenuItem_parameter_Click(object sender, EventArgs e)
         {
-            Point p1 = new Point(15, 90);
             mainPage.Hide(); // Скрытие панели опций элементов
             signalsPanel.Hide(); // Скрытие панели распределения сигналов
             helpPanel.Hide(); // Скрытие панели отображения помощи
-            loadPanel.Hide(); // Скрытие панели настроек
+            loadModbusPanel.Hide(); // Скрытие панели настроек
             label_comboSysType.Text = "ПАРАМЕТРЫ ПРОГРАММЫ";
             comboSysType.Hide(); panelElements.Hide();
-            parameterPanel.Location = p1;
+            parameterPanel.Location = PANEL_POSITION;
             parameterPanel.Height = 468;
             parameterPanel.Show();
             formSignalsButton.Hide(); // Скрытие кнопки "Сформировать"
@@ -1013,20 +1012,19 @@ namespace Moderon
         ///<summary>Нажали вкладку "Помощь" в главном меню</summary>
         private void ToolStripMenuItem_help_Click(object sender, EventArgs e)
         {
-            Point p1 = new Point(15, 90);
             mainPage.Hide(); // Скрытие панели опций элементов
             signalsPanel.Hide(); // Скрытие панели распределения сигналов
             parameterPanel.Hide(); // Скрытие панели параметров
             label_comboSysType.Text = "ПОМОЩЬ И РУВОДСТВО";
             comboSysType.Hide(); panelElements.Hide();
-            helpPanel.Location = p1;
+            helpPanel.Location = PANEL_POSITION;
             helpPanel.Height = 485;
             helpPanel.Width = Width - 50; // Ширина по границе окна
             helpPanel.Show();
             formSignalsButton.Hide(); // Скрытие кнопки "Сформировать"
             //ToolStripMenuItem_options.Enabled = false; // Блокировка "Настройки"
-            axAcroPDF1.Width = helpPanel.Width; // Ширина по границе панели
-            axAcroPDF1.src = System.IO.Directory.GetCurrentDirectory() + @"\ManualPDF.pdf"; // В папке приложения
+            PDF_manual.Width = helpPanel.Width; // Ширина по границе панели
+            PDF_manual.src = Directory.GetCurrentDirectory() + @"\ManualModeron.pdf"; // В папке приложения
             PDF_ReSize(Size.Width, Size.Height); // Область для отображения PDF
             //ToolStripMenuItem_help.Enabled = false; // Блокировка повторного выбора "Помощь"
         }
@@ -1036,7 +1034,7 @@ namespace Moderon
         {
             if (!fromSignalsMove) // Переход был не из панели выбора сигналов
             {
-                loadPanel.Hide(); // Скрытие панели настроек
+                loadModbusPanel.Hide(); // Скрытие панели настроек
                 mainPage.Show(); // Отображение панели опции элементов 
                 label_comboSysType.Text = "ТИП СИСТЕМЫ";
                 comboSysType.Show();
@@ -1053,7 +1051,7 @@ namespace Moderon
         private void BackHelpButton_Click(object sender, EventArgs e)
         {
             helpPanel.Hide(); // Скрытие панели помощи
-            loadPanel.Hide(); // Скрытие панели настроек
+            loadModbusPanel.Hide(); // Скрытие панели настроек
             mainPage.Show(); panelElements.Show();
             label_comboSysType.Text = "ТИП СИСТЕМЫ";
             comboSysType.Show();
@@ -1080,8 +1078,8 @@ namespace Moderon
             Form1_Load(this, e); // Обработка всплывающих подсказок
         }
 
-        ///<summary>Нажали кнопку "Далее" в панели сигналов</summary>
-        private void NextSignalsButton_Click(object sender, EventArgs e)
+        ///<summary>Нажали кнопку "Загружить в ПЛК" в панели сигналов</summary>
+        private void loadPLC_SignalsButton_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem_load_Click(this, e); // Открытие панели настроек
             fromSignalsMove = true; // Переход из панели выбора сигналов
@@ -1091,8 +1089,8 @@ namespace Moderon
         ///<summary>Нажали на ссылку сайта ONI</summary>
         private void LinkOniWeb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            linkOniWeb.LinkVisited = true;
-            System.Diagnostics.Process.Start("https://oni-system.com/otraslevye-resheniya/ventilacya/");
+            linkModeronWeb.LinkVisited = true;
+            System.Diagnostics.Process.Start("http://moderon-electric.ru/");
         }
 
         // Настройка для поля мощности основного приточного вентилятора

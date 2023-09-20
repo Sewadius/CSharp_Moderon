@@ -153,9 +153,9 @@ namespace Moderon.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pictureBox {
+        internal static System.Drawing.Bitmap logo_moderon {
             get {
-                object obj = ResourceManager.GetObject("pictureBox", resourceCulture);
+                object obj = ResourceManager.GetObject("logo_moderon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
