@@ -9,24 +9,26 @@ namespace Moderon
 {
     public partial class Form1 : Form
     {
-        private const int HEIGHT = 280;                         // Высота для панелей настройки элементов
-        private Point MENU_POSITION = new Point(3, 36);         // Позиция для меню элементов
-        private Point PANEL_POSITION = new Point(15, 90);       // Позиция для остальных панелей
-        readonly private bool showCode = true;                  // Код сигнала отображается по умолчанию
+        readonly static public string NOT_SELECTED = "Не выбрано";      // Статус для состояния входов/выходов
+
+        private const int HEIGHT = 280;                                 // Высота для панелей настройки элементов
+        private Point MENU_POSITION = new Point(3, 36);                 // Позиция для меню элементов
+        private Point PANEL_POSITION = new Point(15, 90);               // Позиция для остальных панелей
+        readonly private bool showCode = true;                          // Код сигнала отображается по умолчанию
         
         private bool 
-            hintEnabled = true,                                 // Отображение подсказок выбрано по умолчанию
-            fromSignalsMove = false;                            // Переход из панели выбора сигналов
+            hintEnabled = true,                                         // Отображение подсказок выбрано по умолчанию
+            fromSignalsMove = false;                                    // Переход из панели выбора сигналов
         
         double 
-            s_prDamp = 0,                                       // Площадь для приточной заслонки
-            s_outDamp = 0,                                      // Площадь для вытяжной заслонки
-            s_recircDamp = 0;                                   // Площадь для рециркуляционной заслонки
+            s_prDamp = 0,                                               // Площадь для приточной заслонки
+            s_outDamp = 0,                                              // Площадь для вытяжной заслонки
+            s_recircDamp = 0;                                           // Площадь для рециркуляционной заслонки
         
         int 
-            torq_prDamp = 0,                                    // Крутящий момент для приточной заслонки
-            torq_outDamp = 0,                                   // Крутящий момент для вытяжной заслонки
-            torq_recircDamp = 0;                                // Крутящий момент для рециркуляционной заслонки
+            torq_prDamp = 0,                                            // Крутящий момент для приточной заслонки
+            torq_outDamp = 0,                                           // Крутящий момент для вытяжной заслонки
+            torq_recircDamp = 0;                                        // Крутящий момент для рециркуляционной заслонки
 
         // Класс для всплывающих подсказок (основные элементы)
         readonly ToolTip toolTip = new ToolTip
@@ -47,7 +49,10 @@ namespace Moderon
             SelectComboBoxesInitial();      // Изначальный выбор для comboBox
             SizePanels();                   // Изменение размера панелей
             ClearIO_codes();                // Очистка наименования кодов для входов/выходов
-            
+
+            // Начальная установка для входов и выходов
+            Set_DOComboText();              // Дискретные выходы, DO
+
             Size = new Size(995, 680);      // Размер для основной формы
         }
 
@@ -59,7 +64,7 @@ namespace Moderon
                 deltaH_tabControl = 155,            // Промежуток по высоте, панель с вкладками tabControl1
                 deltaW_FanPanel = 278,              // Промежуток по ширине, панель приточного вентилятора prFanPanel
                 deltaW_panel = 210,                 // Промежуток по ширине, панель с выбором элементов panel1
-                height_panel1 = 120;                // Высота для панели panel1
+                height_panel1 = 96;                 // Высота для панели panel1
 
             // Изменение размеров для панелей
             mainPage.Size = new Size(Size.Width - deltaW_tabControl, Size.Height - deltaH_tabControl);
@@ -984,7 +989,6 @@ namespace Moderon
             mainPage.Hide();                                    // Скрытие панели опций элементов
             signalsPanel.Hide();                                // Скрытие панели распределения сигналов
             helpPanel.Hide();                                   // Скрытие панели отображения помощи
-            parameterPanel.Hide();                              // Скрытие панели параметров
             label_comboSysType.Text = "ЗАГРУЗКА ПРОГРАММЫ";
             comboSysType.Hide(); panelElements.Hide();
             loadModbusPanel.Location = PANEL_POSITION;
@@ -1003,9 +1007,6 @@ namespace Moderon
             loadModbusPanel.Hide(); // Скрытие панели настроек
             label_comboSysType.Text = "ПАРАМЕТРЫ ПРОГРАММЫ";
             comboSysType.Hide(); panelElements.Hide();
-            parameterPanel.Location = PANEL_POSITION;
-            parameterPanel.Height = 468;
-            parameterPanel.Show();
             formSignalsButton.Hide(); // Скрытие кнопки "Сформировать"
         }
 
@@ -1014,7 +1015,6 @@ namespace Moderon
         {
             mainPage.Hide(); // Скрытие панели опций элементов
             signalsPanel.Hide(); // Скрытие панели распределения сигналов
-            parameterPanel.Hide(); // Скрытие панели параметров
             label_comboSysType.Text = "ПОМОЩЬ И РУВОДСТВО";
             comboSysType.Hide(); panelElements.Hide();
             helpPanel.Location = PANEL_POSITION;
@@ -1061,7 +1061,6 @@ namespace Moderon
         ///<summary>Нажали кнопку "Назад" в панели параметров</summary>
         private void BackParameterButton_Click(object sender, EventArgs e)
         {
-            parameterPanel.Hide(); // Скрытие панели параметров
             mainPage.Show(); panelElements.Show();
             label_comboSysType.Text = "ТИП СИСТЕМЫ";
             comboSysType.Show();

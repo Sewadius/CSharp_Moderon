@@ -38,17 +38,17 @@ namespace Moderon
 
         /// <summary>Начальная установка comboBox для сигналов ПЛК</summary>
         /// <value>true</value>
-        bool initialComboSignals = true; // Начальная расстановка
-        bool subDOcondition = false; // Условие при удалении DO
+        bool initialComboSignals = true;        // Начальная расстановка
+        bool subDOcondition = false;            // Условие при удалении DO
 
         /// <summary>Начальная установка для подписей</summary>
         static string notSelected = "Не выбрано";
 
         // Сохранение наименования выбранного элемента для ПЛК
         string DO1combo_text = "Сигнал \"Пуск/Стоп\" приточного вентилятора 1";
-        string DO2combo_text = "Сигнал \"Работа\"";
-        string DO3combo_text = "Сигнал \"Авария\"";
-        string DO4combo_text = notSelected;
+        string DO2combo_text, DO3combo_text = "Сигнал \"Работа\"";  
+        string DO4combo_text;
+       
         string DO5combo_text = notSelected;
         string DO6combo_text = notSelected;
         string DO7combo_text = notSelected;
@@ -116,12 +116,17 @@ namespace Moderon
         int DO6bl3combo_index = 0;
         int DO7bl3combo_index = 0;
 
+        ///<summary>Начальная установка для сигналов DO таблицы сигналов</summary> 
+        public void Set_DOComboText()
+        {
+            DO4combo_text = NOT_SELECTED;
+        }
+
         ///<summary>Нажали на кнопку "Сформировать"</summary> 
         public void FormSignalsButton_Click(object sender, EventArgs e)
         {
             var p1 = new Point(15, 90);
-            mainPage.Hide();
-            loadModbusPanel.Hide();
+            mainPage.Hide(); loadModbusPanel.Hide();
             label_comboSysType.Text = "ТАБЛИЦА СИГНАЛОВ";
             comboSysType.Hide(); panelElements.Hide();
             signalsPanel.Location = p1;
@@ -140,7 +145,7 @@ namespace Moderon
             comboSysType.Show();
             panelElements.Show();
             formSignalsButton.Show(); // Отображение кнопки "Сформировать IO"
-            ToolStripMenuItem_load.Enabled = true; // Разблокировка "Настройка"
+            // ToolStripMenuItem_load.Enabled = true; // Разблокировка "Настройка"
             fromSignalsMove = false; // Сброс признака перехода с панели выбора сигналов
             ToolStripMenuItem_help.Enabled = true; // Разблокировка "Помощь"
         }

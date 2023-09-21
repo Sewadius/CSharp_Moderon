@@ -35,8 +35,6 @@
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveSpecToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem_exit = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItem_load = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItem_parameter = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem_help = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainPage = new System.Windows.Forms.TabControl();
@@ -305,7 +303,6 @@
             this.label59 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.backOptionsButton = new System.Windows.Forms.Button();
-            this.showHintCheck = new System.Windows.Forms.CheckBox();
             this.formSignalsButton = new System.Windows.Forms.Button();
             this.signalsPanel = new System.Windows.Forms.Panel();
             this.loadToExl = new System.Windows.Forms.Button();
@@ -622,22 +619,25 @@
             this.label64 = new System.Windows.Forms.Label();
             this.backSignalsButton = new System.Windows.Forms.Button();
             this.helpPanel = new System.Windows.Forms.Panel();
+            this.showHintCheck = new System.Windows.Forms.CheckBox();
             this.PDF_manual = new AxAcroPDFLib.AxAcroPDF();
             this.label140 = new System.Windows.Forms.Label();
             this.linkModeronWeb = new System.Windows.Forms.LinkLabel();
             this.backHelpButton = new System.Windows.Forms.Button();
-            this.parameterPanel = new System.Windows.Forms.Panel();
-            this.backParameterButton = new System.Windows.Forms.Button();
             this.label_comboSysType = new System.Windows.Forms.Label();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.loadCanPanel = new System.Windows.Forms.Panel();
-            this.netOptionLabel = new System.Windows.Forms.Label();
-            this.label173 = new System.Windows.Forms.Label();
-            this.canSelectBox = new System.Windows.Forms.TextBox();
+            this.speedCanCombo = new System.Windows.Forms.ComboBox();
+            this.label176 = new System.Windows.Forms.Label();
             this.canAddressBox = new System.Windows.Forms.TextBox();
             this.label174 = new System.Windows.Forms.Label();
-            this.label176 = new System.Windows.Forms.Label();
-            this.speedCanCombo = new System.Windows.Forms.ComboBox();
+            this.canSelectBox = new System.Windows.Forms.TextBox();
+            this.label173 = new System.Windows.Forms.Label();
+            this.netOptionLabel = new System.Windows.Forms.Label();
+            this.label177 = new System.Windows.Forms.Label();
+            this.label178 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.sensorsPage.SuspendLayout();
@@ -708,7 +708,6 @@
             this.block1_DOpanel.SuspendLayout();
             this.helpPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PDF_manual)).BeginInit();
-            this.parameterPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.loadCanPanel.SuspendLayout();
             this.SuspendLayout();
@@ -717,8 +716,6 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.файлToolStripMenuItem,
-            this.ToolStripMenuItem_load,
-            this.ToolStripMenuItem_parameter,
             this.ToolStripMenuItem_help,
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -767,22 +764,6 @@
             this.ToolStripMenuItem_exit.Size = new System.Drawing.Size(249, 22);
             this.ToolStripMenuItem_exit.Text = "Выход";
             this.ToolStripMenuItem_exit.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
-            // 
-            // ToolStripMenuItem_load
-            // 
-            this.ToolStripMenuItem_load.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ToolStripMenuItem_load.Name = "ToolStripMenuItem_load";
-            this.ToolStripMenuItem_load.Size = new System.Drawing.Size(76, 20);
-            this.ToolStripMenuItem_load.Text = "Загрузка";
-            this.ToolStripMenuItem_load.Click += new System.EventHandler(this.ToolStripMenuItem_load_Click);
-            // 
-            // ToolStripMenuItem_parameter
-            // 
-            this.ToolStripMenuItem_parameter.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ToolStripMenuItem_parameter.Name = "ToolStripMenuItem_parameter";
-            this.ToolStripMenuItem_parameter.Size = new System.Drawing.Size(92, 20);
-            this.ToolStripMenuItem_parameter.Text = "Параметры";
-            this.ToolStripMenuItem_parameter.Click += new System.EventHandler(this.ToolStripMenuItem_parameter_Click);
             // 
             // ToolStripMenuItem_help
             // 
@@ -3876,7 +3857,7 @@
             this.panelElements.Controls.Add(this.recircCheck);
             this.panelElements.Controls.Add(this.coolerCheck);
             this.panelElements.Controls.Add(this.humidCheck);
-            this.panelElements.Location = new System.Drawing.Point(785, 120);
+            this.panelElements.Location = new System.Drawing.Point(785, 117);
             this.panelElements.Name = "panelElements";
             this.panelElements.Size = new System.Drawing.Size(182, 345);
             this.panelElements.TabIndex = 11;
@@ -3949,9 +3930,9 @@
             this.loadModbusPanel.Controls.Add(this.label59);
             this.loadModbusPanel.Controls.Add(this.label1);
             this.loadModbusPanel.Controls.Add(this.backOptionsButton);
-            this.loadModbusPanel.Location = new System.Drawing.Point(15, 251);
+            this.loadModbusPanel.Location = new System.Drawing.Point(12, 207);
             this.loadModbusPanel.Name = "loadModbusPanel";
-            this.loadModbusPanel.Size = new System.Drawing.Size(749, 397);
+            this.loadModbusPanel.Size = new System.Drawing.Size(749, 269);
             this.loadModbusPanel.TabIndex = 12;
             this.loadModbusPanel.Visible = false;
             // 
@@ -4185,20 +4166,6 @@
             this.backOptionsButton.UseVisualStyleBackColor = false;
             this.backOptionsButton.Click += new System.EventHandler(this.BackOptionsButton_Click);
             // 
-            // showHintCheck
-            // 
-            this.showHintCheck.AutoSize = true;
-            this.showHintCheck.Checked = true;
-            this.showHintCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showHintCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.showHintCheck.Location = new System.Drawing.Point(28, 18);
-            this.showHintCheck.Name = "showHintCheck";
-            this.showHintCheck.Size = new System.Drawing.Size(267, 18);
-            this.showHintCheck.TabIndex = 0;
-            this.showHintCheck.Text = "Показывать всплывающие подсказки";
-            this.showHintCheck.UseVisualStyleBackColor = true;
-            this.showHintCheck.CheckedChanged += new System.EventHandler(this.ShowHintCheck_CheckedChanged);
-            // 
             // formSignalsButton
             // 
             this.formSignalsButton.BackColor = System.Drawing.Color.DarkGreen;
@@ -4209,7 +4176,7 @@
             this.formSignalsButton.Name = "formSignalsButton";
             this.formSignalsButton.Size = new System.Drawing.Size(191, 27);
             this.formSignalsButton.TabIndex = 15;
-            this.formSignalsButton.Text = "ТАБЛИЦА IO И ЗАГРУЗКА";
+            this.formSignalsButton.Text = "ТАБЛИЦА I/O И ЗАГРУЗКА";
             this.formSignalsButton.UseVisualStyleBackColor = false;
             this.formSignalsButton.Click += new System.EventHandler(this.FormSignalsButton_Click);
             // 
@@ -4220,7 +4187,7 @@
             this.signalsPanel.Controls.Add(this.signalsReadyLabel);
             this.signalsPanel.Controls.Add(this.tabControlSignals);
             this.signalsPanel.Controls.Add(this.backSignalsButton);
-            this.signalsPanel.Location = new System.Drawing.Point(15, 152);
+            this.signalsPanel.Location = new System.Drawing.Point(15, 117);
             this.signalsPanel.Name = "signalsPanel";
             this.signalsPanel.Size = new System.Drawing.Size(750, 36);
             this.signalsPanel.TabIndex = 16;
@@ -7844,20 +7811,35 @@
             // 
             // helpPanel
             // 
+            this.helpPanel.Controls.Add(this.showHintCheck);
             this.helpPanel.Controls.Add(this.PDF_manual);
             this.helpPanel.Controls.Add(this.label140);
             this.helpPanel.Controls.Add(this.linkModeronWeb);
             this.helpPanel.Controls.Add(this.backHelpButton);
-            this.helpPanel.Location = new System.Drawing.Point(15, 201);
+            this.helpPanel.Location = new System.Drawing.Point(15, 167);
             this.helpPanel.Name = "helpPanel";
-            this.helpPanel.Size = new System.Drawing.Size(746, 27);
+            this.helpPanel.Size = new System.Drawing.Size(746, 28);
             this.helpPanel.TabIndex = 17;
             this.helpPanel.Visible = false;
+            // 
+            // showHintCheck
+            // 
+            this.showHintCheck.AutoSize = true;
+            this.showHintCheck.Checked = true;
+            this.showHintCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showHintCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.showHintCheck.Location = new System.Drawing.Point(28, 45);
+            this.showHintCheck.Name = "showHintCheck";
+            this.showHintCheck.Size = new System.Drawing.Size(267, 18);
+            this.showHintCheck.TabIndex = 67;
+            this.showHintCheck.Text = "Показывать всплывающие подсказки";
+            this.showHintCheck.UseVisualStyleBackColor = true;
+            this.showHintCheck.CheckedChanged += new System.EventHandler(this.ShowHintCheck_CheckedChanged);
             // 
             // PDF_manual
             // 
             this.PDF_manual.Enabled = true;
-            this.PDF_manual.Location = new System.Drawing.Point(24, 40);
+            this.PDF_manual.Location = new System.Drawing.Point(28, 76);
             this.PDF_manual.Name = "PDF_manual";
             this.PDF_manual.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("PDF_manual.OcxState")));
             this.PDF_manual.Size = new System.Drawing.Size(710, 346);
@@ -7899,30 +7881,6 @@
             this.backHelpButton.UseVisualStyleBackColor = false;
             this.backHelpButton.Click += new System.EventHandler(this.BackHelpButton_Click);
             // 
-            // parameterPanel
-            // 
-            this.parameterPanel.Controls.Add(this.backParameterButton);
-            this.parameterPanel.Controls.Add(this.showHintCheck);
-            this.parameterPanel.Location = new System.Drawing.Point(15, 114);
-            this.parameterPanel.Name = "parameterPanel";
-            this.parameterPanel.Size = new System.Drawing.Size(750, 25);
-            this.parameterPanel.TabIndex = 18;
-            this.parameterPanel.Visible = false;
-            // 
-            // backParameterButton
-            // 
-            this.backParameterButton.BackColor = System.Drawing.Color.DarkGreen;
-            this.backParameterButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.backParameterButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.backParameterButton.ForeColor = System.Drawing.Color.White;
-            this.backParameterButton.Location = new System.Drawing.Point(24, 57);
-            this.backParameterButton.Name = "backParameterButton";
-            this.backParameterButton.Size = new System.Drawing.Size(94, 27);
-            this.backParameterButton.TabIndex = 64;
-            this.backParameterButton.Text = "НАЗАД";
-            this.backParameterButton.UseVisualStyleBackColor = false;
-            this.backParameterButton.Click += new System.EventHandler(this.BackParameterButton_Click);
-            // 
             // label_comboSysType
             // 
             this.label_comboSysType.AutoSize = true;
@@ -7935,17 +7893,22 @@
             // 
             // pictureBoxLogo
             // 
+            this.pictureBoxLogo.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxLogo.Image = global::Moderon.Properties.Resources.logo_moderon;
             this.pictureBoxLogo.InitialImage = global::Moderon.Properties.Resources.logo_moderon;
-            this.pictureBoxLogo.Location = new System.Drawing.Point(783, 27);
+            this.pictureBoxLogo.Location = new System.Drawing.Point(843, 25);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(184, 57);
+            this.pictureBoxLogo.Size = new System.Drawing.Size(136, 42);
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxLogo.TabIndex = 2;
             this.pictureBoxLogo.TabStop = false;
             // 
             // loadCanPanel
             // 
+            this.loadCanPanel.Controls.Add(this.textBox1);
+            this.loadCanPanel.Controls.Add(this.comboBox1);
+            this.loadCanPanel.Controls.Add(this.label178);
+            this.loadCanPanel.Controls.Add(this.label177);
             this.loadCanPanel.Controls.Add(this.speedCanCombo);
             this.loadCanPanel.Controls.Add(this.label176);
             this.loadCanPanel.Controls.Add(this.canAddressBox);
@@ -7953,11 +7916,67 @@
             this.loadCanPanel.Controls.Add(this.canSelectBox);
             this.loadCanPanel.Controls.Add(this.label173);
             this.loadCanPanel.Controls.Add(this.netOptionLabel);
-            this.loadCanPanel.Location = new System.Drawing.Point(15, 663);
+            this.loadCanPanel.Location = new System.Drawing.Point(5, 490);
             this.loadCanPanel.Name = "loadCanPanel";
-            this.loadCanPanel.Size = new System.Drawing.Size(749, 306);
+            this.loadCanPanel.Size = new System.Drawing.Size(749, 309);
             this.loadCanPanel.TabIndex = 45;
             this.loadCanPanel.Visible = false;
+            // 
+            // speedCanCombo
+            // 
+            this.speedCanCombo.FormattingEnabled = true;
+            this.speedCanCombo.Items.AddRange(new object[] {
+            "9600",
+            "19200",
+            "38400"});
+            this.speedCanCombo.Location = new System.Drawing.Point(120, 132);
+            this.speedCanCombo.Name = "speedCanCombo";
+            this.speedCanCombo.Size = new System.Drawing.Size(121, 21);
+            this.speedCanCombo.TabIndex = 52;
+            // 
+            // label176
+            // 
+            this.label176.AutoSize = true;
+            this.label176.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label176.Location = new System.Drawing.Point(28, 134);
+            this.label176.Name = "label176";
+            this.label176.Size = new System.Drawing.Size(67, 14);
+            this.label176.TabIndex = 51;
+            this.label176.Text = "Скорость";
+            // 
+            // canAddressBox
+            // 
+            this.canAddressBox.Location = new System.Drawing.Point(120, 96);
+            this.canAddressBox.Name = "canAddressBox";
+            this.canAddressBox.Size = new System.Drawing.Size(122, 21);
+            this.canAddressBox.TabIndex = 50;
+            // 
+            // label174
+            // 
+            this.label174.AutoSize = true;
+            this.label174.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label174.Location = new System.Drawing.Point(28, 98);
+            this.label174.Name = "label174";
+            this.label174.Size = new System.Drawing.Size(45, 14);
+            this.label174.TabIndex = 49;
+            this.label174.Text = "Адрес";
+            // 
+            // canSelectBox
+            // 
+            this.canSelectBox.Location = new System.Drawing.Point(120, 60);
+            this.canSelectBox.Name = "canSelectBox";
+            this.canSelectBox.Size = new System.Drawing.Size(122, 21);
+            this.canSelectBox.TabIndex = 48;
+            // 
+            // label173
+            // 
+            this.label173.AutoSize = true;
+            this.label173.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label173.Location = new System.Drawing.Point(28, 62);
+            this.label173.Name = "label173";
+            this.label173.Size = new System.Drawing.Size(71, 14);
+            this.label173.TabIndex = 47;
+            this.label173.Text = "COM порт";
             // 
             // netOptionLabel
             // 
@@ -7970,61 +7989,44 @@
             this.netOptionLabel.TabIndex = 46;
             this.netOptionLabel.Text = "НАСТРОЙКА СЕТИ";
             // 
-            // label173
+            // label177
             // 
-            this.label173.AutoSize = true;
-            this.label173.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label173.Location = new System.Drawing.Point(28, 53);
-            this.label173.Name = "label173";
-            this.label173.Size = new System.Drawing.Size(71, 14);
-            this.label173.TabIndex = 47;
-            this.label173.Text = "COM порт";
+            this.label177.AutoSize = true;
+            this.label177.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label177.Location = new System.Drawing.Point(28, 206);
+            this.label177.Name = "label177";
+            this.label177.Size = new System.Drawing.Size(81, 14);
+            this.label177.TabIndex = 53;
+            this.label177.Text = "Статус ПЛК";
             // 
-            // canSelectBox
+            // label178
             // 
-            this.canSelectBox.Location = new System.Drawing.Point(120, 51);
-            this.canSelectBox.Name = "canSelectBox";
-            this.canSelectBox.Size = new System.Drawing.Size(122, 21);
-            this.canSelectBox.TabIndex = 48;
+            this.label178.AutoSize = true;
+            this.label178.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label178.Location = new System.Drawing.Point(28, 170);
+            this.label178.Name = "label178";
+            this.label178.Size = new System.Drawing.Size(67, 14);
+            this.label178.TabIndex = 54;
+            this.label178.Text = "Четность";
             // 
-            // canAddressBox
+            // comboBox1
             // 
-            this.canAddressBox.Location = new System.Drawing.Point(120, 87);
-            this.canAddressBox.Name = "canAddressBox";
-            this.canAddressBox.Size = new System.Drawing.Size(122, 21);
-            this.canAddressBox.TabIndex = 50;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Even",
+            "Odd",
+            "None"});
+            this.comboBox1.Location = new System.Drawing.Point(120, 168);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 55;
             // 
-            // label174
+            // textBox1
             // 
-            this.label174.AutoSize = true;
-            this.label174.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label174.Location = new System.Drawing.Point(28, 89);
-            this.label174.Name = "label174";
-            this.label174.Size = new System.Drawing.Size(45, 14);
-            this.label174.TabIndex = 49;
-            this.label174.Text = "Адрес";
-            // 
-            // label176
-            // 
-            this.label176.AutoSize = true;
-            this.label176.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label176.Location = new System.Drawing.Point(28, 125);
-            this.label176.Name = "label176";
-            this.label176.Size = new System.Drawing.Size(67, 14);
-            this.label176.TabIndex = 51;
-            this.label176.Text = "Скорость";
-            // 
-            // speedCanCombo
-            // 
-            this.speedCanCombo.FormattingEnabled = true;
-            this.speedCanCombo.Items.AddRange(new object[] {
-            "9600",
-            "19200",
-            "38400"});
-            this.speedCanCombo.Location = new System.Drawing.Point(120, 123);
-            this.speedCanCombo.Name = "speedCanCombo";
-            this.speedCanCombo.Size = new System.Drawing.Size(121, 21);
-            this.speedCanCombo.TabIndex = 52;
+            this.textBox1.Location = new System.Drawing.Point(120, 204);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(122, 21);
+            this.textBox1.TabIndex = 56;
             // 
             // Form1
             // 
@@ -8033,7 +8035,6 @@
             this.ClientSize = new System.Drawing.Size(979, 1061);
             this.Controls.Add(this.loadCanPanel);
             this.Controls.Add(this.label_comboSysType);
-            this.Controls.Add(this.parameterPanel);
             this.Controls.Add(this.helpPanel);
             this.Controls.Add(this.signalsPanel);
             this.Controls.Add(this.formSignalsButton);
@@ -8047,7 +8048,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "ONI HVAC";
+            this.Text = "MODERON HVAC";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.menuStrip1.ResumeLayout(false);
@@ -8166,8 +8167,6 @@
             this.helpPanel.ResumeLayout(false);
             this.helpPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PDF_manual)).EndInit();
-            this.parameterPanel.ResumeLayout(false);
-            this.parameterPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.loadCanPanel.ResumeLayout(false);
             this.loadCanPanel.PerformLayout();
@@ -8183,9 +8182,7 @@
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_exit;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_load;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_help;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_parameter;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.TabControl mainPage;
         private System.Windows.Forms.TabPage fanPage;
@@ -8385,7 +8382,6 @@
         private System.Windows.Forms.CheckBox addHeatCheck;
         private System.Windows.Forms.PictureBox sensorPicture;
         private System.Windows.Forms.Panel loadModbusPanel;
-        private System.Windows.Forms.CheckBox showHintCheck;
         private System.Windows.Forms.Button backOptionsButton;
         private System.Windows.Forms.TextBox netPortBox;
         private System.Windows.Forms.Label label60;
@@ -8771,8 +8767,6 @@
         private System.Windows.Forms.Button connectBtn;
         private System.Windows.Forms.CheckBox showWriteBoxCheck;
         private System.Windows.Forms.CheckBox analogFreonCheck;
-        private System.Windows.Forms.Panel parameterPanel;
-        private System.Windows.Forms.Button backParameterButton;
         private System.Windows.Forms.ComboBox fireTypeCombo;
         private System.Windows.Forms.Label label169;
         private System.Windows.Forms.Label label138;
@@ -8787,6 +8781,11 @@
         private System.Windows.Forms.Label label174;
         private System.Windows.Forms.ComboBox speedCanCombo;
         private System.Windows.Forms.Label label176;
+        private System.Windows.Forms.CheckBox showHintCheck;
+        private System.Windows.Forms.Label label178;
+        private System.Windows.Forms.Label label177;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 
