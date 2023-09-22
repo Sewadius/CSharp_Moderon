@@ -28,106 +28,80 @@ namespace Moderon
 
         bool subAIcondition = false; // Условие при удалении AI
 
-        static readonly string NTC = "NTC";
-        static readonly string Pt1000 = "Pt1000";
-        static readonly string mA_4_20 = "4-20 мА";
-        static readonly string V0_10 = "0-10 В";
+        static readonly string 
+            NTC = "NTC", Pt1000 = "Pt1000", mA_4_20 = "4-20 мА", V0_10 = "0-10 В";
 
-        // Сохранение наименования выбранного элемента для ПЛК
-        string AI1combo_text = notSelected;
-        string AI2combo_text = notSelected;
-        string AI3combo_text = notSelected;
-        string AI4combo_text = notSelected;
-        string AI5combo_text = notSelected;
-        string AI6combo_text = notSelected;
-
-        // Сохранение наименования выбранного элемента для блока 1
-        string AI1bl1combo_text = notSelected;
-        string AI2bl1combo_text = notSelected;
-        string AI3bl1combo_text = notSelected;
-        string AI4bl1combo_text = notSelected;
-        string AI5bl1combo_text = notSelected;
-        string AI6bl1combo_text = notSelected;
-
-        // Сохранение наименования выбранного элемента для блока 2
-        string AI1bl2combo_text = notSelected;
-        string AI2bl2combo_text = notSelected;
-        string AI3bl2combo_text = notSelected;
-        string AI4bl2combo_text = notSelected;
-        string AI5bl2combo_text = notSelected;
-        string AI6bl2combo_text = notSelected;
-
-        // Сохранение наименование выбранного элемента для блока 3
-        string AI1bl3combo_text = notSelected;
-        string AI2bl3combo_text = notSelected;
-        string AI3bl3combo_text = notSelected;
-        string AI4bl3combo_text = notSelected;
-        string AI5bl3combo_text = notSelected;
-        string AI6bl3combo_text = notSelected;
+        // Сохранение наименования выбранного элемента для ПЛК и блоков расширения 1, 2, 3
+        string
+            AI1combo_text, AI2combo_text, AI3combo_text, AI4combo_text, AI5combo_text, AI6combo_text,
+            AI1bl1combo_text, AI2bl1combo_text, AI3bl1combo_text, AI4bl1combo_text, AI5bl1combo_text, AI6bl1combo_text,
+            AI1bl2combo_text, AI2bl2combo_text, AI3bl2combo_text, AI4bl2combo_text, AI5bl2combo_text, AI6bl2combo_text,
+            AI1bl3combo_text, AI2bl3combo_text, AI3bl3combo_text, AI4bl3combo_text, AI5bl3combo_text, AI6bl3combo_text;
 
         // Сохранение прошлого индекса для comboBox ПЛК
-        int AI1combo_index = 0;
-        int AI2combo_index = 0;
-        int AI3combo_index = 0;
-        int AI4combo_index = 0;
-        int AI5combo_index = 0;
-        int AI6combo_index = 0;
+        int
+            AI1combo_index, AI2combo_index, AI3combo_index, AI4combo_index, AI5combo_index, AI6combo_index,
+            AI1bl1combo_index, AI2bl1combo_index, AI3bl1combo_index, AI4bl1combo_index, AI5bl1combo_index, AI6bl1combo_index,
+            AI1bl2combo_index, AI2bl2combo_index, AI3bl2combo_index, AI4bl2combo_index, AI5bl2combo_index, AI6bl2combo_index,
+            AI1bl3combo_index, AI2bl3combo_index, AI3bl3combo_index, AI4bl3combo_index, AI5bl3combo_index, AI6bl3combo_index;
 
-        // Сохранение прошлого индекса для comboBox блока 1
-        int AI1bl1combo_index = 0;
-        int AI2bl1combo_index = 0;
-        int AI3bl1combo_index = 0;
-        int AI4bl1combo_index = 0;
-        int AI5bl1combo_index = 0;
-        int AI6bl1combo_index = 0;
+        ///<summary>Начальная установка для сигналов AI таблицы сигналов</summary>
+        public void Set_AIComboTextIndex()
+        {
+            var ai_signals = new List<string>()
+            {
+                AI1combo_text, AI2combo_text, AI3combo_text, AI4combo_text, AI5combo_text, AI6combo_text,
+                AI1bl1combo_text, AI2bl1combo_text, AI3bl1combo_text, AI4bl1combo_text, AI5bl1combo_text, AI6bl1combo_text,
+                AI1bl2combo_text, AI2bl2combo_text, AI3bl2combo_text, AI4bl2combo_text, AI5bl2combo_text, AI6bl2combo_text,
+                AI1bl3combo_text, AI2bl3combo_text, AI3bl3combo_text, AI4bl3combo_text, AI5bl3combo_text, AI6bl3combo_text
+            };
 
-        // Сохранение прошлого индекса для comboBox блока 2
-        int AI1bl2combo_index = 0;
-        int AI2bl2combo_index = 0;
-        int AI3bl2combo_index = 0;
-        int AI4bl2combo_index = 0;
-        int AI5bl2combo_index = 0;
-        int AI6bl2combo_index = 0;
+            var ai_signals_index = new List<int>()
+            {
+                AI1combo_index, AI2combo_index, AI3combo_index, AI4combo_index, AI5combo_index, AI6combo_index,
+                AI1bl1combo_index, AI2bl1combo_index, AI3bl1combo_index, AI4bl1combo_index, AI5bl1combo_index, AI6bl1combo_index,
+                AI1bl2combo_index, AI2bl2combo_index, AI3bl2combo_index, AI4bl2combo_index, AI5bl2combo_index, AI6bl2combo_index,
+                AI1bl3combo_index, AI2bl3combo_index, AI3bl3combo_index, AI4bl3combo_index, AI5bl3combo_index, AI6bl3combo_index
+            };
 
-        // Сохранение прошлого индекса для comboBox блока 3
-        int AI1bl3combo_index = 0;
-        int AI2bl3combo_index = 0;
-        int AI3bl3combo_index = 0;
-        int AI4bl3combo_index = 0;
-        int AI5bl3combo_index = 0;
-        int AI6bl3combo_index = 0;
+            for (var i = 0; i < ai_signals.Count; i++)
+                ai_signals[i] = NOT_SELECTED;
+
+            for (var i = 0; i < ai_signals_index.Count; i++)
+                ai_signals_index[i] = 0;
+        }
 
         ///<summary>Сброс выбора сигналов AI comboBox</summary>
         private void ResetButton_signalsAIClick(object sender, EventArgs e)
         {
             // Очистка comboBox ПЛК
-            AI1_combo.Items.Clear(); AI1_combo.Items.Add(notSelected);
-            AI2_combo.Items.Clear(); AI2_combo.Items.Add(notSelected);
-            AI3_combo.Items.Clear(); AI3_combo.Items.Add(notSelected);
-            AI4_combo.Items.Clear(); AI4_combo.Items.Add(notSelected);
-            AI5_combo.Items.Clear(); AI5_combo.Items.Add(notSelected);
-            AI6_combo.Items.Clear(); AI6_combo.Items.Add(notSelected);
+            AI1_combo.Items.Clear(); AI1_combo.Items.Add(NOT_SELECTED);
+            AI2_combo.Items.Clear(); AI2_combo.Items.Add(NOT_SELECTED);
+            AI3_combo.Items.Clear(); AI3_combo.Items.Add(NOT_SELECTED);
+            AI4_combo.Items.Clear(); AI4_combo.Items.Add(NOT_SELECTED);
+            AI5_combo.Items.Clear(); AI5_combo.Items.Add(NOT_SELECTED);
+            AI6_combo.Items.Clear(); AI6_combo.Items.Add(NOT_SELECTED);
             // Очистка comboBox блок расширения 1
-            AI1bl1_combo.Items.Clear(); AI1bl1_combo.Items.Add(notSelected);
-            AI2bl1_combo.Items.Clear(); AI2bl1_combo.Items.Add(notSelected);
-            AI3bl1_combo.Items.Clear(); AI3bl1_combo.Items.Add(notSelected);
-            AI4bl1_combo.Items.Clear(); AI4bl1_combo.Items.Add(notSelected);
-            AI5bl1_combo.Items.Clear(); AI5bl1_combo.Items.Add(notSelected);
-            AI6bl1_combo.Items.Clear(); AI6bl1_combo.Items.Add(notSelected);
+            AI1bl1_combo.Items.Clear(); AI1bl1_combo.Items.Add(NOT_SELECTED);
+            AI2bl1_combo.Items.Clear(); AI2bl1_combo.Items.Add(NOT_SELECTED);
+            AI3bl1_combo.Items.Clear(); AI3bl1_combo.Items.Add(NOT_SELECTED);
+            AI4bl1_combo.Items.Clear(); AI4bl1_combo.Items.Add(NOT_SELECTED);
+            AI5bl1_combo.Items.Clear(); AI5bl1_combo.Items.Add(NOT_SELECTED);
+            AI6bl1_combo.Items.Clear(); AI6bl1_combo.Items.Add(NOT_SELECTED);
             // Очистка comboBox блок расширения 2
-            AI1bl2_combo.Items.Clear(); AI1bl2_combo.Items.Add(notSelected);
-            AI2bl2_combo.Items.Clear(); AI2bl2_combo.Items.Add(notSelected);
-            AI3bl2_combo.Items.Clear(); AI3bl2_combo.Items.Add(notSelected);
-            AI4bl2_combo.Items.Clear(); AI4bl2_combo.Items.Add(notSelected);
-            AI5bl2_combo.Items.Clear(); AI5bl2_combo.Items.Add(notSelected);
-            AI6bl2_combo.Items.Clear(); AI6bl2_combo.Items.Add(notSelected);
+            AI1bl2_combo.Items.Clear(); AI1bl2_combo.Items.Add(NOT_SELECTED);
+            AI2bl2_combo.Items.Clear(); AI2bl2_combo.Items.Add(NOT_SELECTED);
+            AI3bl2_combo.Items.Clear(); AI3bl2_combo.Items.Add(NOT_SELECTED);
+            AI4bl2_combo.Items.Clear(); AI4bl2_combo.Items.Add(NOT_SELECTED);
+            AI5bl2_combo.Items.Clear(); AI5bl2_combo.Items.Add(NOT_SELECTED);
+            AI6bl2_combo.Items.Clear(); AI6bl2_combo.Items.Add(NOT_SELECTED);
             // Очистка comboBox блок расширения 3
-            AI1bl3_combo.Items.Clear(); AI1bl3_combo.Items.Add(notSelected);
-            AI2bl3_combo.Items.Clear(); AI2bl3_combo.Items.Add(notSelected);
-            AI3bl3_combo.Items.Clear(); AI3bl3_combo.Items.Add(notSelected);
-            AI4bl3_combo.Items.Clear(); AI4bl3_combo.Items.Add(notSelected);
-            AI5bl3_combo.Items.Clear(); AI5bl3_combo.Items.Add(notSelected);
-            AI6bl3_combo.Items.Clear(); AI6bl3_combo.Items.Add(notSelected);
+            AI1bl3_combo.Items.Clear(); AI1bl3_combo.Items.Add(NOT_SELECTED);
+            AI2bl3_combo.Items.Clear(); AI2bl3_combo.Items.Add(NOT_SELECTED);
+            AI3bl3_combo.Items.Clear(); AI3bl3_combo.Items.Add(NOT_SELECTED);
+            AI4bl3_combo.Items.Clear(); AI4bl3_combo.Items.Add(NOT_SELECTED);
+            AI5bl3_combo.Items.Clear(); AI5bl3_combo.Items.Add(NOT_SELECTED);
+            AI6bl3_combo.Items.Clear(); AI6bl3_combo.Items.Add(NOT_SELECTED);
         }
 
         ///<summary>Изменили AI1 comboBox</summary>
@@ -2156,7 +2130,7 @@ namespace Moderon
         ///<summary>Добавление ко всем входам AI (для сигнала DI)</summary>
         private void AddToAllCombosAI(string name)
         {
-            if (name != notSelected) // Кроме "Не выбрано"
+            if (name != NOT_SELECTED) // Кроме "Не выбрано"
             {
                 // Основной ПЛК
                 AI1_combo.Items.Add(name); AI2_combo.Items.Add(name);
@@ -2201,7 +2175,7 @@ namespace Moderon
         ///<summary>Удаление AI из других comboBox</summary> 
         private void SubFromCombosAI(string name, ComboBox cm)
         {
-            if (name != notSelected) // Кроме "Не выбрано"
+            if (name != NOT_SELECTED) // Кроме "Не выбрано"
             {
                 // Основной ПЛК
                 if (AI1_combo != cm) AI1_combo.Items.Remove(name); // AI1
@@ -2789,7 +2763,7 @@ namespace Moderon
                     if (AI1_combo.Items.Count > 1) // Больше одного элемента
                     {
                         AI1_combo.SelectedIndex = AI1_combo.Items.Count - 1;
-                        if (AI1_combo.SelectedItem.ToString() != notSelected)
+                        if (AI1_combo.SelectedItem.ToString() != NOT_SELECTED)
                         { // Был выбран другой сигнал из списка
                             SubFromCombosAI(AI1_combo.SelectedItem.ToString(), AI1_combo);
                             find_ai2 = list_ai.Find(x => x.Name == AI1_combo.SelectedItem.ToString());
@@ -2812,7 +2786,7 @@ namespace Moderon
                     else // Последний элемент списка
                     {
                         ClearAITypeCombo(AI1_typeCombo); // Обнуление типа для выбора типа AI
-                        AI1_combo.SelectedItem = notSelected; // Выбор "Не выбрано"
+                        AI1_combo.SelectedItem = NOT_SELECTED; // Выбор "Не выбрано"
                         AI1_lab.Text = "";
                     }
                     AI1combo_text = AI1_combo.SelectedItem.ToString();
@@ -2827,7 +2801,7 @@ namespace Moderon
                     if (AI2_combo.Items.Count > 1) // Больше одного элемента
                     {
                         AI2_combo.SelectedIndex = AI2_combo.Items.Count - 1;
-                        if (AI2_combo.SelectedItem.ToString() != notSelected)
+                        if (AI2_combo.SelectedItem.ToString() != NOT_SELECTED)
                         { // Был выбран другой сигнал из списка
                             SubFromCombosAI(AI2_combo.SelectedItem.ToString(), AI2_combo);
                             find_ai2 = list_ai.Find(x => x.Name == AI2_combo.SelectedItem.ToString());
@@ -2850,7 +2824,7 @@ namespace Moderon
                     else // Последний элемент списка
                     {
                         ClearAITypeCombo(AI2_typeCombo); // Обнуление типа для выбора типа AI
-                        AI2_combo.SelectedItem = notSelected; // Выбор "Не выбрано"
+                        AI2_combo.SelectedItem = NOT_SELECTED; // Выбор "Не выбрано"
                         AI2_lab.Text = "";
                     }
                     AI2combo_text = AI2_combo.SelectedItem.ToString();
@@ -2865,7 +2839,7 @@ namespace Moderon
                     if (AI3_combo.Items.Count > 1) // Больше одного элемента
                     {
                         AI3_combo.SelectedIndex = AI3_combo.Items.Count - 1;
-                        if (AI3_combo.SelectedItem.ToString() != notSelected)
+                        if (AI3_combo.SelectedItem.ToString() != NOT_SELECTED)
                         { // Был выбран другой сигнал из списка
                             SubFromCombosAI(AI3_combo.SelectedItem.ToString(), AI3_combo);
                             find_ai2 = list_ai.Find(x => x.Name == AI3_combo.SelectedItem.ToString());
@@ -2888,7 +2862,7 @@ namespace Moderon
                     else // Последний элемент списка
                     {
                         ClearAITypeCombo(AI3_typeCombo); // Обнуление типа для выбора типа AI
-                        AI3_combo.SelectedItem = notSelected; // Выбор "Не выбрано"
+                        AI3_combo.SelectedItem = NOT_SELECTED; // Выбор "Не выбрано"
                         AI3_lab.Text = "";
                     }
                     AI3combo_text = AI3_combo.SelectedItem.ToString();
@@ -2903,7 +2877,7 @@ namespace Moderon
                     if (AI4_combo.Items.Count > 1) // Больше одного элемента
                     {
                         AI4_combo.SelectedIndex = AI4_combo.Items.Count - 1;
-                        if (AI4_combo.SelectedItem.ToString() != notSelected)
+                        if (AI4_combo.SelectedItem.ToString() != NOT_SELECTED)
                         { // Был выбран другой сигнал из списка
                             SubFromCombosAI(AI4_combo.SelectedItem.ToString(), AI4_combo);
                             find_ai2 = list_ai.Find(x => x.Name == AI4_combo.SelectedItem.ToString());
@@ -2926,7 +2900,7 @@ namespace Moderon
                     else // Последний элемент списка
                     {
                         ClearAITypeCombo(AI4_typeCombo); // Обнуление типа для выбора типа AI
-                        AI4_combo.SelectedItem = notSelected; // Выбор "Не выбрано"
+                        AI4_combo.SelectedItem = NOT_SELECTED; // Выбор "Не выбрано"
                         AI4_lab.Text = "";
                     }
                     AI4combo_text = AI4_combo.SelectedItem.ToString();
@@ -2941,7 +2915,7 @@ namespace Moderon
                     if (AI5_combo.Items.Count > 1) // Больше одного элемента
                     {
                         AI5_combo.SelectedIndex = AI5_combo.Items.Count - 1;
-                        if (AI5_combo.SelectedItem.ToString() != notSelected)
+                        if (AI5_combo.SelectedItem.ToString() != NOT_SELECTED)
                         { // Был выбран другой сигнал из списка
                             SubFromCombosAI(AI5_combo.SelectedItem.ToString(), AI5_combo);
                             find_ai2 = list_ai.Find(x => x.Name == AI5_combo.SelectedItem.ToString());
@@ -2964,7 +2938,7 @@ namespace Moderon
                     else // Последний элемент списка
                     {
                         ClearAITypeCombo(AI5_typeCombo); // Обнуление типа для выбора типа AI
-                        AI5_combo.SelectedItem = notSelected; // Выбор "Не выбрано"
+                        AI5_combo.SelectedItem = NOT_SELECTED; // Выбор "Не выбрано"
                         AI5_lab.Text = "";
                     }
                     AI5combo_text = AI5_combo.SelectedItem.ToString();
@@ -2979,7 +2953,7 @@ namespace Moderon
                     if (AI6_combo.Items.Count > 1) // Больше одного элемента
                     {
                         AI6_combo.SelectedIndex = AI6_combo.Items.Count - 1;
-                        if (AI6_combo.SelectedItem.ToString() != notSelected)
+                        if (AI6_combo.SelectedItem.ToString() != NOT_SELECTED)
                         { // Был выбран другой сигнал из списка
                             SubFromCombosAI(AI6_combo.SelectedItem.ToString(), AI6_combo);
                             find_ai2 = list_ai.Find(x => x.Name == AI6_combo.SelectedItem.ToString());
@@ -3002,7 +2976,7 @@ namespace Moderon
                     else // Последний элемент списка
                     {
                         ClearAITypeCombo(AI6_typeCombo); // Обнуление типа для выбора типа AI
-                        AI6_combo.SelectedItem = notSelected; // Выбор "Не выбрано"
+                        AI6_combo.SelectedItem = NOT_SELECTED; // Выбор "Не выбрано"
                         AI6_lab.Text = "";
                     }
                     AI6combo_text = AI6_combo.SelectedItem.ToString();
@@ -3017,7 +2991,7 @@ namespace Moderon
                     if (AI1bl1_combo.Items.Count > 1) // Больше одного элемента
                     {
                         AI1bl1_combo.SelectedIndex = AI1bl1_combo.Items.Count - 1;
-                        if (AI1bl1_combo.SelectedItem.ToString() != notSelected)
+                        if (AI1bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
                         { // Был выбран другой сигнал из списка
                             SubFromCombosAI(AI1bl1_combo.SelectedItem.ToString(), AI1bl1_combo);
                             find_ai2 = list_ai.Find(x => x.Name == AI1bl1_combo.SelectedItem.ToString());
@@ -3040,7 +3014,7 @@ namespace Moderon
                     else // Последний элемент списка
                     {
                         ClearAITypeCombo(AI1bl1_typeCombo); // Обнуление типа для выбора типа AI
-                        AI1bl1_combo.SelectedItem = notSelected; // Выбор "Не выбрано"
+                        AI1bl1_combo.SelectedItem = NOT_SELECTED; // Выбор "Не выбрано"
                         AI1bl1_lab.Text = "";
                     }
                     AI1bl1combo_text = AI1bl1_combo.SelectedItem.ToString();
@@ -3055,7 +3029,7 @@ namespace Moderon
                     if (AI2bl1_combo.Items.Count > 1) // Больше одного элемента
                     {
                         AI2bl1_combo.SelectedIndex = AI2bl1_combo.Items.Count - 1;
-                        if (AI2bl1_combo.SelectedItem.ToString() != notSelected)
+                        if (AI2bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
                         { // Был выбран другой сигнал из списка
                             SubFromCombosAI(AI2bl1_combo.SelectedItem.ToString(), AI2bl1_combo);
                             find_ai2 = list_ai.Find(x => x.Name == AI2bl1_combo.SelectedItem.ToString());
@@ -3078,7 +3052,7 @@ namespace Moderon
                     else // Последний элемент списка
                     {
                         ClearAITypeCombo(AI2bl1_typeCombo); // Обнуление типа для выбора типа AI
-                        AI2bl1_combo.SelectedItem = notSelected; // Выбор "Не выбрано"
+                        AI2bl1_combo.SelectedItem = NOT_SELECTED; // Выбор "Не выбрано"
                         AI2bl1_lab.Text = "";
                     }
                     AI2bl1combo_text = AI2bl1_combo.SelectedItem.ToString();
@@ -3093,7 +3067,7 @@ namespace Moderon
                     if (AI3bl1_combo.Items.Count > 1) // Больше одного элемента
                     {
                         AI3bl1_combo.SelectedIndex = AI3bl1_combo.Items.Count - 1;
-                        if (AI3bl1_combo.SelectedItem.ToString() != notSelected)
+                        if (AI3bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
                         { // Был выбран другой сигнал из списка
                             SubFromCombosAI(AI3bl1_combo.SelectedItem.ToString(), AI3bl1_combo);
                             find_ai2 = list_ai.Find(x => x.Name == AI3bl1_combo.SelectedItem.ToString());
@@ -3116,7 +3090,7 @@ namespace Moderon
                     else // Последний элемент списка
                     {
                         ClearAITypeCombo(AI3bl1_typeCombo); // Обнуление типа для выбора типа AI
-                        AI3bl1_combo.SelectedItem = notSelected; // Выбор "Не выбрано"
+                        AI3bl1_combo.SelectedItem = NOT_SELECTED; // Выбор "Не выбрано"
                         AI3bl1_lab.Text = "";
                     }
                     AI3bl1combo_text = AI3bl1_combo.SelectedItem.ToString();
@@ -3131,7 +3105,7 @@ namespace Moderon
                     if (AI4bl1_combo.Items.Count > 1) // Больше одного элемента
                     {
                         AI4bl1_combo.SelectedIndex = AI4bl1_combo.Items.Count - 1;
-                        if (AI4bl1_combo.SelectedItem.ToString() != notSelected)
+                        if (AI4bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
                         { // Был выбран другой сигнал из списка
                             SubFromCombosAI(AI4bl1_combo.SelectedItem.ToString(), AI4bl1_combo);
                             find_ai2 = list_ai.Find(x => x.Name == AI4bl1_combo.SelectedItem.ToString());
@@ -3154,7 +3128,7 @@ namespace Moderon
                     else // Последний элемент списка
                     {
                         ClearAITypeCombo(AI4bl1_typeCombo); // Обнуление типа для выбора типа AI
-                        AI4bl1_combo.SelectedItem = notSelected; // Выбор "Не выбрано"
+                        AI4bl1_combo.SelectedItem = NOT_SELECTED; // Выбор "Не выбрано"
                         AI4bl1_lab.Text = "";
                     }
                     AI4bl1combo_text = AI4bl1_combo.SelectedItem.ToString();
@@ -3169,7 +3143,7 @@ namespace Moderon
                     if (AI5bl1_combo.Items.Count > 1) // Больше одного элемента
                     {
                         AI5bl1_combo.SelectedIndex = AI5bl1_combo.Items.Count - 1;
-                        if (AI5bl1_combo.SelectedItem.ToString() != notSelected)
+                        if (AI5bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
                         { // Был выбран другой сигнал из списка
                             SubFromCombosAI(AI5bl1_combo.SelectedItem.ToString(), AI5bl1_combo);
                             find_ai2 = list_ai.Find(x => x.Name == AI5bl1_combo.SelectedItem.ToString());
@@ -3192,7 +3166,7 @@ namespace Moderon
                     else // Последний элемент списка
                     {
                         ClearAITypeCombo(AI5bl1_typeCombo); // Обнуление типа для выбора типа AI
-                        AI5bl1_combo.SelectedItem = notSelected; // Выбор "Не выбрано"
+                        AI5bl1_combo.SelectedItem = NOT_SELECTED; // Выбор "Не выбрано"
                         AI5bl1_lab.Text = "";
                     }
                     AI5bl1combo_text = AI5bl1_combo.SelectedItem.ToString();
@@ -3207,7 +3181,7 @@ namespace Moderon
                     if (AI6bl1_combo.Items.Count > 1) // Больше одного элемента
                     {
                         AI6bl1_combo.SelectedIndex = AI6bl1_combo.Items.Count - 1;
-                        if (AI6bl1_combo.SelectedItem.ToString() != notSelected)
+                        if (AI6bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
                         { // Был выбран другой сигнал из списка
                             SubFromCombosAI(AI6bl1_combo.SelectedItem.ToString(), AI6bl1_combo);
                             find_ai2 = list_ai.Find(x => x.Name == AI6bl1_combo.SelectedItem.ToString());
@@ -3230,7 +3204,7 @@ namespace Moderon
                     else // Последний элемент списка
                     {
                         ClearAITypeCombo(AI6bl1_typeCombo); // Обнуление типа для выбора типа AI
-                        AI6bl1_combo.SelectedItem = notSelected; // Выбор "Не выбрано"
+                        AI6bl1_combo.SelectedItem = NOT_SELECTED; // Выбор "Не выбрано"
                         AI6bl1_lab.Text = "";
                     }
                     AI6bl1combo_text = AI6bl1_combo.SelectedItem.ToString();
@@ -3245,7 +3219,7 @@ namespace Moderon
                     if (AI1bl2_combo.Items.Count > 1) // Больше одного элемента
                     {
                         AI1bl2_combo.SelectedIndex = AI1bl2_combo.Items.Count - 1;
-                        if (AI1bl2_combo.SelectedItem.ToString() != notSelected)
+                        if (AI1bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
                         { // Был выбран другой сигнал из списка
                             SubFromCombosAI(AI1bl2_combo.SelectedItem.ToString(), AI1bl2_combo);
                             find_ai2 = list_ai.Find(x => x.Name == AI1bl2_combo.SelectedItem.ToString());
@@ -3268,7 +3242,7 @@ namespace Moderon
                     else // Последний элемент списка
                     {
                         ClearAITypeCombo(AI1bl2_typeCombo); // Обнуление типа для выбора типа AI
-                        AI1bl2_combo.SelectedItem = notSelected; // Выбор "Не выбрано"
+                        AI1bl2_combo.SelectedItem = NOT_SELECTED; // Выбор "Не выбрано"
                         AI1bl2_lab.Text = "";
                     }
                     AI1bl2combo_text = AI1bl2_combo.SelectedItem.ToString();
@@ -3283,7 +3257,7 @@ namespace Moderon
                     if (AI2bl2_combo.Items.Count > 1) // Больше одного элемента
                     {
                         AI2bl2_combo.SelectedIndex = AI2bl2_combo.Items.Count - 1;
-                        if (AI2bl2_combo.SelectedItem.ToString() != notSelected)
+                        if (AI2bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
                         { // Был выбран другой сигнал из списка
                             SubFromCombosAI(AI2bl2_combo.SelectedItem.ToString(), AI2bl2_combo);
                             find_ai2 = list_ai.Find(x => x.Name == AI2bl2_combo.SelectedItem.ToString());
@@ -3306,7 +3280,7 @@ namespace Moderon
                     else // Последний элемент списка
                     {
                         ClearAITypeCombo(AI2bl2_typeCombo); // Обнуление типа для выбора типа AI
-                        AI2bl2_combo.SelectedItem = notSelected; // Выбор "Не выбрано"
+                        AI2bl2_combo.SelectedItem = NOT_SELECTED; // Выбор "Не выбрано"
                         AI2bl2_lab.Text = "";
                     }
                     AI2bl2combo_text = AI2bl2_combo.SelectedItem.ToString();
@@ -3321,7 +3295,7 @@ namespace Moderon
                     if (AI3bl2_combo.Items.Count > 1) // Больше одного элемента
                     {
                         AI3bl2_combo.SelectedIndex = AI3bl2_combo.Items.Count - 1;
-                        if (AI3bl2_combo.SelectedItem.ToString() != notSelected)
+                        if (AI3bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
                         { // Был выбран другой сигнал из списка
                             SubFromCombosAI(AI3bl2_combo.SelectedItem.ToString(), AI3bl2_combo);
                             find_ai2 = list_ai.Find(x => x.Name == AI3bl2_combo.SelectedItem.ToString());
@@ -3344,7 +3318,7 @@ namespace Moderon
                     else // Последний элемент списка
                     {
                         ClearAITypeCombo(AI3bl2_typeCombo); // Обнуление типа для выбора типа AI
-                        AI3bl2_combo.SelectedItem = notSelected; // Выбор "Не выбрано"
+                        AI3bl2_combo.SelectedItem = NOT_SELECTED; // Выбор "Не выбрано"
                         AI3bl2_lab.Text = "";
                     }
                     AI3bl2combo_text = AI3bl2_combo.SelectedItem.ToString();
@@ -3359,7 +3333,7 @@ namespace Moderon
                     if (AI4bl2_combo.Items.Count > 1) // Больше одного элемента
                     {
                         AI4bl2_combo.SelectedIndex = AI4bl2_combo.Items.Count - 1;
-                        if (AI4bl2_combo.SelectedItem.ToString() != notSelected)
+                        if (AI4bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
                         { // Был выбран другой сигнал из списка
                             SubFromCombosAI(AI4bl2_combo.SelectedItem.ToString(), AI4bl2_combo);
                             find_ai2 = list_ai.Find(x => x.Name == AI4bl2_combo.SelectedItem.ToString());
@@ -3382,7 +3356,7 @@ namespace Moderon
                     else // Последний элемент списка
                     {
                         ClearAITypeCombo(AI4bl2_typeCombo); // Обнуление типа для выбора типа AI
-                        AI4bl2_combo.SelectedItem = notSelected; // Выбор "Не выбрано"
+                        AI4bl2_combo.SelectedItem = NOT_SELECTED; // Выбор "Не выбрано"
                         AI4bl2_lab.Text = "";
                     }
                     AI4bl2combo_text = AI4bl2_combo.SelectedItem.ToString();
@@ -3397,7 +3371,7 @@ namespace Moderon
                     if (AI5bl2_combo.Items.Count > 1) // Больше одного элемента
                     {
                         AI5bl2_combo.SelectedIndex = AI5bl2_combo.Items.Count - 1;
-                        if (AI5bl2_combo.SelectedItem.ToString() != notSelected)
+                        if (AI5bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
                         { // Был выбран другой сигнал из списка
                             SubFromCombosAI(AI5bl2_combo.SelectedItem.ToString(), AI5bl2_combo);
                             find_ai2 = list_ai.Find(x => x.Name == AI5bl2_combo.SelectedItem.ToString());
@@ -3420,7 +3394,7 @@ namespace Moderon
                     else // Последний элемент списка
                     {
                         ClearAITypeCombo(AI5bl2_typeCombo); // Обнуление типа для выбора типа AI
-                        AI5bl2_combo.SelectedItem = notSelected; // Выбор "Не выбрано"
+                        AI5bl2_combo.SelectedItem = NOT_SELECTED; // Выбор "Не выбрано"
                         AI5bl2_lab.Text = "";
                     }
                     AI5bl2combo_text = AI5bl2_combo.SelectedItem.ToString();
@@ -3435,7 +3409,7 @@ namespace Moderon
                     if (AI6bl2_combo.Items.Count > 1) // Больше одного элемента
                     {
                         AI6bl2_combo.SelectedIndex = AI6bl2_combo.Items.Count - 1;
-                        if (AI6bl2_combo.SelectedItem.ToString() != notSelected)
+                        if (AI6bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
                         { // Был выбран другой сигнал из списка
                             SubFromCombosAI(AI6bl2_combo.SelectedItem.ToString(), AI6bl2_combo);
                             find_ai2 = list_ai.Find(x => x.Name == AI6bl2_combo.SelectedItem.ToString());
@@ -3458,7 +3432,7 @@ namespace Moderon
                     else // Последний элемент списка
                     {
                         ClearAITypeCombo(AI6bl2_typeCombo); // Обнуление типа для выбора типа AI
-                        AI6bl2_combo.SelectedItem = notSelected; // Выбор "Не выбрано"
+                        AI6bl2_combo.SelectedItem = NOT_SELECTED; // Выбор "Не выбрано"
                         AI6bl2_lab.Text = "";
                     }
                     AI6bl2combo_text = AI6bl2_combo.SelectedItem.ToString();
@@ -3473,7 +3447,7 @@ namespace Moderon
                     if (AI1bl3_combo.Items.Count > 1) // Больше одного элемента
                     {
                         AI1bl3_combo.SelectedIndex = AI1bl3_combo.Items.Count - 1;
-                        if (AI1bl3_combo.SelectedItem.ToString() != notSelected)
+                        if (AI1bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
                         { // Был выбран другой сигнал из списка
                             SubFromCombosAI(AI1bl3_combo.SelectedItem.ToString(), AI1bl3_combo);
                             find_ai2 = list_ai.Find(x => x.Name == AI1bl3_combo.SelectedItem.ToString());
@@ -3496,7 +3470,7 @@ namespace Moderon
                     else // Последний элемент списка
                     {
                         ClearAITypeCombo(AI1bl3_typeCombo); // Обнуление типа для выбора типа AI
-                        AI1bl3_combo.SelectedItem = notSelected; // Выбор "Не выбрано"
+                        AI1bl3_combo.SelectedItem = NOT_SELECTED; // Выбор "Не выбрано"
                         AI1bl3_lab.Text = "";
                     }
                     AI1bl3combo_text = AI1bl3_combo.SelectedItem.ToString();
@@ -3511,7 +3485,7 @@ namespace Moderon
                     if (AI2bl3_combo.Items.Count > 1) // Больше одного элемента
                     {
                         AI2bl3_combo.SelectedIndex = AI2bl3_combo.Items.Count - 1;
-                        if (AI2bl3_combo.SelectedItem.ToString() != notSelected)
+                        if (AI2bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
                         { // Был выбран другой сигнал из списка
                             SubFromCombosAI(AI2bl3_combo.SelectedItem.ToString(), AI2bl3_combo);
                             find_ai2 = list_ai.Find(x => x.Name == AI2bl3_combo.SelectedItem.ToString());
@@ -3534,7 +3508,7 @@ namespace Moderon
                     else // Последний элемент списка
                     {
                         ClearAITypeCombo(AI2bl3_typeCombo); // Обнуление типа для выбора типа AI
-                        AI2bl3_combo.SelectedItem = notSelected; // Выбор "Не выбрано"
+                        AI2bl3_combo.SelectedItem = NOT_SELECTED; // Выбор "Не выбрано"
                         AI2bl3_lab.Text = "";
                     }
                     AI2bl3combo_text = AI2bl3_combo.SelectedItem.ToString();
@@ -3549,7 +3523,7 @@ namespace Moderon
                     if (AI3bl3_combo.Items.Count > 1) // Больше одного элемента
                     {
                         AI3bl3_combo.SelectedIndex = AI3bl3_combo.Items.Count - 1;
-                        if (AI3bl3_combo.SelectedItem.ToString() != notSelected)
+                        if (AI3bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
                         { // Был выбран другой сигнал из списка
                             SubFromCombosAI(AI3bl3_combo.SelectedItem.ToString(), AI3bl3_combo);
                             find_ai2 = list_ai.Find(x => x.Name == AI3bl3_combo.SelectedItem.ToString());
@@ -3572,7 +3546,7 @@ namespace Moderon
                     else // Последний элемент списка
                     {
                         ClearAITypeCombo(AI3bl3_typeCombo); // Обнуление типа для выбора типа AI
-                        AI3bl3_combo.SelectedItem = notSelected; // Выбор "Не выбрано"
+                        AI3bl3_combo.SelectedItem = NOT_SELECTED; // Выбор "Не выбрано"
                         AI3bl3_lab.Text = "";
                     }
                     AI3bl3combo_text = AI3bl3_combo.SelectedItem.ToString();
@@ -3587,7 +3561,7 @@ namespace Moderon
                     if (AI4bl3_combo.Items.Count > 1) // Больше одного элемента
                     {
                         AI4bl3_combo.SelectedIndex = AI4bl3_combo.Items.Count - 1;
-                        if (AI4bl3_combo.SelectedItem.ToString() != notSelected)
+                        if (AI4bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
                         { // Был выбран другой сигнал из списка
                             SubFromCombosAI(AI4bl3_combo.SelectedItem.ToString(), AI4bl3_combo);
                             find_ai2 = list_ai.Find(x => x.Name == AI4bl3_combo.SelectedItem.ToString());
@@ -3610,7 +3584,7 @@ namespace Moderon
                     else // Последний элемент списка
                     {
                         ClearAITypeCombo(AI4bl3_typeCombo); // Обнуление типа для выбора типа AI
-                        AI4bl3_combo.SelectedItem = notSelected; // Выбор "Не выбрано"
+                        AI4bl3_combo.SelectedItem = NOT_SELECTED; // Выбор "Не выбрано"
                         AI4bl3_lab.Text = "";
                     }
                     AI4bl3combo_text = AI4bl3_combo.SelectedItem.ToString();
@@ -3625,7 +3599,7 @@ namespace Moderon
                     if (AI5bl3_combo.Items.Count > 1) // Больше одного элемента
                     {
                         AI5bl3_combo.SelectedIndex = AI5bl3_combo.Items.Count - 1;
-                        if (AI5bl3_combo.SelectedItem.ToString() != notSelected)
+                        if (AI5bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
                         { // Был выбран другой сигнал из списка
                             SubFromCombosAI(AI5bl3_combo.SelectedItem.ToString(), AI5bl3_combo);
                             find_ai2 = list_ai.Find(x => x.Name == AI5bl3_combo.SelectedItem.ToString());
@@ -3648,7 +3622,7 @@ namespace Moderon
                     else // Последний элемент списка
                     {
                         ClearAITypeCombo(AI5bl3_typeCombo); // Обнуление типа для выбора типа AI
-                        AI5bl3_combo.SelectedItem = notSelected; // Выбор "Не выбрано"
+                        AI5bl3_combo.SelectedItem = NOT_SELECTED; // Выбор "Не выбрано"
                         AI5bl3_lab.Text = "";
                     }
                     AI5bl3combo_text = AI5bl3_combo.SelectedItem.ToString();
@@ -3663,7 +3637,7 @@ namespace Moderon
                     if (AI6bl3_combo.Items.Count > 1) // Больше одного элемента
                     {
                         AI6bl3_combo.SelectedIndex = AI6bl3_combo.Items.Count - 1;
-                        if (AI6bl3_combo.SelectedItem.ToString() != notSelected)
+                        if (AI6bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
                         { // Был выбран другой сигнал из списка
                             SubFromCombosAI(AI6bl3_combo.SelectedItem.ToString(), AI6bl3_combo);
                             find_ai2 = list_ai.Find(x => x.Name == AI6bl3_combo.SelectedItem.ToString());
@@ -3686,7 +3660,7 @@ namespace Moderon
                     else // Последний элемент списка
                     {
                         ClearAITypeCombo(AI6bl3_typeCombo); // Обнуление типа для выбора типа AI
-                        AI6bl3_combo.SelectedItem = notSelected; // Выбор "Не выбрано"
+                        AI6bl3_combo.SelectedItem = NOT_SELECTED; // Выбор "Не выбрано"
                         AI6bl3_lab.Text = "";
                     }
                     AI6bl3combo_text = AI6bl3_combo.SelectedItem.ToString();

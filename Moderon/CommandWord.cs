@@ -95,48 +95,48 @@ namespace Moderon
         private void BuildDiSignals()
         {
             // ПЛК
-            if (DI1_combo.SelectedItem.ToString() != notSelected) // DI1
+            if (DI1_combo.SelectedItem.ToString() != NOT_SELECTED) // DI1
                 diSignals[0] = Convert.ToUInt16(DI1_lab.Text);
-            if (DI2_combo.SelectedItem.ToString() != notSelected) // DI2
+            if (DI2_combo.SelectedItem.ToString() != NOT_SELECTED) // DI2
                 diSignals[1] = Convert.ToUInt16(DI2_lab.Text);
-            if (DI3_combo.SelectedItem.ToString() != notSelected) // DI3
+            if (DI3_combo.SelectedItem.ToString() != NOT_SELECTED) // DI3
                 diSignals[2] = Convert.ToUInt16(DI3_lab.Text);
-            if (DI4_combo.SelectedItem.ToString() != notSelected) // DI4
+            if (DI4_combo.SelectedItem.ToString() != NOT_SELECTED) // DI4
                 diSignals[3] = Convert.ToUInt16(DI4_lab.Text);
-            if (DI5_combo.SelectedItem.ToString() != notSelected) // DI5
+            if (DI5_combo.SelectedItem.ToString() != NOT_SELECTED) // DI5
                 diSignals[4] = Convert.ToUInt16(DI5_lab.Text);
             // Блок расширения 1
-            if (DI1bl1_combo.SelectedItem.ToString() != notSelected) // DI1
+            if (DI1bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DI1
                 diSignals[5] = Convert.ToUInt16(DI1bl1_lab.Text);
-            if (DI2bl1_combo.SelectedItem.ToString() != notSelected) // DI2
+            if (DI2bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DI2
                 diSignals[6] = Convert.ToUInt16(DI2bl1_lab.Text);
-            if (DI3bl1_combo.SelectedItem.ToString() != notSelected) // DI3
+            if (DI3bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DI3
                 diSignals[7] = Convert.ToUInt16(DI3bl1_lab.Text);
-            if (DI4bl1_combo.SelectedItem.ToString() != notSelected) // DI4
+            if (DI4bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DI4
                 diSignals[8] = Convert.ToUInt16(DI4bl1_lab.Text);
-            if (DI5bl1_combo.SelectedItem.ToString() != notSelected) // DI5
+            if (DI5bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DI5
                 diSignals[9] = Convert.ToUInt16(DI5bl1_lab.Text);
             // Блок расширения 2
-            if (DI1bl2_combo.SelectedItem.ToString() != notSelected) // DI1
+            if (DI1bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DI1
                 diSignals[10] = Convert.ToUInt16(DI1bl2_lab.Text);
-            if (DI2bl2_combo.SelectedItem.ToString() != notSelected) // DI2
+            if (DI2bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DI2
                 diSignals[11] = Convert.ToUInt16(DI2bl2_lab.Text);
-            if (DI3bl2_combo.SelectedItem.ToString() != notSelected) // DI3
+            if (DI3bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DI3
                 diSignals[12] = Convert.ToUInt16(DI3bl2_lab.Text);
-            if (DI4bl2_combo.SelectedItem.ToString() != notSelected) // DI4
+            if (DI4bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DI4
                 diSignals[13] = Convert.ToUInt16(DI4bl2_lab.Text);
-            if (DI5bl2_combo.SelectedItem.ToString() != notSelected) // DI5
+            if (DI5bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DI5
                 diSignals[14] = Convert.ToUInt16(DI5bl2_lab.Text);
             // Блок расширения 3
-            if (DI1bl3_combo.SelectedItem.ToString() != notSelected) // DI1
+            if (DI1bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DI1
                 diSignals[15] = Convert.ToUInt16(DI1bl3_lab.Text);
-            if (DI2bl3_combo.SelectedItem.ToString() != notSelected) // DI2
+            if (DI2bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DI2
                 diSignals[16] = Convert.ToUInt16(DI2bl3_lab.Text);
-            if (DI3bl3_combo.SelectedItem.ToString() != notSelected) // DI3
+            if (DI3bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DI3
                 diSignals[17] = Convert.ToUInt16(DI3bl3_lab.Text);
-            if (DI4bl3_combo.SelectedItem.ToString() != notSelected) // DI4
+            if (DI4bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DI4
                 diSignals[18] = Convert.ToUInt16(DI4bl3_lab.Text);
-            if (DI5bl3_combo.SelectedItem.ToString() != notSelected) // DI5
+            if (DI5bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DI5
                 diSignals[19] = Convert.ToUInt16(DI5bl3_lab.Text);
         }
 
@@ -144,56 +144,56 @@ namespace Moderon
         private void BuildAiSignals()
         {
             // ПЛК
-            if (AI1_combo.SelectedItem.ToString() != notSelected) // AI1
+            if (AI1_combo.SelectedItem.ToString() != NOT_SELECTED) // AI1
                 aiSignals[0] = Convert.ToUInt16(AI1_lab.Text);
-            if (AI2_combo.SelectedItem.ToString() != notSelected) // AI2
+            if (AI2_combo.SelectedItem.ToString() != NOT_SELECTED) // AI2
                 aiSignals[1] = Convert.ToUInt16(AI2_lab.Text);
-            if (AI3_combo.SelectedItem.ToString() != notSelected) // AI3
+            if (AI3_combo.SelectedItem.ToString() != NOT_SELECTED) // AI3
                 aiSignals[2] = Convert.ToUInt16(AI3_lab.Text);
-            if (AI4_combo.SelectedItem.ToString() != notSelected) // AI4
+            if (AI4_combo.SelectedItem.ToString() != NOT_SELECTED) // AI4
                 aiSignals[3] = Convert.ToUInt16(AI4_lab.Text);
-            if (AI5_combo.SelectedItem.ToString() != notSelected) // AI5
+            if (AI5_combo.SelectedItem.ToString() != NOT_SELECTED) // AI5
                 aiSignals[4] = Convert.ToUInt16(AI5_lab.Text);
-            if (AI6_combo.SelectedItem.ToString() != notSelected) // AI6
+            if (AI6_combo.SelectedItem.ToString() != NOT_SELECTED) // AI6
                 aiSignals[5] = Convert.ToUInt16(AI6_lab.Text);
             // Блок расширения 1
-            if (AI1bl1_combo.SelectedItem.ToString() != notSelected) // AI1
+            if (AI1bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AI1
                 aiSignals[6] = Convert.ToUInt16(AI1bl1_lab.Text);
-            if (AI2bl1_combo.SelectedItem.ToString() != notSelected) // AI2
+            if (AI2bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AI2
                 aiSignals[7] = Convert.ToUInt16(AI2bl1_lab.Text);
-            if (AI3bl1_combo.SelectedItem.ToString() != notSelected) // AI3
+            if (AI3bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AI3
                 aiSignals[8] = Convert.ToUInt16(AI3bl1_lab.Text);
-            if (AI4bl1_combo.SelectedItem.ToString() != notSelected) // AI4
+            if (AI4bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AI4
                 aiSignals[9] = Convert.ToUInt16(AI4bl1_lab.Text);
-            if (AI5bl1_combo.SelectedItem.ToString() != notSelected) // AI5
+            if (AI5bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AI5
                 aiSignals[10] = Convert.ToUInt16(AI5bl1_lab.Text);
-            if (AI6bl1_combo.SelectedItem.ToString() != notSelected) // AI6
+            if (AI6bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AI6
                 aiSignals[11] = Convert.ToUInt16(AI6bl1_lab.Text);
             // Блок расширения 2
-            if (AI1bl2_combo.SelectedItem.ToString() != notSelected) // AI1
+            if (AI1bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AI1
                 aiSignals[12] = Convert.ToUInt16(AI1bl2_lab.Text);
-            if (AI2bl2_combo.SelectedItem.ToString() != notSelected) // AI2
+            if (AI2bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AI2
                 aiSignals[13] = Convert.ToUInt16(AI2bl2_lab.Text);
-            if (AI3bl2_combo.SelectedItem.ToString() != notSelected) // AI3
+            if (AI3bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AI3
                 aiSignals[14] = Convert.ToUInt16(AI3bl2_lab.Text);
-            if (AI4bl2_combo.SelectedItem.ToString() != notSelected) // AI4
+            if (AI4bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AI4
                 aiSignals[15] = Convert.ToUInt16(AI4bl2_lab.Text);
-            if (AI5bl2_combo.SelectedItem.ToString() != notSelected) // AI5
+            if (AI5bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AI5
                 aiSignals[16] = Convert.ToUInt16(AI5bl2_lab.Text);
-            if (AI6bl2_combo.SelectedItem.ToString() != notSelected) // AI6
+            if (AI6bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AI6
                 aiSignals[17] = Convert.ToUInt16(AI6bl2_lab.Text);
             // Блок расширения 3
-            if (AI1bl3_combo.SelectedItem.ToString() != notSelected) // AI1
+            if (AI1bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AI1
                 aiSignals[18] = Convert.ToUInt16(AI1bl3_lab.Text);
-            if (AI2bl3_combo.SelectedItem.ToString() != notSelected) // AI2
+            if (AI2bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AI2
                 aiSignals[19] = Convert.ToUInt16(AI2bl3_lab.Text);
-            if (AI3bl3_combo.SelectedItem.ToString() != notSelected) // AI3
+            if (AI3bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AI3
                 aiSignals[20] = Convert.ToUInt16(AI3bl3_lab.Text);
-            if (AI4bl3_combo.SelectedItem.ToString() != notSelected) // AI4
+            if (AI4bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AI4
                 aiSignals[21] = Convert.ToUInt16(AI4bl3_lab.Text);
-            if (AI5bl3_combo.SelectedItem.ToString() != notSelected) // AI5
+            if (AI5bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AI5
                 aiSignals[22] = Convert.ToUInt16(AI5bl3_lab.Text);
-            if (AI6bl3_combo.SelectedItem.ToString() != notSelected) // AI6
+            if (AI6bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AI6
                 aiSignals[23] = Convert.ToUInt16(AI6bl3_lab.Text);
         }
 
@@ -201,64 +201,64 @@ namespace Moderon
         private void BuildDoSignals()
         {
             // ПЛК
-            if (DO1_combo.SelectedItem.ToString() != notSelected) // DO1
+            if (DO1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO1
                 doSignals[0] = Convert.ToUInt16(DO1_lab.Text);
-            if (DO2_combo.SelectedItem.ToString() != notSelected) // DO2
+            if (DO2_combo.SelectedItem.ToString() != NOT_SELECTED) // DO2
                 doSignals[1] = Convert.ToUInt16(DO2_lab.Text);
-            if (DO3_combo.SelectedItem.ToString() != notSelected) // DO3
+            if (DO3_combo.SelectedItem.ToString() != NOT_SELECTED) // DO3
                 doSignals[2] = Convert.ToUInt16(DO3_lab.Text);
-            if (DO4_combo.SelectedItem.ToString() != notSelected) // DO4
+            if (DO4_combo.SelectedItem.ToString() != NOT_SELECTED) // DO4
                 doSignals[3] = Convert.ToUInt16(DO4_lab.Text);
-            if (DO5_combo.SelectedItem.ToString() != notSelected) // DO5
+            if (DO5_combo.SelectedItem.ToString() != NOT_SELECTED) // DO5
                 doSignals[4] = Convert.ToUInt16(DO5_lab.Text);
-            if (DO6_combo.SelectedItem.ToString() != notSelected) // DO6
+            if (DO6_combo.SelectedItem.ToString() != NOT_SELECTED) // DO6
                 doSignals[5] = Convert.ToUInt16(DO6_lab.Text);
-            if (DO7_combo.SelectedItem.ToString() != notSelected) // DO7
+            if (DO7_combo.SelectedItem.ToString() != NOT_SELECTED) // DO7
                 doSignals[6] = Convert.ToUInt16(DO7_lab.Text);
             // Блок расширения 1
-            if (DO1bl1_combo.SelectedItem.ToString() != notSelected) // DO1
+            if (DO1bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO1
                 doSignals[7] = Convert.ToUInt16(DO1bl1_lab.Text);
-            if (DO2bl1_combo.SelectedItem.ToString() != notSelected) // DO2
+            if (DO2bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO2
                 doSignals[8] = Convert.ToUInt16(DO2bl1_lab.Text);
-            if (DO3bl1_combo.SelectedItem.ToString() != notSelected) // DO3
+            if (DO3bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO3
                 doSignals[9] = Convert.ToUInt16(DO3bl1_lab.Text);
-            if (DO4bl1_combo.SelectedItem.ToString() != notSelected) // DO4
+            if (DO4bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO4
                 doSignals[10] = Convert.ToUInt16(DO4bl1_lab.Text);
-            if (DO5bl1_combo.SelectedItem.ToString() != notSelected) // DO5
+            if (DO5bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO5
                 doSignals[11] = Convert.ToUInt16(DO5bl1_lab.Text);
-            if (DO6bl1_combo.SelectedItem.ToString() != notSelected) // DO6
+            if (DO6bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO6
                 doSignals[12] = Convert.ToUInt16(DO6bl1_lab.Text);
-            if (DO7bl1_combo.SelectedItem.ToString() != notSelected) // DO7
+            if (DO7bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO7
                 doSignals[13] = Convert.ToUInt16(DO7bl1_lab.Text);
             // Блок расширения 2
-            if (DO1bl2_combo.SelectedItem.ToString() != notSelected) // DO1
+            if (DO1bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DO1
                 doSignals[14] = Convert.ToUInt16(DO1bl2_lab.Text);
-            if (DO2bl2_combo.SelectedItem.ToString() != notSelected) // DO2
+            if (DO2bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DO2
                 doSignals[15] = Convert.ToUInt16(DO2bl2_lab.Text);
-            if (DO3bl2_combo.SelectedItem.ToString() != notSelected) // DO3
+            if (DO3bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DO3
                 doSignals[16] = Convert.ToUInt16(DO3bl2_lab.Text);
-            if (DO4bl2_combo.SelectedItem.ToString() != notSelected) // DO4
+            if (DO4bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DO4
                 doSignals[17] = Convert.ToUInt16(DO4bl2_lab.Text);
-            if (DO5bl2_combo.SelectedItem.ToString() != notSelected) // DO5
+            if (DO5bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DO5
                 doSignals[18] = Convert.ToUInt16(DO5bl2_lab.Text);
-            if (DO6bl2_combo.SelectedItem.ToString() != notSelected) // DO6
+            if (DO6bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DO6
                 doSignals[19] = Convert.ToUInt16(DO6bl2_lab.Text);
-            if (DO7bl2_combo.SelectedItem.ToString() != notSelected) // DO7
+            if (DO7bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DO7
                 doSignals[20] = Convert.ToUInt16(DO7bl2_lab.Text);
             // Блок расширения 3
-            if (DO1bl3_combo.SelectedItem.ToString() != notSelected) // DO1
+            if (DO1bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DO1
                 doSignals[21] = Convert.ToUInt16(DO1bl3_lab.Text);
-            if (DO2bl3_combo.SelectedItem.ToString() != notSelected) // DO2
+            if (DO2bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DO2
                 doSignals[22] = Convert.ToUInt16(DO2bl3_lab.Text);
-            if (DO3bl3_combo.SelectedItem.ToString() != notSelected) // DO3
+            if (DO3bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DO3
                 doSignals[23] = Convert.ToUInt16(DO3bl3_lab.Text);
-            if (DO4bl3_combo.SelectedItem.ToString() != notSelected) // DO4
+            if (DO4bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DO4
                 doSignals[24] = Convert.ToUInt16(DO4bl3_lab.Text);
-            if (DO5bl3_combo.SelectedItem.ToString() != notSelected) // DO5
+            if (DO5bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DO5
                 doSignals[25] = Convert.ToUInt16(DO5bl3_lab.Text);
-            if (DO6bl3_combo.SelectedItem.ToString() != notSelected) // DO6
+            if (DO6bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DO6
                 doSignals[26] = Convert.ToUInt16(DO6bl3_lab.Text);
-            if (DO7bl3_combo.SelectedItem.ToString() != notSelected) // DO7
+            if (DO7bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DO7
                 doSignals[27] = Convert.ToUInt16(DO7bl3_lab.Text);
         }
 
@@ -266,32 +266,32 @@ namespace Moderon
         private void BuildAoSignals()
         {
             // ПЛК
-            if (AO1_combo.SelectedItem.ToString() != notSelected) // AO1
+            if (AO1_combo.SelectedItem.ToString() != NOT_SELECTED) // AO1
                 aoSignals[0] = Convert.ToUInt16(AO1_lab.Text);
-            if (AO2_combo.SelectedItem.ToString() != notSelected) // AO2
+            if (AO2_combo.SelectedItem.ToString() != NOT_SELECTED) // AO2
                 aoSignals[1] = Convert.ToUInt16(AO2_lab.Text);
-            if (AO3_combo.SelectedItem.ToString() != notSelected) // AO3
+            if (AO3_combo.SelectedItem.ToString() != NOT_SELECTED) // AO3
                 aoSignals[2] = Convert.ToUInt16(AO3_lab.Text);
             // Блок расширения 1
-            if (AO1bl1_combo.SelectedItem.ToString() != notSelected) // AO1
+            if (AO1bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AO1
                 aoSignals[3] = Convert.ToUInt16(AO1bl1_lab.Text);
-            if (AO2bl1_combo.SelectedItem.ToString() != notSelected) // AO2
+            if (AO2bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AO2
                 aoSignals[4] = Convert.ToUInt16(AO2bl1_lab.Text);
-            if (AO3bl1_combo.SelectedItem.ToString() != notSelected) // AO3
+            if (AO3bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AO3
                 aoSignals[5] = Convert.ToUInt16(AO3bl1_lab.Text);
             // Блок расширения 2
-            if (AO1bl2_combo.SelectedItem.ToString() != notSelected) // AO1
+            if (AO1bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AO1
                 aoSignals[6] = Convert.ToUInt16(AO1bl2_lab.Text);
-            if (AO2bl2_combo.SelectedItem.ToString() != notSelected) // AO2
+            if (AO2bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AO2
                 aoSignals[7] = Convert.ToUInt16(AO2bl2_lab.Text);
-            if (AO3bl2_combo.SelectedItem.ToString() != notSelected) // AO3
+            if (AO3bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AO3
                 aoSignals[8] = Convert.ToUInt16(AO3bl2_lab.Text);
             // Блок расширения 3
-            if (AO1bl3_combo.SelectedItem.ToString() != notSelected) // AO1
+            if (AO1bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AO1
                 aoSignals[9] = Convert.ToUInt16(AO1bl3_lab.Text);
-            if (AO2bl3_combo.SelectedItem.ToString() != notSelected) // AO2
+            if (AO2bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AO2
                 aoSignals[10] = Convert.ToUInt16(AO2bl3_lab.Text);
-            if (AO3bl3_combo.SelectedItem.ToString() != notSelected) // AO3
+            if (AO3bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AO3
                 aoSignals[11] = Convert.ToUInt16(AO3bl3_lab.Text);
         }
 

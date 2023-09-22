@@ -51,7 +51,10 @@ namespace Moderon
             ClearIO_codes();                // Очистка наименования кодов для входов/выходов
 
             // Начальная установка для входов и выходов
-            Set_DOComboText();              // Дискретные выходы, DO
+            Set_DOComboTextIndex();         // Дискретные выходы, DO
+            Set_DIComboTextIndex();         // Дискретный входы, DI
+            Set_AIComboTextIndex();         // Аналоговые входы, AI
+            Set_AOComboTextIndex();         // Аналоговый выходы, AO
 
             Size = new Size(995, 680);      // Размер для основной формы
         }

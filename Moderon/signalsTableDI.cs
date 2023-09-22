@@ -4,7 +4,22 @@ using System.Collections.Generic;
 
 namespace Moderon
 {
-
+    class Di
+    {
+        public string Name { get; private set; }
+        public ushort Code { get; private set; }
+        public bool Active { get; private set; } = true; // Свободен по умолчанию
+        public Di(string name, ushort code)
+        {
+            Name = name; Code = code;
+        }
+        public Di(string name, ushort code, bool active)
+        {
+            Name = name; Code = code; Active = active;
+        }
+        public void Select() => Active = false;
+        public void Dispose() => Active = true;
+    }
 
     public partial class Form1 : Form
     {
@@ -12,89 +27,73 @@ namespace Moderon
 
         bool subDIcondition = false; // Условие при удалении DI
 
-        // Сохранение наименования выбранного элемента для ПЛК
-        string DI1combo_text = notSelected;
-        string DI2combo_text = notSelected;
-        string DI3combo_text = notSelected;
-        string DI4combo_text = notSelected;
-        string DI5combo_text = notSelected;
+        // Сохранение наименования выбранного элемента для ПЛК и блоков 1, 2, 3
+        string
+            DI1combo_text, DI2combo_text, DI3combo_text, DI4combo_text, DI5combo_text,
+            DI1bl1combo_text, DI2bl1combo_text, DI3bl1combo_text, DI4bl1combo_text, DI5bl1combo_text,
+            DI1bl2combo_text, DI2bl2combo_text, DI3bl2combo_text, DI4bl2combo_text, DI5bl2combo_text,
+            DI1bl3combo_text, DI2bl3combo_text, DI3bl3combo_text, DI4bl3combo_text, DI5bl3combo_text;
 
-        // Сохранение наименования выбранного элемента для блока 1
-        string DI1bl1combo_text = notSelected;
-        string DI2bl1combo_text = notSelected;
-        string DI3bl1combo_text = notSelected;
-        string DI4bl1combo_text = notSelected;
-        string DI5bl1combo_text = notSelected;
+        // Сохранение прошлого индекса comboBox для ПЛК и блоков 1, 2, 3
+        int
+            DI1combo_index, DI2combo_index, DI3combo_index, DI4combo_index, DI5combo_index,
+            DI1bl1combo_index, DI2bl1combo_index, DI3bl1combo_index, DI4bl1combo_index, DI5bl1combo_index,
+            DI1bl2combo_index, DI2bl2combo_index, DI3bl2combo_index, DI4bl2combo_index, DI5bl2combo_index,
+            DI1bl3combo_index, DI2bl3combo_index, DI3bl3combo_index, DI4bl3combo_index, DI5bl3combo_index;
 
-        // Сохранение наименования выбранного элемента для блока 2
-        string DI1bl2combo_text = notSelected;
-        string DI2bl2combo_text = notSelected;
-        string DI3bl2combo_text = notSelected;
-        string DI4bl2combo_text = notSelected;
-        string DI5bl2combo_text = notSelected;
+        ///<summary>Начальная установка для сигналов DI таблицы сигналов</summary> 
+        public void Set_DIComboTextIndex()
+        {
+            var di_signals = new List<string>()
+            {
+                DI1combo_text, DI2combo_text, DI3combo_text, DI4combo_text, DI5combo_text,
+                DI1bl1combo_text, DI2bl1combo_text, DI3bl1combo_text, DI4bl1combo_text, DI5bl1combo_text,
+                DI1bl2combo_text, DI2bl2combo_text, DI3bl2combo_text, DI4bl2combo_text, DI5bl2combo_text,
+                DI1bl3combo_text, DI2bl3combo_text, DI3bl3combo_text, DI4bl3combo_text, DI5bl3combo_text
+            };
 
-        // Сохранение наименования выбранного элемента для блока 3
-        string DI1bl3combo_text = notSelected;
-        string DI2bl3combo_text = notSelected;
-        string DI3bl3combo_text = notSelected;
-        string DI4bl3combo_text = notSelected;
-        string DI5bl3combo_text = notSelected;
+            var di_signals_index = new List<int>()
+            {
+                DI1combo_index, DI2combo_index, DI3combo_index, DI4combo_index, DI5combo_index,
+                DI1bl1combo_index, DI2bl1combo_index, DI3bl1combo_index, DI4bl1combo_index, DI5bl1combo_index,
+                DI1bl2combo_index, DI2bl2combo_index, DI3bl2combo_index, DI4bl2combo_index, DI5bl2combo_index,
+                DI1bl3combo_index, DI2bl3combo_index, DI3bl3combo_index, DI4bl3combo_index, DI5bl3combo_index
+            };
 
-        // Сохранение прошлого индекса для comboBox ПЛК
-        int DI1combo_index = 0;
-        int DI2combo_index = 0;
-        int DI3combo_index = 0;
-        int DI4combo_index = 0;
-        int DI5combo_index = 0;
+            for (var i = 0; i < di_signals.Count; i++)
+                di_signals[i] = NOT_SELECTED;
 
-        // Сохранение прошлого индекса для comboBox блока 1
-        int DI1bl1combo_index = 0;
-        int DI2bl1combo_index = 0;
-        int DI3bl1combo_index = 0;
-        int DI4bl1combo_index = 0;
-        int DI5bl1combo_index = 0;
-
-        // Сохранение прошлого индекса для comboBox блока 2
-        int DI1bl2combo_index = 0;
-        int DI2bl2combo_index = 0;
-        int DI3bl2combo_index = 0;
-        int DI4bl2combo_index = 0;
-        int DI5bl2combo_index = 0;
-
-        // Сохранение прошлого индекса для comboBox блока 3
-        int DI1bl3combo_index = 0;
-        int DI2bl3combo_index = 0;
-        int DI3bl3combo_index = 0;
-        int DI4bl3combo_index = 0;
-        int DI5bl3combo_index = 0;
+            for (var i = 0; i < di_signals_index.Count; i++)
+                di_signals_index[i] = 0;
+        }
 
         ///<summary>Сброс выбора сигналов DI comboBox</summary>
         private void ResetButton_signalsDIClick(object sender, EventArgs e)
         {
             // Очистка comboBox ПЛК
-            DI1_combo.Items.Clear(); DI1_combo.Items.Add(notSelected);
-            DI2_combo.Items.Clear(); DI2_combo.Items.Add(notSelected);
-            DI3_combo.Items.Clear(); DI3_combo.Items.Add(notSelected);
-            DI4_combo.Items.Clear(); DI4_combo.Items.Add(notSelected);
-            DI5_combo.Items.Clear(); DI5_combo.Items.Add(notSelected);
+            DI1_combo.Items.Clear(); DI1_combo.Items.Add(NOT_SELECTED);
+            DI2_combo.Items.Clear(); DI2_combo.Items.Add(NOT_SELECTED);
+            DI3_combo.Items.Clear(); DI3_combo.Items.Add(NOT_SELECTED);
+            DI4_combo.Items.Clear(); DI4_combo.Items.Add(NOT_SELECTED);
+            DI5_combo.Items.Clear(); DI5_combo.Items.Add(NOT_SELECTED);
             // Очистка comboBox блок расширения 1
-            DI1bl1_combo.Items.Clear(); DI1bl1_combo.Items.Add(notSelected);
-            DI2bl1_combo.Items.Clear(); DI2bl1_combo.Items.Add(notSelected);
-            DI3bl1_combo.Items.Clear(); DI3bl1_combo.Items.Add(notSelected);
-            DI4bl1_combo.Items.Clear(); DI4bl1_combo.Items.Add(notSelected);
-            DI5bl1_combo.Items.Clear(); DI5bl1_combo.Items.Add(notSelected);
+            DI1bl1_combo.Items.Clear(); DI1bl1_combo.Items.Add(NOT_SELECTED);
+            DI2bl1_combo.Items.Clear(); DI2bl1_combo.Items.Add(NOT_SELECTED);
+            DI3bl1_combo.Items.Clear(); DI3bl1_combo.Items.Add(NOT_SELECTED);
+            DI4bl1_combo.Items.Clear(); DI4bl1_combo.Items.Add(NOT_SELECTED);
+            DI5bl1_combo.Items.Clear(); DI5bl1_combo.Items.Add(NOT_SELECTED);
             // Очистка comboBox блок расширения 2
-            DI1bl2_combo.Items.Clear(); DI1bl2_combo.Items.Add(notSelected);
-            DI2bl2_combo.Items.Clear(); DI2bl2_combo.Items.Add(notSelected);
-            DI3bl2_combo.Items.Clear(); DI3bl2_combo.Items.Add(notSelected);
-            DI4bl2_combo.Items.Clear(); DI4bl2_combo.Items.Add(notSelected);
-            DI5bl2_combo.Items.Clear(); DI5bl2_combo.Items.Add(notSelected);
+            DI1bl2_combo.Items.Clear(); DI1bl2_combo.Items.Add(NOT_SELECTED);
+            DI2bl2_combo.Items.Clear(); DI2bl2_combo.Items.Add(NOT_SELECTED);
+            DI3bl2_combo.Items.Clear(); DI3bl2_combo.Items.Add(NOT_SELECTED);
+            DI4bl2_combo.Items.Clear(); DI4bl2_combo.Items.Add(NOT_SELECTED);
+            DI5bl2_combo.Items.Clear(); DI5bl2_combo.Items.Add(NOT_SELECTED);
             // Очистка comboBox блок расширения 3
-            DI1bl3_combo.Items.Clear(); DI1bl3_combo.Items.Add(notSelected);
-            DI2bl3_combo.Items.Clear(); DI2bl3_combo.Items.Add(notSelected);
-            DI3bl3_combo.Items.Clear(); DI3bl3_combo.Items.Add(notSelected);
-            DI4bl3_combo.Items.Clear(); DI4bl3_combo.Items.Add(notSelected);
-            DI5bl3_combo.Items.Clear(); DI5bl3_combo.Items.Add(notSelected);
+            DI1bl3_combo.Items.Clear(); DI1bl3_combo.Items.Add(NOT_SELECTED);
+            DI2bl3_combo.Items.Clear(); DI2bl3_combo.Items.Add(NOT_SELECTED);
+            DI3bl3_combo.Items.Clear(); DI3bl3_combo.Items.Add(NOT_SELECTED);
+            DI4bl3_combo.Items.Clear(); DI4bl3_combo.Items.Add(NOT_SELECTED);
+            DI5bl3_combo.Items.Clear(); DI5bl3_combo.Items.Add(NOT_SELECTED);
         }
 
         ///<summary>Удаление элемента из всех comboBox DI</summary>
@@ -1509,7 +1508,7 @@ namespace Moderon
         ///<summary>Удаление DI из других comboBox</summary>
         private void SubFromCombosDI(string name, ComboBox cm)
         {
-            if (name != notSelected) // Кроме "Не выбрано"
+            if (name != NOT_SELECTED) // Кроме "Не выбрано"
             {
                 if (DI1_combo != cm) DI1_combo.Items.Remove(name); // DI1
                 if (DI2_combo != cm) DI2_combo.Items.Remove(name); // DI2
@@ -2093,7 +2092,7 @@ namespace Moderon
                     if (DI1_combo.Items.Count > 1)
                     {
                         DI1_combo.SelectedIndex = DI1_combo.Items.Count - 1;
-                        if (DI1_combo.SelectedItem.ToString() != notSelected)
+                        if (DI1_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosDI(DI1_combo.SelectedItem.ToString(), DI1_combo);
                             findDi_2 = list_di.Find(x => x.Name == DI1_combo.SelectedItem.ToString());
@@ -2108,7 +2107,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        DI1_combo.SelectedItem = notSelected;
+                        DI1_combo.SelectedItem = NOT_SELECTED;
                         DI1_lab.Text = "";
                     }
                     DI1combo_text = DI1_combo.SelectedItem.ToString();
@@ -2121,7 +2120,7 @@ namespace Moderon
                     if (DI2_combo.Items.Count > 1)
                     {
                         DI2_combo.SelectedIndex = DI2_combo.Items.Count - 1;
-                        if (DI2_combo.SelectedItem.ToString() != notSelected)
+                        if (DI2_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosDI(DI2_combo.SelectedItem.ToString(), DI2_combo);
                             findDi_2 = list_di.Find(x => x.Name == DI2_combo.SelectedItem.ToString());
@@ -2136,7 +2135,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        DI2_combo.SelectedItem = notSelected;
+                        DI2_combo.SelectedItem = NOT_SELECTED;
                         DI2_lab.Text = "";
                     }
                     DI2combo_text = DI2_combo.SelectedItem.ToString();
@@ -2149,7 +2148,7 @@ namespace Moderon
                     if (DI3_combo.Items.Count > 1)
                     {
                         DI3_combo.SelectedIndex = DI3_combo.Items.Count - 1;
-                        if (DI3_combo.SelectedItem.ToString() != notSelected)
+                        if (DI3_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosDI(DI3_combo.SelectedItem.ToString(), DI3_combo);
                             findDi_2 = list_di.Find(x => x.Name == DI3_combo.SelectedItem.ToString());
@@ -2164,7 +2163,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        DI3_combo.SelectedItem = notSelected;
+                        DI3_combo.SelectedItem = NOT_SELECTED;
                         DI3_lab.Text = "";
                     }
                     DI3combo_text = DI3_combo.SelectedItem.ToString();
@@ -2177,7 +2176,7 @@ namespace Moderon
                     if (DI4_combo.Items.Count > 1)
                     {
                         DI4_combo.SelectedIndex = DI4_combo.Items.Count - 1;
-                        if (DI4_combo.SelectedItem.ToString() != notSelected)
+                        if (DI4_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosDI(DI4_combo.SelectedItem.ToString(), DI4_combo);
                             findDi_2 = list_di.Find(x => x.Name == DI4_combo.SelectedItem.ToString());
@@ -2192,7 +2191,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        DI4_combo.SelectedItem = notSelected;
+                        DI4_combo.SelectedItem = NOT_SELECTED;
                         DI4_lab.Text = "";
                     }
                     DI4combo_text = DI4_combo.SelectedItem.ToString();
@@ -2205,7 +2204,7 @@ namespace Moderon
                     if (DI5_combo.Items.Count > 1)
                     {
                         DI5_combo.SelectedIndex = DI5_combo.Items.Count - 1;
-                        if (DI5_combo.SelectedItem.ToString() != notSelected)
+                        if (DI5_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosDI(DI5_combo.SelectedItem.ToString(), DI5_combo);
                             findDi_2 = list_di.Find(x => x.Name == DI5_combo.SelectedItem.ToString());
@@ -2220,7 +2219,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        DI5_combo.SelectedItem = notSelected;
+                        DI5_combo.SelectedItem = NOT_SELECTED;
                         DI5_lab.Text = "";
                     }
                     DI5combo_text = DI5_combo.SelectedItem.ToString();
@@ -2233,7 +2232,7 @@ namespace Moderon
                     if (DI1bl1_combo.Items.Count > 1)
                     {
                         DI1bl1_combo.SelectedIndex = DI1bl1_combo.Items.Count - 1;
-                        if (DI1bl1_combo.SelectedItem.ToString() != notSelected)
+                        if (DI1bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosDI(DI1bl1_combo.SelectedItem.ToString(), DI1bl1_combo);
                             findDi_2 = list_di.Find(x => x.Name == DI1bl1_combo.SelectedItem.ToString());
@@ -2248,7 +2247,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        DI1bl1_combo.SelectedItem = notSelected;
+                        DI1bl1_combo.SelectedItem = NOT_SELECTED;
                         DI1bl1_lab.Text = "";
                     }
                     DI1bl1combo_text = DI1bl1_combo.SelectedItem.ToString();
@@ -2261,7 +2260,7 @@ namespace Moderon
                     if (DI2bl1_combo.Items.Count > 1)
                     {
                         DI2bl1_combo.SelectedIndex = DI2bl1_combo.Items.Count - 1;
-                        if (DI2bl1_combo.SelectedItem.ToString() != notSelected)
+                        if (DI2bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosDI(DI2bl1_combo.SelectedItem.ToString(), DI2bl1_combo);
                             findDi_2 = list_di.Find(x => x.Name == DI2bl1_combo.SelectedItem.ToString());
@@ -2276,7 +2275,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        DI2bl1_combo.SelectedItem = notSelected;
+                        DI2bl1_combo.SelectedItem = NOT_SELECTED;
                         DI2bl1_lab.Text = "";
                     }
                     DI2bl1combo_text = DI2bl1_combo.SelectedItem.ToString();
@@ -2289,7 +2288,7 @@ namespace Moderon
                     if (DI3bl1_combo.Items.Count > 1)
                     {
                         DI3bl1_combo.SelectedIndex = DI3bl1_combo.Items.Count - 1;
-                        if (DI3bl1_combo.SelectedItem.ToString() != notSelected)
+                        if (DI3bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosDI(DI3bl1_combo.SelectedItem.ToString(), DI3bl1_combo);
                             findDi_2 = list_di.Find(x => x.Name == DI3bl1_combo.SelectedItem.ToString());
@@ -2304,7 +2303,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        DI3bl1_combo.SelectedItem = notSelected;
+                        DI3bl1_combo.SelectedItem = NOT_SELECTED;
                         DI3bl1_lab.Text = "";
                     }
                     DI3bl1combo_text = DI3bl1_combo.SelectedItem.ToString();
@@ -2317,7 +2316,7 @@ namespace Moderon
                     if (DI4bl1_combo.Items.Count > 1)
                     {
                         DI4bl1_combo.SelectedIndex = DI4bl1_combo.Items.Count - 1;
-                        if (DI4bl1_combo.SelectedItem.ToString() != notSelected)
+                        if (DI4bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosDI(DI4bl1_combo.SelectedItem.ToString(), DI4bl1_combo);
                             findDi_2 = list_di.Find(x => x.Name == DI4bl1_combo.SelectedItem.ToString());
@@ -2332,7 +2331,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        DI4bl1_combo.SelectedItem = notSelected;
+                        DI4bl1_combo.SelectedItem = NOT_SELECTED;
                         DI4bl1_lab.Text = "";
                     }
                     DI4bl1combo_text = DI4bl1_combo.SelectedItem.ToString();
@@ -2345,7 +2344,7 @@ namespace Moderon
                     if (DI5bl1_combo.Items.Count > 1)
                     {
                         DI5bl1_combo.SelectedIndex = DI5bl1_combo.Items.Count - 1;
-                        if (DI5bl1_combo.SelectedItem.ToString() != notSelected)
+                        if (DI5bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosDI(DI5bl1_combo.SelectedItem.ToString(), DI5bl1_combo);
                             findDi_2 = list_di.Find(x => x.Name == DI5bl1_combo.SelectedItem.ToString());
@@ -2360,7 +2359,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        DI5bl1_combo.SelectedItem = notSelected;
+                        DI5bl1_combo.SelectedItem = NOT_SELECTED;
                         DI5bl1_lab.Text = "";
                     }
                     DI5bl1combo_text = DI5bl1_combo.SelectedItem.ToString();
@@ -2373,7 +2372,7 @@ namespace Moderon
                     if (DI1bl2_combo.Items.Count > 1)
                     {
                         DI1bl2_combo.SelectedIndex = DI1bl2_combo.Items.Count - 1;
-                        if (DI1bl2_combo.SelectedItem.ToString() != notSelected)
+                        if (DI1bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosDI(DI1bl2_combo.SelectedItem.ToString(), DI1bl2_combo);
                             findDi_2 = list_di.Find(x => x.Name == DI1bl2_combo.SelectedItem.ToString());
@@ -2388,7 +2387,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        DI1bl2_combo.SelectedItem = notSelected;
+                        DI1bl2_combo.SelectedItem = NOT_SELECTED;
                         DI1bl2_lab.Text = "";
                     }
                     DI1bl2combo_text = DI1bl2_combo.SelectedItem.ToString();
@@ -2401,7 +2400,7 @@ namespace Moderon
                     if (DI2bl2_combo.Items.Count > 1)
                     {
                         DI2bl2_combo.SelectedIndex = DI2bl2_combo.Items.Count - 1;
-                        if (DI2bl2_combo.SelectedItem.ToString() != notSelected)
+                        if (DI2bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosDI(DI2bl2_combo.SelectedItem.ToString(), DI2bl2_combo);
                             findDi_2 = list_di.Find(x => x.Name == DI2bl2_combo.SelectedItem.ToString());
@@ -2416,7 +2415,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        DI2bl2_combo.SelectedItem = notSelected;
+                        DI2bl2_combo.SelectedItem = NOT_SELECTED;
                         DI2bl2_lab.Text = "";
                     }
                     DI2bl2combo_text = DI2bl2_combo.SelectedItem.ToString();
@@ -2429,7 +2428,7 @@ namespace Moderon
                     if (DI3bl2_combo.Items.Count > 1)
                     {
                         DI3bl2_combo.SelectedIndex = DI3bl2_combo.Items.Count - 1;
-                        if (DI3bl2_combo.SelectedItem.ToString() != notSelected)
+                        if (DI3bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosDI(DI3bl2_combo.SelectedItem.ToString(), DI3bl2_combo);
                             findDi_2 = list_di.Find(x => x.Name == DI3bl2_combo.SelectedItem.ToString());
@@ -2444,7 +2443,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        DI3bl2_combo.SelectedItem = notSelected;
+                        DI3bl2_combo.SelectedItem = NOT_SELECTED;
                         DI3bl2_lab.Text = "";
                     }
                     DI3bl2combo_text = DI3bl2_combo.SelectedItem.ToString();
@@ -2457,7 +2456,7 @@ namespace Moderon
                     if (DI4bl2_combo.Items.Count > 1)
                     {
                         DI4bl2_combo.SelectedIndex = DI4bl2_combo.Items.Count - 1;
-                        if (DI4bl2_combo.SelectedItem.ToString() != notSelected)
+                        if (DI4bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosDI(DI4bl2_combo.SelectedItem.ToString(), DI4bl2_combo);
                             findDi_2 = list_di.Find(x => x.Name == DI4bl2_combo.SelectedItem.ToString());
@@ -2472,7 +2471,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        DI4bl2_combo.SelectedItem = notSelected;
+                        DI4bl2_combo.SelectedItem = NOT_SELECTED;
                         DI4bl2_lab.Text = "";
                     }
                     DI4bl2combo_text = DI4bl2_combo.SelectedItem.ToString();
@@ -2485,7 +2484,7 @@ namespace Moderon
                     if (DI5bl2_combo.Items.Count > 1)
                     {
                         DI5bl2_combo.SelectedIndex = DI5bl2_combo.Items.Count - 1;
-                        if (DI5bl2_combo.SelectedItem.ToString() != notSelected)
+                        if (DI5bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosDI(DI5bl2_combo.SelectedItem.ToString(), DI5bl2_combo);
                             findDi_2 = list_di.Find(x => x.Name == DI5bl2_combo.SelectedItem.ToString());
@@ -2500,7 +2499,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        DI5bl2_combo.SelectedItem = notSelected;
+                        DI5bl2_combo.SelectedItem = NOT_SELECTED;
                         DI5bl2_lab.Text = "";
                     }
                     DI5bl2combo_text = DI5bl2_combo.SelectedItem.ToString();
@@ -2513,7 +2512,7 @@ namespace Moderon
                     if (DI1bl3_combo.Items.Count > 1)
                     {
                         DI1bl3_combo.SelectedIndex = DI1bl3_combo.Items.Count - 1;
-                        if (DI1bl3_combo.SelectedItem.ToString() != notSelected)
+                        if (DI1bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosDI(DI1bl3_combo.SelectedItem.ToString(), DI1bl3_combo);
                             findDi_2 = list_di.Find(x => x.Name == DI1bl3_combo.SelectedItem.ToString());
@@ -2528,7 +2527,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        DI1bl3_combo.SelectedItem = notSelected;
+                        DI1bl3_combo.SelectedItem = NOT_SELECTED;
                         DI1bl3_lab.Text = "";
                     }
                     DI1bl3combo_text = DI1bl3_combo.SelectedItem.ToString();
@@ -2541,7 +2540,7 @@ namespace Moderon
                     if (DI2bl3_combo.Items.Count > 1)
                     {
                         DI2bl3_combo.SelectedIndex = DI2bl3_combo.Items.Count - 1;
-                        if (DI2bl3_combo.SelectedItem.ToString() != notSelected)
+                        if (DI2bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosDI(DI2bl3_combo.SelectedItem.ToString(), DI2bl3_combo);
                             findDi_2 = list_di.Find(x => x.Name == DI2bl3_combo.SelectedItem.ToString());
@@ -2556,7 +2555,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        DI2bl3_combo.SelectedItem = notSelected;
+                        DI2bl3_combo.SelectedItem = NOT_SELECTED;
                         DI2bl3_lab.Text = "";
                     }
                     DI2bl3combo_text = DI2bl3_combo.SelectedItem.ToString();
@@ -2569,7 +2568,7 @@ namespace Moderon
                     if (DI3bl3_combo.Items.Count > 1)
                     {
                         DI3bl3_combo.SelectedIndex = DI3bl3_combo.Items.Count - 1;
-                        if (DI3bl3_combo.SelectedItem.ToString() != notSelected)
+                        if (DI3bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosDI(DI3bl3_combo.SelectedItem.ToString(), DI3bl3_combo);
                             findDi_2 = list_di.Find(x => x.Name == DI3bl3_combo.SelectedItem.ToString());
@@ -2584,7 +2583,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        DI3bl3_combo.SelectedItem = notSelected;
+                        DI3bl3_combo.SelectedItem = NOT_SELECTED;
                         DI3bl3_lab.Text = "";
                     }
                     DI3bl3combo_text = DI3bl3_combo.SelectedItem.ToString();
@@ -2597,7 +2596,7 @@ namespace Moderon
                     if (DI4bl3_combo.Items.Count > 1)
                     {
                         DI4bl3_combo.SelectedIndex = DI4bl3_combo.Items.Count - 1;
-                        if (DI4bl3_combo.SelectedItem.ToString() != notSelected)
+                        if (DI4bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosDI(DI4bl3_combo.SelectedItem.ToString(), DI4bl3_combo);
                             findDi_2 = list_di.Find(x => x.Name == DI4bl3_combo.SelectedItem.ToString());
@@ -2612,7 +2611,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        DI4bl3_combo.SelectedItem = notSelected;
+                        DI4bl3_combo.SelectedItem = NOT_SELECTED;
                         DI4bl3_lab.Text = "";
                     }
                     DI4bl3combo_text = DI4bl3_combo.SelectedItem.ToString();
@@ -2625,7 +2624,7 @@ namespace Moderon
                     if (DI5bl3_combo.Items.Count > 1)
                     {
                         DI5bl3_combo.SelectedIndex = DI5bl3_combo.Items.Count - 1;
-                        if (DI5bl3_combo.SelectedItem.ToString() != notSelected)
+                        if (DI5bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosDI(DI5bl3_combo.SelectedItem.ToString(), DI5bl3_combo);
                             findDi_2 = list_di.Find(x => x.Name == DI5bl3_combo.SelectedItem.ToString());
@@ -2640,7 +2639,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        DI5bl3_combo.SelectedItem = notSelected;
+                        DI5bl3_combo.SelectedItem = NOT_SELECTED;
                         DI5bl3_lab.Text = "";
                     }
                     DI5bl3combo_text = DI5bl3_combo.SelectedItem.ToString();
@@ -2653,7 +2652,7 @@ namespace Moderon
                     if (AI1_combo.Items.Count > 1)
                     {
                         AI1_combo.SelectedIndex = AI1_combo.Items.Count - 1;
-                        if (AI1_combo.SelectedItem.ToString() != notSelected)
+                        if (AI1_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAI(AI1_combo.SelectedItem.ToString(), AI1_combo);
                             findAi = list_ai.Find(x => x.Name == AI1_combo.SelectedItem.ToString());
@@ -2668,7 +2667,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AI1_combo.SelectedItem = notSelected;
+                        AI1_combo.SelectedItem = NOT_SELECTED;
                         AI1_lab.Text = "";
                     }
                     AI1combo_text = AI1_combo.SelectedItem.ToString();
@@ -2681,7 +2680,7 @@ namespace Moderon
                     if (AI2_combo.Items.Count > 1)
                     {
                         AI2_combo.SelectedIndex = AI2_combo.Items.Count - 1;
-                        if (AI2_combo.SelectedItem.ToString() != notSelected)
+                        if (AI2_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAI(AI2_combo.SelectedItem.ToString(), AI2_combo);
                             findAi = list_ai.Find(x => x.Name == AI2_combo.SelectedItem.ToString());
@@ -2696,7 +2695,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AI2_combo.SelectedItem = notSelected;
+                        AI2_combo.SelectedItem = NOT_SELECTED;
                         AI2_lab.Text = "";
                     }
                     AI2combo_text = AI2_combo.SelectedItem.ToString();
@@ -2709,7 +2708,7 @@ namespace Moderon
                     if (AI3_combo.Items.Count > 1)
                     {
                         AI3_combo.SelectedIndex = AI3_combo.Items.Count - 1;
-                        if (AI3_combo.SelectedItem.ToString() != notSelected)
+                        if (AI3_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAI(AI3_combo.SelectedItem.ToString(), AI3_combo);
                             findAi = list_ai.Find(x => x.Name == AI3_combo.SelectedItem.ToString());
@@ -2724,7 +2723,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AI3_combo.SelectedItem = notSelected;
+                        AI3_combo.SelectedItem = NOT_SELECTED;
                         AI3_lab.Text = "";
                     }
                     AI3combo_text = AI3_combo.SelectedItem.ToString();
@@ -2737,7 +2736,7 @@ namespace Moderon
                     if (AI4_combo.Items.Count > 1)
                     {
                         AI4_combo.SelectedIndex = AI4_combo.Items.Count - 1;
-                        if (AI4_combo.SelectedItem.ToString() != notSelected)
+                        if (AI4_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAI(AI4_combo.SelectedItem.ToString(), AI4_combo);
                             findAi = list_ai.Find(x => x.Name == AI4_combo.SelectedItem.ToString());
@@ -2752,7 +2751,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AI4_combo.SelectedItem = notSelected;
+                        AI4_combo.SelectedItem = NOT_SELECTED;
                         AI4_lab.Text = "";
                     }
                     AI4combo_text = AI4_combo.SelectedItem.ToString();
@@ -2765,7 +2764,7 @@ namespace Moderon
                     if (AI5_combo.Items.Count > 1)
                     {
                         AI5_combo.SelectedIndex = AI5_combo.Items.Count - 1;
-                        if (AI5_combo.SelectedItem.ToString() != notSelected)
+                        if (AI5_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAI(AI5_combo.SelectedItem.ToString(), AI5_combo);
                             findAi = list_ai.Find(x => x.Name == AI5_combo.SelectedItem.ToString());
@@ -2780,7 +2779,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AI5_combo.SelectedItem = notSelected;
+                        AI5_combo.SelectedItem = NOT_SELECTED;
                         AI5_lab.Text = "";
                     }
                     AI5combo_text = AI5_combo.SelectedItem.ToString();
@@ -2793,7 +2792,7 @@ namespace Moderon
                     if (AI6_combo.Items.Count > 1)
                     {
                         AI6_combo.SelectedIndex = AI6_combo.Items.Count - 1;
-                        if (AI6_combo.SelectedItem.ToString() != notSelected)
+                        if (AI6_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAI(AI6_combo.SelectedItem.ToString(), AI6_combo);
                             findAi = list_ai.Find(x => x.Name == AI6_combo.SelectedItem.ToString());
@@ -2808,7 +2807,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AI6_combo.SelectedItem = notSelected;
+                        AI6_combo.SelectedItem = NOT_SELECTED;
                         AI6_lab.Text = "";
                     }
                     AI6combo_text = AI6_combo.SelectedItem.ToString();
@@ -2821,7 +2820,7 @@ namespace Moderon
                     if (AI1bl1_combo.Items.Count > 1)
                     {
                         AI1bl1_combo.SelectedIndex = AI1bl1_combo.Items.Count - 1;
-                        if (AI1bl1_combo.SelectedItem.ToString() != notSelected)
+                        if (AI1bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAI(AI1bl1_combo.SelectedItem.ToString(), AI1bl1_combo);
                             findAi = list_ai.Find(x => x.Name == AI1bl1_combo.SelectedItem.ToString());
@@ -2836,7 +2835,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AI1bl1_combo.SelectedItem = notSelected;
+                        AI1bl1_combo.SelectedItem = NOT_SELECTED;
                         AI1bl1_lab.Text = "";
                     }
                     AI1bl1combo_text = AI1bl1_combo.SelectedItem.ToString();
@@ -2849,7 +2848,7 @@ namespace Moderon
                     if (AI2bl1_combo.Items.Count > 1)
                     {
                         AI2bl1_combo.SelectedIndex = AI2bl1_combo.Items.Count - 1;
-                        if (AI2bl1_combo.SelectedItem.ToString() != notSelected)
+                        if (AI2bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAI(AI2bl1_combo.SelectedItem.ToString(), AI2bl1_combo);
                             findAi = list_ai.Find(x => x.Name == AI2bl1_combo.SelectedItem.ToString());
@@ -2864,7 +2863,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AI2bl1_combo.SelectedItem = notSelected;
+                        AI2bl1_combo.SelectedItem = NOT_SELECTED;
                         AI2bl1_lab.Text = "";
                     }
                     AI2bl1combo_text = AI2bl1_combo.SelectedItem.ToString();
@@ -2877,7 +2876,7 @@ namespace Moderon
                     if (AI3bl1_combo.Items.Count > 1)
                     {
                         AI3bl1_combo.SelectedIndex = AI3bl1_combo.Items.Count - 1;
-                        if (AI3bl1_combo.SelectedItem.ToString() != notSelected)
+                        if (AI3bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAI(AI3bl1_combo.SelectedItem.ToString(), AI3bl1_combo);
                             findAi = list_ai.Find(x => x.Name == AI3bl1_combo.SelectedItem.ToString());
@@ -2892,7 +2891,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AI3bl1_combo.SelectedItem = notSelected;
+                        AI3bl1_combo.SelectedItem = NOT_SELECTED;
                         AI3bl1_lab.Text = "";
                     }
                     AI3bl1combo_text = AI3bl1_combo.SelectedItem.ToString();
@@ -2905,7 +2904,7 @@ namespace Moderon
                     if (AI4bl1_combo.Items.Count > 1)
                     {
                         AI4bl1_combo.SelectedIndex = AI4bl1_combo.Items.Count - 1;
-                        if (AI4bl1_combo.SelectedItem.ToString() != notSelected)
+                        if (AI4bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAI(AI4bl1_combo.SelectedItem.ToString(), AI4bl1_combo);
                             findAi = list_ai.Find(x => x.Name == AI4bl1_combo.SelectedItem.ToString());
@@ -2920,7 +2919,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AI4bl1_combo.SelectedItem = notSelected;
+                        AI4bl1_combo.SelectedItem = NOT_SELECTED;
                         AI4bl1_lab.Text = "";
                     }
                     AI4bl1combo_text = AI4bl1_combo.SelectedItem.ToString();
@@ -2933,7 +2932,7 @@ namespace Moderon
                     if (AI5bl1_combo.Items.Count > 1)
                     {
                         AI5bl1_combo.SelectedIndex = AI5bl1_combo.Items.Count - 1;
-                        if (AI5bl1_combo.SelectedItem.ToString() != notSelected)
+                        if (AI5bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAI(AI5bl1_combo.SelectedItem.ToString(), AI5bl1_combo);
                             findAi = list_ai.Find(x => x.Name == AI5bl1_combo.SelectedItem.ToString());
@@ -2948,7 +2947,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AI5bl1_combo.SelectedItem = notSelected;
+                        AI5bl1_combo.SelectedItem = NOT_SELECTED;
                         AI5bl1_lab.Text = "";
                     }
                     AI5bl1combo_text = AI5bl1_combo.SelectedItem.ToString();
@@ -2961,7 +2960,7 @@ namespace Moderon
                     if (AI6bl1_combo.Items.Count > 1)
                     {
                         AI6bl1_combo.SelectedIndex = AI6bl1_combo.Items.Count - 1;
-                        if (AI6bl1_combo.SelectedItem.ToString() != notSelected)
+                        if (AI6bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAI(AI6bl1_combo.SelectedItem.ToString(), AI6bl1_combo);
                             findAi = list_ai.Find(x => x.Name == AI6bl1_combo.SelectedItem.ToString());
@@ -2976,7 +2975,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AI6bl1_combo.SelectedItem = notSelected;
+                        AI6bl1_combo.SelectedItem = NOT_SELECTED;
                         AI6bl1_lab.Text = "";
                     }
                     AI6bl1combo_text = AI6bl1_combo.SelectedItem.ToString();
@@ -2989,7 +2988,7 @@ namespace Moderon
                     if (AI1bl2_combo.Items.Count > 1)
                     {
                         AI1bl2_combo.SelectedIndex = AI1bl2_combo.Items.Count - 1;
-                        if (AI1bl2_combo.SelectedItem.ToString() != notSelected)
+                        if (AI1bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAI(AI1bl2_combo.SelectedItem.ToString(), AI1bl2_combo);
                             findAi = list_ai.Find(x => x.Name == AI1bl2_combo.SelectedItem.ToString());
@@ -3004,7 +3003,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AI1bl2_combo.SelectedItem = notSelected;
+                        AI1bl2_combo.SelectedItem = NOT_SELECTED;
                         AI1bl2_lab.Text = "";
                     }
                     AI1bl2combo_text = AI1bl2_combo.SelectedItem.ToString();
@@ -3017,7 +3016,7 @@ namespace Moderon
                     if (AI2bl2_combo.Items.Count > 1)
                     {
                         AI2bl2_combo.SelectedIndex = AI2bl2_combo.Items.Count - 1;
-                        if (AI2bl2_combo.SelectedItem.ToString() != notSelected)
+                        if (AI2bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAI(AI2bl2_combo.SelectedItem.ToString(), AI2bl2_combo);
                             findAi = list_ai.Find(x => x.Name == AI2bl2_combo.SelectedItem.ToString());
@@ -3032,7 +3031,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AI2bl2_combo.SelectedItem = notSelected;
+                        AI2bl2_combo.SelectedItem = NOT_SELECTED;
                         AI2bl2_lab.Text = "";
                     }
                     AI2bl2combo_text = AI2bl2_combo.SelectedItem.ToString();
@@ -3045,7 +3044,7 @@ namespace Moderon
                     if (AI3bl2_combo.Items.Count > 1)
                     {
                         AI3bl2_combo.SelectedIndex = AI3bl2_combo.Items.Count - 1;
-                        if (AI3bl2_combo.SelectedItem.ToString() != notSelected)
+                        if (AI3bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAI(AI3bl2_combo.SelectedItem.ToString(), AI3bl2_combo);
                             findAi = list_ai.Find(x => x.Name == AI3bl2_combo.SelectedItem.ToString());
@@ -3060,7 +3059,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AI3bl2_combo.SelectedItem = notSelected;
+                        AI3bl2_combo.SelectedItem = NOT_SELECTED;
                         AI3bl2_lab.Text = "";
                     }
                     AI3bl2combo_text = AI3bl2_combo.SelectedItem.ToString();
@@ -3073,7 +3072,7 @@ namespace Moderon
                     if (AI4bl2_combo.Items.Count > 1)
                     {
                         AI4bl2_combo.SelectedIndex = AI4bl2_combo.Items.Count - 1;
-                        if (AI4bl2_combo.SelectedItem.ToString() != notSelected)
+                        if (AI4bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAI(AI4bl2_combo.SelectedItem.ToString(), AI4bl2_combo);
                             findAi = list_ai.Find(x => x.Name == AI4bl2_combo.SelectedItem.ToString());
@@ -3088,7 +3087,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AI4bl2_combo.SelectedItem = notSelected;
+                        AI4bl2_combo.SelectedItem = NOT_SELECTED;
                         AI4bl2_lab.Text = "";
                     }
                     AI4bl2combo_text = AI4bl2_combo.SelectedItem.ToString();
@@ -3101,7 +3100,7 @@ namespace Moderon
                     if (AI5bl2_combo.Items.Count > 1)
                     {
                         AI5bl2_combo.SelectedIndex = AI5bl2_combo.Items.Count - 1;
-                        if (AI5bl2_combo.SelectedItem.ToString() != notSelected)
+                        if (AI5bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAI(AI5bl2_combo.SelectedItem.ToString(), AI5bl2_combo);
                             findAi = list_ai.Find(x => x.Name == AI5bl2_combo.SelectedItem.ToString());
@@ -3116,7 +3115,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AI5bl2_combo.SelectedItem = notSelected;
+                        AI5bl2_combo.SelectedItem = NOT_SELECTED;
                         AI5bl2_lab.Text = "";
                     }
                     AI5bl2combo_text = AI5bl2_combo.SelectedItem.ToString();
@@ -3129,7 +3128,7 @@ namespace Moderon
                     if (AI6bl2_combo.Items.Count > 1)
                     {
                         AI6bl2_combo.SelectedIndex = AI6bl2_combo.Items.Count - 1;
-                        if (AI6bl2_combo.SelectedItem.ToString() != notSelected)
+                        if (AI6bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAI(AI6bl2_combo.SelectedItem.ToString(), AI6bl2_combo);
                             findAi = list_ai.Find(x => x.Name == AI6bl2_combo.SelectedItem.ToString());
@@ -3144,7 +3143,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AI6bl2_combo.SelectedItem = notSelected;
+                        AI6bl2_combo.SelectedItem = NOT_SELECTED;
                         AI6bl2_lab.Text = "";
                     }
                     AI6bl2combo_text = AI6bl2_combo.SelectedItem.ToString();
@@ -3157,7 +3156,7 @@ namespace Moderon
                     if (AI1bl3_combo.Items.Count > 1)
                     {
                         AI1bl3_combo.SelectedIndex = AI1bl3_combo.Items.Count - 1;
-                        if (AI1bl3_combo.SelectedItem.ToString() != notSelected)
+                        if (AI1bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAI(AI1bl3_combo.SelectedItem.ToString(), AI1bl3_combo);
                             findAi = list_ai.Find(x => x.Name == AI1bl3_combo.SelectedItem.ToString());
@@ -3172,7 +3171,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AI1bl3_combo.SelectedItem = notSelected;
+                        AI1bl3_combo.SelectedItem = NOT_SELECTED;
                         AI1bl3_lab.Text = "";
                     }
                     AI1bl3combo_text = AI1bl3_combo.SelectedItem.ToString();
@@ -3185,7 +3184,7 @@ namespace Moderon
                     if (AI2bl3_combo.Items.Count > 1)
                     {
                         AI2bl3_combo.SelectedIndex = AI2bl3_combo.Items.Count - 1;
-                        if (AI2bl3_combo.SelectedItem.ToString() != notSelected)
+                        if (AI2bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAI(AI2bl3_combo.SelectedItem.ToString(), AI2bl3_combo);
                             findAi = list_ai.Find(x => x.Name == AI2bl3_combo.SelectedItem.ToString());
@@ -3200,7 +3199,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AI2bl3_combo.SelectedItem = notSelected;
+                        AI2bl3_combo.SelectedItem = NOT_SELECTED;
                         AI2bl3_lab.Text = "";
                     }
                     AI2bl3combo_text = AI2bl3_combo.SelectedItem.ToString();
@@ -3213,7 +3212,7 @@ namespace Moderon
                     if (AI3bl3_combo.Items.Count > 1)
                     {
                         AI3bl3_combo.SelectedIndex = AI3bl3_combo.Items.Count - 1;
-                        if (AI3bl3_combo.SelectedItem.ToString() != notSelected)
+                        if (AI3bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAI(AI3bl3_combo.SelectedItem.ToString(), AI3bl3_combo);
                             findAi = list_ai.Find(x => x.Name == AI3bl3_combo.SelectedItem.ToString());
@@ -3228,7 +3227,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AI3bl3_combo.SelectedItem = notSelected;
+                        AI3bl3_combo.SelectedItem = NOT_SELECTED;
                         AI3bl3_lab.Text = "";
                     }
                     AI3bl3combo_text = AI3bl3_combo.SelectedItem.ToString();
@@ -3241,7 +3240,7 @@ namespace Moderon
                     if (AI4bl3_combo.Items.Count > 1)
                     {
                         AI4bl3_combo.SelectedIndex = AI4bl3_combo.Items.Count - 1;
-                        if (AI4bl3_combo.SelectedItem.ToString() != notSelected)
+                        if (AI4bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAI(AI4bl3_combo.SelectedItem.ToString(), AI4bl3_combo);
                             findAi = list_ai.Find(x => x.Name == AI4bl3_combo.SelectedItem.ToString());
@@ -3256,7 +3255,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AI4bl3_combo.SelectedItem = notSelected;
+                        AI4bl3_combo.SelectedItem = NOT_SELECTED;
                         AI4bl3_lab.Text = "";
                     }
                     AI4bl3combo_text = AI4bl3_combo.SelectedItem.ToString();
@@ -3269,7 +3268,7 @@ namespace Moderon
                     if (AI5bl3_combo.Items.Count > 1)
                     {
                         AI5bl3_combo.SelectedIndex = AI5bl3_combo.Items.Count - 1;
-                        if (AI5bl3_combo.SelectedItem.ToString() != notSelected)
+                        if (AI5bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAI(AI5bl3_combo.SelectedItem.ToString(), AI5bl3_combo);
                             findAi = list_ai.Find(x => x.Name == AI5bl3_combo.SelectedItem.ToString());
@@ -3284,7 +3283,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AI5bl3_combo.SelectedItem = notSelected;
+                        AI5bl3_combo.SelectedItem = NOT_SELECTED;
                         AI5bl3_lab.Text = "";
                     }
                     AI5bl3combo_text = AI5bl3_combo.SelectedItem.ToString();
@@ -3297,7 +3296,7 @@ namespace Moderon
                     if (AI6bl3_combo.Items.Count > 1)
                     {
                         AI6bl3_combo.SelectedIndex = AI6bl3_combo.Items.Count - 1;
-                        if (AI6bl3_combo.SelectedItem.ToString() != notSelected)
+                        if (AI6bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAI(AI6bl3_combo.SelectedItem.ToString(), AI6bl3_combo);
                             findAi = list_ai.Find(x => x.Name == AI6bl3_combo.SelectedItem.ToString());
@@ -3312,7 +3311,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AI6bl3_combo.SelectedItem = notSelected;
+                        AI6bl3_combo.SelectedItem = NOT_SELECTED;
                         AI6bl3_lab.Text = "";
                     }
                     AI6bl3combo_text = AI6bl3_combo.SelectedItem.ToString();
@@ -4674,22 +4673,5 @@ namespace Moderon
                 SubFromCombosDI(code_1);
             }
         }
-    }
-
-    class Di
-    {
-        public string Name { get; private set; }
-        public ushort Code { get; private set; }
-        public bool Active { get; private set; } = true; // Свободен по умолчанию
-        public Di(string name, ushort code)
-        {
-            Name = name; Code = code;
-        }
-        public Di(string name, ushort code, bool active)
-        {
-            Name = name; Code = code; Active = active;
-        }
-        public void Select() => Active = false;
-        public void Dispose() => Active = true;
     }
 }

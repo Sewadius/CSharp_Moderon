@@ -618,68 +618,68 @@ namespace Moderon
 		private void LoadtoExl_PLC(ExcelWorksheet wh)
         {
 			// AI сигналы для ПЛК
-			if (AI1_combo.SelectedItem.ToString() != notSelected) // AI1
+			if (AI1_combo.SelectedItem.ToString() != NOT_SELECTED) // AI1
             {
 				wh.Cells["D4"].Value = AI1_combo.SelectedItem.ToString();
 				wh.Cells["E4"].Value = AI1_typeCombo.SelectedItem.ToString();
 			}
-			if (AI2_combo.SelectedItem.ToString() != notSelected) // AI2
+			if (AI2_combo.SelectedItem.ToString() != NOT_SELECTED) // AI2
             {
 				wh.Cells["D5"].Value = AI2_combo.SelectedItem.ToString();
 				wh.Cells["E5"].Value = AI2_typeCombo.SelectedItem.ToString();
 			}
-			if (AI3_combo.SelectedItem.ToString() != notSelected) // AI3
+			if (AI3_combo.SelectedItem.ToString() != NOT_SELECTED) // AI3
             {
 				wh.Cells["D6"].Value = AI3_combo.SelectedItem.ToString();
 				wh.Cells["E6"].Value = AI3_typeCombo.SelectedItem.ToString();
 			}
-			if (AI4_combo.SelectedItem.ToString() != notSelected) // AI4
+			if (AI4_combo.SelectedItem.ToString() != NOT_SELECTED) // AI4
             {
 				wh.Cells["D7"].Value = AI4_combo.SelectedItem.ToString();
 				wh.Cells["E7"].Value = AI4_typeCombo.SelectedItem.ToString();
 			}
-			if (AI5_combo.SelectedItem.ToString() != notSelected) // AI5
+			if (AI5_combo.SelectedItem.ToString() != NOT_SELECTED) // AI5
             {
 				wh.Cells["D8"].Value = AI5_combo.SelectedItem.ToString();
 				wh.Cells["E8"].Value = AI5_typeCombo.SelectedItem.ToString();
 			}
-			if (AI6_combo.SelectedItem.ToString() != notSelected) // AI6
+			if (AI6_combo.SelectedItem.ToString() != NOT_SELECTED) // AI6
             {
 				wh.Cells["D9"].Value = AI6_combo.SelectedItem.ToString();
 				wh.Cells["E9"].Value = AI6_typeCombo.SelectedItem.ToString();
 			}
 			// DI сигналы для ПЛК
-			if (DI1_combo.SelectedItem.ToString() != notSelected) // DI1
+			if (DI1_combo.SelectedItem.ToString() != NOT_SELECTED) // DI1
 				wh.Cells["D11"].Value = DI1_combo.SelectedItem.ToString();
-			if (DI2_combo.SelectedItem.ToString() != notSelected) // DI2
+			if (DI2_combo.SelectedItem.ToString() != NOT_SELECTED) // DI2
 				wh.Cells["D12"].Value = DI2_combo.SelectedItem.ToString();
-			if (DI3_combo.SelectedItem.ToString() != notSelected) // DI3
+			if (DI3_combo.SelectedItem.ToString() != NOT_SELECTED) // DI3
 				wh.Cells["D13"].Value = DI3_combo.SelectedItem.ToString();
-			if (DI4_combo.SelectedItem.ToString() != notSelected) // DI4
+			if (DI4_combo.SelectedItem.ToString() != NOT_SELECTED) // DI4
 				wh.Cells["D14"].Value = DI4_combo.SelectedItem.ToString();
-			if (DI5_combo.SelectedItem.ToString() != notSelected) // DI5
+			if (DI5_combo.SelectedItem.ToString() != NOT_SELECTED) // DI5
 				wh.Cells["D15"].Value = DI5_combo.SelectedItem.ToString();
 			// AO сигналы для ПЛК
-			if (AO1_combo.SelectedItem.ToString() != notSelected) // AO1
+			if (AO1_combo.SelectedItem.ToString() != NOT_SELECTED) // AO1
 				wh.Cells["D17"].Value = AO1_combo.SelectedItem.ToString();
-			if (AO2_combo.SelectedItem.ToString() != notSelected) // AO2
+			if (AO2_combo.SelectedItem.ToString() != NOT_SELECTED) // AO2
 				wh.Cells["D18"].Value = AO2_combo.SelectedItem.ToString();
-			if (AO3_combo.SelectedItem.ToString() != notSelected) // AO3
+			if (AO3_combo.SelectedItem.ToString() != NOT_SELECTED) // AO3
 				wh.Cells["D19"].Value = AO3_combo.SelectedItem.ToString();
 			// DO сигналы для ПЛК
-			if (DO1_combo.SelectedItem.ToString() != notSelected) // DO1
+			if (DO1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO1
 				wh.Cells["D21"].Value = DO1_combo.SelectedItem.ToString();
-			if (DO2_combo.SelectedItem.ToString() != notSelected) // DO2
+			if (DO2_combo.SelectedItem.ToString() != NOT_SELECTED) // DO2
 				wh.Cells["D22"].Value = DO2_combo.SelectedItem.ToString();
-			if (DO3_combo.SelectedItem.ToString() != notSelected) // DO3
+			if (DO3_combo.SelectedItem.ToString() != NOT_SELECTED) // DO3
 				wh.Cells["D23"].Value = DO3_combo.SelectedItem.ToString();
-			if (DO4_combo.SelectedItem.ToString() != notSelected) // DO4
+			if (DO4_combo.SelectedItem.ToString() != NOT_SELECTED) // DO4
 				wh.Cells["D24"].Value = DO4_combo.SelectedItem.ToString();
-			if (DO5_combo.SelectedItem.ToString() != notSelected) // DO5
+			if (DO5_combo.SelectedItem.ToString() != NOT_SELECTED) // DO5
 				wh.Cells["D25"].Value = DO5_combo.SelectedItem.ToString();
-			if (DO6_combo.SelectedItem.ToString() != notSelected) // DO6
+			if (DO6_combo.SelectedItem.ToString() != NOT_SELECTED) // DO6
 				wh.Cells["D26"].Value = DO6_combo.SelectedItem.ToString();
-			if (DO7_combo.SelectedItem.ToString() != notSelected) // DO7
+			if (DO7_combo.SelectedItem.ToString() != NOT_SELECTED) // DO7
 				wh.Cells["D27"].Value = DO7_combo.SelectedItem.ToString();
 		}
 
@@ -687,70 +687,70 @@ namespace Moderon
 		private void LoadtoExl_Ex1(ExcelWorksheet wh)
         {
 			// AI сигналы для блока расширения 1
-			if (AI1bl1_combo.SelectedItem.ToString() != notSelected) // AI1
+			if (AI1bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AI1
             {
 				wh.Cells["D29"].Value = AI1bl1_combo.SelectedItem.ToString();
 				wh.Cells["E29"].Value = AI1bl1_typeCombo.SelectedItem.ToString();
 			}
-			if (AI2bl1_combo.SelectedItem.ToString() != notSelected) // AI2
+			if (AI2bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AI2
             {
 				wh.Cells["D30"].Value = AI2bl1_combo.SelectedItem.ToString();
 				wh.Cells["E30"].Value = AI2bl1_typeCombo.SelectedItem.ToString();
 			}
-			if (AI3bl1_combo.SelectedItem.ToString() != notSelected) // AI3
+			if (AI3bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AI3
             {
 				wh.Cells["D31"].Value = AI3bl1_combo.SelectedItem.ToString();
 				wh.Cells["E31"].Value = AI3bl1_typeCombo.SelectedItem.ToString();
 			}
-			if (AI4bl1_combo.SelectedItem.ToString() != notSelected) // AI4
+			if (AI4bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AI4
             {
 				wh.Cells["D32"].Value = AI4bl1_combo.SelectedItem.ToString();
 				wh.Cells["E32"].Value = AI4bl1_typeCombo.SelectedItem.ToString();
 			}
 				
-			if (AI5bl1_combo.SelectedItem.ToString() != notSelected) // AI5
+			if (AI5bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AI5
             {
 				wh.Cells["D33"].Value = AI5bl1_combo.SelectedItem.ToString();
 				wh.Cells["E33"].Value = AI5bl1_typeCombo.SelectedItem.ToString();
 			}
 				
-			if (AI6bl1_combo.SelectedItem.ToString() != notSelected) // AI6
+			if (AI6bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AI6
             {
 				wh.Cells["D34"].Value = AI6bl1_combo.SelectedItem.ToString();
 				wh.Cells["E34"].Value = AI6bl1_typeCombo.SelectedItem.ToString();
 			}
 			// DI сигналы для блока расширения 1
-			if (DI1bl1_combo.SelectedItem.ToString() != notSelected) // DI1
+			if (DI1bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DI1
 				wh.Cells["D36"].Value = DI1bl1_combo.SelectedItem.ToString();
-			if (DI2bl1_combo.SelectedItem.ToString() != notSelected) // DI2
+			if (DI2bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DI2
 				wh.Cells["D37"].Value = DI2bl1_combo.SelectedItem.ToString();
-			if (DI3bl1_combo.SelectedItem.ToString() != notSelected) // DI3
+			if (DI3bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DI3
 				wh.Cells["D38"].Value = DI3bl1_combo.SelectedItem.ToString();
-			if (DI4bl1_combo.SelectedItem.ToString() != notSelected) // DI4
+			if (DI4bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DI4
 				wh.Cells["D39"].Value = DI4bl1_combo.SelectedItem.ToString();
-			if (DI5bl1_combo.SelectedItem.ToString() != notSelected) // DI5
+			if (DI5bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DI5
 				wh.Cells["D40"].Value = DI5bl1_combo.SelectedItem.ToString();
 			// AO для блока расширения 1
-			if (AO1bl1_combo.SelectedItem.ToString() != notSelected) // AO1
+			if (AO1bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AO1
 				wh.Cells["D42"].Value = AO1bl1_combo.SelectedItem.ToString();
-			if (AO2bl1_combo.SelectedItem.ToString() != notSelected) // AO2
+			if (AO2bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AO2
 				wh.Cells["D43"].Value = AO2bl1_combo.SelectedItem.ToString();
-			if (AO3bl1_combo.SelectedItem.ToString() != notSelected) // AO3
+			if (AO3bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AO3
 				wh.Cells["D44"].Value = AO3bl1_combo.SelectedItem.ToString();
 			// DO для блока расширения 1
-			if (DO1bl1_combo.SelectedItem.ToString() != notSelected) // DO1
+			if (DO1bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO1
 				wh.Cells["D46"].Value = DO1bl1_combo.SelectedItem.ToString();
-			if (DO2bl1_combo.SelectedItem.ToString() != notSelected) // DO2
+			if (DO2bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO2
 				wh.Cells["D47"].Value = DO2bl1_combo.SelectedItem.ToString();
-			if (DO3bl1_combo.SelectedItem.ToString() != notSelected) // DO3
+			if (DO3bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO3
 				wh.Cells["D48"].Value = DO3bl1_combo.SelectedItem.ToString();
-			if (DO4bl1_combo.SelectedItem.ToString() != notSelected) // DO4
+			if (DO4bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO4
 				wh.Cells["D49"].Value = DO4bl1_combo.SelectedItem.ToString();
-			if (DO5bl1_combo.SelectedItem.ToString() != notSelected) // DO5
+			if (DO5bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO5
 				wh.Cells["D50"].Value = DO5bl1_combo.SelectedItem.ToString();
-			if (DO6bl1_combo.SelectedItem.ToString() != notSelected) // DO6
+			if (DO6bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO6
 				wh.Cells["D51"].Value = DO6bl1_combo.SelectedItem.ToString();
-			if (DO7bl1_combo.SelectedItem.ToString() != notSelected) // DO7
+			if (DO7bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO7
 				wh.Cells["D52"].Value = DO7bl1_combo.SelectedItem.ToString();
 		}
 
@@ -758,68 +758,68 @@ namespace Moderon
 		private void LoadtoExl_Ex2(ExcelWorksheet wh)
         {
 			// AI для блока расширения 2
-			if (AI1bl2_combo.SelectedItem.ToString() != notSelected) // AI1
+			if (AI1bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AI1
             {
 				wh.Cells["D54"].Value = AI1bl2_combo.SelectedItem.ToString();
 				wh.Cells["E54"].Value = AI1bl2_typeCombo.SelectedItem.ToString();
 			}
-			if (AI2bl2_combo.SelectedItem.ToString() != notSelected) // AI2
+			if (AI2bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AI2
             {
 				wh.Cells["D55"].Value = AI2bl2_combo.SelectedItem.ToString();
 				wh.Cells["E55"].Value = AI2bl2_typeCombo.SelectedItem.ToString();
 			}
-			if (AI3bl2_combo.SelectedItem.ToString() != notSelected) // AI3
+			if (AI3bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AI3
             {
 				wh.Cells["D56"].Value = AI3bl2_combo.SelectedItem.ToString();
 				wh.Cells["E56"].Value = AI3bl2_typeCombo.SelectedItem.ToString();
 			}
-			if (AI4bl2_combo.SelectedItem.ToString() != notSelected) // AI4
+			if (AI4bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AI4
             {
 				wh.Cells["D57"].Value = AI4bl2_combo.SelectedItem.ToString();
 				wh.Cells["E57"].Value = AI4bl2_typeCombo.SelectedItem.ToString();
 			}
-			if (AI5bl2_combo.SelectedItem.ToString() != notSelected) // AI5
+			if (AI5bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AI5
             {
 				wh.Cells["D58"].Value = AI5bl2_combo.SelectedItem.ToString();
 				wh.Cells["E58"].Value = AI5bl2_typeCombo.SelectedItem.ToString();
 			}
-			if (AI6bl2_combo.SelectedItem.ToString() != notSelected) // AI6
+			if (AI6bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AI6
             {
 				wh.Cells["D59"].Value = AI6bl2_combo.SelectedItem.ToString();
 				wh.Cells["E59"].Value = AI6bl2_typeCombo.SelectedItem.ToString();
 			}
 			// DI сигналы для блока расширения 2
-			if (DI1bl2_combo.SelectedItem.ToString() != notSelected) // DI1
+			if (DI1bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DI1
 				wh.Cells["D61"].Value = DI1bl2_combo.SelectedItem.ToString();
-			if (DI2bl2_combo.SelectedItem.ToString() != notSelected) // DI2
+			if (DI2bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DI2
 				wh.Cells["D62"].Value = DI2bl2_combo.SelectedItem.ToString();
-			if (DI3bl2_combo.SelectedItem.ToString() != notSelected) // DI3
+			if (DI3bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DI3
 				wh.Cells["D63"].Value = DI3bl2_combo.SelectedItem.ToString();
-			if (DI4bl2_combo.SelectedItem.ToString() != notSelected) // DI4
+			if (DI4bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DI4
 				wh.Cells["D64"].Value = DI4bl2_combo.SelectedItem.ToString();
-			if (DI5bl2_combo.SelectedItem.ToString() != notSelected) // DI5
+			if (DI5bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DI5
 				wh.Cells["D65"].Value = DI5bl2_combo.SelectedItem.ToString();
 			// AO сигналы для блока расширения 2
-			if (AO1bl2_combo.SelectedItem.ToString() != notSelected) // AO1
+			if (AO1bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AO1
 				wh.Cells["D67"].Value = AO1bl2_combo.SelectedItem.ToString();
-			if (AO2bl2_combo.SelectedItem.ToString() != notSelected) // AO2
+			if (AO2bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AO2
 				wh.Cells["D68"].Value = AO2bl2_combo.SelectedItem.ToString();
-			if (AO3bl2_combo.SelectedItem.ToString() != notSelected) // AO3
+			if (AO3bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AO3
 				wh.Cells["D69"].Value = AO3bl2_combo.SelectedItem.ToString();
 			// DO сигналы для блока расширения 2
-			if (DO1bl2_combo.SelectedItem.ToString() != notSelected) // DO1
+			if (DO1bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DO1
 				wh.Cells["D71"].Value = DO1bl2_combo.SelectedItem.ToString();
-			if (DO2bl2_combo.SelectedItem.ToString() != notSelected) // DO2
+			if (DO2bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DO2
 				wh.Cells["D72"].Value = DO2bl2_combo.SelectedItem.ToString();
-			if (DO3bl2_combo.SelectedItem.ToString() != notSelected) // DO3
+			if (DO3bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DO3
 				wh.Cells["D73"].Value = DO3bl2_combo.SelectedItem.ToString();
-			if (DO4bl2_combo.SelectedItem.ToString() != notSelected) // DO4
+			if (DO4bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DO4
 				wh.Cells["D74"].Value = DO4bl2_combo.SelectedItem.ToString();
-			if (DO5bl2_combo.SelectedItem.ToString() != notSelected) // DO5
+			if (DO5bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DO5
 				wh.Cells["D75"].Value = DO5bl2_combo.SelectedItem.ToString();
-			if (DO6bl2_combo.SelectedItem.ToString() != notSelected) // DO6
+			if (DO6bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DO6
 				wh.Cells["D76"].Value = DO6bl2_combo.SelectedItem.ToString();
-			if (DO7bl2_combo.SelectedItem.ToString() != notSelected) // DO7
+			if (DO7bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DO7
 				wh.Cells["D77"].Value = DO7bl2_combo.SelectedItem.ToString();
 		}
 
@@ -827,68 +827,68 @@ namespace Moderon
 		private void LoadtoExl_Ex3(ExcelWorksheet wh)
         {
 			// AI для блока расширения 3
-			if (AI1bl3_combo.SelectedItem.ToString() != notSelected) // AI1
+			if (AI1bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AI1
 			{
 				wh.Cells["D79"].Value = AI1bl3_combo.SelectedItem.ToString();
 				wh.Cells["E79"].Value = AI1bl3_typeCombo.SelectedItem.ToString();
 			}
-			if (AI2bl3_combo.SelectedItem.ToString() != notSelected) // AI2
+			if (AI2bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AI2
 			{
 				wh.Cells["D80"].Value = AI2bl3_combo.SelectedItem.ToString();
 				wh.Cells["E80"].Value = AI2bl3_typeCombo.SelectedItem.ToString();
 			}
-			if (AI3bl3_combo.SelectedItem.ToString() != notSelected) // AI3
+			if (AI3bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AI3
 			{
 				wh.Cells["D81"].Value = AI3bl3_combo.SelectedItem.ToString();
 				wh.Cells["E81"].Value = AI3bl3_typeCombo.SelectedItem.ToString();
 			}
-			if (AI4bl3_combo.SelectedItem.ToString() != notSelected) // AI4
+			if (AI4bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AI4
 			{
 				wh.Cells["D82"].Value = AI4bl3_combo.SelectedItem.ToString();
 				wh.Cells["E82"].Value = AI4bl3_typeCombo.SelectedItem.ToString();
 			}
-			if (AI5bl3_combo.SelectedItem.ToString() != notSelected) // AI5
+			if (AI5bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AI5
 			{
 				wh.Cells["D83"].Value = AI5bl3_combo.SelectedItem.ToString();
 				wh.Cells["E83"].Value = AI5bl3_typeCombo.SelectedItem.ToString();
 			}
-			if (AI6bl3_combo.SelectedItem.ToString() != notSelected) // AI6
+			if (AI6bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AI6
 			{
 				wh.Cells["D84"].Value = AI6bl3_combo.SelectedItem.ToString();
 				wh.Cells["E84"].Value = AI6bl3_typeCombo.SelectedItem.ToString();
 			}
 			// DI сигналы для блока расширения 3
-			if (DI1bl3_combo.SelectedItem.ToString() != notSelected) // DI1
+			if (DI1bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DI1
 				wh.Cells["D86"].Value = DI1bl3_combo.SelectedItem.ToString();
-			if (DI2bl3_combo.SelectedItem.ToString() != notSelected) // DI2
+			if (DI2bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DI2
 				wh.Cells["D87"].Value = DI2bl3_combo.SelectedItem.ToString();
-			if (DI3bl3_combo.SelectedItem.ToString() != notSelected) // DI3
+			if (DI3bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DI3
 				wh.Cells["D88"].Value = DI3bl3_combo.SelectedItem.ToString();
-			if (DI4bl3_combo.SelectedItem.ToString() != notSelected) // DI4
+			if (DI4bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DI4
 				wh.Cells["D89"].Value = DI4bl3_combo.SelectedItem.ToString();
-			if (DI5bl3_combo.SelectedItem.ToString() != notSelected) // DI5
+			if (DI5bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DI5
 				wh.Cells["D90"].Value = DI5bl3_combo.SelectedItem.ToString();
 			// AO сигналы для блока расширения 3
-			if (AO1bl3_combo.SelectedItem.ToString() != notSelected) // AO1
+			if (AO1bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AO1
 				wh.Cells["D92"].Value = AO1bl3_combo.SelectedItem.ToString();
-			if (AO2bl3_combo.SelectedItem.ToString() != notSelected) // AO2
+			if (AO2bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AO2
 				wh.Cells["D93"].Value = AO2bl3_combo.SelectedItem.ToString();
-			if (AO3bl3_combo.SelectedItem.ToString() != notSelected) // AO3
+			if (AO3bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AO3
 				wh.Cells["D94"].Value = AO3bl3_combo.SelectedItem.ToString();
 			// DO сигналы для блока расширения 3
-			if (DO1bl3_combo.SelectedItem.ToString() != notSelected) // DO1
+			if (DO1bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DO1
 				wh.Cells["D96"].Value = DO1bl3_combo.SelectedItem.ToString();
-			if (DO2bl3_combo.SelectedItem.ToString() != notSelected) // DO2
+			if (DO2bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DO2
 				wh.Cells["D97"].Value = DO2bl3_combo.SelectedItem.ToString();
-			if (DO3bl3_combo.SelectedItem.ToString() != notSelected) // DO3
+			if (DO3bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DO3
 				wh.Cells["D98"].Value = DO3bl3_combo.SelectedItem.ToString();
-			if (DO4bl3_combo.SelectedItem.ToString() != notSelected) // DO4
+			if (DO4bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DO4
 				wh.Cells["D99"].Value = DO4bl3_combo.SelectedItem.ToString();
-			if (DO5bl3_combo.SelectedItem.ToString() != notSelected) // DO5
+			if (DO5bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DO5
 				wh.Cells["D100"].Value = DO5bl3_combo.SelectedItem.ToString();
-			if (DO6bl3_combo.SelectedItem.ToString() != notSelected) // DO6
+			if (DO6bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DO6
 				wh.Cells["D101"].Value = DO6bl3_combo.SelectedItem.ToString();
-			if (DO7bl3_combo.SelectedItem.ToString() != notSelected) // DO7
+			if (DO7bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DO7
 				wh.Cells["D102"].Value = DO7bl3_combo.SelectedItem.ToString();
 		}
 

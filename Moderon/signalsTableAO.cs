@@ -30,65 +30,64 @@ namespace Moderon
 
         bool subAOcondition = false; // Условие при удалении AO
 
-        // Сохранение наименования выбранного элемента для ПЛК
-        string AO1combo_text = notSelected;
-        string AO2combo_text = notSelected;
-        string AO3combo_text = notSelected;
+        // Сохранение наименования выбранного элемента для ПЛК и блоков расширения
+        string
+            AO1combo_text, AO2combo_text, AO3combo_text,
+            AO1bl1combo_text, AO2bl1combo_text, AO3bl1combo_text,
+            AO1bl2combo_text, AO2bl2combo_text, AO3bl2combo_text,
+            AO1bl3combo_text, AO2bl3combo_text, AO3bl3combo_text;
 
-        // Сохранение наименования выбранного элемента для блока 1
-        string AO1bl1combo_text = notSelected;
-        string AO2bl1combo_text = notSelected;
-        string AO3bl1combo_text = notSelected;
+        // Сохранение прошлого индекса comboBox элементов для ПЛК и блоков расширения
+        int
+            AO1combo_index, AO2combo_index, AO3combo_index,
+            AO1bl1combo_index, AO2bl1combo_index, AO3bl1combo_index,
+            AO1bl2combo_index, AO2bl2combo_index, AO3bl2combo_index,
+            AO1bl3combo_index, AO2bl3combo_index, AO3bl3combo_index;
 
-        // Сохранение наименования выбранного элемента для блока 2
-        string AO1bl2combo_text = notSelected;
-        string AO2bl2combo_text = notSelected;
-        string AO3bl2combo_text = notSelected;
 
-        // Сохранение наименования выбранного элемента для блока 3
-        string AO1bl3combo_text = notSelected;
-        string AO2bl3combo_text = notSelected;
-        string AO3bl3combo_text = notSelected;
+        ///<summary>Начальная установка для сигналов AO таблицы сигналов</summary>
+        public void Set_AOComboTextIndex()
+        {
+            var ao_signals = new List<string>()
+            {
+                AO1combo_text, AO2combo_text, AO3combo_text,
+                AO1bl1combo_text, AO2bl1combo_text, AO3bl1combo_text,
+                AO1bl2combo_text, AO2bl2combo_text, AO3bl2combo_text,
+                AO1bl3combo_text, AO2bl3combo_text, AO3bl3combo_text
+            };
 
-        // Сохранение прошлого индекса для comboBox ПЛК
-        int AO1combo_index = 0;
-        int AO2combo_index = 0;
-        int AO3combo_index = 0;
+            var ao_signals_index = new List<int>()
+            {
+                AO1combo_index, AO2combo_index, AO3combo_index,
+                AO1bl1combo_index, AO2bl1combo_index, AO3bl1combo_index,
+                AO1bl2combo_index, AO2bl2combo_index, AO3bl2combo_index,
+                AO1bl3combo_index, AO2bl3combo_index, AO3bl3combo_index
+            };
 
-        // Сохранение прошлого индекса для comboBox блока 1
-        int AO1bl1combo_index = 0;
-        int AO2bl1combo_index = 0;
-        int AO3bl1combo_index = 0;
+            for (var i = 0; i < ao_signals.Count; i++)
+                ao_signals[i] = NOT_SELECTED;
 
-        // Сохранение прошлого индекса для comboBox блока 2
-        int AO1bl2combo_index = 0;
-        int AO2bl2combo_index = 0;
-        int AO3bl2combo_index = 0;
-
-        // Сохранение прошлого индекса для comboBox блока 3
-        int AO1bl3combo_index = 0;
-        int AO2bl3combo_index = 0;
-        int AO3bl3combo_index = 0;
+            for (var i = 0; i < ao_signals_index.Count; i++)
+                ao_signals_index[i] = 0;
+        }
 
         ///<summary>Сброс выбора сигналов AO comboBox</summary>
         private void ResetButton_signalsAOClick(object sender, EventArgs e)
         {
-            // Очистка comboBox ПЛК
-            AO1_combo.Items.Clear(); AO1_combo.Items.Add(notSelected);
-            AO2_combo.Items.Clear(); AO2_combo.Items.Add(notSelected);
-            AO3_combo.Items.Clear(); AO3_combo.Items.Add(notSelected);
-            // Очистка comboBox блок расширения 1
-            AO1bl1_combo.Items.Clear(); AO1bl1_combo.Items.Add(notSelected);
-            AO2bl1_combo.Items.Clear(); AO2bl1_combo.Items.Add(notSelected);
-            AO3bl1_combo.Items.Clear(); AO3bl1_combo.Items.Add(notSelected);
-            // Очистка comboBox блок расширения 2
-            AO1bl2_combo.Items.Clear(); AO1bl2_combo.Items.Add(notSelected);
-            AO2bl2_combo.Items.Clear(); AO2bl2_combo.Items.Add(notSelected);
-            AO3bl2_combo.Items.Clear(); AO3bl2_combo.Items.Add(notSelected);
-            // Очистка comboBox блок расширения 3
-            AO1bl3_combo.Items.Clear(); AO1bl3_combo.Items.Add(notSelected);
-            AO2bl3_combo.Items.Clear(); AO2bl3_combo.Items.Add(notSelected);
-            AO3bl3_combo.Items.Clear(); AO3bl3_combo.Items.Add(notSelected);
+            var ao_combos = new List<ComboBox>()
+            {
+                AO1_combo, AO2_combo, AO3_combo,
+                AO1bl1_combo, AO2bl1_combo, AO2bl1_combo,
+                AO1bl2_combo, AO2bl2_combo, AO2bl2_combo,
+                AO1bl3_combo, AO2bl3_combo, AO2bl3_combo
+            };
+
+            for (var i = 0; i < ao_combos.Count; i++)
+            {
+                ao_combos[i].Items.Clear();
+                ao_combos[i].Items.Add(NOT_SELECTED);
+
+            }
         }
 
         ///<summary>Изменили AO1 comboBox</summary>
@@ -857,7 +856,7 @@ namespace Moderon
         ///<summary>Удаление AO из других comboBox</summary>
         private void SubFromCombosAO(string name, ComboBox cm)
         {
-            if (name != notSelected) // Кроме "Не выбрано"
+            if (name != NOT_SELECTED) // Кроме "Не выбрано"
             {
                 if (AO1_combo != cm) AO1_combo.Items.Remove(name); // AO1
                 if (AO2_combo != cm) AO2_combo.Items.Remove(name); // AO2
@@ -1014,7 +1013,7 @@ namespace Moderon
                     if (AO1_combo.Items.Count > 1)
                     {
                         AO1_combo.SelectedIndex = AO1_combo.Items.Count - 1;
-                        if (AO1_combo.SelectedItem.ToString() != notSelected)
+                        if (AO1_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAO(AO1_combo.SelectedItem.ToString(), AO1_combo);
                             findAo_2 = list_ao.Find(x => x.Name == AO1_combo.SelectedItem.ToString());
@@ -1029,7 +1028,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AO1_combo.SelectedItem = notSelected;
+                        AO1_combo.SelectedItem = NOT_SELECTED;
                         AO1_lab.Text = "";
                     }
                     AO1combo_text = AO1_combo.SelectedItem.ToString();
@@ -1042,7 +1041,7 @@ namespace Moderon
                     if (AO2_combo.Items.Count > 1)
                     {
                         AO2_combo.SelectedIndex = AO2_combo.Items.Count - 1;
-                        if (AO2_combo.SelectedItem.ToString() != notSelected)
+                        if (AO2_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAO(AO2_combo.SelectedItem.ToString(), AO2_combo);
                             findAo_2 = list_ao.Find(x => x.Name == AO2_combo.SelectedItem.ToString());
@@ -1057,7 +1056,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AO2_combo.SelectedItem = notSelected;
+                        AO2_combo.SelectedItem = NOT_SELECTED;
                         AO2_lab.Text = "";
                     }
                     AO2combo_text = AO2_combo.SelectedItem.ToString();
@@ -1070,7 +1069,7 @@ namespace Moderon
                     if (AO3_combo.Items.Count > 1)
                     {
                         AO3_combo.SelectedIndex = AO3_combo.Items.Count - 1;
-                        if (AO3_combo.SelectedItem.ToString() != notSelected)
+                        if (AO3_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAO(AO3_combo.SelectedItem.ToString(), AO3_combo);
                             findAo_2 = list_ao.Find(x => x.Name == AO3_combo.SelectedItem.ToString());
@@ -1085,7 +1084,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AO3_combo.SelectedItem = notSelected;
+                        AO3_combo.SelectedItem = NOT_SELECTED;
                         AO3_lab.Text = "";
                     }
                     AO3combo_text = AO3_combo.SelectedItem.ToString();
@@ -1098,7 +1097,7 @@ namespace Moderon
                     if (AO1bl1_combo.Items.Count > 1)
                     {
                         AO1bl1_combo.SelectedIndex = AO1bl1_combo.Items.Count - 1;
-                        if (AO1bl1_combo.SelectedItem.ToString() != notSelected)
+                        if (AO1bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAO(AO1bl1_combo.SelectedItem.ToString(), AO1bl1_combo);
                             findAo_2 = list_ao.Find(x => x.Name == AO1bl1_combo.SelectedItem.ToString());
@@ -1113,7 +1112,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AO1bl1_combo.SelectedItem = notSelected;
+                        AO1bl1_combo.SelectedItem = NOT_SELECTED;
                         AO1bl1_lab.Text = "";
                     }
                     AO1bl1combo_text = AO1bl1_combo.SelectedItem.ToString();
@@ -1126,7 +1125,7 @@ namespace Moderon
                     if (AO2bl1_combo.Items.Count > 1)
                     {
                         AO2bl1_combo.SelectedIndex = AO2bl1_combo.Items.Count - 1;
-                        if (AO2bl1_combo.SelectedItem.ToString() != notSelected)
+                        if (AO2bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAO(AO2bl1_combo.SelectedItem.ToString(), AO2bl1_combo);
                             findAo_2 = list_ao.Find(x => x.Name == AO2bl1_combo.SelectedItem.ToString());
@@ -1141,7 +1140,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AO2bl1_combo.SelectedItem = notSelected;
+                        AO2bl1_combo.SelectedItem = NOT_SELECTED;
                         AO2bl1_lab.Text = "";
                     }
                     AO2bl1combo_text = AO2bl1_combo.SelectedItem.ToString();
@@ -1154,7 +1153,7 @@ namespace Moderon
                     if (AO3bl1_combo.Items.Count > 1)
                     {
                         AO3bl1_combo.SelectedIndex = AO3bl1_combo.Items.Count - 1;
-                        if (AO3bl1_combo.SelectedItem.ToString() != notSelected)
+                        if (AO3bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAO(AO3bl1_combo.SelectedItem.ToString(), AO3bl1_combo);
                             findAo_2 = list_ao.Find(x => x.Name == AO3bl1_combo.SelectedItem.ToString());
@@ -1169,7 +1168,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AO3bl1_combo.SelectedItem = notSelected;
+                        AO3bl1_combo.SelectedItem = NOT_SELECTED;
                         AO3bl1_lab.Text = "";
                     }
                     AO3bl1combo_text = AO3bl1_combo.SelectedItem.ToString();
@@ -1182,7 +1181,7 @@ namespace Moderon
                     if (AO1bl2_combo.Items.Count > 1)
                     {
                         AO1bl2_combo.SelectedIndex = AO1bl2_combo.Items.Count - 1;
-                        if (AO1bl2_combo.SelectedItem.ToString() != notSelected)
+                        if (AO1bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAO(AO1bl2_combo.SelectedItem.ToString(), AO1bl2_combo);
                             findAo_2 = list_ao.Find(x => x.Name == AO1bl2_combo.SelectedItem.ToString());
@@ -1197,7 +1196,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AO1bl2_combo.SelectedItem = notSelected;
+                        AO1bl2_combo.SelectedItem = NOT_SELECTED;
                         AO1bl2_lab.Text = "";
                     }
                     AO1bl2combo_text = AO1bl2_combo.SelectedItem.ToString();
@@ -1210,7 +1209,7 @@ namespace Moderon
                     if (AO2bl2_combo.Items.Count > 1)
                     {
                         AO2bl2_combo.SelectedIndex = AO2bl2_combo.Items.Count - 1;
-                        if (AO2bl2_combo.SelectedItem.ToString() != notSelected)
+                        if (AO2bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAO(AO2bl2_combo.SelectedItem.ToString(), AO2bl2_combo);
                             findAo_2 = list_ao.Find(x => x.Name == AO2bl2_combo.SelectedItem.ToString());
@@ -1225,7 +1224,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AO2bl2_combo.SelectedItem = notSelected;
+                        AO2bl2_combo.SelectedItem = NOT_SELECTED;
                         AO2bl2_lab.Text = "";
                     }
                     AO2bl2combo_text = AO2bl2_combo.SelectedItem.ToString();
@@ -1238,7 +1237,7 @@ namespace Moderon
                     if (AO3bl2_combo.Items.Count > 1)
                     {
                         AO3bl2_combo.SelectedIndex = AO3bl2_combo.Items.Count - 1;
-                        if (AO3bl2_combo.SelectedItem.ToString() != notSelected)
+                        if (AO3bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAO(AO3bl2_combo.SelectedItem.ToString(), AO3bl2_combo);
                             findAo_2 = list_ao.Find(x => x.Name == AO3bl2_combo.SelectedItem.ToString());
@@ -1253,7 +1252,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AO3bl2_combo.SelectedItem = notSelected;
+                        AO3bl2_combo.SelectedItem = NOT_SELECTED;
                         AO3bl2_lab.Text = "";
                     }
                     AO3bl2combo_text = AO3bl2_combo.SelectedItem.ToString();
@@ -1266,7 +1265,7 @@ namespace Moderon
                     if (AO1bl3_combo.Items.Count > 1)
                     {
                         AO1bl3_combo.SelectedIndex = AO1bl3_combo.Items.Count - 1;
-                        if (AO1bl3_combo.SelectedItem.ToString() != notSelected)
+                        if (AO1bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAO(AO1bl3_combo.SelectedItem.ToString(), AO1bl3_combo);
                             findAo_2 = list_ao.Find(x => x.Name == AO1bl3_combo.SelectedItem.ToString());
@@ -1281,7 +1280,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AO1bl3_combo.SelectedItem = notSelected;
+                        AO1bl3_combo.SelectedItem = NOT_SELECTED;
                         AO1bl3_lab.Text = "";
                     }
                     AO1bl3combo_text = AO1bl3_combo.SelectedItem.ToString();
@@ -1294,7 +1293,7 @@ namespace Moderon
                     if (AO2bl3_combo.Items.Count > 1)
                     {
                         AO2bl3_combo.SelectedIndex = AO2bl3_combo.Items.Count - 1;
-                        if (AO2bl3_combo.SelectedItem.ToString() != notSelected)
+                        if (AO2bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAO(AO2bl3_combo.SelectedItem.ToString(), AO2bl3_combo);
                             findAo_2 = list_ao.Find(x => x.Name == AO2bl3_combo.SelectedItem.ToString());
@@ -1309,7 +1308,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AO2bl3_combo.SelectedItem = notSelected;
+                        AO2bl3_combo.SelectedItem = NOT_SELECTED;
                         AO2bl3_lab.Text = "";
                     }
                     AO2bl3combo_text = AO2bl3_combo.SelectedItem.ToString();
@@ -1322,7 +1321,7 @@ namespace Moderon
                     if (AO3bl3_combo.Items.Count > 1)
                     {
                         AO3bl3_combo.SelectedIndex = AO3bl3_combo.Items.Count - 1;
-                        if (AO3bl3_combo.SelectedItem.ToString() != notSelected)
+                        if (AO3bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAO(AO3bl3_combo.SelectedItem.ToString(), AO3bl3_combo);
                             findAo_2 = list_ao.Find(x => x.Name == AO3bl3_combo.SelectedItem.ToString());
@@ -1337,7 +1336,7 @@ namespace Moderon
                     }
                     else // Только "Не выбрано"
                     {
-                        AO3bl3_combo.SelectedItem = notSelected;
+                        AO3bl3_combo.SelectedItem = NOT_SELECTED;
                         AO3bl3_lab.Text = "";
                     }
                     AO3bl3combo_text = AO3bl3_combo.SelectedItem.ToString();
