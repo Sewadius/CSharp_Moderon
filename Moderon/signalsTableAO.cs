@@ -11,7 +11,7 @@ namespace Moderon
     {
         public string Name { get; private set; }
         public ushort Code { get; private set; }
-        public bool Active { get; private set; } = true; // Свободен по умолчанию
+        public bool Active { get; private set; } = true;            // Свободен к распределению по умолчанию
         public Ao(string name, ushort code)
         {
             Name = name; Code = code;
@@ -90,628 +90,131 @@ namespace Moderon
             }
         }
 
-        ///<summary>Изменили AO1 comboBox</summary>
-        private void AO1_combo_SelectedIndexChanged(object sender, EventArgs e)
+        ///<summary>Метод для изменения AO comboBox</summary>
+        private void AO_combo_SelectedIndexChanged(ComboBox comboBox, ref int combo_index, ref string combo_text, Label label)
         {
             if (ignoreEvents) return;
             string name = "";
             Ao ao_find = null;
-            if (subAOcondition) return; // Переход из вычета сигналов AO
-            if (AO1_combo.SelectedIndex == AO1combo_index) return; // Индекс не поменялся
-            if (AO1_combo.SelectedIndex == 0) // Выбрали "не выбрано"
+            if (subAOcondition) return;                             // Переход из вычета сигналов AO
+            if (comboBox.SelectedIndex == combo_index) return;      // Индекс не поменялся
+            if (comboBox.SelectedIndex == 0)                        // Выбрали "Не выбрано"
             {
-                if (AO1_combo.Items.Count > 1)  // Больше одного элемента в списке
+                if (comboBox.Items.Count > 1)                       // Больше одного элемента в списке
                 {
-                    ao_find = list_ao.Find(x => x.Name == AO1combo_text);
-                    list_ao.Remove(list_ao.Find(x => x.Name == AO1combo_text)); // Удаление из списка
-                    if (showCode) AO1_lab.Text = "";
+                    string nameFind = combo_text;
+                    ao_find = list_ao.Find(x => x.Name == nameFind);
+                    list_ao.Remove(ao_find);                        // Удаление из списка
+                    if (showCode) label.Text = "";
                 }
-                if (ao_find != null) // Найден элемент
+                if (ao_find != null)                                // Найден элемент
                 {
-                    ao_find.Dispose(); // Освобождение сигнала для распределенния
-                    list_ao.Add(ao_find); // Добавление с новым значением
+                    ao_find.Dispose();                              // Освобождение сигнала для распределения
+                    list_ao.Add(ao_find);                           // Добавление с новым значением
                 }
-                if (!initialComboSignals) AddtoCombosAO(AO1combo_text, AO1_combo); // Добавление к другим AO
+                if (!initialComboSignals)                           // Добавление к другим AO
+                    AddtoCombosAO(combo_text, comboBox);
             }
-            else // Выбран сигнал AO
+            else
             {
-                name = string.Concat(AO1_combo.SelectedItem);
+                name = string.Concat(comboBox.SelectedItem);
                 ao_find = list_ao.Find(x => x.Name == name);
-                list_ao.Remove(list_ao.Find(x => x.Name == name)); // Удаление из списка
+                list_ao.Remove(ao_find);                            // Удаление из списка
                 if (ao_find != null)
                 {
                     ao_find.Select();
                     list_ao.Add(ao_find);
-                    if (showCode) AO1_lab.Text = ao_find.Code.ToString();
+                    if (showCode) label.Text = ao_find.Code.ToString();
                 }
-                if (!initialComboSignals) // Если не начальная расстановка
+                if (!initialComboSignals)                           // Если не начальная расстановка
                 {
-                    SubFromCombosAO(name, AO1_combo); // Удаление из других AO
-                    ao_find = list_ao.Find(x => x.Name == AO1combo_text);
-                    list_ao.Remove(list_ao.Find(x => x.Name == AO1combo_text));
+                    SubFromCombosAO(name, comboBox);                // Удаление из других AO
+                    string nameFind = combo_text;
+                    ao_find = list_ao.Find(x => x.Name == nameFind);
+                    list_ao.Remove(ao_find);
                     if (ao_find != null)
                     {
                         ao_find.Dispose();
                         list_ao.Add(ao_find);
                     }
-                    AddtoCombosAO(AO1combo_text, AO1_combo); // Добавление к другим DO
+                    AddtoCombosAO(combo_text, comboBox);            // Добавление к другим AO
                 }
             }
-            AO1combo_text = AO1_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            AO1combo_index = AO1_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            combo_text = comboBox.SelectedItem.ToString();          // Сохранение названия выбранного элемента 
+            combo_index = comboBox.SelectedIndex;                   // Сохранение индекса выбранного элемента
+            CheckSignalsReady();                                    // Проверка распределения сигналов
+        }
+
+        ///<summary>Изменили AO1 comboBox</summary>
+        private void AO1_combo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AO_combo_SelectedIndexChanged(AO1_combo, ref AO1combo_index, ref AO1combo_text, AO1_lab);
         }
 
         ///<summary>Изменили AO2 comboBox</summary>
         private void AO2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Ao ao_find = null;
-            if (subAOcondition) return; // Переход из вычета сигналов AO
-            if (AO2_combo.SelectedIndex == AO2combo_index) return; // Индекс не поменялся
-            if (AO2_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (AO2_combo.Items.Count > 1)  // Больше одного элемента в списке
-                {
-                    ao_find = list_ao.Find(x => x.Name == AO2combo_text);
-                    list_ao.Remove(list_ao.Find(x => x.Name == AO2combo_text)); // Удаление из списка
-                    if (showCode) AO2_lab.Text = "";
-                }
-                if (ao_find != null) // Найден элемент
-                {
-                    ao_find.Dispose(); // Освобождение сигнала для распределенния
-                    list_ao.Add(ao_find); // Добавление с новым значением
-                }
-                if (!initialComboSignals) AddtoCombosAO(AO2combo_text, AO2_combo); // Добавление к другим AO
-            }
-            else // Выбран сигнал AO
-            {
-                name = string.Concat(AO2_combo.SelectedItem);
-                ao_find = list_ao.Find(x => x.Name == name);
-                list_ao.Remove(list_ao.Find(x => x.Name == name)); // Удаление из списка
-                if (ao_find != null)
-                {
-                    ao_find.Select();
-                    list_ao.Add(ao_find);
-                    if (showCode) AO2_lab.Text = ao_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosAO(name, AO2_combo); // Удаление из других AO
-                    ao_find = list_ao.Find(x => x.Name == AO2combo_text);
-                    list_ao.Remove(list_ao.Find(x => x.Name == AO2combo_text));
-                    if (ao_find != null)
-                    {
-                        ao_find.Dispose();
-                        list_ao.Add(ao_find);
-                    }
-                    AddtoCombosAO(AO2combo_text, AO2_combo); // Добавление к другим AO
-                }
-            }
-            AO2combo_text = AO2_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            AO2combo_index = AO2_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            AO_combo_SelectedIndexChanged(AO2_combo, ref AO2combo_index, ref AO2combo_text, AO2_lab);
         }
 
         ///<summary>Изменили AO3 comboBox</summary>
         private void AO3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Ao ao_find = null;
-            if (subAOcondition) return; // Переход из вычета сигналов AO
-            if (AO3_combo.SelectedIndex == AO3combo_index) return; // Индекс не поменялся
-            if (AO3_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (AO3_combo.Items.Count > 1)  // Больше одного элемента в списке
-                {
-                    ao_find = list_ao.Find(x => x.Name == AO3combo_text);
-                    list_ao.Remove(list_ao.Find(x => x.Name == AO3combo_text)); // Удаление из списка
-                    if (showCode) AO3_lab.Text = "";
-                }
-                if (ao_find != null) // Найден элемент
-                {
-                    ao_find.Dispose(); // Освобождение сигнала для распределенния
-                    list_ao.Add(ao_find); // Добавление с новым значением
-                }
-                if (!initialComboSignals) AddtoCombosAO(AO3combo_text, AO3_combo); // Добавление к другим AO
-            }
-            else // Выбран сигнал AO
-            {
-                name = string.Concat(AO3_combo.SelectedItem);
-                ao_find = list_ao.Find(x => x.Name == name);
-                list_ao.Remove(list_ao.Find(x => x.Name == name)); // Удаление из списка
-                if (ao_find != null)
-                {
-                    ao_find.Select();
-                    list_ao.Add(ao_find);
-                    if (showCode) AO3_lab.Text = ao_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosAO(name, AO3_combo); // Удаление из других AO
-                    ao_find = list_ao.Find(x => x.Name == AO3combo_text);
-                    list_ao.Remove(list_ao.Find(x => x.Name == AO3combo_text));
-                    if (ao_find != null)
-                    {
-                        ao_find.Dispose();
-                        list_ao.Add(ao_find);
-                    }
-                    AddtoCombosAO(AO3combo_text, AO3_combo); // Добавление к другим AO
-                }
-            }
-            AO3combo_text = AO3_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            AO3combo_index = AO3_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            AO_combo_SelectedIndexChanged(AO3_combo, ref AO3combo_index, ref AO3combo_text, AO3_lab);
         }
 
         ///<summary>Изменили AO1 блока расширения 1</summary>
         private void AO1bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Ao ao_find = null;
-            if (subAOcondition) return; // Переход из вычета сигналов AO
-            if (AO1bl1_combo.SelectedIndex == AO1bl1combo_index) return; // Индекс не поменялся
-            if (AO1bl1_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (AO1bl1_combo.Items.Count > 1)  // Больше одного элемента в списке
-                {
-                    ao_find = list_ao.Find(x => x.Name == AO1bl1combo_text);
-                    list_ao.Remove(list_ao.Find(x => x.Name == AO1bl1combo_text)); // Удаление из списка
-                    if (showCode) AO1bl1_lab.Text = "";
-                }
-                if (ao_find != null) // Найден элемент
-                {
-                    ao_find.Dispose(); // Освобождение сигнала для распределенния
-                    list_ao.Add(ao_find); // Добавление с новым значением
-                }
-                if (!initialComboSignals) AddtoCombosAO(AO1bl1combo_text, AO1bl1_combo); // Добавление к другим AO
-            }
-            else // Выбран сигнал AO
-            {
-                name = string.Concat(AO1bl1_combo.SelectedItem);
-                ao_find = list_ao.Find(x => x.Name == name);
-                list_ao.Remove(list_ao.Find(x => x.Name == name)); // Удаление из списка
-                if (ao_find != null)
-                {
-                    ao_find.Select();
-                    list_ao.Add(ao_find);
-                    if (showCode) AO1bl1_lab.Text = ao_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosAO(name, AO1bl1_combo); // Удаление из других AO
-                    ao_find = list_ao.Find(x => x.Name == AO1bl1combo_text);
-                    list_ao.Remove(list_ao.Find(x => x.Name == AO1bl1combo_text));
-                    if (ao_find != null)
-                    {
-                        ao_find.Dispose();
-                        list_ao.Add(ao_find);
-                    }
-                    AddtoCombosAO(AO1bl1combo_text, AO1bl1_combo); // Добавление к другим AO
-                }
-            }
-            AO1bl1combo_text = AO1bl1_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            AO1bl1combo_index = AO1bl1_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            AO_combo_SelectedIndexChanged(AO1bl1_combo, ref AO1bl1combo_index, ref AO1bl1combo_text, AO1bl1_lab);
         }
 
         ///<summary>Изменили AO2 блока расширения 1</summary>
         private void AO2bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Ao ao_find = null;
-            if (subAOcondition) return; // Переход из вычета сигналов AO
-            if (AO2bl1_combo.SelectedIndex == AO2bl1combo_index) return; // Индекс не поменялся
-            if (AO2bl1_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (AO2bl1_combo.Items.Count > 1)  // Больше одного элемента в списке
-                {
-                    ao_find = list_ao.Find(x => x.Name == AO2bl1combo_text);
-                    list_ao.Remove(list_ao.Find(x => x.Name == AO2bl1combo_text)); // Удаление из списка
-                    if (showCode) AO2bl1_lab.Text = "";
-                }
-                if (ao_find != null) // Найден элемент
-                {
-                    ao_find.Dispose(); // Освобождение сигнала для распределенния
-                    list_ao.Add(ao_find); // Добавление с новым значением
-                }
-                if (!initialComboSignals) AddtoCombosAO(AO2bl1combo_text, AO2bl1_combo); // Добавление к другим AO
-            }
-            else // Выбран сигнал AO
-            {
-                name = string.Concat(AO2bl1_combo.SelectedItem);
-                ao_find = list_ao.Find(x => x.Name == name);
-                list_ao.Remove(list_ao.Find(x => x.Name == name)); // Удаление из списка
-                if (ao_find != null)
-                {
-                    ao_find.Select();
-                    list_ao.Add(ao_find);
-                    if (showCode) AO2bl1_lab.Text = ao_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosAO(name, AO2bl1_combo); // Удаление из других AO
-                    ao_find = list_ao.Find(x => x.Name == AO2bl1combo_text);
-                    list_ao.Remove(list_ao.Find(x => x.Name == AO2bl1combo_text));
-                    if (ao_find != null)
-                    {
-                        ao_find.Dispose();
-                        list_ao.Add(ao_find);
-                    }
-                    AddtoCombosAO(AO2bl1combo_text, AO2bl1_combo); // Добавление к другим AO
-                }
-            }
-            AO2bl1combo_text = AO2bl1_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            AO2bl1combo_index = AO2bl1_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            AO_combo_SelectedIndexChanged(AO2bl1_combo, ref AO2bl1combo_index, ref AO2bl1combo_text, AO2bl1_lab);
         }
 
         ///<summary>Изменили AO3 блока расширения 1</summary>
         private void AO3bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Ao ao_find = null;
-            if (subAOcondition) return; // Переход из вычета сигналов AO
-            if (AO3bl1_combo.SelectedIndex == AO3bl1combo_index) return; // Индекс не поменялся
-            if (AO3bl1_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (AO3bl1_combo.Items.Count > 1)  // Больше одного элемента в списке
-                {
-                    ao_find = list_ao.Find(x => x.Name == AO3bl1combo_text);
-                    list_ao.Remove(list_ao.Find(x => x.Name == AO3bl1combo_text)); // Удаление из списка
-                    if (showCode) AO3bl1_lab.Text = "";
-                }
-                if (ao_find != null) // Найден элемент
-                {
-                    ao_find.Dispose(); // Освобождение сигнала для распределенния
-                    list_ao.Add(ao_find); // Добавление с новым значением
-                }
-                if (!initialComboSignals) AddtoCombosAO(AO3bl1combo_text, AO3bl1_combo); // Добавление к другим AO
-            }
-            else // Выбран сигнал AO
-            {
-                name = string.Concat(AO3bl1_combo.SelectedItem);
-                ao_find = list_ao.Find(x => x.Name == name);
-                list_ao.Remove(list_ao.Find(x => x.Name == name)); // Удаление из списка
-                if (ao_find != null)
-                {
-                    ao_find.Select();
-                    list_ao.Add(ao_find);
-                    if (showCode) AO3bl1_lab.Text = ao_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosAO(name, AO3bl1_combo); // Удаление из других AO
-                    ao_find = list_ao.Find(x => x.Name == AO3bl1combo_text);
-                    list_ao.Remove(list_ao.Find(x => x.Name == AO3bl1combo_text));
-                    if (ao_find != null)
-                    {
-                        ao_find.Dispose();
-                        list_ao.Add(ao_find);
-                    }
-                    AddtoCombosAO(AO3bl1combo_text, AO3bl1_combo); // Добавление к другим AO
-                }
-            }
-            AO3bl1combo_text = AO3bl1_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            AO3bl1combo_index = AO3bl1_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            AO_combo_SelectedIndexChanged(AO3bl1_combo, ref AO3bl1combo_index, ref AO3bl1combo_text, AO3bl1_lab);
         }
 
         ///<summary>Изменили AO1 блока расширения 2</summary>
         private void AO1bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Ao ao_find = null;
-            if (subAOcondition) return; // Переход из вычета сигналов AO
-            if (AO1bl2_combo.SelectedIndex == AO1bl2combo_index) return; // Индекс не поменялся
-            if (AO1bl2_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (AO1bl2_combo.Items.Count > 1)  // Больше одного элемента в списке
-                {
-                    ao_find = list_ao.Find(x => x.Name == AO1bl2combo_text);
-                    list_ao.Remove(list_ao.Find(x => x.Name == AO1bl2combo_text)); // Удаление из списка
-                    if (showCode) AO1bl2_lab.Text = "";
-                }
-                if (ao_find != null) // Найден элемент
-                {
-                    ao_find.Dispose(); // Освобождение сигнала для распределенния
-                    list_ao.Add(ao_find); // Добавление с новым значением
-                }
-                if (!initialComboSignals) AddtoCombosAO(AO1bl2combo_text, AO1bl2_combo); // Добавление к другим AO
-            }
-            else // Выбран сигнал AO
-            {
-                name = string.Concat(AO1bl2_combo.SelectedItem);
-                ao_find = list_ao.Find(x => x.Name == name);
-                list_ao.Remove(list_ao.Find(x => x.Name == name)); // Удаление из списка
-                if (ao_find != null)
-                {
-                    ao_find.Select();
-                    list_ao.Add(ao_find);
-                    if (showCode) AO1bl2_lab.Text = ao_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosAO(name, AO1bl2_combo); // Удаление из других AO
-                    ao_find = list_ao.Find(x => x.Name == AO1bl2combo_text);
-                    list_ao.Remove(list_ao.Find(x => x.Name == AO1bl2combo_text));
-                    if (ao_find != null)
-                    {
-                        ao_find.Dispose();
-                        list_ao.Add(ao_find);
-                    }
-                    AddtoCombosAO(AO1bl2combo_text, AO1bl2_combo); // Добавление к другим AO
-                }
-            }
-            AO1bl2combo_text = AO1bl2_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            AO1bl2combo_index = AO1bl2_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            AO_combo_SelectedIndexChanged(AO1bl2_combo, ref AO1bl2combo_index, ref AO1bl2combo_text, AO1bl2_lab);
         }
 
         ///<summary>Изменили AO2 блока расширения 2</summary>
         private void AO2bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Ao ao_find = null;
-            if (subAOcondition) return; // Переход из вычета сигналов AO
-            if (AO2bl2_combo.SelectedIndex == AO2bl2combo_index) return; // Индекс не поменялся
-            if (AO2bl2_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (AO2bl2_combo.Items.Count > 1)  // Больше одного элемента в списке
-                {
-                    ao_find = list_ao.Find(x => x.Name == AO2bl2combo_text);
-                    list_ao.Remove(list_ao.Find(x => x.Name == AO2bl2combo_text)); // Удаление из списка
-                    if (showCode) AO2bl2_lab.Text = "";
-                }
-                if (ao_find != null) // Найден элемент
-                {
-                    ao_find.Dispose(); // Освобождение сигнала для распределенния
-                    list_ao.Add(ao_find); // Добавление с новым значением
-                }
-                if (!initialComboSignals) AddtoCombosAO(AO2bl2combo_text, AO2bl2_combo); // Добавление к другим AO
-            }
-            else // Выбран сигнал AO
-            {
-                name = string.Concat(AO2bl2_combo.SelectedItem);
-                ao_find = list_ao.Find(x => x.Name == name);
-                list_ao.Remove(list_ao.Find(x => x.Name == name)); // Удаление из списка
-                if (ao_find != null)
-                {
-                    ao_find.Select();
-                    list_ao.Add(ao_find);
-                    if (showCode) AO2bl2_lab.Text = ao_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosAO(name, AO2bl2_combo); // Удаление из других AO
-                    ao_find = list_ao.Find(x => x.Name == AO2bl2combo_text);
-                    list_ao.Remove(list_ao.Find(x => x.Name == AO2bl2combo_text));
-                    if (ao_find != null)
-                    {
-                        ao_find.Dispose();
-                        list_ao.Add(ao_find);
-                    }
-                    AddtoCombosAO(AO2bl2combo_text, AO2bl2_combo); // Добавление к другим AO
-                }
-            }
-            AO2bl2combo_text = AO2bl2_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            AO2bl2combo_index = AO2bl2_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            AO_combo_SelectedIndexChanged(AO2bl2_combo, ref AO2bl2combo_index, ref AO2bl2combo_text, AO2bl2_lab);
         }
 
         ///<summary>Изменили AO3 блока расширения 2</summary>
         private void AO3bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Ao ao_find = null;
-            if (subAOcondition) return; // Переход из вычета сигналов AO
-            if (AO3bl2_combo.SelectedIndex == AO3bl2combo_index) return; // Индекс не поменялся
-            if (AO3bl2_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (AO3bl2_combo.Items.Count > 1)  // Больше одного элемента в списке
-                {
-                    ao_find = list_ao.Find(x => x.Name == AO3bl2combo_text);
-                    list_ao.Remove(list_ao.Find(x => x.Name == AO3bl2combo_text)); // Удаление из списка
-                    if (showCode) AO3bl2_lab.Text = "";
-                }
-                if (ao_find != null) // Найден элемент
-                {
-                    ao_find.Dispose(); // Освобождение сигнала для распределенния
-                    list_ao.Add(ao_find); // Добавление с новым значением
-                }
-                if (!initialComboSignals) AddtoCombosAO(AO3bl2combo_text, AO3bl2_combo); // Добавление к другим AO
-            }
-            else // Выбран сигнал AO
-            {
-                name = string.Concat(AO3bl2_combo.SelectedItem);
-                ao_find = list_ao.Find(x => x.Name == name);
-                list_ao.Remove(list_ao.Find(x => x.Name == name)); // Удаление из списка
-                if (ao_find != null)
-                {
-                    ao_find.Select();
-                    list_ao.Add(ao_find);
-                    if (showCode) AO3bl2_lab.Text = ao_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosAO(name, AO3bl2_combo); // Удаление из других AO
-                    ao_find = list_ao.Find(x => x.Name == AO3bl2combo_text);
-                    list_ao.Remove(list_ao.Find(x => x.Name == AO3bl2combo_text));
-                    if (ao_find != null)
-                    {
-                        ao_find.Dispose();
-                        list_ao.Add(ao_find);
-                    }
-                    AddtoCombosAO(AO3bl2combo_text, AO3bl2_combo); // Добавление к другим AO
-                }
-            }
-            AO3bl2combo_text = AO3bl2_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            AO3bl2combo_index = AO3bl2_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            AO_combo_SelectedIndexChanged(AO3bl2_combo, ref AO3bl2combo_index, ref AO3bl2combo_text, AO3bl2_lab);
         }
 
         ///<summary>Изменили AO1 блока расширения 3</summary>
         private void AO1bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Ao ao_find = null;
-            if (subAOcondition) return; // Переход из вычета сигналов AO
-            if (AO1bl3_combo.SelectedIndex == AO1bl3combo_index) return; // Индекс не поменялся
-            if (AO1bl3_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (AO1bl3_combo.Items.Count > 1)  // Больше одного элемента в списке
-                {
-                    ao_find = list_ao.Find(x => x.Name == AO1bl3combo_text);
-                    list_ao.Remove(list_ao.Find(x => x.Name == AO1bl3combo_text)); // Удаление из списка
-                    if (showCode) AO1bl3_lab.Text = "";
-                }
-                if (ao_find != null) // Найден элемент
-                {
-                    ao_find.Dispose(); // Освобождение сигнала для распределенния
-                    list_ao.Add(ao_find); // Добавление с новым значением
-                }
-                if (!initialComboSignals) AddtoCombosAO(AO1bl3combo_text, AO1bl3_combo); // Добавление к другим AO
-            }
-            else // Выбран сигнал AO
-            {
-                name = string.Concat(AO1bl3_combo.SelectedItem);
-                ao_find = list_ao.Find(x => x.Name == name);
-                list_ao.Remove(list_ao.Find(x => x.Name == name)); // Удаление из списка
-                if (ao_find != null)
-                {
-                    ao_find.Select();
-                    list_ao.Add(ao_find);
-                    if (showCode) AO1bl3_lab.Text = ao_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosAO(name, AO1bl3_combo); // Удаление из других AO
-                    ao_find = list_ao.Find(x => x.Name == AO1bl3combo_text);
-                    list_ao.Remove(list_ao.Find(x => x.Name == AO1bl3combo_text));
-                    if (ao_find != null)
-                    {
-                        ao_find.Dispose();
-                        list_ao.Add(ao_find);
-                    }
-                    AddtoCombosAO(AO1bl3combo_text, AO1bl3_combo); // Добавление к другим AO
-                }
-            }
-            AO1bl3combo_text = AO1bl3_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            AO1bl3combo_index = AO1bl3_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            AO_combo_SelectedIndexChanged(AO1bl3_combo, ref AO1bl3combo_index, ref AO1bl3combo_text, AO1bl3_lab);
         }
 
         ///<summary>Изменили AO2 блока расширения 3</summary>
         private void AO2bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Ao ao_find = null;
-            if (subAOcondition) return; // Переход из вычета сигналов AO
-            if (AO2bl3_combo.SelectedIndex == AO2bl3combo_index) return; // Индекс не поменялся
-            if (AO2bl3_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (AO2bl3_combo.Items.Count > 1)  // Больше одного элемента в списке
-                {
-                    ao_find = list_ao.Find(x => x.Name == AO2bl3combo_text);
-                    list_ao.Remove(list_ao.Find(x => x.Name == AO2bl3combo_text)); // Удаление из списка
-                    if (showCode) AO2bl3_lab.Text = "";
-                }
-                if (ao_find != null) // Найден элемент
-                {
-                    ao_find.Dispose(); // Освобождение сигнала для распределенния
-                    list_ao.Add(ao_find); // Добавление с новым значением
-                }
-                if (!initialComboSignals) AddtoCombosAO(AO2bl3combo_text, AO2bl3_combo); // Добавление к другим AO
-            }
-            else // Выбран сигнал AO
-            {
-                name = string.Concat(AO2bl3_combo.SelectedItem);
-                ao_find = list_ao.Find(x => x.Name == name);
-                list_ao.Remove(list_ao.Find(x => x.Name == name)); // Удаление из списка
-                if (ao_find != null)
-                {
-                    ao_find.Select();
-                    list_ao.Add(ao_find);
-                    if (showCode) AO2bl3_lab.Text = ao_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosAO(name, AO2bl3_combo); // Удаление из других AO
-                    ao_find = list_ao.Find(x => x.Name == AO2bl3combo_text);
-                    list_ao.Remove(list_ao.Find(x => x.Name == AO2bl3combo_text));
-                    if (ao_find != null)
-                    {
-                        ao_find.Dispose();
-                        list_ao.Add(ao_find);
-                    }
-                    AddtoCombosAO(AO2bl3combo_text, AO2bl3_combo); // Добавление к другим AO
-                }
-            }
-            AO2bl3combo_text = AO2bl3_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            AO2bl3combo_index = AO2bl3_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            AO_combo_SelectedIndexChanged(AO2bl3_combo, ref AO2bl3combo_index, ref AO2bl3combo_text, AO2bl3_lab);
         }
 
         ///<summary>Изменили AO3 блока расширения 3</summary>
         private void AO3bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Ao ao_find = null;
-            if (subAOcondition) return; // Переход из вычета сигналов AO
-            if (AO3bl3_combo.SelectedIndex == AO3bl3combo_index) return; // Индекс не поменялся
-            if (AO3bl3_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (AO3bl3_combo.Items.Count > 1)  // Больше одного элемента в списке
-                {
-                    ao_find = list_ao.Find(x => x.Name == AO3bl3combo_text);
-                    list_ao.Remove(list_ao.Find(x => x.Name == AO3bl3combo_text)); // Удаление из списка
-                    if (showCode) AO3bl3_lab.Text = "";
-                }
-                if (ao_find != null) // Найден элемент
-                {
-                    ao_find.Dispose(); // Освобождение сигнала для распределенния
-                    list_ao.Add(ao_find); // Добавление с новым значением
-                }
-                if (!initialComboSignals) AddtoCombosAO(AO3bl3combo_text, AO3bl3_combo); // Добавление к другим AO
-            }
-            else // Выбран сигнал AO
-            {
-                name = string.Concat(AO3bl3_combo.SelectedItem);
-                ao_find = list_ao.Find(x => x.Name == name);
-                list_ao.Remove(list_ao.Find(x => x.Name == name)); // Удаление из списка
-                if (ao_find != null)
-                {
-                    ao_find.Select();
-                    list_ao.Add(ao_find);
-                    if (showCode) AO3bl3_lab.Text = ao_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosAO(name, AO3bl3_combo); // Удаление из других AO
-                    ao_find = list_ao.Find(x => x.Name == AO3bl3combo_text);
-                    list_ao.Remove(list_ao.Find(x => x.Name == AO3bl3combo_text));
-                    if (ao_find != null)
-                    {
-                        ao_find.Dispose();
-                        list_ao.Add(ao_find);
-                    }
-                    AddtoCombosAO(AO3bl3combo_text, AO3bl3_combo); // Добавление к другим AO
-                }
-            }
-            AO3bl3combo_text = AO3bl3_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            AO3bl3combo_index = AO3bl3_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            AO_combo_SelectedIndexChanged(AO3bl3_combo, ref AO3bl3combo_index, ref AO3bl3combo_text, AO3bl3_lab);
         }
 
         ///<summary>Добавление освободившегося AO к остальным comboBox</summary>
@@ -854,23 +357,17 @@ namespace Moderon
         }
 
         ///<summary>Удаление AO из других comboBox</summary>
-        private void SubFromCombosAO(string name, ComboBox cm)
+        private void SubFromCombosAO(string name, ComboBox comboBox)
         {
-            if (name != NOT_SELECTED) // Кроме "Не выбрано"
+            var ao_combos = new List<ComboBox>()
             {
-                if (AO1_combo != cm) AO1_combo.Items.Remove(name); // AO1
-                if (AO2_combo != cm) AO2_combo.Items.Remove(name); // AO2
-                if (AO3_combo != cm) AO3_combo.Items.Remove(name); // AO3
-                if (AO1bl1_combo != cm) AO1bl1_combo.Items.Remove(name); // AO1, блок 1
-                if (AO2bl1_combo != cm) AO2bl1_combo.Items.Remove(name); // AO2, блок 1
-                if (AO3bl1_combo != cm) AO3bl1_combo.Items.Remove(name); // AO3, блок 1
-                if (AO1bl2_combo != cm) AO1bl2_combo.Items.Remove(name); // AO1, блок 2
-                if (AO2bl2_combo != cm) AO2bl2_combo.Items.Remove(name); // AO2, блок 2
-                if (AO3bl2_combo != cm) AO3bl2_combo.Items.Remove(name); // AO3, блок 2
-                if (AO1bl3_combo != cm) AO1bl3_combo.Items.Remove(name); // AO1, блок 3
-                if (AO2bl3_combo != cm) AO2bl3_combo.Items.Remove(name); // AO2, блок 3
-                if (AO3bl3_combo != cm) AO3bl3_combo.Items.Remove(name); // AO3, блок 3
-            }
+                AO1_combo, AO2_combo, AO3_combo, AO1bl1_combo, AO2bl1_combo, AO3bl1_combo,
+                AO1bl2_combo, AO2bl2_combo, AO3bl2_combo, AO1bl3_combo, AO2bl3_combo, AO3bl3_combo
+            };
+
+            foreach (var el in ao_combos)
+                if (name != NOT_SELECTED && el != comboBox)
+                    el.Items.Remove(name);
         }
 
         ///<summary>Добавление нового AO и его назначение под выход</summary>
@@ -1346,6 +843,8 @@ namespace Moderon
             list_ao.Remove(findAo); // Удаление сигнала из списка AO
             CheckSignalsReady(); // Проверка распределения сигналов
         }
+
+        /*** ВЫБОР ЭЛЕМЕНТОВ ***/
 
         ///<summary>Выбрали ПЧ приточного вентилятора</summary>
         private void PrFanFC_check_signalsAOCheckedChanged(object sender, EventArgs e)

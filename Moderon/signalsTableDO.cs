@@ -14,7 +14,7 @@ namespace Moderon
     {
         public string Name { get; private set; }
         public ushort Code { get; private set; }
-        public bool Active { get; private set; } = true; // Свободен по умолчанию
+        public bool Active { get; private set; } = true;        // Свободен к распределению по умолчанию
 
         public Do(string name, ushort code)
         {
@@ -154,141 +154,67 @@ namespace Moderon
             initialComboSignals = false; // Сброс признака начальной настройки comboBox
         }
 
+        ///<summary>Очистка массивов сигналов DI, DO, AI, AO</summary>
+        private void ResetSignalsLists()
+        {
+            list_di.Clear(); list_do.Clear(); list_ai.Clear(); list_ao.Clear();
+        }
+
         ///<summary>Нажали на кнопку "Сброс"</summary>
         private void ResetButton_signalsDOClick(object sender, EventArgs e)
         {
-            // Очистка массивов сигналов
-            list_di.Clear(); list_do.Clear(); list_ai.Clear(); list_ao.Clear();
-            // Очистка переменных
-            subDOcondition = subAOcondition = subDIcondition = false;
-            // Очистка comboBox ПЛК
-            DO1_combo.Items.Clear(); DO1_combo.Items.Add(NOT_SELECTED);
-            DO2_combo.Items.Clear(); DO2_combo.Items.Add(NOT_SELECTED);
-            DO3_combo.Items.Clear(); DO3_combo.Items.Add(NOT_SELECTED);
-            DO4_combo.Items.Clear(); DO4_combo.Items.Add(NOT_SELECTED);
-            DO5_combo.Items.Clear(); DO5_combo.Items.Add(NOT_SELECTED);
-            DO6_combo.Items.Clear(); DO6_combo.Items.Add(NOT_SELECTED);
-            DO7_combo.Items.Clear(); DO7_combo.Items.Add(NOT_SELECTED);
-            // Очистка comboBox блок расширения 1
-            DO1bl1_combo.Items.Clear(); DO1bl1_combo.Items.Add(NOT_SELECTED);
-            DO2bl1_combo.Items.Clear(); DO2bl1_combo.Items.Add(NOT_SELECTED);
-            DO3bl1_combo.Items.Clear(); DO3bl1_combo.Items.Add(NOT_SELECTED);
-            DO4bl1_combo.Items.Clear(); DO4bl1_combo.Items.Add(NOT_SELECTED);
-            DO5bl1_combo.Items.Clear(); DO5bl1_combo.Items.Add(NOT_SELECTED);
-            DO6bl1_combo.Items.Clear(); DO6bl1_combo.Items.Add(NOT_SELECTED);
-            DO7bl1_combo.Items.Clear(); DO7bl1_combo.Items.Add(NOT_SELECTED);
-            // Очистка comboBox блок расширения 2
-            DO1bl2_combo.Items.Clear(); DO1bl2_combo.Items.Add(NOT_SELECTED);
-            DO2bl2_combo.Items.Clear(); DO2bl2_combo.Items.Add(NOT_SELECTED);
-            DO3bl2_combo.Items.Clear(); DO3bl2_combo.Items.Add(NOT_SELECTED);
-            DO4bl2_combo.Items.Clear(); DO4bl2_combo.Items.Add(NOT_SELECTED);
-            DO5bl2_combo.Items.Clear(); DO5bl2_combo.Items.Add(NOT_SELECTED);
-            DO6bl2_combo.Items.Clear(); DO6bl2_combo.Items.Add(NOT_SELECTED);
-            DO7bl2_combo.Items.Clear(); DO7bl2_combo.Items.Add(NOT_SELECTED);
-            // Очистка comboBox блок расширения 3
-            DO1bl3_combo.Items.Clear(); DO1bl3_combo.Items.Add(NOT_SELECTED);
-            DO2bl3_combo.Items.Clear(); DO2bl3_combo.Items.Add(NOT_SELECTED);
-            DO3bl3_combo.Items.Clear(); DO3bl3_combo.Items.Add(NOT_SELECTED);
-            DO4bl3_combo.Items.Clear(); DO4bl3_combo.Items.Add(NOT_SELECTED);
-            DO5bl3_combo.Items.Clear(); DO5bl3_combo.Items.Add(NOT_SELECTED);
-            DO6bl3_combo.Items.Clear(); DO6bl3_combo.Items.Add(NOT_SELECTED);
-            DO7bl3_combo.Items.Clear(); DO7bl3_combo.Items.Add(NOT_SELECTED);
+            subDOcondition = subAOcondition = subDIcondition = false;               // Очистка переменных
+
+            // Очистка DO comboBox ПЛК и блоков расширения
+            var do_combos = new List<ComboBox>()
+            {
+                DO1_combo, DO2_combo, DO3_combo, DO4_combo, DO5_combo, DO6_combo, DO7_combo,
+                DO1bl1_combo, DO2bl1_combo, DO3bl1_combo, DO4bl1_combo, DO5bl1_combo, DO6bl1_combo, DO7bl1_combo,
+                DO1bl2_combo, DO2bl2_combo, DO3bl2_combo, DO4bl2_combo, DO5bl2_combo, DO6bl2_combo, DO7bl2_combo,
+                DO1bl3_combo, DO2bl3_combo, DO3bl3_combo, DO4bl3_combo, DO5bl3_combo, DO6bl3_combo, DO7bl3_combo
+            };
+
+            foreach (var el in do_combos)
+            {
+                el.Items.Clear(); el.Items.Add(NOT_SELECTED);
+            }
         }
+
         ///<summary>Установка для comboBox изначального выбора сигналов</summary> 
         private void SetComboInitial_signals()
         {
-            // AI сигналы ПЛК
-            AI1_combo.SelectedItem = NOT_SELECTED; AI2_combo.SelectedItem = NOT_SELECTED; 
-            AI3_combo.SelectedItem = NOT_SELECTED; AI4_combo.SelectedItem = NOT_SELECTED; 
-            AI5_combo.SelectedItem = NOT_SELECTED; AI6_combo.SelectedItem = NOT_SELECTED;
-            // AI сигналы для блока расширения 1
-            AI1bl1_combo.SelectedItem = NOT_SELECTED; AI2bl1_combo.SelectedItem = NOT_SELECTED;
-            AI3bl1_combo.SelectedItem = NOT_SELECTED; AI4bl1_combo.SelectedItem = NOT_SELECTED;
-            AI5bl1_combo.SelectedItem = NOT_SELECTED; AI6bl1_combo.SelectedItem = NOT_SELECTED;
-            // AI сигналы для блока расширения 2
-            AI1bl2_combo.SelectedItem = NOT_SELECTED; AI2bl2_combo.SelectedItem = NOT_SELECTED;
-            AI3bl2_combo.SelectedItem = NOT_SELECTED; AI4bl2_combo.SelectedItem = NOT_SELECTED;
-            AI5bl2_combo.SelectedItem = NOT_SELECTED; AI6bl2_combo.SelectedItem = NOT_SELECTED;
-            // AI сигналы для блока расширения 3
-            AI1bl3_combo.SelectedItem = NOT_SELECTED; AI2bl3_combo.SelectedItem = NOT_SELECTED;
-            AI3bl3_combo.SelectedItem = NOT_SELECTED; AI4bl3_combo.SelectedItem = NOT_SELECTED;
-            AI5bl3_combo.SelectedItem = NOT_SELECTED; AI6bl3_combo.SelectedItem = NOT_SELECTED;
-            // DI сигналы ПЛК
-            DI1_combo.SelectedItem = NOT_SELECTED; DI2_combo.SelectedItem = NOT_SELECTED; 
-            DI3_combo.SelectedItem = NOT_SELECTED; DI4_combo.SelectedItem = NOT_SELECTED; 
-            DI5_combo.SelectedItem = NOT_SELECTED;
-            // DI сигналы для блока расширения 1
-            DI1bl1_combo.SelectedItem = NOT_SELECTED; DI2bl1_combo.SelectedItem = NOT_SELECTED;
-            DI3bl1_combo.SelectedItem = NOT_SELECTED; DI4bl1_combo.SelectedItem = NOT_SELECTED;
-            DI5bl1_combo.SelectedItem = NOT_SELECTED;
-            // DI сигналы для блока расширения 2
-            DI1bl2_combo.SelectedItem = NOT_SELECTED; DI2bl2_combo.SelectedItem = NOT_SELECTED;
-            DI3bl2_combo.SelectedItem = NOT_SELECTED; DI4bl2_combo.SelectedItem = NOT_SELECTED;
-            DI5bl2_combo.SelectedItem = NOT_SELECTED;
-            // DI сигналы для блока расширения 3
-            DI1bl3_combo.SelectedItem = NOT_SELECTED; DI2bl3_combo.SelectedItem = NOT_SELECTED;
-            DI3bl3_combo.SelectedItem = NOT_SELECTED; DI4bl3_combo.SelectedItem = NOT_SELECTED;
-            DI5bl3_combo.SelectedItem = NOT_SELECTED;
-            // AO сигналы ПЛК
-            AO1_combo.SelectedItem = NOT_SELECTED; AO2_combo.SelectedItem = NOT_SELECTED; 
-            AO3_combo.SelectedItem = NOT_SELECTED;
-            // AO сигналы для блока расширения 1
-            AO1bl1_combo.SelectedItem = NOT_SELECTED; AO2bl1_combo.SelectedItem = NOT_SELECTED;
-            AO3bl1_combo.SelectedItem = NOT_SELECTED;
-            // AO сигналы для блока расширения 2
-            AO1bl2_combo.SelectedItem = NOT_SELECTED; AO2bl2_combo.SelectedItem = NOT_SELECTED; 
-            AO3bl2_combo.SelectedItem = NOT_SELECTED;
-            // AO сигналы для блока расширения 3
-            AO1bl3_combo.SelectedItem = NOT_SELECTED; AO2bl3_combo.SelectedItem = NOT_SELECTED;
-            AO3bl3_combo.SelectedItem = NOT_SELECTED;
-            // DO сигналы ПЛК
-            DO1_combo.SelectedItem = NOT_SELECTED; DO2_combo.SelectedItem = NOT_SELECTED; 
-            DO3_combo.SelectedItem = NOT_SELECTED; DO4_combo.SelectedItem = NOT_SELECTED; 
-            DO5_combo.SelectedItem = NOT_SELECTED; DO6_combo.SelectedItem = NOT_SELECTED;
-            DO7_combo.SelectedItem = NOT_SELECTED;
-            // DO сигналы для блока расширения 1
-            DO1bl1_combo.SelectedItem = NOT_SELECTED; DO2bl1_combo.SelectedItem = NOT_SELECTED;
-            DO3bl1_combo.SelectedItem = NOT_SELECTED; DO4bl1_combo.SelectedItem = NOT_SELECTED;
-            DO5bl1_combo.SelectedItem = NOT_SELECTED; DO6bl1_combo.SelectedItem = NOT_SELECTED;
-            DO7bl1_combo.SelectedItem = NOT_SELECTED;
-            // DO сигналы для блока расширения 2
-            DO1bl2_combo.SelectedItem = NOT_SELECTED; DO2bl2_combo.SelectedItem = NOT_SELECTED;
-            DO3bl2_combo.SelectedItem = NOT_SELECTED; DO4bl2_combo.SelectedItem = NOT_SELECTED;
-            DO5bl2_combo.SelectedItem = NOT_SELECTED; DO6bl2_combo.SelectedItem = NOT_SELECTED;
-            DO7bl2_combo.SelectedItem = NOT_SELECTED;
-            // DO сигналы для блока расширения 3
-            DO1bl3_combo.SelectedItem = NOT_SELECTED; DO2bl3_combo.SelectedItem = NOT_SELECTED;
-            DO3bl3_combo.SelectedItem = NOT_SELECTED; DO4bl3_combo.SelectedItem = NOT_SELECTED;
-            DO5bl3_combo.SelectedItem = NOT_SELECTED; DO6bl3_combo.SelectedItem = NOT_SELECTED;
-            DO7bl3_combo.SelectedItem = NOT_SELECTED;
-            // Типы AI сигналов, ПЛК
-            AI1_typeCombo.SelectedItem = NTC; AI1_typeCombo.Enabled = false;
-            AI2_typeCombo.SelectedItem = NTC; AI2_typeCombo.Enabled = false;
-            AI3_typeCombo.SelectedItem = NTC; AI3_typeCombo.Enabled = false;
-            AI4_typeCombo.SelectedItem = NTC; AI4_typeCombo.Enabled = false;
-            AI5_typeCombo.SelectedItem = NTC; AI5_typeCombo.Enabled = false;
-            AI6_typeCombo.SelectedItem = NTC; AI6_typeCombo.Enabled = false;
-            // Типы AI сигналов, блок расширения 1
-            AI1bl1_typeCombo.SelectedItem = NTC; AI1bl1_typeCombo.Enabled = false;
-            AI2bl1_typeCombo.SelectedItem = NTC; AI2bl1_typeCombo.Enabled = false;
-            AI3bl1_typeCombo.SelectedItem = NTC; AI3bl1_typeCombo.Enabled = false;
-            AI4bl1_typeCombo.SelectedItem = NTC; AI4bl1_typeCombo.Enabled = false;
-            AI5bl1_typeCombo.SelectedItem = NTC; AI5bl1_typeCombo.Enabled = false;
-            AI6bl1_typeCombo.SelectedItem = NTC; AI6bl1_typeCombo.Enabled = false;
-            // Типы AI сигналов, блок расширения 2
-            AI1bl2_typeCombo.SelectedItem = NTC; AI1bl2_typeCombo.Enabled = false;
-            AI2bl2_typeCombo.SelectedItem = NTC; AI2bl2_typeCombo.Enabled = false;
-            AI3bl2_typeCombo.SelectedItem = NTC; AI3bl2_typeCombo.Enabled = false;
-            AI4bl2_typeCombo.SelectedItem = NTC; AI4bl2_typeCombo.Enabled = false;
-            AI5bl2_typeCombo.SelectedItem = NTC; AI5bl2_typeCombo.Enabled = false;
-            AI6bl2_typeCombo.SelectedItem = NTC; AI6bl2_typeCombo.Enabled = false;
-            // Типы AI сигналов, блок расширения 3
-            AI1bl3_typeCombo.SelectedItem = NTC; AI1bl3_typeCombo.Enabled = false;
-            AI2bl3_typeCombo.SelectedItem = NTC; AI2bl3_typeCombo.Enabled = false;
-            AI3bl3_typeCombo.SelectedItem = NTC; AI3bl3_typeCombo.Enabled = false;
-            AI4bl3_typeCombo.SelectedItem = NTC; AI4bl3_typeCombo.Enabled = false;
-            AI5bl3_typeCombo.SelectedItem = NTC; AI5bl3_typeCombo.Enabled = false;
-            AI6bl3_typeCombo.SelectedItem = NTC; AI6bl3_typeCombo.Enabled = false;
+            var combo_elements = new List<ComboBox>()
+            {
+                AI1_combo, AI2_combo, AI3_combo, AI4_combo, AI5_combo, AI6_combo,
+                AI1bl1_combo, AI2bl1_combo, AI3bl1_combo, AI4bl1_combo, AI5bl1_combo, AI6bl1_combo,
+                AI1bl2_combo, AI2bl2_combo, AI3bl2_combo, AI4bl2_combo, AI5bl2_combo, AI6bl2_combo,
+                AI1bl3_combo, AI2bl3_combo, AI3bl3_combo, AI4bl3_combo, AI5bl3_combo, AI6bl3_combo,
+                DI1_combo, DI2_combo, DI3_combo, DI4_combo, DI5_combo,
+                DI1bl1_combo, DI2bl1_combo, DI3bl1_combo, DI4bl1_combo, DI5bl1_combo,
+                DI1bl2_combo, DI2bl2_combo, DI3bl2_combo, DI4bl2_combo, DI5bl2_combo,
+                DI1bl3_combo, DI2bl3_combo, DI3bl3_combo, DI4bl3_combo, DI5bl3_combo,
+                AO1_combo, AO2_combo, AO3_combo, AO1bl1_combo, AO2bl1_combo, AO3bl1_combo,
+                AO1bl2_combo, AO2bl2_combo, AO3bl2_combo, AO1bl3_combo, AO2bl3_combo, AO3bl3_combo,
+                DO1_combo, DO2_combo, DO3_combo, DO4_combo, DO5_combo, DO6_combo, DO7_combo,
+                DO1bl1_combo, DO2bl1_combo, DO3bl1_combo, DO4bl1_combo, DO5bl1_combo, DO6bl1_combo, DO7bl1_combo,
+                DO1bl2_combo, DO2bl2_combo, DO3bl2_combo, DO4bl2_combo, DO5bl2_combo, DO6bl2_combo, DO7bl2_combo,
+                DO1bl3_combo, DO2bl3_combo, DO3bl3_combo, DO4bl3_combo, DO5bl3_combo, DO6bl3_combo, DO7bl3_combo
+            };
+
+            foreach (var el in combo_elements) el.SelectedItem = NOT_SELECTED;
+
+            var ai_typeCombos = new List<ComboBox>()
+            {
+                AI1_typeCombo, AI2_typeCombo, AI3_typeCombo, AI4_typeCombo, AI5_typeCombo, AI6_typeCombo,
+                AI1bl1_typeCombo, AI2bl1_typeCombo, AI3bl1_typeCombo, AI4bl1_typeCombo, AI5bl1_typeCombo, AI6bl1_typeCombo,
+                AI1bl2_typeCombo, AI2bl2_typeCombo, AI3bl2_typeCombo, AI4bl2_typeCombo, AI5bl2_typeCombo, AI6bl2_typeCombo,
+                AI1bl3_typeCombo, AI2bl3_typeCombo, AI3bl3_typeCombo, AI4bl3_typeCombo, AI5bl3_typeCombo, AI6bl3_typeCombo
+            };
+
+            foreach (var el in ai_typeCombos)
+            {
+                el.SelectedItem = NTC; el.Enabled = false;
+            }
         }
 
         ///<summary>Проверка распределения сигналов</summary>
@@ -308,1474 +234,242 @@ namespace Moderon
             {
                 signalsReadyLabel.Text = "Карта входов/выходов сформирована";
                 signalsReadyLabel.ForeColor = Color.Green;
-                loadPLC_SignalsButton.Show(); // Кнопка "Далее"
-                loadToExl.Show(); // Кнопка экспорта таблицы сигналов в Excel
-                saveSpecToolStripMenuItem.Enabled = true; // Возможность сохранить спецификацию
+                loadPLC_SignalsButton.Show();                       // Кнопка "Далее"
+                loadToExl.Show();                                   // Кнопка экспорта таблицы сигналов в Excel
+                saveSpecToolStripMenuItem.Enabled = true;           // Возможность сохранить спецификацию
             } 
             else // Сигналы не распределены
             {
                 signalsReadyLabel.Text = "Карта входов/выходов некорректна";
                 signalsReadyLabel.ForeColor = Color.Red;
-                loadPLC_SignalsButton.Hide(); // Кнопка "Далее"
-                loadToExl.Hide(); // Скрытие кнопки экспорта таблицы сигналов в Excel
-                saveSpecToolStripMenuItem.Enabled = false; // Невозможность сохранить спецификацию
+                loadPLC_SignalsButton.Hide();                       // Кнопка "Далее"
+                loadToExl.Hide();                                   // Скрытие кнопки экспорта таблицы сигналов в Excel
+                saveSpecToolStripMenuItem.Enabled = false;          // Невозможность сохранить спецификацию
             }
         }
 
-        ///<summary>Изменили DO1 comboBox</summary> 
-        private void DO1_combo_SelectedIndexChanged(object sender, EventArgs e)
+        ///<summary>Метод для изменения DO comboBox</summary>
+        private void DO_combo_SelectedIndexChanged(ComboBox comboBox, ref int combo_index, ref string combo_text, Label label)
         {
-            if (ignoreEvents) return;
+            if (ignoreEvents) return;                                   // Выход при активном параметре игнорирования событий
             string name = "";
             Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO1_combo.SelectedIndex == DO1combo_index) return; // Индекс не поменялся
-            if (DO1_combo.SelectedIndex == 0) // Выбрали "не выбрано"
+            if (subDOcondition) return;                                 // Выход при режиме вычета сигналов DO
+            if (comboBox.SelectedIndex == combo_index) return;          // Индекс не поменялся
+            if (comboBox.SelectedIndex == 0)                            // Выбрали "Не выбрано"
             {
-                if (DO1_combo.Items.Count > 1)  // Больше одного элемента в списке
+                if (comboBox.Items.Count > 1)                           // Больше одного элемента в списке
                 {
-                    do_find = list_do.Find(x => x.Name == DO1combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO1combo_text)); // Удаление из списка
-                    if (showCode) DO1_lab.Text = "";
+                    string nameFind = combo_text;
+                    do_find = list_do.Find(x => x.Name == nameFind);
+                    list_do.Remove(do_find);
+                    if (showCode) label.Text = "";
                 }
-                if (do_find != null) // Найден элемент
+                if (do_find != null)                                    // Найден элемент
                 {
-                    do_find.Dispose(); // Освобождение сигнала для распределенния
-                    list_do.Add(do_find); // Добавление с новым значением
+                    do_find.Dispose();                                  // Освобождение сигнала для распределения
+                    list_do.Add(do_find);                               // Добавление с новым значением
                 }
-                if (!initialComboSignals) AddtoCombosDO(DO1combo_text, DO1_combo); // Добавление к другим DO
-            } 
-            else // Выбран сигнал DO
+                if (!initialComboSignals)                               // Добавление к другим сигналам DO
+                    AddtoCombosDO(combo_text, comboBox);
+            }
+            else                                                        // Выбран сигнал DO
             {
-                name = string.Concat(DO1_combo.SelectedItem);
+                name = string.Concat(comboBox.SelectedItem);
                 do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name)); // Удаление из списка
+                list_do.Remove(do_find);                                // Удаление из списка
                 if (do_find != null)
                 {
                     do_find.Select();
                     list_do.Add(do_find);
-                    if (showCode) DO1_lab.Text = do_find.Code.ToString();
+                    if (showCode) label.Text = do_find.Code.ToString();
                 }
-                if (!initialComboSignals) // Если не начальная расстановка
+                if (!initialComboSignals)                               // Если не начальная расстановка
                 {
-                    SubFromCombosDO(name, DO1_combo); // Удаление из других DO
-                    do_find = list_do.Find(x => x.Name == DO1combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO1combo_text));
+                    SubFromCombosDO(name, comboBox);                    // Удаление из других DO
+                    string nameFind = combo_text;
+                    do_find = list_do.Find(x => x.Name == nameFind);
+                    list_do.Remove(do_find);
                     if (do_find != null)
                     {
                         do_find.Dispose();
                         list_do.Add(do_find);
                     }
-                    AddtoCombosDO(DO1combo_text, DO1_combo); // Добавление к другим DO
+                    AddtoCombosDO(combo_text, comboBox);                // Добавление к другим DO
                 }
             }
-            DO1combo_text = DO1_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO1combo_index = DO1_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            combo_text = comboBox.SelectedItem.ToString();              // Сохранение названия выбранного элемента
+            combo_index = comboBox.SelectedIndex;                       // Сохранение индекса выбранного элемента
+            CheckSignalsReady();                                        // Проверка распределения сигналов
+        }
+
+
+        ///<summary>Изменили DO1 comboBox</summary> 
+        private void DO1_combo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DO_combo_SelectedIndexChanged(DO1_combo, ref DO1combo_index, ref DO1combo_text, DO1_lab);
         }
 
         ///<summary>Изменили DO2 comboBox</summary> 
         private void DO2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO2_combo.SelectedIndex == DO2combo_index) return; // Индекс не поменялся
-            if (DO2_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO2_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO2combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO2combo_text));
-                    if (showCode) DO2_lab.Text = "";
-                }
-                if (do_find != null)
-                {
-                    do_find.Dispose();
-                    list_do.Add(do_find);
-                }
-                if (!initialComboSignals) AddtoCombosDO(DO2combo_text, DO2_combo);
-            } 
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO2_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name)); // Удаление из списка
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO2_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO2_combo); // Удаление из других DO
-                    do_find = list_do.Find(x => x.Name == DO2combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO2combo_text)); // Удаление из списка
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO2combo_text, DO2_combo); // Добавление к другим DO
-                }
-            }
-            DO2combo_text = DO2_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO2combo_index = DO2_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO2_combo, ref DO2combo_index, ref DO2combo_text, DO2_lab);
         }
 
         ///<summary>Изменили DO3 comboBox</summary> 
         private void DO3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO3_combo.SelectedIndex == DO3combo_index) return; // Индекс не поменялся
-            if (DO3_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO3_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO3combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO3combo_text));
-                    if (showCode) DO3_lab.Text = "";
-                }
-                if (do_find != null)
-                {
-                    do_find.Dispose();
-                    list_do.Add(do_find);
-                }
-                if (!initialComboSignals) AddtoCombosDO(DO3combo_text, DO3_combo);
-            }
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO3_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name)); // Удаление из списка
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO3_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO3_combo); // Удаление из других DO
-                    do_find = list_do.Find(x => x.Name == DO3combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO3combo_text)); // Удаление из списка
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO3combo_text, DO3_combo); // Добавление к другим DO
-                }
-            }
-            DO3combo_text = DO3_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO3combo_index = DO3_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO3_combo, ref DO3combo_index, ref DO3combo_text, DO3_lab);
         }
 
         ///<summary>Изменили DO4 comboBox</summary> 
         private void DO4_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO4_combo.SelectedIndex == DO4combo_index) return; // Индекс не поменялся
-            if (DO4_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO4_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO4combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO4combo_text));
-                    if (showCode) DO4_lab.Text = "";
-                }
-                if (do_find != null)
-                {
-                    do_find.Dispose();
-                    list_do.Add(do_find);
-                }
-                if (!initialComboSignals) AddtoCombosDO(DO4combo_text, DO4_combo);
-            }
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO4_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name)); // Удаление из списка
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO4_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO4_combo); // Удаление из других DO
-                    do_find = list_do.Find(x => x.Name == DO4combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO4combo_text)); // Удаление из списка
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO4combo_text, DO4_combo); // Добавление к другим DO
-                }
-            }
-            DO4combo_text = DO4_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO4combo_index = DO4_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO4_combo, ref DO4combo_index, ref DO4combo_text, DO4_lab);
         }
 
         ///<summary>Изменили DO5 comboBox</summary> 
         private void DO5_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO5_combo.SelectedIndex == DO5combo_index) return; // Индекс не поменялся
-            if (DO5_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO5_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO5combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO5combo_text));
-                    if (showCode) DO5_lab.Text = "";
-                }
-                if (do_find != null)
-                {
-                    do_find.Dispose();
-                    list_do.Add(do_find);
-                }
-                if (!initialComboSignals) AddtoCombosDO(DO5combo_text, DO5_combo);
-            }
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO5_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name)); // Удаление из списка
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO5_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO5_combo); // Удаление из других DO
-                    do_find = list_do.Find(x => x.Name == DO5combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO5combo_text)); // Удаление из списка
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO5combo_text, DO5_combo); // Добавление к другим DOs
-                }
-            }
-            DO5combo_text = DO5_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO5combo_index = DO5_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO5_combo, ref DO5combo_index, ref DO5combo_text, DO5_lab);
         }
 
         ///<summary>Изменили DO6 comboBox</summary> 
         private void DO6_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO6_combo.SelectedIndex == DO6combo_index) return; // Индекс не поменялся
-            if (DO6_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO6_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO6combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO6combo_text));
-                    if (showCode) DO6_lab.Text = "";
-                }
-                if (do_find != null)
-                {
-                    do_find.Dispose();
-                    list_do.Add(do_find);
-                }
-                if (!initialComboSignals) AddtoCombosDO(DO6combo_text, DO6_combo);
-            }
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO6_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name)); // Удаление из списка
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO6_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO6_combo); // Удаление из других DO
-                    do_find = list_do.Find(x => x.Name == DO6combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO6combo_text)); // Удаление из списка
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO6combo_text, DO6_combo); // Добавление к остальным DO
-                }
-            }
-            DO6combo_text = DO6_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO6combo_index = DO6_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO6_combo, ref DO6combo_index, ref DO6combo_text, DO6_lab);
         }
 
         ///<summary>Изменили DO7 comboBox</summary> 
         private void DO7_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO7_combo.SelectedIndex == DO7combo_index) return; // Индекс не поменялся
-            if (DO7_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO7_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO7combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO7combo_text));
-                    if (showCode) DO7_lab.Text = "";
-                }
-                if (do_find != null)
-                {
-                    do_find.Dispose();
-                    list_do.Add(do_find);
-                }
-                if (!initialComboSignals) AddtoCombosDO(DO7combo_text, DO7_combo);
-            }
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO7_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name)); // Удаление из списка
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO7_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO7_combo); // Удаление из других DO
-                    do_find = list_do.Find(x => x.Name == DO7combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO7combo_text)); // Удаление из списка
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO7combo_text, DO7_combo); // Добавление к другим DO
-                }
-            }
-            DO7combo_text = DO7_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO7combo_index = DO7_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO7_combo, ref DO7combo_index, ref DO7combo_text, DO7_lab);
         }
 
         ///<summary>Изменили DO1 блока расширения 1 comboBox</summary>
         private void DO1bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO1bl1_combo.SelectedIndex == DO1bl1combo_index) return; // Индекс не поменялся
-            if (DO1bl1_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO1bl1_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO1bl1combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO1bl1combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                        if (showCode) DO1bl1_lab.Text = "";
-                    }
-                    if (!initialComboSignals) AddtoCombosDO(DO1bl1combo_text, DO1bl1_combo);
-                }
-            }
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO1bl1_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name));
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO1bl1_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO1bl1_combo); // Удаление из других comboBox
-                    do_find = list_do.Find(x => x.Name == DO1bl1combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO1bl1combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO1bl1combo_text, DO1bl1_combo); // Добавление к другим DO
-                }
-            }
-            DO1bl1combo_text = DO1bl1_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO1bl1combo_index = DO1bl1_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO1bl1_combo, ref DO1bl1combo_index, ref DO1bl1combo_text, DO1bl1_lab);
         }
 
         ///<summary>Изменили DO2 блока расширения 1 comboBox</summary>
         private void DO2bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO2bl1_combo.SelectedIndex == DO2bl1combo_index) return; // Индекс не поменялся
-            if (DO2bl1_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO2bl1_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO2bl1combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO2bl1combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                        if (showCode) DO2bl1_lab.Text = "";
-                    }
-                    if (!initialComboSignals) AddtoCombosDO(DO2bl1combo_text, DO2bl1_combo);
-                }
-            }
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO2bl1_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name));
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO2bl1_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO2bl1_combo); // Удаление из других comboBox
-                    do_find = list_do.Find(x => x.Name == DO2bl1combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO2bl1combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO2bl1combo_text, DO2bl1_combo); // Добавление к другим DO
-                }
-            }
-            DO2bl1combo_text = DO2bl1_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO2bl1combo_index = DO2bl1_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO2bl1_combo, ref DO2bl1combo_index, ref DO2bl1combo_text, DO2bl1_lab);
         }
 
         ///<summary>Изменили DO3 блока расширения 1 comboBox</summary>
         private void DO3bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO3bl1_combo.SelectedIndex == DO3bl1combo_index) return; // Индекс не поменялся
-            if (DO3bl1_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO3bl1_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO3bl1combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO3bl1combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                        if (showCode) DO3bl1_lab.Text = "";
-                    }
-                    if (!initialComboSignals) AddtoCombosDO(DO3bl1combo_text, DO3bl1_combo);
-                }
-            }
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO3bl1_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name));
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO3bl1_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO3bl1_combo); // Удаление из других comboBox
-                    do_find = list_do.Find(x => x.Name == DO3bl1combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO3bl1combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO3bl1combo_text, DO3bl1_combo); // Добавление к другим DO
-                }
-            }
-            DO3bl1combo_text = DO3bl1_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO3bl1combo_index = DO3bl1_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO3bl1_combo, ref DO3bl1combo_index, ref DO3bl1combo_text, DO3bl1_lab);
         }
 
         ///<summary>Изменили DO4 блока расширения 1 comboBox</summary>
         private void DO4bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO4bl1_combo.SelectedIndex == DO4bl1combo_index) return; // Индекс не поменялся
-            if (DO4bl1_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO4bl1_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO4bl1combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO4bl1combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                        if (showCode) DO4bl1_lab.Text = "";
-                    }
-                    if (!initialComboSignals) AddtoCombosDO(DO4bl1combo_text, DO4bl1_combo);
-                }
-            }
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO4bl1_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name));
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO4bl1_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO4bl1_combo); // Удаление из других comboBox
-                    do_find = list_do.Find(x => x.Name == DO4bl1combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO4bl1combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO4bl1combo_text, DO4bl1_combo); // Добавление к другим DO
-                }
-            }
-            DO4bl1combo_text = DO4bl1_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO4bl1combo_index = DO4bl1_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO4bl1_combo, ref DO4bl1combo_index, ref DO4bl1combo_text, DO4bl1_lab);
         }
 
         ///<summary>Изменили DO5 блока расширения 1 comboBox</summary>
         private void DO5bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO5bl1_combo.SelectedIndex == DO5bl1combo_index) return; // Индекс не поменялся
-            if (DO5bl1_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO5bl1_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO5bl1combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO5bl1combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                        if (showCode) DO5bl1_lab.Text = "";
-                    }
-                    if (!initialComboSignals) AddtoCombosDO(DO5bl1combo_text, DO5bl1_combo);
-                }
-            }
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO5bl1_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name));
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO5bl1_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO5bl1_combo); // Удаление из других comboBox
-                    do_find = list_do.Find(x => x.Name == DO5bl1combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO5bl1combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO5bl1combo_text, DO5bl1_combo); // Добавление к другим DO
-                }
-            }
-            DO5bl1combo_text = DO5bl1_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO5bl1combo_index = DO5bl1_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO5bl1_combo, ref DO5bl1combo_index, ref DO5bl1combo_text, DO5bl1_lab);
         }
 
         ///<summary>Изменили DO6 блока расширения 1 comboBox</summary>
         private void DO6bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO6bl1_combo.SelectedIndex == DO6bl1combo_index) return; // Индекс не поменялся
-            if (DO6bl1_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO6bl1_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO6bl1combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO6bl1combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                        if (showCode) DO6bl1_lab.Text = "";
-                    }
-                    if (!initialComboSignals) AddtoCombosDO(DO6bl1combo_text, DO6bl1_combo);
-                }
-            }
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO6bl1_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name));
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO6bl1_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO6bl1_combo); // Удаление из других comboBox
-                    do_find = list_do.Find(x => x.Name == DO6bl1combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO6bl1combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO6bl1combo_text, DO6bl1_combo); // Добавление к другим DO
-                }
-            }
-            DO6bl1combo_text = DO6bl1_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO6bl1combo_index = DO6bl1_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO6bl1_combo, ref DO6bl1combo_index, ref DO6bl1combo_text, DO6bl1_lab);
         }
 
         ///<summary>Изменили DO7 блока расширения 1 comboBox</summary>
         private void DO7bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO7bl1_combo.SelectedIndex == DO7bl1combo_index) return; // Индекс не поменялся
-            if (DO7bl1_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO7bl1_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO7bl1combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO7bl1combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                        if (showCode) DO7bl1_lab.Text = "";
-                    }
-                    if (!initialComboSignals) AddtoCombosDO(DO7bl1combo_text, DO7bl1_combo);
-                }
-            }
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO7bl1_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name));
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO7bl1_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO7bl1_combo); // Удаление из других comboBox
-                    do_find = list_do.Find(x => x.Name == DO7bl1combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO7bl1combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO7bl1combo_text, DO7bl1_combo); // Добавление к другим DO
-                }
-            }
-            DO7bl1combo_text = DO7bl1_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO7bl1combo_index = DO7bl1_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO7bl1_combo, ref DO7bl1combo_index, ref DO7bl1combo_text, DO7bl1_lab);
         }
 
         ///<summary>Изменили DO1 блока расширения 2 comboBox</summary>
         private void DO1bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO1bl2_combo.SelectedIndex == DO1bl2combo_index) return; // Индекс не поменялся
-            if (DO1bl2_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO1bl2_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO1bl2combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO1bl2combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                        if (showCode) DO1bl2_lab.Text = "";
-                    }
-                    if (!initialComboSignals) AddtoCombosDO(DO1bl2combo_text, DO1bl2_combo);
-                }
-            }
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO1bl2_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name));
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO1bl2_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO1bl2_combo); // Удаление из других comboBox
-                    do_find = list_do.Find(x => x.Name == DO1bl2combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO1bl2combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO1bl2combo_text, DO1bl2_combo); // Добавление к другим DO
-                }
-            }
-            DO1bl2combo_text = DO1bl2_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO1bl2combo_index = DO1bl2_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO1bl2_combo, ref DO1bl2combo_index, ref DO1bl2combo_text, DO1bl2_lab);
         }
 
         ///<summary>Изменили DO2 блока расширения 2 comboBox</summary>
         private void DO2bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO2bl2_combo.SelectedIndex == DO2bl2combo_index) return; // Индекс не поменялся
-            if (DO2bl2_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO2bl2_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO2bl2combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO2bl2combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                        if (showCode) DO2bl2_lab.Text = "";
-                    }
-                    if (!initialComboSignals) AddtoCombosDO(DO2bl2combo_text, DO2bl2_combo);
-                }
-            }
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO2bl2_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name));
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO2bl2_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO2bl2_combo); // Удаление из других comboBox
-                    do_find = list_do.Find(x => x.Name == DO2bl2combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO2bl2combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO2bl2combo_text, DO2bl2_combo); // Добавление к другим DO
-                }
-            }
-            DO2bl2combo_text = DO2bl2_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO2bl2combo_index = DO2bl2_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO2bl2_combo, ref DO2bl2combo_index, ref DO2bl2combo_text, DO2bl2_lab);
         }
 
         ///<summary>Изменили DO3 блока расширения 2 comboBox</summary>
         private void DO3bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO3bl2_combo.SelectedIndex == DO3bl2combo_index) return; // Индекс не поменялся
-            if (DO3bl2_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO3bl2_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO3bl2combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO3bl2combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                        if (showCode) DO3bl2_lab.Text = "";
-                    }
-                    if (!initialComboSignals) AddtoCombosDO(DO3bl2combo_text, DO3bl2_combo);
-                }
-            }
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO3bl2_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name));
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO3bl2_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO3bl2_combo); // Удаление из других comboBox
-                    do_find = list_do.Find(x => x.Name == DO3bl2combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO3bl2combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO3bl2combo_text, DO3bl2_combo); // Добавление к другим DO
-                }
-            }
-            DO3bl2combo_text = DO3bl2_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO3bl2combo_index = DO3bl2_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO3bl2_combo, ref DO3bl2combo_index, ref DO3bl2combo_text, DO3bl2_lab);
         }
 
         ///<summary>Изменили DO4 блока расширения 2 comboBox</summary>
         private void DO4bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO4bl2_combo.SelectedIndex == DO4bl2combo_index) return; // Индекс не поменялся
-            if (DO4bl2_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO4bl2_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO4bl2combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO4bl2combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                        if (showCode) DO4bl2_lab.Text = "";
-                    }
-                    if (!initialComboSignals) AddtoCombosDO(DO4bl2combo_text, DO4bl2_combo);
-                }
-            }
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO4bl2_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name));
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO4bl2_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO4bl2_combo); // Удаление из других comboBox
-                    do_find = list_do.Find(x => x.Name == DO4bl2combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO4bl2combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO4bl2combo_text, DO4bl2_combo); // Добавление к другим DO
-                }
-            }
-            DO4bl2combo_text = DO4bl2_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO4bl2combo_index = DO4bl2_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO4bl2_combo, ref DO4bl2combo_index, ref DO4bl2combo_text, DO4bl2_lab);
         }
 
         ///<summary>Изменили DO5 блока расширения 2 comboBox</summary>
         private void DO5bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO5bl2_combo.SelectedIndex == DO5bl2combo_index) return; // Индекс не поменялся
-            if (DO5bl2_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO5bl2_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO5bl2combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO5bl2combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                        if (showCode) DO5bl2_lab.Text = "";
-                    }
-                    if (!initialComboSignals) AddtoCombosDO(DO5bl2combo_text, DO5bl2_combo);
-                }
-            }
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO5bl2_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name));
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO5bl2_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO5bl2_combo); // Удаление из других comboBox
-                    do_find = list_do.Find(x => x.Name == DO5bl2combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO5bl2combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO5bl2combo_text, DO5bl2_combo); // Добавление к другим DO
-                }
-            }
-            DO5bl2combo_text = DO5bl2_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO5bl2combo_index = DO5bl2_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO5bl2_combo, ref DO5bl2combo_index, ref DO5bl2combo_text, DO5bl2_lab);
         }
 
         ///<summary>Изменили DO6 блока расширения 2 comboBox</summary>
         private void DO6bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO6bl2_combo.SelectedIndex == DO6bl2combo_index) return; // Индекс не поменялся
-            if (DO6bl2_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO6bl2_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO6bl2combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO6bl2combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                        if (showCode) DO6bl2_lab.Text = "";
-                    }
-                    if (!initialComboSignals) AddtoCombosDO(DO6bl2combo_text, DO6bl2_combo);
-                }
-            }
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO6bl2_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name));
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO6bl2_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO6bl2_combo); // Удаление из других comboBox
-                    do_find = list_do.Find(x => x.Name == DO6bl2combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO6bl2combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO6bl2combo_text, DO6bl2_combo); // Добавление к другим DO
-                }
-            }
-            DO6bl2combo_text = DO6bl2_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO6bl2combo_index = DO6bl2_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO6bl2_combo, ref DO6bl2combo_index, ref DO6bl2combo_text, DO6bl2_lab);
         }
 
         ///<summary>Изменили DO7 блока расширения 2 comboBox</summary>
         private void DO7bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO7bl2_combo.SelectedIndex == DO7bl2combo_index) return; // Индекс не поменялся
-            if (DO7bl2_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO7bl2_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO7bl2combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO7bl2combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                        if (showCode) DO7bl2_lab.Text = "";
-                    }
-                    if (!initialComboSignals) AddtoCombosDO(DO7bl2combo_text, DO7bl2_combo);
-                }
-            }
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO7bl2_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name));
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO7bl2_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO7bl2_combo); // Удаление из других comboBox
-                    do_find = list_do.Find(x => x.Name == DO7bl2combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO7bl2combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO7bl2combo_text, DO7bl2_combo); // Добавление к другим DO
-                }
-            }
-            DO7bl2combo_text = DO7bl2_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO7bl2combo_index = DO7bl2_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO7bl2_combo, ref DO7bl2combo_index, ref DO7bl2combo_text, DO7bl2_lab);
         }
 
         ///<summary>Изменили DO1 блока расширения 3 comboBox</summary>
         private void DO1bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO1bl3_combo.SelectedIndex == DO1bl3combo_index) return; // Индекс не поменялся
-            if (DO1bl3_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO1bl3_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO1bl3combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO1bl3combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                        if (showCode) DO1bl3_lab.Text = "";
-                    }
-                    if (!initialComboSignals) AddtoCombosDO(DO1bl3combo_text, DO1bl3_combo);
-                }
-            }
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO1bl3_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name));
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO1bl3_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO1bl3_combo); // Удаление из других comboBox
-                    do_find = list_do.Find(x => x.Name == DO1bl3combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO1bl3combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO1bl3combo_text, DO1bl3_combo); // Добавление к другим DO
-                }
-            }
-            DO1bl3combo_text = DO1bl3_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO1bl3combo_index = DO1bl3_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO1bl3_combo, ref DO1bl3combo_index, ref DO1bl3combo_text, DO1bl3_lab);
         }
 
         ///<summary>Изменили DO2 блока расширения 3 comboBox</summary>
         private void DO2bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO2bl3_combo.SelectedIndex == DO2bl3combo_index) return; // Индекс не поменялся
-            if (DO2bl3_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO2bl3_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO2bl3combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO2bl3combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                        if (showCode) DO2bl3_lab.Text = "";
-                    }
-                    if (!initialComboSignals) AddtoCombosDO(DO2bl3combo_text, DO2bl3_combo);
-                }
-            }
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO2bl3_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name));
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO2bl3_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO2bl3_combo); // Удаление из других comboBox
-                    do_find = list_do.Find(x => x.Name == DO2bl3combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO2bl3combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO2bl3combo_text, DO2bl3_combo); // Добавление к другим DO
-                }
-            }
-            DO2bl3combo_text = DO2bl3_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO2bl3combo_index = DO2bl3_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO2bl3_combo, ref DO2bl3combo_index, ref DO2bl3combo_text, DO2bl3_lab);
         }
 
         ///<summary>Изменили DO3 блока расширения 3 comboBox</summary>
         private void DO3bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO3bl3_combo.SelectedIndex == DO3bl3combo_index) return; // Индекс не поменялся
-            if (DO3bl3_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO3bl3_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO3bl3combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO3bl3combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                        if (showCode) DO3bl3_lab.Text = "";
-                    }
-                    if (!initialComboSignals) AddtoCombosDO(DO3bl3combo_text, DO3bl3_combo);
-                }
-            }
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO3bl3_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name));
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO3bl3_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO3bl3_combo); // Удаление из других comboBox
-                    do_find = list_do.Find(x => x.Name == DO3bl3combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO3bl3combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO3bl3combo_text, DO3bl3_combo); // Добавление к другим DO
-                }
-            }
-            DO3bl3combo_text = DO3bl3_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO3bl3combo_index = DO3bl3_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO3bl3_combo, ref DO3bl3combo_index, ref DO3bl3combo_text, DO3bl3_lab);
         }
 
         ///<summary>Изменили DO4 блока расширения 3 comboBox</summary>
         private void DO4bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO4bl3_combo.SelectedIndex == DO4bl3combo_index) return; // Индекс не поменялся
-            if (DO4bl3_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO4bl3_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO4bl3combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO4bl3combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                        if (showCode) DO4bl3_lab.Text = "";
-                    }
-                    if (!initialComboSignals) AddtoCombosDO(DO4bl3combo_text, DO4bl3_combo);
-                }
-            }
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO4bl3_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name));
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO4bl3_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO4bl3_combo); // Удаление из других comboBox
-                    do_find = list_do.Find(x => x.Name == DO4bl3combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO4bl3combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO4bl3combo_text, DO4bl3_combo); // Добавление к другим DO
-                }
-            }
-            DO4bl3combo_text = DO4bl3_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO4bl3combo_index = DO4bl3_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO4bl3_combo, ref DO4bl3combo_index, ref DO4bl3combo_text, DO4bl3_lab);
         }
 
         ///<summary>Изменили DO5 блока расширения 3 comboBox</summary>
         private void DO5bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO5bl3_combo.SelectedIndex == DO5bl3combo_index) return; // Индекс не поменялся
-            if (DO5bl3_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO5bl3_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO5bl3combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO5bl3combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                        if (showCode) DO5bl3_lab.Text = "";
-                    }
-                    if (!initialComboSignals) AddtoCombosDO(DO5bl3combo_text, DO5bl3_combo);
-                }
-            }
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO5bl3_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name));
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO5bl3_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO5bl3_combo); // Удаление из других comboBox
-                    do_find = list_do.Find(x => x.Name == DO5bl3combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO5bl3combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO5bl3combo_text, DO5bl3_combo); // Добавление к другим DO
-                }
-            }
-            DO5bl3combo_text = DO5bl3_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO5bl3combo_index = DO5bl3_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO5bl3_combo, ref DO5bl3combo_index, ref DO5bl3combo_text, DO5bl3_lab);
         }
 
         ///<summary>Изменили DO6 блока расширения 3 comboBox</summary>
         private void DO6bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO6bl3_combo.SelectedIndex == DO6bl3combo_index) return; // Индекс не поменялся
-            if (DO6bl3_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO6bl3_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO6bl3combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO6bl3combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                        if (showCode) DO6bl3_lab.Text = "";
-                    }
-                    if (!initialComboSignals) AddtoCombosDO(DO6bl3combo_text, DO6bl3_combo);
-                }
-            }
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO6bl3_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name));
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO6bl3_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO6bl3_combo); // Удаление из других comboBox
-                    do_find = list_do.Find(x => x.Name == DO6bl3combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO6bl3combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO6bl3combo_text, DO6bl3_combo); // Добавление к другим DO
-                }
-            }
-            DO6bl3combo_text = DO6bl3_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO6bl3combo_index = DO6bl3_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO6bl3_combo, ref DO6bl3combo_index, ref DO6bl3combo_text, DO6bl3_lab);
         }
 
         ///<summary>Изменили DO7 блока расширения 3 comboBox</summary>
         private void DO7bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ignoreEvents) return;
-            string name = "";
-            Do do_find = null;
-            if (subDOcondition) return; // Переход из вычета сигналов DO
-            if (DO7bl3_combo.SelectedIndex == DO7bl3combo_index) return; // Индекс не поменялся
-            if (DO7bl3_combo.SelectedIndex == 0) // Выбрали "не выбрано"
-            {
-                if (DO7bl3_combo.Items.Count > 1) // Больше одного элемента
-                {
-                    do_find = list_do.Find(x => x.Name == DO7bl3combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO7bl3combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                        if (showCode) DO7bl3_lab.Text = "";
-                    }
-                    if (!initialComboSignals) AddtoCombosDO(DO7bl3combo_text, DO7bl3_combo);
-                }
-            }
-            else // Выбран сигнал DO
-            {
-                name = string.Concat(DO7bl3_combo.SelectedItem);
-                do_find = list_do.Find(x => x.Name == name);
-                list_do.Remove(list_do.Find(x => x.Name == name));
-                if (do_find != null)
-                {
-                    do_find.Select();
-                    list_do.Add(do_find);
-                    if (showCode) DO7bl3_lab.Text = do_find.Code.ToString();
-                }
-                if (!initialComboSignals) // Если не начальная расстановка
-                {
-                    SubFromCombosDO(name, DO7bl3_combo); // Удаление из других comboBox
-                    do_find = list_do.Find(x => x.Name == DO7bl3combo_text);
-                    list_do.Remove(list_do.Find(x => x.Name == DO7bl3combo_text));
-                    if (do_find != null)
-                    {
-                        do_find.Dispose();
-                        list_do.Add(do_find);
-                    }
-                    AddtoCombosDO(DO7bl3combo_text, DO7bl3_combo); // Добавление к другим DO
-                }
-            }
-            DO7bl3combo_text = DO7bl3_combo.SelectedItem.ToString(); // Сохранение выбора в переменной
-            DO7bl3combo_index = DO7bl3_combo.SelectedIndex; // Сохранение индекса
-            CheckSignalsReady(); // Проверка распределения сигналов
+            DO_combo_SelectedIndexChanged(DO7bl3_combo, ref DO7bl3combo_index, ref DO7bl3combo_text, DO7bl3_lab);
         }
 
         ///<summary>Добавление освободившегося DO к остальным comboBox</summary> 
@@ -3212,6 +1906,8 @@ namespace Moderon
             list_do.Remove(findDo); // Удаление сигнала из списка DO
             CheckSignalsReady(); // Проверка распределения сигналов
         }
+
+        /*** ВЫБОР ЭЛЕМЕНТОВ ***/
 
         /// <summary>Выбрали приточную заслонку</summary>
         private void DampCheck_signalsDOCheckedChanged(object sender, EventArgs e)

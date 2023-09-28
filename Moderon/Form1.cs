@@ -14,7 +14,7 @@ namespace Moderon
         private const int HEIGHT = 280;                                 // Высота для панелей настройки элементов
         private Point MENU_POSITION = new Point(3, 36);                 // Позиция для меню элементов
         private Point PANEL_POSITION = new Point(15, 90);               // Позиция для остальных панелей
-        readonly private bool showCode = true;                          // Код сигнала отображается по умолчанию
+        readonly private bool showCode = true;                          // Код сигнала отображается по умолчанию в таблице сигналов
         
         private bool 
             hintEnabled = true,                                         // Отображение подсказок выбрано по умолчанию
@@ -480,6 +480,7 @@ namespace Moderon
             outFanPanel.Hide();                             // Скрытие панели вытяжного вентилятора
             SelectComboBoxesInitial();                      // Возврат к изначальным значения выбора
             ResetElementsOptions();                         // Сброс настроек для элементов
+            ResetSignalsLists();                            // Очистка массивов сигналов
             ResetButton_signalsDOClick(this, e);            // Сброс сигналов ПЛК, DO
             ResetButton_signalsAOClick(this, e);            // Сброс сигналов ПЛК, AO
             ResetButton_signalsDIClick(this, e);            // Сброс сигналов ПЛК, DI

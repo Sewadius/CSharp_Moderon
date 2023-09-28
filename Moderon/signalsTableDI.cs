@@ -41,6 +41,8 @@ namespace Moderon
             DI1bl2combo_index, DI2bl2combo_index, DI3bl2combo_index, DI4bl2combo_index, DI5bl2combo_index,
             DI1bl3combo_index, DI2bl3combo_index, DI3bl3combo_index, DI4bl3combo_index, DI5bl3combo_index;
 
+
+
         ///<summary>Начальная установка для сигналов DI таблицы сигналов</summary> 
         public void Set_DIComboTextIndex()
         {
@@ -70,72 +72,105 @@ namespace Moderon
         ///<summary>Сброс выбора сигналов DI comboBox</summary>
         private void ResetButton_signalsDIClick(object sender, EventArgs e)
         {
-            // Очистка comboBox ПЛК
-            DI1_combo.Items.Clear(); DI1_combo.Items.Add(NOT_SELECTED);
-            DI2_combo.Items.Clear(); DI2_combo.Items.Add(NOT_SELECTED);
-            DI3_combo.Items.Clear(); DI3_combo.Items.Add(NOT_SELECTED);
-            DI4_combo.Items.Clear(); DI4_combo.Items.Add(NOT_SELECTED);
-            DI5_combo.Items.Clear(); DI5_combo.Items.Add(NOT_SELECTED);
-            // Очистка comboBox блок расширения 1
-            DI1bl1_combo.Items.Clear(); DI1bl1_combo.Items.Add(NOT_SELECTED);
-            DI2bl1_combo.Items.Clear(); DI2bl1_combo.Items.Add(NOT_SELECTED);
-            DI3bl1_combo.Items.Clear(); DI3bl1_combo.Items.Add(NOT_SELECTED);
-            DI4bl1_combo.Items.Clear(); DI4bl1_combo.Items.Add(NOT_SELECTED);
-            DI5bl1_combo.Items.Clear(); DI5bl1_combo.Items.Add(NOT_SELECTED);
-            // Очистка comboBox блок расширения 2
-            DI1bl2_combo.Items.Clear(); DI1bl2_combo.Items.Add(NOT_SELECTED);
-            DI2bl2_combo.Items.Clear(); DI2bl2_combo.Items.Add(NOT_SELECTED);
-            DI3bl2_combo.Items.Clear(); DI3bl2_combo.Items.Add(NOT_SELECTED);
-            DI4bl2_combo.Items.Clear(); DI4bl2_combo.Items.Add(NOT_SELECTED);
-            DI5bl2_combo.Items.Clear(); DI5bl2_combo.Items.Add(NOT_SELECTED);
-            // Очистка comboBox блок расширения 3
-            DI1bl3_combo.Items.Clear(); DI1bl3_combo.Items.Add(NOT_SELECTED);
-            DI2bl3_combo.Items.Clear(); DI2bl3_combo.Items.Add(NOT_SELECTED);
-            DI3bl3_combo.Items.Clear(); DI3bl3_combo.Items.Add(NOT_SELECTED);
-            DI4bl3_combo.Items.Clear(); DI4bl3_combo.Items.Add(NOT_SELECTED);
-            DI5bl3_combo.Items.Clear(); DI5bl3_combo.Items.Add(NOT_SELECTED);
+            var di_combos = new List<ComboBox>()
+            {
+                DI1_combo, DI2_combo, DI3_combo, DI4_combo, DI5_combo,
+                DI1bl1_combo, DI2bl1_combo, DI3bl1_combo, DI4bl1_combo, DI5bl1_combo,
+                DI1bl2_combo, DI2bl2_combo, DI3bl2_combo, DI4bl2_combo, DI5bl2_combo,
+                DI1bl3_combo, DI2bl3_combo, DI3bl3_combo, DI4bl3_combo, DI5bl3_combo
+            };
+
+            foreach (var el in di_combos)
+            {
+                el.Items.Clear(); el.Items.Add(NOT_SELECTED);
+            }
         }
 
         ///<summary>Удаление элемента из всех comboBox DI</summary>
         private void RemoveFromAllCombosDI(string name)
         {
-            // Основной ПЛК
-            DI1_combo.Items.Remove(name); DI2_combo.Items.Remove(name);
-            DI3_combo.Items.Remove(name); DI4_combo.Items.Remove(name);
-            DI5_combo.Items.Remove(name);
-            // Блок расширения 1
-            DI1bl1_combo.Items.Remove(name); DI2bl1_combo.Items.Remove(name);
-            DI3bl1_combo.Items.Remove(name); DI4bl1_combo.Items.Remove(name);
-            DI5bl1_combo.Items.Remove(name);
-            // Блок расширения 2
-            DI1bl2_combo.Items.Remove(name); DI2bl2_combo.Items.Remove(name);
-            DI3bl2_combo.Items.Remove(name); DI4bl2_combo.Items.Remove(name);
-            DI5bl2_combo.Items.Remove(name);
-            // Блок расширения 3
-            DI1bl3_combo.Items.Remove(name); DI2bl3_combo.Items.Remove(name);
-            DI3bl3_combo.Items.Remove(name); DI4bl3_combo.Items.Remove(name);
-            DI5bl3_combo.Items.Remove(name);
+            var di_combos = new List<ComboBox>()
+            {
+                DI1_combo, DI2_combo, DI3_combo, DI4_combo, DI5_combo,
+                DI1bl1_combo, DI2bl1_combo, DI3bl1_combo, DI4bl1_combo, DI5bl1_combo,
+                DI1bl2_combo, DI2bl2_combo, DI3bl2_combo, DI4bl2_combo, DI5bl2_combo,
+                DI1bl3_combo, DI2bl3_combo, DI3bl3_combo, DI4bl3_combo, DI5bl3_combo,
+            };
+
+            foreach (var el in di_combos) el.Items.Remove(name);
         }
 
         ///<summary>Добавление элемента ко всем comboBox DI</summary>
         private void AddToAllCombosDI(string name)
         {
-            // Основной ПЛК
-            DI1_combo.Items.Add(name); DI2_combo.Items.Add(name);
-            DI3_combo.Items.Add(name); DI4_combo.Items.Add(name);
-            DI5_combo.Items.Add(name);
-            // Блок расширения 1
-            DI1bl1_combo.Items.Add(name); DI2bl1_combo.Items.Add(name);
-            DI3bl1_combo.Items.Add(name); DI4bl1_combo.Items.Add(name);
-            DI5bl1_combo.Items.Add(name);
-            // Блок расширения 2
-            DI1bl2_combo.Items.Add(name); DI2bl2_combo.Items.Add(name);
-            DI3bl2_combo.Items.Add(name); DI4bl2_combo.Items.Add(name);
-            DI5bl2_combo.Items.Add(name);
-            // Блок расширения 3
-            DI1bl3_combo.Items.Add(name); DI2bl3_combo.Items.Add(name);
-            DI3bl3_combo.Items.Add(name); DI4bl3_combo.Items.Add(name);
-            DI5bl3_combo.Items.Add(name);
+            var di_combos = new List<ComboBox>()
+            {
+                DI1_combo, DI2_combo, DI3_combo, DI4_combo, DI5_combo,
+                DI1bl1_combo, DI2bl1_combo, DI3bl1_combo, DI4bl1_combo, DI5bl1_combo,
+                DI1bl2_combo, DI2bl2_combo, DI3bl2_combo, DI4bl2_combo, DI5bl2_combo,
+                DI1bl3_combo, DI2bl3_combo, DI3bl3_combo, DI4bl3_combo, DI5bl3_combo,
+            };
+
+            foreach (var el in di_combos) el.Items.Add(name);
+        }
+
+        ///<summary>Метод для изменения DI comboBox</summary>
+        private void DI_combo_SelectedIndexChanged(ComboBox comboBox, ref int combo_index, ref string combo_text, Label label)
+        {
+            if (ignoreEvents) return;
+            string name = "";
+            Di di_find = null;
+            if (subDIcondition) return;                                                         // Переход из вычета сигналов DI
+            if (comboBox.SelectedIndex == combo_index) return;                                  // Индекс не поменялся
+            if (comboBox.SelectedIndex == 0)                                                    // Выбрали "Не выбрано"
+            {
+                if (comboBox.Items.Count > 1)                                                   // Больше одного элемента в списке
+                {
+                    string nameFind = combo_text;
+                    di_find = list_di.Find(x => x.Name == nameFind);
+                    list_di.Remove(di_find);                 // Удаление из списка
+                    if (showCode) DI1_lab.Text = "";
+                }
+                if (di_find != null)                                                            // Найден элемент
+                {
+                    di_find.Dispose();                                                          // Освобождение сигнала для распределенния
+                    list_di.Add(di_find);                                                       // Добавление с новым значением
+                    Ai new_ai = new Ai(di_find.Name, (ushort)(di_find.Code + 1000), "di");
+                    list_ai.Add(new_ai);
+                    AddToAllCombosAI(new_ai.Name); // Добавление ко всем AI
+                }
+                if (!initialComboSignals) AddtoCombosDI(combo_text, comboBox);                  // Добавление к другим DI
+            }
+            else // Выбран сигнал DI
+            {
+                name = string.Concat(comboBox.SelectedItem);
+                di_find = list_di.Find(x => x.Name == name);
+                list_di.Remove(list_di.Find(x => x.Name == name));                              // Удаление из списка DI
+                list_ai.Remove(list_ai.Find(x => x.Name == name));                              // Удаление из списка AI
+                RemoveFromAllCombosAI(name);                                                    // Удаление из всех AI
+                if (di_find != null)
+                {
+                    di_find.Select();
+                    list_di.Add(di_find);
+                    if (showCode) DI1_lab.Text = di_find.Code.ToString();
+                }
+                if (!initialComboSignals)                                                       // Если не начальная расстановка
+                {
+                    SubFromCombosDI(name, comboBox);                                            // Удаление из других DI
+                    string nameFind = combo_text;
+                    di_find = list_di.Find(x => x.Name == nameFind);
+                    list_di.Remove(di_find);
+                    if (di_find != null)
+                    {
+                        di_find.Dispose();
+                        list_di.Add(di_find);
+                    }
+                    AddtoCombosDI(combo_text, comboBox);                                        // Добавление к другим DI
+                }
+            }
+            combo_text = comboBox.SelectedItem.ToString();                                      // Сохранение названия выбранного элемента
+            combo_index = comboBox.SelectedIndex;                                               // Сохранение индекса выбранного элемента
+            CheckSignalsReady();                                                                // Проверка распределения сигналов
         }
 
         ///<summary>Изменили DI1 comboBox</summary>
@@ -166,7 +201,7 @@ namespace Moderon
             }
             else // Выбран сигнал DI
             {
-                name = String.Concat(DI1_combo.SelectedItem);
+                name = string.Concat(DI1_combo.SelectedItem);
                 di_find = list_di.Find(x => x.Name == name);
                 list_di.Remove(list_di.Find(x => x.Name == name)); // Удаление из списка DI
                 list_ai.Remove(list_ai.Find(x => x.Name == name)); // Удаление из списка AI
@@ -223,7 +258,7 @@ namespace Moderon
             }
             else // Выбран сигнал DI
             {
-                name = String.Concat(DI2_combo.SelectedItem);
+                name = string.Concat(DI2_combo.SelectedItem);
                 di_find = list_di.Find(x => x.Name == name);
                 list_di.Remove(list_di.Find(x => x.Name == name)); // Удаление из списка DI
                 list_ai.Remove(list_ai.Find(x => x.Name == name)); // Удаление из списка AI
@@ -280,7 +315,7 @@ namespace Moderon
             }
             else // Выбран сигнал DI
             {
-                name = String.Concat(DI3_combo.SelectedItem);
+                name = string.Concat(DI3_combo.SelectedItem);
                 di_find = list_di.Find(x => x.Name == name);
                 list_di.Remove(list_di.Find(x => x.Name == name)); // Удаление из списка DI
                 list_ai.Remove(list_ai.Find(x => x.Name == name)); // Удаление из списка AI
@@ -337,7 +372,7 @@ namespace Moderon
             }
             else // Выбран сигнал DI
             {
-                name = String.Concat(DI4_combo.SelectedItem);
+                name = string.Concat(DI4_combo.SelectedItem);
                 di_find = list_di.Find(x => x.Name == name);
                 list_di.Remove(list_di.Find(x => x.Name == name)); // Удаление из списка DI
                 list_ai.Remove(list_ai.Find(x => x.Name == name)); // Удаление из списка AI
@@ -394,7 +429,7 @@ namespace Moderon
             }
             else // Выбран сигнал DI
             {
-                name = String.Concat(DI5_combo.SelectedItem);
+                name = string.Concat(DI5_combo.SelectedItem);
                 di_find = list_di.Find(x => x.Name == name);
                 list_di.Remove(list_di.Find(x => x.Name == name)); // Удаление из списка DI
                 list_ai.Remove(list_ai.Find(x => x.Name == name)); // Удаление из списка AI
@@ -451,7 +486,7 @@ namespace Moderon
             }
             else // Выбран сигнал DI
             {
-                name = String.Concat(DI1bl1_combo.SelectedItem);
+                name = string.Concat(DI1bl1_combo.SelectedItem);
                 di_find = list_di.Find(x => x.Name == name);
                 list_di.Remove(list_di.Find(x => x.Name == name)); // Удаление из списка DI
                 list_ai.Remove(list_ai.Find(x => x.Name == name)); // Удаление из списка AI
@@ -508,7 +543,7 @@ namespace Moderon
             }
             else // Выбран сигнал DI
             {
-                name = String.Concat(DI2bl1_combo.SelectedItem);
+                name = string.Concat(DI2bl1_combo.SelectedItem);
                 di_find = list_di.Find(x => x.Name == name);
                 list_di.Remove(list_di.Find(x => x.Name == name)); // Удаление из списка DI
                 list_ai.Remove(list_ai.Find(x => x.Name == name)); // Удаление из списка AI
@@ -565,7 +600,7 @@ namespace Moderon
             }
             else // Выбран сигнал DI
             {
-                name = String.Concat(DI3bl1_combo.SelectedItem);
+                name = string.Concat(DI3bl1_combo.SelectedItem);
                 di_find = list_di.Find(x => x.Name == name);
                 list_di.Remove(list_di.Find(x => x.Name == name)); // Удаление из списка DI
                 list_ai.Remove(list_ai.Find(x => x.Name == name)); // Удаление из списка AI
@@ -622,7 +657,7 @@ namespace Moderon
             }
             else // Выбран сигнал DI
             {
-                name = String.Concat(DI4bl1_combo.SelectedItem);
+                name = string.Concat(DI4bl1_combo.SelectedItem);
                 di_find = list_di.Find(x => x.Name == name);
                 list_di.Remove(list_di.Find(x => x.Name == name)); // Удаление из списка DI
                 list_ai.Remove(list_ai.Find(x => x.Name == name)); // Удаление из списка AI
@@ -679,7 +714,7 @@ namespace Moderon
             }
             else // Выбран сигнал DI
             {
-                name = String.Concat(DI5bl1_combo.SelectedItem);
+                name = string.Concat(DI5bl1_combo.SelectedItem);
                 di_find = list_di.Find(x => x.Name == name);
                 list_di.Remove(list_di.Find(x => x.Name == name)); // Удаление из списка DI
                 list_ai.Remove(list_ai.Find(x => x.Name == name)); // Удаление из списка AI
@@ -736,7 +771,7 @@ namespace Moderon
             }
             else // Выбран сигнал DI
             {
-                name = String.Concat(DI1bl2_combo.SelectedItem);
+                name = string.Concat(DI1bl2_combo.SelectedItem);
                 di_find = list_di.Find(x => x.Name == name);
                 list_di.Remove(list_di.Find(x => x.Name == name)); // Удаление из списка DI
                 list_ai.Remove(list_ai.Find(x => x.Name == name)); // Удаление из списка AI
@@ -793,7 +828,7 @@ namespace Moderon
             }
             else // Выбран сигнал DI
             {
-                name = String.Concat(DI2bl2_combo.SelectedItem);
+                name = string.Concat(DI2bl2_combo.SelectedItem);
                 di_find = list_di.Find(x => x.Name == name);
                 list_di.Remove(list_di.Find(x => x.Name == name)); // Удаление из списка DI
                 list_ai.Remove(list_ai.Find(x => x.Name == name)); // Удаление из списка AI
@@ -850,7 +885,7 @@ namespace Moderon
             }
             else // Выбран сигнал DI
             {
-                name = String.Concat(DI3bl2_combo.SelectedItem);
+                name = string.Concat(DI3bl2_combo.SelectedItem);
                 di_find = list_di.Find(x => x.Name == name);
                 list_di.Remove(list_di.Find(x => x.Name == name)); // Удаление из списка DI
                 list_ai.Remove(list_ai.Find(x => x.Name == name)); // Удаление из списка AI
@@ -907,7 +942,7 @@ namespace Moderon
             }
             else // Выбран сигнал DI
             {
-                name = String.Concat(DI4bl2_combo.SelectedItem);
+                name = string.Concat(DI4bl2_combo.SelectedItem);
                 di_find = list_di.Find(x => x.Name == name);
                 list_di.Remove(list_di.Find(x => x.Name == name)); // Удаление из списка DI
                 list_ai.Remove(list_ai.Find(x => x.Name == name)); // Удаление из списка AI
@@ -964,7 +999,7 @@ namespace Moderon
             }
             else // Выбран сигнал DI
             {
-                name = String.Concat(DI5bl2_combo.SelectedItem);
+                name = string.Concat(DI5bl2_combo.SelectedItem);
                 di_find = list_di.Find(x => x.Name == name);
                 list_di.Remove(list_di.Find(x => x.Name == name)); // Удаление из списка DI
                 list_ai.Remove(list_ai.Find(x => x.Name == name)); // Удаление из списка AI
@@ -1021,7 +1056,7 @@ namespace Moderon
             }
             else // Выбран сигнал DI
             {
-                name = String.Concat(DI1bl3_combo.SelectedItem);
+                name = string.Concat(DI1bl3_combo.SelectedItem);
                 di_find = list_di.Find(x => x.Name == name);
                 list_di.Remove(list_di.Find(x => x.Name == name)); // Удаление из списка DI
                 list_ai.Remove(list_ai.Find(x => x.Name == name)); // Удаление из списка AI
@@ -1078,7 +1113,7 @@ namespace Moderon
             }
             else // Выбран сигнал DI
             {
-                name = String.Concat(DI2bl3_combo.SelectedItem);
+                name = string.Concat(DI2bl3_combo.SelectedItem);
                 di_find = list_di.Find(x => x.Name == name);
                 list_di.Remove(list_di.Find(x => x.Name == name)); // Удаление из списка DI
                 list_ai.Remove(list_ai.Find(x => x.Name == name)); // Удаление из списка AI
@@ -1135,7 +1170,7 @@ namespace Moderon
             }
             else // Выбран сигнал DI
             {
-                name = String.Concat(DI3bl3_combo.SelectedItem);
+                name = string.Concat(DI3bl3_combo.SelectedItem);
                 di_find = list_di.Find(x => x.Name == name);
                 list_di.Remove(list_di.Find(x => x.Name == name)); // Удаление из списка DI
                 list_ai.Remove(list_ai.Find(x => x.Name == name)); // Удаление из списка AI
@@ -1192,7 +1227,7 @@ namespace Moderon
             }
             else // Выбран сигнал DI
             {
-                name = String.Concat(DI4bl3_combo.SelectedItem);
+                name = string.Concat(DI4bl3_combo.SelectedItem);
                 di_find = list_di.Find(x => x.Name == name);
                 list_di.Remove(list_di.Find(x => x.Name == name)); // Удаление из списка DI
                 list_ai.Remove(list_ai.Find(x => x.Name == name)); // Удаление из списка AI
@@ -1249,7 +1284,7 @@ namespace Moderon
             }
             else // Выбран сигнал DI
             {
-                name = String.Concat(DI5bl3_combo.SelectedItem);
+                name = string.Concat(DI5bl3_combo.SelectedItem);
                 di_find = list_di.Find(x => x.Name == name);
                 list_di.Remove(list_di.Find(x => x.Name == name)); // Удаление из списка DI
                 list_ai.Remove(list_ai.Find(x => x.Name == name)); // Удаление из списка AI
