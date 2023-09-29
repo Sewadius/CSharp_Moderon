@@ -370,7 +370,9 @@ namespace Moderon
                     el.Items.Remove(name);
         }
 
-        ///<summary>Добавление нового AO и его назначение под выход</summary>
+        //private void 
+
+        ///<summary>Добавление нового AO и его назначение под выход, автораспределение</summary>
         private void AddNewAO(ushort code)
         {
             if (AO1_combo.SelectedIndex == 0) // "Не выбрано"
