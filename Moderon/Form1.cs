@@ -987,7 +987,21 @@ namespace Moderon
             OutDampCheck_signalsDICheckedChanged(this, e);  // Сигналы DI ПЛК
         }
 
-        ///<summary>Нажали на вкладку "Настройка"</summary>
+        ///<summary>Метод для открытия панели загрузки через CAN-порт</summary>
+        private void loadCanPanel_Open(object sender, EventArgs e)
+        {
+            mainPage.Hide();                                    // Скрытие панели опций элементов
+            signalsPanel.Hide();                                // Скрытие панели распределения сигналов
+            helpPanel.Hide();                                   // Скрытие панели отображения помощи
+            label_comboSysType.Text = "ЗАГРУЗКА ПРОГРАММЫ";
+            comboSysType.Hide(); panelElements.Hide();
+            loadCanPanel.Location = PANEL_POSITION;
+            loadCanPanel.Height = 550;
+            loadCanPanel.Show();
+            formSignalsButton.Hide();                           // Скрытие кнопки "Сформировать"
+        }
+
+        ///<summary>Нажали на вкладку "Настройка", панель загрузки через Modbus</summary>
         private void ToolStripMenuItem_load_Click(object sender, EventArgs e)
         {
             mainPage.Hide();                                    // Скрытие панели опций элементов
@@ -1081,12 +1095,13 @@ namespace Moderon
             Form1_Load(this, e); // Обработка всплывающих подсказок
         }
 
-        ///<summary>Нажали кнопку "Загружить в ПЛК" в панели сигналов</summary>
+        ///<summary>Нажали кнопку "Загружзть в ПЛК" в панели сигналов</summary>
         private void loadPLC_SignalsButton_Click(object sender, EventArgs e)
         {
-            ToolStripMenuItem_load_Click(this, e); // Открытие панели настроек
-            fromSignalsMove = true; // Переход из панели выбора сигналов
-            FormNetButton_Click(this, e); // Формирование списка сигналов для записи
+            //ToolStripMenuItem_load_Click(this, e);        // Открытие панели настроек
+            loadCanPanel_Open(this, e);                     // Открытие панели загрузки в контроллер, CAN порт
+            fromSignalsMove = true;                         // Переход из панели выбора сигналов
+            FormNetButton_Click(this, e);                   // Формирование списка сигналов для записи
         }
 
         ///<summary>Нажали на ссылку сайта ONI</summary>

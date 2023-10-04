@@ -627,6 +627,19 @@
             this.label_comboSysType = new System.Windows.Forms.Label();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.loadCanPanel = new System.Windows.Forms.Panel();
+            this.comboCheckDataPlk = new System.Windows.Forms.ComboBox();
+            this.label181 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.writeCanTextBox = new System.Windows.Forms.TextBox();
+            this.label180 = new System.Windows.Forms.Label();
+            this.dataCanTextBox = new System.Windows.Forms.TextBox();
+            this.loadDataCanPlkBtn = new System.Windows.Forms.Button();
+            this.label179 = new System.Windows.Forms.Label();
+            this.connectPlkBtn = new System.Windows.Forms.Button();
+            this.plkStatusCombo = new System.Windows.Forms.TextBox();
+            this.parityCanCombo = new System.Windows.Forms.ComboBox();
+            this.label178 = new System.Windows.Forms.Label();
+            this.label177 = new System.Windows.Forms.Label();
             this.speedCanCombo = new System.Windows.Forms.ComboBox();
             this.label176 = new System.Windows.Forms.Label();
             this.canAddressBox = new System.Windows.Forms.TextBox();
@@ -634,10 +647,6 @@
             this.canSelectBox = new System.Windows.Forms.TextBox();
             this.label173 = new System.Windows.Forms.Label();
             this.netOptionLabel = new System.Windows.Forms.Label();
-            this.label177 = new System.Windows.Forms.Label();
-            this.label178 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.sensorsPage.SuspendLayout();
@@ -3932,7 +3941,7 @@
             this.loadModbusPanel.Controls.Add(this.backOptionsButton);
             this.loadModbusPanel.Location = new System.Drawing.Point(12, 207);
             this.loadModbusPanel.Name = "loadModbusPanel";
-            this.loadModbusPanel.Size = new System.Drawing.Size(749, 269);
+            this.loadModbusPanel.Size = new System.Drawing.Size(749, 45);
             this.loadModbusPanel.TabIndex = 12;
             this.loadModbusPanel.Visible = false;
             // 
@@ -7905,8 +7914,17 @@
             // 
             // loadCanPanel
             // 
-            this.loadCanPanel.Controls.Add(this.textBox1);
-            this.loadCanPanel.Controls.Add(this.comboBox1);
+            this.loadCanPanel.Controls.Add(this.comboCheckDataPlk);
+            this.loadCanPanel.Controls.Add(this.label181);
+            this.loadCanPanel.Controls.Add(this.button2);
+            this.loadCanPanel.Controls.Add(this.writeCanTextBox);
+            this.loadCanPanel.Controls.Add(this.label180);
+            this.loadCanPanel.Controls.Add(this.dataCanTextBox);
+            this.loadCanPanel.Controls.Add(this.loadDataCanPlkBtn);
+            this.loadCanPanel.Controls.Add(this.label179);
+            this.loadCanPanel.Controls.Add(this.connectPlkBtn);
+            this.loadCanPanel.Controls.Add(this.plkStatusCombo);
+            this.loadCanPanel.Controls.Add(this.parityCanCombo);
             this.loadCanPanel.Controls.Add(this.label178);
             this.loadCanPanel.Controls.Add(this.label177);
             this.loadCanPanel.Controls.Add(this.speedCanCombo);
@@ -7916,11 +7934,149 @@
             this.loadCanPanel.Controls.Add(this.canSelectBox);
             this.loadCanPanel.Controls.Add(this.label173);
             this.loadCanPanel.Controls.Add(this.netOptionLabel);
-            this.loadCanPanel.Location = new System.Drawing.Point(5, 490);
+            this.loadCanPanel.Location = new System.Drawing.Point(12, 270);
             this.loadCanPanel.Name = "loadCanPanel";
-            this.loadCanPanel.Size = new System.Drawing.Size(749, 309);
+            this.loadCanPanel.Size = new System.Drawing.Size(749, 548);
             this.loadCanPanel.TabIndex = 45;
             this.loadCanPanel.Visible = false;
+            // 
+            // comboCheckDataPlk
+            // 
+            this.comboCheckDataPlk.FormattingEnabled = true;
+            this.comboCheckDataPlk.Items.AddRange(new object[] {
+            "данные в ПЛК совпадают",
+            "данные в ПЛК не совпадают"});
+            this.comboCheckDataPlk.Location = new System.Drawing.Point(512, 506);
+            this.comboCheckDataPlk.Name = "comboCheckDataPlk";
+            this.comboCheckDataPlk.Size = new System.Drawing.Size(207, 21);
+            this.comboCheckDataPlk.TabIndex = 72;
+            // 
+            // label181
+            // 
+            this.label181.AutoSize = true;
+            this.label181.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label181.Location = new System.Drawing.Point(401, 508);
+            this.label181.Name = "label181";
+            this.label181.Size = new System.Drawing.Size(103, 14);
+            this.label181.TabIndex = 71;
+            this.label181.Text = "Статус данных";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.DarkGreen;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(28, 500);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(94, 27);
+            this.button2.TabIndex = 70;
+            this.button2.Text = "НАЗАД";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // writeCanTextBox
+            // 
+            this.writeCanTextBox.Location = new System.Drawing.Point(404, 291);
+            this.writeCanTextBox.Multiline = true;
+            this.writeCanTextBox.Name = "writeCanTextBox";
+            this.writeCanTextBox.ReadOnly = true;
+            this.writeCanTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.writeCanTextBox.Size = new System.Drawing.Size(315, 200);
+            this.writeCanTextBox.TabIndex = 69;
+            // 
+            // label180
+            // 
+            this.label180.AutoSize = true;
+            this.label180.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label180.Location = new System.Drawing.Point(401, 266);
+            this.label180.Name = "label180";
+            this.label180.Size = new System.Drawing.Size(184, 14);
+            this.label180.TabIndex = 68;
+            this.label180.Text = "Данные для загрузки в ПЛК";
+            // 
+            // dataCanTextBox
+            // 
+            this.dataCanTextBox.Location = new System.Drawing.Point(404, 55);
+            this.dataCanTextBox.Multiline = true;
+            this.dataCanTextBox.Name = "dataCanTextBox";
+            this.dataCanTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataCanTextBox.Size = new System.Drawing.Size(315, 200);
+            this.dataCanTextBox.TabIndex = 67;
+            // 
+            // loadDataCanPlkBtn
+            // 
+            this.loadDataCanPlkBtn.BackColor = System.Drawing.Color.DarkGreen;
+            this.loadDataCanPlkBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.loadDataCanPlkBtn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.loadDataCanPlkBtn.ForeColor = System.Drawing.Color.White;
+            this.loadDataCanPlkBtn.Location = new System.Drawing.Point(30, 296);
+            this.loadDataCanPlkBtn.Name = "loadDataCanPlkBtn";
+            this.loadDataCanPlkBtn.Size = new System.Drawing.Size(106, 33);
+            this.loadDataCanPlkBtn.TabIndex = 66;
+            this.loadDataCanPlkBtn.Text = "ЗАГРУЗИТЬ";
+            this.loadDataCanPlkBtn.UseVisualStyleBackColor = false;
+            // 
+            // label179
+            // 
+            this.label179.AutoSize = true;
+            this.label179.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label179.Location = new System.Drawing.Point(401, 28);
+            this.label179.Name = "label179";
+            this.label179.Size = new System.Drawing.Size(98, 14);
+            this.label179.TabIndex = 65;
+            this.label179.Text = "Данные в ПЛК";
+            // 
+            // connectPlkBtn
+            // 
+            this.connectPlkBtn.BackColor = System.Drawing.Color.DarkGreen;
+            this.connectPlkBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.connectPlkBtn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.connectPlkBtn.ForeColor = System.Drawing.Color.White;
+            this.connectPlkBtn.Location = new System.Drawing.Point(30, 246);
+            this.connectPlkBtn.Name = "connectPlkBtn";
+            this.connectPlkBtn.Size = new System.Drawing.Size(209, 33);
+            this.connectPlkBtn.TabIndex = 65;
+            this.connectPlkBtn.Text = "ПОКЛЮЧИТЬСЯ К ПЛК";
+            this.connectPlkBtn.UseVisualStyleBackColor = false;
+            // 
+            // plkStatusCombo
+            // 
+            this.plkStatusCombo.Location = new System.Drawing.Point(120, 204);
+            this.plkStatusCombo.Name = "plkStatusCombo";
+            this.plkStatusCombo.Size = new System.Drawing.Size(122, 21);
+            this.plkStatusCombo.TabIndex = 56;
+            // 
+            // parityCanCombo
+            // 
+            this.parityCanCombo.FormattingEnabled = true;
+            this.parityCanCombo.Items.AddRange(new object[] {
+            "Even",
+            "Odd",
+            "None"});
+            this.parityCanCombo.Location = new System.Drawing.Point(120, 168);
+            this.parityCanCombo.Name = "parityCanCombo";
+            this.parityCanCombo.Size = new System.Drawing.Size(121, 21);
+            this.parityCanCombo.TabIndex = 55;
+            // 
+            // label178
+            // 
+            this.label178.AutoSize = true;
+            this.label178.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label178.Location = new System.Drawing.Point(28, 170);
+            this.label178.Name = "label178";
+            this.label178.Size = new System.Drawing.Size(67, 14);
+            this.label178.TabIndex = 54;
+            this.label178.Text = "Четность";
+            // 
+            // label177
+            // 
+            this.label177.AutoSize = true;
+            this.label177.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label177.Location = new System.Drawing.Point(28, 206);
+            this.label177.Name = "label177";
+            this.label177.Size = new System.Drawing.Size(81, 14);
+            this.label177.TabIndex = 53;
+            this.label177.Text = "Статус ПЛК";
             // 
             // speedCanCombo
             // 
@@ -7988,45 +8144,6 @@
             this.netOptionLabel.Size = new System.Drawing.Size(136, 16);
             this.netOptionLabel.TabIndex = 46;
             this.netOptionLabel.Text = "НАСТРОЙКА СЕТИ";
-            // 
-            // label177
-            // 
-            this.label177.AutoSize = true;
-            this.label177.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label177.Location = new System.Drawing.Point(28, 206);
-            this.label177.Name = "label177";
-            this.label177.Size = new System.Drawing.Size(81, 14);
-            this.label177.TabIndex = 53;
-            this.label177.Text = "Статус ПЛК";
-            // 
-            // label178
-            // 
-            this.label178.AutoSize = true;
-            this.label178.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label178.Location = new System.Drawing.Point(28, 170);
-            this.label178.Name = "label178";
-            this.label178.Size = new System.Drawing.Size(67, 14);
-            this.label178.TabIndex = 54;
-            this.label178.Text = "Четность";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Even",
-            "Odd",
-            "None"});
-            this.comboBox1.Location = new System.Drawing.Point(120, 168);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 55;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(120, 204);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(122, 21);
-            this.textBox1.TabIndex = 56;
             // 
             // Form1
             // 
@@ -8784,8 +8901,17 @@
         private System.Windows.Forms.CheckBox showHintCheck;
         private System.Windows.Forms.Label label178;
         private System.Windows.Forms.Label label177;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox plkStatusCombo;
+        private System.Windows.Forms.ComboBox parityCanCombo;
+        private System.Windows.Forms.Button connectPlkBtn;
+        private System.Windows.Forms.Label label179;
+        private System.Windows.Forms.Button loadDataCanPlkBtn;
+        private System.Windows.Forms.TextBox dataCanTextBox;
+        private System.Windows.Forms.Label label180;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox writeCanTextBox;
+        private System.Windows.Forms.ComboBox comboCheckDataPlk;
+        private System.Windows.Forms.Label label181;
     }
 }
 

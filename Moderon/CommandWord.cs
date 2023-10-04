@@ -30,15 +30,16 @@ namespace Moderon
         ///<summary>Нажали на кнопку "Собрать"</summary>
         private void FormNetButton_Click(object sender, EventArgs e)
         {
-            ushort count = 1; // Глобальный счетчик учета позиции
-            ResetSignalsAll(); // Сброс для массивов сигналов
-            BuildCmdWords(); // Сборка массива командных слов
-            BuildDiSignals(); // Сборка массива для сигналов DI
-            BuildAiSignals(); // Сборка массива для сигналов AI
-            BuildDoSignals(); // Сборка массива для сигналов DO
-            BuildAoSignals(); // Сборка массива для сигналов AO
-            writeNetTextBox.Text = ""; // Очистка текстового поля
-            for (ushort counter = 1; counter <= cmdWords.Length; counter++)
+            ushort count = 1;                       // Глобальный счетчик учета позиции
+            ResetSignalsAll();                      // Сброс для массивов сигналов
+            BuildCmdWords();                        // Сборка массива командных слов
+            BuildDiSignals();                       // Сборка массива для сигналов DI
+            BuildAiSignals();                       // Сборка массива для сигналов AI
+            BuildDoSignals();                       // Сборка массива для сигналов DO
+            BuildAoSignals();                       // Сборка массива для сигналов AO
+            writeNetTextBox.Text = "";              // Очистка текстового поля
+
+            for (ushort counter = 1; counter <= cmdWords.Length; counter++) 
             { // Для командных слов
                 writeNetTextBox.Text += counter.ToString() + ") " + 
                     cmdWords[counter - 1].ToString();
