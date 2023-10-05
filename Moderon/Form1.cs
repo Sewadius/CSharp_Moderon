@@ -1019,13 +1019,13 @@ namespace Moderon
         ///<summary>Нажали на вкладку "Параметры"</summary>
         private void ToolStripMenuItem_parameter_Click(object sender, EventArgs e)
         {
-            mainPage.Hide(); // Скрытие панели опций элементов
-            signalsPanel.Hide(); // Скрытие панели распределения сигналов
-            helpPanel.Hide(); // Скрытие панели отображения помощи
-            loadModbusPanel.Hide(); // Скрытие панели настроек
+            mainPage.Hide();                                    // Скрытие панели опций элементов
+            signalsPanel.Hide();                                // Скрытие панели распределения сигналов
+            helpPanel.Hide();                                   // Скрытие панели отображения помощи
+            loadModbusPanel.Hide();                             // Скрытие панели настроек
             label_comboSysType.Text = "ПАРАМЕТРЫ ПРОГРАММЫ";
             comboSysType.Hide(); panelElements.Hide();
-            formSignalsButton.Hide(); // Скрытие кнопки "Сформировать"
+            formSignalsButton.Hide();                           // Скрытие кнопки "Сформировать"
         }
 
         ///<summary>Нажали вкладку "Помощь" в главном меню</summary>
@@ -1220,7 +1220,7 @@ namespace Moderon
         ///<summary>Загрузка бинарного файла для контроллера</summary>
         private void SaveBinFileButton_Click(object sender, EventArgs e)
         {
-            var filePath = System.IO.Directory.GetCurrentDirectory(); // Для бинарного файла
+            var filePath = Directory.GetCurrentDirectory(); // Для бинарного файла
             SaveFileDialog dlg = new SaveFileDialog(); // Окно для сохранения файла
             dlg.FileName = "ONI_HVAC_PLC_v1.4.5"; // Имя файла по умолчанию
             dlg.DefaultExt = ".zip";

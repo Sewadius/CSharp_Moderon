@@ -674,82 +674,48 @@ namespace Moderon
         ///<summary>Добавление ко всем входам AI (для сигнала DI)</summary>
         private void AddToAllCombosAI(string name)
         {
-            if (name != NOT_SELECTED) // Кроме "Не выбрано"
+            var ai_combos = new List<ComboBox>()
             {
-                // Основной ПЛК
-                AI1_combo.Items.Add(name); AI2_combo.Items.Add(name);
-                AI3_combo.Items.Add(name); AI4_combo.Items.Add(name);
-                AI5_combo.Items.Add(name); AI6_combo.Items.Add(name);
-                // Блок расширения 1
-                AI1bl1_combo.Items.Add(name); AI2bl1_combo.Items.Add(name);
-                AI3bl1_combo.Items.Add(name); AI4bl1_combo.Items.Add(name);
-                AI5bl1_combo.Items.Add(name); AI6bl1_combo.Items.Add(name);
-                // Блок расширения 2
-                AI1bl2_combo.Items.Add(name); AI2bl2_combo.Items.Add(name);
-                AI3bl2_combo.Items.Add(name); AI4bl2_combo.Items.Add(name);
-                AI5bl2_combo.Items.Add(name); AI6bl2_combo.Items.Add(name);
-                // Блок расширения 3
-                AI1bl3_combo.Items.Add(name); AI2bl3_combo.Items.Add(name);
-                AI3bl3_combo.Items.Add(name); AI4bl3_combo.Items.Add(name);
-                AI5bl3_combo.Items.Add(name); AI6bl3_combo.Items.Add(name);
-            }
+                AI1_combo, AI2_combo, AI3_combo, AI4_combo, AI5_combo, AI6_combo,
+                AI1bl1_combo, AI2bl1_combo, AI3bl1_combo, AI4bl1_combo, AI5bl1_combo, AI6bl1_combo,
+                AI1bl2_combo, AI2bl2_combo, AI3bl2_combo, AI4bl2_combo, AI5bl2_combo, AI6bl2_combo,
+                AI1bl3_combo, AI2bl3_combo, AI3bl3_combo, AI4bl3_combo, AI5bl3_combo, AI6bl3_combo
+            };
+
+            foreach (var el in ai_combos)
+                if (name != NOT_SELECTED)       // Кроме "Не выбрано"
+                    el.Items.Add(name);
         }
 
         ///<summary>Удаление из всех входов AI (для сигнала DI)</summary>
         private void RemoveFromAllCombosAI(string name)
         {
-            // Основной ПЛК
-            AI1_combo.Items.Remove(name); AI2_combo.Items.Remove(name);
-            AI3_combo.Items.Remove(name); AI4_combo.Items.Remove(name);
-            AI5_combo.Items.Remove(name); AI6_combo.Items.Remove(name);
-            // Блок расширения 1
-            AI1bl1_combo.Items.Remove(name); AI2bl1_combo.Items.Remove(name);
-            AI3bl1_combo.Items.Remove(name); AI4bl1_combo.Items.Remove(name);
-            AI5bl1_combo.Items.Remove(name); AI6bl1_combo.Items.Remove(name);
-            // Блок расширения 2
-            AI1bl2_combo.Items.Remove(name); AI2bl2_combo.Items.Remove(name);
-            AI3bl2_combo.Items.Remove(name); AI4bl2_combo.Items.Remove(name);
-            AI5bl2_combo.Items.Remove(name); AI6bl2_combo.Items.Remove(name);
-            // Блок расширения 3
-            AI1bl3_combo.Items.Remove(name); AI2bl3_combo.Items.Remove(name);
-            AI3bl3_combo.Items.Remove(name); AI4bl3_combo.Items.Remove(name);
-            AI5bl3_combo.Items.Remove(name); AI6bl3_combo.Items.Remove(name);
+            var ai_combos = new List<ComboBox>()
+            {
+                AI1_combo, AI2_combo, AI3_combo, AI4_combo, AI5_combo, AI6_combo,
+                AI1bl1_combo, AI2bl1_combo, AI3bl1_combo, AI4bl1_combo, AI5bl1_combo, AI6bl1_combo,
+                AI1bl2_combo, AI2bl2_combo, AI3bl2_combo, AI4bl2_combo, AI5bl2_combo, AI6bl2_combo,
+                AI1bl3_combo, AI2bl3_combo, AI3bl3_combo, AI4bl3_combo, AI5bl3_combo, AI6bl3_combo
+            };
+
+            foreach (var el in ai_combos)
+                el.Items.Remove(name);
         }
 
         ///<summary>Удаление AI из других comboBox</summary> 
         private void SubFromCombosAI(string name, ComboBox cm)
         {
-            if (name != NOT_SELECTED) // Кроме "Не выбрано"
+            var ai_combos = new List<ComboBox>()
             {
-                // Основной ПЛК
-                if (AI1_combo != cm) AI1_combo.Items.Remove(name); // AI1
-                if (AI2_combo != cm) AI2_combo.Items.Remove(name); // AI2
-                if (AI3_combo != cm) AI3_combo.Items.Remove(name); // AI3
-                if (AI4_combo != cm) AI4_combo.Items.Remove(name); // AI4
-                if (AI5_combo != cm) AI5_combo.Items.Remove(name); // AI5
-                if (AI6_combo != cm) AI6_combo.Items.Remove(name); // AI6
-                // Блок расширения 1
-                if (AI1bl1_combo != cm) AI1bl1_combo.Items.Remove(name); // AI1, блок 1
-                if (AI2bl1_combo != cm) AI2bl1_combo.Items.Remove(name); // AI2, блок 1
-                if (AI3bl1_combo != cm) AI3bl1_combo.Items.Remove(name); // AI3, блок 1
-                if (AI4bl1_combo != cm) AI4bl1_combo.Items.Remove(name); // AI4, блок 1
-                if (AI5bl1_combo != cm) AI5bl1_combo.Items.Remove(name); // AI5, блок 1
-                if (AI6bl1_combo != cm) AI6bl1_combo.Items.Remove(name); // AI6, блок 1
-                // Блок расширения 2
-                if (AI1bl2_combo != cm) AI1bl2_combo.Items.Remove(name); // AI1, блок 2
-                if (AI2bl2_combo != cm) AI2bl2_combo.Items.Remove(name); // AI2, блок 2
-                if (AI3bl2_combo != cm) AI3bl2_combo.Items.Remove(name); // AI3, блок 2
-                if (AI4bl2_combo != cm) AI4bl2_combo.Items.Remove(name); // AI4, блок 2
-                if (AI5bl2_combo != cm) AI5bl2_combo.Items.Remove(name); // AI5, блок 2
-                if (AI6bl2_combo != cm) AI6bl2_combo.Items.Remove(name); // AI6, блок 2
-                // Блок расширения 3
-                if (AI1bl3_combo != cm) AI1bl3_combo.Items.Remove(name); // AI1, блок 3
-                if (AI2bl3_combo != cm) AI2bl3_combo.Items.Remove(name); // AI2, блок 3
-                if (AI3bl3_combo != cm) AI3bl3_combo.Items.Remove(name); // AI3, блок 3
-                if (AI4bl3_combo != cm) AI4bl3_combo.Items.Remove(name); // AI4, блок 3
-                if (AI5bl3_combo != cm) AI5bl3_combo.Items.Remove(name); // AI5, блок 3
-                if (AI6bl3_combo != cm) AI6bl3_combo.Items.Remove(name); // AI6, блок 3
-            }
+                AI1_combo, AI2_combo, AI3_combo, AI4_combo, AI5_combo, AI6_combo,
+                AI1bl1_combo, AI2bl1_combo, AI3bl1_combo, AI4bl1_combo, AI5bl1_combo, AI6bl1_combo,
+                AI1bl2_combo, AI2bl2_combo, AI3bl2_combo, AI4bl2_combo, AI5bl2_combo, AI6bl2_combo,
+                AI1bl3_combo, AI2bl3_combo, AI3bl3_combo, AI4bl3_combo, AI5bl3_combo, AI6bl3_combo
+            };
+
+            foreach (var el in ai_combos)
+                if (name != NOT_SELECTED && el != cm)
+                    el.Items.Remove(name);
         }
 
         ///<summary>Изменение списка типа входа AI</summary>

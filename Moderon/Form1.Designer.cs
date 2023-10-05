@@ -3941,7 +3941,7 @@
             this.loadModbusPanel.Controls.Add(this.backOptionsButton);
             this.loadModbusPanel.Location = new System.Drawing.Point(12, 207);
             this.loadModbusPanel.Name = "loadModbusPanel";
-            this.loadModbusPanel.Size = new System.Drawing.Size(749, 45);
+            this.loadModbusPanel.Size = new System.Drawing.Size(749, 482);
             this.loadModbusPanel.TabIndex = 12;
             this.loadModbusPanel.Visible = false;
             // 
@@ -7934,9 +7934,9 @@
             this.loadCanPanel.Controls.Add(this.canSelectBox);
             this.loadCanPanel.Controls.Add(this.label173);
             this.loadCanPanel.Controls.Add(this.netOptionLabel);
-            this.loadCanPanel.Location = new System.Drawing.Point(12, 270);
+            this.loadCanPanel.Location = new System.Drawing.Point(16, 754);
             this.loadCanPanel.Name = "loadCanPanel";
-            this.loadCanPanel.Size = new System.Drawing.Size(749, 548);
+            this.loadCanPanel.Size = new System.Drawing.Size(749, 73);
             this.loadCanPanel.TabIndex = 45;
             this.loadCanPanel.Visible = false;
             // 
