@@ -805,7 +805,7 @@
             this.mainPage.Location = new System.Drawing.Point(15, 75);
             this.mainPage.Name = "mainPage";
             this.mainPage.SelectedIndex = 0;
-            this.mainPage.Size = new System.Drawing.Size(750, 33);
+            this.mainPage.Size = new System.Drawing.Size(750, 564);
             this.mainPage.TabIndex = 1;
             // 
             // sensorsPage
@@ -814,7 +814,7 @@
             this.sensorsPage.Controls.Add(this.sensorsPanel);
             this.sensorsPage.Location = new System.Drawing.Point(4, 22);
             this.sensorsPage.Name = "sensorsPage";
-            this.sensorsPage.Size = new System.Drawing.Size(742, 7);
+            this.sensorsPage.Size = new System.Drawing.Size(742, 538);
             this.sensorsPage.TabIndex = 9;
             this.sensorsPage.Text = "ДАТЧИКИ/СИГНАЛЫ";
             // 
@@ -2203,7 +2203,7 @@
             this.heatPage.Location = new System.Drawing.Point(4, 22);
             this.heatPage.Name = "heatPage";
             this.heatPage.Padding = new System.Windows.Forms.Padding(3);
-            this.heatPage.Size = new System.Drawing.Size(742, 7);
+            this.heatPage.Size = new System.Drawing.Size(742, 538);
             this.heatPage.TabIndex = 1;
             this.heatPage.Text = "НАГРЕВАТЕЛЬ";
             // 
@@ -2350,7 +2350,10 @@
             "2",
             "3",
             "4",
-            "5"});
+            "5",
+            "6",
+            "7",
+            "8"});
             this.elHeatStagesCombo.Location = new System.Drawing.Point(192, 49);
             this.elHeatStagesCombo.Name = "elHeatStagesCombo";
             this.elHeatStagesCombo.Size = new System.Drawing.Size(43, 21);
@@ -3448,7 +3451,7 @@
             this.addHeatPage.Controls.Add(this.secHeatPanel);
             this.addHeatPage.Location = new System.Drawing.Point(4, 22);
             this.addHeatPage.Name = "addHeatPage";
-            this.addHeatPage.Size = new System.Drawing.Size(742, 7);
+            this.addHeatPage.Size = new System.Drawing.Size(742, 538);
             this.addHeatPage.TabIndex = 8;
             this.addHeatPage.Text = "ДОП НАГРЕВ";
             // 
@@ -3595,7 +3598,10 @@
             "2",
             "3",
             "4",
-            "5"});
+            "5",
+            "6",
+            "7",
+            "8"});
             this.elHeatAddStagesCombo.Location = new System.Drawing.Point(190, 49);
             this.elHeatAddStagesCombo.Name = "elHeatAddStagesCombo";
             this.elHeatAddStagesCombo.Size = new System.Drawing.Size(43, 21);
@@ -3939,9 +3945,9 @@
             this.loadModbusPanel.Controls.Add(this.label59);
             this.loadModbusPanel.Controls.Add(this.label1);
             this.loadModbusPanel.Controls.Add(this.backOptionsButton);
-            this.loadModbusPanel.Location = new System.Drawing.Point(12, 207);
+            this.loadModbusPanel.Location = new System.Drawing.Point(12, 947);
             this.loadModbusPanel.Name = "loadModbusPanel";
-            this.loadModbusPanel.Size = new System.Drawing.Size(749, 482);
+            this.loadModbusPanel.Size = new System.Drawing.Size(749, 34);
             this.loadModbusPanel.TabIndex = 12;
             this.loadModbusPanel.Visible = false;
             // 
@@ -4196,7 +4202,7 @@
             this.signalsPanel.Controls.Add(this.signalsReadyLabel);
             this.signalsPanel.Controls.Add(this.tabControlSignals);
             this.signalsPanel.Controls.Add(this.backSignalsButton);
-            this.signalsPanel.Location = new System.Drawing.Point(15, 117);
+            this.signalsPanel.Location = new System.Drawing.Point(12, 845);
             this.signalsPanel.Name = "signalsPanel";
             this.signalsPanel.Size = new System.Drawing.Size(750, 36);
             this.signalsPanel.TabIndex = 16;
@@ -4230,7 +4236,7 @@
             this.loadPLC_SignalsButton.TabIndex = 60;
             this.loadPLC_SignalsButton.Text = "ЗАГРУЗИТЬ В ПЛК";
             this.loadPLC_SignalsButton.UseVisualStyleBackColor = false;
-            this.loadPLC_SignalsButton.Click += new System.EventHandler(this.loadPLC_SignalsButton_Click);
+            this.loadPLC_SignalsButton.Click += new System.EventHandler(this.LoadPLC_SignalsButton_Click);
             // 
             // signalsReadyLabel
             // 
@@ -7825,7 +7831,7 @@
             this.helpPanel.Controls.Add(this.label140);
             this.helpPanel.Controls.Add(this.linkModeronWeb);
             this.helpPanel.Controls.Add(this.backHelpButton);
-            this.helpPanel.Location = new System.Drawing.Point(15, 167);
+            this.helpPanel.Location = new System.Drawing.Point(12, 898);
             this.helpPanel.Name = "helpPanel";
             this.helpPanel.Size = new System.Drawing.Size(746, 28);
             this.helpPanel.TabIndex = 17;
@@ -7934,9 +7940,9 @@
             this.loadCanPanel.Controls.Add(this.canSelectBox);
             this.loadCanPanel.Controls.Add(this.label173);
             this.loadCanPanel.Controls.Add(this.netOptionLabel);
-            this.loadCanPanel.Location = new System.Drawing.Point(16, 754);
+            this.loadCanPanel.Location = new System.Drawing.Point(12, 998);
             this.loadCanPanel.Name = "loadCanPanel";
-            this.loadCanPanel.Size = new System.Drawing.Size(749, 73);
+            this.loadCanPanel.Size = new System.Drawing.Size(749, 45);
             this.loadCanPanel.TabIndex = 45;
             this.loadCanPanel.Visible = false;
             // 

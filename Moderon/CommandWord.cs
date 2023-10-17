@@ -43,39 +43,39 @@ namespace Moderon
             { // Для командных слов
                 writeNetTextBox.Text += counter.ToString() + ") " + 
                     cmdWords[counter - 1].ToString();
-                if (counter < cmdWords.Length) writeNetTextBox.Text += System.Environment.NewLine;
+                if (counter < cmdWords.Length) writeNetTextBox.Text += Environment.NewLine;
                 ++count;
             }
             for (ushort counter = 1; counter <= diSignals.Length; counter++) // DI
             { // Для сигналов DI (DI1 - DI20) - по 5 сигналов
-                writeNetTextBox.Text += System.Environment.NewLine;
+                writeNetTextBox.Text += Environment.NewLine;
                 writeNetTextBox.Text += (count.ToString() + "_DI_" + counter.ToString() + ") " +
                     diSignals[counter - 1]).ToString();
                 ++count;
             }
             for (ushort counter = 1; counter <= aiSignals.Length; counter++) // AI
             { // Для сигналов AI (AI1 - AI24) - по 6 сигналов
-                writeNetTextBox.Text += System.Environment.NewLine;
+                writeNetTextBox.Text += Environment.NewLine;
                 writeNetTextBox.Text += (count.ToString() + "_AI_" + counter.ToString() + ") " +
                     aiSignals[counter - 1]).ToString();
                 ++count;
             }
             for (ushort counter = 1; counter <= doSignals.Length; counter++) // DO
             { // Для сигналов DO (DO1 - DO28) - по 7 сигналов
-                writeNetTextBox.Text += System.Environment.NewLine;
+                writeNetTextBox.Text += Environment.NewLine;
                 writeNetTextBox.Text += (count.ToString() + "_DO_" + counter.ToString() + ") " +
                     doSignals[counter - 1]).ToString();
                 ++count;
             }
             for (ushort counter = 1; counter <= aoSignals.Length; counter++) // AO
             { // Для сигналов AO (AO1 - AO12) - по 3 сигнала
-                writeNetTextBox.Text += System.Environment.NewLine;
+                writeNetTextBox.Text += Environment.NewLine;
                 writeNetTextBox.Text += (count.ToString() + "_AO_" + counter.ToString() + ") " +
                     aoSignals[counter - 1]).ToString();
                 ++count;
             }
             // Для сигнала пожарной сигнализации
-            writeNetTextBox.Text += System.Environment.NewLine;
+            writeNetTextBox.Text += Environment.NewLine;
             writeNetTextBox.Text += (count.ToString() + "_fire" + ") " + cmdW_fire.ToString());
         }
 
@@ -299,37 +299,37 @@ namespace Moderon
         ///<summary>Инициализация командных слов</summary>
         private void Form1_InitCmdWord(object sender, EventArgs e)
         {
-            CommandWord_1(); // Основной блок запуска
-            CommandWord_2(); // Основная приточная заслонка
-            CommandWord_3(); // Основная вытяжная заслонка
-            CommandWord_4(); // Приточные фильтры
-            CommandWord_5(); // Вытяжные фильтры
-            CommandWord_6(); // Датчики
-            CommandWord_7(); // Рекуперация, второе слово
-            CommandWord_8(); // Рециркуляция
-            CommandWord_9(); // Рекуператор
-            CommandWord_10(); // Основной электрический нагреватель
-            CommandWord_11(); // Основной водяной нагреватель
-            CommandWord_12(); // Основной водяной охладитель
-            CommandWord_13(); // Водяной догреватель
-            CommandWord_14(); // Электрический догреватель
-            CommandWord_15(); // Основной увлажнитель
-            CommandWord_16(); // Резервное слово 1
-            CommandWord_17(); // Резервное слово 2 
-            CommandWord_18(); // Дополнительная вытяжка
-            CommandWord_19(); // Основной приточный вентилятор
-            CommandWord_20(); // Резервный приточный вентилятор
-            CommandWord_21(); // Основной вытяжной вентилятор
-            CommandWord_22(); // Резервный вытяжной вентилятор
-            CommandWord_23(); // Водяной преднагреватель
-            CommandWord_24(); // Электрический преднагреватель
-            CommandWord_25(); // Резервное слово 3
-            CommandWord_26(); // Резервное слово 4
-            CommandWord_27(); // Резервное слово 5
-            CommandWord_28(); // Резервное слово 6
-            CommandWord_29(); // Резервное слово 7
-            CommandWord_30(); // Резервное слово 8
-            CommandWord_fire(); // Пожарная сигнализация
+            CommandWord_1();            // Основной блок запуска
+            CommandWord_2();            // Основная приточная заслонка
+            CommandWord_3();            // Основная вытяжная заслонка
+            CommandWord_4();            // Приточные фильтры
+            CommandWord_5();            // Вытяжные фильтры
+            CommandWord_6();            // Датчики
+            CommandWord_7();            // Рекуперация, второе слово
+            CommandWord_8();            // Рециркуляция
+            CommandWord_9();            // Рекуператор
+            CommandWord_10();           // Основной электрический нагреватель
+            CommandWord_11();           // Основной водяной нагреватель
+            CommandWord_12();           // Основной водяной охладитель
+            CommandWord_13();           // Водяной догреватель
+            CommandWord_14();           // Электрический догреватель
+            CommandWord_15();           // Основной увлажнитель
+            CommandWord_16();           // Резервное слово 1
+            CommandWord_17();           // Резервное слово 2 
+            CommandWord_18();           // Дополнительная вытяжка
+            CommandWord_19();           // Основной приточный вентилятор
+            CommandWord_20();           // Резервный приточный вентилятор
+            CommandWord_21();           // Основной вытяжной вентилятор
+            CommandWord_22();           // Резервный вытяжной вентилятор
+            CommandWord_23();           // Водяной преднагреватель
+            CommandWord_24();           // Электрический преднагреватель
+            CommandWord_25();           // Резервное слово 3
+            CommandWord_26();           // Резервное слово 4
+            CommandWord_27();           // Резервное слово 5
+            CommandWord_28();           // Резервное слово 6
+            CommandWord_29();           // Резервное слово 7
+            CommandWord_30();           // Резервное слово 8
+            CommandWord_fire();         // Пожарная сигнализация
         }
 
         ///<summary>Формирование командного слова основного блока старт/стоп</summary>>

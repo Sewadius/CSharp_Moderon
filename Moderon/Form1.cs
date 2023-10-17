@@ -1022,7 +1022,7 @@ namespace Moderon
             mainPage.Hide();                                    // Скрытие панели опций элементов
             signalsPanel.Hide();                                // Скрытие панели распределения сигналов
             helpPanel.Hide();                                   // Скрытие панели отображения помощи
-            loadModbusPanel.Hide();                             // Скрытие панели настроек
+            loadModbusPanel.Hide();                               // Скрытие панели настроек
             label_comboSysType.Text = "ПАРАМЕТРЫ ПРОГРАММЫ";
             comboSysType.Hide(); panelElements.Hide();
             formSignalsButton.Hide();                           // Скрытие кнопки "Сформировать"
@@ -1046,6 +1046,8 @@ namespace Moderon
             PDF_ReSize(Size.Width, Size.Height); // Область для отображения PDF
             //ToolStripMenuItem_help.Enabled = false; // Блокировка повторного выбора "Помощь"
         }
+
+
 
         // Нажали кнопку "Назад" в панели настроек
         private void BackOptionsButton_Click(object sender, EventArgs e)
@@ -1096,7 +1098,7 @@ namespace Moderon
         }
 
         ///<summary>Нажали кнопку "Загружзть в ПЛК" в панели сигналов</summary>
-        private void loadPLC_SignalsButton_Click(object sender, EventArgs e)
+        private void LoadPLC_SignalsButton_Click(object sender, EventArgs e)
         {
             //ToolStripMenuItem_load_Click(this, e);        // Открытие панели настроек
             loadCanPanel_Open(this, e);                     // Открытие панели загрузки в контроллер, CAN порт
