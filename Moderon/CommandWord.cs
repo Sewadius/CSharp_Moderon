@@ -462,14 +462,14 @@ namespace Moderon
             { // Выбран электрический нагреватель
                 bit0 = firstStHeatCombo.SelectedIndex == 2; // Управление 0-10 В
                 bit1 = firstStHeatCombo.SelectedIndex == 1; // Управление ШИМ 5В
-                bit2 = false; // Ступерь 8
-                bit3 = false; // Ступень 7
-                bit4 = false; // Ступень 6
+                bit2 = elHeatStagesCombo.SelectedIndex > 6; // Ступерь 8
+                bit3 = elHeatStagesCombo.SelectedIndex > 5; // Ступень 7
+                bit4 = elHeatStagesCombo.SelectedIndex > 4; // Ступень 6
                 bit5 = elHeatStagesCombo.SelectedIndex > 3; // Ступень 5
                 bit6 = elHeatStagesCombo.SelectedIndex > 2; // Ступень 4
                 bit7 = elHeatStagesCombo.SelectedIndex > 1; // Ступень 3
                 bit8 = elHeatStagesCombo.SelectedIndex > 0; // Ступень 2
-                bit9 = true; // Ступень 1
+                bit9 = true;                                // Ступень 1 по умолчанию
                 bit10 = thermSwitchCombo.SelectedIndex > 0; // Термовыключатель 1
                 bit11 = thermSwitchCombo.SelectedIndex > 1; // Термовыключатель 2
             }
@@ -569,14 +569,14 @@ namespace Moderon
             { // Выбран электрический догреватель
                 bit0 = firstStAddHeatCombo.SelectedIndex == 2; // Управление 0-10 В
                 bit1 = firstStAddHeatCombo.SelectedIndex == 1; // Управление ШИМ 5В
-                bit2 = false; // Ступень 8
-                bit3 = false; // Ступень 7
-                bit4 = false; // Ступень 6
+                bit2 = elHeatAddStagesCombo.SelectedIndex > 6; // Ступень 8
+                bit3 = elHeatAddStagesCombo.SelectedIndex > 5; // Ступень 7
+                bit4 = elHeatAddStagesCombo.SelectedIndex > 4; // Ступень 6
                 bit5 = elHeatAddStagesCombo.SelectedIndex > 3; // Ступень 5
                 bit6 = elHeatAddStagesCombo.SelectedIndex > 2; // Ступень 4
                 bit7 = elHeatAddStagesCombo.SelectedIndex > 1; // Ступень 3
                 bit8 = elHeatAddStagesCombo.SelectedIndex > 0; // Ступень 2
-                bit9 = true; // Ступень 1
+                bit9 = true;                                   // Ступень 1 по умолчанию
                 bit10 = thermAddSwitchCombo.SelectedIndex > 0; // Термовыключатель 1
                 bit11 = thermAddSwitchCombo.SelectedIndex > 1; // Термовыключатель 2
             }

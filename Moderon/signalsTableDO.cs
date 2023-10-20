@@ -790,37 +790,18 @@ namespace Moderon
         /// <summary>Удаление DO из других comboBox</summary>
         private void SubFromCombosDO(string name, ComboBox cm)
         {
-            if (name != NOT_SELECTED) // Кроме "Не выбрано"
+            var do_combos = new List<ComboBox>()
             {
-                if (DO1_combo != cm) DO1_combo.Items.Remove(name); // DO1
-                if (DO2_combo != cm) DO2_combo.Items.Remove(name); // DO2
-                if (DO3_combo != cm) DO3_combo.Items.Remove(name); // DO3
-                if (DO4_combo != cm) DO4_combo.Items.Remove(name); // DO4
-                if (DO5_combo != cm) DO5_combo.Items.Remove(name); // DO5
-                if (DO6_combo != cm) DO6_combo.Items.Remove(name); // DO6
-                if (DO7_combo != cm) DO7_combo.Items.Remove(name); // DO7
-                if (DO1bl1_combo != cm) DO1bl1_combo.Items.Remove(name); // DO1, блок 1 
-                if (DO2bl1_combo != cm) DO2bl1_combo.Items.Remove(name); // DO2, блок 1 
-                if (DO3bl1_combo != cm) DO3bl1_combo.Items.Remove(name); // DO3, блок 1 
-                if (DO4bl1_combo != cm) DO4bl1_combo.Items.Remove(name); // DO4, блок 1 
-                if (DO5bl1_combo != cm) DO5bl1_combo.Items.Remove(name); // DO5, блок 1 
-                if (DO6bl1_combo != cm) DO6bl1_combo.Items.Remove(name); // DO6, блок 1 
-                if (DO7bl1_combo != cm) DO7bl1_combo.Items.Remove(name); // DO7, блок 1 
-                if (DO1bl2_combo != cm) DO1bl2_combo.Items.Remove(name); // DO1, блок 2 
-                if (DO2bl2_combo != cm) DO2bl2_combo.Items.Remove(name); // DO2, блок 2 
-                if (DO3bl2_combo != cm) DO3bl2_combo.Items.Remove(name); // DO3, блок 2 
-                if (DO4bl2_combo != cm) DO4bl2_combo.Items.Remove(name); // DO4, блок 2 
-                if (DO5bl2_combo != cm) DO5bl2_combo.Items.Remove(name); // DO5, блок 2 
-                if (DO6bl2_combo != cm) DO6bl2_combo.Items.Remove(name); // DO6, блок 2 
-                if (DO7bl2_combo != cm) DO7bl2_combo.Items.Remove(name); // DO7, блок 2 
-                if (DO1bl3_combo != cm) DO1bl3_combo.Items.Remove(name); // DO1, блок 3
-                if (DO2bl3_combo != cm) DO2bl3_combo.Items.Remove(name); // DO2, блок 3
-                if (DO3bl3_combo != cm) DO3bl3_combo.Items.Remove(name); // DO3, блок 3
-                if (DO4bl3_combo != cm) DO4bl3_combo.Items.Remove(name); // DO4, блок 3
-                if (DO5bl3_combo != cm) DO5bl3_combo.Items.Remove(name); // DO5, блок 3
-                if (DO6bl3_combo != cm) DO6bl3_combo.Items.Remove(name); // DO6, блок 3
-                if (DO7bl3_combo != cm) DO7bl3_combo.Items.Remove(name); // DO7, блок 3
-            }
+                DO1_combo, DO2_combo, DO3_combo, DO4_combo, DO5_combo, DO6_combo, DO7_combo,
+                DO1bl1_combo, DO2bl1_combo, DO3bl1_combo, DO4bl1_combo, DO5bl1_combo, DO6bl1_combo, DO7bl1_combo,
+                DO1bl2_combo, DO2bl2_combo, DO3bl2_combo, DO4bl2_combo, DO5bl2_combo, DO6bl2_combo, DO7bl2_combo,
+                DO1bl3_combo, DO2bl3_combo, DO3bl3_combo, DO4bl3_combo, DO5bl3_combo, DO6bl3_combo, DO7bl3_combo
+
+            };
+
+            if (name != NOT_SELECTED) // Кроме "Не выбрано"
+                foreach (var el in do_combos)
+                    if (el != cm) el.Items.Remove(name);
         }
 
         ///<summary>Добавление нового DO и его назначение под выход</summary>
@@ -1907,199 +1888,194 @@ namespace Moderon
             CheckSignalsReady(); // Проверка распределения сигналов
         }
 
+        /*** ВСПОМОГАТЕЛЬНЫЕ МЕТОДЫ ***/
+
+        ///<summary>Метод для добавления DO к списку сигналов</summary>
+        private void AddToListDo(string name, ushort code)
+        {
+            list_do.Add(new Do(name, code));
+            AddNewDO(code);                                                             // Добавление DO к свободному combobox выхода
+        }
+
+        ///<summary>Проверка и добавление дискретного выхода</summary>
+        private void СheckAddDoToList(string name, ushort code)
+        {
+            Do find_do = list_do.Find(x => x.Code == code);
+            if (find_do == null)                                                        // Нет такой записи
+                AddToListDo(name, code);
+        }
+
         /*** ВЫБОР ЭЛЕМЕНТОВ ***/
 
         /// <summary>Выбрали приточную заслонку</summary>
         private void DampCheck_signalsDOCheckedChanged(object sender, EventArgs e)
         {
-            ushort code = 6; // Открытие приточной заслонки
-            if (dampCheck.Checked) // Выбрали приточную заслонку
-            {
-                list_do.Add(new Do("Открытие приточной заслонки", code));
-                AddNewDO(code); // Добавление DO к свободному comboBox выхода
-            }
-            else // Отмена выбора приточной заслонки
-            {
-                SubFromCombosDO(code); // Удаление DO из comboBox выходов
-            }
-            HeatPrDampCheck_signalsCheckedChanged(this, e); // Проверка для обогрева заслонки
-            OutDampCheck_signalsDOCheckedChanged(this, e); // Проверка для вытяжной воздушной заслонки
+            ushort code = 6;                                                            // Открытие приточной заслонки
+            if (dampCheck.Checked) 
+                AddToListDo("Открытие приточной заслонки", code);
+            else SubFromCombosDO(code);                                                 // Удаление DO из comboBox выходов
+            HeatPrDampCheck_signalsCheckedChanged(this, e);                             // Проверка для обогрева заслонки
+            OutDampCheck_signalsDOCheckedChanged(this, e);                              // Проверка для вытяжной воздушной заслонки
         }
 
         /// <summary>Выбрали обогрев приточной заслонки</summary>
         private void HeatPrDampCheck_signalsCheckedChanged(object sender, EventArgs e)
         {
-            ushort code = 7; // Обогрев приточной заслонки
-            if (dampCheck.Checked) // Выбрана приточная заслонка
+            ushort code = 7;                                                            // Обогрев приточной заслонки
+            if (dampCheck.Checked)                                                      // Выбрана приточная заслонка
             {
-                if (heatPrDampCheck.Checked) // Выбрали обогрев заслонки
-                {
-                    list_do.Add(new Do("Обогрев приточной заслонки", code));
-                    AddNewDO(code); // Добавление DO к свободному comboBox выхода
-                }
-                else // Отмена выбора обогрева заслонки
-                {
-                    SubFromCombosDO(code); // Удаление DO из comboBox выходов
-                }
+                if (heatPrDampCheck.Checked) 
+                    AddToListDo("Обогрев приточной заслонки", code);
+                else SubFromCombosDO(code);                                             // Удаление DO из comboBox выходов
             }
-            else // Если заслонка не выбрана
-            {
-                SubFromCombosDO(code); // Удаление DO из comboBox выходов
-            }
+            else SubFromCombosDO(code);                                                 // Если заслонка не выбрана
         }
 
         ///<summary>Выбрали вытяжную воздушную заслонку</summary>
         private void OutDampCheck_signalsDOCheckedChanged(object sender, EventArgs e)
         {
-            ushort code = 20; // Открытие вытяжной заслонки
+            ushort code = 20;                                                           // Открытие вытяжной заслонки
             if (comboSysType.SelectedIndex == 1 && dampCheck.Checked && outDampCheck.Checked)
-            {
-                list_do.Add(new Do("Открытие вытяжной заслонки", code));
-                AddNewDO(code); // Добавление DO к свободному comboBox выхода
-            }
-            else // Заслонка не выбрана или П-система
-            {
-                SubFromCombosDO(code); // Удаление DO из comboBox выходов
-            }
-            HeatOutDampCheck_signalsCheckedChanged(this, e); // Обогрев вытяжной заслонки
+                AddToListDo("Открытие вытяжной заслонки", code);
+            else SubFromCombosDO(code);                                                 // Заслонка не выбрана или П-система
+            HeatOutDampCheck_signalsCheckedChanged(this, e);                            // Обогрев вытяжной заслонки
         }
 
         ///<summary>Выбрали обогрев вытяжной заслонки</summary>
         private void HeatOutDampCheck_signalsCheckedChanged(object sender, EventArgs e)
         {
-            ushort code = 21; // Обогрев вытяжной заслонки
+            ushort code = 21;                                                           // Обогрев вытяжной заслонки
             if (comboSysType.SelectedIndex == 1 && dampCheck.Checked && outDampCheck.Checked)
             {
-                if (heatOutDampCheck.Checked) // Выбрали обогрев заслонки
-                {
-                    list_do.Add(new Do("Обогрев вытяжной заслонки", code));
-                    AddNewDO(code); // Добавление DO к свободному comboBox выхода
-                } 
-                else // Отмена выбора обогрева заслонки
-                {
-                    SubFromCombosDO(code); // Удаление DO из comboBox выходов
-                }
+                if (heatOutDampCheck.Checked)                                           // Выбрали обогрев заслонки
+                    AddToListDo("Обогрев вытяжной заслонки", code);
+                else SubFromCombosDO(code);                                             // Отмена выбора обогрева заслонки
             }
-            else // Заслонка не выбрана
-            {
-                SubFromCombosDO(code); // Удаление DO из comboBox выходов
-            }
+            else SubFromCombosDO(code);                                                 // Заслонка не выбрана
         }
 
         ///<summary>Выбрали наличие нагревателя</summary>
         private void HeaterCheck_signalsDOCheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 34; // Запуск насоса водяного калорифера
-            ushort code_2 = 38; // Первая ступень электрокалорифера
-            ushort code_3 = 39; // Вторая ступень электрокалорифера
-            ushort code_4 = 40; // Третья ступень электрокалорифера
-            ushort code_5 = 41; // Четвертая ступень электрокалорифера
-            ushort code_6 = 42; // Пятая ступень электрокалорифера
+            ushort // Насос водяного калорифера и ступени электрокалорифера
+                code_0 = 34, code_1 = 38, code_2 = 39, code_3 = 40,
+                code_4 = 41, code_5 = 42, code_6 = 43, code_7 = 44, code_8 = 45;
+
             if (heaterCheck.Checked) // Выбрали нагреватель
             {
-                if (heatTypeCombo.SelectedIndex == 0) // Водяной калорифер
+                if (heatTypeCombo.SelectedIndex == 0)                                   // Водяной калорифер
+                    AddToListDo("Запуск насоса водяного калорифера", code_0);
+                else if (heatTypeCombo.SelectedIndex == 1)                              // Электрокалорифер
                 {
-                    list_do.Add(new Do("Запуск насоса водяного калорифера", code_1));
-                    AddNewDO(code_1);
-                }
-                else if (heatTypeCombo.SelectedIndex == 1) // Электрокалорифер
-                {
-                    list_do.Add(new Do("1 ступень электрического калорифера", code_2));
-                    AddNewDO(code_2);
-                    switch (elHeatStagesCombo.SelectedIndex) // Выборка количества ступеней
+                    AddToListDo("1 ступень электрического калорифера", code_1);         // Первая ступень электрокалорифера
+                    switch (elHeatStagesCombo.SelectedIndex)                            // Выборка количества ступеней
                     {
-                        case 0: break; // Одна ступень нагрева
-                        case 1: // Две ступени нагрева
-                            list_do.Add(new Do("2 ступень электрического калорифера", code_3));
-                            AddNewDO(code_3); break;
-                        case 2: // Три ступени нагрева
-                            list_do.Add(new Do("2 ступень электрического калорифера", code_3));
-                            AddNewDO(code_3);
-                            list_do.Add(new Do("3 ступень электрического калорифера", code_4));
-                            AddNewDO(code_4); break;
-                        case 3: // Четыре ступени нагрева
-                            list_do.Add(new Do("2 ступень электрического калорифера", code_3));
-                            AddNewDO(code_3);
-                            list_do.Add(new Do("3 ступень электрического калорифера", code_4));
-                            AddNewDO(code_4);
-                            list_do.Add(new Do("4 ступень электрического калорифера", code_5));
-                            AddNewDO(code_5); break;
-                        case 4: // Пять ступеней нагрева
-                            list_do.Add(new Do("2 ступень электрического калорифера", code_3));
-                            AddNewDO(code_3);
-                            list_do.Add(new Do("3 ступень электрического калорифера", code_4));
-                            AddNewDO(code_4);
-                            list_do.Add(new Do("4 ступень электрического калорифера", code_5));
-                            AddNewDO(code_5);
-                            list_do.Add(new Do("5 ступень электрического калорифера", code_6));
-                            AddNewDO(code_6); break;
+                        case 0: break;  // Одна ступень нагрева
+                        case 1:         // Две ступени нагрева
+                            AddToListDo("2 ступень электрического калорифера", code_2); break;
+                        case 2:         // Три ступени нагрева
+                            AddToListDo("2 ступень электрического калорифера", code_2);
+                            AddToListDo("3 ступень электрического калорифера", code_3); break;
+                        case 3:         // Четыре ступени нагрева
+                            AddToListDo("2 ступень электрического калорифера", code_2);
+                            AddToListDo("3 ступень электрического калорифера", code_3);
+                            AddToListDo("4 ступень электрического калорифера", code_4); break;
+                        case 4:         // Пять ступеней нагрева
+                            AddToListDo("2 ступень электрического калорифера", code_2);
+                            AddToListDo("3 ступень электрического калорифера", code_3);
+                            AddToListDo("4 ступень электрического калорифера", code_4);
+                            AddToListDo("5 ступень электрического калорифера", code_5); break;
+                        case 5:         // Шесть ступеней нагрева
+                            AddToListDo("2 ступень электрического калорифера", code_2);
+                            AddToListDo("3 ступень электрического калорифера", code_3);
+                            AddToListDo("4 ступень электрического калорифера", code_4);
+                            AddToListDo("5 ступень электрического калорифера", code_5);
+                            AddToListDo("6 ступень электрического калорифера", code_6); break;
+                        case 6:         // Семь ступеней нагрева
+                            AddToListDo("2 ступень электрического калорифера", code_2);
+                            AddToListDo("3 ступень электрического калорифера", code_3);
+                            AddToListDo("4 ступень электрического калорифера", code_4);
+                            AddToListDo("5 ступень электрического калорифера", code_5);
+                            AddToListDo("6 ступень электрического калорифера", code_6);
+                            AddToListDo("7 ступень электрического калорифера", code_7); break;
+                        case 7:         // Восемь ступеней нагрева
+                            AddToListDo("2 ступень электрического калорифера", code_2);
+                            AddToListDo("3 ступень электрического калорифера", code_3);
+                            AddToListDo("4 ступень электрического калорифера", code_4);
+                            AddToListDo("5 ступень электрического калорифера", code_5);
+                            AddToListDo("6 ступень электрического калорифера", code_6);
+                            AddToListDo("7 ступень электрического калорифера", code_7);
+                            AddToListDo("8 ступень электрического калорифера", code_8); break;
                     }
                 }
             }
-            else // Отмена выбора нагревателя
+            else // Отмена выбора нагревателя, удаление сигналов
             {
-                SubFromCombosDO(code_1);
-                SubFromCombosDO(code_2);
-                SubFromCombosDO(code_3);
-                SubFromCombosDO(code_4);
-                SubFromCombosDO(code_5);
-                SubFromCombosDO(code_6);
+                SubFromCombosDO(code_0); SubFromCombosDO(code_1); SubFromCombosDO(code_2); SubFromCombosDO(code_3);
+                SubFromCombosDO(code_4); SubFromCombosDO(code_5); SubFromCombosDO(code_6); SubFromCombosDO(code_7);
+                SubFromCombosDO(code_8);
             }
         }
 
         ///<summary>Изменили тип основного нагревателя</summary>
         private void HeatTypeCombo_signalsDOSelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 34; // Запуск насоса водяного калорифера
-            ushort code_2 = 38; // Первая ступень электрокалорифера
-            ushort code_3 = 39; // Вторая ступень электрокалорифера
-            ushort code_4 = 40; // Третья ступень электрокалорифера
-            ushort code_5 = 41; // Четвертая ступень электрокалорифера
-            ushort code_6 = 42; // Пятая ступень электрокалорифера
+            ushort // Насос водяного калорифера и ступени электрокалорифера
+                code_0 = 34, code_1 = 38, code_2 = 39, code_3 = 40,
+                code_4 = 41, code_5 = 42, code_6 = 43, code_7 = 44, code_8 = 45;
+
             if (heaterCheck.Checked) // Когда выбран нагреватель
             {
                 if (heatTypeCombo.SelectedIndex == 0) // Водяной калорифер
                 {
-                    SubFromCombosDO(code_2);
-                    SubFromCombosDO(code_3);
-                    SubFromCombosDO(code_4);
-                    SubFromCombosDO(code_5);
-                    SubFromCombosDO(code_6);
-                    list_do.Add(new Do("Запуск насоса водяного калорифера", code_1));
-                    AddNewDO(code_1);
+                    SubFromCombosDO(code_1); SubFromCombosDO(code_2); SubFromCombosDO(code_3);
+                    SubFromCombosDO(code_4); SubFromCombosDO(code_5); SubFromCombosDO(code_6);
+                    SubFromCombosDO(code_7); SubFromCombosDO(code_8);
+                    list_do.Add(new Do("Запуск насоса водяного калорифера", code_0));
+                    AddNewDO(code_0);
                 }
                 else if (heatTypeCombo.SelectedIndex == 1) // Электрокалорифер
                 {
-                    SubFromCombosDO(code_1); // Удаление запуска насоса
-                    list_do.Add(new Do("1 ступень электрического калорифера", code_2));
-                    AddNewDO(code_2); // Первая ступень нагрева
-                    switch (elHeatStagesCombo.SelectedIndex) // Выборка ступеней нагрева
+                    SubFromCombosDO(code_0);                                            // Удаление запуска насоса
+                    AddToListDo("1 ступень электрического калорифера", code_1);         // Первая ступень нагрева
+                    switch (elHeatStagesCombo.SelectedIndex)                            // Выборка ступеней нагрева
                     {
                         case 0: break; // Одна ступень нагрева
                         case 1: // Две ступени нагрева
-                            list_do.Add(new Do("2 ступень электрического калорифера", code_3));
-                            AddNewDO(code_3); break;
+                            AddToListDo("2 ступень электрического калорифера", code_2); break;
                         case 2: // Три ступени нагрева
-                            list_do.Add(new Do("2 ступень электрического калорифера", code_3));
-                            AddNewDO(code_3);
-                            list_do.Add(new Do("3 ступень электрического калорифера", code_4));
-                            AddNewDO(code_4); break;
+                            AddToListDo("2 ступень электрического калорифера", code_2);
+                            AddToListDo("3 ступень электрического калорифера", code_3); break;
                         case 3: // Четыре ступени нагрева
-                            list_do.Add(new Do("2 ступень электрического калорифера", code_3));
-                            AddNewDO(code_3);
-                            list_do.Add(new Do("3 ступень электрического калорифера", code_4));
-                            AddNewDO(code_4);
-                            list_do.Add(new Do("4 ступень электрического калорифера", code_5));
-                            AddNewDO(code_5); break;
+                            AddToListDo("2 ступень электрического калорифера", code_2);
+                            AddToListDo("3 ступень электрического калорифера", code_3);
+                            AddToListDo("4 ступень электрического калорифера", code_4); break;
                         case 4: // Пять ступеней нагрева
-                            list_do.Add(new Do("2 ступень электрического калорифера", code_3));
-                            AddNewDO(code_3);
-                            list_do.Add(new Do("3 ступень электрического калорифера", code_4));
-                            AddNewDO(code_4);
-                            list_do.Add(new Do("4 ступень электрического калорифера", code_5));
-                            AddNewDO(code_5);
-                            list_do.Add(new Do("5 ступень электрического калорифера", code_6));
-                            AddNewDO(code_6); break;
+                            AddToListDo("2 ступень электрического калорифера", code_2);
+                            AddToListDo("3 ступень электрического калорифера", code_3);
+                            AddToListDo("4 ступень электрического калорифера", code_4);
+                            AddToListDo("5 ступень электрического калорифера", code_5); break;
+                        case 5: // Шесть ступеней нагрева
+                            AddToListDo("2 ступень электрического калорифера", code_2);
+                            AddToListDo("3 ступень электрического калорифера", code_3);
+                            AddToListDo("4 ступень электрического калорифера", code_4);
+                            AddToListDo("5 ступень электрического калорифера", code_5);
+                            AddToListDo("6 ступень электрического калорифера", code_6); break;
+                        case 6: // Семь ступеней нагрева
+                            AddToListDo("2 ступень электрического калорифера", code_2);
+                            AddToListDo("3 ступень электрического калорифера", code_3);
+                            AddToListDo("4 ступень электрического калорифера", code_4);
+                            AddToListDo("5 ступень электрического калорифера", code_5);
+                            AddToListDo("6 ступень электрического калорифера", code_6);
+                            AddToListDo("7 ступень электрического калорифера", code_7); break;
+                        case 7: // Восемь ступеней нагрева
+                            AddToListDo("2 ступень электрического калорифера", code_2);
+                            AddToListDo("3 ступень электрического калорифера", code_3);
+                            AddToListDo("4 ступень электрического калорифера", code_4);
+                            AddToListDo("5 ступень электрического калорифера", code_5);
+                            AddToListDo("6 ступень электрического калорифера", code_6);
+                            AddToListDo("7 ступень электрического калорифера", code_7);
+                            AddToListDo("8 ступень электрического калорифера", code_8); break;
                     }
                 }
             }
@@ -2108,89 +2084,61 @@ namespace Moderon
         ///<summary>Изменили количество ступеней основного электрокалорифера</summary>
         private void ElHeatStagesCombo_signalsSelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 39; // Вторая ступень электрокалорифера
-            ushort code_2 = 40; // Третья ступень электрокалорифера
-            ushort code_3 = 41; // Четвертая ступень электрокалорифера
-            ushort code_4 = 42; // Пятая ступень электрокалорифера
-            Do find_do;
-            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 1)
-            { // Выбран электрокалорифер
-                switch (elHeatStagesCombo.SelectedIndex) // Выборка ступеней электрокалорифера
+            ushort // Ступени электрокалорифера
+                code_2 = 39, code_3 = 40, code_4 = 41, code_5 = 42, 
+                code_6 = 43, code_7 = 44, code_8 = 45;
+
+            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 1)        // Выбран электрокалорифер
+            { 
+                switch (elHeatStagesCombo.SelectedIndex)                        // Выборка ступеней электрокалорифера
                 {
                     case 0: // Одна ступень нагрева
-                        SubFromCombosDO(code_4); SubFromCombosDO(code_3); 
-                        SubFromCombosDO(code_2); SubFromCombosDO(code_1); break;
+                        SubFromCombosDO(code_8); SubFromCombosDO(code_7); SubFromCombosDO(code_6);
+                        SubFromCombosDO(code_5); SubFromCombosDO(code_4); SubFromCombosDO(code_3); 
+                        SubFromCombosDO(code_2); break;
                     case 1: // Две ступени нагрева
-                        SubFromCombosDO(code_4); SubFromCombosDO(code_3); SubFromCombosDO(code_2);
-                        find_do = list_do.Find(x => x.Code == code_1);
-                        if (find_do == null) // Нет такой записи
-                        {
-                            list_do.Add(new Do("2 ступень электрического калорифера", code_1));
-                            AddNewDO(code_1); 
-                        }
-                        break;
+                        SubFromCombosDO(code_8); SubFromCombosDO(code_7); SubFromCombosDO(code_6);
+                        SubFromCombosDO(code_5); SubFromCombosDO(code_4); SubFromCombosDO(code_3);
+                        СheckAddDoToList("2 ступень электрического калорифера", code_2); break;
                     case 2: // Три ступени нагрева
-                        SubFromCombosDO(code_4); SubFromCombosDO(code_3);
-                        find_do = list_do.Find(x => x.Code == code_1);
-                        if (find_do == null) // Нет такой записи
-                        {
-                            list_do.Add(new Do("2 ступень электрического калорифера", code_1));
-                            AddNewDO(code_1); 
-                        }
-                        find_do = list_do.Find(x => x.Code == code_2);
-                        if (find_do == null) // Нет такой записи
-                        {
-                            list_do.Add(new Do("3 ступень электрического калорифера", code_2));
-                            AddNewDO(code_2); 
-                        }
-                        break;
+                        SubFromCombosDO(code_8); SubFromCombosDO(code_7); SubFromCombosDO(code_6);
+                        SubFromCombosDO(code_5); SubFromCombosDO(code_4);
+                        СheckAddDoToList("2 ступень электрического калорифера", code_2);
+                        СheckAddDoToList("3 ступень электрического калорифера", code_3); break;
                     case 3: // Четыре ступени нагрева
-                        SubFromCombosDO(code_4);
-                        find_do = list_do.Find(x => x.Code == code_1);
-                        if (find_do == null) // Нет такой записи
-                        {
-                            list_do.Add(new Do("2 ступень электрического калорифера", code_1));
-                            AddNewDO(code_1); 
-                        }
-                        find_do = list_do.Find(x => x.Code == code_2);
-                        if (find_do == null) // Нет такой записи
-                        {
-                            list_do.Add(new Do("3 ступень электрического калорифера", code_2));
-                            AddNewDO(code_2); 
-                        }
-                        find_do = list_do.Find(x => x.Code == code_3);
-                        if (find_do == null) // Нет такой записи
-                        {
-                            list_do.Add(new Do("4 ступень электрического калорифера", code_3));
-                            AddNewDO(code_3); 
-                        }
-                        break;
+                        SubFromCombosDO(code_8); SubFromCombosDO(code_7); SubFromCombosDO(code_6); SubFromCombosDO(code_5);
+                        СheckAddDoToList("2 ступень электрического калорифера", code_2);
+                        СheckAddDoToList("3 ступень электрического калорифера", code_3);
+                        СheckAddDoToList("4 ступень электрического калорифера", code_4); break;
                     case 4: // Пять ступеней нагрева
-                        find_do = list_do.Find(x => x.Code == code_1);
-                        if (find_do == null) // Нет такой записи
-                        {
-                            list_do.Add(new Do("2 ступень электрического калорифера", code_1));
-                            AddNewDO(code_1); 
-                        }
-                        find_do = list_do.Find(x => x.Code == code_2);
-                        if (find_do == null) // Нет такой записи
-                        {
-                            list_do.Add(new Do("3 ступень электрического калорифера", code_2));
-                            AddNewDO(code_2); 
-                        }
-                        find_do = list_do.Find(x => x.Code == code_3);
-                        if (find_do == null) // Нет такой записи
-                        {
-                            list_do.Add(new Do("4 ступень электрического калорифера", code_3));
-                            AddNewDO(code_3); 
-                        }
-                        find_do = list_do.Find(x => x.Code == code_4);
-                        if (find_do == null)
-                        {
-                            list_do.Add(new Do("5 ступень электрического калорифера", code_4));
-                            AddNewDO(code_4); 
-                        }
-                        break;
+                        SubFromCombosDO(code_8); SubFromCombosDO(code_7); SubFromCombosDO(code_6);
+                        СheckAddDoToList("2 ступень электрического калорифера", code_2);
+                        СheckAddDoToList("3 ступень электрического калорифера", code_3);
+                        СheckAddDoToList("4 ступень электрического калорифера", code_4);
+                        СheckAddDoToList("5 ступень электрического калорифера", code_5); break;
+                    case 5: // Шесть ступеней нагрева
+                        SubFromCombosDO(code_8); SubFromCombosDO(code_7);
+                        СheckAddDoToList("2 ступень электрического калорифера", code_2);
+                        СheckAddDoToList("3 ступень электрического калорифера", code_3);
+                        СheckAddDoToList("4 ступень электрического калорифера", code_4);
+                        СheckAddDoToList("5 ступень электрического калорифера", code_5);
+                        СheckAddDoToList("6 ступень электрического калорифера", code_6); break;
+                    case 6: // Семь ступеней нагрева
+                        SubFromCombosDO(code_8);
+                        СheckAddDoToList("2 ступень электрического калорифера", code_2);
+                        СheckAddDoToList("3 ступень электрического калорифера", code_3);
+                        СheckAddDoToList("4 ступень электрического калорифера", code_4);
+                        СheckAddDoToList("5 ступень электрического калорифера", code_5);
+                        СheckAddDoToList("6 ступень электрического калорифера", code_6);
+                        СheckAddDoToList("7 ступень электрического калорифера", code_7); break;
+                    case 7: // Восемь ступеней нагрева
+                        СheckAddDoToList("2 ступень электрического калорифера", code_2);
+                        СheckAddDoToList("3 ступень электрического калорифера", code_3);
+                        СheckAddDoToList("4 ступень электрического калорифера", code_4);
+                        СheckAddDoToList("5 ступень электрического калорифера", code_5);
+                        СheckAddDoToList("6 ступень электрического калорифера", code_6);
+                        СheckAddDoToList("7 ступень электрического калорифера", code_7);
+                        СheckAddDoToList("8 ступень электрического калорифера", code_8); break;
                 }
             }
         }
@@ -2198,117 +2146,123 @@ namespace Moderon
         ///<summary>Выбрали дополнительный нагреватель</summary>
         private void AddHeatCheck_signalsDOCheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 78; // Запуск насоса водяного догревателя
-            ushort code_2 = 73; // Первая ступень электрического догревателя
-            ushort code_3 = 74; // Вторая ступень электрического догревателя
-            ushort code_4 = 75; // Третья ступень электрического догревателя
-            ushort code_5 = 76; // Четвертая ступень электрического догревателя
-            ushort code_6 = 77; // Пятая ступень электрического догревателя
-            if (addHeatCheck.Checked) // Когда выбран второй нагреватель
+            ushort
+                code_0 = 78, code_1 = 73, code_2 = 74, code_3 = 75,
+                code_4 = 76, code_5 = 77, code_6 = 88, code_7 = 89, code_8 = 90;
+
+            if (addHeatCheck.Checked)                                                   // Когда выбран второй нагреватель
             {
-                if (heatAddTypeCombo.SelectedIndex == 0) // Водяной догреватель 
+                if (heatAddTypeCombo.SelectedIndex == 0)                                // Водяной догреватель 
+                    AddToListDo("Запуск насоса водяного догревателя", code_0);
+                else if (heatAddTypeCombo.SelectedIndex == 1)                           // Электрический догреватель
                 {
-                    list_do.Add(new Do("Запуск насоса водяного догревателя", code_1));
-                    AddNewDO(code_1);
-                }
-                else if (heatAddTypeCombo.SelectedIndex == 1) // Электрический догреватель
-                {
-                    list_do.Add(new Do("1 ступень электрического догревателя", code_2));
-                    AddNewDO(code_2);
+                    AddToListDo("1 ступень электрического догревателя", code_1);        // Первая ступень электрического догревателя
                     switch (elHeatAddStagesCombo.SelectedIndex) // Выборка ступеней
                     {
                         case 0: break; // Одна ступень нагрева
                         case 1: // Две ступени нагрева
-                            list_do.Add(new Do("2 ступень электрического догревателя", code_3));
-                            AddNewDO(code_3); break;
+                            AddToListDo("2 ступень электрического догревателя", code_2); break;
                         case 2: // Три ступени нагрева
-                            list_do.Add(new Do("2 ступень электрического догревателя", code_3));
-                            AddNewDO(code_3);
-                            list_do.Add(new Do("3 ступень электрического догревателя", code_4));
-                            AddNewDO(code_4); break;
+                            AddToListDo("2 ступень электрического догревателя", code_2);
+                            AddToListDo("3 ступень электрического догревателя", code_3); break;
                         case 3: // Четыре ступени нагрева
-                            list_do.Add(new Do("2 ступень электрического догревателя", code_3));
-                            AddNewDO(code_3);
-                            list_do.Add(new Do("3 ступень электрического догревателя", code_4));
-                            AddNewDO(code_4);
-                            list_do.Add(new Do("4 ступень электрического догревателя", code_5));
-                            AddNewDO(code_5); break;
+                            AddToListDo("2 ступень электрического догревателя", code_2);
+                            AddToListDo("3 ступень электрического догревателя", code_3);
+                            AddToListDo("4 ступень электрического догревателя", code_4); break;
                         case 4: // Пять ступеней нагрева
-                            list_do.Add(new Do("2 ступень электрического догревателя", code_3));
-                            AddNewDO(code_3);
-                            list_do.Add(new Do("3 ступень электрического догревателя", code_4));
-                            AddNewDO(code_4);
-                            list_do.Add(new Do("4 ступень электрического догревателя", code_5));
-                            AddNewDO(code_5);
-                            list_do.Add(new Do("5 ступень электрического догревателя", code_6));
-                            AddNewDO(code_6); break;
+                            AddToListDo("2 ступень электрического догревателя", code_2);
+                            AddToListDo("3 ступень электрического догревателя", code_3);
+                            AddToListDo("4 ступень электрического догревателя", code_4);
+                            AddToListDo("5 ступень электрического догревателя", code_5); break;
+                        case 5: // Шесть ступеней нагрева
+                            AddToListDo("2 ступень электрического догревателя", code_2);
+                            AddToListDo("3 ступень электрического догревателя", code_3);
+                            AddToListDo("4 ступень электрического догревателя", code_4);
+                            AddToListDo("5 ступень электрического догревателя", code_5);
+                            AddToListDo("6 ступень электрического догревателя", code_6); break;
+                        case 6: // Семь ступеней нагрева
+                            AddToListDo("2 ступень электрического догревателя", code_2);
+                            AddToListDo("3 ступень электрического догревателя", code_3);
+                            AddToListDo("4 ступень электрического догревателя", code_4);
+                            AddToListDo("5 ступень электрического догревателя", code_5);
+                            AddToListDo("6 ступень электрического догревателя", code_6);
+                            AddToListDo("7 ступень электрического догревателя", code_7); break;
+                        case 7: // Восемь ступеней нагрева
+                            AddToListDo("2 ступень электрического догревателя", code_2);
+                            AddToListDo("3 ступень электрического догревателя", code_3);
+                            AddToListDo("4 ступень электрического догревателя", code_4);
+                            AddToListDo("5 ступень электрического догревателя", code_5);
+                            AddToListDo("6 ступень электрического догревателя", code_6);
+                            AddToListDo("7 ступень электрического догревателя", code_7);
+                            AddToListDo("8 ступень электрического догревателя", code_8); break;
                     }
                 }
             }
             else // Отмена выбора догревателя
             {
-                SubFromCombosDO(code_1);
-                SubFromCombosDO(code_2);
-                SubFromCombosDO(code_3);
-                SubFromCombosDO(code_4);
-                SubFromCombosDO(code_5);
-                SubFromCombosDO(code_6);
+                SubFromCombosDO(code_0); SubFromCombosDO(code_1); SubFromCombosDO(code_2); SubFromCombosDO(code_3);
+                SubFromCombosDO(code_4); SubFromCombosDO(code_5); SubFromCombosDO(code_6); SubFromCombosDO(code_7);
+                SubFromCombosDO(code_8);
             }
         }
 
         ///<summary>Изменили тип второго нагревателя</summary>
         private void HeatAddTypeCombo_signalsDOSelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 78; // Запуск насоса водяного догревателя
-            ushort code_2 = 73; // Первая ступень электрического догревателя
-            ushort code_3 = 74; // Вторая ступень электрического догревателя
-            ushort code_4 = 75; // Третья ступень электрического догревателя
-            ushort code_5 = 76; // Четвертая ступень электрического догревателя
-            ushort code_6 = 77; // Пятая ступень электрического догревателя
-            if (addHeatCheck.Checked) // Когда выбран второй нагреватель
+            ushort
+                code_0 = 78, code_1 = 73, code_2 = 74, code_3 = 75,
+                code_4 = 76, code_5 = 77, code_6 = 88, code_7 = 89, code_8 = 90;
+
+            if (addHeatCheck.Checked)                               // Когда выбран второй нагреватель
             {
-                if (heatAddTypeCombo.SelectedIndex == 0) // Водяной догреватель
+                if (heatAddTypeCombo.SelectedIndex == 0)            // Водяной догреватель
                 {
-                    SubFromCombosDO(code_2);
-                    SubFromCombosDO(code_3);
-                    SubFromCombosDO(code_4);
-                    SubFromCombosDO(code_5);
-                    SubFromCombosDO(code_6);
-                    list_do.Add(new Do("Запуск насоса водяного догревателя", code_1));
-                    AddNewDO(code_1);
+                    SubFromCombosDO(code_1); SubFromCombosDO(code_2); SubFromCombosDO(code_3); SubFromCombosDO(code_4);
+                    SubFromCombosDO(code_5); SubFromCombosDO(code_6); SubFromCombosDO(code_7); SubFromCombosDO(code_8);
+                    AddToListDo("Запуск насоса водяного догревателя", code_0);
                 }
-                else if (heatAddTypeCombo.SelectedIndex == 1) // Электрический догреватель
+                else if (heatAddTypeCombo.SelectedIndex == 1)       // Электрический догреватель
                 {
-                    SubFromCombosDO(code_1); // Удаление запуска насоса
-                    list_do.Add(new Do("1 ступень электрического догревателя", code_2));
-                    AddNewDO(code_2);
-                    switch (elHeatAddStagesCombo.SelectedIndex) // Выборка количества ступеней
+                    SubFromCombosDO(code_0);                        // Удаление запуска насоса
+                    AddToListDo("1 ступень электрического догревателя", code_1);
+                    switch (elHeatAddStagesCombo.SelectedIndex)     // Выборка количества ступеней
                     {
                         case 0: break; // Одна ступень нагрева
                         case 1: // Две ступени нагрева
-                            list_do.Add(new Do("2 ступень электрического догревателя", code_3));
-                            AddNewDO(code_3); break;
+                            AddToListDo("2 ступень электрического догревателя", code_2); break;
                         case 2: // Три ступени нагрева
-                            list_do.Add(new Do("2 ступень электрического догревателя", code_3));
-                            AddNewDO(code_3);
-                            list_do.Add(new Do("3 ступень электрического догревателя", code_4));
-                            AddNewDO(code_4); break;
+                            AddToListDo("2 ступень электрического догревателя", code_2);
+                            AddToListDo("3 ступень электрического догревателя", code_3); break;
                         case 3: // Четыре ступени нагрева
-                            list_do.Add(new Do("2 ступень электрического догревателя", code_3));
-                            AddNewDO(code_3);
-                            list_do.Add(new Do("3 ступень электрического догревателя", code_4));
-                            AddNewDO(code_4);
-                            list_do.Add(new Do("4 ступень электрического догревателя", code_5));
-                            AddNewDO(code_5); break;
+                            AddToListDo("2 ступень электрического догревателя", code_2);
+                            AddToListDo("3 ступень электрического догревателя", code_3);
+                            AddToListDo("4 ступень электрического догревателя", code_4); break;
                         case 4: // Пять ступеней нагрева
-                            list_do.Add(new Do("2 ступень электрического догревателя", code_3));
-                            AddNewDO(code_3);
-                            list_do.Add(new Do("3 ступень электрического догревателя", code_4));
-                            AddNewDO(code_4);
-                            list_do.Add(new Do("4 ступень электрического догревателя", code_5));
-                            AddNewDO(code_5);
-                            list_do.Add(new Do("5 ступень электрического догревателя", code_6));
-                            AddNewDO(code_6); break;
+                            AddToListDo("2 ступень электрического догревателя", code_2);
+                            AddToListDo("3 ступень электрического догревателя", code_3);
+                            AddToListDo("4 ступень электрического догревателя", code_4);
+                            AddToListDo("5 ступень электрического догревателя", code_5); break;
+                        case 5:// Шесть ступеней нагрева
+                            AddToListDo("2 ступень электрического догревателя", code_2);
+                            AddToListDo("3 ступень электрического догревателя", code_3);
+                            AddToListDo("4 ступень электрического догревателя", code_4);
+                            AddToListDo("5 ступень электрического догревателя", code_5);
+                            AddToListDo("6 ступень электрического догревателя", code_6); break;
+                        case 6: // Семь ступеней нагрева
+                            AddToListDo("2 ступень электрического догревателя", code_2);
+                            AddToListDo("3 ступень электрического догревателя", code_3);
+                            AddToListDo("4 ступень электрического догревателя", code_4);
+                            AddToListDo("5 ступень электрического догревателя", code_5);
+                            AddToListDo("6 ступень электрического догревателя", code_6);
+                            AddToListDo("7 ступень электрического догревателя", code_7); break;
+                        case 7: // Восемь ступеней нагрева
+                            AddToListDo("2 ступень электрического догревателя", code_2);
+                            AddToListDo("3 ступень электрического догревателя", code_3);
+                            AddToListDo("4 ступень электрического догревателя", code_4);
+                            AddToListDo("5 ступень электрического догревателя", code_5);
+                            AddToListDo("6 ступень электрического догревателя", code_6);
+                            AddToListDo("7 ступень электрического догревателя", code_7);
+                            AddToListDo("8 ступень электрического догревателя", code_8); break;
                     }
                 }
             }
@@ -2317,87 +2271,85 @@ namespace Moderon
         ///<summary>Изменили количество ступеней электрического догревателя</summary>
         private void ElHeatAddStagesCombo_signalsSelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 74; // Вторая ступень электродогревателя
-            ushort code_2 = 75; // Третья ступень электродогревателя
-            ushort code_3 = 76; // Четвертая ступень электродогревателя
-            ushort code_4 = 77; // Пятая ступень электродогревателя
+            ushort
+                code_2 = 74, code_3 = 75, code_4 = 76, code_5 = 77, code_6 = 88, code_7 = 89, code_8 = 90;
             Do find_do;
             if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 1)
             { // Выбран электрический догреватель
                 switch (elHeatAddStagesCombo.SelectedIndex) // Выборка ступеней
                 {
                     case 0: // Одна ступень нагрева
-                        SubFromCombosDO(code_4); SubFromCombosDO(code_3);
-                        SubFromCombosDO(code_2); SubFromCombosDO(code_1); break;
+                        SubFromCombosDO(code_5); SubFromCombosDO(code_4);
+                        SubFromCombosDO(code_3); SubFromCombosDO(code_2); break;
                     case 1: // Две ступени нагрева
-                        SubFromCombosDO(code_4); SubFromCombosDO(code_3); SubFromCombosDO(code_2);
-                        find_do = list_do.Find(x => x.Code == code_1);
+                        SubFromCombosDO(code_5); SubFromCombosDO(code_4); SubFromCombosDO(code_3);
+                        find_do = list_do.Find(x => x.Code == code_2);
                         if (find_do == null) // Нет такой записи
                         {
-                            list_do.Add(new Do("2 ступень электрического догревателя", code_1));
-                            AddNewDO(code_1);
+                            list_do.Add(new Do("2 ступень электрического догревателя", code_2));
+                            AddNewDO(code_2);
                         }
                         break;
                     case 2: // Три ступени нагрева
-                        SubFromCombosDO(code_4); SubFromCombosDO(code_3);
-                        find_do = list_do.Find(x => x.Code == code_1);
-                        if (find_do == null) // Нет такой записи
-                        {
-                            list_do.Add(new Do("2 ступень электрического догревателя", code_1));
-                            AddNewDO(code_1);
-                        }
+                        SubFromCombosDO(code_5); SubFromCombosDO(code_4);
                         find_do = list_do.Find(x => x.Code == code_2);
                         if (find_do == null) // Нет такой записи
                         {
-                            list_do.Add(new Do("3 ступень электрического догревателя", code_2));
-                            AddNewDO(code_2);
-                        }
-                        break;
-                    case 3: // Четыре ступени нагрева
-                        SubFromCombosDO(code_4);
-                        find_do = list_do.Find(x => x.Code == code_1);
-                        if (find_do == null) // Нет такой записи
-                        {
-                            list_do.Add(new Do("2 ступень электрического догревателя", code_1));
-                            AddNewDO(code_1);
-                        }
-                        find_do = list_do.Find(x => x.Code == code_2);
-                        if (find_do == null) // Нет такой записи
-                        {
-                            list_do.Add(new Do("3 ступень электрического догревателя", code_2));
+                            list_do.Add(new Do("2 ступень электрического догревателя", code_2));
                             AddNewDO(code_2);
                         }
                         find_do = list_do.Find(x => x.Code == code_3);
                         if (find_do == null) // Нет такой записи
                         {
-                            list_do.Add(new Do("4 ступень электрического догревателя", code_3));
+                            list_do.Add(new Do("3 ступень электрического догревателя", code_3));
                             AddNewDO(code_3);
                         }
                         break;
-                    case 4: // Пять ступеней нагрева
-                        find_do = list_do.Find(x => x.Code == code_1);
-                        if (find_do == null) // Нет такой записи
-                        {
-                            list_do.Add(new Do("2 ступень электрического догревателя", code_1));
-                            AddNewDO(code_1);
-                        }
+                    case 3: // Четыре ступени нагрева
+                        SubFromCombosDO(code_5);
                         find_do = list_do.Find(x => x.Code == code_2);
                         if (find_do == null) // Нет такой записи
                         {
-                            list_do.Add(new Do("3 ступень электрического догревателя", code_2));
+                            list_do.Add(new Do("2 ступень электрического догревателя", code_2));
                             AddNewDO(code_2);
                         }
                         find_do = list_do.Find(x => x.Code == code_3);
                         if (find_do == null) // Нет такой записи
                         {
-                            list_do.Add(new Do("4 ступень электрического догревателя", code_3));
+                            list_do.Add(new Do("3 ступень электрического догревателя", code_3));
                             AddNewDO(code_3);
                         }
                         find_do = list_do.Find(x => x.Code == code_4);
                         if (find_do == null) // Нет такой записи
                         {
-                            list_do.Add(new Do("5 ступень электрического догревателя", code_4));
+                            list_do.Add(new Do("4 ступень электрического догревателя", code_4));
                             AddNewDO(code_4);
+                        }
+                        break;
+                    case 4: // Пять ступеней нагрева
+                        find_do = list_do.Find(x => x.Code == code_2);
+                        if (find_do == null) // Нет такой записи
+                        {
+                            list_do.Add(new Do("2 ступень электрического догревателя", code_2));
+                            AddNewDO(code_2);
+                        }
+                        find_do = list_do.Find(x => x.Code == code_3);
+                        if (find_do == null) // Нет такой записи
+                        {
+                            list_do.Add(new Do("3 ступень электрического догревателя", code_3));
+                            AddNewDO(code_3);
+                        }
+                        find_do = list_do.Find(x => x.Code == code_4);
+                        if (find_do == null) // Нет такой записи
+                        {
+                            list_do.Add(new Do("4 ступень электрического догревателя", code_4));
+                            AddNewDO(code_4);
+                        }
+                        find_do = list_do.Find(x => x.Code == code_5);
+                        if (find_do == null) // Нет такой записи
+                        {
+                            list_do.Add(new Do("5 ступень электрического догревателя", code_5));
+                            AddNewDO(code_5);
                         }
                         break;
                 }

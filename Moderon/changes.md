@@ -61,7 +61,7 @@
 27.09.23 (среда)  
 
 - добавление унифицированного метода comboBox `signalsTableAO.cs`  
-- добавление унифицированного метода comboBox `signalsTableAI.cs`  
+- добавление унифицированного метода comБез названияboBox `signalsTableAI.cs`  
 
 
 28.09.23 (четверг)  
@@ -87,5 +87,20 @@
 - основной электронагреватель - изменено кол-во ступеней до 8  
 - электрический догреватель - изменено кол-во ступеней до 8  
 
+18.10.23 (среда)
 
+- изменение командного слова электрокалорифера `CommandWord.cs`
+- изменение командного слова электро догревателя `CommandWord.cs`
+- `HeaterCheck_signalsDOCheckedChanged` изменена для 8 ступеней 
+- `HeatTypeCombo_signalsDOSelectedIndexChanged` тип нагрева, 8 ступеней
 
+19.10.23 (четверг)  
+
+- добавлен метод `AddToListDo` для добавления DO сигнала  
+
+20.10.23 (пятница)  
+
+- создан метод `CheckAddDoToList` для проверки и добавления DO
+- `ElHeatStagesCombo_signalsSelectedIndexChanged` изменено для 8 ступеней  
+- `AddHeatCheck_signalsDOCheckedChanged` изменения для 8 ступеней  
+- `HeatAddTypeCombo_signalsDOSelectedIndexChanged` для 8 ступеней
