@@ -103,4 +103,10 @@
 - создан метод `CheckAddDoToList` для проверки и добавления DO
 - `ElHeatStagesCombo_signalsSelectedIndexChanged` изменено для 8 ступеней  
 - `AddHeatCheck_signalsDOCheckedChanged` изменения для 8 ступеней  
-- `HeatAddTypeCombo_signalsDOSelectedIndexChanged` для 8 ступеней
+- `HeatAddTypeCombo_signalsDOSelectedIndexChanged` для 8 ступеней  
+
+23.10.23 (понедельник)  
+
+- `ElHeatAddStagesCombo_signalsSelectedIndexChanged` для 8 ступеней  
+- `README.md` исправлена опечатка
+- 

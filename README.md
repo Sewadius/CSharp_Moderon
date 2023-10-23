@@ -16,7 +16,7 @@ There are options for the user to choose from:
 - recuperator
 - backup fan
 
-The command words and signal table for the controller are generated. The settings can then be downloaded vid COM port.
+The command words and signal table for the controller are generated. The settings can then be downloaded via COM port.
 
 <img src="Moderon/imgs/logo_HVAC.png" alt="HVAC_logo" style="height:150px">
 
