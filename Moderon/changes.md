@@ -109,4 +109,7 @@
 
 - `ElHeatAddStagesCombo_signalsSelectedIndexChanged` для 8 ступеней  
 - `README.md` исправлена опечатка
-- 
+
+24.10.23 (вторник)  
+
+- рефакторинг для файла `signalsTableDO.cs`

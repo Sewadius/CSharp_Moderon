@@ -1898,7 +1898,7 @@ namespace Moderon
         }
 
         ///<summary>Проверка и добавление дискретного выхода</summary>
-        private void СheckAddDoToList(string name, ushort code)
+        private void CheckAddDoToList(string name, ushort code)
         {
             Do find_do = list_do.Find(x => x.Code == code);
             if (find_do == null)                                                        // Нет такой записи
@@ -1998,13 +1998,13 @@ namespace Moderon
         ///<summary>Изменили тип основного нагревателя</summary>
         private void HeatTypeCombo_signalsDOSelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort // Насос водяного калорифера и ступени электрокалорифера
+            ushort                                                                      // Насос водяного калорифера и ступени электрокалорифера
                 code_0 = 34, code_1 = 38, code_2 = 39, code_3 = 40,
                 code_4 = 41, code_5 = 42, code_6 = 43, code_7 = 44, code_8 = 45;
 
-            if (heaterCheck.Checked) // Когда выбран нагреватель
+            if (heaterCheck.Checked)                                                    // Когда выбран нагреватель
             {
-                if (heatTypeCombo.SelectedIndex == 0) // Водяной калорифер
+                if (heatTypeCombo.SelectedIndex == 0)                                   // Водяной калорифер
                 {
                     SubFromCombosDO(code_1); SubFromCombosDO(code_2); SubFromCombosDO(code_3);
                     SubFromCombosDO(code_4); SubFromCombosDO(code_5); SubFromCombosDO(code_6);
@@ -2036,7 +2036,7 @@ namespace Moderon
         ///<summary>Изменили количество ступеней основного электрокалорифера</summary>
         private void ElHeatStagesCombo_signalsSelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort // Ступени электрокалорифера
+            ushort                                                              // Ступени электрокалорифера
                 code_2 = 39, code_3 = 40, code_4 = 41, code_5 = 42, 
                 code_6 = 43, code_7 = 44, code_8 = 45;
 
@@ -2050,46 +2050,46 @@ namespace Moderon
                     case 1: // Две ступени нагрева
                         SubFromCombosDO(code_8); SubFromCombosDO(code_7); SubFromCombosDO(code_6);
                         SubFromCombosDO(code_5); SubFromCombosDO(code_4); SubFromCombosDO(code_3);
-                        СheckAddDoToList("2 ступень электрического калорифера", code_2); break;
+                        CheckAddDoToList("2 ступень электрического калорифера", code_2); break;
                     case 2: // Три ступени нагрева
                         SubFromCombosDO(code_8); SubFromCombosDO(code_7); SubFromCombosDO(code_6);
                         SubFromCombosDO(code_5); SubFromCombosDO(code_4);
-                        СheckAddDoToList("2 ступень электрического калорифера", code_2);
-                        СheckAddDoToList("3 ступень электрического калорифера", code_3); break;
+                        CheckAddDoToList("2 ступень электрического калорифера", code_2);
+                        CheckAddDoToList("3 ступень электрического калорифера", code_3); break;
                     case 3: // Четыре ступени нагрева
                         SubFromCombosDO(code_8); SubFromCombosDO(code_7); SubFromCombosDO(code_6); SubFromCombosDO(code_5);
-                        СheckAddDoToList("2 ступень электрического калорифера", code_2);
-                        СheckAddDoToList("3 ступень электрического калорифера", code_3);
-                        СheckAddDoToList("4 ступень электрического калорифера", code_4); break;
+                        CheckAddDoToList("2 ступень электрического калорифера", code_2);
+                        CheckAddDoToList("3 ступень электрического калорифера", code_3);
+                        CheckAddDoToList("4 ступень электрического калорифера", code_4); break;
                     case 4: // Пять ступеней нагрева
                         SubFromCombosDO(code_8); SubFromCombosDO(code_7); SubFromCombosDO(code_6);
-                        СheckAddDoToList("2 ступень электрического калорифера", code_2);
-                        СheckAddDoToList("3 ступень электрического калорифера", code_3);
-                        СheckAddDoToList("4 ступень электрического калорифера", code_4);
-                        СheckAddDoToList("5 ступень электрического калорифера", code_5); break;
+                        CheckAddDoToList("2 ступень электрического калорифера", code_2);
+                        CheckAddDoToList("3 ступень электрического калорифера", code_3);
+                        CheckAddDoToList("4 ступень электрического калорифера", code_4);
+                        CheckAddDoToList("5 ступень электрического калорифера", code_5); break;
                     case 5: // Шесть ступеней нагрева
                         SubFromCombosDO(code_8); SubFromCombosDO(code_7);
-                        СheckAddDoToList("2 ступень электрического калорифера", code_2);
-                        СheckAddDoToList("3 ступень электрического калорифера", code_3);
-                        СheckAddDoToList("4 ступень электрического калорифера", code_4);
-                        СheckAddDoToList("5 ступень электрического калорифера", code_5);
-                        СheckAddDoToList("6 ступень электрического калорифера", code_6); break;
+                        CheckAddDoToList("2 ступень электрического калорифера", code_2);
+                        CheckAddDoToList("3 ступень электрического калорифера", code_3);
+                        CheckAddDoToList("4 ступень электрического калорифера", code_4);
+                        CheckAddDoToList("5 ступень электрического калорифера", code_5);
+                        CheckAddDoToList("6 ступень электрического калорифера", code_6); break;
                     case 6: // Семь ступеней нагрева
                         SubFromCombosDO(code_8);
-                        СheckAddDoToList("2 ступень электрического калорифера", code_2);
-                        СheckAddDoToList("3 ступень электрического калорифера", code_3);
-                        СheckAddDoToList("4 ступень электрического калорифера", code_4);
-                        СheckAddDoToList("5 ступень электрического калорифера", code_5);
-                        СheckAddDoToList("6 ступень электрического калорифера", code_6);
-                        СheckAddDoToList("7 ступень электрического калорифера", code_7); break;
+                        CheckAddDoToList("2 ступень электрического калорифера", code_2);
+                        CheckAddDoToList("3 ступень электрического калорифера", code_3);
+                        CheckAddDoToList("4 ступень электрического калорифера", code_4);
+                        CheckAddDoToList("5 ступень электрического калорифера", code_5);
+                        CheckAddDoToList("6 ступень электрического калорифера", code_6);
+                        CheckAddDoToList("7 ступень электрического калорифера", code_7); break;
                     case 7: // Восемь ступеней нагрева
-                        СheckAddDoToList("2 ступень электрического калорифера", code_2);
-                        СheckAddDoToList("3 ступень электрического калорифера", code_3);
-                        СheckAddDoToList("4 ступень электрического калорифера", code_4);
-                        СheckAddDoToList("5 ступень электрического калорифера", code_5);
-                        СheckAddDoToList("6 ступень электрического калорифера", code_6);
-                        СheckAddDoToList("7 ступень электрического калорифера", code_7);
-                        СheckAddDoToList("8 ступень электрического калорифера", code_8); break;
+                        CheckAddDoToList("2 ступень электрического калорифера", code_2);
+                        CheckAddDoToList("3 ступень электрического калорифера", code_3);
+                        CheckAddDoToList("4 ступень электрического калорифера", code_4);
+                        CheckAddDoToList("5 ступень электрического калорифера", code_5);
+                        CheckAddDoToList("6 ступень электрического калорифера", code_6);
+                        CheckAddDoToList("7 ступень электрического калорифера", code_7);
+                        CheckAddDoToList("8 ступень электрического калорифера", code_8); break;
                 }
         }
 
@@ -2188,46 +2188,46 @@ namespace Moderon
                     case 1: // Две ступени нагрева
                         SubFromCombosDO(code_8); SubFromCombosDO(code_7); SubFromCombosDO(code_6);
                         SubFromCombosDO(code_5); SubFromCombosDO(code_4); SubFromCombosDO(code_3);
-                        СheckAddDoToList("2 ступень электрического догревателя", code_2); break;
+                        CheckAddDoToList("2 ступень электрического догревателя", code_2); break;
                     case 2: // Три ступени нагрева
                         SubFromCombosDO(code_8); SubFromCombosDO(code_7); SubFromCombosDO(code_6);
                         SubFromCombosDO(code_5); SubFromCombosDO(code_4);
-                        СheckAddDoToList("2 ступень электрического догревателя", code_2);
-                        СheckAddDoToList("3 ступень электрического догревателя", code_3); break;
+                        CheckAddDoToList("2 ступень электрического догревателя", code_2);
+                        CheckAddDoToList("3 ступень электрического догревателя", code_3); break;
                     case 3: // Четыре ступени нагрева
                         SubFromCombosDO(code_8); SubFromCombosDO(code_7); SubFromCombosDO(code_6); SubFromCombosDO(code_5);
-                        СheckAddDoToList("2 ступень электрического догревателя", code_2);
-                        СheckAddDoToList("3 ступень электрического догревателя", code_3);
-                        СheckAddDoToList("4 ступень электрического догревателя", code_4); break;
+                        CheckAddDoToList("2 ступень электрического догревателя", code_2);
+                        CheckAddDoToList("3 ступень электрического догревателя", code_3);
+                        CheckAddDoToList("4 ступень электрического догревателя", code_4); break;
                     case 4: // Пять ступеней нагрева
                         SubFromCombosDO(code_8); SubFromCombosDO(code_7); SubFromCombosDO(code_6);
-                        СheckAddDoToList("2 ступень электрического догревателя", code_2);
-                        СheckAddDoToList("3 ступень электрического догревателя", code_3);
-                        СheckAddDoToList("4 ступень электрического догревателя", code_4);
-                        СheckAddDoToList("5 ступень электрического догревателя", code_5); break;
+                        CheckAddDoToList("2 ступень электрического догревателя", code_2);
+                        CheckAddDoToList("3 ступень электрического догревателя", code_3);
+                        CheckAddDoToList("4 ступень электрического догревателя", code_4);
+                        CheckAddDoToList("5 ступень электрического догревателя", code_5); break;
                     case 5: // Шесть ступеней нагрева
                         SubFromCombosDO(code_8); SubFromCombosDO(code_7);
-                        СheckAddDoToList("2 ступень электрического догревателя", code_2);
-                        СheckAddDoToList("3 ступень электрического догревателя", code_3);
-                        СheckAddDoToList("4 ступень электрического догревателя", code_4);
-                        СheckAddDoToList("5 ступень электрического догревателя", code_5);
-                        СheckAddDoToList("6 ступень электрического догревателя", code_6); break;
+                        CheckAddDoToList("2 ступень электрического догревателя", code_2);
+                        CheckAddDoToList("3 ступень электрического догревателя", code_3);
+                        CheckAddDoToList("4 ступень электрического догревателя", code_4);
+                        CheckAddDoToList("5 ступень электрического догревателя", code_5);
+                        CheckAddDoToList("6 ступень электрического догревателя", code_6); break;
                     case 6: // Семь ступеней нагрева
                         SubFromCombosDO(code_8);
-                        СheckAddDoToList("2 ступень электрического догревателя", code_2);
-                        СheckAddDoToList("3 ступень электрического догревателя", code_3);
-                        СheckAddDoToList("4 ступень электрического догревателя", code_4);
-                        СheckAddDoToList("5 ступень электрического догревателя", code_5);
-                        СheckAddDoToList("6 ступень электрического догревателя", code_6);
-                        СheckAddDoToList("7 ступень электрического догревателя", code_7); break;
+                        CheckAddDoToList("2 ступень электрического догревателя", code_2);
+                        CheckAddDoToList("3 ступень электрического догревателя", code_3);
+                        CheckAddDoToList("4 ступень электрического догревателя", code_4);
+                        CheckAddDoToList("5 ступень электрического догревателя", code_5);
+                        CheckAddDoToList("6 ступень электрического догревателя", code_6);
+                        CheckAddDoToList("7 ступень электрического догревателя", code_7); break;
                     case 7: // Восемь ступеней нагрева
-                        СheckAddDoToList("2 ступень электрического догревателя", code_2);
-                        СheckAddDoToList("3 ступень электрического догревателя", code_3);
-                        СheckAddDoToList("4 ступень электрического догревателя", code_4);
-                        СheckAddDoToList("5 ступень электрического догревателя", code_5);
-                        СheckAddDoToList("6 ступень электрического догревателя", code_6);
-                        СheckAddDoToList("7 ступень электрического догревателя", code_7);
-                        СheckAddDoToList("8 ступень электрического догревателя", code_8); break;
+                        CheckAddDoToList("2 ступень электрического догревателя", code_2);
+                        CheckAddDoToList("3 ступень электрического догревателя", code_3);
+                        CheckAddDoToList("4 ступень электрического догревателя", code_4);
+                        CheckAddDoToList("5 ступень электрического догревателя", code_5);
+                        CheckAddDoToList("6 ступень электрического догревателя", code_6);
+                        CheckAddDoToList("7 ступень электрического догревателя", code_7);
+                        CheckAddDoToList("8 ступень электрического догревателя", code_8); break;
                 }
             }
         }
@@ -2235,81 +2235,49 @@ namespace Moderon
         ///<summary>Выбрали охладитель</summary>
         private void CoolerCheck_signalsDOCheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 48; // Первая ступень фреонового охладителя
-            ushort code_2 = 49; // Вторая ступень фреонового охладителя
-            ushort code_3 = 50; // Третья ступень фреонового охладителя
-            ushort code_4 = 51; // Четвертая ступень фреонового охладителя
-            if (coolerCheck.Checked) // Выбрали охладитель
+            ushort code_1 = 48, code_2 = 49, code_3 = 50, code_4 = 51;              // Ступени фреонового охладителя
+
+            if (coolerCheck.Checked)                                                // Выбрали охладитель
             {
-                if (coolTypeCombo.SelectedIndex == 0) // Фреоновый 
+                if (coolTypeCombo.SelectedIndex == 0)                               // Фреоновый 
                 {
-                    list_do.Add(new Do("1 ступень фреонового охладителя", code_1));
-                    AddNewDO(code_1);
-                    switch (frCoolStagesCombo.SelectedIndex) // Выборка количества ступеней
-                    {
-                        case 0: break; // Одна ступень
-                        case 1: // Две ступени
-                            list_do.Add(new Do("2 ступень фреонового охладителя", code_2));
-                            AddNewDO(code_2); break;
-                        case 2: // Три ступени
-                            list_do.Add(new Do("2 ступень фреонового охладителя", code_2));
-                            AddNewDO(code_2);
-                            list_do.Add(new Do("3 ступень фреонового охладителя", code_3));
-                            AddNewDO(code_3); break;
-                        case 3: // Четыре ступени
-                            list_do.Add(new Do("2 ступень фреонового охладителя", code_2));
-                            AddNewDO(code_2);
-                            list_do.Add(new Do("3 ступень фреонового охладителя", code_3));
-                            AddNewDO(code_3);
-                            list_do.Add(new Do("4 ступень фреонового охладителя", code_4));
-                            AddNewDO(code_4); break;
-                    }
+                    AddToListDo("1 ступень фреонового охладителя", code_1);
+                    if (frCoolStagesCombo.SelectedIndex > 0)
+                        AddToListDo("2 ступень фреонового охладителя", code_2);
+                    if (frCoolStagesCombo.SelectedIndex > 1)
+                        AddToListDo("3 ступень фреонового охладителя", code_3);
+                    if (frCoolStagesCombo.SelectedIndex > 2)
+                        AddToListDo("4 ступень фреонового охладителя", code_4);
                 }
             } 
             else // Отмена выбора охладителя
             {
-                SubFromCombosDO(code_4); SubFromCombosDO(code_3);
-                SubFromCombosDO(code_2); SubFromCombosDO(code_1);
+                var codes = new List<ushort>() { code_1, code_2, code_3, code_4 };
+                foreach (var el in codes) SubFromCombosDO(el);
             }
         }
 
         ///<summary>Изменили тип охладителя</summary>
         private void CoolTypeCombo_signalsDOSelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 48; // Первая ступень фреонового охладителя
-            ushort code_2 = 49; // Вторая ступень фреонового охладителя
-            ushort code_3 = 50; // Третья ступень фреонового охладителя
-            ushort code_4 = 51; // Четвертая ступень фреонового охладителя
-            if (coolerCheck.Checked) // Когда выбран охладитель
+            ushort code_1 = 48, code_2 = 49, code_3 = 50, code_4 = 51;                          // Ступени фреонового охладителя
+
+            if (coolerCheck.Checked)                                                            // Выбрали охладитель
             {
-                if (coolTypeCombo.SelectedIndex == 0) // Фреоновый охладитель
+                if (coolTypeCombo.SelectedIndex == 0)                                           // Фреоновый охладитель
                 {
-                    list_do.Add(new Do("1 ступень фреонового охладителя", code_1));
-                    AddNewDO(code_1);
-                    switch (frCoolStagesCombo.SelectedIndex) // Выборка количества ступеней
-                    {
-                        case 0: break; // Одна ступень
-                        case 1: // Две ступени
-                            list_do.Add(new Do("2 ступень фреонового охладителя", code_2));
-                            AddNewDO(code_2); break;
-                        case 2: // Три ступени
-                            list_do.Add(new Do("2 ступень фреонового охладителя", code_2));
-                            AddNewDO(code_2);
-                            list_do.Add(new Do("3 ступень фреонового охладителя", code_3));
-                            AddNewDO(code_3); break;
-                        case 3: // Четыре ступени
-                            list_do.Add(new Do("2 ступень фреонового охладителя", code_2));
-                            AddNewDO(code_2);
-                            list_do.Add(new Do("3 ступень фреонового охладителя", code_3));
-                            AddNewDO(code_3);
-                            list_do.Add(new Do("4 ступень фреонового охладителя", code_4));
-                            AddNewDO(code_4); break;
-                    }
+                    AddToListDo("1 ступень фреонового охладителя", code_1);
+                    if (frCoolStagesCombo.SelectedIndex > 0)
+                        AddToListDo("2 ступень фреонового охладителя", code_2);
+                    if (frCoolStagesCombo.SelectedIndex > 1)
+                        AddToListDo("3 ступень фреонового охладителя", code_3);
+                    if (frCoolStagesCombo.SelectedIndex > 2)
+                        AddToListDo("4 ступень фреонового охладителя", code_4);
                 }
-                else if (coolTypeCombo.SelectedIndex == 1) // Водяной охладитель
+                else if (coolTypeCombo.SelectedIndex == 1)                                      // Водяной охладитель
                 {
-                    SubFromCombosDO(code_4); SubFromCombosDO(code_3);
-                    SubFromCombosDO(code_2); SubFromCombosDO(code_1);
+                    var codes = new List<ushort>() { code_1, code_2, code_3, code_4 };
+                    foreach (var el in codes) SubFromCombosDO(el);
                 }
             }
         }
@@ -2317,60 +2285,25 @@ namespace Moderon
         ///<summary>Изменили количество ступеней фреонового охладителя</summary>
         private void FrCoolStagesCombo_signalsDOSelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 49; // Вторая ступень фреонового охладителя
-            ushort code_2 = 50; // Третья ступень фреонового охладителя
-            ushort code_3 = 51; // Четвертая ступень фреонового охладителя
-            Do find_do;
-            if (coolerCheck.Checked && coolTypeCombo.SelectedIndex == 0)
-            { // Выбран фреоновых охладитель
-                switch (frCoolStagesCombo.SelectedIndex) // Выборка ступеней охладителя
+            ushort code_2 = 49, code_3 = 50, code_4 = 51;                                       // 2-4 ступени фреонового охладителя
+
+            if (coolerCheck.Checked && coolTypeCombo.SelectedIndex == 0)                        // Выбран фреоновый охладитель
+            { 
+                switch (frCoolStagesCombo.SelectedIndex)                                        // Выборка ступеней охладителя
                 {
                     case 0: // Одна ступень охладителя
-                        SubFromCombosDO(code_3); SubFromCombosDO(code_2); SubFromCombosDO(code_1); break;
+                        SubFromCombosDO(code_4); SubFromCombosDO(code_3); SubFromCombosDO(code_2); break;
                     case 1: // Две ступени охладителя
-                        SubFromCombosDO(code_3); SubFromCombosDO(code_2);
-                        find_do = list_do.Find(x => x.Code == code_1);
-                        if (find_do == null) // Нет такой записи
-                        {
-                            list_do.Add(new Do("2 ступень фреонового охладителя", code_1));
-                            AddNewDO(code_1);
-                        }
-                        break;
+                        SubFromCombosDO(code_4); SubFromCombosDO(code_3);
+                        CheckAddDoToList("2 ступень фреонового охладителя", code_2); break;
                     case 2: // Три ступени охладителя
-                        SubFromCombosDO(code_3);
-                        find_do = list_do.Find(x => x.Code == code_1);
-                        if (find_do == null) // Нет такой записи
-                        {
-                            list_do.Add(new Do("2 ступень фреонового охладителя", code_1));
-                            AddNewDO(code_1);
-                        }
-                        find_do = list_do.Find(x => x.Code == code_2);
-                        if (find_do == null) // Нет такой записи
-                        {
-                            list_do.Add(new Do("3 ступень фреонового охладителя", code_2));
-                            AddNewDO(code_2);
-                        }
-                        break;
+                        SubFromCombosDO(code_4);
+                        CheckAddDoToList("2 ступень фреонового охладителя", code_2);
+                        CheckAddDoToList("3 ступень фреонового охладителя", code_3); break;
                     case 3: // Четыре ступени охладителя
-                        find_do = list_do.Find(x => x.Code == code_1);
-                        if (find_do == null) // Нет такой записи
-                        {
-                            list_do.Add(new Do("2 ступень фреонового охладителя", code_1));
-                            AddNewDO(code_1);
-                        }
-                        find_do = list_do.Find(x => x.Code == code_2);
-                        if (find_do == null) // Нет такой записи
-                        {
-                            list_do.Add(new Do("3 ступень фреонового охладителя", code_2));
-                            AddNewDO(code_2);
-                        }
-                        find_do = list_do.Find(x => x.Code == code_3);
-                        if (find_do == null) // Нет такой записи
-                        {
-                            list_do.Add(new Do("4 ступень фреонового охладителя", code_3));
-                            AddNewDO(code_3);
-                        }
-                        break;
+                        CheckAddDoToList("2 ступень фреонового охладителя", code_2);
+                        CheckAddDoToList("3 ступень фреонового охладителя", code_3);
+                        CheckAddDoToList("4 ступень фреонового охладителя", code_4); break;
                 }
             }
         }
@@ -2378,91 +2311,68 @@ namespace Moderon
         ///<summary>Изменили тип системы</summary>
         private void ComboSysType_signalsSelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 23; // Сигнал "Пуск/Стоп" вытяжного вентилятора 1
-            ushort code_2 = 29; // Сигнал "Пуск/Стоп" вытяжного вентилятора 2
-            if (comboSysType.SelectedIndex == 1) // Выбрана ПВ-система
+            ushort code_1 = 23, code_2 = 29;                                                // Сигнал "Пуск/Стоп" вытяжного вентилятора 1, 2
+
+            if (comboSysType.SelectedIndex == 1)                                            // Выбрана ПВ-система
             {
-                list_do.Add(new Do("Сигнал \"Пуск/Стоп\" вытяжного вентилятора 1", code_1));
-                AddNewDO(code_1);
-                if (checkResOutFan.Checked) // Выбран резерв вытяжного вентилятора
-                {
-                    list_do.Add(new Do("Сигнал \"Пуск/Стоп\" вытяжного вентилятора 2", code_2));
-                    AddNewDO(code_2);
-                }
+                AddToListDo("Сигнал \"Пуск/Стоп\" вытяжного вентилятора 1", code_1);
+                if (checkResOutFan.Checked)                                                 // Выбран резерв вытяжного вентилятора
+                    AddToListDo("Сигнал \"Пуск/Стоп\" вытяжного вентилятора 2", code_2);
             } 
-            else if (comboSysType.SelectedIndex == 0) // Выбрана П-система
+            else if (comboSysType.SelectedIndex == 0)                                       // Выбрана П-система
             {
-                SubFromCombosDO(code_2);
-                SubFromCombosDO(code_1);
+                SubFromCombosDO(code_2); SubFromCombosDO(code_1);
             }
         }
         
         ///<summary>Выбрали резерв приточного вентилятора</summary>
         private void CheckResPrFan_signalsDOCheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 15; // Сигнал "Пуск/Стоп" приточного вентилятора 2
-            ushort code_2 = 14; // Сигнал подачи питания приточного вентилятора 2
-            if (checkResPrFan.Checked) // Выбрали резервирование
+            // Сигнал "Пуск/Стоп" приточного вентилятора 2 / сигнал подачи питания приточного вентилятора 2
+            ushort code_1 = 15, code_2 = 14;
+
+            if (checkResPrFan.Checked)                                                          // Выбрали резервирование
             {
-                if (prFanStStopCheck.Checked) // Выбран сигнал "Пуск/Стоп"
-                {
-                    list_do.Add(new Do("Сигнал \"Пуск/Стоп\" приточного вентилятора 2", code_1));
-                    AddNewDO(code_1);
-                }
-                if (prFanPowSupCheck.Checked) // Выбран сигнал подачи питания
-                {
-                    list_do.Add(new Do("Подача питания приточного вентилятора 2", code_2));
-                    AddNewDO(code_2);
-                }
+                if (prFanStStopCheck.Checked)                                                   // Выбран сигнал "Пуск/Стоп"
+                    AddToListDo("Сигнал \"Пуск/Стоп\" приточного вентилятора 2", code_1);
+                if (prFanPowSupCheck.Checked)                                                   // Выбран сигнал подачи питания
+                    AddToListDo("Подача питания приточного вентилятора 2", code_2);
             }
             else // Отмена выбора резервирования
             {
-                SubFromCombosDO(code_1); // Отмена выбора сигнала "Пуск/Стоп"
-                SubFromCombosDO(code_2); // Отмена выбора подачи питания
+                SubFromCombosDO(code_1); SubFromCombosDO(code_2);                               // Отмена выбора сигнала "Пуск/Стоп" / сигнала подачи питания
             }
         }
 
         ///<summary>Выбрали резерв вытяжного вентилятора</summary>
         private void CheckResOutFan_signalsCheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 29; // Сигнал "Пуск/Стоп" вытяжного вентилятора 2
-            ushort code_2 = 28; // Сигнал подачи питания вытяжного вентилятора 2 
-            if (comboSysType.SelectedIndex == 1 && checkResOutFan.Checked) // ПВ-система и резерв вытяжного
-            { // Выбрана ПВ-система и резерв вытяжного вентилятора
-                if (outFanStStopCheck.Checked) // Выбран сигнал "Пуск/Стоп"
-                {
-                    list_do.Add(new Do("Сигнал \"Пуск/Стоп\" вытяжного вентилятора 2", code_1));
-                    AddNewDO(code_1);
-                }
-                if (outFanPowSupCheck.Checked) // Выбран сигнал подачи питания
-                {
-                    list_do.Add(new Do("Подача питания вытяжного вентилятора 2", code_2));
-                    AddNewDO(code_2);
-                }
+            // Сигнал "Пуск/Стоп" вытяжного вентилятора 2 / сигнал подачи питания вытяжного вентилятора 2
+            ushort code_1 = 29, code_2 = 28;
+
+            if (comboSysType.SelectedIndex == 1 && checkResOutFan.Checked)                      // ПВ-система и резерв вытяжного
+            {
+                if (outFanStStopCheck.Checked)                                                  // Выбран сигнал "Пуск/Стоп"
+                    AddToListDo("Сигнал \"Пуск/Стоп\" вытяжного вентилятора 2", code_1);
+                if (outFanPowSupCheck.Checked)                                                  // Выбран сигнал подачи питания
+                    AddToListDo("Подача питания вытяжного вентилятора 2", code_2);
             }
             else // Не выбран резерв вытяжного вентилятора
             {
-                SubFromCombosDO(code_1); // Отмена выбора сигнала "Пуск/Стоп"
-                SubFromCombosDO(code_2); // Отмена выбора подачи питания
+                SubFromCombosDO(code_1); SubFromCombosDO(code_2);                               // Отмена выбора сигнала "Пуск/Стоп" / сигнала подачи питания
             }
         }
 
         ///<summary>Выбрали увлажнитель</summary>
         private void HumidCheck_signalsDOCheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 80;
-            if (humidCheck.Checked) // Выбрали увлажнитель
+            ushort code_1 = 80;                                                 // Питание насоса / 1-й секции
+            if (humidCheck.Checked)                                             // Выбрали увлажнитель
             {
-                if (humidTypeCombo.SelectedIndex == 0) // Паровой увлажнитель
-                {
-                    list_do.Add(new Do("Сигнал ПУСК/СТОП увлажнителя", code_1));
-                    AddNewDO(code_1);
-                }
-                else if (humidTypeCombo.SelectedIndex == 1) // Сотовый увлажнитель
-                {
-                    list_do.Add(new Do("Запуск насоса увлажнителя", code_1));
-                    AddNewDO(code_1);
-                }
+                if (humidTypeCombo.SelectedIndex == 0)                          // Паровой увлажнитель
+                    AddToListDo("Сигнал ПУСК/СТОП увлажнителя", code_1);
+                else if (humidTypeCombo.SelectedIndex == 1)                     // Сотовый увлажнитель
+                    AddToListDo("Запуск насоса увлажнителя", code_1);
             }
             else // Отмена выбора увлажнителя
             {
@@ -2473,21 +2383,18 @@ namespace Moderon
         ///<summary>Изменили тип увлажнителя</summary>
         private void HumidTypeCombo_signalsDOSelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 80;
-            if (humidCheck.Checked) // Когда выбран увлажнитель
+            ushort code_1 = 80;                                                 // Питание насоса / 1-й секции
+            if (humidCheck.Checked)                                             // Выбран увлажнитель
             {
-                if (humidTypeCombo.SelectedIndex == 0) // Паровой увлажнитель
+                if (humidTypeCombo.SelectedIndex == 0)                          // Паровой увлажнитель
                 {
                     SubFromCombosDO(code_1);
-                    list_do.Add(new Do("Сигнал ПУСК/СТОП увлажнителя", code_1));
-                    AddNewDO(code_1);
-
+                    AddToListDo("Сигнал ПУСК/СТОП увлажнителя", code_1);
                 }
-                else if (humidTypeCombo.SelectedIndex == 1) // Сотовый увлажнитель
+                else if (humidTypeCombo.SelectedIndex == 1)                     // Сотовый увлажнитель
                 {
                     SubFromCombosDO(code_1);
-                    list_do.Add(new Do("Запуск насоса увлажнителя", code_1));
-                    AddNewDO(code_1);
+                    AddToListDo("Запуск насоса увлажнителя", code_1);
                 }
             }
         }
@@ -2495,57 +2402,44 @@ namespace Moderon
         ///<summary>Выбрали рекуператор</summary>
         private void RecupCheck_signalsDOCheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 56; // Сигнал ПУСК/СТОП рекуператора (роторный)
-            ushort code_2 = 57; // Запуск насоса гликолевого рекуператора
-            if (recupCheck.Checked && comboSysType.SelectedIndex == 1) // Выбран рекуператор, ПВ
+            // Сигнал ПУСК/СТОП рекуператора (роторный) / запуск насоса гликолевого рекуператора
+            ushort code_1 = 56, code_2 = 57; 
+
+            if (recupCheck.Checked && comboSysType.SelectedIndex == 1)                              // Выбран рекуператор и ПВ система
             {
-                if (recupTypeCombo.SelectedIndex == 0) // Роторный рекуператор
-                {
-                    list_do.Add(new Do("Сигнал ПУСК/СТОП рекуператора", code_1));
-                    AddNewDO(code_1);
-                }
-                else if (recupTypeCombo.SelectedIndex == 2) // Гликолевый рекуператор
-                {
-                    if (pumpGlicRecCheck.Checked) // Выбран насос рекуператора
-                    {
-                        list_do.Add(new Do("Запуск насоса гликолевого рекуператора", code_2));
-                        AddNewDO(code_2);
-                    }
-                }
+                if (recupTypeCombo.SelectedIndex == 0)                                              // Роторный рекуператор
+                    AddToListDo("Сигнал ПУСК/СТОП рекуператора", code_1);
+                else if (recupTypeCombo.SelectedIndex == 2 && pumpGlicRecCheck.Checked)             // Гликолевый рекуператор, выбран насос
+                    AddToListDo("Запуск насоса гликолевого рекуператора", code_2);
             }
             else // Отмена выбора рекуператора
             {
-                SubFromCombosDO(code_2);
-                SubFromCombosDO(code_1);
+                SubFromCombosDO(code_2); SubFromCombosDO(code_1);
             }
         }
 
         ///<summary>Изменили тип рекуператора</summary>
         private void RecupTypeCombo_signalsDOSelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 56; // Сигнал ПУСК/СТОП рекуператора (роторный)
-            ushort code_2 = 57; // Запуск насоса гликолевого рекуператора
-            if (recupCheck.Checked && comboSysType.SelectedIndex == 1) // Выбран рекуператор и ПВ-система
+            // Сигнал ПУСК/СТОП рекуператора (роторный) / запуск насоса гликолевого рекуператора
+            ushort code_1 = 56, code_2 = 57;
+
+            if (recupCheck.Checked && comboSysType.SelectedIndex == 1)                              // Выбран рекуператор и ПВ система
             {
-                if (recupTypeCombo.SelectedIndex == 0) // Роторный рекуператор
+                if (recupTypeCombo.SelectedIndex == 0)                                              // Роторный рекуператор
                 {
                     SubFromCombosDO(code_2);
-                    list_do.Add(new Do("Сигнал ПУСК/СТОП рекуператора", code_1));
-                    AddNewDO(code_1);
+                    AddToListDo("Сигнал ПУСК/СТОП рекуператора", code_1);
                 }
-                else if (recupTypeCombo.SelectedIndex == 2) // Гликолевый рекуператор
+                else if (recupTypeCombo.SelectedIndex == 2)                                         // Гликолевый рекуператор
                 {
                     SubFromCombosDO(code_1);
-                    if (pumpGlicRecCheck.Checked) // Выбран насос рекуператора
-                    {
-                        list_do.Add(new Do("Запуск насоса гликолевого рекуператора", code_2));
-                        AddNewDO(code_2);
-                    }
+                    if (pumpGlicRecCheck.Checked)                                                   // Выбран насос рекуператора
+                        AddToListDo("Запуск насоса гликолевого рекуператора", code_2);
                 }
-                else if (recupTypeCombo.SelectedIndex == 1)
+                else if (recupTypeCombo.SelectedIndex == 1)                                         // Пластинчатый рекуператор
                 {
-                    SubFromCombosDO(code_1); // Сигнал ПУСК/СТОП роторного рекуператора
-                    SubFromCombosDO(code_2); // Запуск насоса гликолевого
+                    SubFromCombosDO(code_1); SubFromCombosDO(code_2);                               // Сигнал ПУСК/СТОП роторного рекуператора / насос гликолевого
                 }
             }
         }
@@ -2554,18 +2448,15 @@ namespace Moderon
         private void PumpGlicRecCheck_signalsCheckedChanged(object sender, EventArgs e)
         {
             if (ignoreEvents) return;
-            ushort code_1 = 57; // Запуск насоса гликолевого рекуператора
-            if (recupCheck.Checked && comboSysType.SelectedIndex == 1 && recupTypeCombo.SelectedIndex == 2)
-            { // ПВ-система и гликолевый рекуператор
-                if (pumpGlicRecCheck.Checked) // Выбран насос гликолевого рекуператора
-                {
-                    list_do.Add(new Do("Запуск насоса гликолевого рекуператора", code_1));
-                    AddNewDO(code_1);
-                }
-                else // Отмена выбора насоса гликолевого рекуператора
-                {
+            
+            ushort code_1 = 57;                                                                                 // Запуск насоса гликолевого рекуператора
+
+            if (recupCheck.Checked && comboSysType.SelectedIndex == 1 && recupTypeCombo.SelectedIndex == 2)     // ПВ-система и гликолевый рекуператор
+            { 
+                if (pumpGlicRecCheck.Checked)                                                                   // Выбран насос гликолевого рекуператора
+                    AddToListDo("Запуск насоса гликолевого рекуператора", code_1);
+                else                                                                                            // Отмена выбора насоса гликолевого рекуператора
                     SubFromCombosDO(code_1);
-                }
             }
         }
 
@@ -2573,70 +2464,57 @@ namespace Moderon
         private void SigWorkCheck_signalsDOCheckedChanged(object sender, EventArgs e)
         {
             if (ignoreEvents) return;
-            ushort code_1 = 1; // Сигнал "Работа"
-            if (sigWorkCheck.Checked) // Выбрали сигнал
-            {
-                list_do.Add(new Do("Сигнал \"Работа\"", code_1));
-                AddNewDO(code_1);
-            }
-            else // Отмена выбора сигнала
-            {
+
+            ushort code_1 = 1;                                                              // Сигнал "Работа"
+
+            if (sigWorkCheck.Checked)                                                       // Выбрали сигнал
+                AddToListDo("Сигнал \"Работа\"", code_1);
+            else                                                                            // Отмена выбора сигнала
                 SubFromCombosDO(code_1);
-            }
         }
 
         ///<summary>Выбрали внешний сигнал "Авария"</summary>
         private void SigAlarmCheck_signalsDOCheckedChanged(object sender, EventArgs e)
         {
             if (ignoreEvents) return;
-            ushort code_1 = 3; // Сигнал "Авария"
-            if (sigAlarmCheck.Checked) // Выбрали сигнал
-            {
-                list_do.Add(new Do("Сигнал \"Авария\"", code_1));
-                AddNewDO(code_1);
-            }
-            else // Отмена выбора сигнала
-            {
+
+            ushort code_1 = 3;                                                              // Сигнал "Авария"
+
+            if (sigAlarmCheck.Checked)                                                      // Выбрали сигнал
+                AddToListDo("Сигнал \"Авария\"", code_1);
+            else                                                                            // Отмена выбора сигнала
                 SubFromCombosDO(code_1);
-            }
         }
 
         ///<summary>Выбрали внешний сигнал "Загрязнение фильтра"</summary>
         private void SigFilAlarmCheck_signalsDOCheckedChanged(object sender, EventArgs e)
         {
             if (ignoreEvents) return;
-            ushort code_1 = 2; // Сигнал "Загрязнение фильтра"
-            if (sigFilAlarmCheck.Checked && filterCheck.Checked) // Выбрали сигнал и выбран фильтр
-            {
-                list_do.Add(new Do("Сигнал \"Загрязнение фильтра\"", code_1));
-                AddNewDO(code_1);
-            }
-            else // Отмена выбора сигнала/выбора фильтра
-            {
+
+            ushort code_1 = 2;                                                              // Сигнал "Загрязнение фильтра"
+
+            if (sigFilAlarmCheck.Checked && filterCheck.Checked)                            // Выбрали сигнал и выбран фильтр
+                AddToListDo("Сигнал \"Загрязнение фильтра\"", code_1);
+            else                                                                            // Отмена выбора сигнала/выбора фильтра
                 SubFromCombosDO(code_1);
-            }
         }
 
         ///<summary>Выбрали подачу питания для приточного вентилятора</summary>
         private void PrFanPowSupCheck_CheckedChanged(object sender, EventArgs e)
         {
             if (ignoreEvents) return;
-            ushort code_1 = 8; // Сигнал "Подача питания" 1
-            ushort code_2 = 14; // Сигнал "Подача питания" 2
-            if (prFanPowSupCheck.Checked) // Выбрали сигнал подачи питания
+
+            ushort code_1 = 8, code_2 = 14;                                                 // Сигнал "Подача питания" П вентилятор 1 / 2
+ 
+            if (prFanPowSupCheck.Checked)                                                   // Выбрали сигнал подачи питания
             {
-                list_do.Add(new Do("Подача питания приточного вентилятора 1", code_1));
-                AddNewDO(code_1);
-                if (checkResPrFan.Checked) // Если выбран резерв П
-                {
-                    list_do.Add(new Do("Подача питания приточного вентилятора 2", code_2));
-                    AddNewDO(code_2);
-                }
+                AddToListDo("Подача питания приточного вентилятора 1", code_1);
+                if (checkResPrFan.Checked)                                                  // Выбран резерв приточного вентилятора
+                    AddToListDo("Подача питания приточного вентилятора 2", code_2);
             }
-            else // Отмена выбора сигнала подачи питания
+            else                                                                            // Отмена выбора сигнала подачи питания
             {
-                SubFromCombosDO(code_1); 
-                if (checkResPrFan.Checked) SubFromCombosDO(code_2);
+                SubFromCombosDO(code_1); SubFromCombosDO(code_2);
             }    
         }
 
@@ -2644,45 +2522,37 @@ namespace Moderon
         private void OutFanPowSupCheck_CheckedChanged(object sender, EventArgs e)
         {
             if (ignoreEvents) return;
-            ushort code_1 = 22; // Сигнал "Подача питания" 1
-            ushort code_2 = 28; // Сигнал "Подача питания" 2
-            if (outFanPowSupCheck.Checked) // Выбрали сигнал подачи питания
+
+            ushort code_1 = 22, code_2 = 28;                                                // Сигнал "Подача питания" В вентилятор 1 / 2
+
+            if (outFanPowSupCheck.Checked)                                                  // Выбрали сигнал подачи питания
             {
-                list_do.Add(new Do("Подача питания вытяжного вентилятора 1", code_1));
-                AddNewDO(code_1);
-                if (checkResOutFan.Checked) // Если выбран резерв В
-                {
-                    list_do.Add(new Do("Подача питания вытяжного вентилятора 2", code_2));
-                    AddNewDO(code_2);
-                }
+                AddToListDo("Подача питания вытяжного вентилятора 1", code_1);
+                if (checkResOutFan.Checked)                                                 // Выбран резерв вытяжного вентилятора
+                    AddToListDo("Подача питания вытяжного вентилятора 2", code_2);
             }
-            else // Отмена выбора сигнала подачи питания
+            else                                                                            // Отмена выбора сигнала подачи питания
             {
-                SubFromCombosDO(code_1); 
-                if (checkResOutFan.Checked) SubFromCombosDO(code_2);
+                SubFromCombosDO(code_1); SubFromCombosDO(code_2);
             }
         }
 
-        ///<summary>Выбрали сигнал "Пуск/Стоп" для приточного вентилятора</summary>
+        ///<summary>Выбрали сигнал "Пуск/Стоп" для приточного и резервного вентилятора</summary>
         private void PrFanStStopCheck_CheckedChanged(object sender, EventArgs e)
         {
             if (ignoreEvents) return;
-            ushort code_1 = 9; // Сигнал "Пуск/Стоп" 1
-            ushort code_2 = 15; // Сигнал "Пуск/Стоп" 2
-            if (prFanStStopCheck.Checked) // Выбрали сигнал "Пуск/Стоп"
+
+            ushort code_1 = 9, code_2 = 15;                                                         // Сигнал "Пуск/Стоп" вентилятор П 1 / 2
+ 
+            if (prFanStStopCheck.Checked)                                                           // Выбрали сигнал "Пуск/Стоп"
             {
-                list_do.Add(new Do("Сигнал \"Пуск/Стоп\" приточного вентилятора 1", code_1));
-                AddNewDO(code_1);
-                if (checkResPrFan.Checked) // Если выбран резерв П
-                {
-                    list_do.Add(new Do("Сигнал \"Пуск/Стоп\" приточного вентилятора 2", code_2));
-                    AddNewDO(code_2);
-                }
+                AddToListDo("Сигнал \"Пуск/Стоп\" приточного вентилятора 1", code_1);
+                if (checkResPrFan.Checked)                                                          // Если выбран резерв П вентилятора
+                    AddToListDo("Сигнал \"Пуск/Стоп\" приточного вентилятора 2", code_2);
             }
-            else // Отмена выбора сигнала "Пуск/Стоп"
+            else                                                                                    // Отмена выбора сигнала "Пуск/Стоп"
             {
-                SubFromCombosDO(code_1); 
-                if (checkResPrFan.Checked) SubFromCombosDO(code_2);
+                SubFromCombosDO(code_1); SubFromCombosDO(code_2);
             }
         }
 
