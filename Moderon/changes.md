@@ -118,4 +118,10 @@
 
 - создан метод `SelectComboBox_DO()` для добавления DO к comboBox  
 - изменения для `AddNewDO()` с добавлением нового метода  
-- добавлен метод `AddToCombo_DO` для рефакторинга `AddtoCombosDO`    
+- добавлен метод `AddToCombo_DO` для рефакторинга `AddtoCombosDO`  
+
+26.10.23 (четверг)  
+
+- создан `RemoveDO_FromComboBox` для рефакторинга `SubFromCombosDO`  
+- устранена ошибка с `subDOcondition`, значение теперь корректно  
+- изменения `AI_combo_SelectedIndexChanged` для учёта типа сигнала  

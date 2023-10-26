@@ -249,7 +249,7 @@ namespace Moderon
         }
 
         ///<summary>Метод для изменения DO comboBox</summary>
-        private void DO_combo_SelectedIndexChanged(ComboBox comboBox, ref int combo_index, ref string combo_text, Label label)
+        private void DO_combo_SelectedIndexChanged(ComboBox comboBox, ref int combo_index, ref string combo_text, ref Label label)
         {
             if (ignoreEvents) return;                                   // Выход при активном параметре игнорирования событий
             string name = "";
@@ -271,7 +271,7 @@ namespace Moderon
                     list_do.Add(do_find);                               // Добавление с новым значением
                 }
                 if (!initialComboSignals)                               // Добавление к другим сигналам DO
-                    AddtoCombosDO(combo_text, comboBox);
+                    AddtoCombosDO(combo_text, ref comboBox);
             }
             else                                                        // Выбран сигнал DO
             {
@@ -295,7 +295,7 @@ namespace Moderon
                         do_find.Dispose();
                         list_do.Add(do_find);
                     }
-                    AddtoCombosDO(combo_text, comboBox);                // Добавление к другим DO
+                    AddtoCombosDO(combo_text, ref comboBox);            // Добавление к другим DO
                 }
             }
             combo_text = comboBox.SelectedItem.ToString();              // Сохранение названия выбранного элемента
@@ -307,181 +307,181 @@ namespace Moderon
         ///<summary>Изменили DO1 comboBox</summary> 
         private void DO1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO1_combo, ref DO1combo_index, ref DO1combo_text, DO1_lab);
+            DO_combo_SelectedIndexChanged(DO1_combo, ref DO1combo_index, ref DO1combo_text, ref DO1_lab);
         }
 
         ///<summary>Изменили DO2 comboBox</summary> 
         private void DO2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO2_combo, ref DO2combo_index, ref DO2combo_text, DO2_lab);
+            DO_combo_SelectedIndexChanged(DO2_combo, ref DO2combo_index, ref DO2combo_text, ref DO2_lab);
         }
 
         ///<summary>Изменили DO3 comboBox</summary> 
         private void DO3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO3_combo, ref DO3combo_index, ref DO3combo_text, DO3_lab);
+            DO_combo_SelectedIndexChanged(DO3_combo, ref DO3combo_index, ref DO3combo_text, ref DO3_lab);
         }
 
         ///<summary>Изменили DO4 comboBox</summary> 
         private void DO4_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO4_combo, ref DO4combo_index, ref DO4combo_text, DO4_lab);
+            DO_combo_SelectedIndexChanged(DO4_combo, ref DO4combo_index, ref DO4combo_text, ref DO4_lab);
         }
 
         ///<summary>Изменили DO5 comboBox</summary> 
         private void DO5_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO5_combo, ref DO5combo_index, ref DO5combo_text, DO5_lab);
+            DO_combo_SelectedIndexChanged(DO5_combo, ref DO5combo_index, ref DO5combo_text, ref DO5_lab);
         }
 
         ///<summary>Изменили DO6 comboBox</summary> 
         private void DO6_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO6_combo, ref DO6combo_index, ref DO6combo_text, DO6_lab);
+            DO_combo_SelectedIndexChanged(DO6_combo, ref DO6combo_index, ref DO6combo_text, ref DO6_lab);
         }
 
         ///<summary>Изменили DO7 comboBox</summary> 
         private void DO7_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO7_combo, ref DO7combo_index, ref DO7combo_text, DO7_lab);
+            DO_combo_SelectedIndexChanged(DO7_combo, ref DO7combo_index, ref DO7combo_text, ref DO7_lab);
         }
 
         ///<summary>Изменили DO1 блока расширения 1 comboBox</summary>
         private void DO1bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO1bl1_combo, ref DO1bl1combo_index, ref DO1bl1combo_text, DO1bl1_lab);
+            DO_combo_SelectedIndexChanged(DO1bl1_combo, ref DO1bl1combo_index, ref DO1bl1combo_text, ref DO1bl1_lab);
         }
 
         ///<summary>Изменили DO2 блока расширения 1 comboBox</summary>
         private void DO2bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO2bl1_combo, ref DO2bl1combo_index, ref DO2bl1combo_text, DO2bl1_lab);
+            DO_combo_SelectedIndexChanged(DO2bl1_combo, ref DO2bl1combo_index, ref DO2bl1combo_text, ref DO2bl1_lab);
         }
 
         ///<summary>Изменили DO3 блока расширения 1 comboBox</summary>
         private void DO3bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO3bl1_combo, ref DO3bl1combo_index, ref DO3bl1combo_text, DO3bl1_lab);
+            DO_combo_SelectedIndexChanged(DO3bl1_combo, ref DO3bl1combo_index, ref DO3bl1combo_text, ref DO3bl1_lab);
         }
 
         ///<summary>Изменили DO4 блока расширения 1 comboBox</summary>
         private void DO4bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO4bl1_combo, ref DO4bl1combo_index, ref DO4bl1combo_text, DO4bl1_lab);
+            DO_combo_SelectedIndexChanged(DO4bl1_combo, ref DO4bl1combo_index, ref DO4bl1combo_text, ref DO4bl1_lab);
         }
 
         ///<summary>Изменили DO5 блока расширения 1 comboBox</summary>
         private void DO5bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO5bl1_combo, ref DO5bl1combo_index, ref DO5bl1combo_text, DO5bl1_lab);
+            DO_combo_SelectedIndexChanged(DO5bl1_combo, ref DO5bl1combo_index, ref DO5bl1combo_text, ref DO5bl1_lab);
         }
 
         ///<summary>Изменили DO6 блока расширения 1 comboBox</summary>
         private void DO6bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO6bl1_combo, ref DO6bl1combo_index, ref DO6bl1combo_text, DO6bl1_lab);
+            DO_combo_SelectedIndexChanged(DO6bl1_combo, ref DO6bl1combo_index, ref DO6bl1combo_text, ref DO6bl1_lab);
         }
 
         ///<summary>Изменили DO7 блока расширения 1 comboBox</summary>
         private void DO7bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO7bl1_combo, ref DO7bl1combo_index, ref DO7bl1combo_text, DO7bl1_lab);
+            DO_combo_SelectedIndexChanged(DO7bl1_combo, ref DO7bl1combo_index, ref DO7bl1combo_text, ref DO7bl1_lab);
         }
 
         ///<summary>Изменили DO1 блока расширения 2 comboBox</summary>
         private void DO1bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO1bl2_combo, ref DO1bl2combo_index, ref DO1bl2combo_text, DO1bl2_lab);
+            DO_combo_SelectedIndexChanged(DO1bl2_combo, ref DO1bl2combo_index, ref DO1bl2combo_text, ref DO1bl2_lab);
         }
 
         ///<summary>Изменили DO2 блока расширения 2 comboBox</summary>
         private void DO2bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO2bl2_combo, ref DO2bl2combo_index, ref DO2bl2combo_text, DO2bl2_lab);
+            DO_combo_SelectedIndexChanged(DO2bl2_combo, ref DO2bl2combo_index, ref DO2bl2combo_text, ref DO2bl2_lab);
         }
 
         ///<summary>Изменили DO3 блока расширения 2 comboBox</summary>
         private void DO3bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO3bl2_combo, ref DO3bl2combo_index, ref DO3bl2combo_text, DO3bl2_lab);
+            DO_combo_SelectedIndexChanged(DO3bl2_combo, ref DO3bl2combo_index, ref DO3bl2combo_text, ref DO3bl2_lab);
         }
 
         ///<summary>Изменили DO4 блока расширения 2 comboBox</summary>
         private void DO4bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO4bl2_combo, ref DO4bl2combo_index, ref DO4bl2combo_text, DO4bl2_lab);
+            DO_combo_SelectedIndexChanged(DO4bl2_combo, ref DO4bl2combo_index, ref DO4bl2combo_text, ref DO4bl2_lab);
         }
 
         ///<summary>Изменили DO5 блока расширения 2 comboBox</summary>
         private void DO5bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO5bl2_combo, ref DO5bl2combo_index, ref DO5bl2combo_text, DO5bl2_lab);
+            DO_combo_SelectedIndexChanged(DO5bl2_combo, ref DO5bl2combo_index, ref DO5bl2combo_text, ref DO5bl2_lab);
         }
 
         ///<summary>Изменили DO6 блока расширения 2 comboBox</summary>
         private void DO6bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO6bl2_combo, ref DO6bl2combo_index, ref DO6bl2combo_text, DO6bl2_lab);
+            DO_combo_SelectedIndexChanged(DO6bl2_combo, ref DO6bl2combo_index, ref DO6bl2combo_text, ref DO6bl2_lab);
         }
 
         ///<summary>Изменили DO7 блока расширения 2 comboBox</summary>
         private void DO7bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO7bl2_combo, ref DO7bl2combo_index, ref DO7bl2combo_text, DO7bl2_lab);
+            DO_combo_SelectedIndexChanged(DO7bl2_combo, ref DO7bl2combo_index, ref DO7bl2combo_text, ref DO7bl2_lab);
         }
 
         ///<summary>Изменили DO1 блока расширения 3 comboBox</summary>
         private void DO1bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO1bl3_combo, ref DO1bl3combo_index, ref DO1bl3combo_text, DO1bl3_lab);
+            DO_combo_SelectedIndexChanged(DO1bl3_combo, ref DO1bl3combo_index, ref DO1bl3combo_text, ref DO1bl3_lab);
         }
 
         ///<summary>Изменили DO2 блока расширения 3 comboBox</summary>
         private void DO2bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO2bl3_combo, ref DO2bl3combo_index, ref DO2bl3combo_text, DO2bl3_lab);
+            DO_combo_SelectedIndexChanged(DO2bl3_combo, ref DO2bl3combo_index, ref DO2bl3combo_text, ref DO2bl3_lab);
         }
 
         ///<summary>Изменили DO3 блока расширения 3 comboBox</summary>
         private void DO3bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO3bl3_combo, ref DO3bl3combo_index, ref DO3bl3combo_text, DO3bl3_lab);
+            DO_combo_SelectedIndexChanged(DO3bl3_combo, ref DO3bl3combo_index, ref DO3bl3combo_text, ref DO3bl3_lab);
         }
 
         ///<summary>Изменили DO4 блока расширения 3 comboBox</summary>
         private void DO4bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO4bl3_combo, ref DO4bl3combo_index, ref DO4bl3combo_text, DO4bl3_lab);
+            DO_combo_SelectedIndexChanged(DO4bl3_combo, ref DO4bl3combo_index, ref DO4bl3combo_text, ref DO4bl3_lab);
         }
 
         ///<summary>Изменили DO5 блока расширения 3 comboBox</summary>
         private void DO5bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO5bl3_combo, ref DO5bl3combo_index, ref DO5bl3combo_text, DO5bl3_lab);
+            DO_combo_SelectedIndexChanged(DO5bl3_combo, ref DO5bl3combo_index, ref DO5bl3combo_text, ref DO5bl3_lab);
         }
 
         ///<summary>Изменили DO6 блока расширения 3 comboBox</summary>
         private void DO6bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO6bl3_combo, ref DO6bl3combo_index, ref DO6bl3combo_text, DO6bl3_lab);
+            DO_combo_SelectedIndexChanged(DO6bl3_combo, ref DO6bl3combo_index, ref DO6bl3combo_text, ref DO6bl3_lab);
         }
 
         ///<summary>Изменили DO7 блока расширения 3 comboBox</summary>
         private void DO7bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DO_combo_SelectedIndexChanged(DO7bl3_combo, ref DO7bl3combo_index, ref DO7bl3combo_text, DO7bl3_lab);
+            DO_combo_SelectedIndexChanged(DO7bl3_combo, ref DO7bl3combo_index, ref DO7bl3combo_text, ref DO7bl3_lab);
         }
 
         ///<summary>Добавление в другие слоты для выбора в comboBox</summary>
-        private void AddToCombo_DO(string name, ComboBox cm, ComboBox comboBox)
-        {
-            bool notFound = true;                                       // Элемент в списке не найден
+        private void AddToCombo_DO(string name, ComboBox cm, ref ComboBox comboBox)
+        { 
+            bool notFound = true;                                       // Элемент в списке не найден изначально
             if (comboBox != cm)                                         // Проверка текущего comboBox с проверяемым
             {
                 Do do_find = list_do.Find(x => x.Name == name);
-                if (do_find != null)
+                if (do_find != null)                                    // Есть такой DO в списке дискретных выходов
                 {
-                    foreach (var el in comboBox.Items)                  // Если нет такого названия
+                    foreach (var el in comboBox.Items)                  // Если нет такого названия в списке
                         if (el.ToString() == name) notFound = false;
                     if (notFound) comboBox.Items.Add(do_find.Name);
                     notFound = true;
@@ -490,24 +490,24 @@ namespace Moderon
         }
 
         ///<summary>Добавление освободившегося DO к остальным comboBox</summary> 
-        private void AddtoCombosDO(string name, ComboBox cm)
+        private void AddtoCombosDO(string name, ref ComboBox cm)
         {
             // ПЛК
-            AddToCombo_DO(name, cm, DO1_combo); AddToCombo_DO(name, cm, DO2_combo); AddToCombo_DO(name, cm, DO3_combo);
-            AddToCombo_DO(name, cm, DO4_combo); AddToCombo_DO(name, cm, DO5_combo); AddToCombo_DO(name, cm, DO6_combo);
-            AddToCombo_DO(name, cm, DO7_combo);
+            AddToCombo_DO(name, cm, ref DO1_combo); AddToCombo_DO(name, cm, ref DO2_combo); AddToCombo_DO(name, cm, ref DO3_combo);
+            AddToCombo_DO(name, cm, ref DO4_combo); AddToCombo_DO(name, cm, ref DO5_combo); AddToCombo_DO(name, cm, ref DO6_combo);
+            AddToCombo_DO(name, cm, ref DO7_combo);
             // Блок расширения 1
-            AddToCombo_DO(name, cm, DO1bl1_combo); AddToCombo_DO(name, cm, DO2bl1_combo); AddToCombo_DO(name, cm, DO3bl1_combo);
-            AddToCombo_DO(name, cm, DO4bl1_combo); AddToCombo_DO(name, cm, DO5bl1_combo); AddToCombo_DO(name, cm, DO6bl1_combo);
-            AddToCombo_DO(name, cm, DO7bl1_combo);
+            AddToCombo_DO(name, cm, ref DO1bl1_combo); AddToCombo_DO(name, cm, ref DO2bl1_combo); AddToCombo_DO(name, cm, ref DO3bl1_combo);
+            AddToCombo_DO(name, cm, ref DO4bl1_combo); AddToCombo_DO(name, cm, ref DO5bl1_combo); AddToCombo_DO(name, cm, ref DO6bl1_combo);
+            AddToCombo_DO(name, cm, ref DO7bl1_combo);
             // Блок расширения 2
-            AddToCombo_DO(name, cm, DO1bl2_combo); AddToCombo_DO(name, cm, DO2bl2_combo); AddToCombo_DO(name, cm, DO3bl2_combo);
-            AddToCombo_DO(name, cm, DO4bl2_combo); AddToCombo_DO(name, cm, DO5bl2_combo); AddToCombo_DO(name, cm, DO6bl2_combo);
-            AddToCombo_DO(name, cm, DO7bl2_combo);
+            AddToCombo_DO(name, cm, ref DO1bl2_combo); AddToCombo_DO(name, cm, ref DO2bl2_combo); AddToCombo_DO(name, cm, ref DO3bl2_combo);
+            AddToCombo_DO(name, cm, ref DO4bl2_combo); AddToCombo_DO(name, cm, ref DO5bl2_combo); AddToCombo_DO(name, cm, ref DO6bl2_combo);
+            AddToCombo_DO(name, cm, ref DO7bl2_combo);
             // Блок расширения 3
-            AddToCombo_DO(name, cm, DO1bl3_combo); AddToCombo_DO(name, cm, DO2bl3_combo); AddToCombo_DO(name, cm, DO3bl3_combo);
-            AddToCombo_DO(name, cm, DO4bl3_combo); AddToCombo_DO(name, cm, DO5bl3_combo); AddToCombo_DO(name, cm, DO6bl3_combo);
-            AddToCombo_DO(name, cm, DO7bl3_combo);
+            AddToCombo_DO(name, cm, ref DO1bl3_combo); AddToCombo_DO(name, cm, ref DO2bl3_combo); AddToCombo_DO(name, cm, ref DO3bl3_combo);
+            AddToCombo_DO(name, cm, ref DO4bl3_combo); AddToCombo_DO(name, cm, ref DO5bl3_combo); AddToCombo_DO(name, cm, ref DO6bl3_combo);
+            AddToCombo_DO(name, cm, ref DO7bl3_combo);
         }
 
         /// <summary>Удаление DO из других comboBox</summary>
@@ -571,803 +571,90 @@ namespace Moderon
             else if (DO7bl3_combo.SelectedIndex == 0) SelectComboBox_DO(DO7bl3_combo, code, DO7bl3_lab, DO7bl3combo_text, DO7bl3combo_index);
         }
 
+        ///<summary>Удаление DO из определённого comboBox</summary>
+        private void RemoveDO_FromComboBox(ComboBox comboBox, string name, Label label, string text, int index)
+        {
+            for (int i = 0; i < comboBox.Items.Count; i++)
+                if (comboBox.Items[i].ToString() == name)                                                   // Есть совпадение по имени в списке
+                {
+                    comboBox.Items.Remove(name);                                                            // Удаление элемента по имени
+                    if (comboBox.Items.Count > 1)                                                           // Осталось больше одного элемента в списке
+                    {
+                        comboBox.SelectedIndex = comboBox.Items.Count - 1;                                  // Выбор последнего элемента
+                        if (comboBox.SelectedItem.ToString() != NOT_SELECTED)                               
+                        {
+                            SubFromCombosDO(comboBox.SelectedItem.ToString(), comboBox);                    // Удаление из других comboBox выбранного элемента
+                            Do find_do = list_do.Find(x => x.Name == comboBox.SelectedItem.ToString());     // Распределение выбранного DO из списка
+                            if (find_do != null)
+                            {
+                                list_do.Remove(find_do);
+                                find_do.Select();                                                           // Распределение DO
+                                list_do.Add(find_do);
+                                if (showCode) label.Text = find_do.Code.ToString();
+                            }
+                        }
+                    }
+                    else                                                                                    // Если в списке только "Не выбрано"
+                    {
+                        comboBox.SelectedItem = NOT_SELECTED;
+                        label.Text = "";
+                    }
+                    text = comboBox.SelectedItem.ToString();                                                // Сохранение наименование выбранного DO
+                    index = comboBox.SelectedIndex;                                                         // Сохранение индекса выбранного DO
+                    break;
+                }
+        }
+
         ///<summary>Удаление DO из всех comboBox</summary>
         private void SubFromCombosDO(ushort code)
         {
-            Do findDo, findDO_2;
             string name = "";
-            findDo = list_do.Find(x => x.Code == code);
-            if (findDo != null) name = findDo.Name;
-            else return;
-            subDOcondition = true; // Признак удаления DO, не работает событие indexChanged
-            for (int i = 0; i < DO1_combo.Items.Count; i++) // DO1
-                if (DO1_combo.Items[i].ToString() == name)
-                {
-                    DO1_combo.Items.Remove(name);
-                    if (DO1_combo.Items.Count > 1) // Больше одного элемента
-                    {
-                        DO1_combo.SelectedIndex = DO1_combo.Items.Count - 1;
-                        if (DO1_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO1_combo.SelectedItem.ToString(), DO1_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO1_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO1_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO1_combo.SelectedItem = NOT_SELECTED;
-                        DO1_lab.Text = "";
-                    }
-                        
-                    DO1combo_text = DO1_combo.SelectedItem.ToString();
-                    DO1combo_index = DO1_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO2_combo.Items.Count; i++) // DO2
-                if (DO2_combo.Items[i].ToString() == name)
-                {
-                    DO2_combo.Items.Remove(name);
-                    if (DO2_combo.Items.Count > 1) // Больше одного элемента
-                    {
-                        DO2_combo.SelectedIndex = DO2_combo.Items.Count - 1;
-                        if (DO2_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO2_combo.SelectedItem.ToString(), DO2_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO2_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO2_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO2_combo.SelectedItem = NOT_SELECTED;
-                        DO2_lab.Text = "";
-                    }
-                    DO2combo_text = DO2_combo.SelectedItem.ToString();
-                    DO2combo_index = DO2_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO3_combo.Items.Count; i++) // DO3
-                if (DO3_combo.Items[i].ToString() == name)
-                {
-                    DO3_combo.Items.Remove(name);
-                    if (DO3_combo.Items.Count > 1)
-                    {
-                        DO3_combo.SelectedIndex = DO3_combo.Items.Count - 1;
-                        if (DO3_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO3_combo.SelectedItem.ToString(), DO3_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO3_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO3_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO3_combo.SelectedItem = NOT_SELECTED;
-                        DO3_lab.Text = "";
-                    }
-                    DO3combo_text = DO3_combo.SelectedItem.ToString();
-                    DO3combo_index = DO3_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO4_combo.Items.Count; i++) // DO4
-                if (DO4_combo.Items[i].ToString() == name)
-                {
-                    DO4_combo.Items.Remove(name);
-                    if (DO4_combo.Items.Count > 1)
-                    {
-                        DO4_combo.SelectedIndex = DO4_combo.Items.Count - 1;
-                        if (DO4_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO4_combo.SelectedItem.ToString(), DO4_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO4_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO4_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO4_combo.SelectedItem = NOT_SELECTED;
-                        DO4_lab.Text = "";
-                    }
-                    DO4combo_text = DO4_combo.SelectedItem.ToString();
-                    DO4combo_index = DO4_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO5_combo.Items.Count; i++) // DO5
-                if (DO5_combo.Items[i].ToString() == name)
-                {
-                    DO5_combo.Items.Remove(name);
-                    if (DO5_combo.Items.Count > 1)
-                    {
-                        DO5_combo.SelectedIndex = DO5_combo.Items.Count - 1;
-                        if (DO5_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO5_combo.SelectedItem.ToString(), DO5_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO5_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO5_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO5_combo.SelectedItem = NOT_SELECTED;
-                        DO5_lab.Text = "";
-                    }
-                    DO5combo_text = DO5_combo.SelectedItem.ToString();
-                    DO5combo_index = DO5_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO6_combo.Items.Count; i++) // DO6
-                if (DO6_combo.Items[i].ToString() == name)
-                {
-                    DO6_combo.Items.Remove(name);
-                    if (DO6_combo.Items.Count > 1)
-                    {
-                        DO6_combo.SelectedIndex = DO6_combo.Items.Count - 1;
-                        if (DO6_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO6_combo.SelectedItem.ToString(), DO6_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO6_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO6_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO6_combo.SelectedItem = NOT_SELECTED;
-                        DO6_lab.Text = "";
-                    }
-                    DO6combo_text = DO6_combo.SelectedItem.ToString();
-                    DO6combo_index = DO6_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO7_combo.Items.Count; i++) // DO7
-                if (DO7_combo.Items[i].ToString() == name)
-                {
-                    DO7_combo.Items.Remove(name);
-                    if (DO7_combo.Items.Count > 1)
-                    {
-                        DO7_combo.SelectedIndex = DO7_combo.Items.Count - 1;
-                        if (DO7_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO7_combo.SelectedItem.ToString(), DO7_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO7_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO7_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO7_combo.SelectedItem = NOT_SELECTED;
-                        DO7_lab.Text = "";
-                    }
-                    DO7combo_text = DO7_combo.SelectedItem.ToString();
-                    DO7combo_index = DO7_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO1bl1_combo.Items.Count; i++) // DO1 блок 1
-                if (DO1bl1_combo.Items[i].ToString() == name)
-                {
-                    DO1bl1_combo.Items.Remove(name);
-                    if (DO1bl1_combo.Items.Count > 1)
-                    {
-                        DO1bl1_combo.SelectedIndex = DO1bl1_combo.Items.Count - 1;
-                        if (DO1bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO1bl1_combo.SelectedItem.ToString(), DO1bl1_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO1bl1_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO1bl1_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO1bl1_combo.SelectedItem = NOT_SELECTED;
-                        DO1bl1_lab.Text = "";
-                    }
-                    DO1bl1combo_text = DO1bl1_combo.SelectedItem.ToString();
-                    DO1bl1combo_index = DO1bl1_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO2bl1_combo.Items.Count; i++) // DO2 блок 1
-                if (DO2bl1_combo.Items[i].ToString() == name)
-                {
-                    DO2bl1_combo.Items.Remove(name);
-                    if (DO2bl1_combo.Items.Count > 1)
-                    {
-                        DO2bl1_combo.SelectedIndex = DO2bl1_combo.Items.Count - 1;
-                        if (DO2bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO2bl1_combo.SelectedItem.ToString(), DO2bl1_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO2bl1_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO2bl1_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO2bl1_combo.SelectedItem = NOT_SELECTED;
-                        DO2bl1_lab.Text = "";
-                    }
-                    DO2bl1combo_text = DO2bl1_combo.SelectedItem.ToString();
-                    DO2bl1combo_index = DO2bl1_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO3bl1_combo.Items.Count; i++) // DO3 блок 1
-                if (DO3bl1_combo.Items[i].ToString() == name)
-                {
-                    DO3bl1_combo.Items.Remove(name);
-                    if (DO3bl1_combo.Items.Count > 1)
-                    {
-                        DO3bl1_combo.SelectedIndex = DO3bl1_combo.Items.Count - 1;
-                        if (DO3bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO3bl1_combo.SelectedItem.ToString(), DO3bl1_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO3bl1_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO3bl1_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO3bl1_combo.SelectedItem = NOT_SELECTED;
-                        DO3bl1_lab.Text = "";
-                    }
-                    DO3bl1combo_text = DO3bl1_combo.SelectedItem.ToString();
-                    DO3bl1combo_index = DO3bl1_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO4bl1_combo.Items.Count; i++) // DO4 блок 1
-                if (DO4bl1_combo.Items[i].ToString() == name)
-                {
-                    DO4bl1_combo.Items.Remove(name);
-                    if (DO4bl1_combo.Items.Count > 1)
-                    {
-                        DO4bl1_combo.SelectedIndex = DO4bl1_combo.Items.Count - 1;
-                        if (DO4bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO4bl1_combo.SelectedItem.ToString(), DO4bl1_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO4bl1_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO4bl1_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO4bl1_combo.SelectedItem = NOT_SELECTED;
-                        DO4bl1_lab.Text = "";
-                    }
-                    DO4bl1combo_text = DO4bl1_combo.SelectedItem.ToString();
-                    DO4bl1combo_index = DO4bl1_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO5bl1_combo.Items.Count; i++) // DO5 блок 1
-                if (DO5bl1_combo.Items[i].ToString() == name)
-                {
-                    DO5bl1_combo.Items.Remove(name);
-                    if (DO5bl1_combo.Items.Count > 1)
-                    {
-                        DO5bl1_combo.SelectedIndex = DO5bl1_combo.Items.Count - 1;
-                        if (DO5bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO5bl1_combo.SelectedItem.ToString(), DO5bl1_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO5bl1_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO5bl1_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO5bl1_combo.SelectedItem = NOT_SELECTED;
-                        DO5bl1_lab.Text = "";
-                    }
-                    DO5bl1combo_text = DO5bl1_combo.SelectedItem.ToString();
-                    DO5bl1combo_index = DO5bl1_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO6bl1_combo.Items.Count; i++) // DO6 блок 1
-                if (DO6bl1_combo.Items[i].ToString() == name)
-                {
-                    DO6bl1_combo.Items.Remove(name);
-                    if (DO6bl1_combo.Items.Count > 1)
-                    {
-                        DO6bl1_combo.SelectedIndex = DO6bl1_combo.Items.Count - 1;
-                        if (DO6bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO6bl1_combo.SelectedItem.ToString(), DO6bl1_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO6bl1_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO6bl1_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO6bl1_combo.SelectedItem = NOT_SELECTED;
-                        DO6bl1_lab.Text = "";
-                    }
-                    DO6bl1combo_text = DO6bl1_combo.SelectedItem.ToString();
-                    DO6bl1combo_index = DO6bl1_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO7bl1_combo.Items.Count; i++) // DO7 блок 1
-                if (DO7bl1_combo.Items[i].ToString() == name)
-                {
-                    DO7bl1_combo.Items.Remove(name);
-                    if (DO7bl1_combo.Items.Count > 1)
-                    {
-                        DO7bl1_combo.SelectedIndex = DO7bl1_combo.Items.Count - 1;
-                        if (DO7bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO7bl1_combo.SelectedItem.ToString(), DO7bl1_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO7bl1_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO7bl1_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO7bl1_combo.SelectedItem = NOT_SELECTED;
-                        DO7bl1_lab.Text = "";
-                    }
-                    DO7bl1combo_text = DO7bl1_combo.SelectedItem.ToString();
-                    DO7bl1combo_index = DO7bl1_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO1bl2_combo.Items.Count; i++) // DO1 блок 2
-                if (DO1bl2_combo.Items[i].ToString() == name)
-                {
-                    DO1bl2_combo.Items.Remove(name);
-                    if (DO1bl2_combo.Items.Count > 1)
-                    {
-                        DO1bl2_combo.SelectedIndex = DO1bl2_combo.Items.Count - 1;
-                        if (DO1bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO1bl2_combo.SelectedItem.ToString(), DO1bl2_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO1bl2_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO1bl2_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO1bl2_combo.SelectedItem = NOT_SELECTED;
-                        DO1bl2_lab.Text = "";
-                    }
-                    DO1bl2combo_text = DO1bl2_combo.SelectedItem.ToString();
-                    DO1bl2combo_index = DO1bl2_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO2bl2_combo.Items.Count; i++) // DO2 блок 2
-                if (DO2bl2_combo.Items[i].ToString() == name)
-                {
-                    DO2bl2_combo.Items.Remove(name);
-                    if (DO2bl2_combo.Items.Count > 1)
-                    {
-                        DO2bl2_combo.SelectedIndex = DO2bl2_combo.Items.Count - 1;
-                        if (DO2bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO2bl2_combo.SelectedItem.ToString(), DO2bl2_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO2bl2_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO2bl2_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO2bl2_combo.SelectedItem = NOT_SELECTED;
-                        DO2bl2_lab.Text = "";
-                    }
-                    DO2bl2combo_text = DO2bl2_combo.SelectedItem.ToString();
-                    DO2bl2combo_index = DO2bl2_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO3bl2_combo.Items.Count; i++) // DO3 блок 2
-                if (DO3bl2_combo.Items[i].ToString() == name)
-                {
-                    DO3bl2_combo.Items.Remove(name);
-                    if (DO3bl2_combo.Items.Count > 1)
-                    {
-                        DO3bl2_combo.SelectedIndex = DO3bl2_combo.Items.Count - 1;
-                        if (DO3bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO3bl2_combo.SelectedItem.ToString(), DO3bl2_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO3bl2_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO3bl2_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO3bl2_combo.SelectedItem = NOT_SELECTED;
-                        DO3bl2_lab.Text = "";
-                    }
-                    DO3bl2combo_text = DO3bl2_combo.SelectedItem.ToString();
-                    DO3bl2combo_index = DO3bl2_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO4bl2_combo.Items.Count; i++) // DO4 блок 2
-                if (DO4bl2_combo.Items[i].ToString() == name)
-                {
-                    DO4bl2_combo.Items.Remove(name);
-                    if (DO4bl2_combo.Items.Count > 1)
-                    {
-                        DO4bl2_combo.SelectedIndex = DO4bl2_combo.Items.Count - 1;
-                        if (DO4bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO4bl2_combo.SelectedItem.ToString(), DO4bl2_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO4bl2_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO4bl2_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO4bl2_combo.SelectedItem = NOT_SELECTED;
-                        DO4bl2_lab.Text = "";
-                    }
-                    DO4bl2combo_text = DO4bl2_combo.SelectedItem.ToString();
-                    DO4bl2combo_index = DO4bl2_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO5bl2_combo.Items.Count; i++) // DO5 блок 2
-                if (DO5bl2_combo.Items[i].ToString() == name)
-                {
-                    DO5bl2_combo.Items.Remove(name);
-                    if (DO5bl2_combo.Items.Count > 1)
-                    {
-                        DO5bl2_combo.SelectedIndex = DO5bl2_combo.Items.Count - 1;
-                        if (DO5bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO5bl2_combo.SelectedItem.ToString(), DO5bl2_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO5bl2_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO5bl2_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO5bl2_combo.SelectedItem = NOT_SELECTED;
-                        DO5bl2_lab.Text = "";
-                    }
-                    DO5bl2combo_text = DO5bl2_combo.SelectedItem.ToString();
-                    DO5bl2combo_index = DO5bl2_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO6bl2_combo.Items.Count; i++) // DO6 блок 2
-                if (DO6bl2_combo.Items[i].ToString() == name)
-                {
-                    DO6bl2_combo.Items.Remove(name);
-                    if (DO6bl2_combo.Items.Count > 1)
-                    {
-                        DO6bl2_combo.SelectedIndex = DO6bl2_combo.Items.Count - 1;
-                        if (DO6bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO6bl2_combo.SelectedItem.ToString(), DO6bl2_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO6bl2_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO6bl2_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO6bl2_combo.SelectedItem = NOT_SELECTED;
-                        DO6bl2_lab.Text = "";
-                    }
-                    DO6bl2combo_text = DO6bl2_combo.SelectedItem.ToString();
-                    DO6bl2combo_index = DO6bl2_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO7bl2_combo.Items.Count; i++) // DO7 блок 2
-                if (DO7bl2_combo.Items[i].ToString() == name)
-                {
-                    DO7bl2_combo.Items.Remove(name);
-                    if (DO7bl2_combo.Items.Count > 1)
-                    {
-                        DO7bl2_combo.SelectedIndex = DO7bl2_combo.Items.Count - 1;
-                        if (DO7bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO7bl2_combo.SelectedItem.ToString(), DO7bl2_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO7bl2_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO7bl2_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO7bl2_combo.SelectedItem = NOT_SELECTED;
-                        DO7bl2_lab.Text = "";   
-                    }
-                    DO7bl2combo_text = DO7bl2_combo.SelectedItem.ToString();
-                    DO7bl2combo_index = DO7bl2_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO1bl3_combo.Items.Count; i++) // DO1 блок 3
-                if (DO1bl3_combo.Items[i].ToString() == name)
-                {
-                    DO1bl3_combo.Items.Remove(name);
-                    if (DO1bl3_combo.Items.Count > 1)
-                    {
-                        DO1bl3_combo.SelectedIndex = DO1bl3_combo.Items.Count - 1;
-                        if (DO1bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO1bl3_combo.SelectedItem.ToString(), DO1bl3_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO1bl3_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO1bl3_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO1bl3_combo.SelectedItem = NOT_SELECTED;
-                        DO1bl3_lab.Text = "";
-                    }
-                    DO1bl3combo_text = DO1bl3_combo.SelectedItem.ToString();
-                    DO1bl3combo_index = DO1bl3_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO2bl3_combo.Items.Count; i++) // DO2 блок 3
-                if (DO2bl3_combo.Items[i].ToString() == name)
-                {
-                    DO2bl3_combo.Items.Remove(name);
-                    if (DO2bl3_combo.Items.Count > 1)
-                    {
-                        DO2bl3_combo.SelectedIndex = DO2bl3_combo.Items.Count - 1;
-                        if (DO2bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO2bl3_combo.SelectedItem.ToString(), DO2bl3_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO2bl3_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO2bl3_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO2bl3_combo.SelectedItem = NOT_SELECTED;
-                        DO2bl3_lab.Text = "";
-                    }
-                    DO2bl3combo_text = DO2bl3_combo.SelectedItem.ToString();
-                    DO2bl3combo_index = DO2bl3_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO3bl3_combo.Items.Count; i++) // DO3 блок 3
-                if (DO3bl3_combo.Items[i].ToString() == name)
-                {
-                    DO3bl3_combo.Items.Remove(name);
-                    if (DO3bl3_combo.Items.Count > 1)
-                    {
-                        DO3bl3_combo.SelectedIndex = DO3bl3_combo.Items.Count - 1;
-                        if (DO3bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO3bl3_combo.SelectedItem.ToString(), DO3bl3_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO3bl3_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO3bl3_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO3bl3_combo.SelectedItem = NOT_SELECTED;
-                        DO3bl3_lab.Text = "";
-                    }
-                    DO3bl3combo_text = DO3bl3_combo.SelectedItem.ToString();
-                    DO3bl3combo_index = DO3bl3_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO4bl3_combo.Items.Count; i++) // DO4 блок 3
-                if (DO4bl3_combo.Items[i].ToString() == name)
-                {
-                    DO4bl3_combo.Items.Remove(name);
-                    if (DO4bl3_combo.Items.Count > 1)
-                    {
-                        DO4bl3_combo.SelectedIndex = DO4bl3_combo.Items.Count - 1;
-                        if (DO4bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO4bl3_combo.SelectedItem.ToString(), DO4bl3_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO4bl3_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO4bl3_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO4bl3_combo.SelectedItem = NOT_SELECTED;
-                        DO4bl3_lab.Text = "";
-                    }
-                    DO4bl3combo_text = DO4bl3_combo.SelectedItem.ToString();
-                    DO4bl3combo_index = DO4bl3_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO5bl3_combo.Items.Count; i++) // DO5 блок 3
-                if (DO5bl3_combo.Items[i].ToString() == name)
-                {
-                    DO5bl3_combo.Items.Remove(name);
-                    if (DO5bl3_combo.Items.Count > 1)
-                    {
-                        DO5bl3_combo.SelectedIndex = DO5bl3_combo.Items.Count - 1;
-                        if (DO5bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO5bl3_combo.SelectedItem.ToString(), DO5bl3_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO5bl3_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO5bl3_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO5bl3_combo.SelectedItem = NOT_SELECTED;
-                        DO5bl3_lab.Text = "";
-                    }
-                    DO5bl3combo_text = DO5bl3_combo.SelectedItem.ToString();
-                    DO5bl3combo_index = DO5bl3_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO6bl3_combo.Items.Count; i++) // DO6 блок 3
-                if (DO6bl3_combo.Items[i].ToString() == name)
-                {
-                    DO6bl3_combo.Items.Remove(name);
-                    if (DO6bl3_combo.Items.Count > 1)
-                    {
-                        DO6bl3_combo.SelectedIndex = DO6bl3_combo.Items.Count - 1;
-                        if (DO6bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO6bl3_combo.SelectedItem.ToString(), DO6bl3_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO6bl3_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO6bl3_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO6bl3_combo.SelectedItem = NOT_SELECTED;
-                        DO6bl3_lab.Text = "";
-                    }
-                    DO6bl3combo_text = DO6bl3_combo.SelectedItem.ToString();
-                    DO6bl3combo_index = DO6bl3_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DO7bl3_combo.Items.Count; i++) // DO7 блок 3
-                if (DO7bl3_combo.Items[i].ToString() == name)
-                {
-                    DO7bl3_combo.Items.Remove(name);
-                    if (DO7bl3_combo.Items.Count > 1)
-                    {
-                        DO7bl3_combo.SelectedIndex = DO7bl3_combo.Items.Count - 1;
-                        if (DO7bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDO(DO7bl3_combo.SelectedItem.ToString(), DO7bl3_combo);
-                            findDO_2 = list_do.Find(x => x.Name == DO7bl3_combo.SelectedItem.ToString());
-                            if (findDO_2 != null)
-                            {
-                                list_do.Remove(findDO_2);
-                                findDO_2.Select();
-                                list_do.Add(findDO_2);
-                                if (showCode) DO7bl3_lab.Text = findDO_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DO7bl3_combo.SelectedItem = NOT_SELECTED;
-                        DO7bl3_lab.Text = "";
-                    }
-                    DO7bl3combo_text = DO7bl3_combo.SelectedItem.ToString();
-                    DO7bl3combo_index = DO7bl3_combo.SelectedIndex;
-                }
-            subDOcondition = false; // Сброс признака удаление из DO
-            list_do.Remove(findDo); // Удаление сигнала из списка DO
-            CheckSignalsReady(); // Проверка распределения сигналов
+            subDOcondition = true;                                          // Признак удаления DO, не работает событие indexChanged (не требуется?)
+
+            Do find_do = list_do.Find(x => x.Code == code);                 // Поиск имени дискретного выхода по числовому коду
+            if (find_do != null) name = find_do.Name;                       // Найдено текстовое название дискретного выхода по коду
+            else                                                            // Выход из метода
+            {
+                subDOcondition = false;                                     // Возврат признака в значение по умолчанию
+                return;
+            }
+            
+            // ПЛК
+            RemoveDO_FromComboBox(DO1_combo, name, DO1_lab, DO1combo_text, DO1combo_index);                 // DO1
+            RemoveDO_FromComboBox(DO2_combo, name, DO2_lab, DO2combo_text, DO2combo_index);                 // DO2
+            RemoveDO_FromComboBox(DO3_combo, name, DO3_lab, DO3combo_text, DO3combo_index);                 // DO3
+            RemoveDO_FromComboBox(DO4_combo, name, DO4_lab, DO4combo_text, DO4combo_index);                 // DO4
+            RemoveDO_FromComboBox(DO5_combo, name, DO5_lab, DO5combo_text, DO5combo_index);                 // DO5
+            RemoveDO_FromComboBox(DO6_combo, name, DO6_lab, DO6combo_text, DO6combo_index);                 // DO6
+            RemoveDO_FromComboBox(DO7_combo, name, DO7_lab, DO7combo_text, DO7combo_index);                 // DO7
+            // Блок 1
+            RemoveDO_FromComboBox(DO1bl1_combo, name, DO1bl1_lab, DO1bl1combo_text, DO1bl1combo_index);     // DO1
+            RemoveDO_FromComboBox(DO2bl1_combo, name, DO2bl1_lab, DO2bl1combo_text, DO1bl1combo_index);     // DO2
+            RemoveDO_FromComboBox(DO3bl1_combo, name, DO3bl1_lab, DO3bl1combo_text, DO1bl1combo_index);     // DO3
+            RemoveDO_FromComboBox(DO4bl1_combo, name, DO4bl1_lab, DO4bl1combo_text, DO1bl1combo_index);     // DO4
+            RemoveDO_FromComboBox(DO5bl1_combo, name, DO5bl1_lab, DO5bl1combo_text, DO1bl1combo_index);     // DO5
+            RemoveDO_FromComboBox(DO6bl1_combo, name, DO6bl1_lab, DO6bl1combo_text, DO1bl1combo_index);     // DO6
+            RemoveDO_FromComboBox(DO7bl1_combo, name, DO7bl1_lab, DO7bl1combo_text, DO1bl1combo_index);     // DO7
+            // Блок 2
+            RemoveDO_FromComboBox(DO1bl2_combo, name, DO1bl2_lab, DO1bl2combo_text, DO1bl2combo_index);     // DO1
+            RemoveDO_FromComboBox(DO2bl2_combo, name, DO2bl2_lab, DO2bl2combo_text, DO1bl2combo_index);     // DO2
+            RemoveDO_FromComboBox(DO3bl2_combo, name, DO3bl2_lab, DO3bl2combo_text, DO1bl2combo_index);     // DO3
+            RemoveDO_FromComboBox(DO4bl2_combo, name, DO4bl2_lab, DO4bl2combo_text, DO1bl2combo_index);     // DO4
+            RemoveDO_FromComboBox(DO5bl2_combo, name, DO5bl2_lab, DO5bl2combo_text, DO1bl2combo_index);     // DO5
+            RemoveDO_FromComboBox(DO6bl2_combo, name, DO6bl2_lab, DO6bl2combo_text, DO1bl2combo_index);     // DO6
+            RemoveDO_FromComboBox(DO7bl2_combo, name, DO7bl2_lab, DO7bl2combo_text, DO1bl2combo_index);     // DO7
+            // Блок 3
+            RemoveDO_FromComboBox(DO1bl3_combo, name, DO1bl3_lab, DO1bl3combo_text, DO1bl3combo_index);     // DO1
+            RemoveDO_FromComboBox(DO2bl3_combo, name, DO2bl3_lab, DO2bl3combo_text, DO1bl3combo_index);     // DO2
+            RemoveDO_FromComboBox(DO3bl3_combo, name, DO3bl3_lab, DO3bl3combo_text, DO1bl3combo_index);     // DO3
+            RemoveDO_FromComboBox(DO4bl3_combo, name, DO4bl3_lab, DO4bl3combo_text, DO1bl3combo_index);     // DO4
+            RemoveDO_FromComboBox(DO5bl3_combo, name, DO5bl3_lab, DO5bl3combo_text, DO1bl3combo_index);     // DO5
+            RemoveDO_FromComboBox(DO6bl3_combo, name, DO6bl3_lab, DO6bl3combo_text, DO1bl3combo_index);     // DO6
+            RemoveDO_FromComboBox(DO7bl3_combo, name, DO7bl3_lab, DO7bl3combo_text, DO1bl3combo_index);     // DO7
+
+            subDOcondition = false;                // Сброс признака удаление из DO
+            list_do.Remove(find_do);               // Удаление сигнала из списка DO
+            CheckSignalsReady();                   // Проверка распределения сигналов
         }
 
         /*** ВСПОМОГАТЕЛЬНЫЕ МЕТОДЫ ***/

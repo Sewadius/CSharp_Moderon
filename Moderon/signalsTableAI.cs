@@ -89,7 +89,7 @@ namespace Moderon
         }
 
         ///<summary>Метод для изменения AI comboBox</summary>
-        private void AI_combo_SelectedIndexChanged(ComboBox comboBox, ref int combo_index, ref string combo_text, Label label)
+        private void AI_combo_SelectedIndexChanged(ComboBox comboBox, ref int combo_index, ref string combo_text, Label label, ComboBox typeCombo)
         {
             if (ignoreEvents) return;
             string name = "";
@@ -116,7 +116,7 @@ namespace Moderon
                         list_ai.Add(ai_find);                                       // Добавление с новым значением
                 }
                 if (!initialComboSignals) AddtoCombosAI(combo_text, comboBox);      // Добавление к другим AI
-                SensorAIType(AI1_typeCombo, 2);                                     // Установка NTC и блокировка
+                SensorAIType(typeCombo, 2);                                         // Установка NTC и блокировка
             }
             else // Если выбран сигнал AI
             {
@@ -127,12 +127,12 @@ namespace Moderon
                 {
                     list_di.Find(x => x.Name == name).Select();                     // Распределение сигнала из списка DI
                     RemoveFromAllCombosDI(name);                                    // Удаление из всех comboBox DI 
-                    SensorAIType(AI1_typeCombo, 2);                                 // Установка NTC и блокировка
+                    SensorAIType(typeCombo, 2);                                     // Установка NTC и блокировка
                 }
                 else if (ai_find.Type == "humidSensor")
-                    SensorAIType(AI1_typeCombo, 1);                                 // Установка для датчика влажности
+                    SensorAIType(typeCombo, 1);                                     // Установка для датчика влажности
                 else if (ai_find.Type == "sensor")
-                    SensorAIType(AI1_typeCombo, 0);                                 // Установка для датчика температуры
+                    SensorAIType(typeCombo, 0);                                     // Установка для датчика температуры
                 if (ai_find != null)
                 {
                     ai_find.Select();
@@ -163,512 +163,191 @@ namespace Moderon
         ///<summary>Изменили AI1 comboBox</summary>
         private void AI1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AI_combo_SelectedIndexChanged(AI1_combo, ref AI1combo_index, ref AI1combo_text, AI1_lab);
+            AI_combo_SelectedIndexChanged(AI1_combo, ref AI1combo_index, ref AI1combo_text, AI1_lab, AI1_typeCombo);
         }
 
         ///<summary>Изменили AI2 comboBox</summary>
         private void AI2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AI_combo_SelectedIndexChanged(AI2_combo, ref AI2combo_index, ref AI2combo_text, AI2_lab);
+            AI_combo_SelectedIndexChanged(AI2_combo, ref AI2combo_index, ref AI2combo_text, AI2_lab, AI2_typeCombo);
         }
 
         ///<summary>Изменили AI3 comboBox</summary>
         private void AI3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AI_combo_SelectedIndexChanged(AI3_combo, ref AI3combo_index, ref AI3combo_text, AI3_lab);
+            AI_combo_SelectedIndexChanged(AI3_combo, ref AI3combo_index, ref AI3combo_text, AI3_lab, AI3_typeCombo);
         }
 
         ///<summary>Изменили AI4 comboBox</summary>
         private void AI4_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AI_combo_SelectedIndexChanged(AI4_combo, ref AI4combo_index, ref AI4combo_text, AI4_lab);
+            AI_combo_SelectedIndexChanged(AI4_combo, ref AI4combo_index, ref AI4combo_text, AI4_lab, AI4_typeCombo);
         }
 
         ///<summary>Изменили AI5 comboBox</summary>
         private void AI5_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AI_combo_SelectedIndexChanged(AI5_combo, ref AI5combo_index, ref AI5combo_text, AI5_lab);
+            AI_combo_SelectedIndexChanged(AI5_combo, ref AI5combo_index, ref AI5combo_text, AI5_lab, AI5_typeCombo);
         }
 
         ///<summary>Изменили AI6 comboBox</summary>
         private void AI6_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AI_combo_SelectedIndexChanged(AI6_combo, ref AI6combo_index, ref AI6combo_text, AI6_lab);
+            AI_combo_SelectedIndexChanged(AI6_combo, ref AI6combo_index, ref AI6combo_text, AI6_lab, AI6_typeCombo);
         }
 
         ///<summary>Изменили AI1 блока расширения 1 comboBox</summary>
         private void AI1bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AI_combo_SelectedIndexChanged(AI1bl1_combo, ref AI1bl1combo_index, ref AI1bl1combo_text, AI1bl1_lab);
+            AI_combo_SelectedIndexChanged(AI1bl1_combo, ref AI1bl1combo_index, ref AI1bl1combo_text, AI1bl1_lab, AI1bl1_typeCombo);
         }
 
         ///<summary>Изменили AI2 блока расширения 1 comboBox</summary>
         private void AI2bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AI_combo_SelectedIndexChanged(AI2bl1_combo, ref AI2bl1combo_index, ref AI2bl1combo_text, AI2bl1_lab);
+            AI_combo_SelectedIndexChanged(AI2bl1_combo, ref AI2bl1combo_index, ref AI2bl1combo_text, AI2bl1_lab, AI2bl1_typeCombo);
         }
 
         ///<summary>Изменили AI3 блока расширения 1 comboBox</summary>
         private void AI3bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AI_combo_SelectedIndexChanged(AI3bl1_combo, ref AI3bl1combo_index, ref AI3bl1combo_text, AI3bl1_lab);
+            AI_combo_SelectedIndexChanged(AI3bl1_combo, ref AI3bl1combo_index, ref AI3bl1combo_text, AI3bl1_lab, AI3bl1_typeCombo);
         }
 
         ///<summary>Изменили AI4 блока расширения 1 comboBox</summary>
         private void AI4bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AI_combo_SelectedIndexChanged(AI4bl1_combo, ref AI4bl1combo_index, ref AI4bl1combo_text, AI4bl1_lab);
+            AI_combo_SelectedIndexChanged(AI4bl1_combo, ref AI4bl1combo_index, ref AI4bl1combo_text, AI4bl1_lab, AI4bl1_typeCombo);
         }
 
         ///<summary>Изменили AI5 блока расширения 1 comboBox</summary>
         private void AI5bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AI_combo_SelectedIndexChanged(AI5bl1_combo, ref AI5bl1combo_index, ref AI5bl1combo_text, AI5bl1_lab);
+            AI_combo_SelectedIndexChanged(AI5bl1_combo, ref AI5bl1combo_index, ref AI5bl1combo_text, AI5bl1_lab, AI5bl1_typeCombo);
         }
 
         ///<summary>Изменили AI6 блока расширения 1 comboBox</summary>
         private void AI6bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AI_combo_SelectedIndexChanged(AI6bl1_combo, ref AI6bl1combo_index, ref AI6bl1combo_text, AI6bl1_lab);
+            AI_combo_SelectedIndexChanged(AI6bl1_combo, ref AI6bl1combo_index, ref AI6bl1combo_text, AI6bl1_lab, AI6bl1_typeCombo);
         }
 
         ///<summary>Изменили AI1 блока расширения 2 comboBox</summary>
         private void AI1bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AI_combo_SelectedIndexChanged(AI1bl2_combo, ref AI1bl2combo_index, ref AI1bl2combo_text, AI1bl2_lab);
+            AI_combo_SelectedIndexChanged(AI1bl2_combo, ref AI1bl2combo_index, ref AI1bl2combo_text, AI1bl2_lab, AI1bl2_typeCombo);
         }
 
         ///<summary>Изменили AI2 блока расширения 2 comboBox</summary>
         private void AI2bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AI_combo_SelectedIndexChanged(AI2bl2_combo, ref AI2bl2combo_index, ref AI2bl2combo_text, AI2bl2_lab);
+            AI_combo_SelectedIndexChanged(AI2bl2_combo, ref AI2bl2combo_index, ref AI2bl2combo_text, AI2bl2_lab, AI2bl2_typeCombo);
         }
 
         ///<summary>Изменили AI3 блока расширения 2 comboBox</summary>
         private void AI3bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AI_combo_SelectedIndexChanged(AI3bl2_combo, ref AI3bl2combo_index, ref AI3bl2combo_text, AI3bl2_lab);
+            AI_combo_SelectedIndexChanged(AI3bl2_combo, ref AI3bl2combo_index, ref AI3bl2combo_text, AI3bl2_lab, AI3bl2_typeCombo);
         }
 
         ///<summary>Изменили AI4 блока расширения 2 comboBox</summary>
         private void AI4bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AI_combo_SelectedIndexChanged(AI4bl2_combo, ref AI4bl2combo_index, ref AI4bl2combo_text, AI4bl2_lab);
+            AI_combo_SelectedIndexChanged(AI4bl2_combo, ref AI4bl2combo_index, ref AI4bl2combo_text, AI4bl2_lab, AI4bl2_typeCombo);
         }
 
         ///<summary>Изменили AI5 блока расширения 2 comboBox</summary>
         private void AI5bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AI_combo_SelectedIndexChanged(AI5bl2_combo, ref AI5bl2combo_index, ref AI5bl2combo_text, AI5bl2_lab);
+            AI_combo_SelectedIndexChanged(AI5bl2_combo, ref AI5bl2combo_index, ref AI5bl2combo_text, AI5bl2_lab, AI5bl2_typeCombo);
         }
 
         ///<summary>Изменили AI6 блока расширения 2 comboBox</summary>
         private void AI6bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AI_combo_SelectedIndexChanged(AI6bl2_combo, ref AI6bl2combo_index, ref AI6bl2combo_text, AI6bl2_lab);
+            AI_combo_SelectedIndexChanged(AI6bl2_combo, ref AI6bl2combo_index, ref AI6bl2combo_text, AI6bl2_lab, AI6bl2_typeCombo);
         }
 
         ///<summary>Изменили AI1 блока расширения 3 comboBox</summary>
         private void AI1bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AI_combo_SelectedIndexChanged(AI1bl3_combo, ref AI1bl3combo_index, ref AI1bl3combo_text, AI1bl3_lab);
+            AI_combo_SelectedIndexChanged(AI1bl3_combo, ref AI1bl3combo_index, ref AI1bl3combo_text, AI1bl3_lab, AI1bl3_typeCombo);
         }
 
         ///<summary>Изменили AI2 блока расширения 3 comboBox</summary>
         private void AI2bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AI_combo_SelectedIndexChanged(AI2bl3_combo, ref AI2bl3combo_index, ref AI2bl3combo_text, AI2bl3_lab);
+            AI_combo_SelectedIndexChanged(AI2bl3_combo, ref AI2bl3combo_index, ref AI2bl3combo_text, AI2bl3_lab, AI2bl3_typeCombo);
         }
 
         ///<summary>Изменили AI3 блока расширения 3 comboBox</summary>
         private void AI3bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AI_combo_SelectedIndexChanged(AI3bl3_combo, ref AI3bl3combo_index, ref AI3bl3combo_text, AI3bl3_lab);
+            AI_combo_SelectedIndexChanged(AI3bl3_combo, ref AI3bl3combo_index, ref AI3bl3combo_text, AI3bl3_lab, AI3bl3_typeCombo);
         }
 
         ///<summary>Изменили AI4 блока расширения 3 comboBox</summary>
         private void AI4bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AI_combo_SelectedIndexChanged(AI4bl3_combo, ref AI4bl3combo_index, ref AI4bl3combo_text, AI4bl3_lab);
+            AI_combo_SelectedIndexChanged(AI4bl3_combo, ref AI4bl3combo_index, ref AI4bl3combo_text, AI4bl3_lab, AI4bl3_typeCombo);
         }
 
         ///<summary>Изменили AI5 блока расширения 3 comboBox</summary>
         private void AI5bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AI_combo_SelectedIndexChanged(AI5bl3_combo, ref AI5bl3combo_index, ref AI5bl3combo_text, AI5bl3_lab);
+            AI_combo_SelectedIndexChanged(AI5bl3_combo, ref AI5bl3combo_index, ref AI5bl3combo_text, AI5bl3_lab, AI5bl3_typeCombo);
         }
 
         ///<summary>Изменили AI6 блока расширения 3 comboBox</summary>
         private void AI6bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AI_combo_SelectedIndexChanged(AI6bl3_combo, ref AI6bl3combo_index, ref AI6bl3combo_text, AI6bl3_lab);
+            AI_combo_SelectedIndexChanged(AI6bl3_combo, ref AI6bl3combo_index, ref AI6bl3combo_text, AI6bl3_lab, AI6bl3_typeCombo);
+        }
+
+        ///<summary>Добавление в другие слоты для выбора в comboBox</summary>
+        private void AddToCombo_AI(string name, ComboBox cm, ref ComboBox comboBox)
+        {
+            bool notFound = true;                                               // Элемент в списке не найден
+            bool humidTypeCheck = true;
+            var ai_check_list = new List<ComboBox>()                            // Список для проверки AI4-AI6 для типа входа
+            {
+                AI4_combo, AI4bl1_combo, AI4bl2_combo, AI4bl3_combo,
+                AI5_combo, AI5bl1_combo, AI5bl2_combo, AI5bl3_combo,
+                AI6_combo, AI6bl1_combo, AI6bl2_combo, AI6bl3_combo
+            };
+
+            if (comboBox != cm)
+            {
+                Ai ai_find = list_ai.Find(x => x.Name == name);
+
+                if (ai_check_list.Contains(comboBox) && ai_find != null)
+                    humidTypeCheck = ai_find.Type != "humidSensor";
+
+                if (ai_find != null && humidTypeCheck)
+                {
+                    foreach (var el in comboBox.Items)
+                        if (el.ToString() == name) notFound = false;
+                    if (notFound) comboBox.Items.Add(ai_find.Name);
+                    notFound = false;
+                }
+            }
         }
 
         ///<summary>Добавление освободившегося AI к остальным comboBox</summary>
         private void AddtoCombosAI(string name, ComboBox cm)
         {
-            Ai ai_find;
-            bool notFound = true; // Элемент в списке не найден
-            // Для AI1 comboBox, добавление в остальные слоты для выбора
-            if (AI1_combo != cm)
-            {
-                ai_find = list_ai.Find(x => x.Name == name);
-                if (ai_find != null)
-                {
-                    foreach (var elem in AI1_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) // Нет такого элемента в списке
-                    {
-                        AI1_combo.Items.Add(ai_find.Name); 
-                    }
-                    notFound = true;
-                }
-            }
-            // Для AI2 comboBox, добавление в остальные слоты для выбора
-            if (AI2_combo != cm)
-            {
-                ai_find = list_ai.Find(x => x.Name == name);
-                if (ai_find != null)
-                {
-                    foreach (var elem in AI2_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) // Нет такого элемента в списке
-                    {
-                        AI2_combo.Items.Add(ai_find.Name); 
-                    }
-                    notFound = true;
-                }
-            }
-            // Для AI3 comboBox, добавление в остальные слоты для выбора
-            if (AI3_combo != cm)
-            {
-                ai_find = list_ai.Find(x => x.Name == name);
-                if (ai_find != null)
-                {
-                    foreach (var elem in AI3_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) // Нет такого элемента в списке
-                    {
-                        AI3_combo.Items.Add(ai_find.Name);
-                    }
-                    notFound = true;
-                }
-            }
-            // Для AI4 comboBox, добавление в остальные слоты для выбора
-            if (AI4_combo != cm)
-            {
-                ai_find = list_ai.Find(x => x.Name == name);
-                if (ai_find != null && ai_find.Type != "humidSensor")
-                {
-                    foreach (var elem in AI4_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) // Нет такого элемента в списке
-                    {
-                        AI4_combo.Items.Add(ai_find.Name);
-                    }
-                    notFound = true;
-                }
-            }
-            // Для AI5 comboBox, добавление в остальные слоты для выбора
-            if (AI5_combo != cm)
-            {
-                ai_find = list_ai.Find(x => x.Name == name);
-                if (ai_find != null && ai_find.Type != "humidSensor")
-                {
-                    foreach (var elem in AI5_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) // Нет такого элемента в списке
-                    {
-                        AI5_combo.Items.Add(ai_find.Name);
-                    }
-                    notFound = true;
-                }
-            }
-            // Для AI6 comboBox, добавление в остальные слоты для выбора
-            if (AI6_combo != cm)
-            {
-                ai_find = list_ai.Find(x => x.Name == name);
-                if (ai_find != null && ai_find.Type != "humidSensor")
-                {
-                    foreach (var elem in AI6_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) // Нет такого элемента в списке
-                    {
-                        AI6_combo.Items.Add(ai_find.Name);
-                    }
-                    notFound = true;
-                }
-            }
-            // Для AI1 comboBox блока расширения 1, добавление в остальные слоты для выбора
-            if (AI1bl1_combo != cm)
-            {
-                ai_find = list_ai.Find(x => x.Name == name);
-                if (ai_find != null)
-                {
-                    foreach (var elem in AI1bl1_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) // Нет такого элемента в списке
-                    {
-                        AI1bl1_combo.Items.Add(ai_find.Name);
-                    }
-                    notFound = true;
-                }
-            }
-            // Для AI2 comboBox блока расширения 1, добавление в остальные слоты для выбора
-            if (AI2bl1_combo != cm)
-            {
-                ai_find = list_ai.Find(x => x.Name == name);
-                if (ai_find != null)
-                {
-                    foreach (var elem in AI2bl1_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) // Нет такого элемента в списке
-                    {
-                        AI2bl1_combo.Items.Add(ai_find.Name);
-                    }
-                    notFound = true;
-                }
-            }
-            // Для AI3 comboBox блока расширения 1, добавление в остальные слоты для выбора
-            if (AI3bl1_combo != cm)
-            {
-                ai_find = list_ai.Find(x => x.Name == name);
-                if (ai_find != null)
-                {
-                    foreach (var elem in AI3bl1_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) // Нет такого элемента в списке
-                    {
-                        AI3bl1_combo.Items.Add(ai_find.Name);
-                    }
-                    notFound = true;
-                }
-            }
-            // Для AI4 comboBox блока расширения 1, добавление в остальные слоты для выбора
-            if (AI4bl1_combo != cm)
-            {
-                ai_find = list_ai.Find(x => x.Name == name);
-                if (ai_find != null && ai_find.Type != "humidSensor")
-                {
-                    foreach (var elem in AI4bl1_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) // Нет такого элемента в списке
-                    {
-                        AI4bl1_combo.Items.Add(ai_find.Name);
-                    }
-                    notFound = true;
-                }
-            }
-            // Для AI5 comboBox блока расширения 1, добавление в остальные слоты для выбора
-            if (AI5bl1_combo != cm)
-            {
-                ai_find = list_ai.Find(x => x.Name == name);
-                if (ai_find != null && ai_find.Type != "humidSensor")
-                {
-                    foreach (var elem in AI5bl1_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) // Нет такого элемента в списке
-                    {
-                        AI5bl1_combo.Items.Add(ai_find.Name);
-                    }
-                    notFound = true;
-                }
-            }
-            // Для AI6 comboBox блока расширения 1, добавление в остальные слоты для выбора
-            if (AI6bl1_combo != cm)
-            {
-                ai_find = list_ai.Find(x => x.Name == name);
-                if (ai_find != null && ai_find.Type != "humidSensor")
-                {
-                    foreach (var elem in AI6bl1_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) // Нет такого элемента в списке
-                    {
-                        AI6bl1_combo.Items.Add(ai_find.Name);
-                    }
-                    notFound = true;
-                }
-            }
-            // Для AI1 comboBox блока расширения 2, добавление в остальные слоты для выбора
-            if (AI1bl2_combo != cm)
-            {
-                ai_find = list_ai.Find(x => x.Name == name);
-                if (ai_find != null)
-                {
-                    foreach (var elem in AI1bl2_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) // Нет такого элемента в списке
-                    {
-                        AI1bl2_combo.Items.Add(ai_find.Name);
-                    }
-                    notFound = true;
-                }
-            }
-            // Для AI2 comboBox блока расширения 2, добавление в остальные слоты для выбора
-            if (AI2bl2_combo != cm)
-            {
-                ai_find = list_ai.Find(x => x.Name == name);
-                if (ai_find != null)
-                {
-                    foreach (var elem in AI2bl2_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) // Нет такого элемента в списке
-                    {
-                        AI2bl2_combo.Items.Add(ai_find.Name);
-                    }
-                    notFound = true;
-                }
-            }
-            // Для AI3 comboBox блока расширения 2, добавление в остальные слоты для выбора
-            if (AI3bl2_combo != cm)
-            {
-                ai_find = list_ai.Find(x => x.Name == name);
-                if (ai_find != null)
-                {
-                    foreach (var elem in AI3bl2_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) // Нет такого элемента в списке
-                    {
-                        AI3bl2_combo.Items.Add(ai_find.Name);
-                    }
-                    notFound = true;
-                }
-            }
-            // Для AI4 comboBox блока расширения 2, добавление в остальные слоты для выбора
-            if (AI4bl2_combo != cm)
-            {
-                ai_find = list_ai.Find(x => x.Name == name);
-                if (ai_find != null && ai_find.Type != "humidSensor")
-                {
-                    foreach (var elem in AI4bl2_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) // Нет такого элемента в списке
-                    {
-                        AI4bl2_combo.Items.Add(ai_find.Name);
-                    }
-                    notFound = true;
-                }
-            }
-            // Для AI5 comboBox блока расширения 2, добавление в остальные слоты для выбора
-            if (AI5bl2_combo != cm)
-            {
-                ai_find = list_ai.Find(x => x.Name == name);
-                if (ai_find != null && ai_find.Type != "humidSensor")
-                {
-                    foreach (var elem in AI5bl2_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) // Нет такого элемента в списке
-                    {
-                        AI5bl2_combo.Items.Add(ai_find.Name);
-                    }
-                    notFound = true;
-                }
-            }
-            // Для AI6 comboBox блока расширения 2, добавление в остальные слоты для выбора
-            if (AI6bl2_combo != cm)
-            {
-                ai_find = list_ai.Find(x => x.Name == name);
-                if (ai_find != null && ai_find.Type != "humidSensor")
-                {
-                    foreach (var elem in AI6bl2_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) // Нет такого элемента в списке
-                    {
-                        AI6bl2_combo.Items.Add(ai_find.Name);
-                    }
-                    notFound = true;
-                }
-            }
-            // Для AI1 comboBox блока расширения 3, добавление в остальные слоты для выбора
-            if (AI1bl3_combo != cm)
-            {
-                ai_find = list_ai.Find(x => x.Name == name);
-                if (ai_find != null)
-                {
-                    foreach (var elem in AI1bl3_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) // Нет такого элемента в списке
-                    {
-                        AI1bl3_combo.Items.Add(ai_find.Name);
-                    }
-                    notFound = true;
-                }
-            }
-            // Для AI2 comboBox блока расширения 3, добавление в остальные слоты для выбора
-            if (AI2bl3_combo != cm)
-            {
-                ai_find = list_ai.Find(x => x.Name == name);
-                if (ai_find != null)
-                {
-                    foreach (var elem in AI2bl3_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) // Нет такого элемента в списке
-                    {
-                        AI2bl3_combo.Items.Add(ai_find.Name);
-                    }
-                    notFound = true;
-                }
-            }
-            // Для AI3 comboBox блока расширения 3, добавление в остальные слоты для выбора
-            if (AI3bl3_combo != cm)
-            {
-                ai_find = list_ai.Find(x => x.Name == name);
-                if (ai_find != null)
-                {
-                    foreach (var elem in AI3bl3_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) // Нет такого элемента в списке
-                    {
-                        AI3bl3_combo.Items.Add(ai_find.Name);
-                    }
-                    notFound = true;
-                }
-            }
-            // Для AI4 comboBox блока расширения 3, добавление в остальные слоты для выбора
-            if (AI4bl3_combo != cm)
-            {
-                ai_find = list_ai.Find(x => x.Name == name);
-                if (ai_find != null && ai_find.Type != "humidSensor")
-                {
-                    foreach (var elem in AI4bl3_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) // Нет такого элемента в списке
-                    {
-                        AI4bl3_combo.Items.Add(ai_find.Name);
-                    }
-                    notFound = true;
-                }
-            }
-            // Для AI5 comboBox блока расширения 3, добавление в остальные слоты для выбора
-            if (AI5bl3_combo != cm)
-            {
-                ai_find = list_ai.Find(x => x.Name == name);
-                if (ai_find != null && ai_find.Type != "humidSensor")
-                {
-                    foreach (var elem in AI5bl3_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) // Нет такого элемента в списке
-                    {
-                        AI5bl3_combo.Items.Add(ai_find.Name);
-                    }
-                    notFound = true;
-                }
-            }
-            // Для AI6 comboBox блока расширения 3, добавление в остальные слоты для выбора
-            if (AI6bl3_combo != cm)
-            {
-                ai_find = list_ai.Find(x => x.Name == name);
-                if (ai_find != null && ai_find.Type != "humidSensor")
-                {
-                    foreach (var elem in AI6bl3_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) // Нет такого элемента в списке
-                    {
-                        AI6bl3_combo.Items.Add(ai_find.Name);
-                    }
-                    notFound = true;
-                }
-            }
+            // ПЛК
+            AddToCombo_AI(name, cm, ref AI1_combo); AddToCombo_AI(name, cm, ref AI2_combo); AddToCombo_AI(name, cm, ref AI3_combo);
+            AddToCombo_AI(name, cm, ref AI4_combo); AddToCombo_AI(name, cm, ref AI5_combo); AddToCombo_AI(name, cm, ref AI6_combo);
+            // Блок расширения 1
+            AddToCombo_AI(name, cm, ref AI1bl1_combo); AddToCombo_AI(name, cm, ref AI2bl1_combo); AddToCombo_AI(name, cm, ref AI3bl1_combo);
+            AddToCombo_AI(name, cm, ref AI4bl1_combo); AddToCombo_AI(name, cm, ref AI5bl1_combo); AddToCombo_AI(name, cm, ref AI6bl1_combo);
+            // Блок расширения 2
+            AddToCombo_AI(name, cm, ref AI1bl2_combo); AddToCombo_AI(name, cm, ref AI2bl2_combo); AddToCombo_AI(name, cm, ref AI3bl2_combo);
+            AddToCombo_AI(name, cm, ref AI4bl2_combo); AddToCombo_AI(name, cm, ref AI5bl2_combo); AddToCombo_AI(name, cm, ref AI6bl2_combo);
+            // Блок расширения 3
+            AddToCombo_AI(name, cm, ref AI1bl3_combo); AddToCombo_AI(name, cm, ref AI2bl3_combo); AddToCombo_AI(name, cm, ref AI3bl3_combo);
+            AddToCombo_AI(name, cm, ref AI4bl3_combo); AddToCombo_AI(name, cm, ref AI5bl3_combo); AddToCombo_AI(name, cm, ref AI6bl3_combo);
         }
 
         ///<summary>Добавление ко всем входам AI (для сигнала DI)</summary>
@@ -750,213 +429,67 @@ namespace Moderon
             cm.SelectedIndex = 0;
         }
 
-        ///<summary>Добавление нового AI и его назначнение под выход</summary>
-        private void AddNewAI(ushort code, string type)
+        ///<summary>Добавление нового AI и его назначение для переданного comboBox</summary>
+        private void SelectComboBox_AI(ComboBox cm, ushort code, string type, Label label, string text, int index, ComboBox typeCombo)
         {
-            if (AI4_combo.SelectedIndex == 0 && list_ai.Find(x => x.Code == code).Type != "humidSensor") // "Не выбрано", проверка типа
-            { // AI4
-                AI4_combo.Items.Add(list_ai.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                AI4_combo.SelectedIndex = AI4_combo.Items.Count - 1;
-                AI4combo_text = AI4_combo.SelectedItem.ToString();
-                AI4combo_index = AI4_combo.SelectedIndex;
-                if (type == "di")
-                {
-                    if (showCode) AI4_lab.Text = (code + 1000).ToString();
-                }
-                else
-                {
-                    if (showCode) AI4_lab.Text = code.ToString();
-                }
-                list_ai.Find(x => x.Code == code).Select();
-                // Изменения для выбора типа AI
+            var ai_combos = new List<ComboBox>()
+            {
+                AI1_combo, AI2_combo, AI3_combo,
+                AI1bl1_combo, AI2bl1_combo, AI3bl1_combo,
+                AI1bl2_combo, AI2bl2_combo, AI3bl2_combo,
+                AI1bl3_combo, AI2bl3_combo, AI3bl3_combo
+            };
+
+            cm.Items.Add(list_ai.Find(x => x.Code == code).Name);
+            cm.SelectedIndex = cm.Items.Count - 1;
+            text = cm.SelectedItem.ToString();
+            index = cm.SelectedIndex;
+            if (type == "di")
+            {
+                if (showCode) label.Text = (code + 1000).ToString();
+            }
+            else
+            {
+                if (showCode) label.Text = code.ToString(); 
+            }
+            list_ai.Find(x => x.Code == code).Select();
+            // Изменения для выбора типа AI
+            if (ai_combos.Contains(cm))
+            {
+                if (type == "sensor") SensorAIType(typeCombo, 0);
+                else if (type == "humidSensor") SensorAIType(typeCombo, 1);
+                else if (type == "di") SensorAIType(typeCombo, 2);
+            } 
+            else
+            {
                 if (type == "sensor") SensorAIType(AI4_typeCombo, 3);
                 else if (type == "di") SensorAIType(AI4_typeCombo, 2);
             }
-            else if (AI5_combo.SelectedIndex == 0 && list_ai.Find(x => x.Code == code).Type != "humidSensor") // "Не выбрано", проверка типа
-            { // AI5
-                AI5_combo.Items.Add(list_ai.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                AI5_combo.SelectedIndex = AI5_combo.Items.Count - 1;
-                AI5combo_text = AI5_combo.SelectedItem.ToString();
-                AI5combo_index = AI5_combo.SelectedIndex;
-                if (type == "di")
-                {
-                    if (showCode) AI5_lab.Text = (code + 1000).ToString();
-                }
-                else
-                {
-                    if (showCode) AI5_lab.Text = code.ToString();
-                }
-                list_ai.Find(x => x.Code == code).Select();
-                // Изменения для выбора типа AI
-                if (type == "sensor") SensorAIType(AI5_typeCombo, 3);
-                else if (type == "di") SensorAIType(AI5_typeCombo, 2);
-            }
-            else if (AI6_combo.SelectedIndex == 0 && list_ai.Find(x => x.Code == code).Type != "humidSensor") // "Не выбрано", проверка типа
-            { // AI6
-                AI6_combo.Items.Add(list_ai.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                AI6_combo.SelectedIndex = AI6_combo.Items.Count - 1;
-                AI6combo_text = AI6_combo.SelectedItem.ToString();
-                AI6combo_index = AI6_combo.SelectedIndex;
-                if (type == "di")
-                {
-                    if (showCode) AI6_lab.Text = (code + 1000).ToString();
-                }
-                else
-                {
-                    if (showCode) AI6_lab.Text = code.ToString();
-                }
-                list_ai.Find(x => x.Code == code).Select();
-                // Изменения для выбора типа AI
-                if (type == "sensor") SensorAIType(AI6_typeCombo, 3);
-                else if (type == "di") SensorAIType(AI6_typeCombo, 2);
-            }
-            else if (AI1_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI1
-                AI1_combo.Items.Add(list_ai.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                AI1_combo.SelectedIndex = AI1_combo.Items.Count - 1;
-                AI1combo_text = AI1_combo.SelectedItem.ToString();
-                AI1combo_index = AI1_combo.SelectedIndex;
-                if (type == "di")
-                {
-                    if (showCode) AI1_lab.Text = (code + 1000).ToString();
-                }
-                else
-                {
-                    if (showCode) AI1_lab.Text = code.ToString();
-                }
-                list_ai.Find(x => x.Code == code).Select();
-                // Изменения для выбора типа AI
-                if (type == "sensor") SensorAIType(AI1_typeCombo, 0);
-                else if (type == "humidSensor") SensorAIType(AI1_typeCombo, 1);
-                else if (type == "di") SensorAIType(AI1_typeCombo, 2);
-            }
-            else if (AI2_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI2
-                AI2_combo.Items.Add(list_ai.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                AI2_combo.SelectedIndex = AI2_combo.Items.Count - 1;
-                AI2combo_text = AI2_combo.SelectedItem.ToString();
-                AI2combo_index = AI2_combo.SelectedIndex;
-                if (type == "di")
-                {
-                    if (showCode) AI2_lab.Text = (code + 1000).ToString();
-                }
-                else
-                {
-                    if (showCode) AI2_lab.Text = code.ToString();
-                }
-                list_ai.Find(x => x.Code == code).Select();
-                // Изменения для выбора типа AI
-                if (type == "sensor") SensorAIType(AI2_typeCombo, 0);
-                else if (type == "humidSensor") SensorAIType(AI2_typeCombo, 1);
-                else if (type == "di") SensorAIType(AI2_typeCombo, 2);
-            }
-            else if (AI3_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI3
-                AI3_combo.Items.Add(list_ai.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                AI3_combo.SelectedIndex = AI3_combo.Items.Count - 1;
-                AI3combo_text = AI3_combo.SelectedItem.ToString();
-                AI3combo_index = AI3_combo.SelectedIndex;
-                if (type == "di")
-                {
-                    if (showCode) AI3_lab.Text = (code + 1000).ToString();
-                }
-                else
-                {
-                    if (showCode) AI3_lab.Text = code.ToString();
-                }
-                list_ai.Find(x => x.Code == code).Select();
-                // Изменения для выбора типа AI
-                if (type == "sensor") SensorAIType(AI3_typeCombo, 0);
-                else if (type == "humidSensor") SensorAIType(AI3_typeCombo, 1);
-                else if (type == "di") SensorAIType(AI3_typeCombo, 2);
-            }
-            else if (AI4bl1_combo.SelectedIndex == 0 && list_ai.Find(x => x.Code == code).Type != "humidSensor") // "Не выбрано", проверка типа
-            { // AI4, блок 1
-                AI4bl1_combo.Items.Add(list_ai.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                AI4bl1_combo.SelectedIndex = AI4bl1_combo.Items.Count - 1;
-                AI4bl1combo_text = AI4bl1_combo.SelectedItem.ToString();
-                AI4bl1combo_index = AI4bl1_combo.SelectedIndex;
-                if (type == "di")
-                {
-                    if (showCode) AI4bl1_lab.Text = (code + 1000).ToString();
-                }
-                else
-                {
-                    if (showCode) AI4bl1_lab.Text = code.ToString();
-                }
-                list_ai.Find(x => x.Code == code).Select();
-                // Изменения для выбора типа AI
-                if (type == "sensor") SensorAIType(AI4bl1_typeCombo, 3);
-                else if (type == "di") SensorAIType(AI4bl1_typeCombo, 2);
-            }
-            else if (AI5bl1_combo.SelectedIndex == 0 && list_ai.Find(x => x.Code == code).Type != "humidSensor") // "Не выбрано", проверка типа
-            { // AI5, блок 1
-                AI5bl1_combo.Items.Add(list_ai.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                AI5bl1_combo.SelectedIndex = AI5bl1_combo.Items.Count - 1;
-                AI5bl1combo_text = AI5bl1_combo.SelectedItem.ToString();
-                AI5bl1combo_index = AI5bl1_combo.SelectedIndex;
-                if (type == "di")
-                {
-                    if (showCode) AI5bl1_lab.Text = (code + 1000).ToString();
-                }
-                else
-                {
-                    if (showCode) AI5bl1_lab.Text = code.ToString();
-                }
-                list_ai.Find(x => x.Code == code).Select();
-                // Изменения для выбора типа AI
-                if (type == "sensor") SensorAIType(AI5bl1_typeCombo, 3);
-                else if (type == "di") SensorAIType(AI5bl1_typeCombo, 2);
-            }
-            else if (AI6bl1_combo.SelectedIndex == 0 && list_ai.Find(x => x.Code == code).Type != "humidSensor") // "Не выбрано", проверка типа
-            { // AI6, блок 1
-                AI6bl1_combo.Items.Add(list_ai.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                AI6bl1_combo.SelectedIndex = AI6bl1_combo.Items.Count - 1;
-                AI6bl1combo_text = AI6bl1_combo.SelectedItem.ToString();
-                AI6bl1combo_index = AI6bl1_combo.SelectedIndex;
-                if (type == "di")
-                {
-                    if (showCode) AI6bl1_lab.Text = (code + 1000).ToString();
-                }
-                else
-                {
-                    if (showCode) AI6bl1_lab.Text = code.ToString();
-                }
-                list_ai.Find(x => x.Code == code).Select();
-                // Изменения для выбора типа AI
-                if (type == "sensor") SensorAIType(AI6bl1_typeCombo, 3);
-                else if (type == "di") SensorAIType(AI6bl1_typeCombo, 2);
-            }
-            else if (AI1bl1_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI1, блок 1
-                AI1bl1_combo.Items.Add(list_ai.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                AI1bl1_combo.SelectedIndex = AI1bl1_combo.Items.Count - 1;
-                AI1bl1combo_text = AI1bl1_combo.SelectedItem.ToString();
-                AI1bl1combo_index = AI1bl1_combo.SelectedIndex;
-                if (type == "di")
-                {
-                    if (showCode) AI1bl1_lab.Text = (code + 1000).ToString();
-                }
-                else
-                {
-                    if (showCode) AI1bl1_lab.Text = code.ToString();
-                }
-                list_ai.Find(x => x.Code == code).Select();
-                // Изменения для выбора типа AI
-                if (type == "sensor") SensorAIType(AI1bl1_typeCombo, 0);
-                else if (type == "humidSensor") SensorAIType(AI1bl1_typeCombo, 1);
-                else if (type == "di") SensorAIType(AI1bl1_typeCombo, 2);
-            }
+        }
+
+        ///<summary>Добавление нового AI и его назначнение под выход</summary>
+        private void AddNewAI(ushort code, string type)
+        {
+            if (AI4_combo.SelectedIndex == 0 && list_ai.Find(x => x.Code == code).Type != "humidSensor")            // "Не выбрано", проверка типа, AI4
+                SelectComboBox_AI(AI4_combo, code, type, AI4_lab, AI4combo_text, AI4combo_index, AI4_typeCombo);
+            else if (AI5_combo.SelectedIndex == 0 && list_ai.Find(x => x.Code == code).Type != "humidSensor")       // "Не выбрано", проверка типа, AI5
+                SelectComboBox_AI(AI5_combo, code, type, AI5_lab, AI5combo_text, AI5combo_index, AI5_typeCombo);
+            else if (AI6_combo.SelectedIndex == 0 && list_ai.Find(x => x.Code == code).Type != "humidSensor")       // "Не выбрано", проверка типа, AI6
+                SelectComboBox_AI(AI6_combo, code, type, AI6_lab, AI5combo_text, AI6combo_index, AI6_typeCombo);
+            else if (AI1_combo.SelectedIndex == 0)                                                                  // "Не выбрано", AI1
+                SelectComboBox_AI(AI1_combo, code, type, AI1_lab, AI1combo_text, AI1combo_index, AI1_typeCombo);
+            else if (AI2_combo.SelectedIndex == 0)                                                                  // "Не выбрано", AI2
+                SelectComboBox_AI(AI2_combo, code, type, AI2_lab, AI2combo_text, AI2combo_index, AI2_typeCombo);
+            else if (AI3_combo.SelectedIndex == 0)                                                                  // "Не выбрано", AI3
+                SelectComboBox_AI(AI3_combo, code, type, AI3_lab, AI3combo_text, AI3combo_index, AI3_typeCombo);
+            else if (AI4bl1_combo.SelectedIndex == 0 && list_ai.Find(x => x.Code == code).Type != "humidSensor")    // "Не выбрано", проверка типа, AI4 блок 1
+                SelectComboBox_AI(AI4bl1_combo, code, type, AI4bl1_lab, AI4bl1combo_text, AI4bl1combo_index, AI4bl1_typeCombo);
+            else if (AI5bl1_combo.SelectedIndex == 0 && list_ai.Find(x => x.Code == code).Type != "humidSensor")    // "Не выбрано", проверка типа, AI5 блок 1
+                SelectComboBox_AI(AI5bl1_combo, code, type, AI5bl1_lab, AI5bl1combo_text, AI5bl1combo_index, AI5bl1_typeCombo);
+            else if (AI6bl1_combo.SelectedIndex == 0 && list_ai.Find(x => x.Code == code).Type != "humidSensor")    // "Не выбрано", проверка типа, AI6 блок 1
+                SelectComboBox_AI(AI6bl1_combo, code, type, AI6bl1_lab, AI6bl1combo_text, AI6bl1combo_index, AI6bl1_typeCombo);
+            else if (AI1bl1_combo.SelectedIndex == 0)                                                               // "Не выбрано", AI1 блок 1
+                SelectComboBox_AI(AI1bl1_combo, code, type, AI1bl1_lab, AI1bl1combo_text, AI1bl1combo_index, AI1bl1_typeCombo);
             else if (AI2bl1_combo.SelectedIndex == 0) // "Не выбрано"
             { // AI2, блок 1
                 AI2bl1_combo.Items.Add(list_ai.Find(x => x.Code == code).Name);
@@ -1248,12 +781,12 @@ namespace Moderon
         }
 
         ///<summary>Очистка и блокировка comboBox выбора типа AI</summary>
-        private void ClearAITypeCombo(ComboBox cm)
+        private void ClearAITypeCombo(ComboBox comboBox)
         {
-            cm.Items.Clear();
-            cm.Items.Add(NTC);
-            cm.SelectedIndex = 0;
-            cm.Enabled = false;
+            comboBox.Items.Clear();
+            comboBox.Items.Add(NTC);
+            comboBox.SelectedIndex = 0;
+            comboBox.Enabled = false;
         }
 
         ///<summary>Удаление AI из всех comboBox </summary>
