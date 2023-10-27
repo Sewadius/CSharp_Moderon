@@ -125,3 +125,8 @@
 - создан `RemoveDO_FromComboBox` для рефакторинга `SubFromCombosDO`  
 - устранена ошибка с `subDOcondition`, значение теперь корректно  
 - изменения `AI_combo_SelectedIndexChanged` для учёта типа сигнала  
+
+27.10.23 (пятница)
+
+- `AddNewAI` переписан с использованием `SelectComboBox_AI`  
+- `SubFromCombosAI` изменена с использованием `RemoveAI_FromComboBox`  

@@ -609,16 +609,13 @@ namespace Moderon
         private void SubFromCombosDO(ushort code)
         {
             string name = "";
-            subDOcondition = true;                                          // Признак удаления DO, не работает событие indexChanged (не требуется?)
 
             Do find_do = list_do.Find(x => x.Code == code);                 // Поиск имени дискретного выхода по числовому коду
             if (find_do != null) name = find_do.Name;                       // Найдено текстовое название дискретного выхода по коду
-            else                                                            // Выход из метода
-            {
-                subDOcondition = false;                                     // Возврат признака в значение по умолчанию
-                return;
-            }
-            
+            else return;                                                    // Выход из метода
+
+            subDOcondition = true;                                          // Признак удаления DO, не работает событие indexChanged
+
             // ПЛК
             RemoveDO_FromComboBox(DO1_combo, name, DO1_lab, DO1combo_text, DO1combo_index);                 // DO1
             RemoveDO_FromComboBox(DO2_combo, name, DO2_lab, DO2combo_text, DO2combo_index);                 // DO2
@@ -627,7 +624,7 @@ namespace Moderon
             RemoveDO_FromComboBox(DO5_combo, name, DO5_lab, DO5combo_text, DO5combo_index);                 // DO5
             RemoveDO_FromComboBox(DO6_combo, name, DO6_lab, DO6combo_text, DO6combo_index);                 // DO6
             RemoveDO_FromComboBox(DO7_combo, name, DO7_lab, DO7combo_text, DO7combo_index);                 // DO7
-            // Блок 1
+            // Блок расширения 1
             RemoveDO_FromComboBox(DO1bl1_combo, name, DO1bl1_lab, DO1bl1combo_text, DO1bl1combo_index);     // DO1
             RemoveDO_FromComboBox(DO2bl1_combo, name, DO2bl1_lab, DO2bl1combo_text, DO1bl1combo_index);     // DO2
             RemoveDO_FromComboBox(DO3bl1_combo, name, DO3bl1_lab, DO3bl1combo_text, DO1bl1combo_index);     // DO3
@@ -635,7 +632,7 @@ namespace Moderon
             RemoveDO_FromComboBox(DO5bl1_combo, name, DO5bl1_lab, DO5bl1combo_text, DO1bl1combo_index);     // DO5
             RemoveDO_FromComboBox(DO6bl1_combo, name, DO6bl1_lab, DO6bl1combo_text, DO1bl1combo_index);     // DO6
             RemoveDO_FromComboBox(DO7bl1_combo, name, DO7bl1_lab, DO7bl1combo_text, DO1bl1combo_index);     // DO7
-            // Блок 2
+            // Блок расширения 2
             RemoveDO_FromComboBox(DO1bl2_combo, name, DO1bl2_lab, DO1bl2combo_text, DO1bl2combo_index);     // DO1
             RemoveDO_FromComboBox(DO2bl2_combo, name, DO2bl2_lab, DO2bl2combo_text, DO1bl2combo_index);     // DO2
             RemoveDO_FromComboBox(DO3bl2_combo, name, DO3bl2_lab, DO3bl2combo_text, DO1bl2combo_index);     // DO3
@@ -643,7 +640,7 @@ namespace Moderon
             RemoveDO_FromComboBox(DO5bl2_combo, name, DO5bl2_lab, DO5bl2combo_text, DO1bl2combo_index);     // DO5
             RemoveDO_FromComboBox(DO6bl2_combo, name, DO6bl2_lab, DO6bl2combo_text, DO1bl2combo_index);     // DO6
             RemoveDO_FromComboBox(DO7bl2_combo, name, DO7bl2_lab, DO7bl2combo_text, DO1bl2combo_index);     // DO7
-            // Блок 3
+            // Блок расширения 3
             RemoveDO_FromComboBox(DO1bl3_combo, name, DO1bl3_lab, DO1bl3combo_text, DO1bl3combo_index);     // DO1
             RemoveDO_FromComboBox(DO2bl3_combo, name, DO2bl3_lab, DO2bl3combo_text, DO1bl3combo_index);     // DO2
             RemoveDO_FromComboBox(DO3bl3_combo, name, DO3bl3_lab, DO3bl3combo_text, DO1bl3combo_index);     // DO3
