@@ -472,7 +472,7 @@ namespace Moderon
             DO_combo_SelectedIndexChanged(DO7bl3_combo, ref DO7bl3combo_index, ref DO7bl3combo_text, ref DO7bl3_lab);
         }
 
-        ///<summary>Добавление в другие слоты для выбора в comboBox</summary>
+        ///<summary>Добавление DO в другие слоты для выбора в comboBox</summary>
         private void AddToCombo_DO(string name, ComboBox cm, ref ComboBox comboBox)
         { 
             bool notFound = true;                                       // Элемент в списке не найден изначально
@@ -608,7 +608,7 @@ namespace Moderon
         ///<summary>Удаление DO из всех comboBox</summary>
         private void SubFromCombosDO(ushort code)
         {
-            string name = "";
+            string name = "";                                               // Текстовое название дискретного выхода
 
             Do find_do = list_do.Find(x => x.Code == code);                 // Поиск имени дискретного выхода по числовому коду
             if (find_do != null) name = find_do.Name;                       // Найдено текстовое название дискретного выхода по коду

@@ -130,3 +130,14 @@
 
 - `AddNewAI` переписан с использованием `SelectComboBox_AI`  
 - `SubFromCombosAI` изменена с использованием `RemoveAI_FromComboBox`  
+
+30.10.23 (понедельник)  
+
+- создан метод `AddToCombo_AO` для `AddtoCombosAO`  
+- `SelectComboBox_AO` метод используется для `AddNewAO`  
+
+31.10.23 (вторник)
+
+- добавлен метод `RemoveAO_FromComboBox` для `SubFromCombosAO`  
+- создан метод `AddToListAO` для добавления к списку AO  
+
