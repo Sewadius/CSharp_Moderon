@@ -293,231 +293,38 @@ namespace Moderon
             DI_combo_SelectedIndexChanged(DI5bl3_combo, ref DI5bl3combo_index, ref DI5bl3combo_text, DI5bl3_lab);
         }
 
+        ///<summary>Добавление DI в другие слоты для выбора в comboBox</summary>
+        private void AddToCombo_DI(string name, ComboBox cm, ref ComboBox comboBox)
+        {
+            bool notFound = true;                                           // Элемент в списке не найден изначально
+            if (comboBox != cm)                                             // Проверка текущего comboBox с проверяемым
+            {
+                Di di_find = list_di.Find(x => x.Name  == name);
+                if (di_find != null)                                        // Есть такой DI в списке дискретных входов
+                {
+                    foreach (var el in comboBox.Items)                      // Если нет такого названия в списке
+                        if (el.ToString() == name) notFound = false;
+                    if (notFound) comboBox.Items.Add(di_find.Name);
+                    notFound = true;
+                }
+            }
+        }
+
         ///<summary>Добавление освободившегося DI к остальным comboBox</summary>
         private void AddtoCombosDI(string name, ComboBox cm)
         {
-            Di di_find;
-            bool notFound = true; // Элемент в списке не найден
-            // Для DI1 comboBox, добавление в остальные слоты для выбора
-            if (DI1_combo != cm)
-            {
-                di_find = list_di.Find(x => x.Name == name);
-                if (di_find != null)
-                {
-                    foreach (var elem in DI1_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) DI1_combo.Items.Add(di_find.Name); notFound = true;
-                }
-            }
-            // Для DI2 comboBox, добавление в остальные слоты для выбора
-            if (DI2_combo != cm)
-            {
-                di_find = list_di.Find(x => x.Name == name);
-                if (di_find != null)
-                {
-                    foreach (var elem in DI2_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) DI2_combo.Items.Add(di_find.Name); notFound = true;
-                }
-            }
-            // Для DI3 comboBox, добавление в остальные слоты для выбора
-            if (DI3_combo != cm)
-            {
-                di_find = list_di.Find(x => x.Name == name);
-                if (di_find != null)
-                {
-                    foreach (var elem in DI3_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) DI3_combo.Items.Add(di_find.Name); notFound = true;
-                }
-            }
-            // Для DI4 comboBox, добавление в остальные слоты для выбора
-            if (DI4_combo != cm)
-            {
-                di_find = list_di.Find(x => x.Name == name);
-                if (di_find != null)
-                {
-                    foreach (var elem in DI4_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) DI4_combo.Items.Add(di_find.Name); notFound = true;
-                }
-            }
-            // Для DI5 comboBox, добавление в остальные слоты для выбора
-            if (DI5_combo != cm)
-            {
-                di_find = list_di.Find(x => x.Name == name);
-                if (di_find != null)
-                {
-                    foreach (var elem in DI5_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) DI5_combo.Items.Add(di_find.Name); notFound = true;
-                }
-            }
-            // Для DI1 блока расширения 1, добавление в остальные слоты для выбора
-            if (DI1bl1_combo != cm)
-            {
-                di_find = list_di.Find(x => x.Name == name);
-                if (di_find != null)
-                {
-                    foreach (var elem in DI1bl1_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) DI1bl1_combo.Items.Add(di_find.Name); notFound = true;
-                }
-            }
-            // Для DI2 блока расширения 1, добавление в остальные слоты для выбора
-            if (DI2bl1_combo != cm)
-            {
-                di_find = list_di.Find(x => x.Name == name);
-                if (di_find != null)
-                {
-                    foreach (var elem in DI2bl1_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) DI2bl1_combo.Items.Add(di_find.Name); notFound = true;
-                }
-            }
-            // Для DI3 блока расширения 1, добавление в остальные слоты для выбора
-            if (DI3bl1_combo != cm)
-            {
-                di_find = list_di.Find(x => x.Name == name);
-                if (di_find != null)
-                {
-                    foreach (var elem in DI3bl1_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) DI3bl1_combo.Items.Add(di_find.Name); notFound = true;
-                }
-            }
-            // Для DI4 блока расширения 1, добавление в остальные слоты для выбора
-            if (DI4bl1_combo != cm)
-            {
-                di_find = list_di.Find(x => x.Name == name);
-                if (di_find != null)
-                {
-                    foreach (var elem in DI4bl1_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) DI4bl1_combo.Items.Add(di_find.Name); notFound = true;
-                }
-            }
-            // Для DI5 блока расширения 1, добавление в остальные слоты для выбора
-            if (DI5bl1_combo != cm)
-            {
-                di_find = list_di.Find(x => x.Name == name);
-                if (di_find != null)
-                {
-                    foreach (var elem in DI5bl1_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) DI5bl1_combo.Items.Add(di_find.Name); notFound = true;
-                }
-            }
-            // Для DI1 блока расширения 2, добавление в остальные слоты для выбора
-            if (DI1bl2_combo != cm)
-            {
-                di_find = list_di.Find(x => x.Name == name);
-                if (di_find != null)
-                {
-                    foreach (var elem in DI1bl2_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) DI1bl2_combo.Items.Add(di_find.Name); notFound = true;
-                }
-            }
-            // Для DI2 блока расширения 2, добавление в остальные слоты для выбора
-            if (DI2bl2_combo != cm)
-            {
-                di_find = list_di.Find(x => x.Name == name);
-                if (di_find != null)
-                {
-                    foreach (var elem in DI2bl2_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) DI2bl2_combo.Items.Add(di_find.Name); notFound = true;
-                }
-            }
-            // Для DI3 блока расширения 2, добавление в остальные слоты для выбора
-            if (DI3bl2_combo != cm)
-            {
-                di_find = list_di.Find(x => x.Name == name);
-                if (di_find != null)
-                {
-                    foreach (var elem in DI3bl2_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) DI3bl2_combo.Items.Add(di_find.Name); notFound = true;
-                }
-            }
-            // Для DI4 блока расширения 2, добавление в остальные слоты для выбора
-            if (DI4bl2_combo != cm)
-            {
-                di_find = list_di.Find(x => x.Name == name);
-                if (di_find != null)
-                {
-                    foreach (var elem in DI4bl2_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) DI4bl2_combo.Items.Add(di_find.Name); notFound = true;
-                }
-            }
-            // Для DI5 блока расширения 2, добавление в остальные слоты для выбора
-            if (DI5bl2_combo != cm)
-            {
-                di_find = list_di.Find(x => x.Name == name);
-                if (di_find != null)
-                {
-                    foreach (var elem in DI5bl2_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) DI5bl2_combo.Items.Add(di_find.Name); notFound = true;
-                }
-            }
-            // Для DI1 блока расширения 3, добавление в остальные слоты для выбора
-            if (DI1bl3_combo != cm)
-            {
-                di_find = list_di.Find(x => x.Name == name);
-                if (di_find != null)
-                {
-                    foreach (var elem in DI1bl3_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) DI1bl3_combo.Items.Add(di_find.Name); notFound = true;
-                }
-            }
-            // Для DI2 блока расширения 3, добавление в остальные слоты для выбора
-            if (DI2bl3_combo != cm)
-            {
-                di_find = list_di.Find(x => x.Name == name);
-                if (di_find != null)
-                {
-                    foreach (var elem in DI2bl3_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) DI2bl3_combo.Items.Add(di_find.Name); notFound = true;
-                }
-            }
-            // Для DI3 блока расширения 3, добавление в остальные слоты для выбора
-            if (DI3bl3_combo != cm)
-            {
-                di_find = list_di.Find(x => x.Name == name);
-                if (di_find != null)
-                {
-                    foreach (var elem in DI3bl3_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) DI3bl3_combo.Items.Add(di_find.Name); notFound = true;
-                }
-            }
-            // Для DI4 блока расширения 3, добавление в остальные слоты для выбора
-            if (DI4bl3_combo != cm)
-            {
-                di_find = list_di.Find(x => x.Name == name);
-                if (di_find != null)
-                {
-                    foreach (var elem in DI4bl3_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) DI4bl3_combo.Items.Add(di_find.Name); notFound = true;
-                }
-            }
-            // Для DI5 блока расширения 3, добавление в остальные слоты для выбора
-            if (DI5bl3_combo != cm)
-            {
-                di_find = list_di.Find(x => x.Name == name);
-                if (di_find != null)
-                {
-                    foreach (var elem in DI5bl3_combo.Items) // Если нет такого названия
-                        if (elem.ToString() == name) notFound = false;
-                    if (notFound) DI5bl3_combo.Items.Add(di_find.Name); notFound = true;
-                }
-            }
+            // ПЛК
+            AddToCombo_DI(name, cm, ref DI1_combo); AddToCombo_DI(name, cm, ref DI2_combo); AddToCombo_DI(name, cm, ref DI3_combo);
+            AddToCombo_DI(name, cm, ref DI4_combo); AddToCombo_DI(name, cm, ref DI5_combo);
+            // Блок расширения 1
+            AddToCombo_DI(name, cm, ref DI1bl1_combo); AddToCombo_DI(name, cm, ref DI2bl1_combo); AddToCombo_DI(name, cm, ref DI3bl1_combo);
+            AddToCombo_DI(name, cm, ref DI4bl1_combo); AddToCombo_DI(name, cm, ref DI5bl1_combo);
+            // Блок расширения 2
+            AddToCombo_DI(name, cm, ref DI1bl2_combo); AddToCombo_DI(name, cm, ref DI2bl2_combo); AddToCombo_DI(name, cm, ref DI3bl2_combo);
+            AddToCombo_DI(name, cm, ref DI4bl2_combo); AddToCombo_DI(name, cm, ref DI5bl2_combo);
+            // Блок расширения 3
+            AddToCombo_DI(name, cm, ref DI1bl3_combo); AddToCombo_DI(name, cm, ref DI2bl3_combo); AddToCombo_DI(name, cm, ref DI3bl3_combo);
+            AddToCombo_DI(name, cm, ref DI4bl3_combo); AddToCombo_DI(name, cm, ref DI5bl3_combo);
         }
 
         ///<summary>Удаление DI из других comboBox</summary>
@@ -535,545 +342,116 @@ namespace Moderon
                 if (el != comboBox && name != NOT_SELECTED) el.Items.Remove(name);
         }
 
+        ///<summary>Добавление нового DI и его назначение для переданного comboBox</summary>
+        private void SelectComboBox_DI(ComboBox cm, ushort code, Label label, string text, int index)
+        {
+            cm.Items.Add(list_di.Find(x => x.Code == code).Name);
+            cm.SelectedIndex = cm.Items.Count - 1;
+            text = cm.SelectedItem.ToString();
+            index = cm.SelectedIndex;
+            if (showCode) label.Text = text;
+            list_di.Find(x => x.Code == code).Select();
+        }
+
+        ///<summary>Добавление нового DI и его назначение для переданного comboBox к сигналам AI</summary>
+        private void SelectComboBoxDI_to_AI(ComboBox cm, ComboBox typeCombo, ushort code, Label label, string text, int index)
+        {
+            string name = list_di.Find(x => x.Code == code).Name;
+            cm.Items.Add(name);
+            RemoveFromAllCombosDI(name);
+            SensorAIType(typeCombo, 2);
+            if (!list_ai.Contains(new Ai(name, (ushort)(code + 1000), "di")))
+                list_ai.Add(new Ai(name, (ushort)(code + 1000), "di"));
+            // Выбор последнего добавленного элемента
+            cm.SelectedIndex = cm.Items.Count - 1;
+            text = cm.SelectedItem.ToString();
+            index = cm.SelectedIndex;
+            if (showCode) label.Text = (code + 1000).ToString();
+        }
+
+
         ///<summary>Добавление нового DI и его назначение под выход, автораспределение</summary>
         private void AddNewDI(ushort code)
         {
-            if (DI1_combo.SelectedIndex == 0) // "Не выбрано"
-            { // DI1
-                DI1_combo.Items.Add(list_di.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                DI1_combo.SelectedIndex = DI1_combo.Items.Count - 1;
-                DI1combo_text = DI1_combo.SelectedItem.ToString();
-                DI1combo_index = DI1_combo.SelectedIndex;
-                if (showCode) DI1_lab.Text = code.ToString();
-                list_di.Find(x => x.Code == code).Select();
-            }
-            else if (DI2_combo.SelectedIndex == 0) // "Не выбрано"
-            { // DI2 
-                DI2_combo.Items.Add(list_di.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                DI2_combo.SelectedIndex = DI2_combo.Items.Count - 1;
-                DI2combo_text = DI2_combo.SelectedItem.ToString();
-                DI2combo_index = DI2_combo.SelectedIndex;
-                if (showCode) DI2_lab.Text = code.ToString();
-                list_di.Find(x => x.Code == code).Select();
-            }
-            else if (DI3_combo.SelectedIndex == 0) // "Не выбрано"
-            { // DI3
-                DI3_combo.Items.Add(list_di.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                DI3_combo.SelectedIndex = DI3_combo.Items.Count - 1;
-                DI3combo_text = DI3_combo.SelectedItem.ToString();
-                DI3combo_index = DI3_combo.SelectedIndex;
-                if (showCode) DI3_lab.Text = code.ToString();
-                list_di.Find(x => x.Code == code).Select();
-            }
-            else if (DI4_combo.SelectedIndex == 0) // "Не выбрано"
-            { // DI4
-                DI4_combo.Items.Add(list_di.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                DI4_combo.SelectedIndex = DI4_combo.Items.Count - 1;
-                DI4combo_text = DI4_combo.SelectedItem.ToString();
-                DI4combo_index = DI4_combo.SelectedIndex;
-                if (showCode) DI4_lab.Text = code.ToString();
-                list_di.Find(x => x.Code == code).Select();
-            }
-            else if (DI5_combo.SelectedIndex == 0) // "Не выбрано"
-            { // DI5
-                DI5_combo.Items.Add(list_di.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                DI5_combo.SelectedIndex = DI5_combo.Items.Count - 1;
-                DI5combo_text = DI5_combo.SelectedItem.ToString();
-                DI5combo_index = DI5_combo.SelectedIndex;
-                if (showCode) DI5_lab.Text = code.ToString();
-                list_di.Find(x => x.Code == code).Select();
-            }
-            else if (AI4_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI4
-                string name = list_di.Find(x => x.Code == code).Name;
-                AI4_combo.Items.Add(name);
-                RemoveFromAllCombosDI(name);
-                SensorAIType(AI4_typeCombo, 2);
-                if (!list_ai.Contains(new Ai(name, (ushort)(code + 1000), "di")))
-                    list_ai.Add(new Ai(name, (ushort)(code + 1000), "di"));
-                // Выбор последнего добавленного элемента
-                AI4_combo.SelectedIndex = AI4_combo.Items.Count - 1;
-                AI4combo_text = AI4_combo.SelectedItem.ToString();
-                AI4combo_index = AI4_combo.SelectedIndex;
-                if (showCode) AI4_lab.Text = (code + 1000).ToString();
-            }
-            else if (AI5_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI5
-                string name = list_di.Find(x => x.Code == code).Name;
-                AI5_combo.Items.Add(name);
-                RemoveFromAllCombosDI(name);
-                SensorAIType(AI5_typeCombo, 2);
-                if (!list_ai.Contains(new Ai(name, (ushort)(code + 1000), "di")))
-                    list_ai.Add(new Ai(name, (ushort)(code + 1000), "di"));
-                // Выбор последнего добавленного элемента
-                AI5_combo.SelectedIndex = AI5_combo.Items.Count - 1;
-                AI5combo_text = AI5_combo.SelectedItem.ToString();
-                AI5combo_index = AI5_combo.SelectedIndex;
-                if (showCode) AI5_lab.Text = (code + 1000).ToString();
-            }
-            else if (AI6_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI6
-                string name = list_di.Find(x => x.Code == code).Name;
-                AI6_combo.Items.Add(name);
-                RemoveFromAllCombosDI(name);
-                SensorAIType(AI6_typeCombo, 2);
-                if (!list_ai.Contains(new Ai(name, (ushort)(code + 1000), "di")))
-                    list_ai.Add(new Ai(name, (ushort)(code + 1000), "di"));
-                // Выбор последнего добавленного элемента
-                AI6_combo.SelectedIndex = AI6_combo.Items.Count - 1;
-                AI6combo_text = AI6_combo.SelectedItem.ToString();
-                AI6combo_index = AI6_combo.SelectedIndex;
-                if (showCode) AI6_lab.Text = (code + 1000).ToString();
-            }
-            else if (AI1_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI1
-                string name = list_di.Find(x => x.Code == code).Name;
-                AI1_combo.Items.Add(name);
-                RemoveFromAllCombosDI(name);
-                SensorAIType(AI1_typeCombo, 2);
-                if (!list_ai.Contains(new Ai(name, (ushort)(code + 1000), "di")))
-                    list_ai.Add(new Ai(name, (ushort)(code + 1000), "di"));
-                // Выбор последнего добавленного элемента
-                AI1_combo.SelectedIndex = AI1_combo.Items.Count - 1;
-                AI1combo_text = AI1_combo.SelectedItem.ToString();
-                AI1combo_index = AI1_combo.SelectedIndex;
-                if (showCode) AI1_lab.Text = (code + 1000).ToString();
-            }
-            else if (AI2_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI2
-                string name = list_di.Find(x => x.Code == code).Name;
-                AI2_combo.Items.Add(name);
-                RemoveFromAllCombosDI(name);
-                SensorAIType(AI2_typeCombo, 2);
-                if (!list_ai.Contains(new Ai(name, (ushort)(code + 1000), "di")))
-                    list_ai.Add(new Ai(name, (ushort)(code + 1000), "di"));
-                // Выбор последнего добавленного элемента
-                AI2_combo.SelectedIndex = AI2_combo.Items.Count - 1;
-                AI2combo_text = AI2_combo.SelectedItem.ToString();
-                AI2combo_index = AI2_combo.SelectedIndex;
-                if (showCode) AI2_lab.Text = (code + 1000).ToString();
-            }
-            else if (AI3_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI3
-                string name = list_di.Find(x => x.Code == code).Name;
-                AI3_combo.Items.Add(name);
-                RemoveFromAllCombosDI(name);
-                SensorAIType(AI3_typeCombo, 2);
-                if (!list_ai.Contains(new Ai(name, (ushort)(code + 1000), "di")))
-                    list_ai.Add(new Ai(name, (ushort)(code + 1000), "di"));
-                // Выбор последнего добавленного элемента
-                AI3_combo.SelectedIndex = AI3_combo.Items.Count - 1;
-                AI3combo_text = AI3_combo.SelectedItem.ToString();
-                AI3combo_index = AI3_combo.SelectedIndex;
-                if (showCode) AI3_lab.Text = (code + 1000).ToString();
-            }
-            else if (DI1bl1_combo.SelectedIndex == 0) // "Не выбрано"
-            { // DI1, блок 1
-                DI1bl1_combo.Items.Add(list_di.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                DI1bl1_combo.SelectedIndex = DI1bl1_combo.Items.Count - 1;
-                DI1bl1combo_text = DI1bl1_combo.SelectedItem.ToString();
-                DI1bl1combo_index = DI1bl1_combo.SelectedIndex;
-                if (showCode) DI1bl1_lab.Text = code.ToString();
-                list_di.Find(x => x.Code == code).Select();
-            }
-            else if (DI2bl1_combo.SelectedIndex == 0) // "Не выбрано"
-            { // DI2, блок 1
-                DI2bl1_combo.Items.Add(list_di.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                DI2bl1_combo.SelectedIndex = DI2bl1_combo.Items.Count - 1;
-                DI2bl1combo_text = DI2bl1_combo.SelectedItem.ToString();
-                DI2bl1combo_index = DI2bl1_combo.SelectedIndex;
-                if (showCode) DI2bl1_lab.Text = code.ToString();
-                list_di.Find(x => x.Code == code).Select();
-            }
-            else if (DI3bl1_combo.SelectedIndex == 0) // "Не выбрано"
-            { // DI3, блок 1
-                DI3bl1_combo.Items.Add(list_di.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                DI3bl1_combo.SelectedIndex = DI3bl1_combo.Items.Count - 1;
-                DI3bl1combo_text = DI3bl1_combo.SelectedItem.ToString();
-                DI3bl1combo_index = DI3bl1_combo.SelectedIndex;
-                if (showCode) DI3bl1_lab.Text = code.ToString();
-                list_di.Find(x => x.Code == code).Select();
-            }
-            else if (DI4bl1_combo.SelectedIndex == 0) // "Не выбрано"
-            { // DI4, блок 1
-                DI4bl1_combo.Items.Add(list_di.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                DI4bl1_combo.SelectedIndex = DI4bl1_combo.Items.Count - 1;
-                DI4bl1combo_text = DI4bl1_combo.SelectedItem.ToString();
-                DI4bl1combo_index = DI4bl1_combo.SelectedIndex;
-                if (showCode) DI4bl1_lab.Text = code.ToString();
-                list_di.Find(x => x.Code == code).Select();
-            }
-            else if (DI5bl1_combo.SelectedIndex == 0) // "Не выбрано"
-            { // DI5, блок 1
-                DI5bl1_combo.Items.Add(list_di.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                DI5bl1_combo.SelectedIndex = DI5bl1_combo.Items.Count - 1;
-                DI5bl1combo_text = DI5bl1_combo.SelectedItem.ToString();
-                DI5bl1combo_index = DI5bl1_combo.SelectedIndex;
-                if (showCode) DI5bl1_lab.Text = code.ToString();
-                list_di.Find(x => x.Code == code).Select();
-            }
-            else if (AI4bl1_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI4, блок 1
-                string name = list_di.Find(x => x.Code == code).Name;
-                AI4bl1_combo.Items.Add(name);
-                RemoveFromAllCombosDI(name);
-                SensorAIType(AI4bl1_typeCombo, 2);
-                if (!list_ai.Contains(new Ai(name, (ushort)(code + 1000), "di")))
-                    list_ai.Add(new Ai(name, (ushort)(code + 1000), "di"));
-                // Выбор последнего добавленного элемента
-                AI4bl1_combo.SelectedIndex = AI4bl1_combo.Items.Count - 1;
-                AI4bl1combo_text = AI4bl1_combo.SelectedItem.ToString();
-                AI4bl1combo_index = AI4bl1_combo.SelectedIndex;
-                if (showCode) AI4bl1_lab.Text = (code + 1000).ToString();
-            }
-            else if (AI5bl1_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI5, блок 1
-                string name = list_di.Find(x => x.Code == code).Name;
-                AI5bl1_combo.Items.Add(name);
-                RemoveFromAllCombosDI(name);
-                SensorAIType(AI5bl1_typeCombo, 2);
-                if (!list_ai.Contains(new Ai(name, (ushort)(code + 1000), "di")))
-                    list_ai.Add(new Ai(name, (ushort)(code + 1000), "di"));
-                // Выбор последнего добавленного элемента
-                AI5bl1_combo.SelectedIndex = AI5bl1_combo.Items.Count - 1;
-                AI5bl1combo_text = AI5bl1_combo.SelectedItem.ToString();
-                AI5bl1combo_index = AI5bl1_combo.SelectedIndex;
-                if (showCode) AI5bl1_lab.Text = (code + 1000).ToString();
-            }
-            else if (AI6bl1_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI6, блок 1
-                string name = list_di.Find(x => x.Code == code).Name;
-                AI6bl1_combo.Items.Add(name);
-                RemoveFromAllCombosDI(name);
-                SensorAIType(AI6bl1_typeCombo, 2);
-                if (!list_ai.Contains(new Ai(name, (ushort)(code + 1000), "di")))
-                    list_ai.Add(new Ai(name, (ushort)(code + 1000), "di"));
-                // Выбор последнего добавленного элемента
-                AI6bl1_combo.SelectedIndex = AI6bl1_combo.Items.Count - 1;
-                AI6bl1combo_text = AI6bl1_combo.SelectedItem.ToString();
-                AI6bl1combo_index = AI6bl1_combo.SelectedIndex;
-                if (showCode) AI6bl1_lab.Text = (code + 1000).ToString();
-            }
-            else if (AI1bl1_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI1, блок 1
-                string name = list_di.Find(x => x.Code == code).Name;
-                AI1bl1_combo.Items.Add(name);
-                RemoveFromAllCombosDI(name);
-                SensorAIType(AI1bl1_typeCombo, 2);
-                if (!list_ai.Contains(new Ai(name, (ushort)(code + 1000), "di")))
-                    list_ai.Add(new Ai(name, (ushort)(code + 1000), "di"));
-                // Выбор последнего добавленного элемента
-                AI1bl1_combo.SelectedIndex = AI1bl1_combo.Items.Count - 1;
-                AI1bl1combo_text = AI1bl1_combo.SelectedItem.ToString();
-                AI1bl1combo_index = AI1bl1_combo.SelectedIndex;
-                if (showCode) AI1bl1_lab.Text = (code + 1000).ToString();
-            }
-            else if (AI2bl1_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI2, блок 1
-                string name = list_di.Find(x => x.Code == code).Name;
-                AI2bl1_combo.Items.Add(name);
-                RemoveFromAllCombosDI(name);
-                SensorAIType(AI2bl1_typeCombo, 2);
-                if (!list_ai.Contains(new Ai(name, (ushort)(code + 1000), "di")))
-                    list_ai.Add(new Ai(name, (ushort)(code + 1000), "di"));
-                // Выбор последнего добавленного элемента
-                AI2bl1_combo.SelectedIndex = AI2bl1_combo.Items.Count - 1;
-                AI2bl1combo_text = AI2bl1_combo.SelectedItem.ToString();
-                AI2bl1combo_index = AI2bl1_combo.SelectedIndex;
-                if (showCode) AI2bl1_lab.Text = (code + 1000).ToString();
-            }
-            else if (AI3bl1_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI3, блок 1
-                string name = list_di.Find(x => x.Code == code).Name;
-                AI3bl1_combo.Items.Add(name);
-                RemoveFromAllCombosDI(name);
-                SensorAIType(AI3bl1_typeCombo, 2);
-                if (!list_ai.Contains(new Ai(name, (ushort)(code + 1000), "di")))
-                    list_ai.Add(new Ai(name, (ushort)(code + 1000), "di"));
-                // Выбор последнего добавленного элемента
-                AI3bl1_combo.SelectedIndex = AI3bl1_combo.Items.Count - 1;
-                AI3bl1combo_text = AI3bl1_combo.SelectedItem.ToString();
-                AI3bl1combo_index = AI3bl1_combo.SelectedIndex;
-                if (showCode) AI3bl1_lab.Text = (code + 1000).ToString();
-            }
-            else if (DI1bl2_combo.SelectedIndex == 0) // "Не выбрано"
-            { // DI1, блок 2
-                DI1bl2_combo.Items.Add(list_di.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                DI1bl2_combo.SelectedIndex = DI1bl2_combo.Items.Count - 1;
-                DI1bl2combo_text = DI1bl2_combo.SelectedItem.ToString();
-                DI1bl2combo_index = DI1bl2_combo.SelectedIndex;
-                if (showCode) DI1bl2_lab.Text = code.ToString();
-                list_di.Find(x => x.Code == code).Select();
-            }
-            else if (DI2bl2_combo.SelectedIndex == 0) // "Не выбрано"
-            { // DI2, блок 2
-                DI2bl2_combo.Items.Add(list_di.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                DI2bl2_combo.SelectedIndex = DI2bl2_combo.Items.Count - 1;
-                DI2bl2combo_text = DI2bl2_combo.SelectedItem.ToString();
-                DI2bl2combo_index = DI2bl2_combo.SelectedIndex;
-                if (showCode) DI2bl2_lab.Text = code.ToString();
-                list_di.Find(x => x.Code == code).Select();
-            }
-            else if (DI3bl2_combo.SelectedIndex == 0) // "Не выбрано"
-            { // DI3, блок 2
-                DI3bl2_combo.Items.Add(list_di.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                DI3bl2_combo.SelectedIndex = DI3bl2_combo.Items.Count - 1;
-                DI3bl2combo_text = DI3bl2_combo.SelectedItem.ToString();
-                DI3bl2combo_index = DI3bl2_combo.SelectedIndex;
-                if (showCode) DI3bl2_lab.Text = code.ToString();
-                list_di.Find(x => x.Code == code).Select();
-            }
-            else if (DI4bl2_combo.SelectedIndex == 0) // "Не выбрано"
-            { // DI4, блок 2
-                DI4bl2_combo.Items.Add(list_di.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                DI4bl2_combo.SelectedIndex = DI4bl2_combo.Items.Count - 1;
-                DI4bl2combo_text = DI4bl2_combo.SelectedItem.ToString();
-                DI4bl2combo_index = DI4bl2_combo.SelectedIndex;
-                if (showCode) DI4bl2_lab.Text = code.ToString();
-                list_di.Find(x => x.Code == code).Select();
-            }
-            else if (DI5bl2_combo.SelectedIndex == 0) // "Не выбрано"
-            { // DI5, блок 2
-                DI5bl2_combo.Items.Add(list_di.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                DI5bl2_combo.SelectedIndex = DI5bl2_combo.Items.Count - 1;
-                DI5bl2combo_text = DI5bl2_combo.SelectedItem.ToString();
-                DI5bl2combo_index = DI5bl2_combo.SelectedIndex;
-                if (showCode) DI5bl2_lab.Text = code.ToString();
-                list_di.Find(x => x.Code == code).Select();
-            }
-            else if (AI4bl2_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI4, блок 2
-                string name = list_di.Find(x => x.Code == code).Name;
-                AI4bl2_combo.Items.Add(name);
-                RemoveFromAllCombosDI(name);
-                SensorAIType(AI4bl2_typeCombo, 2);
-                if (!list_ai.Contains(new Ai(name, (ushort)(code + 1000), "di")))
-                    list_ai.Add(new Ai(name, (ushort)(code + 1000), "di"));
-                // Выбор последнего добавленного элемента
-                AI4bl2_combo.SelectedIndex = AI4bl2_combo.Items.Count - 1;
-                AI4bl2combo_text = AI4bl2_combo.SelectedItem.ToString();
-                AI4bl2combo_index = AI4bl2_combo.SelectedIndex;
-                if (showCode) AI4bl2_lab.Text = (code + 1000).ToString();
-            }
-            else if (AI5bl2_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI5, блок 2
-                string name = list_di.Find(x => x.Code == code).Name;
-                AI5bl2_combo.Items.Add(name);
-                RemoveFromAllCombosDI(name);
-                SensorAIType(AI5bl2_typeCombo, 2);
-                if (!list_ai.Contains(new Ai(name, (ushort)(code + 1000), "di")))
-                    list_ai.Add(new Ai(name, (ushort)(code + 1000), "di"));
-                // Выбор последнего добавленного элемента
-                AI5bl2_combo.SelectedIndex = AI5bl2_combo.Items.Count - 1;
-                AI5bl2combo_text = AI5bl2_combo.SelectedItem.ToString();
-                AI5bl2combo_index = AI5bl2_combo.SelectedIndex;
-                if (showCode) AI5bl2_lab.Text = (code + 1000).ToString();
-            }
-            else if (AI6bl2_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI6, блок 2
-                string name = list_di.Find(x => x.Code == code).Name;
-                AI6bl2_combo.Items.Add(name);
-                RemoveFromAllCombosDI(name);
-                SensorAIType(AI6bl2_typeCombo, 2);
-                if (!list_ai.Contains(new Ai(name, (ushort)(code + 1000), "di")))
-                    list_ai.Add(new Ai(name, (ushort)(code + 1000), "di"));
-                // Выбор последнего добавленного элемента
-                AI6bl2_combo.SelectedIndex = AI6bl2_combo.Items.Count - 1;
-                AI6bl2combo_text = AI6bl2_combo.SelectedItem.ToString();
-                AI6bl2combo_index = AI6bl2_combo.SelectedIndex;
-                if (showCode) AI6bl2_lab.Text = (code + 1000).ToString();
-            }
-            else if (AI1bl2_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI1, блок 2
-                string name = list_di.Find(x => x.Code == code).Name;
-                AI1bl2_combo.Items.Add(name);
-                RemoveFromAllCombosDI(name);
-                SensorAIType(AI1bl2_typeCombo, 2);
-                if (!list_ai.Contains(new Ai(name, (ushort)(code + 1000), "di")))
-                    list_ai.Add(new Ai(name, (ushort)(code + 1000), "di"));
-                // Выбор последнего добавленного элемента
-                AI1bl2_combo.SelectedIndex = AI1bl2_combo.Items.Count - 1;
-                AI1bl2combo_text = AI1bl2_combo.SelectedItem.ToString();
-                AI1bl2combo_index = AI1bl2_combo.SelectedIndex;
-                if (showCode) AI1bl2_lab.Text = (code + 1000).ToString();
-            }
-            else if (AI2bl2_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI2, блок 2
-                string name = list_di.Find(x => x.Code == code).Name;
-                AI2bl2_combo.Items.Add(name);
-                RemoveFromAllCombosDI(name);
-                SensorAIType(AI2bl2_typeCombo, 2);
-                if (!list_ai.Contains(new Ai(name, (ushort)(code + 1000), "di")))
-                    list_ai.Add(new Ai(name, (ushort)(code + 1000), "di"));
-                // Выбор последнего добавленного элемента
-                AI2bl2_combo.SelectedIndex = AI2bl2_combo.Items.Count - 1;
-                AI2bl2combo_text = AI2bl2_combo.SelectedItem.ToString();
-                AI2bl2combo_index = AI2bl2_combo.SelectedIndex;
-                if (showCode) AI2bl2_lab.Text = (code + 1000).ToString();
-            }
-            else if (AI3bl2_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI3, блок 2
-                string name = list_di.Find(x => x.Code == code).Name;
-                AI3bl2_combo.Items.Add(name);
-                RemoveFromAllCombosDI(name);
-                SensorAIType(AI3bl2_typeCombo, 2);
-                if (!list_ai.Contains(new Ai(name, (ushort)(code + 1000), "di")))
-                    list_ai.Add(new Ai(name, (ushort)(code + 1000), "di"));
-                // Выбор последнего добавленного элемента
-                AI3bl2_combo.SelectedIndex = AI3bl2_combo.Items.Count - 1;
-                AI3bl2combo_text = AI3bl2_combo.SelectedItem.ToString();
-                AI3bl2combo_index = AI3bl2_combo.SelectedIndex;
-                if (showCode) AI3bl2_lab.Text = (code + 1000).ToString();
-            }
-            else if (DI1bl3_combo.SelectedIndex == 0) // "Не выбрано"
-            { // DI1, блок 3
-                DI1bl3_combo.Items.Add(list_di.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                DI1bl3_combo.SelectedIndex = DI1bl3_combo.Items.Count - 1;
-                DI1bl3combo_text = DI1bl3_combo.SelectedItem.ToString();
-                DI1bl3combo_index = DI1bl3_combo.SelectedIndex;
-                if (showCode) DI1bl3_lab.Text = code.ToString();
-                list_di.Find(x => x.Code == code).Select();
-            }
-            else if (DI2bl3_combo.SelectedIndex == 0) // "Не выбрано"
-            { // DI2, блок 3
-                DI2bl3_combo.Items.Add(list_di.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                DI2bl3_combo.SelectedIndex = DI2bl3_combo.Items.Count - 1;
-                DI2bl3combo_text = DI2bl3_combo.SelectedItem.ToString();
-                DI2bl3combo_index = DI2bl3_combo.SelectedIndex;
-                if (showCode) DI2bl3_lab.Text = code.ToString();
-                list_di.Find(x => x.Code == code).Select();
-            }
-            else if (DI3bl3_combo.SelectedIndex == 0) // "Не выбрано"
-            { // DI3, блок 3
-                DI3bl3_combo.Items.Add(list_di.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                DI3bl3_combo.SelectedIndex = DI3bl3_combo.Items.Count - 1;
-                DI3bl3combo_text = DI3bl3_combo.SelectedItem.ToString();
-                DI3bl3combo_index = DI3bl3_combo.SelectedIndex;
-                if (showCode) DI3bl3_lab.Text = code.ToString();
-                list_di.Find(x => x.Code == code).Select();
-            }
-            else if (DI4bl3_combo.SelectedIndex == 0) // "Не выбрано"
-            { // DI4, блок 3
-                DI4bl3_combo.Items.Add(list_di.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                DI4bl3_combo.SelectedIndex = DI4bl3_combo.Items.Count - 1;
-                DI4bl3combo_text = DI4bl3_combo.SelectedItem.ToString();
-                DI4bl3combo_index = DI4bl3_combo.SelectedIndex;
-                if (showCode) DI4bl3_lab.Text = code.ToString();
-                list_di.Find(x => x.Code == code).Select();
-            }
-            else if (DI5bl3_combo.SelectedIndex == 0) // "Не выбрано"
-            { // DI5, блок 3
-                DI5bl3_combo.Items.Add(list_di.Find(x => x.Code == code).Name);
-                // Выбор последнего добавленного элемента
-                DI5bl3_combo.SelectedIndex = DI5bl3_combo.Items.Count - 1;
-                DI5bl3combo_text = DI5bl3_combo.SelectedItem.ToString();
-                DI5bl3combo_index = DI5bl3_combo.SelectedIndex;
-                if (showCode) DI5bl3_lab.Text = code.ToString();
-                list_di.Find(x => x.Code == code).Select();
-            }
-            else if (AI4bl3_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI4, блок 3
-                string name = list_di.Find(x => x.Code == code).Name;
-                AI4bl3_combo.Items.Add(name);
-                RemoveFromAllCombosDI(name);
-                SensorAIType(AI4bl3_typeCombo, 2);
-                if (!list_ai.Contains(new Ai(name, (ushort)(code + 1000), "di")))
-                    list_ai.Add(new Ai(name, (ushort)(code + 1000), "di"));
-                // Выбор последнего добавленного элемента
-                AI4bl3_combo.SelectedIndex = AI4bl3_combo.Items.Count - 1;
-                AI4bl3combo_text = AI4bl3_combo.SelectedItem.ToString();
-                AI4bl3combo_index = AI4bl3_combo.SelectedIndex;
-                if (showCode) AI4bl3_lab.Text = (code + 1000).ToString();
-            }
-            else if (AI5bl3_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI5, блок 3
-                string name = list_di.Find(x => x.Code == code).Name;
-                AI5bl3_combo.Items.Add(name);
-                RemoveFromAllCombosDI(name);
-                SensorAIType(AI5bl3_typeCombo, 2);
-                if (!list_ai.Contains(new Ai(name, (ushort)(code + 1000), "di")))
-                    list_ai.Add(new Ai(name, (ushort)(code + 1000), "di"));
-                // Выбор последнего добавленного элемента
-                AI5bl3_combo.SelectedIndex = AI5bl3_combo.Items.Count - 1;
-                AI5bl3combo_text = AI5bl3_combo.SelectedItem.ToString();
-                AI5bl3combo_index = AI5bl3_combo.SelectedIndex;
-                if (showCode) AI5bl3_lab.Text = (code + 1000).ToString();
-            }
-            else if (AI6bl3_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI6, блок 3
-                string name = list_di.Find(x => x.Code == code).Name;
-                AI6bl3_combo.Items.Add(name);
-                RemoveFromAllCombosDI(name);
-                SensorAIType(AI6bl3_typeCombo, 2);
-                if (!list_ai.Contains(new Ai(name, (ushort)(code + 1000), "di")))
-                    list_ai.Add(new Ai(name, (ushort)(code + 1000), "di"));
-                // Выбор последнего добавленного элемента
-                AI6bl3_combo.SelectedIndex = AI6bl3_combo.Items.Count - 1;
-                AI6bl3combo_text = AI6bl3_combo.SelectedItem.ToString();
-                AI6bl3combo_index = AI6bl3_combo.SelectedIndex;
-                if (showCode) AI6bl3_lab.Text = (code + 1000).ToString();
-            }
-            else if (AI1bl3_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI1, блок 3
-                string name = list_di.Find(x => x.Code == code).Name;
-                AI1bl3_combo.Items.Add(name);
-                RemoveFromAllCombosDI(name);
-                SensorAIType(AI1bl3_typeCombo, 2);
-                if (!list_ai.Contains(new Ai(name, (ushort)(code + 1000), "di")))
-                    list_ai.Add(new Ai(name, (ushort)(code + 1000), "di"));
-                // Выбор последнего добавленного элемента
-                AI1bl3_combo.SelectedIndex = AI1bl3_combo.Items.Count - 1;
-                AI1bl3combo_text = AI1bl3_combo.SelectedItem.ToString();
-                AI1bl3combo_index = AI1bl3_combo.SelectedIndex;
-                if (showCode) AI1bl3_lab.Text = (code + 1000).ToString();
-            }
-            else if (AI2bl3_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI2, блок 3
-                string name = list_di.Find(x => x.Code == code).Name;
-                AI2bl3_combo.Items.Add(name);
-                RemoveFromAllCombosDI(name);
-                SensorAIType(AI2bl3_typeCombo, 2);
-                if (!list_ai.Contains(new Ai(name, (ushort)(code + 1000), "di")))
-                    list_ai.Add(new Ai(name, (ushort)(code + 1000), "di"));
-                // Выбор последнего добавленного элемента
-                AI2bl3_combo.SelectedIndex = AI2bl3_combo.Items.Count - 1;
-                AI2bl3combo_text = AI2bl3_combo.SelectedItem.ToString();
-                AI2bl3combo_index = AI2bl3_combo.SelectedIndex;
-                if (showCode) AI2bl3_lab.Text = (code + 1000).ToString();
-            }
-            else if (AI3bl3_combo.SelectedIndex == 0) // "Не выбрано"
-            { // AI3, блок 3
-                string name = list_di.Find(x => x.Code == code).Name;
-                AI3bl3_combo.Items.Add(name);
-                RemoveFromAllCombosDI(name);
-                SensorAIType(AI3bl3_typeCombo, 2);
-                if (!list_ai.Contains(new Ai(name, (ushort)(code + 1000), "di")))
-                    list_ai.Add(new Ai(name, (ushort)(code + 1000), "di"));
-                // Выбор последнего добавленного элемента
-                AI3bl3_combo.SelectedIndex = AI3bl3_combo.Items.Count - 1;
-                AI3bl3combo_text = AI3bl3_combo.SelectedItem.ToString();
-                AI3bl3combo_index = AI3bl3_combo.SelectedIndex;
-                if (showCode) AI3bl3_lab.Text = (code + 1000).ToString();
-            }
+            // ПЛК
+            if (DI1_combo.SelectedIndex == 0) SelectComboBox_DI(DI1_combo, code, DI1_lab, DI1combo_text, DI1combo_index);
+            else if (DI2_combo.SelectedIndex == 0) SelectComboBox_DI(DI2_combo, code, DI2_lab, DI2combo_text, DI2combo_index);
+            else if (DI3_combo.SelectedIndex == 0) SelectComboBox_DI(DI3_combo, code, DI3_lab, DI3combo_text, DI3combo_index);
+            else if (DI4_combo.SelectedIndex == 0) SelectComboBox_DI(DI4_combo, code, DI4_lab, DI4combo_text, DI4combo_index);
+            else if (DI5_combo.SelectedIndex == 0) SelectComboBox_DI(DI5_combo, code, DI5_lab, DI5combo_text, DI5combo_index);
+            else if (AI4_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI4_combo, AI4_typeCombo, code, AI4_lab, AI4combo_text, AI4combo_index);
+            else if (AI5_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI5_combo, AI5_typeCombo, code, AI5_lab, AI5combo_text, AI5combo_index);
+            else if (AI6_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI6_combo, AI6_typeCombo, code, AI6_lab, AI6combo_text, AI6combo_index);
+            else if (AI1_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI1_combo, AI1_typeCombo, code, AI1_lab, AI1combo_text, AI1combo_index);
+            else if (AI2_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI2_combo, AI2_typeCombo, code, AI2_lab, AI2combo_text, AI2combo_index);
+            else if (AI3_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI3_combo, AI3_typeCombo, code, AI3_lab, AI3combo_text, AI3combo_index);
+            // Блок расширения 1
+            else if (DI1bl1_combo.SelectedIndex == 0) SelectComboBox_DI(DI1bl1_combo, code, DI1bl1_lab, DI1bl1combo_text, DI1bl1combo_index);
+            else if (DI2bl1_combo.SelectedIndex == 0) SelectComboBox_DI(DI2bl1_combo, code, DI2bl1_lab, DI2bl1combo_text, DI2bl1combo_index);
+            else if (DI3bl1_combo.SelectedIndex == 0) SelectComboBox_DI(DI3bl1_combo, code, DI3bl1_lab, DI3bl1combo_text, DI3bl1combo_index);
+            else if (DI4bl1_combo.SelectedIndex == 0) SelectComboBox_DI(DI4bl1_combo, code, DI4bl1_lab, DI4bl1combo_text, DI4bl1combo_index);
+            else if (DI5bl1_combo.SelectedIndex == 0) SelectComboBox_DI(DI5bl1_combo, code, DI5bl1_lab, DI5bl1combo_text, DI5bl1combo_index);
+            else if (AI4bl1_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI4bl1_combo, AI4bl1_typeCombo, code, AI4bl1_lab, AI4bl1combo_text, AI4bl1combo_index);
+            else if (AI5bl1_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI5bl1_combo, AI5bl1_typeCombo, code, AI5bl1_lab, AI5bl1combo_text, AI5bl1combo_index);
+            else if (AI6bl1_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI6bl1_combo, AI6bl1_typeCombo, code, AI6bl1_lab, AI6bl1combo_text, AI6bl1combo_index);
+            else if (AI1bl1_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI1bl1_combo, AI1bl1_typeCombo, code, AI1bl1_lab, AI1bl1combo_text, AI1bl1combo_index);
+            else if (AI2bl1_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI2bl1_combo, AI2bl1_typeCombo, code, AI2bl1_lab, AI2bl1combo_text, AI2bl1combo_index);
+            else if (AI3bl1_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI3bl1_combo, AI3bl1_typeCombo, code, AI3bl1_lab, AI3bl1combo_text, AI3bl1combo_index);
+            // Блок расширения 2
+            else if (DI1bl2_combo.SelectedIndex == 0) SelectComboBox_DI(DI1bl2_combo, code, DI1bl2_lab, DI1bl2combo_text, DI1bl2combo_index);
+            else if (DI2bl2_combo.SelectedIndex == 0) SelectComboBox_DI(DI2bl2_combo, code, DI2bl2_lab, DI2bl2combo_text, DI2bl2combo_index);
+            else if (DI3bl2_combo.SelectedIndex == 0) SelectComboBox_DI(DI3bl2_combo, code, DI3bl2_lab, DI3bl2combo_text, DI3bl2combo_index);
+            else if (DI4bl2_combo.SelectedIndex == 0) SelectComboBox_DI(DI4bl2_combo, code, DI4bl2_lab, DI4bl2combo_text, DI4bl2combo_index);
+            else if (DI5bl2_combo.SelectedIndex == 0) SelectComboBox_DI(DI5bl2_combo, code, DI5bl2_lab, DI5bl2combo_text, DI5bl2combo_index);
+            else if (AI4bl2_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI4bl2_combo, AI4bl2_typeCombo, code, AI4bl2_lab, AI4bl2combo_text, AI4bl2combo_index);
+            else if (AI5bl2_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI4bl2_combo, AI4bl2_typeCombo, code, AI4bl2_lab, AI4bl2combo_text, AI4bl2combo_index);
+            else if (AI6bl2_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI4bl2_combo, AI4bl2_typeCombo, code, AI4bl2_lab, AI4bl2combo_text, AI4bl2combo_index);
+            else if (AI1bl2_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI4bl2_combo, AI4bl2_typeCombo, code, AI4bl2_lab, AI4bl2combo_text, AI4bl2combo_index);
+            else if (AI2bl2_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI4bl2_combo, AI4bl2_typeCombo, code, AI4bl2_lab, AI4bl2combo_text, AI4bl2combo_index);
+            else if (AI3bl2_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI4bl2_combo, AI4bl2_typeCombo, code, AI4bl2_lab, AI4bl2combo_text, AI4bl2combo_index);
+            // Блок расширения 3
+            else if (DI1bl3_combo.SelectedIndex == 0) SelectComboBox_DI(DI1bl3_combo, code, DI1bl3_lab, DI1bl3combo_text, DI1bl3combo_index);
+            else if (DI2bl3_combo.SelectedIndex == 0) SelectComboBox_DI(DI2bl3_combo, code, DI2bl3_lab, DI2bl3combo_text, DI2bl3combo_index);
+            else if (DI3bl3_combo.SelectedIndex == 0) SelectComboBox_DI(DI3bl3_combo, code, DI3bl3_lab, DI3bl3combo_text, DI3bl3combo_index);
+            else if (DI4bl3_combo.SelectedIndex == 0) SelectComboBox_DI(DI4bl3_combo, code, DI4bl3_lab, DI4bl3combo_text, DI4bl3combo_index);
+            else if (DI5bl3_combo.SelectedIndex == 0) SelectComboBox_DI(DI5bl3_combo, code, DI5bl3_lab, DI5bl3combo_text, DI5bl3combo_index);
+            else if (AI4bl3_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI4bl3_combo, AI4bl3_typeCombo, code, AI4bl3_lab, AI4bl3combo_text, AI4bl3combo_index);
+            else if (AI5bl3_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI5bl3_combo, AI5bl3_typeCombo, code, AI5bl3_lab, AI5bl3combo_text, AI5bl3combo_index);
+            else if (AI6bl3_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI6bl3_combo, AI6bl3_typeCombo, code, AI6bl3_lab, AI6bl3combo_text, AI6bl3combo_index);
+            else if (AI1bl3_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI1bl3_combo, AI1bl3_typeCombo, code, AI1bl3_lab, AI1bl3combo_text, AI1bl3combo_index);
+            else if (AI2bl3_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI2bl3_combo, AI2bl3_typeCombo, code, AI2bl3_lab, AI2bl3combo_text, AI2bl3combo_index);
+            else if (AI3bl3_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI3bl3_combo, AI3bl3_typeCombo, code, AI3bl3_lab, AI3bl3combo_text, AI3bl3combo_index);
+        }
+
+        ///<summary>Удаление DI из определённого comboBox</summary>
+        private void RemoveDI_FromComboBox(ComboBox comboBox, string name, Label label, string text, int index)
+        {
+            for (int i = 0; i < comboBox.Items.Count; i++)
+                if (comboBox.Items[i].ToString() == name)                                               // Есть совпадение по имени в списке
+                {
+                    comboBox.Items.Remove(name);                                                        // Удаление элемента по имени
+                    if (comboBox.Items.Count > 1)                                                       // Осталось больше одного элемента в списке
+                    {
+                        comboBox.SelectedIndex = comboBox.Items.Count - 1;                              // Выбор последнего элемента
+                        if (comboBox.SelectedItem.ToString() == NOT_SELECTED)
+                        {
+                            SubFromCombosDI(comboBox.SelectedItem.ToString(), comboBox);                // Удаление из других comboBox выбранного элемента
+                            Di find_di = list_di.Find(x => x.Name == comboBox.SelectedItem.ToString());
+                            if (find_di != null)
+                            {
+                                list_di.Remove(find_di);
+                                if (showCode) label.Text = find_di.Code.ToString();
+                            }
+                        }
+                    }
+                    else                                                                                // Только "Не выбрано"
+                    {
+                        comboBox.SelectedItem = NOT_SELECTED;
+                        label.Text = "";
+                    }
+                    text = comboBox.SelectedItem.ToString();                                            // Сохранение наименование выбранного DI
+                    index = comboBox.SelectedIndex;                                                     // Сохранение индекса выбранного DI
+                }
         }
 
         ///<summary>Удаление DI из всех comboBox</summary>
@@ -1081,572 +459,41 @@ namespace Moderon
         {
             Di findDi, findDi_2;
             Ai findAi;
-            string name = "";
+
+            string name = "";                                                                           // Текстовое название дискретного входа
             findDi = list_di.Find(x => x.Code == code);
             if (findDi != null) name = findDi.Name;
             else return;
+
             subDIcondition = true; // Признак удаления DI, не работает событие indexChanged
             subAIcondition = true; // Признак удаления AI, не работает событие indexChanged
-            for (int i = 0; i < DI1_combo.Items.Count; i++) // DI1
-                if (DI1_combo.Items[i].ToString() == name)
-                {
-                    DI1_combo.Items.Remove(name);
-                    if (DI1_combo.Items.Count > 1)
-                    {
-                        DI1_combo.SelectedIndex = DI1_combo.Items.Count - 1;
-                        if (DI1_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDI(DI1_combo.SelectedItem.ToString(), DI1_combo);
-                            findDi_2 = list_di.Find(x => x.Name == DI1_combo.SelectedItem.ToString());
-                            if (findDi_2 != null)
-                            {
-                                list_di.Remove(findDi_2);
-                                //findDi_2.Select();
-                                //list_di.Add(findDi_2);
-                                if (showCode) DI1_lab.Text = findDi_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DI1_combo.SelectedItem = NOT_SELECTED;
-                        DI1_lab.Text = "";
-                    }
-                    DI1combo_text = DI1_combo.SelectedItem.ToString();
-                    DI1combo_index = DI1_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DI2_combo.Items.Count; i++) // DI2
-                if (DI2_combo.Items[i].ToString() == name)
-                {
-                    DI2_combo.Items.Remove(name);
-                    if (DI2_combo.Items.Count > 1)
-                    {
-                        DI2_combo.SelectedIndex = DI2_combo.Items.Count - 1;
-                        if (DI2_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDI(DI2_combo.SelectedItem.ToString(), DI2_combo);
-                            findDi_2 = list_di.Find(x => x.Name == DI2_combo.SelectedItem.ToString());
-                            if (findDi_2 != null)
-                            {
-                                list_di.Remove(findDi_2);
-                                //findDi_2.Select();
-                                //list_di.Add(findDi_2);
-                                if (showCode) DI2_lab.Text = findDi_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DI2_combo.SelectedItem = NOT_SELECTED;
-                        DI2_lab.Text = "";
-                    }
-                    DI2combo_text = DI2_combo.SelectedItem.ToString();
-                    DI2combo_index = DI2_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DI3_combo.Items.Count; i++) // DI3
-                if (DI3_combo.Items[i].ToString() == name)
-                {
-                    DI3_combo.Items.Remove(name);
-                    if (DI3_combo.Items.Count > 1)
-                    {
-                        DI3_combo.SelectedIndex = DI3_combo.Items.Count - 1;
-                        if (DI3_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDI(DI3_combo.SelectedItem.ToString(), DI3_combo);
-                            findDi_2 = list_di.Find(x => x.Name == DI3_combo.SelectedItem.ToString());
-                            if (findDi_2 != null)
-                            {
-                                list_di.Remove(findDi_2);
-                                //findDi_2.Select();
-                                //list_di.Add(findDi_2);
-                                if (showCode) DI3_lab.Text = findDi_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DI3_combo.SelectedItem = NOT_SELECTED;
-                        DI3_lab.Text = "";
-                    }
-                    DI3combo_text = DI3_combo.SelectedItem.ToString();
-                    DI3combo_index = DI3_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DI4_combo.Items.Count; i++) // DI4
-                if (DI4_combo.Items[i].ToString() == name)
-                {
-                    DI4_combo.Items.Remove(name);
-                    if (DI4_combo.Items.Count > 1)
-                    {
-                        DI4_combo.SelectedIndex = DI4_combo.Items.Count - 1;
-                        if (DI4_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDI(DI4_combo.SelectedItem.ToString(), DI4_combo);
-                            findDi_2 = list_di.Find(x => x.Name == DI4_combo.SelectedItem.ToString());
-                            if (findDi_2 != null)
-                            {
-                                list_di.Remove(findDi_2);
-                                //findDi_2.Select();
-                                //list_di.Add(findDi_2);
-                                if (showCode) DI4_lab.Text = findDi_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DI4_combo.SelectedItem = NOT_SELECTED;
-                        DI4_lab.Text = "";
-                    }
-                    DI4combo_text = DI4_combo.SelectedItem.ToString();
-                    DI4combo_index = DI4_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DI5_combo.Items.Count; i++) // DI5
-                if (DI5_combo.Items[i].ToString() == name)
-                {
-                    DI5_combo.Items.Remove(name);
-                    if (DI5_combo.Items.Count > 1)
-                    {
-                        DI5_combo.SelectedIndex = DI5_combo.Items.Count - 1;
-                        if (DI5_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDI(DI5_combo.SelectedItem.ToString(), DI5_combo);
-                            findDi_2 = list_di.Find(x => x.Name == DI5_combo.SelectedItem.ToString());
-                            if (findDi_2 != null)
-                            {
-                                list_di.Remove(findDi_2);
-                                //findDi_2.Select();
-                                //list_di.Add(findDi_2);
-                                if (showCode) DI5_lab.Text = findDi_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DI5_combo.SelectedItem = NOT_SELECTED;
-                        DI5_lab.Text = "";
-                    }
-                    DI5combo_text = DI5_combo.SelectedItem.ToString();
-                    DI5combo_index = DI5_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DI1bl1_combo.Items.Count; i++) // DI1 блок 1
-                if (DI1bl1_combo.Items[i].ToString() == name)
-                {
-                    DI1bl1_combo.Items.Remove(name);
-                    if (DI1bl1_combo.Items.Count > 1)
-                    {
-                        DI1bl1_combo.SelectedIndex = DI1bl1_combo.Items.Count - 1;
-                        if (DI1bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDI(DI1bl1_combo.SelectedItem.ToString(), DI1bl1_combo);
-                            findDi_2 = list_di.Find(x => x.Name == DI1bl1_combo.SelectedItem.ToString());
-                            if (findDi_2 != null)
-                            {
-                                list_di.Remove(findDi_2);
-                                //findDi_2.Select();
-                                //list_di.Add(findDi_2);
-                                if (showCode) DI1bl1_lab.Text = findDi_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DI1bl1_combo.SelectedItem = NOT_SELECTED;
-                        DI1bl1_lab.Text = "";
-                    }
-                    DI1bl1combo_text = DI1bl1_combo.SelectedItem.ToString();
-                    DI1bl1combo_index = DI1bl1_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DI2bl1_combo.Items.Count; i++) // DI2 блок 1
-                if (DI2bl1_combo.Items[i].ToString() == name)
-                {
-                    DI2bl1_combo.Items.Remove(name);
-                    if (DI2bl1_combo.Items.Count > 1)
-                    {
-                        DI2bl1_combo.SelectedIndex = DI2bl1_combo.Items.Count - 1;
-                        if (DI2bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDI(DI2bl1_combo.SelectedItem.ToString(), DI2bl1_combo);
-                            findDi_2 = list_di.Find(x => x.Name == DI2bl1_combo.SelectedItem.ToString());
-                            if (findDi_2 != null)
-                            {
-                                list_di.Remove(findDi_2);
-                                //findDi_2.Select();
-                                //list_di.Add(findDi_2);
-                                if (showCode) DI2bl1_lab.Text = findDi_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DI2bl1_combo.SelectedItem = NOT_SELECTED;
-                        DI2bl1_lab.Text = "";
-                    }
-                    DI2bl1combo_text = DI2bl1_combo.SelectedItem.ToString();
-                    DI2bl1combo_index = DI2bl1_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DI3bl1_combo.Items.Count; i++) // DI3 блок 1
-                if (DI3bl1_combo.Items[i].ToString() == name)
-                {
-                    DI3bl1_combo.Items.Remove(name);
-                    if (DI3bl1_combo.Items.Count > 1)
-                    {
-                        DI3bl1_combo.SelectedIndex = DI3bl1_combo.Items.Count - 1;
-                        if (DI3bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDI(DI3bl1_combo.SelectedItem.ToString(), DI3bl1_combo);
-                            findDi_2 = list_di.Find(x => x.Name == DI3bl1_combo.SelectedItem.ToString());
-                            if (findDi_2 != null)
-                            {
-                                list_di.Remove(findDi_2);
-                                //findDi_2.Select();
-                                //list_di.Add(findDi_2);
-                                if (showCode) DI3bl1_lab.Text = findDi_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DI3bl1_combo.SelectedItem = NOT_SELECTED;
-                        DI3bl1_lab.Text = "";
-                    }
-                    DI3bl1combo_text = DI3bl1_combo.SelectedItem.ToString();
-                    DI3bl1combo_index = DI3bl1_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DI4bl1_combo.Items.Count; i++) // DI4 блок 1
-                if (DI4bl1_combo.Items[i].ToString() == name)
-                {
-                    DI4bl1_combo.Items.Remove(name);
-                    if (DI4bl1_combo.Items.Count > 1)
-                    {
-                        DI4bl1_combo.SelectedIndex = DI4bl1_combo.Items.Count - 1;
-                        if (DI4bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDI(DI4bl1_combo.SelectedItem.ToString(), DI4bl1_combo);
-                            findDi_2 = list_di.Find(x => x.Name == DI4bl1_combo.SelectedItem.ToString());
-                            if (findDi_2 != null)
-                            {
-                                list_di.Remove(findDi_2);
-                                //findDi_2.Select();
-                                //list_di.Add(findDi_2);
-                                if (showCode) DI4bl1_lab.Text = findDi_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DI4bl1_combo.SelectedItem = NOT_SELECTED;
-                        DI4bl1_lab.Text = "";
-                    }
-                    DI4bl1combo_text = DI4bl1_combo.SelectedItem.ToString();
-                    DI4bl1combo_index = DI4bl1_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DI5bl1_combo.Items.Count; i++) // DI5 блок 1
-                if (DI5bl1_combo.Items[i].ToString() == name)
-                {
-                    DI5bl1_combo.Items.Remove(name);
-                    if (DI5bl1_combo.Items.Count > 1)
-                    {
-                        DI5bl1_combo.SelectedIndex = DI5bl1_combo.Items.Count - 1;
-                        if (DI5bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDI(DI5bl1_combo.SelectedItem.ToString(), DI5bl1_combo);
-                            findDi_2 = list_di.Find(x => x.Name == DI5bl1_combo.SelectedItem.ToString());
-                            if (findDi_2 != null)
-                            {
-                                list_di.Remove(findDi_2);
-                                //findDi_2.Select();
-                                //list_di.Add(findDi_2);
-                                if (showCode) DI5bl1_lab.Text = findDi_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DI5bl1_combo.SelectedItem = NOT_SELECTED;
-                        DI5bl1_lab.Text = "";
-                    }
-                    DI5bl1combo_text = DI5bl1_combo.SelectedItem.ToString();
-                    DI5bl1combo_index = DI5bl1_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DI1bl2_combo.Items.Count; i++) // DI1 блок 2
-                if (DI1bl2_combo.Items[i].ToString() == name)
-                {
-                    DI1bl2_combo.Items.Remove(name);
-                    if (DI1bl2_combo.Items.Count > 1)
-                    {
-                        DI1bl2_combo.SelectedIndex = DI1bl2_combo.Items.Count - 1;
-                        if (DI1bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDI(DI1bl2_combo.SelectedItem.ToString(), DI1bl2_combo);
-                            findDi_2 = list_di.Find(x => x.Name == DI1bl2_combo.SelectedItem.ToString());
-                            if (findDi_2 != null)
-                            {
-                                list_di.Remove(findDi_2);
-                                //findDi_2.Select();
-                                //list_di.Add(findDi_2);
-                                if (showCode) DI1bl2_lab.Text = findDi_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DI1bl2_combo.SelectedItem = NOT_SELECTED;
-                        DI1bl2_lab.Text = "";
-                    }
-                    DI1bl2combo_text = DI1bl2_combo.SelectedItem.ToString();
-                    DI1bl2combo_index = DI1bl2_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DI2bl2_combo.Items.Count; i++) // DI2 блок 2
-                if (DI2bl2_combo.Items[i].ToString() == name)
-                {
-                    DI2bl2_combo.Items.Remove(name);
-                    if (DI2bl2_combo.Items.Count > 1)
-                    {
-                        DI2bl2_combo.SelectedIndex = DI2bl2_combo.Items.Count - 1;
-                        if (DI2bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDI(DI2bl2_combo.SelectedItem.ToString(), DI2bl2_combo);
-                            findDi_2 = list_di.Find(x => x.Name == DI2bl2_combo.SelectedItem.ToString());
-                            if (findDi_2 != null)
-                            {
-                                list_di.Remove(findDi_2);
-                                //findDi_2.Select();
-                                //list_di.Add(findDi_2);
-                                if (showCode) DI2bl2_lab.Text = findDi_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DI2bl2_combo.SelectedItem = NOT_SELECTED;
-                        DI2bl2_lab.Text = "";
-                    }
-                    DI2bl2combo_text = DI2bl2_combo.SelectedItem.ToString();
-                    DI2bl2combo_index = DI2bl2_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DI3bl2_combo.Items.Count; i++) // DI3 блок 2
-                if (DI3bl2_combo.Items[i].ToString() == name)
-                {
-                    DI3bl2_combo.Items.Remove(name);
-                    if (DI3bl2_combo.Items.Count > 1)
-                    {
-                        DI3bl2_combo.SelectedIndex = DI3bl2_combo.Items.Count - 1;
-                        if (DI3bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDI(DI3bl2_combo.SelectedItem.ToString(), DI3bl2_combo);
-                            findDi_2 = list_di.Find(x => x.Name == DI3bl2_combo.SelectedItem.ToString());
-                            if (findDi_2 != null)
-                            {
-                                list_di.Remove(findDi_2);
-                                //findDi_2.Select();
-                                //list_di.Add(findDi_2);
-                                if (showCode) DI3bl2_lab.Text = findDi_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DI3bl2_combo.SelectedItem = NOT_SELECTED;
-                        DI3bl2_lab.Text = "";
-                    }
-                    DI3bl2combo_text = DI3bl2_combo.SelectedItem.ToString();
-                    DI3bl2combo_index = DI3bl2_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DI4bl2_combo.Items.Count; i++) // DI4 блок 2
-                if (DI4bl2_combo.Items[i].ToString() == name)
-                {
-                    DI4bl2_combo.Items.Remove(name);
-                    if (DI4bl2_combo.Items.Count > 1)
-                    {
-                        DI4bl2_combo.SelectedIndex = DI4bl2_combo.Items.Count - 1;
-                        if (DI4bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDI(DI4bl2_combo.SelectedItem.ToString(), DI4bl2_combo);
-                            findDi_2 = list_di.Find(x => x.Name == DI4bl2_combo.SelectedItem.ToString());
-                            if (findDi_2 != null)
-                            {
-                                list_di.Remove(findDi_2);
-                                //findDi_2.Select();
-                                //list_di.Add(findDi_2);
-                                if (showCode) DI4bl2_lab.Text = findDi_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DI4bl2_combo.SelectedItem = NOT_SELECTED;
-                        DI4bl2_lab.Text = "";
-                    }
-                    DI4bl2combo_text = DI4bl2_combo.SelectedItem.ToString();
-                    DI4bl2combo_index = DI4bl2_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DI5bl2_combo.Items.Count; i++) // DI5 блок 2
-                if (DI5bl2_combo.Items[i].ToString() == name)
-                {
-                    DI5bl2_combo.Items.Remove(name);
-                    if (DI5bl2_combo.Items.Count > 1)
-                    {
-                        DI5bl2_combo.SelectedIndex = DI5bl2_combo.Items.Count - 1;
-                        if (DI5bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDI(DI5bl2_combo.SelectedItem.ToString(), DI5bl2_combo);
-                            findDi_2 = list_di.Find(x => x.Name == DI5bl2_combo.SelectedItem.ToString());
-                            if (findDi_2 != null)
-                            {
-                                list_di.Remove(findDi_2);
-                                //findDi_2.Select();
-                                //list_di.Add(findDi_2);
-                                if (showCode) DI5bl2_lab.Text = findDi_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DI5bl2_combo.SelectedItem = NOT_SELECTED;
-                        DI5bl2_lab.Text = "";
-                    }
-                    DI5bl2combo_text = DI5bl2_combo.SelectedItem.ToString();
-                    DI5bl2combo_index = DI5bl2_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DI1bl3_combo.Items.Count; i++) // DI1 блок 3
-                if (DI1bl3_combo.Items[i].ToString() == name)
-                {
-                    DI1bl3_combo.Items.Remove(name);
-                    if (DI1bl3_combo.Items.Count > 1)
-                    {
-                        DI1bl3_combo.SelectedIndex = DI1bl3_combo.Items.Count - 1;
-                        if (DI1bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDI(DI1bl3_combo.SelectedItem.ToString(), DI1bl3_combo);
-                            findDi_2 = list_di.Find(x => x.Name == DI1bl3_combo.SelectedItem.ToString());
-                            if (findDi_2 != null)
-                            {
-                                list_di.Remove(findDi_2);
-                                //findDi_2.Select();
-                                //list_di.Add(findDi_2);
-                                if (showCode) DI1bl3_lab.Text = findDi_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DI1bl3_combo.SelectedItem = NOT_SELECTED;
-                        DI1bl3_lab.Text = "";
-                    }
-                    DI1bl3combo_text = DI1bl3_combo.SelectedItem.ToString();
-                    DI1bl3combo_index = DI1bl3_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DI2bl3_combo.Items.Count; i++) // DI2 блок 3
-                if (DI2bl3_combo.Items[i].ToString() == name)
-                {
-                    DI2bl3_combo.Items.Remove(name);
-                    if (DI2bl3_combo.Items.Count > 1)
-                    {
-                        DI2bl3_combo.SelectedIndex = DI2bl3_combo.Items.Count - 1;
-                        if (DI2bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDI(DI2bl3_combo.SelectedItem.ToString(), DI2bl3_combo);
-                            findDi_2 = list_di.Find(x => x.Name == DI2bl3_combo.SelectedItem.ToString());
-                            if (findDi_2 != null)
-                            {
-                                list_di.Remove(findDi_2);
-                                //findDi_2.Select();
-                                //list_di.Add(findDi_2);
-                                if (showCode) DI2bl3_lab.Text = findDi_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DI2bl3_combo.SelectedItem = NOT_SELECTED;
-                        DI2bl3_lab.Text = "";
-                    }
-                    DI2bl3combo_text = DI2bl3_combo.SelectedItem.ToString();
-                    DI2bl3combo_index = DI2bl3_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DI3bl3_combo.Items.Count; i++) // DI3 блок 3
-                if (DI3bl3_combo.Items[i].ToString() == name)
-                {
-                    DI3bl3_combo.Items.Remove(name);
-                    if (DI3bl3_combo.Items.Count > 1)
-                    {
-                        DI3bl3_combo.SelectedIndex = DI3bl3_combo.Items.Count - 1;
-                        if (DI3bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDI(DI3bl3_combo.SelectedItem.ToString(), DI3bl3_combo);
-                            findDi_2 = list_di.Find(x => x.Name == DI3bl3_combo.SelectedItem.ToString());
-                            if (findDi_2 != null)
-                            {
-                                list_di.Remove(findDi_2);
-                                //findDi_2.Select();
-                                //list_di.Add(findDi_2);
-                                if (showCode) DI3bl3_lab.Text = findDi_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DI3bl3_combo.SelectedItem = NOT_SELECTED;
-                        DI3bl3_lab.Text = "";
-                    }
-                    DI3bl3combo_text = DI3bl3_combo.SelectedItem.ToString();
-                    DI3bl3combo_index = DI3bl3_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DI4bl3_combo.Items.Count; i++) // DI4 блок 3
-                if (DI4bl3_combo.Items[i].ToString() == name)
-                {
-                    DI4bl3_combo.Items.Remove(name);
-                    if (DI4bl3_combo.Items.Count > 1)
-                    {
-                        DI4bl3_combo.SelectedIndex = DI4bl3_combo.Items.Count - 1;
-                        if (DI4bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDI(DI4bl3_combo.SelectedItem.ToString(), DI4bl3_combo);
-                            findDi_2 = list_di.Find(x => x.Name == DI4bl3_combo.SelectedItem.ToString());
-                            if (findDi_2 != null)
-                            {
-                                list_di.Remove(findDi_2);
-                                //findDi_2.Select();
-                                //list_di.Add(findDi_2);
-                                if (showCode) DI4bl3_lab.Text = findDi_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DI4bl3_combo.SelectedItem = NOT_SELECTED;
-                        DI4bl3_lab.Text = "";
-                    }
-                    DI4bl3combo_text = DI4bl3_combo.SelectedItem.ToString();
-                    DI4bl3combo_index = DI4bl3_combo.SelectedIndex;
-                }
-            for (int i = 0; i < DI5bl3_combo.Items.Count; i++) // DI5 блок 3
-                if (DI5bl3_combo.Items[i].ToString() == name)
-                {
-                    DI5bl3_combo.Items.Remove(name);
-                    if (DI5bl3_combo.Items.Count > 1)
-                    {
-                        DI5bl3_combo.SelectedIndex = DI5bl3_combo.Items.Count - 1;
-                        if (DI5bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosDI(DI5bl3_combo.SelectedItem.ToString(), DI5bl3_combo);
-                            findDi_2 = list_di.Find(x => x.Name == DI5bl3_combo.SelectedItem.ToString());
-                            if (findDi_2 != null)
-                            {
-                                list_di.Remove(findDi_2);
-                                //findDi_2.Select();
-                                //list_di.Add(findDi_2);
-                                if (showCode) DI5bl3_lab.Text = findDi_2.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        DI5bl3_combo.SelectedItem = NOT_SELECTED;
-                        DI5bl3_lab.Text = "";
-                    }
-                    DI5bl3combo_text = DI5bl3_combo.SelectedItem.ToString();
-                    DI5bl3combo_index = DI5bl3_combo.SelectedIndex;
-                }
+
+            // ПЛК
+            RemoveDI_FromComboBox(DI1_combo, name, DI1_lab, DI1combo_text, DI1combo_index);                         // DI1
+            RemoveDI_FromComboBox(DI2_combo, name, DI2_lab, DI2combo_text, DI2combo_index);                         // DI2
+            RemoveDI_FromComboBox(DI3_combo, name, DI3_lab, DI3combo_text, DI3combo_index);                         // DI3
+            RemoveDI_FromComboBox(DI4_combo, name, DI4_lab, DI4combo_text, DI4combo_index);                         // DI4
+            RemoveDI_FromComboBox(DI5_combo, name, DI5_lab, DI5combo_text, DI5combo_index);                         // DI5
+            // Блок расширения 1
+            RemoveDI_FromComboBox(DI1bl1_combo, name, DI1bl1_lab, DI1bl1combo_text, DI1bl1combo_index);             // DI1
+            RemoveDI_FromComboBox(DI2bl1_combo, name, DI2bl1_lab, DI2bl1combo_text, DI2bl1combo_index);             // DI2
+            RemoveDI_FromComboBox(DI3bl1_combo, name, DI3bl1_lab, DI3bl1combo_text, DI3bl1combo_index);             // DI3
+            RemoveDI_FromComboBox(DI4bl1_combo, name, DI4bl1_lab, DI4bl1combo_text, DI4bl1combo_index);             // DI4
+            RemoveDI_FromComboBox(DI5bl1_combo, name, DI5bl1_lab, DI5bl1combo_text, DI5bl1combo_index);             // DI5
+            // Блок расширения 2
+            RemoveDI_FromComboBox(DI1bl2_combo, name, DI1bl2_lab, DI1bl2combo_text, DI1bl2combo_index);             // DI1
+            RemoveDI_FromComboBox(DI2bl2_combo, name, DI2bl2_lab, DI2bl2combo_text, DI2bl2combo_index);             // DI2
+            RemoveDI_FromComboBox(DI3bl2_combo, name, DI3bl2_lab, DI3bl2combo_text, DI3bl2combo_index);             // DI3
+            RemoveDI_FromComboBox(DI4bl2_combo, name, DI4bl2_lab, DI4bl2combo_text, DI4bl2combo_index);             // DI4
+            RemoveDI_FromComboBox(DI5bl2_combo, name, DI5bl2_lab, DI5bl2combo_text, DI5bl2combo_index);             // DI5
+            // Блок расширения 3
+            RemoveDI_FromComboBox(DI1bl3_combo, name, DI1bl3_lab, DI1bl3combo_text, DI1bl3combo_index);             // DI1
+            RemoveDI_FromComboBox(DI2bl3_combo, name, DI2bl3_lab, DI2bl3combo_text, DI2bl3combo_index);             // DI2
+            RemoveDI_FromComboBox(DI3bl3_combo, name, DI3bl3_lab, DI3bl3combo_text, DI3bl3combo_index);             // DI3
+            RemoveDI_FromComboBox(DI4bl3_combo, name, DI4bl3_lab, DI4bl3combo_text, DI4bl3combo_index);             // DI4
+            RemoveDI_FromComboBox(DI5bl3_combo, name, DI5bl3_lab, DI5bl3combo_text, DI5bl3combo_index);             // DI5
+
+
             for (int i = 0; i < AI1_combo.Items.Count; i++) // AI1
                 if (AI1_combo.Items[i].ToString() == name)
                 {

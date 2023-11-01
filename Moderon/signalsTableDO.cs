@@ -541,6 +541,7 @@ namespace Moderon
         ///<summary>Добавление нового DO и его назначение под первый нераспределённый выход</summary>
         private void AddNewDO(ushort code)
         {
+            // ПЛК
             if (DO1_combo.SelectedIndex == 0) SelectComboBox_DO(DO1_combo, code, DO1_lab, DO1combo_text, DO1combo_index);
             else if (DO2_combo.SelectedIndex == 0) SelectComboBox_DO(DO2_combo, code, DO2_lab, DO2combo_text, DO2combo_index);
             else if (DO3_combo.SelectedIndex == 0) SelectComboBox_DO(DO3_combo, code, DO3_lab, DO3combo_text, DO3combo_index);
@@ -548,6 +549,7 @@ namespace Moderon
             else if (DO5_combo.SelectedIndex == 0) SelectComboBox_DO(DO5_combo, code, DO5_lab, DO5combo_text, DO5combo_index);
             else if (DO6_combo.SelectedIndex == 0) SelectComboBox_DO(DO6_combo, code, DO6_lab, DO6combo_text, DO6combo_index);
             else if (DO7_combo.SelectedIndex == 0) SelectComboBox_DO(DO7_combo, code, DO7_lab, DO7combo_text, DO7combo_index);
+            // Блок расширения 1
             else if (DO1bl1_combo.SelectedIndex == 0) SelectComboBox_DO(DO1bl1_combo, code, DO1bl1_lab, DO1bl1combo_text, DO1bl1combo_index);
             else if (DO2bl1_combo.SelectedIndex == 0) SelectComboBox_DO(DO2bl1_combo, code, DO2bl1_lab, DO2bl1combo_text, DO2bl1combo_index);
             else if (DO3bl1_combo.SelectedIndex == 0) SelectComboBox_DO(DO3bl1_combo, code, DO3bl1_lab, DO3bl1combo_text, DO3bl1combo_index);
@@ -555,6 +557,7 @@ namespace Moderon
             else if (DO5bl1_combo.SelectedIndex == 0) SelectComboBox_DO(DO5bl1_combo, code, DO5bl1_lab, DO5bl1combo_text, DO5bl1combo_index);
             else if (DO6bl1_combo.SelectedIndex == 0) SelectComboBox_DO(DO6bl1_combo, code, DO6bl1_lab, DO6bl1combo_text, DO6bl1combo_index);
             else if (DO7bl1_combo.SelectedIndex == 0) SelectComboBox_DO(DO7bl1_combo, code, DO7bl1_lab, DO7bl1combo_text, DO7bl1combo_index);
+            // Блок расширения 2
             else if (DO1bl2_combo.SelectedIndex == 0) SelectComboBox_DO(DO1bl2_combo, code, DO1bl2_lab, DO1bl2combo_text, DO1bl2combo_index);
             else if (DO2bl2_combo.SelectedIndex == 0) SelectComboBox_DO(DO2bl2_combo, code, DO2bl2_lab, DO2bl2combo_text, DO2bl2combo_index);
             else if (DO3bl2_combo.SelectedIndex == 0) SelectComboBox_DO(DO3bl2_combo, code, DO3bl2_lab, DO3bl2combo_text, DO3bl2combo_index);
@@ -562,6 +565,7 @@ namespace Moderon
             else if (DO5bl2_combo.SelectedIndex == 0) SelectComboBox_DO(DO5bl2_combo, code, DO5bl2_lab, DO5bl2combo_text, DO5bl2combo_index);
             else if (DO6bl2_combo.SelectedIndex == 0) SelectComboBox_DO(DO6bl2_combo, code, DO6bl2_lab, DO6bl2combo_text, DO6bl2combo_index);
             else if (DO7bl2_combo.SelectedIndex == 0) SelectComboBox_DO(DO7bl2_combo, code, DO7bl2_lab, DO7bl2combo_text, DO7bl2combo_index);
+            // Блок расширения 3
             else if (DO1bl3_combo.SelectedIndex == 0) SelectComboBox_DO(DO1bl3_combo, code, DO1bl3_lab, DO1bl3combo_text, DO1bl3combo_index);
             else if (DO2bl3_combo.SelectedIndex == 0) SelectComboBox_DO(DO2bl3_combo, code, DO2bl3_lab, DO2bl3combo_text, DO2bl3combo_index);
             else if (DO3bl3_combo.SelectedIndex == 0) SelectComboBox_DO(DO3bl3_combo, code, DO3bl3_lab, DO3bl3combo_text, DO3bl3combo_index);

@@ -141,3 +141,9 @@
 - добавлен метод `RemoveAO_FromComboBox` для `SubFromCombosAO`  
 - создан метод `AddToListAO` для добавления к списку AO  
 
+01.11.23 (среда)  
+
+- закончен рефакторинг для файла `signalsTableAO.cs`
+- создан метод `AddToCombo_DI` для добавления к comboBox  
+- добавлены методы `SelectComboBox_DI` и `SelectComboBoxDI_to_AI`  
+- переписан метод `AddNewDI` с использованием новых методов  

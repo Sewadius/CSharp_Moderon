@@ -704,57 +704,43 @@ namespace Moderon
         {
             ushort code_1 = 14;                                                     // Аналоговое управление рециркуляцией
 
-            if (recircCheck.Checked && comboSysType.SelectedIndex == 1)
-            { // Выбрали рециркуляцию и ПВ-система
-                list_ao.Add(new Ao("Рециркуляция 0-10 В", code_1));
-                AddNewAO(code_1);
-            }
-            else // Отмена выбора рециркуляции
-            {
-                SubFromCombosAO(code_1); // Удаление сигнала
-            }
+            if (recircCheck.Checked && comboSysType.SelectedIndex == 1)             // Выбрали рециркуляцию и ПВ-система
+                AddToListAO("Рециркуляция 0-10 В", code_1);
+            else                                                                    // Отмена выбора рециркуляции
+                SubFromCombosAO(code_1);                                            // Удаление сигнала
         }
 
         ///<summary>Выбрали рекуператор</summary>
         private void RecupCheck_signalsAOCheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 15; // Аналоговое управление рекуператором
-            if (recupCheck.Checked && comboSysType.SelectedIndex == 1)
-            { // Выбрали рекуператор и ПВ-система
+            ushort code_1 = 15;                                                     // Аналоговое управление рекуператором
+
+            if (recupCheck.Checked && comboSysType.SelectedIndex == 1)              // Выбрали рекуператор и ПВ-система
+            {
+                // Роторный, гликолевый или пластинчатый 0-10 В
                 if (recupTypeCombo.SelectedIndex == 0 || recupTypeCombo.SelectedIndex == 2 ||
                         (recupTypeCombo.SelectedIndex == 1 && bypassPlastCombo.SelectedIndex == 2))
-                { // Роторный, гликолевый или пластинчатый 0-10 В
-                    list_ao.Add(new Ao("Рекуператор 0-10 В", code_1));
-                    AddNewAO(code_1);
-                }
+                    AddToListAO("Рекуператор 0-10 В", code_1);
             }
-            else // Отмена выбора рекуператора
-            {
-                SubFromCombosAO(code_1); // Удаление сигнала
-            }
+            else                                                                    // Отмена выбора рекуператора
+                SubFromCombosAO(code_1);                                            // Удаление сигнала
         }
 
         ///<summary>Изменили тип рекуператора</summary>
         private void RecupTypeCombo_signalsAOSelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 15; // Аналоговое управление рекуператором
-            if (recupCheck.Checked && comboSysType.SelectedIndex == 1)
-            { // Выбрали рекуператор и ПВ-система
-                SubFromCombosAO(code_1); // Удаление сигнала
+            ushort code_1 = 15;                                                     // Аналоговое управление рекуператором
+
+            if (recupCheck.Checked && comboSysType.SelectedIndex == 1)              // Выбрали рекуператор и ПВ-система
+            { 
+                SubFromCombosAO(code_1);                                            // Удаление сигнала
                 System.Threading.Thread.Sleep(10);
+                // Роторный или гликолевый рекуператор
                 if (recupTypeCombo.SelectedIndex == 0 || recupTypeCombo.SelectedIndex == 2)
-                { // Роторный или гликолевый рекуператор
-                    list_ao.Add(new Ao("Рекуператор 0-10 В", code_1));
-                    AddNewAO(code_1);
-                }
-                else if (recupTypeCombo.SelectedIndex == 1) // Пластинчатый рекуператор
-                {
-                    if (bypassPlastCombo.SelectedIndex == 2) // Управление 0-10 В
-                    {
-                        list_ao.Add(new Ao("Рекуператор 0-10 В", code_1));
-                        AddNewAO(code_1);
-                    }
-                }
+                    AddToListAO("Рекуператор 0-10 В", code_1);
+                // Пластинчатый рекуператор и управление 0-10 В
+                else if (recupTypeCombo.SelectedIndex == 1 && bypassPlastCombo.SelectedIndex == 2) 
+                    AddToListAO("Рекуператор 0-10 В", code_1);
             }
         }
 
@@ -762,61 +748,48 @@ namespace Moderon
         private void BypassPlastCombo_signalsAOSelectedIndexChanged(object sender, EventArgs e)
         {
             ushort code_1 = 15; // Аналоговое управление рекуператором
+
+            // Выбран пластинчатый рекуператор и ПВ-система
             if (recupCheck.Checked && comboSysType.SelectedIndex == 1 && recupTypeCombo.SelectedIndex == 1)
-            { // Выбран пластинчатый рекуператор и ПВ-система
-                if (bypassPlastCombo.SelectedIndex == 2) // Управление 0-10 В
-                {
-                    list_ao.Add(new Ao("Рекуператор 0-10 В", code_1));
-                    AddNewAO(code_1);
-                }
-                else // Другой тип управления
-                {
-                    SubFromCombosAO(code_1); // Удаление сигнала
-                }
+            { 
+                if (bypassPlastCombo.SelectedIndex == 2)                            // Управление 0-10 В
+                    AddToListAO("Рекуператор 0-10 В", code_1);
+                else                                                                // Другой тип управления
+                    SubFromCombosAO(code_1);                                        // Удаление сигнала
             }
         }
 
         ///<summary>Выбрали управление скоростью для приточного вентилятора</summary>
         private void PrFanSpeedCheck_CheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 1; // Скорость приточного 1
-            ushort code_2 = 3; // Скорость приточного 2
-            if (prFanSpeedCheck.Checked) // Выбрали управление скоростью вентилятора
+            ushort code_1 = 1, code_2 = 3;                                          // Скорость приточного 1 и 2
+
+            if (prFanSpeedCheck.Checked)                                            // Выбрали управление скоростью вентилятора
             {
-                list_ao.Add(new Ao("Скорость приточного вентилятора 1", code_1));
-                AddNewAO(code_1);
-                if (checkResPrFan.Checked) // Если выбран резерв П
-                {
-                    list_ao.Add(new Ao("Скорость приточного вентилятора 2", code_2));
-                    AddNewAO(code_2);
-                }
+                AddToListAO("Скорость приточного вентилятора 1", code_1);
+                if (checkResPrFan.Checked)                                          // Если выбран резерв П
+                    AddToListAO("Скорость приточного вентилятора 2", code_2);
             }
-            else // Отмена выбора управления скоростью
+            else                                                                    // Отмена выбора управления скоростью
             {
-                SubFromCombosAO(code_1); 
-                if (checkResPrFan.Checked) SubFromCombosAO(code_2); // Удаление сигналов
+                SubFromCombosAO(code_1); SubFromCombosAO(code_2);                   // Удаление сигналов
             }
         }
 
         ///<summary>Выбрали управление скоростью для вытяжного вентилятора</summary>
         private void OutFanSpeedCheck_CheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 5; // Скорость вытяжного 1
-            ushort code_2 = 7; // Скорость вытяжного 2
-            if (outFanSpeedCheck.Checked) // Выбрали управление скоростью вентилятора
+            ushort code_1 = 5, code_2 = 7;                                          // Скорость вытяжного 1 и 2
+
+            if (outFanSpeedCheck.Checked)                                           // Выбрали управление скоростью вентилятора
             {
-                list_ao.Add(new Ao("Скорость вытяжного вентилятора 1", code_1));
-                AddNewAO(code_1);
-                if (checkResPrFan.Checked) // Если выбран резерв В
-                {
-                    list_ao.Add(new Ao("Скорость вытяжного вентилятора 2", code_2));
-                    AddNewAO(code_2);
-                }
+                AddToListAO("Скорость вытяжного вентилятора 1", code_1);
+                if (checkResPrFan.Checked)                                          // Если выбран резерв В
+                    AddToListAO("Скорость вытяжного вентилятора 2", code_2);
             }
-            else // Отмена выбора управления скоростью
+            else                                                                    // Отмена выбора управления скоростью
             {
-                SubFromCombosAO(code_1); 
-                if (checkResOutFan.Checked) SubFromCombosAO(code_2); // Удаление сигналов
+                SubFromCombosAO(code_1); SubFromCombosAO(code_2);                   // Удаление сигналов
             }
         }
     }
