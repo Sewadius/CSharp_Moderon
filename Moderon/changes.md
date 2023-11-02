@@ -147,3 +147,8 @@
 - создан метод `AddToCombo_DI` для добавления к comboBox  
 - добавлены методы `SelectComboBox_DI` и `SelectComboBoxDI_to_AI`  
 - переписан метод `AddNewDI` с использованием новых методов  
+
+02.11.23 (четверг)
+
+- переписан метод `SubFromCombosDI` с использованием `RemoveDI_FromComboBox`
+

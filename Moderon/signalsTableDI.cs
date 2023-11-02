@@ -423,9 +423,11 @@ namespace Moderon
             else if (AI3bl3_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI3bl3_combo, AI3bl3_typeCombo, code, AI3bl3_lab, AI3bl3combo_text, AI3bl3combo_index);
         }
 
-        ///<summary>Удаление DI из определённого comboBox</summary>
-        private void RemoveDI_FromComboBox(ComboBox comboBox, string name, Label label, string text, int index)
+        ///<summary>Удаление DI из определённого comboBox, дискретный/аналоговый вход</summary>
+        private void RemoveDI_FromComboBox(ComboBox comboBox, string name, Label label, string text, int index, bool di_type)
         {
+            Di find_di;                                                                                 // Дискретный вход для поиска
+            Ai find_ai;                                                                                 // Аналоговый вход для поиска
             for (int i = 0; i < comboBox.Items.Count; i++)
                 if (comboBox.Items[i].ToString() == name)                                               // Есть совпадение по имени в списке
                 {
@@ -436,12 +438,24 @@ namespace Moderon
                         if (comboBox.SelectedItem.ToString() == NOT_SELECTED)
                         {
                             SubFromCombosDI(comboBox.SelectedItem.ToString(), comboBox);                // Удаление из других comboBox выбранного элемента
-                            Di find_di = list_di.Find(x => x.Name == comboBox.SelectedItem.ToString());
-                            if (find_di != null)
+                            if (di_type)                                                                // Дискретный тип comboBox
                             {
-                                list_di.Remove(find_di);
-                                if (showCode) label.Text = find_di.Code.ToString();
+                                find_di = list_di.Find(x => x.Name == comboBox.SelectedItem.ToString());
+                                if (find_di != null)
+                                {
+                                    list_di.Remove(find_di);
+                                    if (showCode) label.Text = find_di.Code.ToString();
+                                }
                             }
+                            else                                                                        // Аналоговый тип comboBox
+                            {
+                                find_ai = list_ai.Find(x => x.Name == comboBox.SelectedItem.ToString());
+                                if (find_ai != null)
+                                {
+                                    list_ai.Remove(find_ai);
+                                    if (showCode) label.Text = find_ai.Code.ToString();
+                                }
+                            }     
                         }
                     }
                     else                                                                                // Только "Не выбрано"
@@ -457,744 +471,96 @@ namespace Moderon
         ///<summary>Удаление DI из всех comboBox</summary>
         private void SubFromCombosDI(ushort code)
         {
-            Di findDi, findDi_2;
-            Ai findAi;
-
-            string name = "";                                                                           // Текстовое название дискретного входа
-            findDi = list_di.Find(x => x.Code == code);
+            string name = "";                                                                  // Текстовое название дискретного входа
+            Di findDi = list_di.Find(x => x.Code == code);
             if (findDi != null) name = findDi.Name;
             else return;
 
-            subDIcondition = true; // Признак удаления DI, не работает событие indexChanged
-            subAIcondition = true; // Признак удаления AI, не работает событие indexChanged
+            subDIcondition = true; subAIcondition = true;                                      // Признак удаления DI и AI, не работает событие indexChanged
 
             // ПЛК
-            RemoveDI_FromComboBox(DI1_combo, name, DI1_lab, DI1combo_text, DI1combo_index);                         // DI1
-            RemoveDI_FromComboBox(DI2_combo, name, DI2_lab, DI2combo_text, DI2combo_index);                         // DI2
-            RemoveDI_FromComboBox(DI3_combo, name, DI3_lab, DI3combo_text, DI3combo_index);                         // DI3
-            RemoveDI_FromComboBox(DI4_combo, name, DI4_lab, DI4combo_text, DI4combo_index);                         // DI4
-            RemoveDI_FromComboBox(DI5_combo, name, DI5_lab, DI5combo_text, DI5combo_index);                         // DI5
+            RemoveDI_FromComboBox(DI1_combo, name, DI1_lab, DI1combo_text, DI1combo_index, true);                         // DI1
+            RemoveDI_FromComboBox(DI2_combo, name, DI2_lab, DI2combo_text, DI2combo_index, true);                         // DI2
+            RemoveDI_FromComboBox(DI3_combo, name, DI3_lab, DI3combo_text, DI3combo_index, true);                         // DI3
+            RemoveDI_FromComboBox(DI4_combo, name, DI4_lab, DI4combo_text, DI4combo_index, true);                         // DI4
+            RemoveDI_FromComboBox(DI5_combo, name, DI5_lab, DI5combo_text, DI5combo_index, true);                         // DI5
             // Блок расширения 1
-            RemoveDI_FromComboBox(DI1bl1_combo, name, DI1bl1_lab, DI1bl1combo_text, DI1bl1combo_index);             // DI1
-            RemoveDI_FromComboBox(DI2bl1_combo, name, DI2bl1_lab, DI2bl1combo_text, DI2bl1combo_index);             // DI2
-            RemoveDI_FromComboBox(DI3bl1_combo, name, DI3bl1_lab, DI3bl1combo_text, DI3bl1combo_index);             // DI3
-            RemoveDI_FromComboBox(DI4bl1_combo, name, DI4bl1_lab, DI4bl1combo_text, DI4bl1combo_index);             // DI4
-            RemoveDI_FromComboBox(DI5bl1_combo, name, DI5bl1_lab, DI5bl1combo_text, DI5bl1combo_index);             // DI5
+            RemoveDI_FromComboBox(DI1bl1_combo, name, DI1bl1_lab, DI1bl1combo_text, DI1bl1combo_index, true);             // DI1
+            RemoveDI_FromComboBox(DI2bl1_combo, name, DI2bl1_lab, DI2bl1combo_text, DI2bl1combo_index, true);             // DI2
+            RemoveDI_FromComboBox(DI3bl1_combo, name, DI3bl1_lab, DI3bl1combo_text, DI3bl1combo_index, true);             // DI3
+            RemoveDI_FromComboBox(DI4bl1_combo, name, DI4bl1_lab, DI4bl1combo_text, DI4bl1combo_index, true);             // DI4
+            RemoveDI_FromComboBox(DI5bl1_combo, name, DI5bl1_lab, DI5bl1combo_text, DI5bl1combo_index, true);             // DI5
             // Блок расширения 2
-            RemoveDI_FromComboBox(DI1bl2_combo, name, DI1bl2_lab, DI1bl2combo_text, DI1bl2combo_index);             // DI1
-            RemoveDI_FromComboBox(DI2bl2_combo, name, DI2bl2_lab, DI2bl2combo_text, DI2bl2combo_index);             // DI2
-            RemoveDI_FromComboBox(DI3bl2_combo, name, DI3bl2_lab, DI3bl2combo_text, DI3bl2combo_index);             // DI3
-            RemoveDI_FromComboBox(DI4bl2_combo, name, DI4bl2_lab, DI4bl2combo_text, DI4bl2combo_index);             // DI4
-            RemoveDI_FromComboBox(DI5bl2_combo, name, DI5bl2_lab, DI5bl2combo_text, DI5bl2combo_index);             // DI5
+            RemoveDI_FromComboBox(DI1bl2_combo, name, DI1bl2_lab, DI1bl2combo_text, DI1bl2combo_index, true);             // DI1
+            RemoveDI_FromComboBox(DI2bl2_combo, name, DI2bl2_lab, DI2bl2combo_text, DI2bl2combo_index, true);             // DI2
+            RemoveDI_FromComboBox(DI3bl2_combo, name, DI3bl2_lab, DI3bl2combo_text, DI3bl2combo_index, true);             // DI3
+            RemoveDI_FromComboBox(DI4bl2_combo, name, DI4bl2_lab, DI4bl2combo_text, DI4bl2combo_index, true);             // DI4
+            RemoveDI_FromComboBox(DI5bl2_combo, name, DI5bl2_lab, DI5bl2combo_text, DI5bl2combo_index, true);             // DI5
             // Блок расширения 3
-            RemoveDI_FromComboBox(DI1bl3_combo, name, DI1bl3_lab, DI1bl3combo_text, DI1bl3combo_index);             // DI1
-            RemoveDI_FromComboBox(DI2bl3_combo, name, DI2bl3_lab, DI2bl3combo_text, DI2bl3combo_index);             // DI2
-            RemoveDI_FromComboBox(DI3bl3_combo, name, DI3bl3_lab, DI3bl3combo_text, DI3bl3combo_index);             // DI3
-            RemoveDI_FromComboBox(DI4bl3_combo, name, DI4bl3_lab, DI4bl3combo_text, DI4bl3combo_index);             // DI4
-            RemoveDI_FromComboBox(DI5bl3_combo, name, DI5bl3_lab, DI5bl3combo_text, DI5bl3combo_index);             // DI5
+            RemoveDI_FromComboBox(DI1bl3_combo, name, DI1bl3_lab, DI1bl3combo_text, DI1bl3combo_index, true);             // DI1
+            RemoveDI_FromComboBox(DI2bl3_combo, name, DI2bl3_lab, DI2bl3combo_text, DI2bl3combo_index, true);             // DI2
+            RemoveDI_FromComboBox(DI3bl3_combo, name, DI3bl3_lab, DI3bl3combo_text, DI3bl3combo_index, true);             // DI3
+            RemoveDI_FromComboBox(DI4bl3_combo, name, DI4bl3_lab, DI4bl3combo_text, DI4bl3combo_index, true);             // DI4
+            RemoveDI_FromComboBox(DI5bl3_combo, name, DI5bl3_lab, DI5bl3combo_text, DI5bl3combo_index, true);             // DI5
+            // ПЛК. аналоговые входы
+            RemoveDI_FromComboBox(AI1_combo, name, AI1_lab, AI1combo_text, AI1combo_index, false);                        // AI1  
+            RemoveDI_FromComboBox(AI2_combo, name, AI2_lab, AI2combo_text, AI2combo_index, false);                        // AI2
+            RemoveDI_FromComboBox(AI3_combo, name, AI3_lab, AI3combo_text, AI3combo_index, false);                        // AI3
+            RemoveDI_FromComboBox(AI4_combo, name, AI4_lab, AI4combo_text, AI4combo_index, false);                        // AI4
+            RemoveDI_FromComboBox(AI5_combo, name, AI5_lab, AI5combo_text, AI5combo_index, false);                        // AI5
+            RemoveDI_FromComboBox(AI6_combo, name, AI6_lab, AI6combo_text, AI6combo_index, false);                        // AI6
+            // Блок расширирения 1, аналоговые входы
+            RemoveDI_FromComboBox(AI1bl1_combo, name, AI1bl1_lab, AI1bl1combo_text, AI1bl1combo_index, false);            // AI1
+            RemoveDI_FromComboBox(AI2bl1_combo, name, AI2bl1_lab, AI2bl1combo_text, AI2bl1combo_index, false);            // AI2
+            RemoveDI_FromComboBox(AI3bl1_combo, name, AI3bl1_lab, AI3bl1combo_text, AI3bl1combo_index, false);            // AI3
+            RemoveDI_FromComboBox(AI4bl1_combo, name, AI4bl1_lab, AI4bl1combo_text, AI4bl1combo_index, false);            // AI4
+            RemoveDI_FromComboBox(AI5bl1_combo, name, AI5bl1_lab, AI5bl1combo_text, AI5bl1combo_index, false);            // AI5
+            RemoveDI_FromComboBox(AI6bl1_combo, name, AI6bl1_lab, AI6bl1combo_text, AI6bl1combo_index, false);            // AI6
+            // Блок расширирения 2, аналоговые входы
+            RemoveDI_FromComboBox(AI1bl2_combo, name, AI1bl2_lab, AI1bl2combo_text, AI1bl2combo_index, false);            // AI1
+            RemoveDI_FromComboBox(AI2bl2_combo, name, AI2bl2_lab, AI2bl2combo_text, AI2bl2combo_index, false);            // AI2
+            RemoveDI_FromComboBox(AI3bl2_combo, name, AI3bl2_lab, AI3bl2combo_text, AI3bl2combo_index, false);            // AI3
+            RemoveDI_FromComboBox(AI4bl2_combo, name, AI4bl2_lab, AI4bl2combo_text, AI4bl2combo_index, false);            // AI4
+            RemoveDI_FromComboBox(AI5bl2_combo, name, AI5bl2_lab, AI5bl2combo_text, AI5bl2combo_index, false);            // AI5
+            RemoveDI_FromComboBox(AI6bl2_combo, name, AI6bl2_lab, AI6bl2combo_text, AI6bl2combo_index, false);            // AI6
+            // Блок расширирения 3, аналоговые входы
+            RemoveDI_FromComboBox(AI1bl3_combo, name, AI1bl3_lab, AI1bl3combo_text, AI1bl3combo_index, false);            // AI1
+            RemoveDI_FromComboBox(AI2bl3_combo, name, AI2bl3_lab, AI2bl3combo_text, AI2bl3combo_index, false);            // AI2
+            RemoveDI_FromComboBox(AI3bl3_combo, name, AI3bl3_lab, AI3bl3combo_text, AI3bl3combo_index, false);            // AI3
+            RemoveDI_FromComboBox(AI4bl3_combo, name, AI4bl3_lab, AI4bl3combo_text, AI4bl3combo_index, false);            // AI4
+            RemoveDI_FromComboBox(AI5bl3_combo, name, AI5bl3_lab, AI5bl3combo_text, AI5bl3combo_index, false);            // AI5
+            RemoveDI_FromComboBox(AI6bl3_combo, name, AI6bl3_lab, AI6bl3combo_text, AI6bl3combo_index, false);            // AI6
 
+            subDIcondition = false; subAIcondition = false;                     // Сброс признака удаления DI и AI 
+            list_di.Remove(findDi);                                             // Удаление сигнала из списка DI
+            CheckSignalsReady();                                                // Проверка распределения сигналов
+        }
 
-            for (int i = 0; i < AI1_combo.Items.Count; i++) // AI1
-                if (AI1_combo.Items[i].ToString() == name)
-                {
-                    AI1_combo.Items.Remove(name);
-                    if (AI1_combo.Items.Count > 1)
-                    {
-                        AI1_combo.SelectedIndex = AI1_combo.Items.Count - 1;
-                        if (AI1_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosAI(AI1_combo.SelectedItem.ToString(), AI1_combo);
-                            findAi = list_ai.Find(x => x.Name == AI1_combo.SelectedItem.ToString());
-                            if (findAi != null)
-                            {
-                                list_ai.Remove(findAi);
-                                //findAi.Select();
-                                //list_ai.Add(findAi);
-                                if (showCode) AI1_lab.Text = findAi.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        AI1_combo.SelectedItem = NOT_SELECTED;
-                        AI1_lab.Text = "";
-                    }
-                    AI1combo_text = AI1_combo.SelectedItem.ToString();
-                    AI1combo_index = AI1_combo.SelectedIndex;
-                }
-            for (int i = 0; i < AI2_combo.Items.Count; i++) // AI2
-                if (AI2_combo.Items[i].ToString() == name)
-                {
-                    AI2_combo.Items.Remove(name);
-                    if (AI2_combo.Items.Count > 1)
-                    {
-                        AI2_combo.SelectedIndex = AI2_combo.Items.Count - 1;
-                        if (AI2_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosAI(AI2_combo.SelectedItem.ToString(), AI2_combo);
-                            findAi = list_ai.Find(x => x.Name == AI2_combo.SelectedItem.ToString());
-                            if (findAi != null)
-                            {
-                                list_ai.Remove(findAi);
-                                //findAi.Select();
-                                //list_ai.Add(findAi);
-                                if (showCode) AI2_lab.Text = findAi.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        AI2_combo.SelectedItem = NOT_SELECTED;
-                        AI2_lab.Text = "";
-                    }
-                    AI2combo_text = AI2_combo.SelectedItem.ToString();
-                    AI2combo_index = AI2_combo.SelectedIndex;
-                }
-            for (int i = 0; i < AI3_combo.Items.Count; i++) // AI3
-                if (AI3_combo.Items[i].ToString() == name)
-                {
-                    AI3_combo.Items.Remove(name);
-                    if (AI3_combo.Items.Count > 1)
-                    {
-                        AI3_combo.SelectedIndex = AI3_combo.Items.Count - 1;
-                        if (AI3_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosAI(AI3_combo.SelectedItem.ToString(), AI3_combo);
-                            findAi = list_ai.Find(x => x.Name == AI3_combo.SelectedItem.ToString());
-                            if (findAi != null)
-                            {
-                                list_ai.Remove(findAi);
-                                //findAi.Select();
-                                //list_ai.Add(findAi);
-                                if (showCode) AI3_lab.Text = findAi.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        AI3_combo.SelectedItem = NOT_SELECTED;
-                        AI3_lab.Text = "";
-                    }
-                    AI3combo_text = AI3_combo.SelectedItem.ToString();
-                    AI3combo_index = AI3_combo.SelectedIndex;
-                }
-            for (int i = 0; i < AI4_combo.Items.Count; i++) // AI4
-                if (AI4_combo.Items[i].ToString() == name)
-                {
-                    AI4_combo.Items.Remove(name);
-                    if (AI4_combo.Items.Count > 1)
-                    {
-                        AI4_combo.SelectedIndex = AI4_combo.Items.Count - 1;
-                        if (AI4_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosAI(AI4_combo.SelectedItem.ToString(), AI4_combo);
-                            findAi = list_ai.Find(x => x.Name == AI4_combo.SelectedItem.ToString());
-                            if (findAi != null)
-                            {
-                                list_ai.Remove(findAi);
-                                //findAi.Select();
-                                //list_ai.Add(findAi);
-                                if (showCode) AI4_lab.Text = findAi.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        AI4_combo.SelectedItem = NOT_SELECTED;
-                        AI4_lab.Text = "";
-                    }
-                    AI4combo_text = AI4_combo.SelectedItem.ToString();
-                    AI4combo_index = AI4_combo.SelectedIndex;
-                }
-            for (int i = 0; i < AI5_combo.Items.Count; i++) // AI5
-                if (AI5_combo.Items[i].ToString() == name)
-                {
-                    AI5_combo.Items.Remove(name);
-                    if (AI5_combo.Items.Count > 1)
-                    {
-                        AI5_combo.SelectedIndex = AI5_combo.Items.Count - 1;
-                        if (AI5_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosAI(AI5_combo.SelectedItem.ToString(), AI5_combo);
-                            findAi = list_ai.Find(x => x.Name == AI5_combo.SelectedItem.ToString());
-                            if (findAi != null)
-                            {
-                                list_ai.Remove(findAi);
-                                //findAi.Select();
-                                //list_ai.Add(findAi);
-                                if (showCode) AI5_lab.Text = findAi.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        AI5_combo.SelectedItem = NOT_SELECTED;
-                        AI5_lab.Text = "";
-                    }
-                    AI5combo_text = AI5_combo.SelectedItem.ToString();
-                    AI5combo_index = AI5_combo.SelectedIndex;
-                }
-            for (int i = 0; i < AI6_combo.Items.Count; i++) // AI6
-                if (AI6_combo.Items[i].ToString() == name)
-                {
-                    AI6_combo.Items.Remove(name);
-                    if (AI6_combo.Items.Count > 1)
-                    {
-                        AI6_combo.SelectedIndex = AI6_combo.Items.Count - 1;
-                        if (AI6_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosAI(AI6_combo.SelectedItem.ToString(), AI6_combo);
-                            findAi = list_ai.Find(x => x.Name == AI6_combo.SelectedItem.ToString());
-                            if (findAi != null)
-                            {
-                                list_ai.Remove(findAi);
-                                //findAi.Select();
-                                //list_ai.Add(findAi);
-                                if (showCode) AI6_lab.Text = findAi.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        AI6_combo.SelectedItem = NOT_SELECTED;
-                        AI6_lab.Text = "";
-                    }
-                    AI6combo_text = AI6_combo.SelectedItem.ToString();
-                    AI6combo_index = AI6_combo.SelectedIndex;
-                }
-            for (int i = 0; i < AI1bl1_combo.Items.Count; i++) // AI1, блок 1
-                if (AI1bl1_combo.Items[i].ToString() == name)
-                {
-                    AI1bl1_combo.Items.Remove(name);
-                    if (AI1bl1_combo.Items.Count > 1)
-                    {
-                        AI1bl1_combo.SelectedIndex = AI1bl1_combo.Items.Count - 1;
-                        if (AI1bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosAI(AI1bl1_combo.SelectedItem.ToString(), AI1bl1_combo);
-                            findAi = list_ai.Find(x => x.Name == AI1bl1_combo.SelectedItem.ToString());
-                            if (findAi != null)
-                            {
-                                list_ai.Remove(findAi);
-                                //findAi.Select();
-                                //list_ai.Add(findAi);
-                                if (showCode) AI1bl1_lab.Text = findAi.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        AI1bl1_combo.SelectedItem = NOT_SELECTED;
-                        AI1bl1_lab.Text = "";
-                    }
-                    AI1bl1combo_text = AI1bl1_combo.SelectedItem.ToString();
-                    AI1bl1combo_index = AI1bl1_combo.SelectedIndex;
-                }
-            for (int i = 0; i < AI2bl1_combo.Items.Count; i++) // AI2, блок 1
-                if (AI2bl1_combo.Items[i].ToString() == name)
-                {
-                    AI2bl1_combo.Items.Remove(name);
-                    if (AI2bl1_combo.Items.Count > 1)
-                    {
-                        AI2bl1_combo.SelectedIndex = AI2bl1_combo.Items.Count - 1;
-                        if (AI2bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosAI(AI2bl1_combo.SelectedItem.ToString(), AI2bl1_combo);
-                            findAi = list_ai.Find(x => x.Name == AI2bl1_combo.SelectedItem.ToString());
-                            if (findAi != null)
-                            {
-                                list_ai.Remove(findAi);
-                                //findAi.Select();
-                                //list_ai.Add(findAi);
-                                if (showCode) AI2bl1_lab.Text = findAi.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        AI2bl1_combo.SelectedItem = NOT_SELECTED;
-                        AI2bl1_lab.Text = "";
-                    }
-                    AI2bl1combo_text = AI2bl1_combo.SelectedItem.ToString();
-                    AI2bl1combo_index = AI2bl1_combo.SelectedIndex;
-                }
-            for (int i = 0; i < AI3bl1_combo.Items.Count; i++) // AI3, блок 1
-                if (AI3bl1_combo.Items[i].ToString() == name)
-                {
-                    AI3bl1_combo.Items.Remove(name);
-                    if (AI3bl1_combo.Items.Count > 1)
-                    {
-                        AI3bl1_combo.SelectedIndex = AI3bl1_combo.Items.Count - 1;
-                        if (AI3bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosAI(AI3bl1_combo.SelectedItem.ToString(), AI3bl1_combo);
-                            findAi = list_ai.Find(x => x.Name == AI3bl1_combo.SelectedItem.ToString());
-                            if (findAi != null)
-                            {
-                                list_ai.Remove(findAi);
-                                //findAi.Select();
-                                //list_ai.Add(findAi);
-                                if (showCode) AI3bl1_lab.Text = findAi.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        AI3bl1_combo.SelectedItem = NOT_SELECTED;
-                        AI3bl1_lab.Text = "";
-                    }
-                    AI3bl1combo_text = AI3bl1_combo.SelectedItem.ToString();
-                    AI3bl1combo_index = AI3bl1_combo.SelectedIndex;
-                }
-            for (int i = 0; i < AI4bl1_combo.Items.Count; i++) // AI4, блок 1
-                if (AI4bl1_combo.Items[i].ToString() == name)
-                {
-                    AI4bl1_combo.Items.Remove(name);
-                    if (AI4bl1_combo.Items.Count > 1)
-                    {
-                        AI4bl1_combo.SelectedIndex = AI4bl1_combo.Items.Count - 1;
-                        if (AI4bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosAI(AI4bl1_combo.SelectedItem.ToString(), AI4bl1_combo);
-                            findAi = list_ai.Find(x => x.Name == AI4bl1_combo.SelectedItem.ToString());
-                            if (findAi != null)
-                            {
-                                list_ai.Remove(findAi);
-                                //findAi.Select();
-                                //list_ai.Add(findAi);
-                                if (showCode) AI4bl1_lab.Text = findAi.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        AI4bl1_combo.SelectedItem = NOT_SELECTED;
-                        AI4bl1_lab.Text = "";
-                    }
-                    AI4bl1combo_text = AI4bl1_combo.SelectedItem.ToString();
-                    AI4bl1combo_index = AI4bl1_combo.SelectedIndex;
-                }
-            for (int i = 0; i < AI5bl1_combo.Items.Count; i++) // AI5, блок 1
-                if (AI5bl1_combo.Items[i].ToString() == name)
-                {
-                    AI5bl1_combo.Items.Remove(name);
-                    if (AI5bl1_combo.Items.Count > 1)
-                    {
-                        AI5bl1_combo.SelectedIndex = AI5bl1_combo.Items.Count - 1;
-                        if (AI5bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosAI(AI5bl1_combo.SelectedItem.ToString(), AI5bl1_combo);
-                            findAi = list_ai.Find(x => x.Name == AI5bl1_combo.SelectedItem.ToString());
-                            if (findAi != null)
-                            {
-                                list_ai.Remove(findAi);
-                                //findAi.Select();
-                                //list_ai.Add(findAi);
-                                if (showCode) AI5bl1_lab.Text = findAi.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        AI5bl1_combo.SelectedItem = NOT_SELECTED;
-                        AI5bl1_lab.Text = "";
-                    }
-                    AI5bl1combo_text = AI5bl1_combo.SelectedItem.ToString();
-                    AI5bl1combo_index = AI5bl1_combo.SelectedIndex;
-                }
-            for (int i = 0; i < AI6bl1_combo.Items.Count; i++) // AI6, блок 1
-                if (AI6bl1_combo.Items[i].ToString() == name)
-                {
-                    AI6bl1_combo.Items.Remove(name);
-                    if (AI6bl1_combo.Items.Count > 1)
-                    {
-                        AI6bl1_combo.SelectedIndex = AI6bl1_combo.Items.Count - 1;
-                        if (AI6bl1_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosAI(AI6bl1_combo.SelectedItem.ToString(), AI6bl1_combo);
-                            findAi = list_ai.Find(x => x.Name == AI6bl1_combo.SelectedItem.ToString());
-                            if (findAi != null)
-                            {
-                                list_ai.Remove(findAi);
-                                //findAi.Select();
-                                //list_ai.Add(findAi);
-                                if (showCode) AI6bl1_lab.Text = findAi.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        AI6bl1_combo.SelectedItem = NOT_SELECTED;
-                        AI6bl1_lab.Text = "";
-                    }
-                    AI6bl1combo_text = AI6bl1_combo.SelectedItem.ToString();
-                    AI6bl1combo_index = AI6bl1_combo.SelectedIndex;
-                }
-            for (int i = 0; i < AI1bl2_combo.Items.Count; i++) // AI1, блок 2
-                if (AI1bl2_combo.Items[i].ToString() == name)
-                {
-                    AI1bl2_combo.Items.Remove(name);
-                    if (AI1bl2_combo.Items.Count > 1)
-                    {
-                        AI1bl2_combo.SelectedIndex = AI1bl2_combo.Items.Count - 1;
-                        if (AI1bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosAI(AI1bl2_combo.SelectedItem.ToString(), AI1bl2_combo);
-                            findAi = list_ai.Find(x => x.Name == AI1bl2_combo.SelectedItem.ToString());
-                            if (findAi != null)
-                            {
-                                list_ai.Remove(findAi);
-                                //findAi.Select();
-                                //list_ai.Add(findAi);
-                                if (showCode) AI1bl2_lab.Text = findAi.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        AI1bl2_combo.SelectedItem = NOT_SELECTED;
-                        AI1bl2_lab.Text = "";
-                    }
-                    AI1bl2combo_text = AI1bl2_combo.SelectedItem.ToString();
-                    AI1bl2combo_index = AI1bl2_combo.SelectedIndex;
-                }
-            for (int i = 0; i < AI2bl2_combo.Items.Count; i++) // AI2, блок 2
-                if (AI2bl2_combo.Items[i].ToString() == name)
-                {
-                    AI2bl2_combo.Items.Remove(name);
-                    if (AI2bl2_combo.Items.Count > 1)
-                    {
-                        AI2bl2_combo.SelectedIndex = AI2bl2_combo.Items.Count - 1;
-                        if (AI2bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosAI(AI2bl2_combo.SelectedItem.ToString(), AI2bl2_combo);
-                            findAi = list_ai.Find(x => x.Name == AI2bl2_combo.SelectedItem.ToString());
-                            if (findAi != null)
-                            {
-                                list_ai.Remove(findAi);
-                                //findAi.Select();
-                                //list_ai.Add(findAi);
-                                if (showCode) AI2bl2_lab.Text = findAi.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        AI2bl2_combo.SelectedItem = NOT_SELECTED;
-                        AI2bl2_lab.Text = "";
-                    }
-                    AI2bl2combo_text = AI2bl2_combo.SelectedItem.ToString();
-                    AI2bl2combo_index = AI2bl2_combo.SelectedIndex;
-                }
-            for (int i = 0; i < AI3bl2_combo.Items.Count; i++) // AI3, блок 2
-                if (AI3bl2_combo.Items[i].ToString() == name)
-                {
-                    AI3bl2_combo.Items.Remove(name);
-                    if (AI3bl2_combo.Items.Count > 1)
-                    {
-                        AI3bl2_combo.SelectedIndex = AI3bl2_combo.Items.Count - 1;
-                        if (AI3bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosAI(AI3bl2_combo.SelectedItem.ToString(), AI3bl2_combo);
-                            findAi = list_ai.Find(x => x.Name == AI3bl2_combo.SelectedItem.ToString());
-                            if (findAi != null)
-                            {
-                                list_ai.Remove(findAi);
-                                //findAi.Select();
-                                //list_ai.Add(findAi);
-                                if (showCode) AI3bl2_lab.Text = findAi.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        AI3bl2_combo.SelectedItem = NOT_SELECTED;
-                        AI3bl2_lab.Text = "";
-                    }
-                    AI3bl2combo_text = AI3bl2_combo.SelectedItem.ToString();
-                    AI3bl2combo_index = AI3bl2_combo.SelectedIndex;
-                }
-            for (int i = 0; i < AI4bl2_combo.Items.Count; i++) // AI4, блок 2
-                if (AI4bl2_combo.Items[i].ToString() == name)
-                {
-                    AI4bl2_combo.Items.Remove(name);
-                    if (AI4bl2_combo.Items.Count > 1)
-                    {
-                        AI4bl2_combo.SelectedIndex = AI4bl2_combo.Items.Count - 1;
-                        if (AI4bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosAI(AI4bl2_combo.SelectedItem.ToString(), AI4bl2_combo);
-                            findAi = list_ai.Find(x => x.Name == AI4bl2_combo.SelectedItem.ToString());
-                            if (findAi != null)
-                            {
-                                list_ai.Remove(findAi);
-                                //findAi.Select();
-                                //list_ai.Add(findAi);
-                                if (showCode) AI4bl2_lab.Text = findAi.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        AI4bl2_combo.SelectedItem = NOT_SELECTED;
-                        AI4bl2_lab.Text = "";
-                    }
-                    AI4bl2combo_text = AI4bl2_combo.SelectedItem.ToString();
-                    AI4bl2combo_index = AI4bl2_combo.SelectedIndex;
-                }
-            for (int i = 0; i < AI5bl2_combo.Items.Count; i++) // AI5, блок 2
-                if (AI5bl2_combo.Items[i].ToString() == name)
-                {
-                    AI5bl2_combo.Items.Remove(name);
-                    if (AI5bl2_combo.Items.Count > 1)
-                    {
-                        AI5bl2_combo.SelectedIndex = AI5bl2_combo.Items.Count - 1;
-                        if (AI5bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosAI(AI5bl2_combo.SelectedItem.ToString(), AI5bl2_combo);
-                            findAi = list_ai.Find(x => x.Name == AI5bl2_combo.SelectedItem.ToString());
-                            if (findAi != null)
-                            {
-                                list_ai.Remove(findAi);
-                                //findAi.Select();
-                                //list_ai.Add(findAi);
-                                if (showCode) AI5bl2_lab.Text = findAi.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        AI5bl2_combo.SelectedItem = NOT_SELECTED;
-                        AI5bl2_lab.Text = "";
-                    }
-                    AI5bl2combo_text = AI5bl2_combo.SelectedItem.ToString();
-                    AI5bl2combo_index = AI5bl2_combo.SelectedIndex;
-                }
-            for (int i = 0; i < AI6bl2_combo.Items.Count; i++) // AI6, блок 2
-                if (AI6bl2_combo.Items[i].ToString() == name)
-                {
-                    AI6bl2_combo.Items.Remove(name);
-                    if (AI6bl2_combo.Items.Count > 1)
-                    {
-                        AI6bl2_combo.SelectedIndex = AI6bl2_combo.Items.Count - 1;
-                        if (AI6bl2_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosAI(AI6bl2_combo.SelectedItem.ToString(), AI6bl2_combo);
-                            findAi = list_ai.Find(x => x.Name == AI6bl2_combo.SelectedItem.ToString());
-                            if (findAi != null)
-                            {
-                                list_ai.Remove(findAi);
-                                //findAi.Select();
-                                //list_ai.Add(findAi);
-                                if (showCode) AI6bl2_lab.Text = findAi.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        AI6bl2_combo.SelectedItem = NOT_SELECTED;
-                        AI6bl2_lab.Text = "";
-                    }
-                    AI6bl2combo_text = AI6bl2_combo.SelectedItem.ToString();
-                    AI6bl2combo_index = AI6bl2_combo.SelectedIndex;
-                }
-            for (int i = 0; i < AI1bl3_combo.Items.Count; i++) // AI1, блок 3
-                if (AI1bl3_combo.Items[i].ToString() == name)
-                {
-                    AI1bl3_combo.Items.Remove(name);
-                    if (AI1bl3_combo.Items.Count > 1)
-                    {
-                        AI1bl3_combo.SelectedIndex = AI1bl3_combo.Items.Count - 1;
-                        if (AI1bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosAI(AI1bl3_combo.SelectedItem.ToString(), AI1bl3_combo);
-                            findAi = list_ai.Find(x => x.Name == AI1bl3_combo.SelectedItem.ToString());
-                            if (findAi != null)
-                            {
-                                list_ai.Remove(findAi);
-                                //findAi.Select();
-                                //list_ai.Add(findAi);
-                                if (showCode) AI1bl3_lab.Text = findAi.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        AI1bl3_combo.SelectedItem = NOT_SELECTED;
-                        AI1bl3_lab.Text = "";
-                    }
-                    AI1bl3combo_text = AI1bl3_combo.SelectedItem.ToString();
-                    AI1bl3combo_index = AI1bl3_combo.SelectedIndex;
-                }
-            for (int i = 0; i < AI2bl3_combo.Items.Count; i++) // AI2, блок 3
-                if (AI2bl3_combo.Items[i].ToString() == name)
-                {
-                    AI2bl3_combo.Items.Remove(name);
-                    if (AI2bl3_combo.Items.Count > 1)
-                    {
-                        AI2bl3_combo.SelectedIndex = AI2bl3_combo.Items.Count - 1;
-                        if (AI2bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosAI(AI2bl3_combo.SelectedItem.ToString(), AI2bl3_combo);
-                            findAi = list_ai.Find(x => x.Name == AI2bl3_combo.SelectedItem.ToString());
-                            if (findAi != null)
-                            {
-                                list_ai.Remove(findAi);
-                                //findAi.Select();
-                                //list_ai.Add(findAi);
-                                if (showCode) AI2bl3_lab.Text = findAi.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        AI2bl3_combo.SelectedItem = NOT_SELECTED;
-                        AI2bl3_lab.Text = "";
-                    }
-                    AI2bl3combo_text = AI2bl3_combo.SelectedItem.ToString();
-                    AI2bl3combo_index = AI2bl3_combo.SelectedIndex;
-                }
-            for (int i = 0; i < AI3bl3_combo.Items.Count; i++) // AI3, блок 3
-                if (AI3bl3_combo.Items[i].ToString() == name)
-                {
-                    AI3bl3_combo.Items.Remove(name);
-                    if (AI3bl3_combo.Items.Count > 1)
-                    {
-                        AI3bl3_combo.SelectedIndex = AI3bl3_combo.Items.Count - 1;
-                        if (AI3bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosAI(AI3bl3_combo.SelectedItem.ToString(), AI3bl3_combo);
-                            findAi = list_ai.Find(x => x.Name == AI3bl3_combo.SelectedItem.ToString());
-                            if (findAi != null)
-                            {
-                                list_ai.Remove(findAi);
-                                //findAi.Select();
-                                //list_ai.Add(findAi);
-                                if (showCode) AI3bl3_lab.Text = findAi.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        AI3bl3_combo.SelectedItem = NOT_SELECTED;
-                        AI3bl3_lab.Text = "";
-                    }
-                    AI3bl3combo_text = AI3bl3_combo.SelectedItem.ToString();
-                    AI3bl3combo_index = AI3bl3_combo.SelectedIndex;
-                }
-            for (int i = 0; i < AI4bl3_combo.Items.Count; i++) // AI4, блок 3
-                if (AI4bl3_combo.Items[i].ToString() == name)
-                {
-                    AI4bl3_combo.Items.Remove(name);
-                    if (AI4bl3_combo.Items.Count > 1)
-                    {
-                        AI4bl3_combo.SelectedIndex = AI4bl3_combo.Items.Count - 1;
-                        if (AI4bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosAI(AI4bl3_combo.SelectedItem.ToString(), AI4bl3_combo);
-                            findAi = list_ai.Find(x => x.Name == AI4bl3_combo.SelectedItem.ToString());
-                            if (findAi != null)
-                            {
-                                list_ai.Remove(findAi);
-                                //findAi.Select();
-                                //list_ai.Add(findAi);
-                                if (showCode) AI4bl3_lab.Text = findAi.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        AI4bl3_combo.SelectedItem = NOT_SELECTED;
-                        AI4bl3_lab.Text = "";
-                    }
-                    AI4bl3combo_text = AI4bl3_combo.SelectedItem.ToString();
-                    AI4bl3combo_index = AI4bl3_combo.SelectedIndex;
-                }
-            for (int i = 0; i < AI5bl3_combo.Items.Count; i++) // AI5, блок 3
-                if (AI5bl3_combo.Items[i].ToString() == name)
-                {
-                    AI5bl3_combo.Items.Remove(name);
-                    if (AI5bl3_combo.Items.Count > 1)
-                    {
-                        AI5bl3_combo.SelectedIndex = AI5bl3_combo.Items.Count - 1;
-                        if (AI5bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosAI(AI5bl3_combo.SelectedItem.ToString(), AI5bl3_combo);
-                            findAi = list_ai.Find(x => x.Name == AI5bl3_combo.SelectedItem.ToString());
-                            if (findAi != null)
-                            {
-                                list_ai.Remove(findAi);
-                                //findAi.Select();
-                                //list_ai.Add(findAi);
-                                if (showCode) AI5bl3_lab.Text = findAi.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        AI5bl3_combo.SelectedItem = NOT_SELECTED;
-                        AI5bl3_lab.Text = "";
-                    }
-                    AI5bl3combo_text = AI5bl3_combo.SelectedItem.ToString();
-                    AI5bl3combo_index = AI5bl3_combo.SelectedIndex;
-                }
-            for (int i = 0; i < AI6bl3_combo.Items.Count; i++) // AI6, блок 3
-                if (AI6bl3_combo.Items[i].ToString() == name)
-                {
-                    AI6bl3_combo.Items.Remove(name);
-                    if (AI6bl3_combo.Items.Count > 1)
-                    {
-                        AI6bl3_combo.SelectedIndex = AI6bl3_combo.Items.Count - 1;
-                        if (AI6bl3_combo.SelectedItem.ToString() != NOT_SELECTED)
-                        {
-                            SubFromCombosAI(AI6bl3_combo.SelectedItem.ToString(), AI6bl3_combo);
-                            findAi = list_ai.Find(x => x.Name == AI6bl3_combo.SelectedItem.ToString());
-                            if (findAi != null)
-                            {
-                                list_ai.Remove(findAi);
-                                //findAi.Select();
-                                //list_ai.Add(findAi);
-                                if (showCode) AI6bl3_lab.Text = findAi.Code.ToString();
-                            }
-                        }
-                    }
-                    else // Только "Не выбрано"
-                    {
-                        AI6bl3_combo.SelectedItem = NOT_SELECTED;
-                        AI6bl3_lab.Text = "";
-                    }
-                    AI6bl3combo_text = AI6bl3_combo.SelectedItem.ToString();
-                    AI6bl3combo_index = AI6bl3_combo.SelectedIndex;
-                }
-            subDIcondition = false; subAIcondition = false;
-            list_di.Remove(findDi); // Удаление сигнала из списка DI
-            CheckSignalsReady(); // Проверка распределения сигналов
+        ///<summary>Метод для добавления DI к списку сигналов</summary>
+        private void AddToListDI(string name, ushort code)
+        {
+            list_di.Add(new Di(name, code));                                    // Добавление к свободному comboBox входа
+            AddNewDI(code);
+        }
+
+        ///<summary>Проверка и добавление дискретного входа</summary>
+        private void CheckAddDIToList(string name, ushort code) 
+        {
+            Di find_di = list_di.Find(x => x.Code == code);
+            if (find_di == null)                                                // Нет такой записи
+                AddToListDI(name, code);
         }
 
         ///<summary>Выбрали блок заслонки</summary>
         private void DampCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            Di find_di1, find_di2;
-            ushort code_1 = 6, code_2 = 39; // Подтверждение открытия приточной/вытяжной заслонки
-            if (dampCheck.Checked && confPrDampCheck.Checked)
-            { // Выбрана приточная заслонка и подтверждение открытия
-                find_di1 = list_di.Find(x => x.Code == code_1);
-                if (find_di1 == null) // Нет такой записи
-                {
-                    list_di.Add(new Di("Подтверждение открытия приточной заслонки", code_1));
-                    AddNewDI(code_1); // Добавление DI к свободному comboBox
-                }
-            }
-            if (dampCheck.Checked && outDampCheck.Checked && confOutDampCheck.Checked)
-            { // Вытяжная заслонка и подтверждение открытия
-                find_di2 = list_di.Find(x => x.Code == code_2);
-                if (find_di2 == null) // Нет такой записи
-                {
-                    list_di.Add(new Di("Подтверждение открытия вытяжной заслонки", code_2));
-                    AddNewDI(code_2); // Добавление DI к свободному comboBox
-                }
-            }
-            else // Отмена выбора блока заслонки
+            ushort code_1 = 6, code_2 = 39;                                                 // Подтверждение открытия приточной/вытяжной заслонки
+
+            if (dampCheck.Checked && confPrDampCheck.Checked)                               // Приточная заслонка и подтверждение открытия
+                CheckAddDIToList("Подтверждение открытия приточной заслонки", code_1);
+            if (dampCheck.Checked && outDampCheck.Checked && confOutDampCheck.Checked)      // Вытяжная заслонка и подтверждение открытия
+                CheckAddDIToList("Подтверждение открытия вытяжной заслонки", code_2);
+            else                                                                            // Отмена выбора блока заслонки
             {
                 SubFromCombosDI(code_1); SubFromCombosDI(code_2);
             }
@@ -1203,184 +569,120 @@ namespace Moderon
         ///<summary>Выбрали подтверждение открытия приточной заслонки</summary>
         private void ConfPrDampCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 6; // Подтверждение открытия приточной заслонки
-            if (dampCheck.Checked && confPrDampCheck.Checked)
-            { // Выбрана приточная заслонка и подтвреждение открытия
-                find_di = list_di.Find(x => x.Code == code_1);
-                if (find_di == null) // Нет такой записи
-                {
-                    list_di.Add(new Di("Подтверждение открытия приточной заслонки", code_1));
-                    AddNewDI(code_1); // Добавление DI к свободному comboBox
-                }
-            }
-            else // Отмен выбора сигнала
-            {
+            ushort code_1 = 6;                                                              // Подтверждение открытия приточной заслонки
+
+            if (dampCheck.Checked && confPrDampCheck.Checked)                               // Выбрана приточная заслонка и подтвреждение открытия
+                CheckAddDIToList("Подтверждение открытия приточной заслонки", code_1);
+            else                                                                            // Отмена выбора сигнала
                 SubFromCombosDI(code_1);
-            }
         }
 
         ///<summary>Выбрали вытяжную заслонку</summary>
         private void OutDampCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 39; // Подтверждение открытия вытяжной заслонки
-            if (comboSysType.SelectedIndex == 1 && dampCheck.Checked && outDampCheck.Checked)
-            { // ПВ-система, выбрана вытяжная заслонка
-                if (confOutDampCheck.Checked) // Подтверждение открытия
-                {
-                    find_di = list_di.Find(x => x.Code == code_1);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Подтверждение открытия вытяжной заслонки", code_1));
-                        AddNewDI(code_1); // Добавление DI к свободному comboBox
-                    }
-                }
+            ushort code_1 = 39;                                                                         // Подтверждение открытия вытяжной заслонки
+
+            if (comboSysType.SelectedIndex == 1 && dampCheck.Checked && outDampCheck.Checked)           // ПВ-система, выбрана вытяжная заслонка
+            { 
+                if (confOutDampCheck.Checked)                                                           // Подтверждение открытия
+                    CheckAddDIToList("Подтверждение открытия вытяжной заслонки", code_1);
             }
-            else // Отмена выбора заслонки
-            {
+            else                                                                                        // Отмена выбора заслонки
                 SubFromCombosDI(code_1);
-            }
         }
 
         ///<summary>Выбрали подтверждение открытия вытяжной заслонки</summary>
         private void ConfOutDampCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 39; // Подтверждение открытия вытяжной заслонки
-            if (comboSysType.SelectedIndex == 1 && dampCheck.Checked && outDampCheck.Checked)
-            { // ПВ-система, выбрана вытяжная заслонка
-                if (confOutDampCheck.Checked) // Подтверждение открытия
-                {
-                    find_di = list_di.Find(x => x.Code == code_1);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Подтверждение открытия вытяжной заслонки", code_1));
-                        AddNewDI(code_1); // Добавление DI к свободному comboBox
-                    }
-                }
-                else // Отмена выбора подтверждения открытия
-                {
+            ushort code_1 = 39;                                                                         // Подтверждение открытия вытяжной заслонки
+
+            if (comboSysType.SelectedIndex == 1 && dampCheck.Checked && outDampCheck.Checked)           // ПВ-система, выбрана вытяжная заслонка
+            { 
+                if (confOutDampCheck.Checked)                                                           // Подтверждение открытия
+                    CheckAddDIToList("Подтверждение открытия вытяжной заслонки", code_1);
+                else                                                                                    // Отмена выбора подтверждения открытия
                     SubFromCombosDI(code_1);
-                }
             }
         }
 
         ///<summary>Выбрали PS приточного вентилятора</summary>
         private void PrFanPSCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 11; // PS приточного вентилятора 1
-            ushort code_2 = 22; // PS приточного вентилятора 2
-            if (prFanPSCheck.Checked) // Выбрали PS
+            ushort code_1 = 11, code_2 = 22;                                                            // PS приточного вентилятора 1 и 2
+
+            if (prFanPSCheck.Checked)                                                                   // Выбрали PS
             {
-                find_di = list_di.Find(x => x.Code == code_1);
-                if (find_di == null) // Нет такой записи
-                {
-                    list_di.Add(new Di("PS приточного вентилятора 1", code_1));
-                    AddNewDI(code_1); // Добавление DI к свободному comboBox
-                }
-                if (checkResPrFan.Checked) // Если выбран резерв
-                {
-                    find_di = list_di.Find(x => x.Code == code_2);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("PS приточного вентилятора 2", code_2));
-                        AddNewDI(code_2); // Добавление DI к свободному comboBox
-                    }
-                }
+                CheckAddDIToList("PS приточного вентилятора 1", code_1);
+                if (checkResPrFan.Checked)                                                              // Если выбран резерв
+                    CheckAddDIToList("PS приточного вентилятора 2", code_2);
             }
-            else // Отмена выбора PS
+            else                                                                                          // Отмена выбора PS
             {
-                SubFromCombosDI(code_1);
-                if (checkResPrFan.Checked) SubFromCombosDI(code_2); // Для резерва
+                SubFromCombosDI(code_1); SubFromCombosDI(code_2);
             }
         }
 
         ///<summary>Выбрали термоконтакты приточного вентилятора</summary>
         private void PrFanThermoCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 13; // Термоконтакты приточного вентилятора 1
-            ushort code_2 = 24; // Термоконтакты приточного вентилятора 2
-            if (prFanThermoCheck.Checked) // Выбрали термоконтакты
+            ushort code_1 = 13, code_2 = 24;                                                            // Термоконтакты приточного вентилятора 1 и 2
+
+            if (prFanThermoCheck.Checked)                                                               // Выбрали термоконтакты
             {
-                find_di = list_di.Find(x => x.Code == code_1);
-                if (find_di == null) // Нет такой записи
-                {
-                    list_di.Add(new Di("Термоконтакты приточного вентилятора 1", code_1));
-                    AddNewDI(code_1); // Добавление DI к свободному comboBox
-                }
-                if (checkResPrFan.Checked) // Если выбран резерв
-                {
-                    find_di = list_di.Find(x => x.Code == code_2);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Термоконтакты приточного вентилятора 2", code_2));
-                        AddNewDI(code_2); // Добавление DI к свободному comboBox
-                    }
-                }
+                CheckAddDIToList("Термоконтакты приточного вентилятора 1", code_1);
+                if (checkResPrFan.Checked)                                                              // Если выбран резерв
+                    CheckAddDIToList("Термоконтакты приточного вентилятора 2", code_2);
             }
-            else // Отмена выбора термоконтактов
+            else                                                                                        // Отмена выбора термоконтактов
             {
-                SubFromCombosDI(code_1);
-                if (checkResPrFan.Checked) SubFromCombosDI(code_2); // Для резерва
+                SubFromCombosDI(code_1); SubFromCombosDI(code_2);
             }
         }
 
         ///<summary>Выбрали ПЧ приточного вентилятора</summary>
         private void PrFanFC_check_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            if (prFanFC_check.Checked) // Выбран ПЧ
+            if (prFanFC_check.Checked)                                                                  // Выбран ПЧ
             { 
-                if (prFanControlCombo.SelectedIndex == 0) // Внешние контакты
+                if (prFanControlCombo.SelectedIndex == 0)                                               // Внешние контакты
                 {
-                    prFanAlarmCheck.Enabled = true; // Разблокировка выбора аварии
-                    // prFanSpeedCheck.Enabled = true; // Разблокировка выбора скорости
-                    if (!prFanAlarmCheck.Checked) prFanAlarmCheck.Checked = true; // Выбор сигнала аварии
+                    prFanAlarmCheck.Enabled = true;                                                     // Разблокировка выбора аварии
+                    if (!prFanAlarmCheck.Checked)                                                       // Выбор сигнала аварии
+                        prFanAlarmCheck.Checked = true; 
                 }
-                else if (prFanControlCombo.SelectedIndex == 1) // Управление Modbus
+                else if (prFanControlCombo.SelectedIndex == 1)                                          // Управление по Modbus
                 {
-                    // Снятие выбора опций
-                    if (prFanAlarmCheck.Checked) prFanAlarmCheck.Checked = false; 
-                    // if (prFanSpeedCheck.Checked) prFanSpeedCheck.Checked = false;
+                    if (prFanAlarmCheck.Checked)                                                        // Снятие выбора опций
+                        prFanAlarmCheck.Checked = false; 
                     // Блокировка опций
                     prFanAlarmCheck.Enabled = false;
-                    // prFanSpeedCheck.Enabled = false;
                 }
             } 
             else // Отмена выбора ПЧ
             {
-                prFanAlarmCheck.Enabled = true; // Разблокировка выбора аварии
-                // prFanSpeedCheck.Enabled = true; // Разблокировка выбора скорости
-                if (prFanAlarmCheck.Checked) prFanAlarmCheck.Checked = false; // Снятие выбора сигнала аварии
-                // if (!prFanStStopCheck.Checked) prFanStStopCheck.Checked = true; // Сигнал "Пуск/Стоп"
+                prFanAlarmCheck.Enabled = true;                                                         // Разблокировка выбора аварии
+                if (prFanAlarmCheck.Checked) 
+                    prFanAlarmCheck.Checked = false;                                                    // Снятие выбора сигнала аварии
             }
         }
 
         ///<summary>Изменили тип управления ПЧ приточного вентилятора</summary>
         private void PrFanControlCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
-            if (prFanFC_check.Checked) // Когда выбран ПЧ
+            if (prFanFC_check.Checked)                                                                  // Когда выбран ПЧ
             {
-                if (prFanControlCombo.SelectedIndex == 0) // Внешние контакты
+                if (prFanControlCombo.SelectedIndex == 0)                                               // Внешние контакты
                 {
-                    prFanAlarmCheck.Enabled = true; // Разблокировка выбора аварии
-                    //prFanSpeedCheck.Enabled = true; // Разблокировка выбора скорости
-                    if (!prFanAlarmCheck.Checked) // Выбор сигнала аварии
+                    prFanAlarmCheck.Enabled = true;                                                     // Разблокировка выбора аварии
+                    if (!prFanAlarmCheck.Checked)                                                       // Выбор сигнала аварии
                         prFanAlarmCheck.Checked = true; 
-                    //prFanStStopCheck.Checked = true; // Выбор сигнала "Пуск/Стоп"
                 }
-                else if (prFanControlCombo.SelectedIndex == 1) // Modbus
+                else if (prFanControlCombo.SelectedIndex == 1)                                          // Modbus
                 {
-                    // Снятие выбора опций
-                    if (prFanAlarmCheck.Checked)
+                    if (prFanAlarmCheck.Checked)                                                        // Снятие выбора опций
                         prFanAlarmCheck.Checked = false;
-                    //prFanSpeedCheck.Checked = false;
-                    //prFanStStopCheck.Checked = false;
                     // Блокировка опций
                     prFanAlarmCheck.Enabled = false;
-                    //prFanSpeedCheck.Enabled = false;
                 }
             }
         }
@@ -1388,144 +690,90 @@ namespace Moderon
         ///<summary>Выбрали защиту по току приточного вентилятора</summary>
         private void CurDefPrFanCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 14; // Защита по току приточного вентилятора 1
-            ushort code_2 = 25; // Защита по току приточного вентилятора 2
+            ushort code_1 = 14, code_2 = 25;                                                             // Защита по току приточного вентилятора 1 и 2
+
             if (curDefPrFanCheck.Checked) // Выбрана защита по току
             {
-                find_di = list_di.Find(x => x.Code == code_1);
-                if (find_di == null) // Нет такой записи
-                {
-                    list_di.Add(new Di("Защита по току приточного вентилятора 1", code_1));
-                    AddNewDI(code_1); // Добавление DI к свободному comboBox
-                }
+                CheckAddDIToList("Защита по току приточного вентилятора 1", code_1);
                 if (checkResPrFan.Checked) // Если выбран резерв
-                {
-                    find_di = list_di.Find(x => x.Code == code_2);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Защита по току приточного вентилятора 2", code_2));
-                        AddNewDI(code_2); // Добавление DI к свободному comboBox
-                    }
-                }
+                    CheckAddDIToList("Защита по току приточного вентилятора 2", code_2);
             } 
             else // Отмена выбора защиты по току
             {
-                SubFromCombosDI(code_1);
-                if (checkResPrFan.Checked) SubFromCombosDI(code_2); // Для резерва
+                SubFromCombosDI(code_1); SubFromCombosDI(code_2);
             }
         }
 
         ///<summary>Выбрали резерв приточного вентилятора</summary>
         private void CheckResPrFan_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 22; // PS приточного вентилятора 2
-            ushort code_2 = 24; // Термоконтакты приточного вентилятора 2
-            ushort code_3 = 23; // Сигнал аварии приточного вентилятора 2
-            ushort code_4 = 25; // Защита по току приточного вентилятора 2
-            if (checkResPrFan.Checked) // Выбран резерв приточного
+            ushort code_1 = 22;                                 // PS приточного вентилятора 2
+            ushort code_2 = 24;                                 // Термоконтакты приточного вентилятора 2
+            ushort code_3 = 23;                                 // Сигнал аварии приточного вентилятора 2
+            ushort code_4 = 25;                                 // Защита по току приточного вентилятора 2
+
+            if (checkResPrFan.Checked)                                                              // Выбран резерв приточного
             {
-                if (prFanPSCheck.Checked) // Выбран сигнал PS
-                {
-                    list_di.Add(new Di("PS приточного вентилятора 2", code_1));
-                    AddNewDI(code_1); // Добавление DI к свободному comboBox
-                }
-                if (prFanThermoCheck.Checked) // Выбраны термоконтакты приточного
-                {
-                    list_di.Add(new Di("Термоконтакты приточного вентилятора 2", code_2));
-                    AddNewDI(code_2); // Добавление DI к свободному comboBox
-                }
-                if (prFanAlarmCheck.Checked) // Выбран сигнал аварии
-                { // Сигнал аварии
-                    list_di.Add(new Di("Сигнал аварии приточного вентилятора 2", code_3));
-                    AddNewDI(code_3); // Добавление DI к свободному comboBox
-                }
-                if (curDefPrFanCheck.Checked)
-                { // Защита по току
-                    list_di.Add(new Di("Защита по току приточного вентилятора 2", code_4));
-                    AddNewDI(code_4); // Добавление DI к свободному comboBox
-                }
+                if (prFanPSCheck.Checked)                                                           // Выбран сигнал PS
+                    AddToListDI("PS приточного вентилятора 2", code_1);
+                if (prFanThermoCheck.Checked)                                                       // Выбраны термоконтакты приточного
+                    AddToListDI("Термоконтакты приточного вентилятора 2", code_2);
+                if (prFanAlarmCheck.Checked)                                                        // Выбран сигнал аварии
+                    AddToListDI("Сигнал аварии приточного вентилятора 2", code_3);
+                if (curDefPrFanCheck.Checked)                                                       // Выбрана защита по току
+                    AddToListDI("Защита по току приточного вентилятора 2", code_4);
             }
-            else // Отмена выбора резерва приточного
+            else                                                                                    // Отмена выбора резерва приточного
             {
-                SubFromCombosDI(code_1); SubFromCombosDI(code_2); SubFromCombosDI(code_3);
-                SubFromCombosDI(code_4);
+                SubFromCombosDI(code_1); SubFromCombosDI(code_2); SubFromCombosDI(code_3); SubFromCombosDI(code_4);
             }
         }
 
         ///<summary>Выбрали PS вытяжного вентилятора</summary>
         private void OutFanPSCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 44; // Сигнал PS вытяжного вентилятора 1
-            ushort code_2 = 55; // Сигнал PS вытяжного вентилятора 2
-            if (comboSysType.SelectedIndex == 1 && outFanPSCheck.Checked)
-            { // Выбрали PS вытяжного вентилятора
-                find_di = list_di.Find(x => x.Code == code_1);
-                if (find_di == null) // Нет такой записи
-                {
-                    list_di.Add(new Di("PS вытяжного вентилятора 1", code_1));
-                    AddNewDI(code_1); // Добавление DI к свободному comboBox
-                }
-                if (checkResOutFan.Checked) // Если выбран резерв
-                {
-                    find_di = list_di.Find(x => x.Code == code_2);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("PS вытяжного вентилятора 2", code_2));
-                        AddNewDI(code_2); // Добавление DI к свободному comboBox
-                    }
-                }
-            }
-            else // Отмена выбора PS
+            ushort code_1 = 44, code_2 = 55;                                                        // Сигнал PS вытяжного вентилятора 1 и 2
+
+            if (comboSysType.SelectedIndex == 1 && outFanPSCheck.Checked)                           // Выбрали PS вытяжного вентилятора
             {
-                SubFromCombosDI(code_1);
-                if (checkResOutFan.Checked) SubFromCombosDI(code_2); // Для резерва
+                CheckAddDIToList("PS вытяжного вентилятора 1", code_1);
+                if (checkResOutFan.Checked)                                                         // Если выбран резерв
+                    CheckAddDIToList("PS вытяжного вентилятора 2", code_2);
+            }
+            else                                                                                    // Отмена выбора PS
+            {
+                SubFromCombosDI(code_1); SubFromCombosDI(code_2);
             }
         }
 
         ///<summary>Выбрали термоконтакты вытяжного вентилятора</summary>
         private void OutFanThermoCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 46; // Термоконтакты вытяжного вентилятора 1
-            ushort code_2 = 57; // Термоконтакты вытяжного вентилятора 2
+            ushort code_1 = 46, code_2 = 57;                                                        // Термоконтакты вытяжного вентилятора 1 и 2
+            
             if (comboSysType.SelectedIndex == 1 && outFanThermoCheck.Checked)
             {
-                find_di = list_di.Find(x => x.Code == code_1);
-                if (find_di == null) // Нет такой записи
-                {
-                    list_di.Add(new Di("Термоконтакты вытяжного вентилятора 1", code_1));
-                    AddNewDI(code_1); // Добавление DI к свободному comboBox
-                }
-                if (checkResOutFan.Checked) // Если выбран резерв
-                {
-                    find_di = list_di.Find(x => x.Code == code_2);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Термоконтакты вытяжного вентилятора 2", code_2));
-                        AddNewDI(code_2); // Добавление DI к свободному comboBox
-                    }
-                }
+                CheckAddDIToList("Термоконтакты вытяжного вентилятора 1", code_1);
+                if (checkResOutFan.Checked)                                                         // Если выбран резерв
+                    CheckAddDIToList("Термоконтакты вытяжного вентилятора 2", code_2);
             }
-            else // Отмена выбора термоконтактов
+            else                                                                                    // Отмена выбора термоконтактов
             {
-                SubFromCombosDI(code_1);
-                if (checkResOutFan.Checked) SubFromCombosDI(code_2); // Для резерва
+                SubFromCombosDI(code_1); SubFromCombosDI(code_2);
             }
         }
 
         ///<summary>Выбрали ПЧ вытяжного вентилятора</summary>
         private void OutFanFC_check_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            if (comboSysType.SelectedIndex == 1 && outFanFC_check.Checked) // Выбран ПЧ 
+            if (comboSysType.SelectedIndex == 1 && outFanFC_check.Checked)                          // Выбран ПЧ 
             { 
-                if (outFanControlCombo.SelectedIndex == 0) // Внешние контакты
+                if (outFanControlCombo.SelectedIndex == 0)                                          // Внешние контакты
                 {
-                    outFanAlarmCheck.Enabled = true; // Разблокировка выбора аварии
-                    if (!outFanAlarmCheck.Checked) outFanAlarmCheck.Checked = true; // Выбор сигнала аварии
+                    outFanAlarmCheck.Enabled = true;                                                // Разблокировка выбора аварии
+                    if (!outFanAlarmCheck.Checked) outFanAlarmCheck.Checked = true;                 // Выбор сигнала аварии
                 }
-                else if (outFanControlCombo.SelectedIndex == 1) // Управление Modbus
+                else if (outFanControlCombo.SelectedIndex == 1)                                     // Управление Modbus
                 {
                     // Снятие выбора опций
                     if (outFanAlarmCheck.Checked) outFanAlarmCheck.Checked = false;
@@ -1533,10 +781,10 @@ namespace Moderon
                     outFanAlarmCheck.Enabled = false;
                 }
             } 
-            else // Отмена выбора ПЧ
+            else                                                                                    // Отмена выбора ПЧ
             {
-                outFanAlarmCheck.Enabled = true; // Разблокировка выбора аварии
-                if (outFanAlarmCheck.Checked) // Снятие выбора сигнала аварии
+                outFanAlarmCheck.Enabled = true;                                                    // Разблокировка выбора аварии
+                if (outFanAlarmCheck.Checked)                                                       // Снятие выбора сигнала аварии
                     outFanAlarmCheck.Checked = false; 
             }
         }
@@ -1544,15 +792,15 @@ namespace Moderon
         ///<summary>Изменили тип управления ПЧ вытяжного вентилятора</summary>
         private void OutFanControlCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboSysType.SelectedIndex == 1 && outFanFC_check.Checked) // Когда выбран ПЧ
+            if (comboSysType.SelectedIndex == 1 && outFanFC_check.Checked)                          // Когда выбран ПЧ
             {
-                if (outFanControlCombo.SelectedIndex == 0) // Внешние контакты
+                if (outFanControlCombo.SelectedIndex == 0)                                          // Внешние контакты
                 {
-                    outFanAlarmCheck.Enabled = true; // Разблокировка выбора аварии
-                    if (!outFanAlarmCheck.Checked) // Выбор сигнала аварии
+                    outFanAlarmCheck.Enabled = true;                                                // Разблокировка выбора аварии
+                    if (!outFanAlarmCheck.Checked)                                                  // Выбор сигнала аварии
                         outFanAlarmCheck.Checked = true; 
                 }
-                else if (outFanControlCombo.SelectedIndex == 1) // Modbus
+                else if (outFanControlCombo.SelectedIndex == 1)                                     // Modbus
                 {
                     // Снятие выбора опций
                     if (outFanAlarmCheck.Checked) 
@@ -1566,135 +814,79 @@ namespace Moderon
         ///<summary>Выбрали защиту по току вытяжного вентилятора</summary>
         private void CurDefOutFanCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 47; // Защита по току вытяжного вентилятора 1
-            ushort code_2 = 58; // Защита по току вытяжного вентилятора 2
+            ushort code_1 = 47, code_2 = 58;                                                        // Защита по току вытяжного вентилятора 1 и 2
+
             if (comboSysType.SelectedIndex == 1 && curDefOutFanCheck.Checked)
             {
-                find_di = list_di.Find(x => x.Code == code_1);
-                if (find_di == null) // Нет такой записи
-                {
-                    list_di.Add(new Di("Защита по току вытяжного вентилятора 1", code_1));
-                    AddNewDI(code_1); // Добавление DI к свободному comboBox
-                }
-                if (checkResOutFan.Checked) // Если выбран резерв
-                {
-                    find_di = list_di.Find(x => x.Code == code_2);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Защита по току вытяжного вентилятора 2", code_2));
-                        AddNewDI(code_2); // Добавление DI к свободному comboBox
-                    }
-                }
+                CheckAddDIToList("Защита по току вытяжного вентилятора 1", code_1);
+                if (checkResOutFan.Checked)                                                         // Если выбран резерв
+                    CheckAddDIToList("Защита по току вытяжного вентилятора 2", code_2);
             }
-            else // Отмена выбора защиты по току
+            else                                                                                    // Отмена выбора защиты по току
             {
-                SubFromCombosDI(code_1);
-                if (checkResOutFan.Checked) SubFromCombosDI(code_2); // Для резерва
+                SubFromCombosDI(code_1); SubFromCombosDI(code_2);
             }
         }
 
         ///<summary>Выбрали резерв вытяжного вентилятора</summary>
         private void CheckResOutFan_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 55; // PS вытяжного вентилятра 2
-            ushort code_2 = 57; // Термоконтакты вытяжного вентилятора 2
-            ushort code_3 = 56; // Сигнал аварии вытяжного вентилятора 2
-            ushort code_4 = 58; // Защита по току вытяжного вентилятора 2
-            if (comboSysType.SelectedIndex == 1 && checkResOutFan.Checked) // Выбран резерв вытяжного
+            ushort code_1 = 55;                     // PS вытяжного вентилятра 2
+            ushort code_2 = 57;                     // Термоконтакты вытяжного вентилятора 2
+            ushort code_3 = 56;                     // Сигнал аварии вытяжного вентилятора 2
+            ushort code_4 = 58;                     // Защита по току вытяжного вентилятора 2
+
+            if (comboSysType.SelectedIndex == 1 && checkResOutFan.Checked)                          // Выбран резерв вытяжного
             {
-                if (outFanPSCheck.Checked) // Выбран сигнал PS
-                {
-                    list_di.Add(new Di("PS вытяжного вентилятора 2", code_1));
-                    AddNewDI(code_1); // Добавление DI к свободному comboBox
-                } 
-                if (outFanThermoCheck.Checked) // Выбраны термоконтакты
-                {
-                    list_di.Add(new Di("Термоконтакты вытяжного вентилятора 2", code_2));
-                    AddNewDI(code_2); // Добавление DI к свободному comboBox
-                }
-                if (outFanAlarmCheck.Checked) // Выбрали сигнал аварии
-                { // Выбран ПЧ и внешние контакты
-                    list_di.Add(new Di("Сигнал аварии вытяжного вентилятора 2", code_3));
-                    AddNewDI(code_3); // Добавление DI к свободному comboBox
-                }
-                if (curDefOutFanCheck.Checked) // Защита по току
-                {
-                    list_di.Add(new Di("Защита по току вытяжного вентилятора 2", code_4));
-                    AddNewDI(code_4); // Добавление DI к свободному comboBox
-                }
+                if (outFanPSCheck.Checked)                                                          // Выбран сигнал PS
+                    AddToListDI("PS вытяжного вентилятора 2", code_1);
+                if (outFanThermoCheck.Checked)                                                      // Выбраны термоконтакты
+                    AddToListDI("Термоконтакты вытяжного вентилятора 2", code_2);
+                if (outFanAlarmCheck.Checked)                                                       // Выбрали сигнал аварии
+                    AddToListDI("Сигнал аварии вытяжного вентилятора 2", code_3);
+                if (curDefOutFanCheck.Checked)                                                      // Защита по току
+                    AddToListDI("Защита по току вытяжного вентилятора 2", code_4);
             }
             else // Отмена выбора резерва вытяжного
             {
-                SubFromCombosDI(code_1); SubFromCombosDI(code_2); 
-                SubFromCombosDI(code_3); SubFromCombosDI(code_4);
+                SubFromCombosDI(code_1); SubFromCombosDI(code_2); SubFromCombosDI(code_3); SubFromCombosDI(code_4);
             }
         }
 
         ///<summary>Выбрали нагреватель</summary>
         private void HeaterCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 72; // Воздушный термостат
-            ushort code_2 = 73; // Подтверждение работы насоса
-            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)
-            { // Выбран водяной нагреватель
-                if (TF_heaterCheck.Checked) // Выбран термостат
-                {
-                    find_di = list_di.Find(x => x.Code == code_1);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Термостат водяного калорифера", code_1));
-                        AddNewDI(code_1); // Добавление DI к свободному comboBox
-                    }
-                }
-                if (confHeatPumpCheck.Checked) // Подтверждение работы насоса
-                {
-                    find_di = list_di.Find(x => x.Code == code_2);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Подтверждение работы насоса водяного калорифера", code_2));
-                        AddNewDI(code_2); // Добавление DI к свободному comboBox
-                    }
-                }
+            ushort code_1 = 72, code_2 = 73;                                                        // Воздушный термостат и подтверждение работы насоса
+
+            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                            // Выбран водяной нагреватель
+            { 
+                if (TF_heaterCheck.Checked)                                                         // Выбран термостат
+                    CheckAddDIToList("Термостат водяного калорифера", code_1);
+                if (confHeatPumpCheck.Checked)                                                      // Подтверждение работы насоса
+                    CheckAddDIToList("Подтверждение работы насоса водяного калорифера", code_2);
             }
-            else // Отмена выбора нагревателя
+            else                                                                                    // Отмена выбора нагревателя
             {
                 SubFromCombosDI(code_1); SubFromCombosDI(code_2);
             }
-            ThermSwitchCombo_signalsDISelectedIndexChanged(this, e); // Проверка термовыключателей
+            ThermSwitchCombo_signalsDISelectedIndexChanged(this, e);                                // Проверка термовыключателей
         }
 
         ///<summary>Изменили тип основного нагревателя</summary>
         private void HeatTypeCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 72; // Воздушный термостат
-            ushort code_2 = 73; // Подтверждение работы насоса
-            if (heaterCheck.Checked) // Выбран нагреватель
+            ushort code_1 = 72, code_2 = 73;                                                        // Воздушный термостат и подтверждение работы насоса
+
+            if (heaterCheck.Checked)                                                                // Выбран нагреватель
             { 
-                if (heatTypeCombo.SelectedIndex == 0) // Водяной калорифер
+                if (heatTypeCombo.SelectedIndex == 0)                                               // Водяной калорифер
                 {
-                    if (TF_heaterCheck.Checked) // Воздушный термостат
-                    {
-                        find_di = list_di.Find(x => x.Code == code_1);
-                        if (find_di == null) // Нет такой записи
-                        {
-                            list_di.Add(new Di("Термостат водяного калорифера", code_1));
-                            AddNewDI(code_1); // Добавление DI к свободному comboBox
-                        }
-                    }
-                    if (confHeatPumpCheck.Checked) // Подтверждение работы насоса
-                    {
-                        find_di = list_di.Find(x => x.Code == code_2);
-                        if (find_di == null) // Нет такой записи
-                        {
-                            list_di.Add(new Di("Подтверждение работы насоса водяного калорифера", code_2));
-                            AddNewDI(code_2); // Добавление DI к свободному comboBox
-                        }
-                    }
+                    if (TF_heaterCheck.Checked)                                                     // Воздушный термостат
+                        CheckAddDIToList("Термостат водяного калорифера", code_1);
+                    if (confHeatPumpCheck.Checked)                                                  // Подтверждение работы насоса
+                        CheckAddDIToList("Подтверждение работы насоса водяного калорифера", code_2);
                 }
-                else // Электрокалорифер
+                else                                                                                // Электрокалорифер
                 {
                     SubFromCombosDI(code_1); SubFromCombosDI(code_2);
                 }
@@ -1705,89 +897,56 @@ namespace Moderon
         ///<summary>Выбрали термостат защиты от замерзания</summary>
         private void TF_heaterCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 72; // Воздушный термостат
-            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)
-            { // Выбран водяной калорифер
+            ushort code_1 = 72;                                                                     // Воздушный термостат
+
+            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                            // Выбран водяной калорифер
+            { 
                 if (TF_heaterCheck.Checked) // Выбрали воздушный термостат
-                {
-                    find_di = list_di.Find(x => x.Code == code_1);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Термостат водяного калорифера", code_1));
-                        AddNewDI(code_1); // Добавление DI к свободному comboBox
-                    }
-                } 
+                    CheckAddDIToList("Термостат водяного калорифера", code_1);
                 else // Отмена выбора
-                {
                     SubFromCombosDI(code_1);
-                }
             }
         }
 
         ///<summary>Подтверждение работы насоса водяного калорифера</summary>
         private void ConfHeatPumpCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 73; // Подтверждение работы насоса калорифера
-            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)
-            { // Выбран водяной калорифер
-                if (confHeatPumpCheck.Checked) // Выбрали подтверждение работы насоса
-                {
-                    find_di = list_di.Find(x => x.Code == code_1);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Подтверждение работы насоса водяного калорифера", code_1));
-                        AddNewDI(code_1); // Добавление DI к свободному comboBox
-                    }
-                }
-                else // Отмена выбора
-                {
+            ushort code_1 = 73;                                                                     // Подтверждение работы насоса калорифера
+
+            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                            // Выбран водяной калорифер
+            { 
+                if (confHeatPumpCheck.Checked)                                                      // Выбрали подтверждение работы насоса
+                    CheckAddDIToList("Подтверждение работы насоса водяного калорифера", code_1);
+                else                                                                                // Отмена выбора
                     SubFromCombosDI(code_1);
-                }
             }
         }
 
         ///<summary>Изменили количество термовыключателей основного нагревателя</summary>
         private void ThermSwitchCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 79; // Термовыключатель 1, пожар
-            ushort code_2 = 78; // Термовыключатель 2, перегрев
-            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 1)
-            { // Выбран электрокалорифер
-                if (thermSwitchCombo.SelectedIndex == 0) // Нет термовыключателей
+            ushort code_1 = 79, code_2 = 78;                                                        // Термовыключатель 1 - пожар, 2 - перегрев
+
+            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 1)                            // Выбран электрокалорифер
+            { 
+                if (thermSwitchCombo.SelectedIndex == 0)                                            // Нет термовыключателей
                 {
                     SubFromCombosDI(code_1); SubFromCombosDI(code_2);
                 }
-                else if (thermSwitchCombo.SelectedIndex == 1) // Один термовыключатель
+                else if (thermSwitchCombo.SelectedIndex == 1)                                       // Один термовыключатель
                 {
                     SubFromCombosDI(code_2);
-                    find_di = list_di.Find(x => x.Code == code_1);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Термовыключатель пожара ТЭНов калорифера", code_1));
-                        AddNewDI(code_1); // Добавление DI к свободному comboBox
-                    }
+                    CheckAddDIToList("Термовыключатель пожара ТЭНов калорифера", code_1);
                 }
-                else if (thermSwitchCombo.SelectedIndex == 2) // Два термовыключателя
+                else if (thermSwitchCombo.SelectedIndex == 2)                                       // Два термовыключателя
                 {
-                    find_di = list_di.Find(x => x.Code == code_1);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Термовыключатель пожара ТЭНов калорифера", code_1));
-                        AddNewDI(code_1); // Добавление DI к свободному comboBox
-                    }
-                    find_di = list_di.Find(x => x.Code == code_2);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Термовыключатель перегрева ТЭНов калорифера", code_2));
-                        AddNewDI(code_2); // Добавление DI к свободному comboBox
-                    }
+                    CheckAddDIToList("Термовыключатель пожара ТЭНов калорифера", code_1);
+                    CheckAddDIToList("Термовыключатель перегрева ТЭНов калорифера", code_2);
                 }
             }
+            // Выбран водяной калорифер, либо нет нагревателя
             if ((heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0) || !heaterCheck.Checked)
-            { // Выбран водяной калорифер, либо нет нагревателя
+            { 
                 SubFromCombosDI(code_1); SubFromCombosDI(code_2); // Удаление сигналов
             }
         }
@@ -1795,117 +954,69 @@ namespace Moderon
         ///<summary>Выбрали догреватель</summary>
         private void AddHeatCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 75; // Воздушный термостат
-            ushort code_2 = 76; // Подтверждение работы насоса
-            if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0)
-            { // Выбран водяной догреватель
-                if (TF_addHeaterCheck.Checked) // Выбран термостат
-                {
-                    find_di = list_di.Find(x => x.Code == code_1);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Термостат водяного догревателя", code_1));
-                        AddNewDI(code_1); // Добавление DI к свободному comboBox
-                    }
-                }
-                if (confAddHeatPumpCheck.Checked) // Подтверждение работы насоса
-                {
-                    find_di = list_di.Find(x => x.Code == code_2);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Подтверждение работы насоса водяного догревателя", code_2));
-                        AddNewDI(code_2); // Добавление DI к свободному comboBox
-                    }
-                }
+            ushort code_1 = 75, code_2 = 76;                                                        // Воздушный термостат и подтверждение работы насоса
+
+            if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0)                        // Выбран водяной догреватель
+            { 
+                if (TF_addHeaterCheck.Checked)                                                      // Выбран термостат
+                    CheckAddDIToList("Термостат водяного догревателя", code_1);
+                if (confAddHeatPumpCheck.Checked)                                                   // Подтверждение работы насоса
+                    CheckAddDIToList("Подтверждение работы насоса водяного догревателя", code_2);
             } 
-            else // Отмена выбора догревателя
+            else                                                                                    // Отмена выбора догревателя
             {
                 SubFromCombosDI(code_1); SubFromCombosDI(code_2);
             }
-            ThermAddSwitchCombo_signalsDISelectedIndexChanged(this, e); // Проверка для термовыключателей
+            ThermAddSwitchCombo_signalsDISelectedIndexChanged(this, e);                             // Проверка для термовыключателей
         }
 
         ///<summary>Изменили тип догревателя</summary>
         private void HeatAddTypeCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 75; // Воздушный термостат
-            ushort code_2 = 76; // Подтверждение работы насоса
-            if (addHeatCheck.Checked) // Выбран догреватель
+            ushort code_1 = 75, code_2 = 76;                                                        // Воздушный термостат и подтверждение работы насоса
+
+            if (addHeatCheck.Checked)                                                               // Выбран догреватель
             {
-                if (heatAddTypeCombo.SelectedIndex == 0) // Водяной догреватель
+                if (heatAddTypeCombo.SelectedIndex == 0)                                            // Водяной догреватель
                 {
-                    if (TF_addHeaterCheck.Checked) // Воздушный термостат
-                    {
-                        find_di = list_di.Find(x => x.Code == code_1);
-                        if (find_di == null) // Нет такой записи
-                        {
-                            list_di.Add(new Di("Термостат водяного догревателя", code_1));
-                            AddNewDI(code_1); // Добавление DI к свободному comboBox
-                        }
-                    }
-                    if (confAddHeatPumpCheck.Checked) // Подтверждение работы насоса
-                    {
-                        find_di = list_di.Find(x => x.Code == code_2);
-                        if (find_di == null) // Нет такой записи
-                        {
-                            list_di.Add(new Di("Подтверждение работы насоса водяного догревателя", code_2));
-                            AddNewDI(code_2); // Добавление DI к свободному comboBox
-                        }
-                    }
+                    if (TF_addHeaterCheck.Checked)                                                  // Воздушный термостат
+                        CheckAddDIToList("Термостат водяного догревателя", code_1);
+                    if (confAddHeatPumpCheck.Checked)                                               // Подтверждение работы насоса
+                        CheckAddDIToList("Подтверждение работы насоса водяного догревателя", code_2);
                 }
                 else // Электродогреватель
                 {
-                    SubFromCombosDI(code_1); SubFromCombosDI(code_2); // Удаление сигналов
+                    SubFromCombosDI(code_1); SubFromCombosDI(code_2);                               // Удаление сигналов
                 }
-                ThermAddSwitchCombo_signalsDISelectedIndexChanged(this, e); // Проверка для термовыключателей
+                ThermAddSwitchCombo_signalsDISelectedIndexChanged(this, e);                         // Проверка для термовыключателей
             }
         }
 
         ///<summary>Выбрали термостат догревателя</summary>
         private void TF_addHeaterCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 75; // Воздушный термостат
-            if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0)
-            { // Выбран водяной догреватель
-                if (TF_addHeaterCheck.Checked) // Выбрали воздушный термостат
-                {
-                    find_di = list_di.Find(x => x.Code == code_1);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Термостат водяного догревателя", code_1));
-                        AddNewDI(code_1); // Добавление DI к свободному comboBox
-                    }
-                } 
-                else // Отмена выбора
-                {
+            ushort code_1 = 75;                                                                     // Воздушный термостат
+
+            if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0)                        // Выбран водяной догреватель
+            { 
+                if (TF_addHeaterCheck.Checked)                                                      // Выбрали воздушный термостат
+                    CheckAddDIToList("Термостат водяного догревателя", code_1);
+                else                                                                                // Отмена выбора
                     SubFromCombosDI(code_1);
-                }
             }
         }
 
         ///<summary>Подтверждение работы насоса водяного догревателя</summary>
         private void ConfAddHeatPumpCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 76; // Подтверждение работы насоса водяного догревателя
-            if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0)
-            { // Выбран водяной догреватель
-                if (confAddHeatPumpCheck.Checked) // Выбрали подтверждение работы насоса
-                {
-                    find_di = list_di.Find(x => x.Code == code_1);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Подтверждение работы насоса водяного догревателя", code_1));
-                        AddNewDI(code_1); // Добавление DI к свободному comboBox
-                    }
-                }
-                else // Отмена выбора
-                {
+            ushort code_1 = 76;                                                                     // Подтверждение работы насоса водяного догревателя
+
+            if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0)                        // Выбран водяной догреватель
+            { 
+                if (confAddHeatPumpCheck.Checked)                                                   // Выбрали подтверждение работы насоса
+                    CheckAddDIToList("Подтверждение работы насоса водяного догревателя", code_1);
+                else                                                                                // Отмена выбора
                     SubFromCombosDI(code_1);
-                }
             }
         }
 
