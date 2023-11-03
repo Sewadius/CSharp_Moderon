@@ -615,259 +615,163 @@ namespace Moderon
             CheckSignalsReady();                // Проверка распределения сигналов
         }
 
+        ///<summary>Метод для добавления AI к списку сигналов</summary>
+        private void AddToListAI(string name, ushort code, string type)
+        {
+            list_ai.Add(new Ai(name, code, type));
+            AddNewAI(code, type);
+        }
+
+        ///<summary>Проверка и добавление аналогового входа</summary>
+        private void CheckAddAIToList(string name, ushort code, string type) 
+        {
+            Ai find_ai = list_ai.Find(x => x.Code == code);
+            if (find_ai == null)
+                AddToListAI(name, code, type);
+        }
+
         ///<summary>Выбрали основной нагреватель</summary>
         private void HeaterCheck_signalsAICheckedChanged(object sender, EventArgs e)
         {
-            Ai find_ai;
-            ushort code_1 = 9; // Датчик обратной воды калорифера
-            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0) // Водяной калорифер
-            {
-                find_ai = list_ai.Find(x => x.Code == code_1);
-                if (find_ai == null) // Нет такой записи
-                {
-                    list_ai.Add(new Ai("Датчик обратной воды калорифера", code_1, "sensor"));
-                    AddNewAI(code_1, "sensor"); // Добавление AI к свободному comboBox
-                }
-            }
+            ushort code_1 = 9;                                                                          // Датчик обратной воды калорифера
+
+            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                                // Водяной калорифер
+                CheckAddAIToList("Датчик обратной воды калорифера", code_1, "sensor");
             else // Отмена выбора нагревателя
-            {
                 SubFromCombosAI(code_1);
-            }
         }
 
         ///<summary>Изменили тип основного нагревателя</summary>
         private void HeatTypeCombo_signalsAISelectedIndexChanged(object sender, EventArgs e)
         {
-            Ai find_ai;
-            ushort code_1 = 9; // Датчик обратной воды калорифера
-            if (heaterCheck.Checked) // Когда выбран нагреватель
+            ushort code_1 = 9;                                                                          // Датчик обратной воды калорифера
+
+            if (heaterCheck.Checked)                                                                    // Когда выбран нагреватель
             {
-                if (heatTypeCombo.SelectedIndex == 0) // Водяной калорифер
-                {
-                    find_ai = list_ai.Find(x => x.Code == code_1);
-                    if (find_ai == null) // Нет такой записи
-                    {
-                        list_ai.Add(new Ai("Датчик обратной воды калорифера", code_1, "sensor"));
-                        AddNewAI(code_1, "sensor"); // Добавление AI к свободному comboBox
-                    }
-                }
-                else if (heatTypeCombo.SelectedIndex == 1) // Электрокалорифер
-                {
+                if (heatTypeCombo.SelectedIndex == 0)                                                   // Водяной калорифер
+                    CheckAddAIToList("Датчик обратной воды калорифера", code_1, "sensor");
+                else if (heatTypeCombo.SelectedIndex == 1)                                              // Электрокалорифер
                     SubFromCombosAI(code_1);
-                }
             }
         }
 
         ///<summary>Выбрали догреватель, второй нагреватель</summary>
         private void AddHeatCheck_signalsAICheckedChanged(object sender, EventArgs e)
         {
-            Ai find_ai;
-            ushort code_1 = 11; // Датчик обратной воды догревателя
-            if (addHeatCheck.Checked) // Когда выбран догреватель
-            {
-                if (heatAddTypeCombo.SelectedIndex == 0) // Водяной догреватель
-                {
-                    find_ai = list_ai.Find(x => x.Code == code_1);
-                    if (find_ai == null) // Нет такой записи
-                    {
-                        list_ai.Add(new Ai("Датчик обратной воды догревателя", code_1, "sensor"));
-                        AddNewAI(code_1, "sensor"); // Добавление AI к свободному comboBox
-                    }
-                }
-            }
-            else // Отмена выбора догревателя
-            {
+            ushort code_1 = 11;                                                                         // Датчик обратной воды догревателя
+
+            if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0)                            // Когда выбран водяной догреватель
+                CheckAddAIToList("Датчик обратной воды догревателя", code_1, "sensor");
+            else                                                                                        // Отмена выбора догревателя
                 SubFromCombosAI(code_1);
-            }
         }
 
         ///<summary>Изменили тип догревателя</summary>
         private void HeatAddTypeCombo_signalsAISelectedIndexChanged(object sender, EventArgs e)
         {
-            Ai find_ai;
-            ushort code_1 = 11; // Датчик обратной воды догревателя
-            if (addHeatCheck.Checked) // Когда выбран нагреватель
+            ushort code_1 = 11;                                                                         // Датчик обратной воды догревателя
+
+            if (addHeatCheck.Checked)                                                                   // Когда выбран догреватель
             {
-                if (heatAddTypeCombo.SelectedIndex == 0) // Водяной догреватель
-                {
-                    find_ai = list_ai.Find(x => x.Code == code_1);
-                    if (find_ai == null) // Нет такой записи
-                    {
-                        list_ai.Add(new Ai("Датчик обратной воды догревателя", code_1, "sensor"));
-                        AddNewAI(code_1, "sensor"); // Добавление AI к свободному comboBox
-                    }
-                }
-                else if (heatAddTypeCombo.SelectedIndex == 1) // Электрокалорифер
-                {
+                if (heatAddTypeCombo.SelectedIndex == 0)                                                // Водяной догреватель
+                    CheckAddAIToList("Датчик обратной воды догревателя", code_1, "sensor");
+                else if (heatAddTypeCombo.SelectedIndex == 1)                                           // Электрокалорифер
                     SubFromCombosAI(code_1);
-                }
             }
         }
 
         ///<summary>Выбрали рекуператор</summary>
         private void RecupCheck_signalsAICheckedChanged(object sender, EventArgs e)
         {
-            Ai find_ai;
-            ushort code_1 = 14; // Датчик температуры защиты рекуператора
-            if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)
+            ushort code_1 = 14;                                                                         // Датчик температуры защиты рекуператора
+
+            if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)                                  // Рекуператор
             {
-                if (recDefTempCheck.Checked) // Выбрана защита по температурному датчику
-                {
-                    find_ai = list_ai.Find(x => x.Code == code_1);
-                    if (find_ai == null) // Нет такой записи
-                    {
-                        list_ai.Add(new Ai("Датчик температуры защиты рекуператора", code_1, "sensor"));
-                        AddNewAI(code_1, "sensor"); // Добавление AI к свободному comboBox
-                    }
-                }
+                if (recDefTempCheck.Checked)                                                            // Выбрана защита по температурному датчику
+                    CheckAddAIToList("Датчик температуры защиты рекуператора", code_1, "sensor");
             }
-            else // Отмена выбора рекуператора
-            {
+            else                                                                                        // Отмена выбора рекуператора
                 SubFromCombosAI(code_1);
-            }
         }
 
         ///<summary>Выбрали температурный датчик защиты рекуператора</summary>
         private void RecDefTempCheck_signalsAICheckedChanged(object sender, EventArgs e)
         {
-            Ai find_ai;
-            ushort code_1 = 14; // Датчик температуры защиты рекуператора
-            if (comboSysType.SelectedIndex == 1 && recupCheck.Checked) // ПВ и рекуператор
+            ushort code_1 = 14;                                                                         // Датчик температуры защиты рекуператора
+
+            if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)                                  // ПВ и рекуператор
             {
-                if (recDefTempCheck.Checked) // Выбрали защиту по температурному датчику
-                {
-                    find_ai = list_ai.Find(x => x.Code == code_1);
-                    if (find_ai == null) // Нет такой записи
-                    {
-                        list_ai.Add(new Ai("Датчик температуры защиты рекуператора", code_1, "sensor"));
-                        AddNewAI(code_1, "sensor"); // Добавление AI к свободному comboBox
-                    }
-                }
+                if (recDefTempCheck.Checked)                                                            // Выбрали защиту по температурному датчику
+                    CheckAddAIToList("Датчик температуры защиты рекуператора", code_1, "sensor");
                 else // Отмена выбора датчика
-                {
                     SubFromCombosAI(code_1);
-                }
             }
         }
 
         ///<summary>Выбрали канальный датчик температуры</summary>
         private void PrChanSensCheck_signalsAICheckedChanged(object sender, EventArgs e)
         {
-            Ai find_ai;
-            ushort code_1 = 1; // Канальный датчик температуры
-            if (prChanSensCheck.Checked) // Выбрали датчик 
-            {
-                find_ai = list_ai.Find(x => x.Code == code_1);
-                if (find_ai == null) // Нет такой записи
-                {
-                    list_ai.Add(new Ai("Канальный датчик Т приточного воздуха", code_1, "sensor"));
-                    AddNewAI(code_1, "sensor"); // Добавление AI к свободному comboBox
-                }
-            }
-            else // Отмена выбора датчика
-            {
+            ushort code_1 = 1;                                                                          // Канальный датчик температуры
+
+            if (prChanSensCheck.Checked)                                                                // Выбрали датчик 
+                CheckAddAIToList("Канальный датчик Т приточного воздуха", code_1, "sensor");
+            else                                                                                        // Отмена выбора датчика
                 SubFromCombosAI(code_1);
-            }
         }
 
         ///<summary>Выбрали комнатный датчик температуры</summary>
         private void RoomTempSensCheck_signalsAICheckedChanged(object sender, EventArgs e)
         {
-            Ai find_ai;
-            ushort code_1 = 4; // Комнатный датчик температуры
-            if (roomTempSensCheck.Checked) // Выбрали датчик 
-            {
-                find_ai = list_ai.Find(x => x.Code == code_1);
-                if (find_ai == null) // Нет такой записи
-                {
-                    list_ai.Add(new Ai("Датчик температуры комнатный", code_1, "sensor"));
-                    AddNewAI(code_1, "sensor"); // Добавление AI к свободному comboBox
-                }
-            }
-            else // Отмена выбора датчика
-            {
+            ushort code_1 = 4;                                                                          // Комнатный датчик температуры
+
+            if (roomTempSensCheck.Checked)                                                              // Выбрали датчик 
+                CheckAddAIToList("Датчик температуры комнатный", code_1, "sensor");
+            else                                                                                        // Отмена выбора датчика
                 SubFromCombosAI(code_1);
-            }
         }
 
         ///<summary>Выбрали канальный датчик влажности</summary>
         private void ChanHumSensCheck_signalsAICheckedChanged(object sender, EventArgs e)
         {
-            Ai find_ai;
-            ushort code_1 = 17; // Канальный датчик влажности
-            if (chanHumSensCheck.Checked) // Выбрали датчик 
-            {
-                find_ai = list_ai.Find(x => x.Code == code_1);
-                if (find_ai == null) // Нет такой записи
-                {
-                    list_ai.Add(new Ai("Канальный датчик влажности", code_1, "humidSensor"));
-                    AddNewAI(code_1, "humidSensor"); // Добавление AI к свободному comboBox
-                }
-            }
-            else // Отмена выбора датчика
-            {
+            ushort code_1 = 17;                                                                         // Канальный датчик влажности
+
+            if (chanHumSensCheck.Checked)                                                               // Выбрали датчик 
+                CheckAddAIToList("Канальный датчик влажности", code_1, "humidSensor");
+            else                                                                                        // Отмена выбора датчика
                 SubFromCombosAI(code_1);
-            }
         }
 
         ///<summary>Выбрали комнатный датчик влажности</summary>
         private void RoomHumSensCheck_signalsAICheckedChanged(object sender, EventArgs e)
         {
-            Ai find_ai;
-            ushort code_1 = 18; // Комнатный датчик влажности
-            if (roomHumSensCheck.Checked) // Выбрали датчик 
-            {
-                find_ai = list_ai.Find(x => x.Code == code_1);
-                if (find_ai == null) // Нет такой записи
-                {
-                    list_ai.Add(new Ai("Комнатный датчик влажности", code_1, "humidSensor"));
-                    AddNewAI(code_1, "humidSensor"); // Добавление AI к свободному comboBox
-                }
-            }
-            else // Отмена выбора датчика
-            {
+            ushort code_1 = 18;                                                                         // Комнатный датчик влажности
+
+            if (roomHumSensCheck.Checked)                                                               // Выбрали датчик 
+                CheckAddAIToList("Комнатный датчик влажности", code_1, "humidSensor");
+            else                                                                                        // Отмена выбора датчика
                 SubFromCombosAI(code_1);
-            }
         }
 
         ///<summary>Выбрали датчик температуры наружного воздуха</summary>
         private void OutdoorChanSensCheck_signalsAICheckedChanged(object sender, EventArgs e)
         {
-            Ai find_ai;
-            ushort code_1 = 3; // Датчик температуры наружного воздуха
-            if (outdoorChanSensCheck.Checked) // Выбрали датчик 
-            {
-                find_ai = list_ai.Find(x => x.Code == code_1);
-                if (find_ai == null) // Нет такой записи
-                {
-                    list_ai.Add(new Ai("Датчик температуры наружного воздуха", code_1, "sensor"));
-                    AddNewAI(code_1, "sensor"); // Добавление AI к свободному comboBox
-                }
-            }
-            else // Отмена выбора датчика
-            {
+            ushort code_1 = 3;                                                                          // Датчик температуры наружного воздуха
+
+            if (outdoorChanSensCheck.Checked)                                                           // Выбрали датчик 
+                CheckAddAIToList("Датчик температуры наружного воздуха", code_1, "sensor");
+            else                                                                                        // Отмена выбора датчика
                 SubFromCombosAI(code_1);
-            }
         }
 
         ///<summary>Выбрали канальный датчик Т вытяжного воздуха</summary>
         private void OutChanSensCheck_signalsAICheckedChanged(object sender, EventArgs e)
         {
-            Ai find_ai;
-            ushort code_1 = 5; // Канальный датчик температуры вытяжного воздуха
-            if (outChanSensCheck.Checked) // Выбрали датчик 
-            {
-                find_ai = list_ai.Find(x => x.Code == code_1);
-                if (find_ai == null) // Нет такой записи
-                {
-                    list_ai.Add(new Ai("Канальный датчик Т вытяжного воздуха", code_1, "sensor"));
-                    AddNewAI(code_1, "sensor"); // Добавление AI к свободному comboBox
-                }
-            }
+            ushort code_1 = 5;                                                                          // Канальный датчик температуры вытяжного воздуха
+
+            if (outChanSensCheck.Checked)                                                               // Выбрали датчик 
+                CheckAddAIToList("Канальный датчик Т вытяжного воздуха", code_1, "sensor");
             else // Отмена выбора датчика
-            {
                 SubFromCombosAI(code_1);
-            }
         }
     }
 }

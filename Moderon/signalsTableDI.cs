@@ -1023,141 +1023,57 @@ namespace Moderon
         ///<summary>Изменили количество термовыключателей</summary>
         private void ThermAddSwitchCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 81; // Термовыключатель 1, пожар
-            ushort code_2 = 80; // Термовыключатель 2, перегрев
-            if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 1)
-            { // Выбран электрический догреватель
-                if (thermAddSwitchCombo.SelectedIndex == 0) // Нет термовыключателей
+            ushort code_1 = 81, code_2 = 80;                                                        // Термовыключатель 1 - пожар, 2 - перегрев
+
+            if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 1)                        // Выбран электрический догреватель
+            { 
+                if (thermAddSwitchCombo.SelectedIndex == 0)                                         // Нет термовыключателей
                 {
                     SubFromCombosDI(code_1); SubFromCombosDI(code_2);
                 }
-                else if (thermAddSwitchCombo.SelectedIndex == 1) // Один термовыключатель
+                else if (thermAddSwitchCombo.SelectedIndex == 1)                                    // Один термовыключатель
                 {
                     SubFromCombosDI(code_2);
-                    find_di = list_di.Find(x => x.Code == code_1);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Термовыключатель пожара ТЭНов догревателя", code_1));
-                        AddNewDI(code_1); // Добавление DI к свободному comboBox
-                    }
+                    CheckAddDIToList("Термовыключатель пожара ТЭНов догревателя", code_1);
                 }
-                else if (thermAddSwitchCombo.SelectedIndex == 2) // Два термовыключателя
+                else if (thermAddSwitchCombo.SelectedIndex == 2)                                    // Два термовыключателя
                 {
-                    find_di = list_di.Find(x => x.Code == code_1);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Термовыключатель пожара ТЭНов догревателя", code_1));
-                        AddNewDI(code_1); // Добавление DI к свободному comboBox
-                    }
-                    find_di = list_di.Find(x => x.Code == code_2);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Термовыключатель перегрева ТЭНов догревателя", code_2));
-                        AddNewDI(code_2); // Добавление DI к свободному comboBox
-                    }
+                    CheckAddDIToList("Термовыключатель пожара ТЭНов догревателя", code_1);
+                    CheckAddDIToList("Термовыключатель перегрева ТЭНов догревателя", code_2);
                 }
             }
+            // Выбран водяной догреватель, либо нет догревателя
             if ((addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0) || !addHeatCheck.Checked)
-            { // Выбран водяной догреватель, либо нет догревателя
-                SubFromCombosDI(code_1); SubFromCombosDI(code_2); // Удаление сигналов
+            { 
+                SubFromCombosDI(code_1); SubFromCombosDI(code_2);                                   // Удаление сигналов
             } 
         }
 
         ///<summary>Выбрали фильтр</summary>
         private void FilterCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 33; // Фильтр 1, приточный
-            ushort code_2 = 34; // Фильтр 2, приточный
-            ushort code_3 = 35; // Фильтр 3, приточный
-            ushort code_4 = 66; // Фильтр 1, вытяжной
-            ushort code_5 = 67; // Фильтр 2, вытяжной
-            ushort code_6 = 68; // Фильтр 3, вытяжной
-            if (filterCheck.Checked) // Выбрали фильтры
+            ushort code_1 = 33, code_2 = 34, code_3 = 35;                                           // Фильтр 1, 2, 3 приточные
+            ushort code_4 = 66, code_5 = 67, code_6 = 68;                                           // Фильтр 1, 2, 3 вытяжные
+
+            if (filterCheck.Checked)                                                                // Выбрали фильтры
             {
-                find_di = list_di.Find(x => x.Code == code_1);
-                if (find_di == null) // Нет такой записи
+                CheckAddDIToList("Приточный фильтр 1", code_1);
+                if (filterPrCombo.SelectedIndex > 0)                                                // Два приточных фильтра
+                    CheckAddDIToList("Приточный фильтр 2", code_2);
+                if (filterPrCombo.SelectedIndex > 1)                                                // Три приточных фильтра
+                    CheckAddDIToList("Приточный фильтр 3", code_3);
+                if (comboSysType.SelectedIndex == 1)                                                // Выбрана ПВ-система
                 {
-                    list_di.Add(new Di("Приточный фильтр 1", code_1));
-                    AddNewDI(code_1); // Добавление DI к свободному comboBox
-                }
-                if (filterPrCombo.SelectedIndex == 1) // Два фильтра
-                {
-                    find_di = list_di.Find(x => x.Code == code_2);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Приточный фильтр 2", code_2));
-                        AddNewDI(code_2); // Добавление DI к свободному comboBox
-                    }
-                }
-                else if (filterPrCombo.SelectedIndex == 2) // Три фильтра
-                {
-                    find_di = list_di.Find(x => x.Code == code_2);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Приточный фильтр 2", code_2));
-                        AddNewDI(code_2); // Добавление DI к свободному comboBox
-                    }
-                    find_di = list_di.Find(x => x.Code == code_3);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Приточный фильтр 3", code_3));
-                        AddNewDI(code_3); // Добавление DI к свободному comboBox
-                    }
-                }
-                if (comboSysType.SelectedIndex == 1) // Выбрана ПВ-система
-                {
-                    if (filterOutCombo.SelectedIndex == 1) // Один вытяжной фильтр
-                    {
-                        find_di = list_di.Find(x => x.Code == code_4);
-                        if (find_di == null) // Нет такой записи
-                        {
-                            list_di.Add(new Di("Вытяжной фильтр 1", code_4));
-                            AddNewDI(code_4); // Добавление DI к свободному comboBox
-                        }
-                    }
-                    else if (filterOutCombo.SelectedIndex == 2) // Два вытяжных фильтра
-                    {
-                        find_di = list_di.Find(x => x.Code == code_4);
-                        if (find_di == null) // Нет такой записи
-                        {
-                            list_di.Add(new Di("Вытяжной фильтр 1", code_4));
-                            AddNewDI(code_4); // Добавление DI к свободному comboBox
-                        }
-                        find_di = list_di.Find(x => x.Code == code_5);
-                        if (find_di == null) // Нет такой записи
-                        {
-                            list_di.Add(new Di("Вытяжной фильтр 2", code_5));
-                            AddNewDI(code_5); // Добавление DI к свободному comboBox
-                        }
-                    }
-                    else if (filterOutCombo.SelectedIndex == 3) // Три вытяжных фильтра
-                    {
-                        find_di = list_di.Find(x => x.Code == code_4);
-                        if (find_di == null) // Нет такой записи
-                        {
-                            list_di.Add(new Di("Вытяжной фильтр 1", code_4));
-                            AddNewDI(code_4); // Добавление DI к свободному comboBox
-                        }
-                        find_di = list_di.Find(x => x.Code == code_5);
-                        if (find_di == null) // Нет такой записи
-                        {
-                            list_di.Add(new Di("Вытяжной фильтр 2", code_5));
-                            AddNewDI(code_5); // Добавление DI к свободному comboBox
-                        }
-                        find_di = list_di.Find(x => x.Code == code_6);
-                        if (find_di == null) // Нет такой записи
-                        {
-                            list_di.Add(new Di("Вытяжной фильтр 3", code_6));
-                            AddNewDI(code_6); // Добавление DI к свободному comboBox
-                        }
-                    }
+                    if (filterOutCombo.SelectedIndex > 0)                                           // Один вытяжной фильтр
+                        CheckAddDIToList("Вытяжной фильтр 1", code_4);
+                    if (filterOutCombo.SelectedIndex > 1)                                           // Два вытяжных фильтра
+                        CheckAddDIToList("Вытяжной фильтр 2", code_5);
+                    if (filterOutCombo.SelectedIndex > 2)                                           // Три вытяжных фильтра
+                        CheckAddDIToList("Вытяжной фильтр 3", code_6);
                 }
             }
-            else // Отмена выбора фильтров
+            else                                                                                    // Отмена выбора фильтров
             {
-                // Удаление сигналов
                 SubFromCombosDI(code_1); SubFromCombosDI(code_2); SubFromCombosDI(code_3);
                 SubFromCombosDI(code_4); SubFromCombosDI(code_5); SubFromCombosDI(code_6);
             }
@@ -1166,39 +1082,23 @@ namespace Moderon
         ///<summary>Изменили количество приточных фильтров</summary>
         private void FilterPrCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 34; // Фильтр 2
-            ushort code_2 = 35; // Фильтр 3
-            if (filterCheck.Checked) // Выбран фильтр
+            ushort code_1 = 34, code_2 = 35;                                                        // Фильтр 2 и 3 приточные
+
+            if (filterCheck.Checked)                                                                // Выбран фильтр
             {
-                if (filterPrCombo.SelectedIndex == 0) // Один фильтр
+                if (filterPrCombo.SelectedIndex == 0)                                               // Один фильтр
                 {
-                    SubFromCombosDI(code_1); SubFromCombosDI(code_2); // Удаление сигналов
+                    SubFromCombosDI(code_1); SubFromCombosDI(code_2);                               // Удаление сигналов
                 }
-                else if (filterPrCombo.SelectedIndex == 1) // Два фильтра
+                else if (filterPrCombo.SelectedIndex == 1)                                          // Два приточных фильтра
                 {
                     SubFromCombosDI(code_2);
-                    find_di = list_di.Find(x => x.Code == code_1);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Приточный фильтр 2", code_1));
-                        AddNewDI(code_1); // Добавление DI к свободному comboBox
-                    }
+                    CheckAddDIToList("Приточный фильтр 2", code_1);
                 }
-                else if (filterPrCombo.SelectedIndex == 2) // Три фильтра
+                else if (filterPrCombo.SelectedIndex == 2)                                          // Три приточных фильтра
                 {
-                    find_di = list_di.Find(x => x.Code == code_1);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Приточный фильтр 2", code_1));
-                        AddNewDI(code_1); // Добавление DI к свободному comboBox
-                    }
-                    find_di = list_di.Find(x => x.Code == code_2);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Приточный фильтр 3", code_2));
-                        AddNewDI(code_2); // Добавление DI к свободному comboBox
-                    }
+                    CheckAddDIToList("Приточный фильтр 2", code_1);
+                    CheckAddDIToList("Приточный фильтр 3", code_2);
                 }
             }
         }
@@ -1206,62 +1106,30 @@ namespace Moderon
         ///<summary>Изменили количество вытяжных фильтров</summary>
         private void FilterOutCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 66; // Фильтр 1, вытяжной
-            ushort code_2 = 67; // Фильтр 2, вытяжной
-            ushort code_3 = 68; // Фильтр 3, вытяжной
-            if (comboSysType.SelectedIndex == 1 && filterCheck.Checked)
-            { // Выбрана ПВ-система и фильтр
-                if (filterOutCombo.SelectedIndex == 0) // Нет вытяжных фильтров
-                { // Удаление сигналов
-                    SubFromCombosDI(code_1); SubFromCombosDI(code_2); SubFromCombosDI(code_3);
+            ushort code_1 = 66, code_2 = 67, code_3 = 68;                                           // Фильтр 1, 2, 3 вытяжные
+
+            if (comboSysType.SelectedIndex == 1 && filterCheck.Checked)                             // Выбрана ПВ-система и фильтр
+            { 
+                if (filterOutCombo.SelectedIndex == 0)                                              // Нет вытяжных фильтров
+                { 
+                    SubFromCombosDI(code_1); SubFromCombosDI(code_2); SubFromCombosDI(code_3);      // Удаление сигналов
                 }
-                else if (filterOutCombo.SelectedIndex == 1) // Один вытяжной фильтр
+                else if (filterOutCombo.SelectedIndex == 1)                                         // Один вытяжной фильтр
                 {
                     SubFromCombosDI(code_2); SubFromCombosDI(code_3);
-                    find_di = list_di.Find(x => x.Code == code_1);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Вытяжной фильтр 1", code_1));
-                        AddNewDI(code_1); // Добавление DI к свободному comboBox
-                    }
+                    CheckAddDIToList("Вытяжной фильтр 1", code_1);
                 }
-                else if (filterOutCombo.SelectedIndex == 2) // Два вытяжных фильтра
+                else if (filterOutCombo.SelectedIndex == 2)                                         // Два вытяжных фильтра
                 {
                     SubFromCombosDI(code_3);
-                    find_di = list_di.Find(x => x.Code == code_1);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Вытяжной фильтр 1", code_1));
-                        AddNewDI(code_1); // Добавление DI к свободному comboBox
-                    }
-                    find_di = list_di.Find(x => x.Code == code_2);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Вытяжной фильтр 2", code_2));
-                        AddNewDI(code_2); // Добавление DI к свободному comboBox
-                    }
+                    CheckAddDIToList("Вытяжной фильтр 1", code_1);
+                    CheckAddDIToList("Вытяжной фильтр 2", code_2);
                 }
-                else if (filterOutCombo.SelectedIndex == 3) // Три вытяжных фильтра
+                else if (filterOutCombo.SelectedIndex == 3)                                         // Три вытяжных фильтра
                 {
-                    find_di = list_di.Find(x => x.Code == code_1);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Вытяжной фильтр 1", code_1));
-                        AddNewDI(code_1); // Добавление DI к свободному comboBox
-                    }
-                    find_di = list_di.Find(x => x.Code == code_2);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Вытяжной фильтр 2", code_2));
-                        AddNewDI(code_2); // Добавление DI к свободному comboBox
-                    }
-                    find_di = list_di.Find(x => x.Code == code_3);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Вытяжной фильтр 3", code_3));
-                        AddNewDI(code_3); // Добавление DI к свободному comboBox
-                    }
+                    CheckAddDIToList("Вытяжной фильтр 1", code_1);
+                    CheckAddDIToList("Вытяжной фильтр 2", code_2);
+                    CheckAddDIToList("Вытяжной фильтр 3", code_3);
                 }
             } 
         }
@@ -1269,31 +1137,16 @@ namespace Moderon
         ///<summary>Выбрали охладитель</summary>
         private void CoolerCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 83; // Термостат фреонового охладителя
-            ushort code_2 = 84; // Авария фреонового охладителя
-            if (coolerCheck.Checked && coolTypeCombo.SelectedIndex == 0)
-            { // Выбран фреоновый охладитель
-                if (thermoCoolerCheck.Checked)
-                {
-                    find_di = list_di.Find(x => x.Code == code_1);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Термостат фреонового охладителя", code_1));
-                        AddNewDI(code_1); // Добавление DI к свободному comboBox
-                    }
-                }
-                if (alarmFrCoolCheck.Checked)
-                {
-                    find_di = list_di.Find(x => x.Code == code_2);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Авария фреонового охладителя", code_2));
-                        AddNewDI(code_2); // Добавление DI к свободному comboBox
-                    }
-                }
+            ushort code_1 = 83, code_2 = 84;                                                        // Термостат и авария фреонового охладителя
+
+            if (coolerCheck.Checked && coolTypeCombo.SelectedIndex == 0)                            // Выбран фреоновый охладитель
+            { 
+                if (thermoCoolerCheck.Checked)                                                      // Выбран термостат
+                    CheckAddDIToList("Термостат фреонового охладителя", code_1);
+                if (alarmFrCoolCheck.Checked)                                                       // Авария фреонового охладителя
+                    CheckAddDIToList("Авария фреонового охладителя", code_2);
             }
-            else // Отмена выбора охладителя
+            else                                                                                    // Отмена выбора охладителя
             {
                 SubFromCombosDI(code_1); SubFromCombosDI(code_2);
             }
@@ -1302,33 +1155,18 @@ namespace Moderon
         ///<summary>Изменили тип охладителя</summary>
         private void CoolTypeCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 83; // Термостат фреонового охладителя
-            ushort code_2 = 84; // Авария фреонового охладителя
-            if (coolerCheck.Checked) // Когда выбран охладитель
+            ushort code_1 = 83, code_2 = 84;                                                        // Термостат и авария фреонового охладителя
+
+            if (coolerCheck.Checked)                                                                // Когда выбран охладитель
             {
-                if (coolTypeCombo.SelectedIndex == 0) // Фреоновый охладитель
+                if (coolTypeCombo.SelectedIndex == 0)                                               // Фреоновый охладитель
                 {
-                    if (thermoCoolerCheck.Checked)
-                    {
-                        find_di = list_di.Find(x => x.Code == code_1);
-                        if (find_di == null) // Нет такой записи
-                        {
-                            list_di.Add(new Di("Термостат фреонового охладителя", code_1));
-                            AddNewDI(code_1); // Добавление DI к свободному comboBox
-                        }
-                    }
-                    if (alarmFrCoolCheck.Checked)
-                    {
-                        find_di = list_di.Find(x => x.Code == code_2);
-                        if (find_di == null) // Нет такой записи
-                        {
-                            list_di.Add(new Di("Авария фреонового охладителя", code_2));
-                            AddNewDI(code_2); // Добавление DI к свободному comboBox
-                        }
-                    }
+                    if (thermoCoolerCheck.Checked)                                                  // Выбран термостат
+                        CheckAddDIToList("Термостат фреонового охладителя", code_1);
+                    if (alarmFrCoolCheck.Checked)                                                   // Выбран сигнал аварии
+                        CheckAddDIToList("Авария фреонового охладителя", code_2);
                 }
-                else if (coolTypeCombo.SelectedIndex == 1) // Водяной охладитель
+                else if (coolTypeCombo.SelectedIndex == 1)                                          // Водяной охладитель
                 {
                     SubFromCombosDI(code_1); SubFromCombosDI(code_2);
                 }
@@ -1338,147 +1176,87 @@ namespace Moderon
         ///<summary>Выбрали термостат фреонового охладителя</summary>
         private void ThermoCoolerCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 83; // Термостат фреонового охладителя
-            if (coolerCheck.Checked && coolTypeCombo.SelectedIndex == 0)
-            { // Выбран фреоновый охладитель
-                if (thermoCoolerCheck.Checked)
-                {
-                    find_di = list_di.Find(x => x.Code == code_1);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Термостат фреонового охладителя", code_1));
-                        AddNewDI(code_1); // Добавление DI к свободному comboBox
-                    }
-                }
-                else // Отмена выбора
-                {
+            ushort code_1 = 83;                                                                     // Термостат фреонового охладителя
+
+            if (coolerCheck.Checked && coolTypeCombo.SelectedIndex == 0)                            // Выбран фреоновый охладитель
+            { 
+                if (thermoCoolerCheck.Checked)                                                      // Выбран термостат
+                    CheckAddDIToList("Термостат фреонового охладителя", code_1);
+                else                                                                                // Отмена выбора
                     SubFromCombosDI(code_1);
-                }
             }
         }
 
         ///<summary>Выбрали аварийный сигнал фреонового охладителя</summary>
         private void AlarmFrCoolCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            Di find_di;
             ushort code_1 = 84;
-            if (coolerCheck.Checked && coolTypeCombo.SelectedIndex == 0)
-            { // Выбран фреоновый охладитель
-                if (alarmFrCoolCheck.Checked)
-                {
-                    find_di = list_di.Find(x => x.Code == code_1);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Авария фреонового охладителя", code_1));
-                        AddNewDI(code_1); // Добавление DI к свободному comboBox
-                    }
-                }
-                else // Отмена выбора
-                {
+
+            if (coolerCheck.Checked && coolTypeCombo.SelectedIndex == 0)                            // Выбран фреоновый охладитель
+            { 
+                if (alarmFrCoolCheck.Checked)                                                       // Выбран сигнал аварии
+                    CheckAddDIToList("Авария фреонового охладителя", code_1);
+                else                                                                                // Отмена выбора
                     SubFromCombosDI(code_1);
-                }
             }
         }
 
         ///<summary>Выбрали увлажнитель</summary>
         private void HumidCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 69; // Авария парового увлажнителя
-            if (humidCheck.Checked) // Когда выбран увлажнитель
+            ushort code_1 = 69;                                                                     // Авария парового увлажнителя
+
+            if (humidCheck.Checked)                                                                 // Когда выбран увлажнитель
             {
-                if (humidTypeCombo.SelectedIndex == 0) // Паровой увлажнитель
-                {
-                    find_di = list_di.Find(x => x.Code == code_1);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Авария парового увлажнителя", code_1));
-                        AddNewDI(code_1); // Добавление DI к свободному comboBox
-                    }
-                }
+                if (humidTypeCombo.SelectedIndex == 0)                                              // Паровой увлажнитель
+                    CheckAddDIToList("Авария парового увлажнителя", code_1);
             }
-            else // Отмена выбора увлажнителя
-            {
+            else                                                                                    // Отмена выбора увлажнителя
                 SubFromCombosDI(code_1);
-            }
         }
 
         ///<summary>Изменили тип увлажнителя</summary>
         private void HumidTypeCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 69; // Авария парового увлажнителя
-            if (humidCheck.Checked) // Когда выбран увлажнитель
+            ushort code_1 = 69;                                                                     // Авария парового увлажнителя
+
+            if (humidCheck.Checked)                                                                 // Когда выбран увлажнитель
             {
-                if (humidTypeCombo.SelectedIndex == 0) // Паровой увлажнитель
+                if (humidTypeCombo.SelectedIndex == 0)                                              // Паровой увлажнитель
                 {
                     if (alarmHumidCheck.Checked)
-                    {
-                        find_di = list_di.Find(x => x.Code == code_1);
-                        if (find_di == null) // Нет такой записи
-                        {
-                            list_di.Add(new Di("Авария парового увлажнителя", code_1));
-                            AddNewDI(code_1); // Добавление DI к свободному comboBox
-                        }
-                    }
+                        CheckAddDIToList("Авария парового увлажнителя", code_1);
                 }
-                else if (humidTypeCombo.SelectedIndex == 1) // Сотовый увлажнитель
-                {
+                else if (humidTypeCombo.SelectedIndex == 1)                                         // Сотовый увлажнитель
                     SubFromCombosDI(code_1);
-                }
             }
         }
 
         ///<summary>Выбрали сигнал аварии парового увлажнителя</summary>
         private void AlarmHumidCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 69; // Авария парового увлажнителя
-            if (humidCheck.Checked && humidTypeCombo.SelectedIndex == 0)
-            { // Выбран паровой увлажнитель
+            ushort code_1 = 69;                                                                     // Авария парового увлажнителя
+
+            if (humidCheck.Checked && humidTypeCombo.SelectedIndex == 0)                            // Выбран паровой увлажнитель
+            { 
                 if (alarmHumidCheck.Checked)
-                {
-                    find_di = list_di.Find(x => x.Code == code_1);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Авария парового увлажнителя", code_1));
-                        AddNewDI(code_1); // Добавление DI к свободному comboBox
-                    }
-                }
-                else // Отмена выбора
-                {
+                    CheckAddDIToList("Авария парового увлажнителя", code_1);
+                else                                                                                // Отмена выбора
                     SubFromCombosDI(code_1);
-                }
             }
         }
 
         ///<summary>Выбрали рекуператор</summary>
         private void RecupCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 90; // Сигнал PS  рекуператора
-            ushort code_2 = 91; // Сигнал аварии роторного рекуператора
-            if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)
+            ushort code_1 = 90, code_2 = 91;                                                        // Сигнал PS и аварии роторного рекуператора
+
+            if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)                              // Выбрали рекуператор
             {
-                if (recDefPsCheck.Checked) // Выбрали сигнал PS
-                {
-                    find_di = list_di.Find(x => x.Code == code_1);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("PS рекуператора", code_1));
-                        AddNewDI(code_1); // Добавление DI к свободному comboBox
-                    }
-                }
-                if (recupTypeCombo.SelectedIndex == 0) // Роторный рекуператор
-                {
-                    find_di = list_di.Find(x => x.Code == code_2);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Авария роторного рекуператора", code_2));
-                        AddNewDI(code_2); // Добавление DI к свободному comboBox
-                    }
-                }
+                if (recDefPsCheck.Checked)                                                          // Выбрали сигнал PS
+                    CheckAddDIToList("PS рекуператора", code_1);
+                if (recupTypeCombo.SelectedIndex == 0)                                              // Роторный рекуператор
+                    CheckAddDIToList("Авария роторного рекуператора", code_2);
             }
             else // Отмена выбора рекуператора
             { 
@@ -1489,149 +1267,85 @@ namespace Moderon
         ///<summary>Изменили тип рекуператора</summary>
         private void RecupTypeCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 91; // Сигнал аварии роторного рекуператора
-            if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)
+            ushort code_1 = 91;                                                                     // Сигнал аварии роторного рекуператора
+
+            if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)                              // Выбран рекуператор
             {
-                if (recupTypeCombo.SelectedIndex == 0) // Роторный рекуператор
-                {
-                    find_di = list_di.Find(x => x.Code == code_1);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Авария роторного рекуператора", code_1));
-                        AddNewDI(code_1); // Добавление DI к свободному comboBox
-                    }
-                }
-                else // Другой тип рекуператора
-                {
+                if (recupTypeCombo.SelectedIndex == 0)                                              // Роторный рекуператор
+                    CheckAddDIToList("Авария роторного рекуператора", code_1);
+                else                                                                                // Другой тип рекуператора
                     SubFromCombosDI(code_1);
-                }
             }
         }
 
         ///<summary>Выбрали сигнал PS рекуператора</summary>
         private void RecDefPsCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 90; // Сигнал PS рекуператора
-            if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)
-            { // Выбран роторный рекуператор
-                if (recDefPsCheck.Checked) // Выбрали сигнал PS
-                {
-                    find_di = list_di.Find(x => x.Code == code_1);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("PS рекуператора", code_1));
-                        AddNewDI(code_1); // Добавление DI к свободному comboBox
-                    }
-                }
-                else // Отмена выбора сигнала PS
-                {
+            ushort code_1 = 90;                                                                     // Сигнал PS рекуператора
+
+            if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)                              // Выбран рекуператор
+            { 
+                if (recDefPsCheck.Checked)                                                          // Выбрали сигнал PS
+                    CheckAddDIToList("PS рекуператора", code_1);
+                else                                                                                // Отмена выбора сигнала PS
                     SubFromCombosDI(code_1);
-                }
             }
         }
 
         ///<summary>Выбрали сигнал переключателя "Стоп/Пуск"</summary>
         private void StopStartCheck_CheckedChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 3; // Переключатель "Стоп/Пуск"
-            if (stopStartCheck.Checked) // Выбрали сигнал для переключателя
-            {
-                find_di = list_di.Find(x => x.Code == code_1);
-                if (find_di == null) // Нет такой записи
-                {
-                    list_di.Add(new Di("Переключатель \"Стоп/Пуск\"", code_1));
-                    AddNewDI(code_1); // Добавление DI к свободному comboBox
-                }
-            }
+            ushort code_1 = 3;                                                                      // Переключатель "Стоп/Пуск"
+
+            if (stopStartCheck.Checked)                                                             // Выбрали сигнал для переключателя
+                CheckAddDIToList("Переключатель \"Стоп/Пуск\"", code_1);
             else // Отмена выбора сигнала переключателя
-            {
                 SubFromCombosDI(code_1);
-            }
         }
 
         ///<summary>Выбрали сигнал аварии для приточного вентилятора</summary> 
         private void PrFanAlarmCheck_CheckedChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 12; // Сигнал аварии 1
-            ushort code_2 = 23; // Сигнал аварии 2
-            if (prFanAlarmCheck.Checked) // Выбрали сигнал аварии
+            ushort code_1 = 12, code_2 = 23;                                                        // Сигнал аварии 1 и 2
+
+            if (prFanAlarmCheck.Checked)                                                            // Выбрали сигнал аварии
             {
-                find_di = list_di.Find(x => x.Code == code_1);
-                if (find_di == null) // Нет такой записи
-                {
-                    list_di.Add(new Di("Сигнал аварии приточного вентилятора 1", code_1));
-                    AddNewDI(code_1); // Добавление DI к свободному comboBox
-                }
-                if (checkResPrFan.Checked) // Выбран резерв приточного вентилятора
-                {
-                    find_di = list_di.Find(x => x.Code == code_2);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Сигнал аварии приточного вентилятора 2", code_2));
-                        AddNewDI(code_2); // Добавление DI к свободному comboBox
-                    }
-                }
+                CheckAddDIToList("Сигнал аварии приточного вентилятора 1", code_1);
+                if (checkResPrFan.Checked)                                                          // Выбран резерв приточного вентилятора
+                    CheckAddDIToList("Сигнал аварии приточного вентилятора 2", code_2);
             }
-            else // Отмена выбора сигнала аварии
+            else                                                                                    // Отмена выбора сигнала аварии
             {
-                SubFromCombosDI(code_1);
-                if (checkResPrFan.Checked) SubFromCombosDI(code_2);
+                SubFromCombosDI(code_1); SubFromCombosDI(code_2);
             }
         }
 
         ///<summary>Выбрали сигнал аварии для вытяжного вентилятора</summary>
         private void OutFanAlarmCheck_CheckedChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 45; // Сигнал аварии 1
-            ushort code_2 = 56; // Сигнал аварии 2
-            if (outFanAlarmCheck.Checked) // Выбрали сигнал аварии
+            ushort code_1 = 45, code_2 = 56;                                                        // Сигнал аварии 1 и 2
+
+            if (outFanAlarmCheck.Checked)                                                           // Выбрали сигнал аварии
             {
-                find_di = list_di.Find(x => x.Code == code_1);
-                if (find_di == null) // Нет такой записи
-                {
-                    list_di.Add(new Di("Сигнал аварии вытяжного вентилятора 1", code_1));
-                    AddNewDI(code_1); // Добавление DI к свободному comboBox
-                }
-                if (checkResOutFan.Checked) // Выбран резерв вытяжного вентилятора
-                {
-                    find_di = list_di.Find(x => x.Code == code_2);
-                    if (find_di == null) // Нет такой записи
-                    {
-                        list_di.Add(new Di("Сигнал аварии вытяжного вентилятора 2", code_2));
-                        AddNewDI(code_2); // Добавление DI к свободному comboBox
-                    }
-                }
+                CheckAddDIToList("Сигнал аварии вытяжного вентилятора 1", code_1);
+                if (checkResOutFan.Checked)                                                         // Выбран резерв вытяжного вентилятора
+                    CheckAddDIToList("Сигнал аварии вытяжного вентилятора 2", code_2);
             }
-            else // Отмена выбора сигнала аварии
+            else                                                                                    // Отмена выбора сигнала аварии
             {
-                SubFromCombosDI(code_1);
-                if (checkResPrFan.Checked) SubFromCombosDI(code_2);
+                SubFromCombosDI(code_1); SubFromCombosDI(code_2);
             }
         }
 
         ///<summary>Выбрали сигнал пожарной сигнализации</summary>
         private void FireCheck_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
-            Di find_di;
-            ushort code_1 = 98; // Сигнал пожарной сигнализации
-            if (fireCheck.Checked)
-            {   // Выбран сигнал
-                find_di = list_di.Find(x => x.Code == code_1);
-                if (find_di == null) // Нет такой записи
-                {
-                    list_di.Add(new Di("Сигнал пожарной сигнализации", code_1));
-                    AddNewDI(code_1); // Добавление DI к свободному comboBox
-                }
-            }
-            else // Отмена выбора сигнала пожарной сигнализации
-            {
+            ushort code_1 = 98;                                                                     // Сигнал пожарной сигнализации
+
+            if (fireCheck.Checked)                                                                  // Выбран сигнал
+                CheckAddDIToList("Сигнал пожарной сигнализации", code_1);
+            else                                                                                    // Отмена выбора сигнала пожарной сигнализации
                 SubFromCombosDI(code_1);
-            }
         }
     }
 }

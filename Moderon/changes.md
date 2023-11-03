@@ -151,4 +151,9 @@
 02.11.23 (четверг)
 
 - переписан метод `SubFromCombosDI` с использованием `RemoveDI_FromComboBox`
+- рефакторинг для `signalsTableDI.cs`
+
+03.11.23 (пятница)  
+
+- закончен рефакторинг для `signalsTableDI.cs`
 
