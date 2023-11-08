@@ -805,7 +805,7 @@
             this.mainPage.Location = new System.Drawing.Point(15, 75);
             this.mainPage.Name = "mainPage";
             this.mainPage.SelectedIndex = 0;
-            this.mainPage.Size = new System.Drawing.Size(750, 58);
+            this.mainPage.Size = new System.Drawing.Size(750, 576);
             this.mainPage.TabIndex = 1;
             // 
             // sensorsPage
@@ -814,7 +814,7 @@
             this.sensorsPage.Controls.Add(this.sensorsPanel);
             this.sensorsPage.Location = new System.Drawing.Point(4, 22);
             this.sensorsPage.Name = "sensorsPage";
-            this.sensorsPage.Size = new System.Drawing.Size(742, 32);
+            this.sensorsPage.Size = new System.Drawing.Size(742, 550);
             this.sensorsPage.TabIndex = 9;
             this.sensorsPage.Text = "ДАТЧИКИ/СИГНАЛЫ";
             // 
@@ -854,7 +854,7 @@
             this.fireTypeCombo.Items.AddRange(new object[] {
             "НО",
             "НЗ"});
-            this.fireTypeCombo.Location = new System.Drawing.Point(225, 382);
+            this.fireTypeCombo.Location = new System.Drawing.Point(225, 402);
             this.fireTypeCombo.Name = "fireTypeCombo";
             this.fireTypeCombo.Size = new System.Drawing.Size(59, 21);
             this.fireTypeCombo.TabIndex = 62;
@@ -865,7 +865,7 @@
             this.label169.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label169.AutoSize = true;
             this.label169.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label169.Location = new System.Drawing.Point(15, 381);
+            this.label169.Location = new System.Drawing.Point(15, 404);
             this.label169.Name = "label169";
             this.label169.Size = new System.Drawing.Size(203, 16);
             this.label169.TabIndex = 61;
@@ -886,7 +886,7 @@
             // 
             this.fireCheck.AutoSize = true;
             this.fireCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.fireCheck.Location = new System.Drawing.Point(15, 354);
+            this.fireCheck.Location = new System.Drawing.Point(15, 364);
             this.fireCheck.Name = "fireCheck";
             this.fireCheck.Size = new System.Drawing.Size(237, 18);
             this.fireCheck.TabIndex = 59;
@@ -1061,7 +1061,7 @@
             this.fanPage.Location = new System.Drawing.Point(4, 22);
             this.fanPage.Name = "fanPage";
             this.fanPage.Padding = new System.Windows.Forms.Padding(3);
-            this.fanPage.Size = new System.Drawing.Size(742, 538);
+            this.fanPage.Size = new System.Drawing.Size(742, 550);
             this.fanPage.TabIndex = 0;
             this.fanPage.Text = "ВЕНТИЛЯТОР";
             // 
@@ -1099,7 +1099,7 @@
             this.outFanSpeedCheck.AutoSize = true;
             this.outFanSpeedCheck.Enabled = false;
             this.outFanSpeedCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.outFanSpeedCheck.Location = new System.Drawing.Point(15, 454);
+            this.outFanSpeedCheck.Location = new System.Drawing.Point(15, 414);
             this.outFanSpeedCheck.Name = "outFanSpeedCheck";
             this.outFanSpeedCheck.Size = new System.Drawing.Size(131, 18);
             this.outFanSpeedCheck.TabIndex = 50;
@@ -1127,11 +1127,11 @@
             this.outFanAlarmCheck.AutoSize = true;
             this.outFanAlarmCheck.Enabled = false;
             this.outFanAlarmCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.outFanAlarmCheck.Location = new System.Drawing.Point(15, 414);
+            this.outFanAlarmCheck.Location = new System.Drawing.Point(15, 374);
             this.outFanAlarmCheck.Name = "outFanAlarmCheck";
-            this.outFanAlarmCheck.Size = new System.Drawing.Size(123, 18);
+            this.outFanAlarmCheck.Size = new System.Drawing.Size(149, 18);
             this.outFanAlarmCheck.TabIndex = 48;
-            this.outFanAlarmCheck.Text = "Сигнал аварии";
+            this.outFanAlarmCheck.Text = "Выход аварии с ПЧ";
             this.outFanAlarmCheck.UseVisualStyleBackColor = true;
             this.outFanAlarmCheck.CheckedChanged += new System.EventHandler(this.OutFanAlarmCheck_CheckedChanged);
             // 
@@ -1140,12 +1140,13 @@
             this.outFanPowSupCheck.AutoSize = true;
             this.outFanPowSupCheck.Enabled = false;
             this.outFanPowSupCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.outFanPowSupCheck.Location = new System.Drawing.Point(15, 374);
+            this.outFanPowSupCheck.Location = new System.Drawing.Point(350, 294);
             this.outFanPowSupCheck.Name = "outFanPowSupCheck";
             this.outFanPowSupCheck.Size = new System.Drawing.Size(133, 18);
             this.outFanPowSupCheck.TabIndex = 46;
             this.outFanPowSupCheck.Text = "Подача питания";
             this.outFanPowSupCheck.UseVisualStyleBackColor = true;
+            this.outFanPowSupCheck.Visible = false;
             this.outFanPowSupCheck.CheckedChanged += new System.EventHandler(this.OutFanPowSupCheck_CheckedChanged);
             // 
             // fanPicture2
@@ -1400,11 +1401,11 @@
             this.prFanAlarmCheck.AutoSize = true;
             this.prFanAlarmCheck.Enabled = false;
             this.prFanAlarmCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.prFanAlarmCheck.Location = new System.Drawing.Point(15, 414);
+            this.prFanAlarmCheck.Location = new System.Drawing.Point(15, 374);
             this.prFanAlarmCheck.Name = "prFanAlarmCheck";
-            this.prFanAlarmCheck.Size = new System.Drawing.Size(123, 18);
+            this.prFanAlarmCheck.Size = new System.Drawing.Size(149, 18);
             this.prFanAlarmCheck.TabIndex = 46;
-            this.prFanAlarmCheck.Text = "Сигнал аварии";
+            this.prFanAlarmCheck.Text = "Выход аварии с ПЧ";
             this.prFanAlarmCheck.UseVisualStyleBackColor = true;
             this.prFanAlarmCheck.CheckedChanged += new System.EventHandler(this.PrFanAlarmCheck_CheckedChanged);
             // 
@@ -1413,12 +1414,13 @@
             this.prFanPowSupCheck.AutoSize = true;
             this.prFanPowSupCheck.Enabled = false;
             this.prFanPowSupCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.prFanPowSupCheck.Location = new System.Drawing.Point(15, 374);
+            this.prFanPowSupCheck.Location = new System.Drawing.Point(350, 294);
             this.prFanPowSupCheck.Name = "prFanPowSupCheck";
             this.prFanPowSupCheck.Size = new System.Drawing.Size(133, 18);
             this.prFanPowSupCheck.TabIndex = 45;
             this.prFanPowSupCheck.Text = "Подача питания";
             this.prFanPowSupCheck.UseVisualStyleBackColor = true;
+            this.prFanPowSupCheck.Visible = false;
             this.prFanPowSupCheck.CheckedChanged += new System.EventHandler(this.PrFanPowSupCheck_CheckedChanged);
             // 
             // fanPicture1
@@ -1631,7 +1633,7 @@
             this.prFanSpeedCheck.AutoSize = true;
             this.prFanSpeedCheck.Enabled = false;
             this.prFanSpeedCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.prFanSpeedCheck.Location = new System.Drawing.Point(15, 454);
+            this.prFanSpeedCheck.Location = new System.Drawing.Point(15, 414);
             this.prFanSpeedCheck.Name = "prFanSpeedCheck";
             this.prFanSpeedCheck.Size = new System.Drawing.Size(131, 18);
             this.prFanSpeedCheck.TabIndex = 48;
@@ -1644,7 +1646,7 @@
             this.filterPage.Controls.Add(this.filterPanel);
             this.filterPage.Location = new System.Drawing.Point(4, 22);
             this.filterPage.Name = "filterPage";
-            this.filterPage.Size = new System.Drawing.Size(742, 538);
+            this.filterPage.Size = new System.Drawing.Size(742, 550);
             this.filterPage.TabIndex = 6;
             this.filterPage.Text = "ФИЛЬТР";
             // 
@@ -1767,7 +1769,7 @@
             this.dampPage.Controls.Add(this.dampPanel);
             this.dampPage.Location = new System.Drawing.Point(4, 22);
             this.dampPage.Name = "dampPage";
-            this.dampPage.Size = new System.Drawing.Size(742, 538);
+            this.dampPage.Size = new System.Drawing.Size(742, 550);
             this.dampPage.TabIndex = 7;
             this.dampPage.Text = "ЗАСЛОНКА";
             // 
@@ -2203,7 +2205,7 @@
             this.heatPage.Location = new System.Drawing.Point(4, 22);
             this.heatPage.Name = "heatPage";
             this.heatPage.Padding = new System.Windows.Forms.Padding(3);
-            this.heatPage.Size = new System.Drawing.Size(742, 538);
+            this.heatPage.Size = new System.Drawing.Size(742, 550);
             this.heatPage.TabIndex = 1;
             this.heatPage.Text = "НАГРЕВАТЕЛЬ";
             // 
@@ -2520,7 +2522,7 @@
             this.coolPage.Location = new System.Drawing.Point(4, 22);
             this.coolPage.Name = "coolPage";
             this.coolPage.Padding = new System.Windows.Forms.Padding(3);
-            this.coolPage.Size = new System.Drawing.Size(742, 538);
+            this.coolPage.Size = new System.Drawing.Size(742, 550);
             this.coolPage.TabIndex = 2;
             this.coolPage.Text = "ОХЛАДИТЕЛЬ";
             // 
@@ -2748,7 +2750,7 @@
             this.humidPage.Location = new System.Drawing.Point(4, 22);
             this.humidPage.Name = "humidPage";
             this.humidPage.Padding = new System.Windows.Forms.Padding(3);
-            this.humidPage.Size = new System.Drawing.Size(742, 538);
+            this.humidPage.Size = new System.Drawing.Size(742, 550);
             this.humidPage.TabIndex = 3;
             this.humidPage.Text = "УВЛАЖНИТЕЛЬ";
             // 
@@ -2908,7 +2910,7 @@
             this.recircPage.Location = new System.Drawing.Point(4, 22);
             this.recircPage.Name = "recircPage";
             this.recircPage.Padding = new System.Windows.Forms.Padding(3);
-            this.recircPage.Size = new System.Drawing.Size(742, 538);
+            this.recircPage.Size = new System.Drawing.Size(742, 550);
             this.recircPage.TabIndex = 4;
             this.recircPage.Text = "РЕЦИРКУЛЯЦИЯ";
             // 
@@ -3113,7 +3115,7 @@
             this.recupPage.Controls.Add(this.recupPanel);
             this.recupPage.Location = new System.Drawing.Point(4, 22);
             this.recupPage.Name = "recupPage";
-            this.recupPage.Size = new System.Drawing.Size(742, 538);
+            this.recupPage.Size = new System.Drawing.Size(742, 550);
             this.recupPage.TabIndex = 5;
             this.recupPage.Text = "РЕКУПЕРАТОР";
             // 
@@ -3296,9 +3298,9 @@
             this.rotorRecupPanel.Controls.Add(this.rotorPowCombo);
             this.rotorRecupPanel.Controls.Add(this.label45);
             this.rotorRecupPanel.Controls.Add(this.label44);
-            this.rotorRecupPanel.Location = new System.Drawing.Point(3, 31);
+            this.rotorRecupPanel.Location = new System.Drawing.Point(0, 31);
             this.rotorRecupPanel.Name = "rotorRecupPanel";
-            this.rotorRecupPanel.Size = new System.Drawing.Size(322, 116);
+            this.rotorRecupPanel.Size = new System.Drawing.Size(322, 119);
             this.rotorRecupPanel.TabIndex = 32;
             // 
             // analogRotRecCheck
@@ -3340,9 +3342,9 @@
             this.outSigAlarmRotRecCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.outSigAlarmRotRecCheck.Location = new System.Drawing.Point(15, 134);
             this.outSigAlarmRotRecCheck.Name = "outSigAlarmRotRecCheck";
-            this.outSigAlarmRotRecCheck.Size = new System.Drawing.Size(183, 18);
+            this.outSigAlarmRotRecCheck.Size = new System.Drawing.Size(224, 18);
             this.outSigAlarmRotRecCheck.TabIndex = 42;
-            this.outSigAlarmRotRecCheck.Text = "Внешний сигнал аварии";
+            this.outSigAlarmRotRecCheck.Text = "Внешний сигнал аварии от ПЧ";
             this.outSigAlarmRotRecCheck.UseVisualStyleBackColor = true;
             this.outSigAlarmRotRecCheck.CheckedChanged += new System.EventHandler(this.OutSigAlarmRotRecCheck_cmdCheckedChanged);
             // 
@@ -3451,7 +3453,7 @@
             this.addHeatPage.Controls.Add(this.secHeatPanel);
             this.addHeatPage.Location = new System.Drawing.Point(4, 22);
             this.addHeatPage.Name = "addHeatPage";
-            this.addHeatPage.Size = new System.Drawing.Size(742, 538);
+            this.addHeatPage.Size = new System.Drawing.Size(742, 550);
             this.addHeatPage.TabIndex = 8;
             this.addHeatPage.Text = "ДОП НАГРЕВ";
             // 
@@ -4202,9 +4204,9 @@
             this.signalsPanel.Controls.Add(this.signalsReadyLabel);
             this.signalsPanel.Controls.Add(this.tabControlSignals);
             this.signalsPanel.Controls.Add(this.backSignalsButton);
-            this.signalsPanel.Location = new System.Drawing.Point(15, 140);
+            this.signalsPanel.Location = new System.Drawing.Point(12, 860);
             this.signalsPanel.Name = "signalsPanel";
-            this.signalsPanel.Size = new System.Drawing.Size(750, 465);
+            this.signalsPanel.Size = new System.Drawing.Size(750, 32);
             this.signalsPanel.TabIndex = 16;
             this.signalsPanel.Visible = false;
             // 
@@ -4215,7 +4217,7 @@
             this.loadToExl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loadToExl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadToExl.ForeColor = System.Drawing.Color.White;
-            this.loadToExl.Location = new System.Drawing.Point(561, 433);
+            this.loadToExl.Location = new System.Drawing.Point(561, 0);
             this.loadToExl.Name = "loadToExl";
             this.loadToExl.Size = new System.Drawing.Size(173, 27);
             this.loadToExl.TabIndex = 61;
@@ -4230,7 +4232,7 @@
             this.loadPLC_SignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loadPLC_SignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadPLC_SignalsButton.ForeColor = System.Drawing.Color.White;
-            this.loadPLC_SignalsButton.Location = new System.Drawing.Point(408, 433);
+            this.loadPLC_SignalsButton.Location = new System.Drawing.Point(408, 0);
             this.loadPLC_SignalsButton.Name = "loadPLC_SignalsButton";
             this.loadPLC_SignalsButton.Size = new System.Drawing.Size(147, 27);
             this.loadPLC_SignalsButton.TabIndex = 60;
@@ -4244,7 +4246,7 @@
             this.signalsReadyLabel.AutoSize = true;
             this.signalsReadyLabel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.signalsReadyLabel.ForeColor = System.Drawing.Color.Green;
-            this.signalsReadyLabel.Location = new System.Drawing.Point(123, 439);
+            this.signalsReadyLabel.Location = new System.Drawing.Point(123, 6);
             this.signalsReadyLabel.Name = "signalsReadyLabel";
             this.signalsReadyLabel.Size = new System.Drawing.Size(272, 14);
             this.signalsReadyLabel.TabIndex = 23;
@@ -7816,7 +7818,7 @@
             this.backSignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.backSignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.backSignalsButton.ForeColor = System.Drawing.Color.White;
-            this.backSignalsButton.Location = new System.Drawing.Point(10, 433);
+            this.backSignalsButton.Location = new System.Drawing.Point(10, 0);
             this.backSignalsButton.Name = "backSignalsButton";
             this.backSignalsButton.Size = new System.Drawing.Size(94, 27);
             this.backSignalsButton.TabIndex = 58;

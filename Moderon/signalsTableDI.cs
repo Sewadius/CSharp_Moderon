@@ -1249,7 +1249,7 @@ namespace Moderon
         ///<summary>Выбрали рекуператор</summary>
         private void RecupCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 90, code_2 = 91;                                                        // Сигнал PS и аварии роторного рекуператора
+            ushort code_1 = 90, code_2 = 91;                                                        // Сигнал PS и аварии ПЧ для роторного рекуператора
 
             if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)                              // Выбрали рекуператор
             {
@@ -1267,7 +1267,7 @@ namespace Moderon
         ///<summary>Изменили тип рекуператора</summary>
         private void RecupTypeCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 91;                                                                     // Сигнал аварии роторного рекуператора
+            ushort code_1 = 91;                                                                     // Сигнал аварии ПЧ для роторного рекуператора
 
             if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)                              // Выбран рекуператор
             {
