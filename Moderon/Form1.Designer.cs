@@ -59,6 +59,8 @@
             this.label42 = new System.Windows.Forms.Label();
             this.fanPage = new System.Windows.Forms.TabPage();
             this.outFanPanel = new System.Windows.Forms.Panel();
+            this.outDampConfirmFanCheck = new System.Windows.Forms.CheckBox();
+            this.outDampFanCheck = new System.Windows.Forms.CheckBox();
             this.outFanSpeedCheck = new System.Windows.Forms.CheckBox();
             this.outFanStStopCheck = new System.Windows.Forms.CheckBox();
             this.outFanAlarmCheck = new System.Windows.Forms.CheckBox();
@@ -81,6 +83,8 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.prFanPanel = new System.Windows.Forms.Panel();
+            this.prDampConfirmFanCheck = new System.Windows.Forms.CheckBox();
+            this.prDampFanCheck = new System.Windows.Forms.CheckBox();
             this.prFanStStopCheck = new System.Windows.Forms.CheckBox();
             this.prFanAlarmCheck = new System.Windows.Forms.CheckBox();
             this.prFanPowSupCheck = new System.Windows.Forms.CheckBox();
@@ -204,6 +208,7 @@
             this.label34 = new System.Windows.Forms.Label();
             this.recircPage = new System.Windows.Forms.TabPage();
             this.recircPanel = new System.Windows.Forms.Panel();
+            this.recircPrDampAOCheck = new System.Windows.Forms.CheckBox();
             this.markRecircPanel = new System.Windows.Forms.Panel();
             this.recircTorqLabel = new System.Windows.Forms.Label();
             this.recircSLabel = new System.Windows.Forms.Label();
@@ -1067,6 +1072,8 @@
             // 
             // outFanPanel
             // 
+            this.outFanPanel.Controls.Add(this.outDampConfirmFanCheck);
+            this.outFanPanel.Controls.Add(this.outDampFanCheck);
             this.outFanPanel.Controls.Add(this.outFanSpeedCheck);
             this.outFanPanel.Controls.Add(this.outFanStStopCheck);
             this.outFanPanel.Controls.Add(this.outFanAlarmCheck);
@@ -1093,6 +1100,32 @@
             this.outFanPanel.Size = new System.Drawing.Size(717, 486);
             this.outFanPanel.TabIndex = 15;
             this.outFanPanel.Visible = false;
+            // 
+            // outDampConfirmFanCheck
+            // 
+            this.outDampConfirmFanCheck.AutoSize = true;
+            this.outDampConfirmFanCheck.Enabled = false;
+            this.outDampConfirmFanCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.outDampConfirmFanCheck.Location = new System.Drawing.Point(350, 374);
+            this.outDampConfirmFanCheck.Name = "outDampConfirmFanCheck";
+            this.outDampConfirmFanCheck.Size = new System.Drawing.Size(259, 18);
+            this.outDampConfirmFanCheck.TabIndex = 52;
+            this.outDampConfirmFanCheck.Text = "Подтверждение открытия заслонки";
+            this.outDampConfirmFanCheck.UseVisualStyleBackColor = true;
+            this.outDampConfirmFanCheck.CheckedChanged += new System.EventHandler(this.OutDampConfirmFanCheck_CheckedChanged);
+            // 
+            // outDampFanCheck
+            // 
+            this.outDampFanCheck.AutoSize = true;
+            this.outDampFanCheck.Enabled = false;
+            this.outDampFanCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.outDampFanCheck.Location = new System.Drawing.Point(350, 334);
+            this.outDampFanCheck.Name = "outDampFanCheck";
+            this.outDampFanCheck.Size = new System.Drawing.Size(246, 18);
+            this.outDampFanCheck.TabIndex = 51;
+            this.outDampFanCheck.Text = "Воздушная заслонка вентилятора";
+            this.outDampFanCheck.UseVisualStyleBackColor = true;
+            this.outDampFanCheck.CheckedChanged += new System.EventHandler(this.OutDampFanCheck_CheckedChanged);
             // 
             // outFanSpeedCheck
             // 
@@ -1140,7 +1173,7 @@
             this.outFanPowSupCheck.AutoSize = true;
             this.outFanPowSupCheck.Enabled = false;
             this.outFanPowSupCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.outFanPowSupCheck.Location = new System.Drawing.Point(350, 294);
+            this.outFanPowSupCheck.Location = new System.Drawing.Point(350, 254);
             this.outFanPowSupCheck.Name = "outFanPowSupCheck";
             this.outFanPowSupCheck.Size = new System.Drawing.Size(133, 18);
             this.outFanPowSupCheck.TabIndex = 46;
@@ -1188,7 +1221,7 @@
             this.labelResOutFan_2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelResOutFan_2.AutoSize = true;
             this.labelResOutFan_2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelResOutFan_2.Location = new System.Drawing.Point(650, 374);
+            this.labelResOutFan_2.Location = new System.Drawing.Point(650, 414);
             this.labelResOutFan_2.Name = "labelResOutFan_2";
             this.labelResOutFan_2.Size = new System.Drawing.Size(30, 16);
             this.labelResOutFan_2.TabIndex = 45;
@@ -1197,7 +1230,7 @@
             // 
             // powOutResFanBox
             // 
-            this.powOutResFanBox.Location = new System.Drawing.Point(590, 372);
+            this.powOutResFanBox.Location = new System.Drawing.Point(590, 412);
             this.powOutResFanBox.MaxLength = 4;
             this.powOutResFanBox.Name = "powOutResFanBox";
             this.powOutResFanBox.Size = new System.Drawing.Size(54, 21);
@@ -1211,7 +1244,7 @@
             this.labelResOutFan.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelResOutFan.AutoSize = true;
             this.labelResOutFan.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelResOutFan.Location = new System.Drawing.Point(350, 374);
+            this.labelResOutFan.Location = new System.Drawing.Point(350, 414);
             this.labelResOutFan.Name = "labelResOutFan";
             this.labelResOutFan.Size = new System.Drawing.Size(232, 16);
             this.labelResOutFan.TabIndex = 43;
@@ -1222,7 +1255,7 @@
             // 
             this.checkResOutFan.AutoSize = true;
             this.checkResOutFan.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkResOutFan.Location = new System.Drawing.Point(350, 334);
+            this.checkResOutFan.Location = new System.Drawing.Point(350, 294);
             this.checkResOutFan.Name = "checkResOutFan";
             this.checkResOutFan.Size = new System.Drawing.Size(166, 18);
             this.checkResOutFan.TabIndex = 42;
@@ -1355,6 +1388,8 @@
             // 
             // prFanPanel
             // 
+            this.prFanPanel.Controls.Add(this.prDampConfirmFanCheck);
+            this.prFanPanel.Controls.Add(this.prDampFanCheck);
             this.prFanPanel.Controls.Add(this.prFanStStopCheck);
             this.prFanPanel.Controls.Add(this.prFanAlarmCheck);
             this.prFanPanel.Controls.Add(this.prFanPowSupCheck);
@@ -1380,6 +1415,32 @@
             this.prFanPanel.Name = "prFanPanel";
             this.prFanPanel.Size = new System.Drawing.Size(717, 486);
             this.prFanPanel.TabIndex = 1;
+            // 
+            // prDampConfirmFanCheck
+            // 
+            this.prDampConfirmFanCheck.AutoSize = true;
+            this.prDampConfirmFanCheck.Enabled = false;
+            this.prDampConfirmFanCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.prDampConfirmFanCheck.Location = new System.Drawing.Point(350, 374);
+            this.prDampConfirmFanCheck.Name = "prDampConfirmFanCheck";
+            this.prDampConfirmFanCheck.Size = new System.Drawing.Size(259, 18);
+            this.prDampConfirmFanCheck.TabIndex = 50;
+            this.prDampConfirmFanCheck.Text = "Подтверждение открытия заслонки";
+            this.prDampConfirmFanCheck.UseVisualStyleBackColor = true;
+            this.prDampConfirmFanCheck.CheckedChanged += new System.EventHandler(this.PrDampConfirmFanCheck_CheckedChanged);
+            // 
+            // prDampFanCheck
+            // 
+            this.prDampFanCheck.AutoSize = true;
+            this.prDampFanCheck.Enabled = false;
+            this.prDampFanCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.prDampFanCheck.Location = new System.Drawing.Point(350, 334);
+            this.prDampFanCheck.Name = "prDampFanCheck";
+            this.prDampFanCheck.Size = new System.Drawing.Size(246, 18);
+            this.prDampFanCheck.TabIndex = 49;
+            this.prDampFanCheck.Text = "Воздушная заслонка вентилятора";
+            this.prDampFanCheck.UseVisualStyleBackColor = true;
+            this.prDampFanCheck.CheckedChanged += new System.EventHandler(this.PrDampFanCheck_CheckedChanged);
             // 
             // prFanStStopCheck
             // 
@@ -1414,7 +1475,7 @@
             this.prFanPowSupCheck.AutoSize = true;
             this.prFanPowSupCheck.Enabled = false;
             this.prFanPowSupCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.prFanPowSupCheck.Location = new System.Drawing.Point(350, 294);
+            this.prFanPowSupCheck.Location = new System.Drawing.Point(350, 254);
             this.prFanPowSupCheck.Name = "prFanPowSupCheck";
             this.prFanPowSupCheck.Size = new System.Drawing.Size(133, 18);
             this.prFanPowSupCheck.TabIndex = 45;
@@ -1463,7 +1524,7 @@
             this.labelResPrFan_2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelResPrFan_2.AutoSize = true;
             this.labelResPrFan_2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelResPrFan_2.Location = new System.Drawing.Point(650, 374);
+            this.labelResPrFan_2.Location = new System.Drawing.Point(650, 414);
             this.labelResPrFan_2.Name = "labelResPrFan_2";
             this.labelResPrFan_2.Size = new System.Drawing.Size(30, 16);
             this.labelResPrFan_2.TabIndex = 42;
@@ -1472,7 +1533,7 @@
             // 
             // powPrResFanBox
             // 
-            this.powPrResFanBox.Location = new System.Drawing.Point(590, 374);
+            this.powPrResFanBox.Location = new System.Drawing.Point(590, 414);
             this.powPrResFanBox.MaxLength = 4;
             this.powPrResFanBox.Name = "powPrResFanBox";
             this.powPrResFanBox.Size = new System.Drawing.Size(54, 21);
@@ -1486,7 +1547,7 @@
             this.labelResPrFan.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelResPrFan.AutoSize = true;
             this.labelResPrFan.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelResPrFan.Location = new System.Drawing.Point(350, 374);
+            this.labelResPrFan.Location = new System.Drawing.Point(350, 414);
             this.labelResPrFan.Name = "labelResPrFan";
             this.labelResPrFan.Size = new System.Drawing.Size(232, 16);
             this.labelResPrFan.TabIndex = 40;
@@ -1497,7 +1558,7 @@
             // 
             this.checkResPrFan.AutoSize = true;
             this.checkResPrFan.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkResPrFan.Location = new System.Drawing.Point(350, 334);
+            this.checkResPrFan.Location = new System.Drawing.Point(350, 294);
             this.checkResPrFan.Name = "checkResPrFan";
             this.checkResPrFan.Size = new System.Drawing.Size(166, 18);
             this.checkResPrFan.TabIndex = 39;
@@ -2916,6 +2977,7 @@
             // 
             // recircPanel
             // 
+            this.recircPanel.Controls.Add(this.recircPrDampAOCheck);
             this.recircPanel.Controls.Add(this.markRecircPanel);
             this.recircPanel.Controls.Add(this.recircTorqLabel);
             this.recircPanel.Controls.Add(this.recircSLabel);
@@ -2935,6 +2997,18 @@
             this.recircPanel.Name = "recircPanel";
             this.recircPanel.Size = new System.Drawing.Size(717, 337);
             this.recircPanel.TabIndex = 3;
+            // 
+            // recircPrDampAOCheck
+            // 
+            this.recircPrDampAOCheck.AutoSize = true;
+            this.recircPrDampAOCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.recircPrDampAOCheck.Location = new System.Drawing.Point(18, 94);
+            this.recircPrDampAOCheck.Name = "recircPrDampAOCheck";
+            this.recircPrDampAOCheck.Size = new System.Drawing.Size(275, 18);
+            this.recircPrDampAOCheck.TabIndex = 49;
+            this.recircPrDampAOCheck.Text = "Сигнал 0-10 В на приточную заслонку";
+            this.recircPrDampAOCheck.UseVisualStyleBackColor = true;
+            this.recircPrDampAOCheck.CheckedChanged += new System.EventHandler(this.RecircPrDampAOCheck_CheckedChanged);
             // 
             // markRecircPanel
             // 
@@ -3038,7 +3112,7 @@
             // 
             this.springRetRecircCheck.AutoSize = true;
             this.springRetRecircCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.springRetRecircCheck.Location = new System.Drawing.Point(18, 134);
+            this.springRetRecircCheck.Location = new System.Drawing.Point(18, 174);
             this.springRetRecircCheck.Name = "springRetRecircCheck";
             this.springRetRecircCheck.Size = new System.Drawing.Size(234, 18);
             this.springRetRecircCheck.TabIndex = 39;
@@ -3082,7 +3156,7 @@
             this.recircPowCombo.Items.AddRange(new object[] {
             "24 В",
             "230 В"});
-            this.recircPowCombo.Location = new System.Drawing.Point(153, 89);
+            this.recircPowCombo.Location = new System.Drawing.Point(153, 129);
             this.recircPowCombo.Name = "recircPowCombo";
             this.recircPowCombo.Size = new System.Drawing.Size(59, 21);
             this.recircPowCombo.TabIndex = 35;
@@ -3093,7 +3167,7 @@
             this.label41.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label41.AutoSize = true;
             this.label41.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label41.Location = new System.Drawing.Point(12, 94);
+            this.label41.Location = new System.Drawing.Point(12, 134);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(131, 16);
             this.label41.TabIndex = 34;
@@ -8920,6 +8994,11 @@
         private System.Windows.Forms.TextBox writeCanTextBox;
         private System.Windows.Forms.ComboBox comboCheckDataPlk;
         private System.Windows.Forms.Label label181;
+        private System.Windows.Forms.CheckBox recircPrDampAOCheck;
+        private System.Windows.Forms.CheckBox prDampFanCheck;
+        private System.Windows.Forms.CheckBox prDampConfirmFanCheck;
+        private System.Windows.Forms.CheckBox outDampConfirmFanCheck;
+        private System.Windows.Forms.CheckBox outDampFanCheck;
     }
 }
 

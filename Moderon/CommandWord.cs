@@ -419,10 +419,11 @@ namespace Moderon
         /// <summary>Командное слово рециркуляция</summary>
         private void CommandWord_8()
         {
-            bool bit0, bit1;
-            bit0 = recircCheck.Checked; // Наличие рециркуляции
-            bit1 = recircCheck.Checked && recircAOSigCheck.Checked; // Управление 0-10 В
-            cmdW8 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1));
+            bool bit0, bit1, bit2;
+            bit0 = recircCheck.Checked;                                         // Наличие рециркуляции
+            bit1 = recircCheck.Checked && recircAOSigCheck.Checked;             // Управление 0-10 В
+            bit2 = recircCheck.Checked && recircPrDampAOCheck.Checked;          // Сигнал 0-10 В на приточную заслонку
+            cmdW8 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2));
         }
 
         /// <summary>Командное слово рекуператора</summary>

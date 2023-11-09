@@ -421,6 +421,13 @@ namespace Moderon
             RecircCheck_signalsAOCheckedChanged(this, e);   // Сигналы AO ПЛК
         }
 
+        ///<summary>Выбрали в рециркуляции сигнал 0-10 В на приточную заслонку</summary>
+        private void RecircPrDampAOCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            RecircCheck_cmdCheckedChanged(this, e);                     // Командное слово
+            RecircPrDampAOCheck_signalsAOCheckedChanged(this, e);       // Сигналы АО ПЛК
+        }
+
         ///<summary>Выбрали рекуператор</summary>
         private void RecupCheck_CheckedChanged(object sender, EventArgs e)
         {
@@ -583,6 +590,7 @@ namespace Moderon
             b_recircBox.Text = "";
             h_recircBox.Text = "";
             springRetRecircCheck.Checked = false;
+            recircPrDampAOCheck.Checked = false;
         }
 
         /// <summary>Сброс настроек для рекуператора</summary>
@@ -894,6 +902,18 @@ namespace Moderon
             PrFanFC_check_signalsDOCheckedChanged(this, e);        // Сигналы DO ПЛК
         }
 
+        ///<summary>Выбрали воздушную заслонку приточного вентилятора</summary>
+        private void PrDampFanCheck_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        ///<summary>Выбрали подтверждение открытия воздушной заслонки приточного вентилятора</summary>
+        private void PrDampConfirmFanCheck_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
         ///<summary>Выбрали ПЧ вытяжного вентилятора</summary>
         private void OutFanFC_check_CheckedChanged(object sender, EventArgs e)
         {
@@ -920,6 +940,19 @@ namespace Moderon
             OutFanFC_check_signalsDICheckedChanged(this, e);    // Сигналы DI ПЛК
             OutFanFC_check_signalsDOCheckedChanged(this, e);    // Сигналы DO ПЛК
         }
+
+        ///<summary>Выбрали воздушную заслонку вытяжного вентилятора</summary>
+        private void OutDampFanCheck_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        ///<summary>Выбрали подтверждение открытия воздушной заслонки приточного вентилятора</summary>
+        private void OutDampConfirmFanCheck_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
 
         ///<summary>Выбрали режим осушения</summary>
         private void DehumModeCheck_CheckedChanged(object sender, EventArgs e)

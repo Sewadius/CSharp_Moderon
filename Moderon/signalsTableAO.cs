@@ -710,6 +710,17 @@ namespace Moderon
                 SubFromCombosAO(code_1);                                            // Удаление сигнала
         }
 
+        ///<summary>Выбрали сигнал 0-10 В на приточную заслонку</summary>
+        private void RecircPrDampAOCheck_signalsAOCheckedChanged(object sender, EventArgs e)
+        {
+            ushort code_1 = 12;                                                     // Сигнал 0-10 В на приточную заслонку
+
+            if (recircCheck.Checked && recircPrDampAOCheck.Checked)
+                AddToListAO("Рециркуляция для приточной заслонки 0-10 В", code_1);
+            else
+                SubFromCombosAO(code_1);
+        }
+
         ///<summary>Выбрали рекуператор</summary>
         private void RecupCheck_signalsAOCheckedChanged(object sender, EventArgs e)
         {
