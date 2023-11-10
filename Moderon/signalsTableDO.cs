@@ -1373,6 +1373,21 @@ namespace Moderon
             }
         }
 
+        ///<summary>Выбрали заслонку приточного вентилятора</summary>
+        private void PrDampFanCheck_signalsDOCheckedChanged(object sender, EventArgs e)
+        {
+            ushort code = 12;                                                                           // Сигнал открытия заслонки приточного вентилятора
+
+            if (prDampFanCheck.Checked)                                                                 // Выбрана заслонка приточного вентилятора
+            {
+                AddToListDo("Открытие заслонки приточного вентилятора", code);
+            }
+            else                                                                                        // Отмена выбора сигнала открытия заслонки
+            {
+                SubFromCombosDO(code);
+            }
+        }
+
         ///<summary>Выбрали ПЧ вытяжного вентилятора</summary>
         private void OutFanFC_check_signalsDOCheckedChanged(object sender, EventArgs e)
         {
@@ -1397,6 +1412,21 @@ namespace Moderon
                     outFanStStopCheck.Checked = true;
                 else if (outFanControlCombo.SelectedIndex == 1 && outFanStStopCheck.Checked)            // Modbus, был выбран сигнал "Пуск/Стоп"
                     outFanStStopCheck.Checked = false;
+            }
+        }
+
+        ///<summary>Выбрали заслонку вытяжного вентилятора</summary>
+        private void OutDampFanCheck_signalsDOCheckedChanged(object sender, EventArgs e)
+        {
+            ushort code = 26;                                                                           // Сигнал открытия заслонки вытяжного вентилятора
+
+            if (outDampFanCheck.Checked)                                                                // Выбрана заслонка вытяжного вентилятора
+            {
+                AddToListDo("Открытие заслонки вытяжного вентилятора", code);
+            }
+            else                                                                                        // Отмена выбора открытия заслонки
+            {
+                SubFromCombosDO(code);
             }
         }
 

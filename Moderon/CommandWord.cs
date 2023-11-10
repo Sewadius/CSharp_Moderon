@@ -621,13 +621,13 @@ namespace Moderon
         private void CommandWord_19()
         {
             bool bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8, bit9, bit10, bit11, bit12, bit13;
-            bit0 = true; // Наличие вентилятора
-            bit1 = prFanPSCheck.Checked; // Подтверждение работы вентилятора
-            bit2 = prFanAlarmCheck.Checked; // Внешний сигнал аварии
-            bit3 = prFanThermoCheck.Checked; // Наличие термоконтактов
-            bit4 = curDefPrFanCheck.Checked; // Защита по току
-            bit5 = false; // Наличие заслонки
-            bit6 = false; // Наличие подтверждения заслонки
+            bit0 = true;                                // Наличие вентилятора
+            bit1 = prFanPSCheck.Checked;                // Подтверждение работы вентилятора
+            bit2 = prFanAlarmCheck.Checked;             // Внешний сигнал аварии
+            bit3 = prFanThermoCheck.Checked;            // Наличие термоконтактов
+            bit4 = curDefPrFanCheck.Checked;            // Защита по току
+            bit5 = false;                               // Наличие заслонки
+            bit6 = false;                               // Наличие подтверждения заслонки
             bit7 = prFanPowSupCheck.Checked; // Наличие контактора, сигнал подачи питания
             bit8 = prFanStStopCheck.Checked; // Наличие сухого контакта - запуск ПЧ
             bit9 = false; // Наличие ATV12 или ATV310

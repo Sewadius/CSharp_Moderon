@@ -115,7 +115,7 @@ namespace Moderon
         }
 
         ///<summary>Метод для изменения DI comboBox</summary>
-        private void DI_combo_SelectedIndexChanged(ComboBox comboBox, ref int combo_index, ref string combo_text, Label label)
+        private void DI_combo_SelectedIndexChanged(ComboBox comboBox, ref int combo_index, ref string combo_text, ref Label label)
         {
             if (ignoreEvents) return;
             string name = "";
@@ -129,7 +129,7 @@ namespace Moderon
                     string nameFind = combo_text;
                     di_find = list_di.Find(x => x.Name == nameFind);
                     list_di.Remove(di_find);                 // Удаление из списка
-                    if (showCode) DI1_lab.Text = "";
+                    if (showCode) label.Text = "";
                 }
                 if (di_find != null)                                                            // Найден элемент
                 {
@@ -152,7 +152,7 @@ namespace Moderon
                 {
                     di_find.Select();
                     list_di.Add(di_find);
-                    if (showCode) DI1_lab.Text = di_find.Code.ToString();
+                    if (showCode) label.Text = di_find.Code.ToString();
                 }
                 if (!initialComboSignals)                                                       // Если не начальная расстановка
                 {
@@ -176,121 +176,121 @@ namespace Moderon
         ///<summary>Изменили DI1 comboBox</summary>
         private void DI1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DI_combo_SelectedIndexChanged(DI1_combo, ref DI1combo_index, ref DI1combo_text, DI1_lab);
+            DI_combo_SelectedIndexChanged(DI1_combo, ref DI1combo_index, ref DI1combo_text, ref DI1_lab);
         }
 
         ///<summary>Изменили DI2 comboBox</summary>
         private void DI2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DI_combo_SelectedIndexChanged(DI2_combo, ref DI2combo_index, ref DI2combo_text, DI2_lab);
+            DI_combo_SelectedIndexChanged(DI2_combo, ref DI2combo_index, ref DI2combo_text, ref DI2_lab);
         }
 
         ///<summary>Изменили DI3 comboBox</summary>
         private void DI3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DI_combo_SelectedIndexChanged(DI3_combo, ref DI3combo_index, ref DI3combo_text, DI3_lab);
+            DI_combo_SelectedIndexChanged(DI3_combo, ref DI3combo_index, ref DI3combo_text, ref DI3_lab);
         }
 
         ///<summary>Изменили DI4 comboBox</summary>
         private void DI4_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DI_combo_SelectedIndexChanged(DI4_combo, ref DI4combo_index, ref DI4combo_text, DI4_lab);
+            DI_combo_SelectedIndexChanged(DI4_combo, ref DI4combo_index, ref DI4combo_text, ref DI4_lab);
         }
 
         ///<summary>Изменили DI5 comboBox</summary>
         private void DI5_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DI_combo_SelectedIndexChanged(DI5_combo, ref DI5combo_index, ref DI5combo_text, DI5_lab);
+            DI_combo_SelectedIndexChanged(DI5_combo, ref DI5combo_index, ref DI5combo_text, ref DI5_lab);
         }
 
         ///<summary>Изменили DI1 блока расширения 1</summary>
         private void DI1bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DI_combo_SelectedIndexChanged(DI1bl1_combo, ref DI1bl1combo_index, ref DI1bl1combo_text, DI1bl1_lab);
+            DI_combo_SelectedIndexChanged(DI1bl1_combo, ref DI1bl1combo_index, ref DI1bl1combo_text, ref DI1bl1_lab);
         }
 
         ///<summary>Изменили DI2 блока расширения 1</summary>
         private void DI2bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DI_combo_SelectedIndexChanged(DI2bl1_combo, ref DI2bl1combo_index, ref DI2bl1combo_text, DI2bl1_lab);
+            DI_combo_SelectedIndexChanged(DI2bl1_combo, ref DI2bl1combo_index, ref DI2bl1combo_text, ref DI2bl1_lab);
         }
 
         ///<summary>Изменили DI3 блока расширения 1</summary>
         private void DI3bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DI_combo_SelectedIndexChanged(DI3bl1_combo, ref DI3bl1combo_index, ref DI3bl1combo_text, DI3bl1_lab);
+            DI_combo_SelectedIndexChanged(DI3bl1_combo, ref DI3bl1combo_index, ref DI3bl1combo_text, ref DI3bl1_lab);
         }
 
         ///<summary>Изменили DI4 блока расширения 1</summary>
         private void DI4bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DI_combo_SelectedIndexChanged(DI4bl1_combo, ref DI4bl1combo_index, ref DI4bl1combo_text, DI4bl1_lab);
+            DI_combo_SelectedIndexChanged(DI4bl1_combo, ref DI4bl1combo_index, ref DI4bl1combo_text, ref DI4bl1_lab);
         }
 
         ///<summary>Изменили DI5 блока расширения 1</summary>
         private void DI5bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DI_combo_SelectedIndexChanged(DI5bl1_combo, ref DI5bl1combo_index, ref DI5bl1combo_text, DI5bl1_lab);
+            DI_combo_SelectedIndexChanged(DI5bl1_combo, ref DI5bl1combo_index, ref DI5bl1combo_text, ref DI5bl1_lab);
         }
 
         ///<summary>Изменили DI1 блока расширения 2</summary>
         private void DI1bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DI_combo_SelectedIndexChanged(DI1bl2_combo, ref DI1bl2combo_index, ref DI1bl2combo_text, DI1bl2_lab);
+            DI_combo_SelectedIndexChanged(DI1bl2_combo, ref DI1bl2combo_index, ref DI1bl2combo_text, ref DI1bl2_lab);
         }
 
         ///<summary>Изменили DI2 блока расширения 2</summary>
         private void DI2bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DI_combo_SelectedIndexChanged(DI2bl2_combo, ref DI2bl2combo_index, ref DI2bl2combo_text, DI2bl2_lab);
+            DI_combo_SelectedIndexChanged(DI2bl2_combo, ref DI2bl2combo_index, ref DI2bl2combo_text, ref DI2bl2_lab);
         }
 
         ///<summary>Изменили DI3 блока расширения 2</summary>
         private void DI3bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DI_combo_SelectedIndexChanged(DI3bl2_combo, ref DI3bl2combo_index, ref DI3bl2combo_text, DI3bl2_lab);
+            DI_combo_SelectedIndexChanged(DI3bl2_combo, ref DI3bl2combo_index, ref DI3bl2combo_text, ref DI3bl2_lab);
         }
 
         ///<summary>Изменили DI4 блока расширения 2</summary>
         private void DI4bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DI_combo_SelectedIndexChanged(DI4bl2_combo, ref DI4bl2combo_index, ref DI4bl2combo_text, DI4bl2_lab);
+            DI_combo_SelectedIndexChanged(DI4bl2_combo, ref DI4bl2combo_index, ref DI4bl2combo_text, ref DI4bl2_lab);
         }
 
         ///<summary>Изменили DI5 блока расширения 2</summary>
         private void DI5bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DI_combo_SelectedIndexChanged(DI5bl2_combo, ref DI5bl2combo_index, ref DI5bl2combo_text, DI5bl2_lab);
+            DI_combo_SelectedIndexChanged(DI5bl2_combo, ref DI5bl2combo_index, ref DI5bl2combo_text, ref DI5bl2_lab);
         }
 
         ///<summary>Изменили DI1 блока расширения 3</summary>
         private void DI1bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DI_combo_SelectedIndexChanged(DI1bl3_combo, ref DI1bl3combo_index, ref DI1bl3combo_text, DI1bl3_lab);
+            DI_combo_SelectedIndexChanged(DI1bl3_combo, ref DI1bl3combo_index, ref DI1bl3combo_text, ref DI1bl3_lab);
         }
 
         ///<summary>Изменили DI2 блока расширения 3</summary>
         private void DI2bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DI_combo_SelectedIndexChanged(DI2bl3_combo, ref DI2bl3combo_index, ref DI2bl3combo_text, DI2bl3_lab);
+            DI_combo_SelectedIndexChanged(DI2bl3_combo, ref DI2bl3combo_index, ref DI2bl3combo_text, ref DI2bl3_lab);
         }
 
         ///<summary>Изменили DI3 блока расширения 3</summary>
         private void DI3bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DI_combo_SelectedIndexChanged(DI1bl3_combo, ref DI1bl3combo_index, ref DI1bl3combo_text, DI1bl3_lab);
+            DI_combo_SelectedIndexChanged(DI1bl3_combo, ref DI1bl3combo_index, ref DI1bl3combo_text, ref DI1bl3_lab);
         }
 
         ///<summary>Изменили DI4 блока расширения 3</summary>
         private void DI4bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DI_combo_SelectedIndexChanged(DI4bl3_combo, ref DI4bl3combo_index, ref DI4bl3combo_text, DI4bl3_lab);
+            DI_combo_SelectedIndexChanged(DI4bl3_combo, ref DI4bl3combo_index, ref DI4bl3combo_text, ref DI4bl3_lab);
         }
 
         ///<summary>Изменили DI5 блока расширения 3</summary>
         private void DI5bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DI_combo_SelectedIndexChanged(DI5bl3_combo, ref DI5bl3combo_index, ref DI5bl3combo_text, DI5bl3_lab);
+            DI_combo_SelectedIndexChanged(DI5bl3_combo, ref DI5bl3combo_index, ref DI5bl3combo_text, ref DI5bl3_lab);
         }
 
         ///<summary>Добавление DI в другие слоты для выбора в comboBox</summary>
@@ -349,7 +349,7 @@ namespace Moderon
             cm.SelectedIndex = cm.Items.Count - 1;
             text = cm.SelectedItem.ToString();
             index = cm.SelectedIndex;
-            if (showCode) label.Text = text;
+            if (showCode) label.Text = code.ToString();
             list_di.Find(x => x.Code == code).Select();
         }
 
@@ -729,6 +729,21 @@ namespace Moderon
             }
         }
 
+        ///<summary>Выбрали подтверждение открытия заслонки приточного вентилятора</summary>
+        private void PrDampConfirmFanCheck_signalsDICheckedChanged(object sender, EventArgs e)
+        {
+            ushort code_1 = 17;                                                                 // Сигнал подтверждения открытия заслонки приточного вентилятора
+
+            if (prDampFanCheck.Checked && prDampConfirmFanCheck.Checked)                        // Выбрали подтверждение открытия
+            {
+                AddToListDI("Подтверждение для заслонки приточного вентилятора", code_1);
+            }
+            else                                                                                // Отмена выбора подтверждения открытия
+            {
+                SubFromCombosDI(code_1);
+            }
+        }
+
         ///<summary>Выбрали PS вытяжного вентилятора</summary>
         private void OutFanPSCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
@@ -850,6 +865,21 @@ namespace Moderon
             else // Отмена выбора резерва вытяжного
             {
                 SubFromCombosDI(code_1); SubFromCombosDI(code_2); SubFromCombosDI(code_3); SubFromCombosDI(code_4);
+            }
+        }
+
+        ///<summary>Выбрали подтверждение открытия заслонки вытяжного вентилятора</summary>
+        private void OutDampConfirmFanCheck_signalsDICheckedChanged(object sender, EventArgs e)
+        {
+            ushort code = 50;                                                                       // Сигнал подтверждения открытия заслонки вытяжного вентилятора
+
+            if (outDampFanCheck.Checked && outDampConfirmFanCheck.Checked)                          // Выбрали подтверждение открытия
+            {
+                AddToListDI("Подтверждение для заслонки вытяжного вентилятора", code);
+            }
+            else                                                                                    // Отмена выбора подтверждения открытия
+            {
+                SubFromCombosDI(code);
             }
         }
 

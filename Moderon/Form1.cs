@@ -797,37 +797,43 @@ namespace Moderon
         ///<summary>Выбрали резерв приточного вентилятора</summary>
         private void CheckResPrFan_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkResPrFan.Checked)                                              // Выбрали резерв приточного
+            if (checkResPrFan.Checked)                                                      // Выбрали резерв приточного
             {
                 labelResPrFan.Show(); powPrResFanBox.Show(); labelResPrFan_2.Show();
+                prDampFanCheck.Enabled = true;                                              // Разблокировка выбора заслонки приточного вентилятора
             }
-            else                                                                    // Отмена выбора резерва приточного
+            else                                                                            // Отмена выбора резерва приточного
             {
                 labelResPrFan.Hide(); powPrResFanBox.Hide(); labelResPrFan_2.Hide();
+                prDampFanCheck.Checked = false;                                             // Отмена выбора заслонки приточного вентилятора
+                prDampFanCheck.Enabled = false;                                             // Блокировка выбора заслонки приточного вентилятора
             }
-            CheckResPrFan_cmdCheckedChanged(this, e);                               // Командное слово
+            CheckResPrFan_cmdCheckedChanged(this, e);                                       // Командное слово
             if (ignoreEvents) return;
-            CheckResPrFan_signalsDOCheckedChanged(this, e);                         // Сигналы DO ПЛК
-            CheckResPrFan_signalsAOCheckedChanged(this, e);                         // Сигналы AO ПЛК
-            CheckResPrFan_signalsDICheckedChanged(this, e);                         // Сигналы DI ПЛК
+            CheckResPrFan_signalsDOCheckedChanged(this, e);                                 // Сигналы DO ПЛК
+            CheckResPrFan_signalsAOCheckedChanged(this, e);                                 // Сигналы AO ПЛК
+            CheckResPrFan_signalsDICheckedChanged(this, e);                                 // Сигналы DI ПЛК
         }
 
         ///<summary>Выбрали резерв вытяжного вентилятора</summary>
         private void CheckResOutFan_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkResOutFan.Checked)                                             // Выбрали резерв вытяжного
+            if (checkResOutFan.Checked)                                                     // Выбрали резерв вытяжного
             {
                 labelResOutFan.Show(); powOutResFanBox.Show(); labelResOutFan_2.Show();
+                outDampFanCheck.Enabled = true;                                             // Разблокировка выбора заслонки вытяжного вентилятора
             }
-            else                                                                    // Отмена выбора резерва вытяжного
+            else                                                                            // Отмена выбора резерва вытяжного
             {
                 labelResOutFan.Hide(); powOutResFanBox.Hide(); labelResOutFan_2.Hide();
+                outDampFanCheck.Checked = false;                                            // Отмена выбора заслонки вытяжного вентилятора
+                outDampFanCheck.Enabled = false;                                            // Блокировка выбора заслонки вытяжного вентилятора
             }
-            CheckResOutFan_cmdCheckedChanged(this, e);                              // Командное слово
+            CheckResOutFan_cmdCheckedChanged(this, e);                                      // Командное слово
             if (ignoreEvents) return;
-            CheckResOutFan_signalsCheckedChanged(this, e);                          // Сигналы DO ПЛК
-            CheckResOutFan_signalsAOCheckedChanged(this, e);                        // Сигналы AO ПЛК
-            CheckResOutFan_signalsDICheckedChanged(this, e);                        // Сигналы DI ПЛК
+            CheckResOutFan_signalsCheckedChanged(this, e);                                  // Сигналы DO ПЛК
+            CheckResOutFan_signalsAOCheckedChanged(this, e);                                // Сигналы AO ПЛК
+            CheckResOutFan_signalsDICheckedChanged(this, e);                                // Сигналы DI ПЛК
         }
 
         ///<summary>Изменили тип догревателя</summary>
@@ -905,13 +911,24 @@ namespace Moderon
         ///<summary>Выбрали воздушную заслонку приточного вентилятора</summary>
         private void PrDampFanCheck_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (prDampFanCheck.Checked)                            // Выбрана заслонка приточного вентилятора
+            {
+                prDampConfirmFanCheck.Enabled = true;              // Разблокировка подтверждения открытия заслонки 
+            }
+            else                                                   // Отмена выбора заслонки приточного вентилятора 
+            {
+                prDampConfirmFanCheck.Checked = false;             // Отмена выбора подтверждения открытия заслонки 
+                prDampConfirmFanCheck.Enabled = false;             // Блокировка выбора подтверждения открытия заслонки
+            }
+            if (ignoreEvents) return;
+            PrDampFanCheck_signalsDOCheckedChanged(this, e);       // Сигналы DO ПЛК
         }
 
         ///<summary>Выбрали подтверждение открытия воздушной заслонки приточного вентилятора</summary>
         private void PrDampConfirmFanCheck_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (ignoreEvents) return;
+            PrDampConfirmFanCheck_signalsDICheckedChanged(this, e);   // Сигналы DI ПЛК
         }
 
         ///<summary>Выбрали ПЧ вытяжного вентилятора</summary>
@@ -944,13 +961,24 @@ namespace Moderon
         ///<summary>Выбрали воздушную заслонку вытяжного вентилятора</summary>
         private void OutDampFanCheck_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (outDampFanCheck.Checked)                           // Выбрана заслонка вытяжного вентилятора 
+            {
+                outDampConfirmFanCheck.Enabled = true;             // Разблокировка подтверждения открытия заслонки
+            }
+            else                                                   // Отмена выбора заслонки вытяжного вентилятора 
+            {
+                outDampConfirmFanCheck.Checked = false;            // Отмена выбора подтверждения открытия заслонки 
+                outDampConfirmFanCheck.Enabled = false;            // Блокировка выбора подтверждения открытия заслонки
+            }
+            if (ignoreEvents) return;
+            OutDampFanCheck_signalsDOCheckedChanged(this, e);      // Сигналы DO ПЛК
         }
 
         ///<summary>Выбрали подтверждение открытия воздушной заслонки приточного вентилятора</summary>
         private void OutDampConfirmFanCheck_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (ignoreEvents) return;
+            OutDampConfirmFanCheck_signalsDICheckedChanged(this, e);        // Сигналы DI ПЛК
         }
 
 
