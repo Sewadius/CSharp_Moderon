@@ -920,6 +920,7 @@ namespace Moderon
                 prDampConfirmFanCheck.Checked = false;             // Отмена выбора подтверждения открытия заслонки 
                 prDampConfirmFanCheck.Enabled = false;             // Блокировка выбора подтверждения открытия заслонки
             }
+            PrDampFanCheck_cmdCheckedChanged(this, e);             // Командное слово
             if (ignoreEvents) return;
             PrDampFanCheck_signalsDOCheckedChanged(this, e);       // Сигналы DO ПЛК
         }
@@ -927,6 +928,7 @@ namespace Moderon
         ///<summary>Выбрали подтверждение открытия воздушной заслонки приточного вентилятора</summary>
         private void PrDampConfirmFanCheck_CheckedChanged(object sender, EventArgs e)
         {
+            PrDampConfirmFanCheck_cmdCheckedChanged(this, e);         // Командное слово
             if (ignoreEvents) return;
             PrDampConfirmFanCheck_signalsDICheckedChanged(this, e);   // Сигналы DI ПЛК
         }
@@ -970,6 +972,7 @@ namespace Moderon
                 outDampConfirmFanCheck.Checked = false;            // Отмена выбора подтверждения открытия заслонки 
                 outDampConfirmFanCheck.Enabled = false;            // Блокировка выбора подтверждения открытия заслонки
             }
+            OutDampFanCheck_cmdCheckedChanged(this, e);            // Командное слово
             if (ignoreEvents) return;
             OutDampFanCheck_signalsDOCheckedChanged(this, e);      // Сигналы DO ПЛК
         }
@@ -977,6 +980,7 @@ namespace Moderon
         ///<summary>Выбрали подтверждение открытия воздушной заслонки приточного вентилятора</summary>
         private void OutDampConfirmFanCheck_CheckedChanged(object sender, EventArgs e)
         {
+            OutDampConfirmFanCheck_cmdCheckedChanged(this, e);              // Командное слово
             if (ignoreEvents) return;
             OutDampConfirmFanCheck_signalsDICheckedChanged(this, e);        // Сигналы DI ПЛК
         }

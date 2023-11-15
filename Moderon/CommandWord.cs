@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.AccessControl;
 using System.Windows.Forms;
 
 // Файл для формирования и вывода готовых командных слов под запись
@@ -621,20 +622,22 @@ namespace Moderon
         private void CommandWord_19()
         {
             bool bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8, bit9, bit10, bit11, bit12, bit13;
+
             bit0 = true;                                // Наличие вентилятора
             bit1 = prFanPSCheck.Checked;                // Подтверждение работы вентилятора
             bit2 = prFanAlarmCheck.Checked;             // Внешний сигнал аварии
             bit3 = prFanThermoCheck.Checked;            // Наличие термоконтактов
             bit4 = curDefPrFanCheck.Checked;            // Защита по току
-            bit5 = false;                               // Наличие заслонки
-            bit6 = false;                               // Наличие подтверждения заслонки
-            bit7 = prFanPowSupCheck.Checked; // Наличие контактора, сигнал подачи питания
-            bit8 = prFanStStopCheck.Checked; // Наличие сухого контакта - запуск ПЧ
-            bit9 = false; // Наличие ATV12 или ATV310
-            bit10 = false; // Наличие ATV212
-            bit11 = prFanSpeedCheck.Checked; // Управление 0-10 В
-            bit12 = false; // Позисторные термоконтакты
-            bit13 = false; // Поддержание давления по аналоговому датчику
+            bit5 = prDampFanCheck.Checked;              // Наличие заслонки вентилятора
+            bit6 = prDampConfirmFanCheck.Checked;       // Наличие подтверждения заслонки вентилятора
+            bit7 = prFanPowSupCheck.Checked;            // Наличие контактора, сигнал подачи питания
+            bit8 = prFanStStopCheck.Checked;            // Наличие сухого контакта - запуск ПЧ
+            bit9 = false;                               // Наличие ATV12 или ATV310
+            bit10 = false;                              // Наличие ATV212
+            bit11 = prFanSpeedCheck.Checked;            // Управление 0-10 В
+            bit12 = false;                              // Позисторные термоконтакты
+            bit13 = false;                              // Поддержание давления по аналоговому датчику
+
             cmdW19 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2) +
                 8 * Convert.ToUInt16(bit3) + 16 * Convert.ToUInt16(bit4) + 32 * Convert.ToUInt16(bit5) +
                 64 * Convert.ToUInt16(bit6) + 128 * Convert.ToUInt16(bit7) + 256 * Convert.ToUInt16(bit8) +
@@ -646,26 +649,28 @@ namespace Moderon
         private void CommandWord_20()
         {
             bool bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8, bit9, bit10, bit11, bit12, bit13;
-            if (checkResPrFan.Checked)
-            { // Выбран резервный двигатель
-                bit0 = true; // Наличие вентилятора
-                bit1 = prFanPSCheck.Checked; // Подтверждение работы вентилятора
-                bit2 = prFanAlarmCheck.Checked; // Внешний сигнал аварии
-                bit3 = prFanThermoCheck.Checked; // Наличие термоконтактов
-                bit4 = curDefPrFanCheck.Checked; // Защита по току
-                bit5 = false; // Наличие заслонки
-                bit6 = false; // Наличие подтверждения заслонки
-                bit7 = prFanPowSupCheck.Checked; // Наличие контактора, сигнал подачи питания
-                bit8 = prFanStStopCheck.Checked; // Наличие сухого контакта - запуск ПЧ
-                bit9 = false; // Наличие ATV12 или ATV310
-                bit10 = false; // Наличие ATV212
-                bit11 = prFanSpeedCheck.Checked; // Управление 0-10 В
-                bit12 = false; // Позисторные термоконтакты
-                bit13 = false; // Поддержание давления по аналоговому датчику
+
+            if (checkResPrFan.Checked)                          // Выбран резервный двигатель
+            { 
+                bit0 = true;                                    // Наличие вентилятора
+                bit1 = prFanPSCheck.Checked;                    // Подтверждение работы вентилятора
+                bit2 = prFanAlarmCheck.Checked;                 // Внешний сигнал аварии
+                bit3 = prFanThermoCheck.Checked;                // Наличие термоконтактов
+                bit4 = curDefPrFanCheck.Checked;                // Защита по току
+                bit5 = prDampFanCheck.Checked;                  // Наличие заслонки
+                bit6 = prDampConfirmFanCheck.Checked;           // Наличие подтверждения заслонки
+                bit7 = prFanPowSupCheck.Checked;                // Наличие контактора, сигнал подачи питания
+                bit8 = prFanStStopCheck.Checked;                // Наличие сухого контакта - запуск ПЧ
+                bit9 = false;                                   // Наличие ATV12 или ATV310
+                bit10 = false;                                  // Наличие ATV212
+                bit11 = prFanSpeedCheck.Checked;                // Управление 0-10 В
+                bit12 = false;                                  // Позисторные термоконтакты
+                bit13 = false;                                  // Поддержание давления по аналоговому датчику
             }
-            else // Не выбран резервный двигатель
+            else                                                // Не выбран резервный двигатель
                 bit0 = bit1 = bit2 = bit3 = bit4 = bit5 = bit6 = bit7 = bit8 = bit9 = bit10 =
                     bit11 = bit12 = bit13 = false;
+
             cmdW20 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2) +
                 8 * Convert.ToUInt16(bit3) + 16 * Convert.ToUInt16(bit4) + 32 * Convert.ToUInt16(bit5) +
                 64 * Convert.ToUInt16(bit6) + 128 * Convert.ToUInt16(bit7) + 256 * Convert.ToUInt16(bit8) +
@@ -677,26 +682,28 @@ namespace Moderon
         private void CommandWord_21()
         {
             bool bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8, bit9, bit10, bit11, bit12, bit13;
-            if (comboSysType.SelectedIndex == 1)
-            { // Выбрана ПВ-система
-                bit0 = true; // Наличие вентилятора
-                bit1 = outFanPSCheck.Checked; // Подтверждение работы вентилятора
-                bit2 = outFanAlarmCheck.Checked; // Внешний сигнал аварии
-                bit3 = outFanThermoCheck.Checked; // Наличие термоконтактов
-                bit4 = curDefOutFanCheck.Checked; // Защита по току
-                bit5 = false; // Наличие заслонки
-                bit6 = false; // Наличие подтверждения заслонки
-                bit7 = outFanPowSupCheck.Checked; // Наличие контактора, сигнал подачи питания
-                bit8 = outFanStStopCheck.Checked; // Наличие сухого контакта - запуск ПЧ
-                bit9 = false; // Наличие ATV12 или ATV310
-                bit10 = false; // Наличие ATV212
-                bit11 = outFanSpeedCheck.Checked; // Управление 0-10 В
-                bit12 = false; // Позисторные термоконтакты
-                bit13 = false; // Поддержание давления по аналоговому датчику
+
+            if (comboSysType.SelectedIndex == 1)                // Выбрана ПВ-система
+            { 
+                bit0 = true;                                    // Наличие вентилятора
+                bit1 = outFanPSCheck.Checked;                   // Подтверждение работы вентилятора
+                bit2 = outFanAlarmCheck.Checked;                // Внешний сигнал аварии
+                bit3 = outFanThermoCheck.Checked;               // Наличие термоконтактов
+                bit4 = curDefOutFanCheck.Checked;               // Защита по току
+                bit5 = outDampFanCheck.Checked;                 // Наличие заслонки вентилятора
+                bit6 = outDampConfirmFanCheck.Checked;          // Наличие подтверждения заслонки вентилятора
+                bit7 = outFanPowSupCheck.Checked;               // Наличие контактора, сигнал подачи питания
+                bit8 = outFanStStopCheck.Checked;               // Наличие сухого контакта - запуск ПЧ
+                bit9 = false;                                   // Наличие ATV12 или ATV310
+                bit10 = false;                                  // Наличие ATV212
+                bit11 = outFanSpeedCheck.Checked;               // Управление 0-10 В
+                bit12 = false;                                  // Позисторные термоконтакты
+                bit13 = false;                                  // Поддержание давления по аналоговому датчику
             }
-            else // Не выбрана ПВ-система
+            else                                                // Не выбрана ПВ-система
                 bit0 = bit1 = bit2 = bit3 = bit4 = bit5 = bit6 = bit7 = bit8 = bit9 = bit10 =
                     bit11 = bit12 = bit13 = false;
+
             cmdW21 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2) +
                 8 * Convert.ToUInt16(bit3) + 16 * Convert.ToUInt16(bit4) + 32 * Convert.ToUInt16(bit5) +
                 64 * Convert.ToUInt16(bit6) + 128 * Convert.ToUInt16(bit7) + 256 * Convert.ToUInt16(bit8) +
@@ -708,25 +715,27 @@ namespace Moderon
         private void CommandWord_22()
         {
             bool bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8, bit9, bit10, bit11, bit12, bit13;
-            if (comboSysType.SelectedIndex == 1 && checkResOutFan.Checked)
-            { // Выбрана ПВ-система и резерв вытяжного вентилятора
-                bit0 = true; // Наличие вентилятора
-                bit1 = outFanPSCheck.Checked; // Подтверждение работы вентилятора
-                bit2 = outFanAlarmCheck.Checked; // Внешний сигнал аварии
-                bit3 = outFanThermoCheck.Checked; // Наличие термоконтактов
-                bit4 = curDefOutFanCheck.Checked; // Защита по току
-                bit5 = false; // Наличие заслонки
-                bit6 = false; // Наличие подтверждения заслонки
-                bit7 = outFanPowSupCheck.Checked; // Наличие контактора, сигнал подачи питания
-                bit8 = outFanStStopCheck.Checked; // Наличие сухого контакта - запуск ПЧ
-                bit9 = false; // Наличие ATV12 или ATV310
-                bit10 = false; // Наличие ATV212
-                bit11 = outFanSpeedCheck.Checked; // Управление 0-10 В
-                bit12 = false; // Позисторные термоконтакты
-                bit13 = false; // Поддержание давления по аналоговому датчику
-            } else // Не выбрана ПВ-система или резерв вытяжного вентилятора
+
+            if (comboSysType.SelectedIndex == 1 && checkResOutFan.Checked)      // Выбрана ПВ-система и резерв вытяжного вентилятора
+            { 
+                bit0 = true;                                                    // Наличие вентилятора
+                bit1 = outFanPSCheck.Checked;                                   // Подтверждение работы вентилятора
+                bit2 = outFanAlarmCheck.Checked;                                // Внешний сигнал аварии
+                bit3 = outFanThermoCheck.Checked;                               // Наличие термоконтактов
+                bit4 = curDefOutFanCheck.Checked;                               // Защита по току
+                bit5 = outDampFanCheck.Checked;                                 // Наличие заслонки вентилятора
+                bit6 = outDampConfirmFanCheck.Checked;                          // Наличие подтверждения заслонки вентилятора
+                bit7 = outFanPowSupCheck.Checked;                               // Наличие контактора, сигнал подачи питания
+                bit8 = outFanStStopCheck.Checked;                               // Наличие сухого контакта - запуск ПЧ
+                bit9 = false;                                                   // Наличие ATV12 или ATV310
+                bit10 = false;                                                  // Наличие ATV212
+                bit11 = outFanSpeedCheck.Checked;                               // Управление 0-10 В
+                bit12 = false;                                                  // Позисторные термоконтакты
+                bit13 = false;                                                  // Поддержание давления по аналоговому датчику
+            } else                                                              // Не выбрана ПВ-система или резерв вытяжного вентилятора
                 bit0 = bit1 = bit2 = bit3 = bit4 = bit5 = bit6 = bit7 = bit8 = bit9 = bit10 =
                     bit11 = bit12 = bit13 = false;
+
             cmdW22 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2) +
                 8 * Convert.ToUInt16(bit3) + 16 * Convert.ToUInt16(bit4) + 32 * Convert.ToUInt16(bit5) +
                 64 * Convert.ToUInt16(bit6) + 128 * Convert.ToUInt16(bit7) + 256 * Convert.ToUInt16(bit8) +
@@ -1150,6 +1159,18 @@ namespace Moderon
             PrFanPSCheck_signalsDICheckedChanged(this, e); // Сигналы DI ПЛК
         }
 
+        ///<summary>Выбрали заслонку для приточного вентилятора</summary>
+        private void PrDampFanCheck_cmdCheckedChanged(object sender, EventArgs e)
+        {
+            CommandWord_19(); CommandWord_20();
+        }
+
+        ///<summary>Выбрали подтверждение открытия заслонки приточного вентилятора</summary>
+        private void PrDampConfirmFanCheck_cmdCheckedChanged(object sender, EventArgs e)
+        {
+            CommandWord_19(); CommandWord_20();
+        }
+ 
         ///<summary>Выбрали ПЧ приточного вентилятора</summary>
         private void PrFanFC_check_cmdCheckedChanged(object sender, EventArgs e)
         {
@@ -1188,6 +1209,18 @@ namespace Moderon
             CommandWord_21(); CommandWord_22();
             if (ignoreEvents) return;
             OutFanPSCheck_signalsDICheckedChanged(this, e); // Сигналы DI ПЛК
+        }
+
+        ///<summary>Выбрали заслонку для вытяжного вентилятора</summary>
+        private void OutDampFanCheck_cmdCheckedChanged(object sender, EventArgs e)
+        {
+            CommandWord_21(); CommandWord_22();
+        }
+
+        ///<summary>Выбрали подтверждение открытия заслонки вытяжного вентилятора</summary>
+        private void OutDampConfirmFanCheck_cmdCheckedChanged(object sender, EventArgs e)
+        {
+            CommandWord_21(); CommandWord_22();
         }
 
         ///<summary>Выбрали вытяжной вентилятор</summary>
