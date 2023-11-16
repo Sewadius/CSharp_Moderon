@@ -150,9 +150,11 @@ namespace Moderon
         /// <summary>Установка размера для панелей настройки элементов</summary>
         private void SizePanels()
         {
+            watHeatPanel.Height = watAddHeatPanel.Height = 400;
+
             var panels = new List<Panel>()
             {
-                watHeatPanel, steamHumidPanel, watAddHeatPanel, rotorRecupPanel
+                steamHumidPanel, rotorRecupPanel
             };
 
             foreach (var panel in panels) panel.Height = HEIGHT;

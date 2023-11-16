@@ -486,22 +486,26 @@ namespace Moderon
         /// <summary>Командное слово основного водяного нагревателя</summary>
         private void CommandWord_11()
         {
-            bool bit0, bit1, bit2, bit3, bit4, bit5, bit6;
-            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)
-            { // Выбран водяной нагреватель
-                bit0 = true; // Наличие водяного нагревателя
-                bit1 = true; // Наличие основного насоса
-                bit2 = confHeatPumpCheck.Checked; // Подтверждение работы насоса
-                bit3 = false; // Наличие резервного насоса
-                bit4 = false; // Подтверждение работы резервного насоса
-                bit5 = TF_heaterCheck.Checked; // Воздушный термостат
-                bit6 = false; // Контроль протечки
+            bool bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8;
+
+            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                // Выбран водяной нагреватель
+            { 
+                bit0 = true;                                                            // Наличие водяного нагревателя
+                bit1 = true;                                                            // Наличие основного насоса
+                bit2 = confHeatPumpCheck.Checked;                                       // Подтверждение работы насоса
+                bit3 = reservPumpHeater.Checked;                                        // Наличие резервного насоса
+                bit4 = false;                                                           // Подтверждение работы резервного насоса
+                bit5 = TF_heaterCheck.Checked;                                          // Воздушный термостат
+                bit6 = false;                                                           // Контроль протечки
+                bit7 = pumpCurProtect.Checked;                                          // Наличие реле тока основного насоса
+                bit8 = pumpCurResProtect.Checked;                                       // Наличие реле тока резервного насоса
             }
             else
-                bit0 = bit1 = bit2 = bit3 = bit4 = bit5 = bit6 = false;
+                bit0 = bit1 = bit2 = bit3 = bit4 = bit5 = bit6 = bit7 = bit8 = false;
+
             cmdW11 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2) +
                 8 * Convert.ToUInt16(bit3) + 16 * Convert.ToUInt16(bit4) + 32 * Convert.ToUInt16(bit5) +
-                64 * Convert.ToUInt16(bit6));
+                64 * Convert.ToUInt16(bit6) + 128 * Convert.ToUInt16(bit7) + 256 * Convert.ToUInt16(bit8));
         }
 
         /// <summary>Командное слово основного охладителя</summary>
@@ -1014,6 +1018,14 @@ namespace Moderon
             CommandWord_11();
             if (ignoreEvents) return;
             TF_heaterCheck_signalsDICheckedChanged(this, e); // Сигналы DI
+        }
+
+        ///<summary>Выбрали защиту по току для основного насоса калорифера</summary>
+        private void PumpCurProtect_cmdCheckedChanged(object sender, EventArgs e)
+        {
+            CommandWord_11();
+            if (ignoreEvents) return;
+            PumpCurAddProtect_signalsDICheckedChanged(this, e); // Сигналы DI
         }
 
         ///<summary>Выбрали догреватель</summary>

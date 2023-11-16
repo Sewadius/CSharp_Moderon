@@ -952,6 +952,20 @@ namespace Moderon
             }
         }
 
+        ///<summary>Защита по току основного насоса водяного калорифера</summary>
+        private void PumpCurAddProtect_signalsDICheckedChanged(object sender, EventArgs e)
+        {
+            ushort code_1 = 75;                                                                     // Защита по току основного насоса
+
+            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                            // Выбран водяной калорифер
+            {
+                if (pumpCurProtect.Checked)                                                         // Выбрали защиту по току
+                    CheckAddDIToList("Защита по току насоса водяного калорифера", code_1);
+                else
+                    SubFromCombosDI(code_1);                                                        // Отмена выбора
+            }
+        }
+
         ///<summary>Изменили количество термовыключателей основного нагревателя</summary>
         private void ThermSwitchCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {

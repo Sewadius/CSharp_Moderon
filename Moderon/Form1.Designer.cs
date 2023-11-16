@@ -166,13 +166,16 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.watHeatPanel = new System.Windows.Forms.Panel();
+            this.pumpCurResProtect = new System.Windows.Forms.CheckBox();
+            this.reservPumpHeater = new System.Windows.Forms.CheckBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.pumpCurProtect = new System.Windows.Forms.CheckBox();
             this.watSensHeatCheck = new System.Windows.Forms.CheckBox();
             this.analogSigHeatCheck = new System.Windows.Forms.CheckBox();
             this.confHeatPumpCheck = new System.Windows.Forms.CheckBox();
             this.powPumpCombo = new System.Windows.Forms.ComboBox();
-            this.label19 = new System.Windows.Forms.Label();
             this.TF_heaterCheck = new System.Windows.Forms.CheckBox();
-            this.label18 = new System.Windows.Forms.Label();
             this.heatTypeCombo = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
             this.coolPage = new System.Windows.Forms.TabPage();
@@ -266,6 +269,9 @@
             this.label54 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
             this.watAddHeatPanel = new System.Windows.Forms.Panel();
+            this.pumpCurResAddProtect = new System.Windows.Forms.CheckBox();
+            this.reservPumpAddHeater = new System.Windows.Forms.CheckBox();
+            this.pumpCurAddProtect = new System.Windows.Forms.CheckBox();
             this.pumpAddHeatCheck = new System.Windows.Forms.CheckBox();
             this.sensWatAddHeatCheck = new System.Windows.Forms.CheckBox();
             this.checkBox27 = new System.Windows.Forms.CheckBox();
@@ -652,6 +658,8 @@
             this.canSelectBox = new System.Windows.Forms.TextBox();
             this.label173 = new System.Windows.Forms.Label();
             this.netOptionLabel = new System.Windows.Forms.Label();
+            this.confHeatResPumpCheck = new System.Windows.Forms.CheckBox();
+            this.confAddHeatResPumpCheck = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.sensorsPage.SuspendLayout();
@@ -810,7 +818,7 @@
             this.mainPage.Location = new System.Drawing.Point(15, 75);
             this.mainPage.Name = "mainPage";
             this.mainPage.SelectedIndex = 0;
-            this.mainPage.Size = new System.Drawing.Size(750, 576);
+            this.mainPage.Size = new System.Drawing.Size(750, 692);
             this.mainPage.TabIndex = 1;
             // 
             // sensorsPage
@@ -819,7 +827,7 @@
             this.sensorsPage.Controls.Add(this.sensorsPanel);
             this.sensorsPage.Location = new System.Drawing.Point(4, 22);
             this.sensorsPage.Name = "sensorsPage";
-            this.sensorsPage.Size = new System.Drawing.Size(742, 550);
+            this.sensorsPage.Size = new System.Drawing.Size(742, 666);
             this.sensorsPage.TabIndex = 9;
             this.sensorsPage.Text = "ДАТЧИКИ/СИГНАЛЫ";
             // 
@@ -1066,7 +1074,7 @@
             this.fanPage.Location = new System.Drawing.Point(4, 22);
             this.fanPage.Name = "fanPage";
             this.fanPage.Padding = new System.Windows.Forms.Padding(3);
-            this.fanPage.Size = new System.Drawing.Size(742, 550);
+            this.fanPage.Size = new System.Drawing.Size(742, 666);
             this.fanPage.TabIndex = 0;
             this.fanPage.Text = "ВЕНТИЛЯТОР";
             // 
@@ -1707,7 +1715,7 @@
             this.filterPage.Controls.Add(this.filterPanel);
             this.filterPage.Location = new System.Drawing.Point(4, 22);
             this.filterPage.Name = "filterPage";
-            this.filterPage.Size = new System.Drawing.Size(742, 550);
+            this.filterPage.Size = new System.Drawing.Size(742, 666);
             this.filterPage.TabIndex = 6;
             this.filterPage.Text = "ФИЛЬТР";
             // 
@@ -1830,7 +1838,7 @@
             this.dampPage.Controls.Add(this.dampPanel);
             this.dampPage.Location = new System.Drawing.Point(4, 22);
             this.dampPage.Name = "dampPage";
-            this.dampPage.Size = new System.Drawing.Size(742, 550);
+            this.dampPage.Size = new System.Drawing.Size(742, 666);
             this.dampPage.TabIndex = 7;
             this.dampPage.Text = "ЗАСЛОНКА";
             // 
@@ -2266,7 +2274,7 @@
             this.heatPage.Location = new System.Drawing.Point(4, 22);
             this.heatPage.Name = "heatPage";
             this.heatPage.Padding = new System.Windows.Forms.Padding(3);
-            this.heatPage.Size = new System.Drawing.Size(742, 550);
+            this.heatPage.Size = new System.Drawing.Size(742, 666);
             this.heatPage.TabIndex = 1;
             this.heatPage.Text = "НАГРЕВАТЕЛЬ";
             // 
@@ -2279,7 +2287,7 @@
             this.heatPanel.Controls.Add(this.label17);
             this.heatPanel.Location = new System.Drawing.Point(0, 6);
             this.heatPanel.Name = "heatPanel";
-            this.heatPanel.Size = new System.Drawing.Size(717, 407);
+            this.heatPanel.Size = new System.Drawing.Size(717, 604);
             this.heatPanel.TabIndex = 2;
             // 
             // heatPicture
@@ -2304,9 +2312,9 @@
             this.elHeatPanel.Controls.Add(this.elHeatStagesCombo);
             this.elHeatPanel.Controls.Add(this.label21);
             this.elHeatPanel.Controls.Add(this.label20);
-            this.elHeatPanel.Location = new System.Drawing.Point(3, 170);
+            this.elHeatPanel.Location = new System.Drawing.Point(358, 309);
             this.elHeatPanel.Name = "elHeatPanel";
-            this.elHeatPanel.Size = new System.Drawing.Size(350, 220);
+            this.elHeatPanel.Size = new System.Drawing.Size(350, 226);
             this.elHeatPanel.TabIndex = 31;
             this.elHeatPanel.Visible = false;
             // 
@@ -2447,17 +2455,78 @@
             // 
             // watHeatPanel
             // 
+            this.watHeatPanel.Controls.Add(this.confHeatResPumpCheck);
+            this.watHeatPanel.Controls.Add(this.pumpCurResProtect);
+            this.watHeatPanel.Controls.Add(this.reservPumpHeater);
+            this.watHeatPanel.Controls.Add(this.label19);
+            this.watHeatPanel.Controls.Add(this.label18);
+            this.watHeatPanel.Controls.Add(this.pumpCurProtect);
             this.watHeatPanel.Controls.Add(this.watSensHeatCheck);
             this.watHeatPanel.Controls.Add(this.analogSigHeatCheck);
             this.watHeatPanel.Controls.Add(this.confHeatPumpCheck);
             this.watHeatPanel.Controls.Add(this.powPumpCombo);
-            this.watHeatPanel.Controls.Add(this.label19);
             this.watHeatPanel.Controls.Add(this.TF_heaterCheck);
-            this.watHeatPanel.Controls.Add(this.label18);
-            this.watHeatPanel.Location = new System.Drawing.Point(3, 41);
+            this.watHeatPanel.Location = new System.Drawing.Point(3, 37);
             this.watHeatPanel.Name = "watHeatPanel";
-            this.watHeatPanel.Size = new System.Drawing.Size(242, 123);
+            this.watHeatPanel.Size = new System.Drawing.Size(322, 434);
             this.watHeatPanel.TabIndex = 30;
+            // 
+            // pumpCurResProtect
+            // 
+            this.pumpCurResProtect.AutoSize = true;
+            this.pumpCurResProtect.Enabled = false;
+            this.pumpCurResProtect.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.pumpCurResProtect.Location = new System.Drawing.Point(15, 294);
+            this.pumpCurResProtect.Name = "pumpCurResProtect";
+            this.pumpCurResProtect.Size = new System.Drawing.Size(256, 18);
+            this.pumpCurResProtect.TabIndex = 40;
+            this.pumpCurResProtect.Text = "Защита резервного насоса по току";
+            this.pumpCurResProtect.UseVisualStyleBackColor = true;
+            // 
+            // reservPumpHeater
+            // 
+            this.reservPumpHeater.AutoSize = true;
+            this.reservPumpHeater.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.reservPumpHeater.Location = new System.Drawing.Point(15, 214);
+            this.reservPumpHeater.Name = "reservPumpHeater";
+            this.reservPumpHeater.Size = new System.Drawing.Size(136, 18);
+            this.reservPumpHeater.TabIndex = 39;
+            this.reservPumpHeater.Text = "Резервный насос";
+            this.reservPumpHeater.UseVisualStyleBackColor = true;
+            // 
+            // label19
+            // 
+            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label19.Location = new System.Drawing.Point(15, 94);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(116, 16);
+            this.label19.TabIndex = 38;
+            this.label19.Text = "Питание насоса";
+            // 
+            // label18
+            // 
+            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label18.Location = new System.Drawing.Point(12, 15);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(189, 16);
+            this.label18.TabIndex = 38;
+            this.label18.Text = "ВОДЯНОЙ НАГРЕВАТЕЛЬ";
+            // 
+            // pumpCurProtect
+            // 
+            this.pumpCurProtect.AutoSize = true;
+            this.pumpCurProtect.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.pumpCurProtect.Location = new System.Drawing.Point(15, 174);
+            this.pumpCurProtect.Name = "pumpCurProtect";
+            this.pumpCurProtect.Size = new System.Drawing.Size(177, 18);
+            this.pumpCurProtect.TabIndex = 31;
+            this.pumpCurProtect.Text = "Защита насоса по току";
+            this.pumpCurProtect.UseVisualStyleBackColor = true;
+            this.pumpCurProtect.CheckedChanged += new System.EventHandler(this.PumpCurProtect_cmdCheckedChanged);
             // 
             // watSensHeatCheck
             // 
@@ -2466,7 +2535,7 @@
             this.watSensHeatCheck.CheckState = System.Windows.Forms.CheckState.Checked;
             this.watSensHeatCheck.Enabled = false;
             this.watSensHeatCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.watSensHeatCheck.Location = new System.Drawing.Point(15, 214);
+            this.watSensHeatCheck.Location = new System.Drawing.Point(15, 374);
             this.watSensHeatCheck.Name = "watSensHeatCheck";
             this.watSensHeatCheck.Size = new System.Drawing.Size(176, 18);
             this.watSensHeatCheck.TabIndex = 30;
@@ -2480,7 +2549,7 @@
             this.analogSigHeatCheck.CheckState = System.Windows.Forms.CheckState.Checked;
             this.analogSigHeatCheck.Enabled = false;
             this.analogSigHeatCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.analogSigHeatCheck.Location = new System.Drawing.Point(15, 174);
+            this.analogSigHeatCheck.Location = new System.Drawing.Point(15, 334);
             this.analogSigHeatCheck.Name = "analogSigHeatCheck";
             this.analogSigHeatCheck.Size = new System.Drawing.Size(210, 18);
             this.analogSigHeatCheck.TabIndex = 29;
@@ -2515,17 +2584,6 @@
             this.powPumpCombo.Size = new System.Drawing.Size(59, 21);
             this.powPumpCombo.TabIndex = 27;
             // 
-            // label19
-            // 
-            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label19.Location = new System.Drawing.Point(16, 94);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(116, 16);
-            this.label19.TabIndex = 26;
-            this.label19.Text = "Питание насоса";
-            // 
             // TF_heaterCheck
             // 
             this.TF_heaterCheck.AutoSize = true;
@@ -2537,17 +2595,6 @@
             this.TF_heaterCheck.Text = "Воздушный термостат";
             this.TF_heaterCheck.UseVisualStyleBackColor = true;
             this.TF_heaterCheck.CheckedChanged += new System.EventHandler(this.TF_heaterCheck_cmdCheckedChanged);
-            // 
-            // label18
-            // 
-            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label18.Location = new System.Drawing.Point(14, 18);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(189, 16);
-            this.label18.TabIndex = 17;
-            this.label18.Text = "ВОДЯНОЙ НАГРЕВАТЕЛЬ";
             // 
             // heatTypeCombo
             // 
@@ -2571,7 +2618,7 @@
             this.label17.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label17.Location = new System.Drawing.Point(8, 11);
+            this.label17.Location = new System.Drawing.Point(6, 13);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(122, 16);
             this.label17.TabIndex = 18;
@@ -2583,7 +2630,7 @@
             this.coolPage.Location = new System.Drawing.Point(4, 22);
             this.coolPage.Name = "coolPage";
             this.coolPage.Padding = new System.Windows.Forms.Padding(3);
-            this.coolPage.Size = new System.Drawing.Size(742, 550);
+            this.coolPage.Size = new System.Drawing.Size(742, 666);
             this.coolPage.TabIndex = 2;
             this.coolPage.Text = "ОХЛАДИТЕЛЬ";
             // 
@@ -2811,7 +2858,7 @@
             this.humidPage.Location = new System.Drawing.Point(4, 22);
             this.humidPage.Name = "humidPage";
             this.humidPage.Padding = new System.Windows.Forms.Padding(3);
-            this.humidPage.Size = new System.Drawing.Size(742, 550);
+            this.humidPage.Size = new System.Drawing.Size(742, 666);
             this.humidPage.TabIndex = 3;
             this.humidPage.Text = "УВЛАЖНИТЕЛЬ";
             // 
@@ -2971,7 +3018,7 @@
             this.recircPage.Location = new System.Drawing.Point(4, 22);
             this.recircPage.Name = "recircPage";
             this.recircPage.Padding = new System.Windows.Forms.Padding(3);
-            this.recircPage.Size = new System.Drawing.Size(742, 550);
+            this.recircPage.Size = new System.Drawing.Size(742, 666);
             this.recircPage.TabIndex = 4;
             this.recircPage.Text = "РЕЦИРКУЛЯЦИЯ";
             // 
@@ -3189,7 +3236,7 @@
             this.recupPage.Controls.Add(this.recupPanel);
             this.recupPage.Location = new System.Drawing.Point(4, 22);
             this.recupPage.Name = "recupPage";
-            this.recupPage.Size = new System.Drawing.Size(742, 550);
+            this.recupPage.Size = new System.Drawing.Size(742, 666);
             this.recupPage.TabIndex = 5;
             this.recupPage.Text = "РЕКУПЕРАТОР";
             // 
@@ -3527,7 +3574,7 @@
             this.addHeatPage.Controls.Add(this.secHeatPanel);
             this.addHeatPage.Location = new System.Drawing.Point(4, 22);
             this.addHeatPage.Name = "addHeatPage";
-            this.addHeatPage.Size = new System.Drawing.Size(742, 550);
+            this.addHeatPage.Size = new System.Drawing.Size(742, 666);
             this.addHeatPage.TabIndex = 8;
             this.addHeatPage.Text = "ДОП НАГРЕВ";
             // 
@@ -3540,7 +3587,7 @@
             this.secHeatPanel.Controls.Add(this.label58);
             this.secHeatPanel.Location = new System.Drawing.Point(6, 6);
             this.secHeatPanel.Name = "secHeatPanel";
-            this.secHeatPanel.Size = new System.Drawing.Size(717, 413);
+            this.secHeatPanel.Size = new System.Drawing.Size(717, 657);
             this.secHeatPanel.TabIndex = 3;
             // 
             // heatAddPicture
@@ -3565,7 +3612,7 @@
             this.elAddHeatPanel.Controls.Add(this.elHeatAddStagesCombo);
             this.elAddHeatPanel.Controls.Add(this.label54);
             this.elAddHeatPanel.Controls.Add(this.label55);
-            this.elAddHeatPanel.Location = new System.Drawing.Point(0, 165);
+            this.elAddHeatPanel.Location = new System.Drawing.Point(363, 409);
             this.elAddHeatPanel.Name = "elAddHeatPanel";
             this.elAddHeatPanel.Size = new System.Drawing.Size(351, 220);
             this.elAddHeatPanel.TabIndex = 31;
@@ -3708,6 +3755,10 @@
             // 
             // watAddHeatPanel
             // 
+            this.watAddHeatPanel.Controls.Add(this.confAddHeatResPumpCheck);
+            this.watAddHeatPanel.Controls.Add(this.pumpCurResAddProtect);
+            this.watAddHeatPanel.Controls.Add(this.reservPumpAddHeater);
+            this.watAddHeatPanel.Controls.Add(this.pumpCurAddProtect);
             this.watAddHeatPanel.Controls.Add(this.pumpAddHeatCheck);
             this.watAddHeatPanel.Controls.Add(this.sensWatAddHeatCheck);
             this.watAddHeatPanel.Controls.Add(this.checkBox27);
@@ -3716,10 +3767,44 @@
             this.watAddHeatPanel.Controls.Add(this.label56);
             this.watAddHeatPanel.Controls.Add(this.TF_addHeaterCheck);
             this.watAddHeatPanel.Controls.Add(this.label57);
-            this.watAddHeatPanel.Location = new System.Drawing.Point(0, 36);
+            this.watAddHeatPanel.Location = new System.Drawing.Point(3, 37);
             this.watAddHeatPanel.Name = "watAddHeatPanel";
-            this.watAddHeatPanel.Size = new System.Drawing.Size(298, 125);
+            this.watAddHeatPanel.Size = new System.Drawing.Size(298, 483);
             this.watAddHeatPanel.TabIndex = 30;
+            // 
+            // pumpCurResAddProtect
+            // 
+            this.pumpCurResAddProtect.AutoSize = true;
+            this.pumpCurResAddProtect.Enabled = false;
+            this.pumpCurResAddProtect.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.pumpCurResAddProtect.Location = new System.Drawing.Point(15, 334);
+            this.pumpCurResAddProtect.Name = "pumpCurResAddProtect";
+            this.pumpCurResAddProtect.Size = new System.Drawing.Size(256, 18);
+            this.pumpCurResAddProtect.TabIndex = 35;
+            this.pumpCurResAddProtect.Text = "Защита резервного насоса по току";
+            this.pumpCurResAddProtect.UseVisualStyleBackColor = true;
+            // 
+            // reservPumpAddHeater
+            // 
+            this.reservPumpAddHeater.AutoSize = true;
+            this.reservPumpAddHeater.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.reservPumpAddHeater.Location = new System.Drawing.Point(15, 254);
+            this.reservPumpAddHeater.Name = "reservPumpAddHeater";
+            this.reservPumpAddHeater.Size = new System.Drawing.Size(136, 18);
+            this.reservPumpAddHeater.TabIndex = 34;
+            this.reservPumpAddHeater.Text = "Резервный насос";
+            this.reservPumpAddHeater.UseVisualStyleBackColor = true;
+            // 
+            // pumpCurAddProtect
+            // 
+            this.pumpCurAddProtect.AutoSize = true;
+            this.pumpCurAddProtect.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.pumpCurAddProtect.Location = new System.Drawing.Point(15, 214);
+            this.pumpCurAddProtect.Name = "pumpCurAddProtect";
+            this.pumpCurAddProtect.Size = new System.Drawing.Size(177, 18);
+            this.pumpCurAddProtect.TabIndex = 33;
+            this.pumpCurAddProtect.Text = "Защита насоса по току";
+            this.pumpCurAddProtect.UseVisualStyleBackColor = true;
             // 
             // pumpAddHeatCheck
             // 
@@ -3739,7 +3824,7 @@
             // 
             this.sensWatAddHeatCheck.AutoSize = true;
             this.sensWatAddHeatCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.sensWatAddHeatCheck.Location = new System.Drawing.Point(15, 254);
+            this.sensWatAddHeatCheck.Location = new System.Drawing.Point(15, 414);
             this.sensWatAddHeatCheck.Name = "sensWatAddHeatCheck";
             this.sensWatAddHeatCheck.Size = new System.Drawing.Size(176, 18);
             this.sensWatAddHeatCheck.TabIndex = 31;
@@ -3753,7 +3838,7 @@
             this.checkBox27.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox27.Enabled = false;
             this.checkBox27.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBox27.Location = new System.Drawing.Point(15, 214);
+            this.checkBox27.Location = new System.Drawing.Point(15, 374);
             this.checkBox27.Name = "checkBox27";
             this.checkBox27.Size = new System.Drawing.Size(210, 18);
             this.checkBox27.TabIndex = 30;
@@ -3844,7 +3929,7 @@
             this.label58.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label58.AutoSize = true;
             this.label58.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label58.Location = new System.Drawing.Point(6, 12);
+            this.label58.Location = new System.Drawing.Point(6, 13);
             this.label58.Name = "label58";
             this.label58.Size = new System.Drawing.Size(180, 16);
             this.label58.TabIndex = 18;
@@ -8227,6 +8312,29 @@
             this.netOptionLabel.TabIndex = 46;
             this.netOptionLabel.Text = "НАСТРОЙКА СЕТИ";
             // 
+            // confHeatResPumpCheck
+            // 
+            this.confHeatResPumpCheck.AutoSize = true;
+            this.confHeatResPumpCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.confHeatResPumpCheck.Location = new System.Drawing.Point(15, 254);
+            this.confHeatResPumpCheck.Name = "confHeatResPumpCheck";
+            this.confHeatResPumpCheck.Size = new System.Drawing.Size(241, 18);
+            this.confHeatResPumpCheck.TabIndex = 41;
+            this.confHeatResPumpCheck.Text = "Подтверждение работы резерва";
+            this.confHeatResPumpCheck.UseVisualStyleBackColor = true;
+            // 
+            // confAddHeatResPumpCheck
+            // 
+            this.confAddHeatResPumpCheck.AutoSize = true;
+            this.confAddHeatResPumpCheck.Enabled = false;
+            this.confAddHeatResPumpCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.confAddHeatResPumpCheck.Location = new System.Drawing.Point(15, 294);
+            this.confAddHeatResPumpCheck.Name = "confAddHeatResPumpCheck";
+            this.confAddHeatResPumpCheck.Size = new System.Drawing.Size(241, 18);
+            this.confAddHeatResPumpCheck.TabIndex = 36;
+            this.confAddHeatResPumpCheck.Text = "Подтверждение работы резерва";
+            this.confAddHeatResPumpCheck.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -8458,10 +8566,8 @@
         private System.Windows.Forms.ComboBox heatTypeCombo;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Panel watHeatPanel;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.CheckBox confHeatPumpCheck;
         private System.Windows.Forms.ComboBox powPumpCombo;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.CheckBox TF_heaterCheck;
         private System.Windows.Forms.Panel elHeatPanel;
         private System.Windows.Forms.ComboBox elHeatStagesCombo;
@@ -8999,6 +9105,16 @@
         private System.Windows.Forms.CheckBox prDampConfirmFanCheck;
         private System.Windows.Forms.CheckBox outDampConfirmFanCheck;
         private System.Windows.Forms.CheckBox outDampFanCheck;
+        private System.Windows.Forms.CheckBox pumpCurProtect;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.CheckBox pumpCurResProtect;
+        private System.Windows.Forms.CheckBox reservPumpHeater;
+        private System.Windows.Forms.CheckBox reservPumpAddHeater;
+        private System.Windows.Forms.CheckBox pumpCurAddProtect;
+        private System.Windows.Forms.CheckBox pumpCurResAddProtect;
+        private System.Windows.Forms.CheckBox confHeatResPumpCheck;
+        private System.Windows.Forms.CheckBox confAddHeatResPumpCheck;
     }
 }
 
