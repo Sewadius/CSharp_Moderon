@@ -803,8 +803,22 @@ namespace Moderon
             }
         }
 
+        ///<summary>Выбрали резервный насос основного водяного калорифера</summary>
+        private void ReservPumpHeater_signalsDOCheckedChanged(object sender, EventArgs e)
+        {
+            ushort code_1 = 35;                                                 // Сигнал "Пуск/стоп" резервного насоса
+
+            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)        // Водяной калорифер
+            {
+                if (reservPumpHeater.Checked)                                   // Выбран резервный насос
+                    AddToListDo("Запуск резервного насоса водяного калорифера", code_1);
+                else                                                            // Отмена выбора резервного насоса                                   
+                    SubFromCombosDO(code_1);                                                 
+            }
+        }
+
         ///<summary>Изменили количество ступеней основного электрокалорифера</summary>
-        private void ElHeatStagesCombo_signalsSelectedIndexChanged(object sender, EventArgs e)
+        private void ElHeatStagesCombo_signalsDOSelectedIndexChanged(object sender, EventArgs e)
         {
             ushort                                                              // Ступени электрокалорифера
                 code_2 = 39, code_3 = 40, code_4 = 41, code_5 = 42, 
@@ -938,6 +952,20 @@ namespace Moderon
                     if (heatAddTypeCombo.SelectedIndex > 6)                             // Восемь ступеней
                         AddToListDo("8 ступень электрического догревателя", code_8);
                 }
+            }
+        }
+
+        ///<summary>Выбрали резервный насос водяного догревателя</summary>
+        private void ReservPumpAddHeater_signalsDOCheckedChanged(object sender, EventArgs e)
+        {
+            ushort code_1 = 79;                                                         // Сигнал "Пуск/стоп" резервного насоса
+
+            if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0)            // Водяной догреватель
+            {
+                if (reservPumpAddHeater.Checked)                                        // Выбран резервный насос
+                    AddToListDo("Запуск резервного насоса водяного догревателя", code_1);
+                else
+                    SubFromCombosDO(code_1);
             }
         }
 

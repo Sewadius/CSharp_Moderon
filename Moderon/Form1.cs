@@ -550,12 +550,18 @@ namespace Moderon
         /// <summary>Сброс настроек для основного нагревателя</summary>
         private void ResetHeaterOptions()
         {
-            TF_heaterCheck.Checked = false;
-            confHeatPumpCheck.Checked = false;
-            elHeatPowBox.Text = "4,0";
+            TF_heaterCheck.Checked = false;             // Термостат
+            confHeatPumpCheck.Checked = false;          // Подтверждение работы основного насоса
+            elHeatPowBox.Text = "4,0";                  // Мощность ступени
+            pumpCurProtect.Checked = false;             // Защита по току основного насоса
+            reservPumpHeater.Checked = false;           // Резервный насос калорифера
+            // Подтверждение работы резервного насоса
+            confHeatResPumpCheck.Checked = false; confHeatResPumpCheck.Enabled = false;
+            // Защита резервного насоса по току
+            pumpCurResProtect.Checked = false; pumpCurResProtect.Enabled = false;
         }
 
-        /// <summary>Сброс настроек для дополнительного нагревателя</summary>
+        /// <summary>Сброс настроек для дополнительного (второго) нагревателя</summary>
         private void ResetAddHeaterOptions()
         {
             var addHeatCheck = new List<CheckBox>()
@@ -567,6 +573,13 @@ namespace Moderon
             
             pumpAddHeatCheck.Checked = true;
             elAddHeatPowBox.Text = "4,0";
+
+            pumpCurAddProtect.Checked = false;      // Защита по току основного насоса
+            reservPumpAddHeater.Checked = false;    // Резервный насос калорифера
+            // Подтверждение работы резервного насоса
+            confAddHeatResPumpCheck.Checked = false; confAddHeatResPumpCheck.Enabled = false;
+            // Защита резервного насоса по току
+            pumpCurResAddProtect.Checked = false; pumpCurResAddProtect.Enabled = false;
         }
 
         /// <summary>Сброс настроек для охладителя</summary>
@@ -712,6 +725,26 @@ namespace Moderon
             HeatTypeCombo_signalsAOSelectedIndexChanged(this, e);                   // Сигналы AO ПЛК
             HeatTypeCombo_signalsDISelectedIndexChanged(this, e);                   // Сигналы DI ПЛК
             HeatTypeCombo_signalsAISelectedIndexChanged(this, e);                   // Сигналы AI ПЛК
+        }
+
+        ///<summary>Выбрали резервный насос основного водяного нагревателя</summary>
+        private void ReservPumpHeater_CheckedChanged(object sender, EventArgs e)
+        {
+            if (reservPumpHeater.Checked)                                           // Выбрали резервный насос
+            {
+                confHeatResPumpCheck.Enabled = true;                                // Разблокировка подтверждения работы
+                pumpCurResProtect.Enabled = true;                                   // Разблокировка защиты по току
+            }
+            else                                                                    // Отмена выбора насоса
+            {
+                confHeatResPumpCheck.Checked = false;                               // Отмена выбора подтверждения работы
+                pumpCurResProtect.Checked = false;                                  // Отмена выбора защиты по току
+                confHeatResPumpCheck.Enabled = false;                               // Блокировка подтверждения работы
+                pumpCurResProtect.Enabled = false;                                  // Блокировка защиты по току
+            }
+            ReservPumpHeater_cmdCheckedChanged(this, e);                            // Командное слово
+            if (ignoreEvents) return;
+            ReservPumpHeater_signalsDOCheckedChanged(this, e);                      // Сигналы DO ПЛК
         }
 
         ///<summary>Изменили тип охладителя</summary>
@@ -861,6 +894,26 @@ namespace Moderon
             HeatAddTypeCombo_signalsAISelectedIndexChanged(this, e);                // Сигналы AI ПЛК
         }
 
+        ///<summary>Выбрали резервный насос дополнительного (второго) калорифера</summary>
+        private void ReservPumpAddHeater_CheckedChanged(object sender, EventArgs e)
+        {
+            if (reservPumpAddHeater.Checked)                        // Выбрали резервный насос
+            {
+                confAddHeatResPumpCheck.Enabled = true;             // Разблокировка подтверждения работы
+                pumpCurResAddProtect.Enabled = true;                // Разблокировка защиты по току
+            }
+            else                                                    // Отмена выбора насоса
+            {
+                confAddHeatResPumpCheck.Checked = false;            // Отмена выбора подтверждения работы
+                pumpCurResAddProtect.Checked = false;               // Отмена выбора защиты по току
+                confAddHeatResPumpCheck.Enabled = false;            // Блокировка подтверждения работы
+                pumpCurResAddProtect.Enabled = false;               // Блокировка защиты по току
+            }
+            ReservPumpAddHeater_cmdCheckedChanged(this, e);         // Командное слово
+            if (ignoreEvents) return;
+            ReservPumpAddHeater_signalsDOCheckedChanged(this, e);   // Сигналы DO ПЛК
+        }
+
         // Функция проверки доступности датчиков влажности
         private void CheckHumidSensors()
         {
@@ -995,18 +1048,24 @@ namespace Moderon
             DehumModeCheck_cmdCheckedChanged(this, e);      // Командное слово
         }
 
-        ///<summary>Выбрали насос дополнительного нагревателя</summary>
+        ///<summary>Выбрали основной насос дополнительного нагревателя</summary>
         private void PumpAddHeatCheck_CheckedChanged(object sender, EventArgs e)
         {
-            if (pumpAddHeatCheck.Checked)
+            if (pumpAddHeatCheck.Checked)                                               // Выбрали циркуляционный насос
             {
                 powPumpAddCombo.Enabled = true;
-                confAddHeatPumpCheck.Enabled = true;
+                confAddHeatPumpCheck.Enabled = true;                                    // Подтверждение работы
+                pumpCurAddProtect.Enabled = true;                                       // Защита по току
             }
-            else
+            else                                                                        // Отмена выбора насоса
             {
                 powPumpAddCombo.Enabled = false;
+                // Подтверждение работы насоса
+                confAddHeatPumpCheck.Checked = false;
                 confAddHeatPumpCheck.Enabled = false;
+                // Защита насоса по току
+                pumpCurAddProtect.Checked = false;
+                pumpCurAddProtect.Enabled = false;
             }
             PumpAddHeatCheck_cmdCheckedChanged(this, e); // Командное слово
         }
@@ -1052,7 +1111,7 @@ namespace Moderon
         }
 
         ///<summary>Метод для открытия панели загрузки через CAN-порт</summary>
-        private void loadCanPanel_Open(object sender, EventArgs e)
+        private void LoadCanPanel_Open(object sender, EventArgs e)
         {
             mainPage.Hide();                                    // Скрытие панели опций элементов
             signalsPanel.Hide();                                // Скрытие панели распределения сигналов
@@ -1161,11 +1220,11 @@ namespace Moderon
             Form1_Load(this, e);                                                        // Обработка всплывающих подсказок
         }
 
-        ///<summary>Нажали кнопку "Загружзть в ПЛК" в панели сигналов</summary>
+        ///<summary>Нажали кнопку "Загрузить в ПЛК" в панели сигналов</summary>
         private void LoadPLC_SignalsButton_Click(object sender, EventArgs e)
         {
             //ToolStripMenuItem_load_Click(this, e);                                    // Открытие панели настроек
-            loadCanPanel_Open(this, e);                                                 // Открытие панели загрузки в контроллер, CAN порт
+            LoadCanPanel_Open(this, e);                                                 // Открытие панели загрузки в контроллер, CAN порт
             fromSignalsMove = true;                                                     // Переход из панели выбора сигналов
             FormNetButton_Click(this, e);                                               // Формирование списка сигналов для записи
         }
@@ -1253,6 +1312,17 @@ namespace Moderon
         {
             // Числа и Backspace
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back) e.Handled = true;
+        }
+
+        ///<summary>Кнопка "Назад" из панели загрузки по CAN порту</summary>
+        private void BackCanPanelButton_Click(object sender, EventArgs e)
+        {
+            loadCanPanel.Hide();                                   // Скрытие панели загрузки
+            mainPage.Show();                                       // Отображение панели опции элементов 
+            label_comboSysType.Text = "ТИП СИСТЕМЫ";
+            comboSysType.Show();
+            panelElements.Show();
+            formSignalsButton.Show();
         }
 
         ///<summary>Настройка поля для ширины вытяжной заслонки</summary>

@@ -38,46 +38,46 @@ namespace Moderon
             BuildAiSignals();                       // Сборка массива для сигналов AI
             BuildDoSignals();                       // Сборка массива для сигналов DO
             BuildAoSignals();                       // Сборка массива для сигналов AO
-            writeNetTextBox.Text = "";              // Очистка текстового поля
+            dataCanTextBox.Text = "";               // Очистка текстового поля
 
             for (ushort counter = 1; counter <= cmdWords.Length; counter++) 
             { // Для командных слов
-                writeNetTextBox.Text += counter.ToString() + ") " + 
+                dataCanTextBox.Text += counter.ToString() + ") " + 
                     cmdWords[counter - 1].ToString();
-                if (counter < cmdWords.Length) writeNetTextBox.Text += Environment.NewLine;
+                if (counter < cmdWords.Length) dataCanTextBox.Text += Environment.NewLine;
                 ++count;
             }
             for (ushort counter = 1; counter <= diSignals.Length; counter++) // DI
             { // Для сигналов DI (DI1 - DI20) - по 5 сигналов
-                writeNetTextBox.Text += Environment.NewLine;
-                writeNetTextBox.Text += (count.ToString() + "_DI_" + counter.ToString() + ") " +
+                dataCanTextBox.Text += Environment.NewLine;
+                dataCanTextBox.Text += (count.ToString() + "_DI_" + counter.ToString() + ") " +
                     diSignals[counter - 1]).ToString();
                 ++count;
             }
             for (ushort counter = 1; counter <= aiSignals.Length; counter++) // AI
             { // Для сигналов AI (AI1 - AI24) - по 6 сигналов
-                writeNetTextBox.Text += Environment.NewLine;
-                writeNetTextBox.Text += (count.ToString() + "_AI_" + counter.ToString() + ") " +
+                dataCanTextBox.Text += Environment.NewLine;
+                dataCanTextBox.Text += (count.ToString() + "_AI_" + counter.ToString() + ") " +
                     aiSignals[counter - 1]).ToString();
                 ++count;
             }
             for (ushort counter = 1; counter <= doSignals.Length; counter++) // DO
             { // Для сигналов DO (DO1 - DO28) - по 7 сигналов
-                writeNetTextBox.Text += Environment.NewLine;
-                writeNetTextBox.Text += (count.ToString() + "_DO_" + counter.ToString() + ") " +
+                dataCanTextBox.Text += Environment.NewLine;
+                dataCanTextBox.Text += (count.ToString() + "_DO_" + counter.ToString() + ") " +
                     doSignals[counter - 1]).ToString();
                 ++count;
             }
             for (ushort counter = 1; counter <= aoSignals.Length; counter++) // AO
             { // Для сигналов AO (AO1 - AO12) - по 3 сигнала
-                writeNetTextBox.Text += Environment.NewLine;
-                writeNetTextBox.Text += (count.ToString() + "_AO_" + counter.ToString() + ") " +
+                dataCanTextBox.Text += Environment.NewLine;
+                dataCanTextBox.Text += (count.ToString() + "_AO_" + counter.ToString() + ") " +
                     aoSignals[counter - 1]).ToString();
                 ++count;
             }
             // Для сигнала пожарной сигнализации
-            writeNetTextBox.Text += Environment.NewLine;
-            writeNetTextBox.Text += (count.ToString() + "_fire" + ") " + cmdW_fire.ToString());
+            dataCanTextBox.Text += Environment.NewLine;
+            dataCanTextBox.Text += (count.ToString() + "_fire" + ") " + cmdW_fire.ToString());
         }
 
         ///<summary>Сборка массива командных слов из полученных значений</summary>
@@ -494,7 +494,7 @@ namespace Moderon
                 bit1 = true;                                                            // Наличие основного насоса
                 bit2 = confHeatPumpCheck.Checked;                                       // Подтверждение работы насоса
                 bit3 = reservPumpHeater.Checked;                                        // Наличие резервного насоса
-                bit4 = false;                                                           // Подтверждение работы резервного насоса
+                bit4 = reservPumpHeater.Checked && confHeatResPumpCheck.Checked;        // Подтверждение работы резервного насоса
                 bit5 = TF_heaterCheck.Checked;                                          // Воздушный термостат
                 bit6 = false;                                                           // Контроль протечки
                 bit7 = pumpCurProtect.Checked;                                          // Наличие реле тока основного насоса
@@ -546,25 +546,29 @@ namespace Moderon
                 512 * Convert.ToUInt16(bit9));
         }
 
-        /// <summary>Командное слово водяного догревателя</summary>
+        /// <summary>Командное слово водяного догревателя (второго нагревателя)</summary>
         private void CommandWord_13()
         {
-            bool bit0, bit1, bit2, bit3, bit4, bit5, bit6;
-            if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0)
-            { // Выбран водяной догреватель
-                bit0 = true; // Наличие водяного догревателя
-                bit1 = pumpAddHeatCheck.Checked; // Наличие водяного насоса
-                bit2 = pumpAddHeatCheck.Checked && confAddHeatPumpCheck.Checked; // Подтверждение работы насоса
-                bit3 = false; // Наличие резервного насоса
-                bit4 = false; // Подтверждение работы резервного насоса
-                bit5 = TF_addHeaterCheck.Checked; // Термостат
-                bit6 = false; // Контроль протечки
+            bool bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8;
+
+            if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0)            // Выбран второй водяной нагреватель
+            { 
+                bit0 = true;                                                            // Наличие водяного догревателя
+                bit1 = pumpAddHeatCheck.Checked;                                        // Наличие водяного насоса
+                bit2 = pumpAddHeatCheck.Checked && confAddHeatPumpCheck.Checked;        // Подтверждение работы насоса
+                bit3 = reservPumpAddHeater.Checked;                                     // Наличие резервного насоса
+                bit4 = reservPumpAddHeater.Checked && confAddHeatResPumpCheck.Checked;  // Подтверждение работы резервного насоса
+                bit5 = TF_addHeaterCheck.Checked;                                       // Термостат
+                bit6 = false;                                                           // Контроль протечки
+                bit7 = pumpCurAddProtect.Checked;                                       // Наличие реле тока основного насоса
+                bit8 = pumpCurResAddProtect.Checked;                                    // Наличие реле тока резервного насоса
             }
             else // Не выбран водяной догреватель
-                bit0 = bit1 = bit2 = bit3 = bit4 = bit5 = bit6 = false;
+                bit0 = bit1 = bit2 = bit3 = bit4 = bit5 = bit6 = bit7 = bit8 = false;
+
             cmdW13 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2) +
                 8 * Convert.ToUInt16(bit3) + 16 * Convert.ToUInt16(bit4) + 32 * Convert.ToUInt16(bit5) +
-                64 * Convert.ToUInt16(bit6));
+                64 * Convert.ToUInt16(bit6) * 128 * Convert.ToUInt16(bit7) + 256 * Convert.ToUInt16(bit8));
         }
 
         /// <summary>Командное слово электрического догревателя</summary>
@@ -979,12 +983,17 @@ namespace Moderon
             CommandWord_6(); CommandWord_10(); CommandWord_11();
         }
 
+        ///<summary>Выбрали резервный насос основного калорифера</summary>
+        private void ReservPumpHeater_cmdCheckedChanged(object sender, EventArgs e)
+            => CommandWord_11();
+        
+
         ///<summary>Изменили количество ступеней основного электрокалорифера</summary>
         private void ElHeatStagesCombo_cmdSelectedIndexChanged(object sender, EventArgs e)
         {
             CommandWord_10();
             if (ignoreEvents) return;
-            ElHeatStagesCombo_signalsSelectedIndexChanged(this, e); // Сигналы ПЛК
+            ElHeatStagesCombo_signalsDOSelectedIndexChanged(this, e); // Сигналы ПЛК
         }
 
         ///<summary>Изменили тип управления первой ступенью нагревателя</summary>
@@ -1004,12 +1013,20 @@ namespace Moderon
 
         }
 
-        ///<summary>Подтверждение работы насоса водяного калорифера</summary>
+        ///<summary>Подтверждение работы основного насоса водяного калорифера</summary>
         private void ConfHeatPumpCheck_cmdCheckedChanged(object sender, EventArgs e)
         {
             CommandWord_11();
             if (ignoreEvents) return;
-            ConfHeatPumpCheck_signalsDICheckedChanged(this, e); // Сигналы DI
+            ConfHeatPumpCheck_signalsDICheckedChanged(this, e); // Сигналы DI  
+        }
+
+        ///<summary>Подтверждение работы резервного насоса водяного калорифера</summary>
+        private void ConfHeatResPumpCheck_cmdCheckedChanged(object sender, EventArgs e)
+        {
+            CommandWord_11();
+            if (ignoreEvents) return;
+            ConfHeatResPumpCheck_signalsDICheckedChanged(this, e); // Сигналы DI
         }
 
         ///<summary>Выбрали термостат защиты от замерзания калорифера</summary>
@@ -1025,7 +1042,15 @@ namespace Moderon
         {
             CommandWord_11();
             if (ignoreEvents) return;
-            PumpCurAddProtect_signalsDICheckedChanged(this, e); // Сигналы DI
+            PumpCurProtect_signalsDICheckedChanged(this, e); // Сигналы DI
+        }
+
+        ///<summary>Выбрали защиту по току для резервного насоса калорифера</summary>
+        private void PumpCurResProtect_cmdCheckedChanged(object sender, EventArgs e)
+        {
+            CommandWord_11();
+            if (ignoreEvents) return;
+            PumpCurResProtect_signalsDICheckedChanged(this, e); // Сигналы DI
         }
 
         ///<summary>Выбрали догреватель</summary>
@@ -1038,6 +1063,26 @@ namespace Moderon
         private void HeatAddTypeCombo_cmdSelectedIndexChanged(object sender, EventArgs e)
         {
             CommandWord_6(); CommandWord_13(); CommandWord_14();
+        }
+
+        ///<summary>Выбрали резервный насос догревателя</summary>
+        private void ReservPumpAddHeater_cmdCheckedChanged(object sender, EventArgs e) 
+            => CommandWord_13();
+
+        ///<summary>Выбрали защиту по току для основного насоса догревателя</summary>
+        private void PumpCurAddProtect_cmdCheckedChanged(object sender, EventArgs e)
+        {
+            CommandWord_13();
+            if (ignoreEvents) return;
+            PumpCurAddProtect_signalsDICheckedChanged(this, e); // Сигналы DI
+        }
+
+        ///<summary>Выбрали защиту по току для резервного насоса догревателя</summary>
+        private void PumpCurResAddProtect_cmdCheckedChanged(object sender, EventArgs e)
+        {
+            CommandWord_13();
+            if (ignoreEvents) return;
+            PumpCurResAddProtect_signalsDICheckedChanged(this, e);  // Сигналы DI
         }
 
         ///<summary>Изменили тип охладителя</summary>
@@ -1095,12 +1140,20 @@ namespace Moderon
             PumpAddHeatCheck_signalsDOCheckedChanged(this, e); // Сигналы DO
         }
 
-        ///<summary>Подтверждение работы насоса водяного догревателя</summary>
+        ///<summary>Подтверждение работы основного насоса водяного догревателя</summary>
         private void ConfAddHeatPumpCheck_cmdCheckedChanged(object sender, EventArgs e)
         {
             CommandWord_13();
             if (ignoreEvents) return;
-            ConfAddHeatPumpCheck_signalsDICheckedChanged(this, e); // Сигналы DI
+            ConfAddHeatPumpCheck_signalsDICheckedChanged(this, e);      // Сигналы DI
+        }
+
+        ///<summary>Подтверждение работы резервного насоса водяного догревателя</summary>
+        private void ConfAddHeatResPumpCheck_cmdCheckedChanged(object sender, EventArgs e)
+        {
+            CommandWord_13();
+            if (ignoreEvents) return;
+            ConfAddHeatResPumpCheck_signalsDICheckedChanged(this, e);   // Сигналы DI
         }
 
         ///<summary>Выбрали термостат догревателя</summary>

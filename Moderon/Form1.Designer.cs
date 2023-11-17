@@ -166,6 +166,7 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.watHeatPanel = new System.Windows.Forms.Panel();
+            this.confHeatResPumpCheck = new System.Windows.Forms.CheckBox();
             this.pumpCurResProtect = new System.Windows.Forms.CheckBox();
             this.reservPumpHeater = new System.Windows.Forms.CheckBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -269,6 +270,7 @@
             this.label54 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
             this.watAddHeatPanel = new System.Windows.Forms.Panel();
+            this.confAddHeatResPumpCheck = new System.Windows.Forms.CheckBox();
             this.pumpCurResAddProtect = new System.Windows.Forms.CheckBox();
             this.reservPumpAddHeater = new System.Windows.Forms.CheckBox();
             this.pumpCurAddProtect = new System.Windows.Forms.CheckBox();
@@ -640,7 +642,7 @@
             this.loadCanPanel = new System.Windows.Forms.Panel();
             this.comboCheckDataPlk = new System.Windows.Forms.ComboBox();
             this.label181 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.backCanPanelButton = new System.Windows.Forms.Button();
             this.writeCanTextBox = new System.Windows.Forms.TextBox();
             this.label180 = new System.Windows.Forms.Label();
             this.dataCanTextBox = new System.Windows.Forms.TextBox();
@@ -658,8 +660,6 @@
             this.canSelectBox = new System.Windows.Forms.TextBox();
             this.label173 = new System.Windows.Forms.Label();
             this.netOptionLabel = new System.Windows.Forms.Label();
-            this.confHeatResPumpCheck = new System.Windows.Forms.CheckBox();
-            this.confAddHeatResPumpCheck = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.sensorsPage.SuspendLayout();
@@ -818,7 +818,7 @@
             this.mainPage.Location = new System.Drawing.Point(15, 75);
             this.mainPage.Name = "mainPage";
             this.mainPage.SelectedIndex = 0;
-            this.mainPage.Size = new System.Drawing.Size(750, 692);
+            this.mainPage.Size = new System.Drawing.Size(750, 33);
             this.mainPage.TabIndex = 1;
             // 
             // sensorsPage
@@ -2274,7 +2274,7 @@
             this.heatPage.Location = new System.Drawing.Point(4, 22);
             this.heatPage.Name = "heatPage";
             this.heatPage.Padding = new System.Windows.Forms.Padding(3);
-            this.heatPage.Size = new System.Drawing.Size(742, 666);
+            this.heatPage.Size = new System.Drawing.Size(742, 7);
             this.heatPage.TabIndex = 1;
             this.heatPage.Text = "НАГРЕВАТЕЛЬ";
             // 
@@ -2471,6 +2471,19 @@
             this.watHeatPanel.Size = new System.Drawing.Size(322, 434);
             this.watHeatPanel.TabIndex = 30;
             // 
+            // confHeatResPumpCheck
+            // 
+            this.confHeatResPumpCheck.AutoSize = true;
+            this.confHeatResPumpCheck.Enabled = false;
+            this.confHeatResPumpCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.confHeatResPumpCheck.Location = new System.Drawing.Point(15, 254);
+            this.confHeatResPumpCheck.Name = "confHeatResPumpCheck";
+            this.confHeatResPumpCheck.Size = new System.Drawing.Size(241, 18);
+            this.confHeatResPumpCheck.TabIndex = 41;
+            this.confHeatResPumpCheck.Text = "Подтверждение работы резерва";
+            this.confHeatResPumpCheck.UseVisualStyleBackColor = true;
+            this.confHeatResPumpCheck.CheckedChanged += new System.EventHandler(this.ConfHeatResPumpCheck_cmdCheckedChanged);
+            // 
             // pumpCurResProtect
             // 
             this.pumpCurResProtect.AutoSize = true;
@@ -2482,6 +2495,7 @@
             this.pumpCurResProtect.TabIndex = 40;
             this.pumpCurResProtect.Text = "Защита резервного насоса по току";
             this.pumpCurResProtect.UseVisualStyleBackColor = true;
+            this.pumpCurResProtect.CheckedChanged += new System.EventHandler(this.PumpCurResProtect_cmdCheckedChanged);
             // 
             // reservPumpHeater
             // 
@@ -2493,6 +2507,7 @@
             this.reservPumpHeater.TabIndex = 39;
             this.reservPumpHeater.Text = "Резервный насос";
             this.reservPumpHeater.UseVisualStyleBackColor = true;
+            this.reservPumpHeater.CheckedChanged += new System.EventHandler(this.ReservPumpHeater_CheckedChanged);
             // 
             // label19
             // 
@@ -3772,6 +3787,19 @@
             this.watAddHeatPanel.Size = new System.Drawing.Size(298, 483);
             this.watAddHeatPanel.TabIndex = 30;
             // 
+            // confAddHeatResPumpCheck
+            // 
+            this.confAddHeatResPumpCheck.AutoSize = true;
+            this.confAddHeatResPumpCheck.Enabled = false;
+            this.confAddHeatResPumpCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.confAddHeatResPumpCheck.Location = new System.Drawing.Point(15, 294);
+            this.confAddHeatResPumpCheck.Name = "confAddHeatResPumpCheck";
+            this.confAddHeatResPumpCheck.Size = new System.Drawing.Size(241, 18);
+            this.confAddHeatResPumpCheck.TabIndex = 36;
+            this.confAddHeatResPumpCheck.Text = "Подтверждение работы резерва";
+            this.confAddHeatResPumpCheck.UseVisualStyleBackColor = true;
+            this.confAddHeatResPumpCheck.CheckedChanged += new System.EventHandler(this.ConfAddHeatResPumpCheck_cmdCheckedChanged);
+            // 
             // pumpCurResAddProtect
             // 
             this.pumpCurResAddProtect.AutoSize = true;
@@ -3783,6 +3811,7 @@
             this.pumpCurResAddProtect.TabIndex = 35;
             this.pumpCurResAddProtect.Text = "Защита резервного насоса по току";
             this.pumpCurResAddProtect.UseVisualStyleBackColor = true;
+            this.pumpCurResAddProtect.CheckedChanged += new System.EventHandler(this.PumpCurResAddProtect_cmdCheckedChanged);
             // 
             // reservPumpAddHeater
             // 
@@ -3794,6 +3823,7 @@
             this.reservPumpAddHeater.TabIndex = 34;
             this.reservPumpAddHeater.Text = "Резервный насос";
             this.reservPumpAddHeater.UseVisualStyleBackColor = true;
+            this.reservPumpAddHeater.CheckedChanged += new System.EventHandler(this.ReservPumpAddHeater_CheckedChanged);
             // 
             // pumpCurAddProtect
             // 
@@ -3805,6 +3835,7 @@
             this.pumpCurAddProtect.TabIndex = 33;
             this.pumpCurAddProtect.Text = "Защита насоса по току";
             this.pumpCurAddProtect.UseVisualStyleBackColor = true;
+            this.pumpCurAddProtect.CheckedChanged += new System.EventHandler(this.PumpCurAddProtect_cmdCheckedChanged);
             // 
             // pumpAddHeatCheck
             // 
@@ -8083,7 +8114,7 @@
             // 
             this.loadCanPanel.Controls.Add(this.comboCheckDataPlk);
             this.loadCanPanel.Controls.Add(this.label181);
-            this.loadCanPanel.Controls.Add(this.button2);
+            this.loadCanPanel.Controls.Add(this.backCanPanelButton);
             this.loadCanPanel.Controls.Add(this.writeCanTextBox);
             this.loadCanPanel.Controls.Add(this.label180);
             this.loadCanPanel.Controls.Add(this.dataCanTextBox);
@@ -8101,9 +8132,9 @@
             this.loadCanPanel.Controls.Add(this.canSelectBox);
             this.loadCanPanel.Controls.Add(this.label173);
             this.loadCanPanel.Controls.Add(this.netOptionLabel);
-            this.loadCanPanel.Location = new System.Drawing.Point(12, 998);
+            this.loadCanPanel.Location = new System.Drawing.Point(19, 126);
             this.loadCanPanel.Name = "loadCanPanel";
-            this.loadCanPanel.Size = new System.Drawing.Size(749, 45);
+            this.loadCanPanel.Size = new System.Drawing.Size(749, 578);
             this.loadCanPanel.TabIndex = 45;
             this.loadCanPanel.Visible = false;
             // 
@@ -8128,18 +8159,19 @@
             this.label181.TabIndex = 71;
             this.label181.Text = "Статус данных";
             // 
-            // button2
+            // backCanPanelButton
             // 
-            this.button2.BackColor = System.Drawing.Color.DarkGreen;
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(28, 500);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(94, 27);
-            this.button2.TabIndex = 70;
-            this.button2.Text = "НАЗАД";
-            this.button2.UseVisualStyleBackColor = false;
+            this.backCanPanelButton.BackColor = System.Drawing.Color.DarkGreen;
+            this.backCanPanelButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.backCanPanelButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.backCanPanelButton.ForeColor = System.Drawing.Color.White;
+            this.backCanPanelButton.Location = new System.Drawing.Point(28, 500);
+            this.backCanPanelButton.Name = "backCanPanelButton";
+            this.backCanPanelButton.Size = new System.Drawing.Size(94, 27);
+            this.backCanPanelButton.TabIndex = 70;
+            this.backCanPanelButton.Text = "НАЗАД";
+            this.backCanPanelButton.UseVisualStyleBackColor = false;
+            this.backCanPanelButton.Click += new System.EventHandler(this.BackCanPanelButton_Click);
             // 
             // writeCanTextBox
             // 
@@ -8311,29 +8343,6 @@
             this.netOptionLabel.Size = new System.Drawing.Size(136, 16);
             this.netOptionLabel.TabIndex = 46;
             this.netOptionLabel.Text = "НАСТРОЙКА СЕТИ";
-            // 
-            // confHeatResPumpCheck
-            // 
-            this.confHeatResPumpCheck.AutoSize = true;
-            this.confHeatResPumpCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.confHeatResPumpCheck.Location = new System.Drawing.Point(15, 254);
-            this.confHeatResPumpCheck.Name = "confHeatResPumpCheck";
-            this.confHeatResPumpCheck.Size = new System.Drawing.Size(241, 18);
-            this.confHeatResPumpCheck.TabIndex = 41;
-            this.confHeatResPumpCheck.Text = "Подтверждение работы резерва";
-            this.confHeatResPumpCheck.UseVisualStyleBackColor = true;
-            // 
-            // confAddHeatResPumpCheck
-            // 
-            this.confAddHeatResPumpCheck.AutoSize = true;
-            this.confAddHeatResPumpCheck.Enabled = false;
-            this.confAddHeatResPumpCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.confAddHeatResPumpCheck.Location = new System.Drawing.Point(15, 294);
-            this.confAddHeatResPumpCheck.Name = "confAddHeatResPumpCheck";
-            this.confAddHeatResPumpCheck.Size = new System.Drawing.Size(241, 18);
-            this.confAddHeatResPumpCheck.TabIndex = 36;
-            this.confAddHeatResPumpCheck.Text = "Подтверждение работы резерва";
-            this.confAddHeatResPumpCheck.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -9096,7 +9105,7 @@
         private System.Windows.Forms.Button loadDataCanPlkBtn;
         private System.Windows.Forms.TextBox dataCanTextBox;
         private System.Windows.Forms.Label label180;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button backCanPanelButton;
         private System.Windows.Forms.TextBox writeCanTextBox;
         private System.Windows.Forms.ComboBox comboCheckDataPlk;
         private System.Windows.Forms.Label label181;
