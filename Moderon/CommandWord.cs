@@ -215,8 +215,6 @@ namespace Moderon
                 doSignals[4] = Convert.ToUInt16(DO5_lab.Text);
             if (DO6_combo.SelectedItem.ToString() != NOT_SELECTED) // DO6
                 doSignals[5] = Convert.ToUInt16(DO6_lab.Text);
-            if (DO7_combo.SelectedItem.ToString() != NOT_SELECTED) // DO7
-                doSignals[6] = Convert.ToUInt16(DO7_lab.Text);
             // Блок расширения 1
             if (DO1bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO1
                 doSignals[7] = Convert.ToUInt16(DO1bl1_lab.Text);

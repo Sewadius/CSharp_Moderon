@@ -322,6 +322,52 @@
             this.loadPLC_SignalsButton = new System.Windows.Forms.Button();
             this.signalsReadyLabel = new System.Windows.Forms.Label();
             this.tabControlSignals = new System.Windows.Forms.TabControl();
+            this.tabUI = new System.Windows.Forms.TabPage();
+            this.UI11_lab = new System.Windows.Forms.Label();
+            this.UI11_typeCombo = new System.Windows.Forms.ComboBox();
+            this.UI11_combo = new System.Windows.Forms.ComboBox();
+            this.label193 = new System.Windows.Forms.Label();
+            this.UI10_lab = new System.Windows.Forms.Label();
+            this.UI10_typeCombo = new System.Windows.Forms.ComboBox();
+            this.UI10_combo = new System.Windows.Forms.ComboBox();
+            this.label192 = new System.Windows.Forms.Label();
+            this.UI9_lab = new System.Windows.Forms.Label();
+            this.UI9_typeCombo = new System.Windows.Forms.ComboBox();
+            this.UI9_combo = new System.Windows.Forms.ComboBox();
+            this.label191 = new System.Windows.Forms.Label();
+            this.UI8_lab = new System.Windows.Forms.Label();
+            this.UI8_typeCombo = new System.Windows.Forms.ComboBox();
+            this.UI8_combo = new System.Windows.Forms.ComboBox();
+            this.label190 = new System.Windows.Forms.Label();
+            this.UI7_lab = new System.Windows.Forms.Label();
+            this.UI7_typeCombo = new System.Windows.Forms.ComboBox();
+            this.UI7_combo = new System.Windows.Forms.ComboBox();
+            this.label189 = new System.Windows.Forms.Label();
+            this.UI6_lab = new System.Windows.Forms.Label();
+            this.UI6_typeCombo = new System.Windows.Forms.ComboBox();
+            this.UI6_combo = new System.Windows.Forms.ComboBox();
+            this.label188 = new System.Windows.Forms.Label();
+            this.UI5_lab = new System.Windows.Forms.Label();
+            this.UI5_typeCombo = new System.Windows.Forms.ComboBox();
+            this.UI5_combo = new System.Windows.Forms.ComboBox();
+            this.label187 = new System.Windows.Forms.Label();
+            this.UI4_lab = new System.Windows.Forms.Label();
+            this.UI4_typeCombo = new System.Windows.Forms.ComboBox();
+            this.UI4_combo = new System.Windows.Forms.ComboBox();
+            this.label186 = new System.Windows.Forms.Label();
+            this.UI3_lab = new System.Windows.Forms.Label();
+            this.UI3_typeCombo = new System.Windows.Forms.ComboBox();
+            this.UI3_combo = new System.Windows.Forms.ComboBox();
+            this.label185 = new System.Windows.Forms.Label();
+            this.UI2_lab = new System.Windows.Forms.Label();
+            this.UI2_typeCombo = new System.Windows.Forms.ComboBox();
+            this.UI2_combo = new System.Windows.Forms.ComboBox();
+            this.label184 = new System.Windows.Forms.Label();
+            this.UI1_lab = new System.Windows.Forms.Label();
+            this.UI1_typeCombo = new System.Windows.Forms.ComboBox();
+            this.UI1_combo = new System.Windows.Forms.ComboBox();
+            this.label182 = new System.Windows.Forms.Label();
+            this.label85 = new System.Windows.Forms.Label();
             this.tabAI = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
             this.AI6bl3_lab = new System.Windows.Forms.Label();
@@ -562,7 +608,6 @@
             this.label154 = new System.Windows.Forms.Label();
             this.DO1bl3_combo = new System.Windows.Forms.ComboBox();
             this.label159 = new System.Windows.Forms.Label();
-            this.DO7_lab = new System.Windows.Forms.Label();
             this.DO6_lab = new System.Windows.Forms.Label();
             this.DO5_lab = new System.Windows.Forms.Label();
             this.DO4_lab = new System.Windows.Forms.Label();
@@ -615,8 +660,6 @@
             this.DO2bl1_combo = new System.Windows.Forms.ComboBox();
             this.label89 = new System.Windows.Forms.Label();
             this.label88 = new System.Windows.Forms.Label();
-            this.DO7_combo = new System.Windows.Forms.ComboBox();
-            this.label85 = new System.Windows.Forms.Label();
             this.DO6_combo = new System.Windows.Forms.ComboBox();
             this.DO5_combo = new System.Windows.Forms.ComboBox();
             this.DO4_combo = new System.Windows.Forms.ComboBox();
@@ -638,7 +681,6 @@
             this.linkModeronWeb = new System.Windows.Forms.LinkLabel();
             this.backHelpButton = new System.Windows.Forms.Button();
             this.label_comboSysType = new System.Windows.Forms.Label();
-            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.loadCanPanel = new System.Windows.Forms.Panel();
             this.comboCheckDataPlk = new System.Windows.Forms.ComboBox();
             this.label181 = new System.Windows.Forms.Label();
@@ -660,6 +702,8 @@
             this.canSelectBox = new System.Windows.Forms.TextBox();
             this.label173 = new System.Windows.Forms.Label();
             this.netOptionLabel = new System.Windows.Forms.Label();
+            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
+            this.comboPlkType = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.sensorsPage.SuspendLayout();
@@ -712,6 +756,7 @@
             this.loadModbusPanel.SuspendLayout();
             this.signalsPanel.SuspendLayout();
             this.tabControlSignals.SuspendLayout();
+            this.tabUI.SuspendLayout();
             this.tabAI.SuspendLayout();
             this.panel3.SuspendLayout();
             this.block2_AIpanel.SuspendLayout();
@@ -730,8 +775,8 @@
             this.block1_DOpanel.SuspendLayout();
             this.helpPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PDF_manual)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.loadCanPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -827,7 +872,7 @@
             this.sensorsPage.Controls.Add(this.sensorsPanel);
             this.sensorsPage.Location = new System.Drawing.Point(4, 22);
             this.sensorsPage.Name = "sensorsPage";
-            this.sensorsPage.Size = new System.Drawing.Size(742, 666);
+            this.sensorsPage.Size = new System.Drawing.Size(742, 7);
             this.sensorsPage.TabIndex = 9;
             this.sensorsPage.Text = "ДАТЧИКИ/СИГНАЛЫ";
             // 
@@ -1074,7 +1119,7 @@
             this.fanPage.Location = new System.Drawing.Point(4, 22);
             this.fanPage.Name = "fanPage";
             this.fanPage.Padding = new System.Windows.Forms.Padding(3);
-            this.fanPage.Size = new System.Drawing.Size(742, 666);
+            this.fanPage.Size = new System.Drawing.Size(742, 7);
             this.fanPage.TabIndex = 0;
             this.fanPage.Text = "ВЕНТИЛЯТОР";
             // 
@@ -1715,7 +1760,7 @@
             this.filterPage.Controls.Add(this.filterPanel);
             this.filterPage.Location = new System.Drawing.Point(4, 22);
             this.filterPage.Name = "filterPage";
-            this.filterPage.Size = new System.Drawing.Size(742, 666);
+            this.filterPage.Size = new System.Drawing.Size(742, 7);
             this.filterPage.TabIndex = 6;
             this.filterPage.Text = "ФИЛЬТР";
             // 
@@ -1838,7 +1883,7 @@
             this.dampPage.Controls.Add(this.dampPanel);
             this.dampPage.Location = new System.Drawing.Point(4, 22);
             this.dampPage.Name = "dampPage";
-            this.dampPage.Size = new System.Drawing.Size(742, 666);
+            this.dampPage.Size = new System.Drawing.Size(742, 7);
             this.dampPage.TabIndex = 7;
             this.dampPage.Text = "ЗАСЛОНКА";
             // 
@@ -2645,7 +2690,7 @@
             this.coolPage.Location = new System.Drawing.Point(4, 22);
             this.coolPage.Name = "coolPage";
             this.coolPage.Padding = new System.Windows.Forms.Padding(3);
-            this.coolPage.Size = new System.Drawing.Size(742, 666);
+            this.coolPage.Size = new System.Drawing.Size(742, 7);
             this.coolPage.TabIndex = 2;
             this.coolPage.Text = "ОХЛАДИТЕЛЬ";
             // 
@@ -2873,7 +2918,7 @@
             this.humidPage.Location = new System.Drawing.Point(4, 22);
             this.humidPage.Name = "humidPage";
             this.humidPage.Padding = new System.Windows.Forms.Padding(3);
-            this.humidPage.Size = new System.Drawing.Size(742, 666);
+            this.humidPage.Size = new System.Drawing.Size(742, 7);
             this.humidPage.TabIndex = 3;
             this.humidPage.Text = "УВЛАЖНИТЕЛЬ";
             // 
@@ -3033,7 +3078,7 @@
             this.recircPage.Location = new System.Drawing.Point(4, 22);
             this.recircPage.Name = "recircPage";
             this.recircPage.Padding = new System.Windows.Forms.Padding(3);
-            this.recircPage.Size = new System.Drawing.Size(742, 666);
+            this.recircPage.Size = new System.Drawing.Size(742, 7);
             this.recircPage.TabIndex = 4;
             this.recircPage.Text = "РЕЦИРКУЛЯЦИЯ";
             // 
@@ -3251,7 +3296,7 @@
             this.recupPage.Controls.Add(this.recupPanel);
             this.recupPage.Location = new System.Drawing.Point(4, 22);
             this.recupPage.Name = "recupPage";
-            this.recupPage.Size = new System.Drawing.Size(742, 666);
+            this.recupPage.Size = new System.Drawing.Size(742, 7);
             this.recupPage.TabIndex = 5;
             this.recupPage.Text = "РЕКУПЕРАТОР";
             // 
@@ -3589,7 +3634,7 @@
             this.addHeatPage.Controls.Add(this.secHeatPanel);
             this.addHeatPage.Location = new System.Drawing.Point(4, 22);
             this.addHeatPage.Name = "addHeatPage";
-            this.addHeatPage.Size = new System.Drawing.Size(742, 666);
+            this.addHeatPage.Size = new System.Drawing.Size(742, 7);
             this.addHeatPage.TabIndex = 8;
             this.addHeatPage.Text = "ДОП НАГРЕВ";
             // 
@@ -3969,7 +4014,6 @@
             // comboSysType
             // 
             this.comboSysType.BackColor = System.Drawing.Color.DarkGreen;
-            this.comboSysType.DisplayMember = "ПВ-система";
             this.comboSysType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboSysType.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboSysType.ForeColor = System.Drawing.Color.White;
@@ -4394,9 +4438,9 @@
             this.signalsPanel.Controls.Add(this.signalsReadyLabel);
             this.signalsPanel.Controls.Add(this.tabControlSignals);
             this.signalsPanel.Controls.Add(this.backSignalsButton);
-            this.signalsPanel.Location = new System.Drawing.Point(12, 829);
+            this.signalsPanel.Location = new System.Drawing.Point(15, 177);
             this.signalsPanel.Name = "signalsPanel";
-            this.signalsPanel.Size = new System.Drawing.Size(750, 48);
+            this.signalsPanel.Size = new System.Drawing.Size(750, 703);
             this.signalsPanel.TabIndex = 16;
             this.signalsPanel.Visible = false;
             // 
@@ -4407,7 +4451,7 @@
             this.loadToExl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loadToExl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadToExl.ForeColor = System.Drawing.Color.White;
-            this.loadToExl.Location = new System.Drawing.Point(561, 16);
+            this.loadToExl.Location = new System.Drawing.Point(561, 671);
             this.loadToExl.Name = "loadToExl";
             this.loadToExl.Size = new System.Drawing.Size(173, 27);
             this.loadToExl.TabIndex = 61;
@@ -4422,7 +4466,7 @@
             this.loadPLC_SignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loadPLC_SignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadPLC_SignalsButton.ForeColor = System.Drawing.Color.White;
-            this.loadPLC_SignalsButton.Location = new System.Drawing.Point(408, 16);
+            this.loadPLC_SignalsButton.Location = new System.Drawing.Point(408, 671);
             this.loadPLC_SignalsButton.Name = "loadPLC_SignalsButton";
             this.loadPLC_SignalsButton.Size = new System.Drawing.Size(147, 27);
             this.loadPLC_SignalsButton.TabIndex = 60;
@@ -4436,7 +4480,7 @@
             this.signalsReadyLabel.AutoSize = true;
             this.signalsReadyLabel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.signalsReadyLabel.ForeColor = System.Drawing.Color.Green;
-            this.signalsReadyLabel.Location = new System.Drawing.Point(123, 22);
+            this.signalsReadyLabel.Location = new System.Drawing.Point(123, 677);
             this.signalsReadyLabel.Name = "signalsReadyLabel";
             this.signalsReadyLabel.Size = new System.Drawing.Size(272, 14);
             this.signalsReadyLabel.TabIndex = 23;
@@ -4444,15 +4488,598 @@
             // 
             // tabControlSignals
             // 
+            this.tabControlSignals.Controls.Add(this.tabUI);
+            this.tabControlSignals.Controls.Add(this.tabDO);
+            this.tabControlSignals.Controls.Add(this.tabAO);
             this.tabControlSignals.Controls.Add(this.tabAI);
             this.tabControlSignals.Controls.Add(this.tabDI);
-            this.tabControlSignals.Controls.Add(this.tabAO);
-            this.tabControlSignals.Controls.Add(this.tabDO);
             this.tabControlSignals.Location = new System.Drawing.Point(10, 2);
             this.tabControlSignals.Name = "tabControlSignals";
             this.tabControlSignals.SelectedIndex = 0;
             this.tabControlSignals.Size = new System.Drawing.Size(729, 788);
             this.tabControlSignals.TabIndex = 59;
+            // 
+            // tabUI
+            // 
+            this.tabUI.BackColor = System.Drawing.SystemColors.Control;
+            this.tabUI.Controls.Add(this.UI11_lab);
+            this.tabUI.Controls.Add(this.UI11_typeCombo);
+            this.tabUI.Controls.Add(this.UI11_combo);
+            this.tabUI.Controls.Add(this.label193);
+            this.tabUI.Controls.Add(this.UI10_lab);
+            this.tabUI.Controls.Add(this.UI10_typeCombo);
+            this.tabUI.Controls.Add(this.UI10_combo);
+            this.tabUI.Controls.Add(this.label192);
+            this.tabUI.Controls.Add(this.UI9_lab);
+            this.tabUI.Controls.Add(this.UI9_typeCombo);
+            this.tabUI.Controls.Add(this.UI9_combo);
+            this.tabUI.Controls.Add(this.label191);
+            this.tabUI.Controls.Add(this.UI8_lab);
+            this.tabUI.Controls.Add(this.UI8_typeCombo);
+            this.tabUI.Controls.Add(this.UI8_combo);
+            this.tabUI.Controls.Add(this.label190);
+            this.tabUI.Controls.Add(this.UI7_lab);
+            this.tabUI.Controls.Add(this.UI7_typeCombo);
+            this.tabUI.Controls.Add(this.UI7_combo);
+            this.tabUI.Controls.Add(this.label189);
+            this.tabUI.Controls.Add(this.UI6_lab);
+            this.tabUI.Controls.Add(this.UI6_typeCombo);
+            this.tabUI.Controls.Add(this.UI6_combo);
+            this.tabUI.Controls.Add(this.label188);
+            this.tabUI.Controls.Add(this.UI5_lab);
+            this.tabUI.Controls.Add(this.UI5_typeCombo);
+            this.tabUI.Controls.Add(this.UI5_combo);
+            this.tabUI.Controls.Add(this.label187);
+            this.tabUI.Controls.Add(this.UI4_lab);
+            this.tabUI.Controls.Add(this.UI4_typeCombo);
+            this.tabUI.Controls.Add(this.UI4_combo);
+            this.tabUI.Controls.Add(this.label186);
+            this.tabUI.Controls.Add(this.UI3_lab);
+            this.tabUI.Controls.Add(this.UI3_typeCombo);
+            this.tabUI.Controls.Add(this.UI3_combo);
+            this.tabUI.Controls.Add(this.label185);
+            this.tabUI.Controls.Add(this.UI2_lab);
+            this.tabUI.Controls.Add(this.UI2_typeCombo);
+            this.tabUI.Controls.Add(this.UI2_combo);
+            this.tabUI.Controls.Add(this.label184);
+            this.tabUI.Controls.Add(this.UI1_lab);
+            this.tabUI.Controls.Add(this.UI1_typeCombo);
+            this.tabUI.Controls.Add(this.UI1_combo);
+            this.tabUI.Controls.Add(this.label182);
+            this.tabUI.Controls.Add(this.label85);
+            this.tabUI.Location = new System.Drawing.Point(4, 22);
+            this.tabUI.Name = "tabUI";
+            this.tabUI.Padding = new System.Windows.Forms.Padding(3);
+            this.tabUI.Size = new System.Drawing.Size(721, 762);
+            this.tabUI.TabIndex = 4;
+            this.tabUI.Text = "Входные сигналы";
+            // 
+            // UI11_lab
+            // 
+            this.UI11_lab.AutoSize = true;
+            this.UI11_lab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.UI11_lab.Location = new System.Drawing.Point(576, 360);
+            this.UI11_lab.Name = "UI11_lab";
+            this.UI11_lab.Size = new System.Drawing.Size(41, 14);
+            this.UI11_lab.TabIndex = 81;
+            this.UI11_lab.Text = "UI 11";
+            // 
+            // UI11_typeCombo
+            // 
+            this.UI11_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
+            "NTC",
+            "4-20 мА"});
+            this.UI11_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI11_typeCombo.FormattingEnabled = true;
+            this.UI11_typeCombo.Items.AddRange(new object[] {
+            "NTC",
+            "4-20 мА"});
+            this.UI11_typeCombo.Location = new System.Drawing.Point(447, 358);
+            this.UI11_typeCombo.Name = "UI11_typeCombo";
+            this.UI11_typeCombo.Size = new System.Drawing.Size(123, 21);
+            this.UI11_typeCombo.TabIndex = 80;
+            // 
+            // UI11_combo
+            // 
+            this.UI11_combo.DisplayMember = "Не выбрано";
+            this.UI11_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI11_combo.FormattingEnabled = true;
+            this.UI11_combo.Items.AddRange(new object[] {
+            "Не выбрано"});
+            this.UI11_combo.Location = new System.Drawing.Point(61, 358);
+            this.UI11_combo.Name = "UI11_combo";
+            this.UI11_combo.Size = new System.Drawing.Size(380, 21);
+            this.UI11_combo.TabIndex = 79;
+            // 
+            // label193
+            // 
+            this.label193.AutoSize = true;
+            this.label193.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label193.Location = new System.Drawing.Point(16, 360);
+            this.label193.Name = "label193";
+            this.label193.Size = new System.Drawing.Size(41, 14);
+            this.label193.TabIndex = 78;
+            this.label193.Text = "UI 11";
+            // 
+            // UI10_lab
+            // 
+            this.UI10_lab.AutoSize = true;
+            this.UI10_lab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.UI10_lab.Location = new System.Drawing.Point(576, 329);
+            this.UI10_lab.Name = "UI10_lab";
+            this.UI10_lab.Size = new System.Drawing.Size(41, 14);
+            this.UI10_lab.TabIndex = 77;
+            this.UI10_lab.Text = "UI 10";
+            // 
+            // UI10_typeCombo
+            // 
+            this.UI10_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
+            "NTC",
+            "4-20 мА"});
+            this.UI10_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI10_typeCombo.FormattingEnabled = true;
+            this.UI10_typeCombo.Items.AddRange(new object[] {
+            "NTC",
+            "4-20 мА"});
+            this.UI10_typeCombo.Location = new System.Drawing.Point(447, 327);
+            this.UI10_typeCombo.Name = "UI10_typeCombo";
+            this.UI10_typeCombo.Size = new System.Drawing.Size(123, 21);
+            this.UI10_typeCombo.TabIndex = 76;
+            // 
+            // UI10_combo
+            // 
+            this.UI10_combo.DisplayMember = "Не выбрано";
+            this.UI10_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI10_combo.FormattingEnabled = true;
+            this.UI10_combo.Items.AddRange(new object[] {
+            "Не выбрано"});
+            this.UI10_combo.Location = new System.Drawing.Point(61, 327);
+            this.UI10_combo.Name = "UI10_combo";
+            this.UI10_combo.Size = new System.Drawing.Size(380, 21);
+            this.UI10_combo.TabIndex = 75;
+            // 
+            // label192
+            // 
+            this.label192.AutoSize = true;
+            this.label192.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label192.Location = new System.Drawing.Point(16, 329);
+            this.label192.Name = "label192";
+            this.label192.Size = new System.Drawing.Size(41, 14);
+            this.label192.TabIndex = 74;
+            this.label192.Text = "UI 10";
+            // 
+            // UI9_lab
+            // 
+            this.UI9_lab.AutoSize = true;
+            this.UI9_lab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.UI9_lab.Location = new System.Drawing.Point(576, 298);
+            this.UI9_lab.Name = "UI9_lab";
+            this.UI9_lab.Size = new System.Drawing.Size(33, 14);
+            this.UI9_lab.TabIndex = 73;
+            this.UI9_lab.Text = "UI 9";
+            // 
+            // UI9_typeCombo
+            // 
+            this.UI9_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
+            "NTC",
+            "4-20 мА"});
+            this.UI9_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI9_typeCombo.FormattingEnabled = true;
+            this.UI9_typeCombo.Items.AddRange(new object[] {
+            "NTC",
+            "4-20 мА"});
+            this.UI9_typeCombo.Location = new System.Drawing.Point(447, 296);
+            this.UI9_typeCombo.Name = "UI9_typeCombo";
+            this.UI9_typeCombo.Size = new System.Drawing.Size(123, 21);
+            this.UI9_typeCombo.TabIndex = 72;
+            // 
+            // UI9_combo
+            // 
+            this.UI9_combo.DisplayMember = "Не выбрано";
+            this.UI9_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI9_combo.FormattingEnabled = true;
+            this.UI9_combo.Items.AddRange(new object[] {
+            "Не выбрано"});
+            this.UI9_combo.Location = new System.Drawing.Point(61, 296);
+            this.UI9_combo.Name = "UI9_combo";
+            this.UI9_combo.Size = new System.Drawing.Size(380, 21);
+            this.UI9_combo.TabIndex = 71;
+            // 
+            // label191
+            // 
+            this.label191.AutoSize = true;
+            this.label191.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label191.Location = new System.Drawing.Point(16, 298);
+            this.label191.Name = "label191";
+            this.label191.Size = new System.Drawing.Size(33, 14);
+            this.label191.TabIndex = 70;
+            this.label191.Text = "UI 9";
+            // 
+            // UI8_lab
+            // 
+            this.UI8_lab.AutoSize = true;
+            this.UI8_lab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.UI8_lab.Location = new System.Drawing.Point(576, 267);
+            this.UI8_lab.Name = "UI8_lab";
+            this.UI8_lab.Size = new System.Drawing.Size(33, 14);
+            this.UI8_lab.TabIndex = 69;
+            this.UI8_lab.Text = "UI 8";
+            // 
+            // UI8_typeCombo
+            // 
+            this.UI8_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
+            "NTC",
+            "4-20 мА"});
+            this.UI8_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI8_typeCombo.FormattingEnabled = true;
+            this.UI8_typeCombo.Items.AddRange(new object[] {
+            "NTC",
+            "4-20 мА"});
+            this.UI8_typeCombo.Location = new System.Drawing.Point(447, 265);
+            this.UI8_typeCombo.Name = "UI8_typeCombo";
+            this.UI8_typeCombo.Size = new System.Drawing.Size(123, 21);
+            this.UI8_typeCombo.TabIndex = 68;
+            // 
+            // UI8_combo
+            // 
+            this.UI8_combo.DisplayMember = "Не выбрано";
+            this.UI8_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI8_combo.FormattingEnabled = true;
+            this.UI8_combo.Items.AddRange(new object[] {
+            "Не выбрано"});
+            this.UI8_combo.Location = new System.Drawing.Point(61, 265);
+            this.UI8_combo.Name = "UI8_combo";
+            this.UI8_combo.Size = new System.Drawing.Size(380, 21);
+            this.UI8_combo.TabIndex = 67;
+            // 
+            // label190
+            // 
+            this.label190.AutoSize = true;
+            this.label190.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label190.Location = new System.Drawing.Point(16, 267);
+            this.label190.Name = "label190";
+            this.label190.Size = new System.Drawing.Size(33, 14);
+            this.label190.TabIndex = 66;
+            this.label190.Text = "UI 8";
+            // 
+            // UI7_lab
+            // 
+            this.UI7_lab.AutoSize = true;
+            this.UI7_lab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.UI7_lab.Location = new System.Drawing.Point(576, 236);
+            this.UI7_lab.Name = "UI7_lab";
+            this.UI7_lab.Size = new System.Drawing.Size(33, 14);
+            this.UI7_lab.TabIndex = 65;
+            this.UI7_lab.Text = "UI 7";
+            // 
+            // UI7_typeCombo
+            // 
+            this.UI7_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
+            "NTC",
+            "4-20 мА"});
+            this.UI7_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI7_typeCombo.FormattingEnabled = true;
+            this.UI7_typeCombo.Items.AddRange(new object[] {
+            "NTC",
+            "4-20 мА"});
+            this.UI7_typeCombo.Location = new System.Drawing.Point(447, 234);
+            this.UI7_typeCombo.Name = "UI7_typeCombo";
+            this.UI7_typeCombo.Size = new System.Drawing.Size(123, 21);
+            this.UI7_typeCombo.TabIndex = 64;
+            // 
+            // UI7_combo
+            // 
+            this.UI7_combo.DisplayMember = "Не выбрано";
+            this.UI7_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI7_combo.FormattingEnabled = true;
+            this.UI7_combo.Items.AddRange(new object[] {
+            "Не выбрано"});
+            this.UI7_combo.Location = new System.Drawing.Point(61, 234);
+            this.UI7_combo.Name = "UI7_combo";
+            this.UI7_combo.Size = new System.Drawing.Size(380, 21);
+            this.UI7_combo.TabIndex = 63;
+            // 
+            // label189
+            // 
+            this.label189.AutoSize = true;
+            this.label189.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label189.Location = new System.Drawing.Point(16, 236);
+            this.label189.Name = "label189";
+            this.label189.Size = new System.Drawing.Size(33, 14);
+            this.label189.TabIndex = 62;
+            this.label189.Text = "UI 7";
+            // 
+            // UI6_lab
+            // 
+            this.UI6_lab.AutoSize = true;
+            this.UI6_lab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.UI6_lab.Location = new System.Drawing.Point(576, 205);
+            this.UI6_lab.Name = "UI6_lab";
+            this.UI6_lab.Size = new System.Drawing.Size(33, 14);
+            this.UI6_lab.TabIndex = 61;
+            this.UI6_lab.Text = "UI 6";
+            // 
+            // UI6_typeCombo
+            // 
+            this.UI6_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
+            "NTC",
+            "4-20 мА"});
+            this.UI6_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI6_typeCombo.FormattingEnabled = true;
+            this.UI6_typeCombo.Items.AddRange(new object[] {
+            "NTC",
+            "4-20 мА"});
+            this.UI6_typeCombo.Location = new System.Drawing.Point(447, 203);
+            this.UI6_typeCombo.Name = "UI6_typeCombo";
+            this.UI6_typeCombo.Size = new System.Drawing.Size(123, 21);
+            this.UI6_typeCombo.TabIndex = 60;
+            // 
+            // UI6_combo
+            // 
+            this.UI6_combo.DisplayMember = "Не выбрано";
+            this.UI6_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI6_combo.FormattingEnabled = true;
+            this.UI6_combo.Items.AddRange(new object[] {
+            "Не выбрано"});
+            this.UI6_combo.Location = new System.Drawing.Point(61, 203);
+            this.UI6_combo.Name = "UI6_combo";
+            this.UI6_combo.Size = new System.Drawing.Size(380, 21);
+            this.UI6_combo.TabIndex = 59;
+            // 
+            // label188
+            // 
+            this.label188.AutoSize = true;
+            this.label188.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label188.Location = new System.Drawing.Point(16, 205);
+            this.label188.Name = "label188";
+            this.label188.Size = new System.Drawing.Size(33, 14);
+            this.label188.TabIndex = 58;
+            this.label188.Text = "UI 6";
+            // 
+            // UI5_lab
+            // 
+            this.UI5_lab.AutoSize = true;
+            this.UI5_lab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.UI5_lab.Location = new System.Drawing.Point(576, 174);
+            this.UI5_lab.Name = "UI5_lab";
+            this.UI5_lab.Size = new System.Drawing.Size(33, 14);
+            this.UI5_lab.TabIndex = 57;
+            this.UI5_lab.Text = "UI 5";
+            // 
+            // UI5_typeCombo
+            // 
+            this.UI5_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
+            "NTC",
+            "4-20 мА"});
+            this.UI5_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI5_typeCombo.FormattingEnabled = true;
+            this.UI5_typeCombo.Items.AddRange(new object[] {
+            "NTC",
+            "4-20 мА"});
+            this.UI5_typeCombo.Location = new System.Drawing.Point(447, 172);
+            this.UI5_typeCombo.Name = "UI5_typeCombo";
+            this.UI5_typeCombo.Size = new System.Drawing.Size(123, 21);
+            this.UI5_typeCombo.TabIndex = 56;
+            // 
+            // UI5_combo
+            // 
+            this.UI5_combo.DisplayMember = "Не выбрано";
+            this.UI5_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI5_combo.FormattingEnabled = true;
+            this.UI5_combo.Items.AddRange(new object[] {
+            "Не выбрано"});
+            this.UI5_combo.Location = new System.Drawing.Point(61, 172);
+            this.UI5_combo.Name = "UI5_combo";
+            this.UI5_combo.Size = new System.Drawing.Size(380, 21);
+            this.UI5_combo.TabIndex = 55;
+            // 
+            // label187
+            // 
+            this.label187.AutoSize = true;
+            this.label187.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label187.Location = new System.Drawing.Point(16, 174);
+            this.label187.Name = "label187";
+            this.label187.Size = new System.Drawing.Size(33, 14);
+            this.label187.TabIndex = 54;
+            this.label187.Text = "UI 5";
+            // 
+            // UI4_lab
+            // 
+            this.UI4_lab.AutoSize = true;
+            this.UI4_lab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.UI4_lab.Location = new System.Drawing.Point(576, 143);
+            this.UI4_lab.Name = "UI4_lab";
+            this.UI4_lab.Size = new System.Drawing.Size(33, 14);
+            this.UI4_lab.TabIndex = 53;
+            this.UI4_lab.Text = "UI 4";
+            // 
+            // UI4_typeCombo
+            // 
+            this.UI4_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
+            "NTC",
+            "4-20 мА"});
+            this.UI4_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI4_typeCombo.FormattingEnabled = true;
+            this.UI4_typeCombo.Items.AddRange(new object[] {
+            "NTC",
+            "4-20 мА"});
+            this.UI4_typeCombo.Location = new System.Drawing.Point(447, 141);
+            this.UI4_typeCombo.Name = "UI4_typeCombo";
+            this.UI4_typeCombo.Size = new System.Drawing.Size(123, 21);
+            this.UI4_typeCombo.TabIndex = 52;
+            // 
+            // UI4_combo
+            // 
+            this.UI4_combo.DisplayMember = "Не выбрано";
+            this.UI4_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI4_combo.FormattingEnabled = true;
+            this.UI4_combo.Items.AddRange(new object[] {
+            "Не выбрано"});
+            this.UI4_combo.Location = new System.Drawing.Point(61, 141);
+            this.UI4_combo.Name = "UI4_combo";
+            this.UI4_combo.Size = new System.Drawing.Size(380, 21);
+            this.UI4_combo.TabIndex = 51;
+            // 
+            // label186
+            // 
+            this.label186.AutoSize = true;
+            this.label186.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label186.Location = new System.Drawing.Point(16, 143);
+            this.label186.Name = "label186";
+            this.label186.Size = new System.Drawing.Size(33, 14);
+            this.label186.TabIndex = 50;
+            this.label186.Text = "UI 4";
+            // 
+            // UI3_lab
+            // 
+            this.UI3_lab.AutoSize = true;
+            this.UI3_lab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.UI3_lab.Location = new System.Drawing.Point(576, 112);
+            this.UI3_lab.Name = "UI3_lab";
+            this.UI3_lab.Size = new System.Drawing.Size(33, 14);
+            this.UI3_lab.TabIndex = 49;
+            this.UI3_lab.Text = "UI 3";
+            // 
+            // UI3_typeCombo
+            // 
+            this.UI3_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
+            "NTC",
+            "4-20 мА"});
+            this.UI3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI3_typeCombo.FormattingEnabled = true;
+            this.UI3_typeCombo.Items.AddRange(new object[] {
+            "NTC",
+            "4-20 мА"});
+            this.UI3_typeCombo.Location = new System.Drawing.Point(447, 110);
+            this.UI3_typeCombo.Name = "UI3_typeCombo";
+            this.UI3_typeCombo.Size = new System.Drawing.Size(123, 21);
+            this.UI3_typeCombo.TabIndex = 48;
+            // 
+            // UI3_combo
+            // 
+            this.UI3_combo.DisplayMember = "Не выбрано";
+            this.UI3_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI3_combo.FormattingEnabled = true;
+            this.UI3_combo.Items.AddRange(new object[] {
+            "Не выбрано"});
+            this.UI3_combo.Location = new System.Drawing.Point(61, 110);
+            this.UI3_combo.Name = "UI3_combo";
+            this.UI3_combo.Size = new System.Drawing.Size(380, 21);
+            this.UI3_combo.TabIndex = 47;
+            // 
+            // label185
+            // 
+            this.label185.AutoSize = true;
+            this.label185.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label185.Location = new System.Drawing.Point(16, 112);
+            this.label185.Name = "label185";
+            this.label185.Size = new System.Drawing.Size(33, 14);
+            this.label185.TabIndex = 46;
+            this.label185.Text = "UI 3";
+            // 
+            // UI2_lab
+            // 
+            this.UI2_lab.AutoSize = true;
+            this.UI2_lab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.UI2_lab.Location = new System.Drawing.Point(576, 81);
+            this.UI2_lab.Name = "UI2_lab";
+            this.UI2_lab.Size = new System.Drawing.Size(33, 14);
+            this.UI2_lab.TabIndex = 45;
+            this.UI2_lab.Text = "UI 2";
+            // 
+            // UI2_typeCombo
+            // 
+            this.UI2_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
+            "NTC",
+            "4-20 мА"});
+            this.UI2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI2_typeCombo.FormattingEnabled = true;
+            this.UI2_typeCombo.Items.AddRange(new object[] {
+            "NTC",
+            "4-20 мА"});
+            this.UI2_typeCombo.Location = new System.Drawing.Point(447, 79);
+            this.UI2_typeCombo.Name = "UI2_typeCombo";
+            this.UI2_typeCombo.Size = new System.Drawing.Size(123, 21);
+            this.UI2_typeCombo.TabIndex = 44;
+            // 
+            // UI2_combo
+            // 
+            this.UI2_combo.DisplayMember = "Не выбрано";
+            this.UI2_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI2_combo.FormattingEnabled = true;
+            this.UI2_combo.Items.AddRange(new object[] {
+            "Не выбрано"});
+            this.UI2_combo.Location = new System.Drawing.Point(61, 79);
+            this.UI2_combo.Name = "UI2_combo";
+            this.UI2_combo.Size = new System.Drawing.Size(380, 21);
+            this.UI2_combo.TabIndex = 43;
+            // 
+            // label184
+            // 
+            this.label184.AutoSize = true;
+            this.label184.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label184.Location = new System.Drawing.Point(16, 81);
+            this.label184.Name = "label184";
+            this.label184.Size = new System.Drawing.Size(33, 14);
+            this.label184.TabIndex = 42;
+            this.label184.Text = "UI 2";
+            // 
+            // UI1_lab
+            // 
+            this.UI1_lab.AutoSize = true;
+            this.UI1_lab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.UI1_lab.Location = new System.Drawing.Point(576, 50);
+            this.UI1_lab.Name = "UI1_lab";
+            this.UI1_lab.Size = new System.Drawing.Size(33, 14);
+            this.UI1_lab.TabIndex = 41;
+            this.UI1_lab.Text = "UI 1";
+            // 
+            // UI1_typeCombo
+            // 
+            this.UI1_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
+            "NTC",
+            "4-20 мА"});
+            this.UI1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI1_typeCombo.FormattingEnabled = true;
+            this.UI1_typeCombo.Items.AddRange(new object[] {
+            "NTC",
+            "4-20 мА"});
+            this.UI1_typeCombo.Location = new System.Drawing.Point(447, 48);
+            this.UI1_typeCombo.Name = "UI1_typeCombo";
+            this.UI1_typeCombo.Size = new System.Drawing.Size(123, 21);
+            this.UI1_typeCombo.TabIndex = 14;
+            // 
+            // UI1_combo
+            // 
+            this.UI1_combo.DisplayMember = "Не выбрано";
+            this.UI1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI1_combo.FormattingEnabled = true;
+            this.UI1_combo.Items.AddRange(new object[] {
+            "Не выбрано"});
+            this.UI1_combo.Location = new System.Drawing.Point(61, 48);
+            this.UI1_combo.Name = "UI1_combo";
+            this.UI1_combo.Size = new System.Drawing.Size(380, 21);
+            this.UI1_combo.TabIndex = 5;
+            // 
+            // label182
+            // 
+            this.label182.AutoSize = true;
+            this.label182.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label182.Location = new System.Drawing.Point(16, 50);
+            this.label182.Name = "label182";
+            this.label182.Size = new System.Drawing.Size(33, 14);
+            this.label182.TabIndex = 2;
+            this.label182.Text = "UI 1";
+            // 
+            // label85
+            // 
+            this.label85.AutoSize = true;
+            this.label85.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label85.Location = new System.Drawing.Point(16, 19);
+            this.label85.Name = "label85";
+            this.label85.Size = new System.Drawing.Size(88, 14);
+            this.label85.TabIndex = 1;
+            this.label85.Text = "Контроллер";
             // 
             // tabAI
             // 
@@ -6948,7 +7575,6 @@
             // 
             this.tabDO.AutoScroll = true;
             this.tabDO.Controls.Add(this.block3_DOpanel);
-            this.tabDO.Controls.Add(this.DO7_lab);
             this.tabDO.Controls.Add(this.DO6_lab);
             this.tabDO.Controls.Add(this.DO5_lab);
             this.tabDO.Controls.Add(this.DO4_lab);
@@ -6957,8 +7583,6 @@
             this.tabDO.Controls.Add(this.DO1_lab);
             this.tabDO.Controls.Add(this.block2_DOpanel);
             this.tabDO.Controls.Add(this.block1_DOpanel);
-            this.tabDO.Controls.Add(this.DO7_combo);
-            this.tabDO.Controls.Add(this.label85);
             this.tabDO.Controls.Add(this.DO6_combo);
             this.tabDO.Controls.Add(this.DO5_combo);
             this.tabDO.Controls.Add(this.DO4_combo);
@@ -7240,16 +7864,6 @@
             this.label159.Size = new System.Drawing.Size(38, 14);
             this.label159.TabIndex = 45;
             this.label159.Text = "DO 1";
-            // 
-            // DO7_lab
-            // 
-            this.DO7_lab.AutoSize = true;
-            this.DO7_lab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DO7_lab.Location = new System.Drawing.Point(441, 236);
-            this.DO7_lab.Name = "DO7_lab";
-            this.DO7_lab.Size = new System.Drawing.Size(38, 14);
-            this.DO7_lab.TabIndex = 45;
-            this.DO7_lab.Text = "DO 7";
             // 
             // DO6_lab
             // 
@@ -7837,28 +8451,6 @@
             this.label88.TabIndex = 29;
             this.label88.Text = "DO 6";
             // 
-            // DO7_combo
-            // 
-            this.DO7_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.DO7_combo.FormattingEnabled = true;
-            this.DO7_combo.Items.AddRange(new object[] {
-            "Не выбрано"});
-            this.DO7_combo.Location = new System.Drawing.Point(54, 234);
-            this.DO7_combo.Name = "DO7_combo";
-            this.DO7_combo.Size = new System.Drawing.Size(380, 21);
-            this.DO7_combo.TabIndex = 22;
-            this.DO7_combo.SelectedIndexChanged += new System.EventHandler(this.DO7_combo_SelectedIndexChanged);
-            // 
-            // label85
-            // 
-            this.label85.AutoSize = true;
-            this.label85.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label85.Location = new System.Drawing.Point(16, 236);
-            this.label85.Name = "label85";
-            this.label85.Size = new System.Drawing.Size(38, 14);
-            this.label85.TabIndex = 21;
-            this.label85.Text = "DO 7";
-            // 
             // DO6_combo
             // 
             this.DO6_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -8008,7 +8600,7 @@
             this.backSignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.backSignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.backSignalsButton.ForeColor = System.Drawing.Color.White;
-            this.backSignalsButton.Location = new System.Drawing.Point(10, 16);
+            this.backSignalsButton.Location = new System.Drawing.Point(10, 671);
             this.backSignalsButton.Name = "backSignalsButton";
             this.backSignalsButton.Size = new System.Drawing.Size(94, 27);
             this.backSignalsButton.TabIndex = 58;
@@ -8098,18 +8690,6 @@
             this.label_comboSysType.TabIndex = 19;
             this.label_comboSysType.Text = "ТИП СИСТЕМЫ";
             // 
-            // pictureBoxLogo
-            // 
-            this.pictureBoxLogo.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBoxLogo.Image = global::Moderon.Properties.Resources.logo_moderon;
-            this.pictureBoxLogo.InitialImage = global::Moderon.Properties.Resources.logo_moderon;
-            this.pictureBoxLogo.Location = new System.Drawing.Point(843, 25);
-            this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(136, 42);
-            this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxLogo.TabIndex = 2;
-            this.pictureBoxLogo.TabStop = false;
-            // 
             // loadCanPanel
             // 
             this.loadCanPanel.Controls.Add(this.comboCheckDataPlk);
@@ -8134,7 +8714,7 @@
             this.loadCanPanel.Controls.Add(this.netOptionLabel);
             this.loadCanPanel.Location = new System.Drawing.Point(19, 126);
             this.loadCanPanel.Name = "loadCanPanel";
-            this.loadCanPanel.Size = new System.Drawing.Size(749, 578);
+            this.loadCanPanel.Size = new System.Drawing.Size(749, 30);
             this.loadCanPanel.TabIndex = 45;
             this.loadCanPanel.Visible = false;
             // 
@@ -8344,11 +8924,42 @@
             this.netOptionLabel.TabIndex = 46;
             this.netOptionLabel.Text = "НАСТРОЙКА СЕТИ";
             // 
+            // pictureBoxLogo
+            // 
+            this.pictureBoxLogo.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxLogo.Image = global::Moderon.Properties.Resources.logo_moderon;
+            this.pictureBoxLogo.InitialImage = global::Moderon.Properties.Resources.logo_moderon;
+            this.pictureBoxLogo.Location = new System.Drawing.Point(843, 25);
+            this.pictureBoxLogo.Name = "pictureBoxLogo";
+            this.pictureBoxLogo.Size = new System.Drawing.Size(136, 42);
+            this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxLogo.TabIndex = 2;
+            this.pictureBoxLogo.TabStop = false;
+            // 
+            // comboPlkType
+            // 
+            this.comboPlkType.BackColor = System.Drawing.Color.DarkGreen;
+            this.comboPlkType.DisplayMember = "Moderon M72 Mini";
+            this.comboPlkType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboPlkType.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboPlkType.ForeColor = System.Drawing.Color.White;
+            this.comboPlkType.FormattingEnabled = true;
+            this.comboPlkType.Items.AddRange(new object[] {
+            "Moderon M72 Mini",
+            "Moderon M72 Optimized"});
+            this.comboPlkType.Location = new System.Drawing.Point(624, 46);
+            this.comboPlkType.Name = "comboPlkType";
+            this.comboPlkType.Size = new System.Drawing.Size(213, 21);
+            this.comboPlkType.TabIndex = 46;
+            this.comboPlkType.Visible = false;
+            this.comboPlkType.SelectedIndexChanged += new System.EventHandler(this.ComboPlkType_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(979, 1061);
+            this.Controls.Add(this.comboPlkType);
             this.Controls.Add(this.loadCanPanel);
             this.Controls.Add(this.label_comboSysType);
             this.Controls.Add(this.helpPanel);
@@ -8448,6 +9059,8 @@
             this.signalsPanel.ResumeLayout(false);
             this.signalsPanel.PerformLayout();
             this.tabControlSignals.ResumeLayout(false);
+            this.tabUI.ResumeLayout(false);
+            this.tabUI.PerformLayout();
             this.tabAI.ResumeLayout(false);
             this.tabAI.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -8483,9 +9096,9 @@
             this.helpPanel.ResumeLayout(false);
             this.helpPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PDF_manual)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.loadCanPanel.ResumeLayout(false);
             this.loadCanPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -8768,8 +9381,6 @@
         private System.Windows.Forms.Label label82;
         private System.Windows.Forms.Label label83;
         private System.Windows.Forms.Label label84;
-        private System.Windows.Forms.ComboBox DO7_combo;
-        private System.Windows.Forms.Label label85;
         private System.Windows.Forms.Label signalsReadyLabel;
         private System.Windows.Forms.Panel block1_DOpanel;
         private System.Windows.Forms.ComboBox DO7bl1_combo;
@@ -8887,7 +9498,6 @@
         private System.Windows.Forms.CheckBox sigAlarmCheck;
         private System.Windows.Forms.CheckBox sigWorkCheck;
         private System.Windows.Forms.Label label136;
-        private System.Windows.Forms.Label DO7_lab;
         private System.Windows.Forms.Label DO6_lab;
         private System.Windows.Forms.Label DO5_lab;
         private System.Windows.Forms.Label DO4_lab;
@@ -9124,6 +9734,53 @@
         private System.Windows.Forms.CheckBox pumpCurResAddProtect;
         private System.Windows.Forms.CheckBox confHeatResPumpCheck;
         private System.Windows.Forms.CheckBox confAddHeatResPumpCheck;
+        private System.Windows.Forms.ComboBox comboPlkType;
+        private System.Windows.Forms.TabPage tabUI;
+        private System.Windows.Forms.Label label85;
+        private System.Windows.Forms.Label label182;
+        private System.Windows.Forms.ComboBox UI1_combo;
+        private System.Windows.Forms.Label UI2_lab;
+        private System.Windows.Forms.ComboBox UI2_typeCombo;
+        private System.Windows.Forms.ComboBox UI2_combo;
+        private System.Windows.Forms.Label label184;
+        private System.Windows.Forms.Label UI1_lab;
+        private System.Windows.Forms.ComboBox UI1_typeCombo;
+        private System.Windows.Forms.Label UI4_lab;
+        private System.Windows.Forms.ComboBox UI4_typeCombo;
+        private System.Windows.Forms.ComboBox UI4_combo;
+        private System.Windows.Forms.Label label186;
+        private System.Windows.Forms.Label UI3_lab;
+        private System.Windows.Forms.ComboBox UI3_typeCombo;
+        private System.Windows.Forms.ComboBox UI3_combo;
+        private System.Windows.Forms.Label label185;
+        private System.Windows.Forms.Label UI6_lab;
+        private System.Windows.Forms.ComboBox UI6_typeCombo;
+        private System.Windows.Forms.ComboBox UI6_combo;
+        private System.Windows.Forms.Label label188;
+        private System.Windows.Forms.Label UI5_lab;
+        private System.Windows.Forms.ComboBox UI5_typeCombo;
+        private System.Windows.Forms.ComboBox UI5_combo;
+        private System.Windows.Forms.Label label187;
+        private System.Windows.Forms.Label UI8_lab;
+        private System.Windows.Forms.ComboBox UI8_typeCombo;
+        private System.Windows.Forms.ComboBox UI8_combo;
+        private System.Windows.Forms.Label label190;
+        private System.Windows.Forms.Label UI7_lab;
+        private System.Windows.Forms.ComboBox UI7_typeCombo;
+        private System.Windows.Forms.ComboBox UI7_combo;
+        private System.Windows.Forms.Label label189;
+        private System.Windows.Forms.Label UI9_lab;
+        private System.Windows.Forms.ComboBox UI9_typeCombo;
+        private System.Windows.Forms.ComboBox UI9_combo;
+        private System.Windows.Forms.Label label191;
+        private System.Windows.Forms.Label UI10_lab;
+        private System.Windows.Forms.ComboBox UI10_typeCombo;
+        private System.Windows.Forms.ComboBox UI10_combo;
+        private System.Windows.Forms.Label label192;
+        private System.Windows.Forms.Label UI11_lab;
+        private System.Windows.Forms.ComboBox UI11_typeCombo;
+        private System.Windows.Forms.ComboBox UI11_combo;
+        private System.Windows.Forms.Label label193;
     }
 }
 

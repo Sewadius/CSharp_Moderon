@@ -89,29 +89,35 @@ namespace Moderon
         ///<summary>Нажали на кнопку "Сформировать"</summary> 
         public void FormSignalsButton_Click(object sender, EventArgs e)
         {
-            var p1 = new Point(15, 90);
+            var p1 = new Point(15, 90);                     // Позиция для панели таблицы сигналов
+            var p2 = new Point(200, 46);                    // Позиция для comboBox выбора типа контроллера
+
             mainPage.Hide(); loadModbusPanel.Hide();
             label_comboSysType.Text = "ТАБЛИЦА СИГНАЛОВ";
             comboSysType.Hide(); panelElements.Hide();
             signalsPanel.Location = p1;
             signalsPanel.Show();
             signalsPanel.Height = 845;
-            formSignalsButton.Hide(); // Скрытие кнопки
-            SignalsTableReSize(Size.Width, Size.Height); // Таблица сигналов
+            // Отображение выбора типа контроллера
+            comboPlkType.Location = p2;
+            comboPlkType.Show();
+            formSignalsButton.Hide();                       // Скрытие кнопки
+            SignalsTableReSize(Size.Width, Size.Height);    // Таблица сигналов
         }
 
         ///<summary>Нажали кнопку "Назад" в панели сигналов</summary> 
         private void BackSignalsButton_Click(object sender, EventArgs e)
         {
-            signalsPanel.Hide();
+            signalsPanel.Hide();                            // Скрытие панели сигналов
+            comboPlkType.Hide();                            // Скрытие comboBox выбора типа контроллера
             mainPage.Show();
             label_comboSysType.Text = "ТИП СИСТЕМЫ";
             comboSysType.Show();
             panelElements.Show();
-            formSignalsButton.Show(); // Отображение кнопки "Сформировать IO"
-            // ToolStripMenuItem_load.Enabled = true; // Разблокировка "Настройка"
-            fromSignalsMove = false; // Сброс признака перехода с панели выбора сигналов
-            ToolStripMenuItem_help.Enabled = true; // Разблокировка "Помощь"
+            formSignalsButton.Show();                       // Отображение кнопки "Сформировать IO"
+            // ToolStripMenuItem_load.Enabled = true;       // Разблокировка "Настройка" (опция оключена!)
+            fromSignalsMove = false;                        // Сброс признака перехода с панели выбора сигналов
+            ToolStripMenuItem_help.Enabled = true;          // Разблокировка "Помощь"
         }
 
         ///<summary>Сигналы ПЛК при загрузке формы</summary> 
@@ -168,7 +174,7 @@ namespace Moderon
             // Очистка DO comboBox ПЛК и блоков расширения
             var do_combos = new List<ComboBox>()
             {
-                DO1_combo, DO2_combo, DO3_combo, DO4_combo, DO5_combo, DO6_combo, DO7_combo,
+                DO1_combo, DO2_combo, DO3_combo, DO4_combo, DO5_combo, DO6_combo,
                 DO1bl1_combo, DO2bl1_combo, DO3bl1_combo, DO4bl1_combo, DO5bl1_combo, DO6bl1_combo, DO7bl1_combo,
                 DO1bl2_combo, DO2bl2_combo, DO3bl2_combo, DO4bl2_combo, DO5bl2_combo, DO6bl2_combo, DO7bl2_combo,
                 DO1bl3_combo, DO2bl3_combo, DO3bl3_combo, DO4bl3_combo, DO5bl3_combo, DO6bl3_combo, DO7bl3_combo
@@ -195,11 +201,13 @@ namespace Moderon
                 DI1bl3_combo, DI2bl3_combo, DI3bl3_combo, DI4bl3_combo, DI5bl3_combo,
                 AO1_combo, AO2_combo, AO3_combo, AO1bl1_combo, AO2bl1_combo, AO3bl1_combo,
                 AO1bl2_combo, AO2bl2_combo, AO3bl2_combo, AO1bl3_combo, AO2bl3_combo, AO3bl3_combo,
-                DO1_combo, DO2_combo, DO3_combo, DO4_combo, DO5_combo, DO6_combo, DO7_combo,
+                DO1_combo, DO2_combo, DO3_combo, DO4_combo, DO5_combo, DO6_combo,
                 DO1bl1_combo, DO2bl1_combo, DO3bl1_combo, DO4bl1_combo, DO5bl1_combo, DO6bl1_combo, DO7bl1_combo,
                 DO1bl2_combo, DO2bl2_combo, DO3bl2_combo, DO4bl2_combo, DO5bl2_combo, DO6bl2_combo, DO7bl2_combo,
-                DO1bl3_combo, DO2bl3_combo, DO3bl3_combo, DO4bl3_combo, DO5bl3_combo, DO6bl3_combo, DO7bl3_combo
-            };
+                DO1bl3_combo, DO2bl3_combo, DO3bl3_combo, DO4bl3_combo, DO5bl3_combo, DO6bl3_combo, DO7bl3_combo,
+                UI1_combo, UI2_combo, UI3_combo, UI4_combo, UI5_combo, UI6_combo, UI7_combo, UI8_combo, UI9_combo,
+                UI10_combo, UI11_combo
+              };
 
             foreach (var el in combo_elements) el.SelectedItem = NOT_SELECTED;
 
@@ -212,6 +220,18 @@ namespace Moderon
             };
 
             foreach (var el in ai_typeCombos)
+            {
+                el.SelectedItem = NTC; el.Enabled = false;
+            }
+
+            // Тип универасального входного сигнала
+            var ui_typeCombos = new List<ComboBox>()
+            {
+                UI1_typeCombo, UI2_typeCombo, UI3_typeCombo, UI4_typeCombo, UI5_typeCombo, UI6_typeCombo,
+                UI7_typeCombo, UI8_typeCombo, UI9_typeCombo, UI10_typeCombo, UI11_typeCombo
+            };
+
+            foreach (var el in ui_typeCombos)
             {
                 el.SelectedItem = NTC; el.Enabled = false;
             }
@@ -338,12 +358,6 @@ namespace Moderon
         private void DO6_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
             DO_combo_SelectedIndexChanged(DO6_combo, ref DO6combo_index, ref DO6combo_text, ref DO6_lab);
-        }
-
-        ///<summary>Изменили DO7 comboBox</summary> 
-        private void DO7_combo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            DO_combo_SelectedIndexChanged(DO7_combo, ref DO7combo_index, ref DO7combo_text, ref DO7_lab);
         }
 
         ///<summary>Изменили DO1 блока расширения 1 comboBox</summary>
@@ -495,7 +509,6 @@ namespace Moderon
             // ПЛК
             AddToCombo_DO(name, cm, ref DO1_combo); AddToCombo_DO(name, cm, ref DO2_combo); AddToCombo_DO(name, cm, ref DO3_combo);
             AddToCombo_DO(name, cm, ref DO4_combo); AddToCombo_DO(name, cm, ref DO5_combo); AddToCombo_DO(name, cm, ref DO6_combo);
-            AddToCombo_DO(name, cm, ref DO7_combo);
             // Блок расширения 1
             AddToCombo_DO(name, cm, ref DO1bl1_combo); AddToCombo_DO(name, cm, ref DO2bl1_combo); AddToCombo_DO(name, cm, ref DO3bl1_combo);
             AddToCombo_DO(name, cm, ref DO4bl1_combo); AddToCombo_DO(name, cm, ref DO5bl1_combo); AddToCombo_DO(name, cm, ref DO6bl1_combo);
@@ -515,7 +528,7 @@ namespace Moderon
         {
             var do_combos = new List<ComboBox>()
             {
-                DO1_combo, DO2_combo, DO3_combo, DO4_combo, DO5_combo, DO6_combo, DO7_combo,
+                DO1_combo, DO2_combo, DO3_combo, DO4_combo, DO5_combo, DO6_combo,
                 DO1bl1_combo, DO2bl1_combo, DO3bl1_combo, DO4bl1_combo, DO5bl1_combo, DO6bl1_combo, DO7bl1_combo,
                 DO1bl2_combo, DO2bl2_combo, DO3bl2_combo, DO4bl2_combo, DO5bl2_combo, DO6bl2_combo, DO7bl2_combo,
                 DO1bl3_combo, DO2bl3_combo, DO3bl3_combo, DO4bl3_combo, DO5bl3_combo, DO6bl3_combo, DO7bl3_combo
@@ -548,7 +561,6 @@ namespace Moderon
             else if (DO4_combo.SelectedIndex == 0) SelectComboBox_DO(DO4_combo, code, DO4_lab, DO4combo_text, DO4combo_index);
             else if (DO5_combo.SelectedIndex == 0) SelectComboBox_DO(DO5_combo, code, DO5_lab, DO5combo_text, DO5combo_index);
             else if (DO6_combo.SelectedIndex == 0) SelectComboBox_DO(DO6_combo, code, DO6_lab, DO6combo_text, DO6combo_index);
-            else if (DO7_combo.SelectedIndex == 0) SelectComboBox_DO(DO7_combo, code, DO7_lab, DO7combo_text, DO7combo_index);
             // Блок расширения 1
             else if (DO1bl1_combo.SelectedIndex == 0) SelectComboBox_DO(DO1bl1_combo, code, DO1bl1_lab, DO1bl1combo_text, DO1bl1combo_index);
             else if (DO2bl1_combo.SelectedIndex == 0) SelectComboBox_DO(DO2bl1_combo, code, DO2bl1_lab, DO2bl1combo_text, DO2bl1combo_index);
@@ -627,7 +639,6 @@ namespace Moderon
             RemoveDO_FromComboBox(DO4_combo, name, DO4_lab, DO4combo_text, DO4combo_index);                 // DO4
             RemoveDO_FromComboBox(DO5_combo, name, DO5_lab, DO5combo_text, DO5combo_index);                 // DO5
             RemoveDO_FromComboBox(DO6_combo, name, DO6_lab, DO6combo_text, DO6combo_index);                 // DO6
-            RemoveDO_FromComboBox(DO7_combo, name, DO7_lab, DO7combo_text, DO7combo_index);                 // DO7
             // Блок расширения 1
             RemoveDO_FromComboBox(DO1bl1_combo, name, DO1bl1_lab, DO1bl1combo_text, DO1bl1combo_index);     // DO1
             RemoveDO_FromComboBox(DO2bl1_combo, name, DO2bl1_lab, DO2bl1combo_text, DO1bl1combo_index);     // DO2

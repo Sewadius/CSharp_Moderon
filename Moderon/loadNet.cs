@@ -679,8 +679,6 @@ namespace Moderon
 				wh.Cells["D25"].Value = DO5_combo.SelectedItem.ToString();
 			if (DO6_combo.SelectedItem.ToString() != NOT_SELECTED) // DO6
 				wh.Cells["D26"].Value = DO6_combo.SelectedItem.ToString();
-			if (DO7_combo.SelectedItem.ToString() != NOT_SELECTED) // DO7
-				wh.Cells["D27"].Value = DO7_combo.SelectedItem.ToString();
 		}
 
 		///<summary>Формирование для блока расширения 1</summary>

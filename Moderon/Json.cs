@@ -468,7 +468,6 @@ namespace Moderon
             DO4_lab.Text = json_read.labelSignalsState[DO4_lab.Name];
             DO5_lab.Text = json_read.labelSignalsState[DO5_lab.Name];
             DO6_lab.Text = json_read.labelSignalsState[DO6_lab.Name];
-            DO7_lab.Text = json_read.labelSignalsState[DO7_lab.Name];
             // DO сигналы, блок 1
             DO1bl1_lab.Text = json_read.labelSignalsState[DO1bl1_lab.Name];
             DO2bl1_lab.Text = json_read.labelSignalsState[DO2bl1_lab.Name];
@@ -701,7 +700,6 @@ namespace Moderon
             // DO сигналы, ПЛК
             DO1_combo.Items.Clear(); DO2_combo.Items.Clear(); DO3_combo.Items.Clear();
             DO4_combo.Items.Clear(); DO5_combo.Items.Clear(); DO6_combo.Items.Clear();
-            DO7_combo.Items.Clear();
             // DO1, ПЛК
             for (int i = 0; i < json_read.comboSignalsItems[DO1_combo.Name].Length; i++)
                 DO1_combo.Items.Add(json_read.comboSignalsItems[DO1_combo.Name][i]);
@@ -720,9 +718,6 @@ namespace Moderon
             // DO6, ПЛК
             for (int i = 0; i < json_read.comboSignalsItems[DO6_combo.Name].Length; i++)
                 DO6_combo.Items.Add(json_read.comboSignalsItems[DO6_combo.Name][i]);
-            // DO7, ПЛК
-            for (int i = 0; i < json_read.comboSignalsItems[DO7_combo.Name].Length; i++)
-                DO7_combo.Items.Add(json_read.comboSignalsItems[DO7_combo.Name][i]);
             //  DO сигналы, блок 1
             DO1bl1_combo.Items.Clear(); DO2bl1_combo.Items.Clear(); DO3bl1_combo.Items.Clear();
             DO4bl1_combo.Items.Clear(); DO5bl1_combo.Items.Clear(); DO6bl1_combo.Items.Clear();
@@ -1140,10 +1135,6 @@ namespace Moderon
             DO6_combo.SelectedItem = json_read.comboSignalsState[DO6_combo.Name];
             DO6combo_index = DO6_combo.SelectedIndex;
             DO6combo_text = DO6_combo.SelectedItem.ToString();
-            // DO7, ПЛК
-            DO7_combo.SelectedItem = json_read.comboSignalsState[DO7_combo.Name];
-            DO7combo_index = DO7_combo.SelectedIndex;
-            DO7combo_text = DO7_combo.SelectedItem.ToString();
             // DO1, блок 1
             DO1bl1_combo.SelectedItem = json_read.comboSignalsState[DO1bl1_combo.Name];
             DO1bl1combo_index = DO1bl1_combo.SelectedIndex;
@@ -1526,7 +1517,6 @@ namespace Moderon
             json.labelSignalsState.Add(DO4_lab.Name, DO4_lab.Text);
             json.labelSignalsState.Add(DO5_lab.Name, DO5_lab.Text);
             json.labelSignalsState.Add(DO6_lab.Name, DO6_lab.Text);
-            json.labelSignalsState.Add(DO7_lab.Name, DO7_lab.Text);
             // DO сигналы, блок 1
             json.labelSignalsState.Add(DO1bl1_lab.Name, DO1bl1_lab.Text);
             json.labelSignalsState.Add(DO2bl1_lab.Name, DO2bl1_lab.Text);
@@ -1631,7 +1621,6 @@ namespace Moderon
             json.comboSignalsState.Add(DO4_combo.Name, DO4_combo.SelectedItem.ToString());
             json.comboSignalsState.Add(DO5_combo.Name, DO5_combo.SelectedItem.ToString());
             json.comboSignalsState.Add(DO6_combo.Name, DO6_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(DO7_combo.Name, DO7_combo.SelectedItem.ToString());
             // DO сигналы, блок 1
             json.comboSignalsState.Add(DO1bl1_combo.Name, DO1bl1_combo.SelectedItem.ToString());
             json.comboSignalsState.Add(DO2bl1_combo.Name, DO2bl1_combo.SelectedItem.ToString());
@@ -2008,11 +1997,6 @@ namespace Moderon
             for (int i = 0; i < DO6_combo.Items.Count; i++)
                 arr_DO6_combo[i] = DO6_combo.GetItemText(DO6_combo.Items[i]);
             json.comboSignalsItems.Add(DO6_combo.Name, arr_DO6_combo);
-            // DO7, ПЛК
-            string[] arr_DO7_combo = new string[DO7_combo.Items.Count];
-            for (int i = 0; i < DO7_combo.Items.Count; i++)
-                arr_DO7_combo[i] = DO7_combo.GetItemText(DO7_combo.Items[i]);
-            json.comboSignalsItems.Add(DO7_combo.Name, arr_DO7_combo);
             // DO1, блок 1
             string[] arr_DO1bl1_combo = new string[DO1bl1_combo.Items.Count];
             for (int i = 0; i < DO1bl1_combo.Items.Count; i++)

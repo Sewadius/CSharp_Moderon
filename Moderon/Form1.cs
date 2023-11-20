@@ -136,7 +136,7 @@ namespace Moderon
         {
             var elements = new List<ComboBox>()
             {
-                comboSysType, filterPrCombo, filterOutCombo, prFanPowCombo, prFanControlCombo,
+                comboSysType, comboPlkType, filterPrCombo, filterOutCombo, prFanPowCombo, prFanControlCombo,
                 outFanPowCombo, outFanControlCombo, prDampPowCombo, outDampPowCombo, heatTypeCombo,
                 powPumpCombo, elHeatStagesCombo, thermSwitchCombo, coolTypeCombo, frCoolStagesCombo,
                 powWatCoolCombo, humidTypeCombo, recircPowCombo, recupTypeCombo, rotorPowCombo,
@@ -161,12 +161,29 @@ namespace Moderon
             
         }
 
+        ///<summary>Изменение типа контроллера "Mini" или "Optimized"</summary>
+        private void ComboPlkType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboPlkType.SelectedIndex == 0)                                    // Выбрали контроллер "Mini"
+            {
+                // Блокировка UI входных сигналов
+                var ui_combos = new List<ComboBox>()
+                {
+                    UI8_combo, UI9_combo, UI10_combo, UI11_combo,
+                    UI8_typeCombo, UI9_typeCombo, UI10_typeCombo, UI11_typeCombo
+
+                };
+                
+                foreach (var el in ui_combos) el.Enabled = false;
+            }
+        }
+
         /// <summary>Очистка для подписей кодов у comboBox входов/выходов</summary>
         private void ClearIO_codes()
         {
             var do_signals = new List<Label>() 
             {
-                DO1_lab, DO2_lab, DO3_lab, DO4_lab, DO5_lab, DO6_lab, DO7_lab,
+                DO1_lab, DO2_lab, DO3_lab, DO4_lab, DO5_lab, DO6_lab,
                 DO1bl1_lab, DO2bl1_lab, DO3bl1_lab, DO4bl1_lab, DO5bl1_lab, DO6bl1_lab, DO7bl1_lab,
                 DO1bl2_lab, DO2bl2_lab, DO3bl2_lab, DO4bl2_lab, DO5bl2_lab, DO6bl2_lab, DO7bl2_lab,
                 DO1bl3_lab, DO2bl3_lab, DO3bl3_lab, DO4bl3_lab, DO5bl3_lab, DO6bl3_lab, DO7bl3_lab
@@ -196,8 +213,14 @@ namespace Moderon
                 DI1bl3_lab, DI2bl3_lab, DI3bl3_lab, DI4bl3_lab, DI5bl3_lab 
             };
 
+            var ui_signals = new List<Label>()
+            {
+                UI1_lab, UI2_lab, UI3_lab, UI4_lab, UI5_lab, UI6_lab,
+                UI7_lab, UI8_lab, UI9_lab, UI10_lab, UI11_lab
+            };
+
             List<Label> signals = do_signals.Concat(ao_signals)
-                .Concat(ai_signals).Concat(di_signals).ToList();
+                .Concat(ai_signals).Concat(di_signals).Concat(ui_signals).ToList();
 
             foreach (var label in signals) label.Text = ""; 
         }
@@ -268,7 +291,9 @@ namespace Moderon
             Form1_InitSignals(this, e); // Подготовка сигналов ПЛК
             // Изменения для панели данных записи 
             LoadNetOnLoad();
-            Form1_SizeChanged(this, e); // Изменение размеров для формы
+
+            Form1_SizeChanged(this, e);                     // Изменение размеров для формы
+            ComboPlkType_SelectedIndexChanged(this, e);     // Блокировка изначально входов/выходов для контроллера "Mini"
         }
 
         /// <summary>Скрытие всех вкладок элементов</summary>
