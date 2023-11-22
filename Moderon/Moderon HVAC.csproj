@@ -114,6 +114,7 @@
     <Compile Include="signalsTableAO.cs" />
     <Compile Include="signalsTableDI.cs" />
     <Compile Include="signalsTableDO.cs" />
+    <Compile Include="signalsTableUI.cs" />
     <Compile Include="Spec.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -733,8 +733,6 @@ namespace Moderon
 				wh.Cells["D42"].Value = AO1bl1_combo.SelectedItem.ToString();
 			if (AO2bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AO2
 				wh.Cells["D43"].Value = AO2bl1_combo.SelectedItem.ToString();
-			if (AO3bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AO3
-				wh.Cells["D44"].Value = AO3bl1_combo.SelectedItem.ToString();
 			// DO для блока расширения 1
 			if (DO1bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO1
 				wh.Cells["D46"].Value = DO1bl1_combo.SelectedItem.ToString();
@@ -802,8 +800,6 @@ namespace Moderon
 				wh.Cells["D67"].Value = AO1bl2_combo.SelectedItem.ToString();
 			if (AO2bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AO2
 				wh.Cells["D68"].Value = AO2bl2_combo.SelectedItem.ToString();
-			if (AO3bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AO3
-				wh.Cells["D69"].Value = AO3bl2_combo.SelectedItem.ToString();
 			// DO сигналы для блока расширения 2
 			if (DO1bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DO1
 				wh.Cells["D71"].Value = DO1bl2_combo.SelectedItem.ToString();
@@ -871,8 +867,6 @@ namespace Moderon
 				wh.Cells["D92"].Value = AO1bl3_combo.SelectedItem.ToString();
 			if (AO2bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AO2
 				wh.Cells["D93"].Value = AO2bl3_combo.SelectedItem.ToString();
-			if (AO3bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AO3
-				wh.Cells["D94"].Value = AO3bl3_combo.SelectedItem.ToString();
 			// DO сигналы для блока расширения 3
 			if (DO1bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DO1
 				wh.Cells["D96"].Value = DO1bl3_combo.SelectedItem.ToString();

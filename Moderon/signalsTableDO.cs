@@ -42,7 +42,7 @@ namespace Moderon
 
         // Сохранение наименования выбранного элемента для ПЛК и блоков расширения
         string
-            DO1combo_text, DO2combo_text, DO3combo_text, DO4combo_text, DO5combo_text, DO6combo_text, DO7combo_text,
+            DO1combo_text, DO2combo_text, DO3combo_text, DO4combo_text, DO5combo_text, DO6combo_text,
             DO1bl1combo_text, DO2bl1combo_text, DO3bl1combo_text, DO4bl1combo_text, DO5bl1combo_text, DO6bl1combo_text, DO7bl1combo_text,
             DO1bl2combo_text, DO2bl2combo_text, DO3bl2combo_text, DO4bl2combo_text, DO5bl2combo_text, DO6bl2combo_text, DO7bl2combo_text,
             DO1bl3combo_text, DO2bl3combo_text, DO3bl3combo_text, DO4bl3combo_text, DO5bl3combo_text, DO6bl3combo_text, DO7bl3combo_text;
@@ -65,7 +65,7 @@ namespace Moderon
 
             var do_signals = new List<string>()
             {
-                DO4combo_text, DO5combo_text, DO6combo_text, DO7combo_text,
+                DO4combo_text, DO5combo_text, DO6combo_text,
                 DO1bl1combo_text, DO2bl1combo_text, DO3bl1combo_text, DO4bl1combo_text, DO5bl1combo_text, DO6bl1combo_text, DO7bl1combo_text,
                 DO1bl2combo_text, DO2bl2combo_text, DO3bl2combo_text, DO4bl2combo_text, DO5bl2combo_text, DO6bl2combo_text, DO7bl2combo_text,
                 DO1bl3combo_text, DO2bl3combo_text, DO3bl3combo_text, DO4bl3combo_text, DO5bl3combo_text, DO6bl3combo_text, DO7bl3combo_text
@@ -199,8 +199,8 @@ namespace Moderon
                 DI1bl1_combo, DI2bl1_combo, DI3bl1_combo, DI4bl1_combo, DI5bl1_combo,
                 DI1bl2_combo, DI2bl2_combo, DI3bl2_combo, DI4bl2_combo, DI5bl2_combo,
                 DI1bl3_combo, DI2bl3_combo, DI3bl3_combo, DI4bl3_combo, DI5bl3_combo,
-                AO1_combo, AO2_combo, AO3_combo, AO1bl1_combo, AO2bl1_combo, AO3bl1_combo,
-                AO1bl2_combo, AO2bl2_combo, AO3bl2_combo, AO1bl3_combo, AO2bl3_combo, AO3bl3_combo,
+                AO1_combo, AO2_combo, AO3_combo, AO1bl1_combo, AO2bl1_combo,
+                AO1bl2_combo, AO2bl2_combo, AO1bl3_combo, AO2bl3_combo,
                 DO1_combo, DO2_combo, DO3_combo, DO4_combo, DO5_combo, DO6_combo,
                 DO1bl1_combo, DO2bl1_combo, DO3bl1_combo, DO4bl1_combo, DO5bl1_combo, DO6bl1_combo, DO7bl1_combo,
                 DO1bl2_combo, DO2bl2_combo, DO3bl2_combo, DO4bl2_combo, DO5bl2_combo, DO6bl2_combo, DO7bl2_combo,
@@ -559,8 +559,8 @@ namespace Moderon
             else if (DO2_combo.SelectedIndex == 0) SelectComboBox_DO(DO2_combo, code, DO2_lab, DO2combo_text, DO2combo_index);
             else if (DO3_combo.SelectedIndex == 0) SelectComboBox_DO(DO3_combo, code, DO3_lab, DO3combo_text, DO3combo_index);
             else if (DO4_combo.SelectedIndex == 0) SelectComboBox_DO(DO4_combo, code, DO4_lab, DO4combo_text, DO4combo_index);
-            else if (DO5_combo.SelectedIndex == 0) SelectComboBox_DO(DO5_combo, code, DO5_lab, DO5combo_text, DO5combo_index);
-            else if (DO6_combo.SelectedIndex == 0) SelectComboBox_DO(DO6_combo, code, DO6_lab, DO6combo_text, DO6combo_index);
+            else if (DO5_combo.SelectedIndex == 0 && DO5_combo.Enabled) SelectComboBox_DO(DO5_combo, code, DO5_lab, DO5combo_text, DO5combo_index);
+            else if (DO6_combo.SelectedIndex == 0 && DO6_combo.Enabled) SelectComboBox_DO(DO6_combo, code, DO6_lab, DO6combo_text, DO6combo_index);
             // Блок расширения 1
             else if (DO1bl1_combo.SelectedIndex == 0) SelectComboBox_DO(DO1bl1_combo, code, DO1bl1_lab, DO1bl1combo_text, DO1bl1combo_index);
             else if (DO2bl1_combo.SelectedIndex == 0) SelectComboBox_DO(DO2bl1_combo, code, DO2bl1_lab, DO2bl1combo_text, DO2bl1combo_index);

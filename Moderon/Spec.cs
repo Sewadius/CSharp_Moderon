@@ -2151,7 +2151,7 @@ namespace Moderon
         {
             if (DO1bl1_lab.Text == "" && DO2bl1_lab.Text == "" && DO3bl1_lab.Text == "" && DO4bl1_lab.Text == "" &&
                 DO5bl1_lab.Text == "" && DO6bl1_lab.Text == "" && DO7bl1_lab.Text == "")
-                if (AO1bl1_lab.Text == "" && AO2bl1_lab.Text == "" && AO3bl1_lab.Text == "")
+                if (AO1bl1_lab.Text == "" && AO2bl1_lab.Text == "")
                     if (AI1bl1_lab.Text == "" && AI2bl1_lab.Text == "" && AI3bl1_lab.Text == "" &&
                         AI4bl1_lab.Text == "" && AI5bl1_lab.Text == "" && AI6bl1_lab.Text == "")
                         if (DI1bl1_lab.Text == "" && DI2bl1_lab.Text == "" && DI3bl1_lab.Text == "" &&
@@ -2165,7 +2165,7 @@ namespace Moderon
         {
             if (DO1bl2_lab.Text == "" && DO2bl2_lab.Text == "" && DO3bl2_lab.Text == "" && DO4bl2_lab.Text == "" &&
                 DO5bl2_lab.Text == "" && DO6bl2_lab.Text == "" && DO7bl2_lab.Text == "")
-                if (AO1bl2_lab.Text == "" && AO2bl2_lab.Text == "" && AO3bl2_lab.Text == "")
+                if (AO1bl2_lab.Text == "" && AO2bl2_lab.Text == "")
                     if (AI1bl2_lab.Text == "" && AI2bl2_lab.Text == "" && AI3bl2_lab.Text == "" &&
                         AI4bl2_lab.Text == "" && AI5bl2_lab.Text == "" && AI6bl2_lab.Text == "")
                         if (DI1bl2_lab.Text == "" && DI2bl2_lab.Text == "" && DI3bl2_lab.Text == "" &&
@@ -2179,7 +2179,7 @@ namespace Moderon
         {
             if (DO1bl3_lab.Text == "" && DO2bl3_lab.Text == "" && DO3bl3_lab.Text == "" && DO4bl3_lab.Text == "" &&
                 DO5bl3_lab.Text == "" && DO6bl3_lab.Text == "" && DO7bl3_lab.Text == "")
-                if (AO1bl3_lab.Text == "" && AO2bl3_lab.Text == "" && AO3bl3_lab.Text == "")
+                if (AO1bl3_lab.Text == "" && AO2bl3_lab.Text == "")
                     if (AI1bl3_lab.Text == "" && AI2bl3_lab.Text == "" && AI3bl3_lab.Text == "" &&
                         AI4bl3_lab.Text == "" && AI5bl3_lab.Text == "" && AI6bl3_lab.Text == "")
                         if (DI1bl3_lab.Text == "" && DI2bl3_lab.Text == "" && DI3bl3_lab.Text == "" &&

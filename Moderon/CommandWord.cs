@@ -277,22 +277,16 @@ namespace Moderon
                 aoSignals[3] = Convert.ToUInt16(AO1bl1_lab.Text);
             if (AO2bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AO2
                 aoSignals[4] = Convert.ToUInt16(AO2bl1_lab.Text);
-            if (AO3bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AO3
-                aoSignals[5] = Convert.ToUInt16(AO3bl1_lab.Text);
             // Блок расширения 2
             if (AO1bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AO1
                 aoSignals[6] = Convert.ToUInt16(AO1bl2_lab.Text);
             if (AO2bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AO2
                 aoSignals[7] = Convert.ToUInt16(AO2bl2_lab.Text);
-            if (AO3bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AO3
-                aoSignals[8] = Convert.ToUInt16(AO3bl2_lab.Text);
             // Блок расширения 3
             if (AO1bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AO1
                 aoSignals[9] = Convert.ToUInt16(AO1bl3_lab.Text);
             if (AO2bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AO2
                 aoSignals[10] = Convert.ToUInt16(AO2bl3_lab.Text);
-            if (AO3bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AO3
-                aoSignals[11] = Convert.ToUInt16(AO3bl3_lab.Text);
         }
 
         ///<summary>Инициализация командных слов</summary>

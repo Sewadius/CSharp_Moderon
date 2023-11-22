@@ -9,7 +9,13 @@ namespace Moderon
 {
     public partial class Form1 : Form
     {
-        readonly static public string NOT_SELECTED = "Не выбрано";      // Статус для состояния входов/выходов
+        // Статус для состояния входов/выходов и названия для блоков расширения
+        readonly static public string
+            NOT_SELECTED = "Не выбрано", M72E08RA = "M72E08RA", M72E12RA = "M72E12RA", M72E12RB = "M72E12RB", M72E16NA = "M72E16NA";
+
+        /// <summary>Список для определения задействованных блоков расширения</summary>
+        static public List<string> expansion_blocks = new List<string>();
+
 
         private const int HEIGHT = 280;                                 // Высота для панелей настройки элементов
         private Point MENU_POSITION = new Point(3, 36);                 // Позиция для меню элементов
@@ -51,6 +57,7 @@ namespace Moderon
             ClearIO_codes();                // Очистка наименования кодов для входов/выходов
 
             // Начальная установка для входов и выходов
+            Set_UIComboTextIndex();         // Входные сигналы, UI
             Set_DOComboTextIndex();         // Дискретные выходы, DO
             Set_DIComboTextIndex();         // Дискретный входы, DI
             Set_AIComboTextIndex();         // Аналоговые входы, AI
@@ -164,17 +171,22 @@ namespace Moderon
         ///<summary>Изменение типа контроллера "Mini" или "Optimized"</summary>
         private void ComboPlkType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var ui_combos = new List<ComboBox>() { UI8_combo, UI9_combo, UI10_combo, UI11_combo };
+            var ui_combos_type = new List<ComboBox>() { UI8_typeCombo, UI9_typeCombo, UI10_typeCombo, UI11_typeCombo };
+            var do_combos = new List<ComboBox>() { DO5_combo, DO6_combo };
+
             if (comboPlkType.SelectedIndex == 0)                                    // Выбрали контроллер "Mini"
             {
-                // Блокировка UI входных сигналов
-                var ui_combos = new List<ComboBox>()
-                {
-                    UI8_combo, UI9_combo, UI10_combo, UI11_combo,
-                    UI8_typeCombo, UI9_typeCombo, UI10_typeCombo, UI11_typeCombo
-
-                };
-                
-                foreach (var el in ui_combos) el.Enabled = false;
+                foreach (var el in ui_combos) el.Enabled = false;                   // Блокировка UI входных сигналов
+                foreach (var el in ui_combos_type) el.Enabled = false;              // Блокировка UI типов для входных сигналов
+                foreach (var el in do_combos) el.Enabled = false;                   // Блокировка DO выходных сигналов
+                AO3_combo.Enabled = false;                                          // Блокировка AO выходного сигнала
+            }
+            else if (comboPlkType.SelectedIndex == 1)                               // Выбрали контроллер "Optimized"
+            {
+                foreach (var el in ui_combos) el.Enabled = true;                    // Разблокировка UI входных сигналов
+                foreach (var el in do_combos) el.Enabled = true;                    // Разблокировка DO выходных сигналов
+                AO3_combo.Enabled = true;                                           // Разблокировка AO выходного сигнала
             }
         }
 
@@ -192,9 +204,9 @@ namespace Moderon
             var ao_signals = new List<Label>()
             {
                 AO1_lab, AO2_lab, AO3_lab, 
-                AO1bl1_lab, AO2bl1_lab, AO3bl1_lab, 
-                AO1bl2_lab, AO2bl2_lab, AO3bl2_lab, 
-                AO1bl3_lab, AO2bl3_lab, AO3bl3_lab 
+                AO1bl1_lab, AO2bl1_lab,  
+                AO1bl2_lab, AO2bl2_lab,
+                AO1bl3_lab, AO2bl3_lab, 
             };
 
             var ai_signals = new List<Label>()
@@ -487,6 +499,7 @@ namespace Moderon
         {
             comboSysType.Enabled = true;                    // Разблокировка выбора типа системы
             comboSysType.SelectedIndex = 0;                 // Выбор приточной системы
+            expansion_blocks.Clear();                       // Очистка списка выбранных блоков расширения
 
             var mainOptions = new List<CheckBox>()
             {
@@ -512,6 +525,7 @@ namespace Moderon
             SelectComboBoxesInitial();                      // Возврат к изначальным значения выбора
             ResetElementsOptions();                         // Сброс настроек для элементов
             ResetSignalsLists();                            // Очистка массивов сигналов
+            ResetButton_signalsUIClick(this, e);            // Сброс сигналов ПЛК, UI
             ResetButton_signalsDOClick(this, e);            // Сброс сигналов ПЛК, DO
             ResetButton_signalsAOClick(this, e);            // Сброс сигналов ПЛК, AO
             ResetButton_signalsDIClick(this, e);            // Сброс сигналов ПЛК, DI

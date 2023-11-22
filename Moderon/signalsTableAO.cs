@@ -33,16 +33,16 @@ namespace Moderon
         // Сохранение наименования выбранного элемента для ПЛК и блоков расширения
         string
             AO1combo_text, AO2combo_text, AO3combo_text,
-            AO1bl1combo_text, AO2bl1combo_text, AO3bl1combo_text,
-            AO1bl2combo_text, AO2bl2combo_text, AO3bl2combo_text,
-            AO1bl3combo_text, AO2bl3combo_text, AO3bl3combo_text;
+            AO1bl1combo_text, AO2bl1combo_text,
+            AO1bl2combo_text, AO2bl2combo_text,
+            AO1bl3combo_text, AO2bl3combo_text;
 
         // Сохранение прошлого индекса comboBox элементов для ПЛК и блоков расширения
         int
             AO1combo_index, AO2combo_index, AO3combo_index,
-            AO1bl1combo_index, AO2bl1combo_index, AO3bl1combo_index,
-            AO1bl2combo_index, AO2bl2combo_index, AO3bl2combo_index,
-            AO1bl3combo_index, AO2bl3combo_index, AO3bl3combo_index;
+            AO1bl1combo_index, AO2bl1combo_index,
+            AO1bl2combo_index, AO2bl2combo_index,
+            AO1bl3combo_index, AO2bl3combo_index;
 
 
         ///<summary>Начальная установка для сигналов AO таблицы сигналов</summary>
@@ -51,17 +51,17 @@ namespace Moderon
             var ao_signals = new List<string>()
             {
                 AO1combo_text, AO2combo_text, AO3combo_text,
-                AO1bl1combo_text, AO2bl1combo_text, AO3bl1combo_text,
-                AO1bl2combo_text, AO2bl2combo_text, AO3bl2combo_text,
-                AO1bl3combo_text, AO2bl3combo_text, AO3bl3combo_text
+                AO1bl1combo_text, AO2bl1combo_text,
+                AO1bl2combo_text, AO2bl2combo_text,
+                AO1bl3combo_text, AO2bl3combo_text
             };
 
             var ao_signals_index = new List<int>()
             {
                 AO1combo_index, AO2combo_index, AO3combo_index,
-                AO1bl1combo_index, AO2bl1combo_index, AO3bl1combo_index,
-                AO1bl2combo_index, AO2bl2combo_index, AO3bl2combo_index,
-                AO1bl3combo_index, AO2bl3combo_index, AO3bl3combo_index
+                AO1bl1combo_index, AO2bl1combo_index,
+                AO1bl2combo_index, AO2bl2combo_index,
+                AO1bl3combo_index, AO2bl3combo_index
             };
 
             for (var i = 0; i < ao_signals.Count; i++)
@@ -175,12 +175,6 @@ namespace Moderon
             AO_combo_SelectedIndexChanged(AO2bl1_combo, ref AO2bl1combo_index, ref AO2bl1combo_text, AO2bl1_lab);
         }
 
-        ///<summary>Изменили AO3 блока расширения 1</summary>
-        private void AO3bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            AO_combo_SelectedIndexChanged(AO3bl1_combo, ref AO3bl1combo_index, ref AO3bl1combo_text, AO3bl1_lab);
-        }
-
         ///<summary>Изменили AO1 блока расширения 2</summary>
         private void AO1bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -193,12 +187,6 @@ namespace Moderon
             AO_combo_SelectedIndexChanged(AO2bl2_combo, ref AO2bl2combo_index, ref AO2bl2combo_text, AO2bl2_lab);
         }
 
-        ///<summary>Изменили AO3 блока расширения 2</summary>
-        private void AO3bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            AO_combo_SelectedIndexChanged(AO3bl2_combo, ref AO3bl2combo_index, ref AO3bl2combo_text, AO3bl2_lab);
-        }
-
         ///<summary>Изменили AO1 блока расширения 3</summary>
         private void AO1bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -209,12 +197,6 @@ namespace Moderon
         private void AO2bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
             AO_combo_SelectedIndexChanged(AO2bl3_combo, ref AO2bl3combo_index, ref AO2bl3combo_text, AO2bl3_lab);
-        }
-
-        ///<summary>Изменили AO3 блока расширения 3</summary>
-        private void AO3bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            AO_combo_SelectedIndexChanged(AO3bl3_combo, ref AO3bl3combo_index, ref AO3bl3combo_text, AO3bl3_lab);
         }
 
         ///<summary>Добавление AO в другие слоты для выбора в comboBox</summary>
@@ -238,9 +220,9 @@ namespace Moderon
         private void AddtoCombosAO(string name, ComboBox cm)
         {
             AddToCombo_AO(name, cm, ref AO1_combo); AddToCombo_AO(name, cm, ref AO2_combo); AddToCombo_AO(name, cm, ref AO3_combo);             // ПЛК
-            AddToCombo_AO(name, cm, ref AO1bl1_combo); AddToCombo_AO(name, cm, ref AO2bl1_combo); AddToCombo_AO(name, cm, ref AO3bl1_combo);    // Блок 1
-            AddToCombo_AO(name, cm, ref AO1bl2_combo); AddToCombo_AO(name, cm, ref AO2bl2_combo); AddToCombo_AO(name, cm, ref AO3bl2_combo);    // Блок 2
-            AddToCombo_AO(name, cm, ref AO1bl3_combo); AddToCombo_AO(name, cm, ref AO2bl3_combo); AddToCombo_AO(name, cm, ref AO3bl3_combo);    // Блок 3
+            AddToCombo_AO(name, cm, ref AO1bl1_combo); AddToCombo_AO(name, cm, ref AO2bl1_combo);                                               // Блок 1
+            AddToCombo_AO(name, cm, ref AO1bl2_combo); AddToCombo_AO(name, cm, ref AO2bl2_combo);                                               // Блок 2
+            AddToCombo_AO(name, cm, ref AO1bl3_combo); AddToCombo_AO(name, cm, ref AO2bl3_combo);                                               // Блок 3
         }
 
         ///<summary>Удаление AO из других comboBox</summary>
@@ -248,8 +230,8 @@ namespace Moderon
         {
             var ao_combos = new List<ComboBox>()
             {
-                AO1_combo, AO2_combo, AO3_combo, AO1bl1_combo, AO2bl1_combo, AO3bl1_combo,
-                AO1bl2_combo, AO2bl2_combo, AO3bl2_combo, AO1bl3_combo, AO2bl3_combo, AO3bl3_combo
+                AO1_combo, AO2_combo, AO3_combo, AO1bl1_combo, AO2bl1_combo,
+                AO1bl2_combo, AO2bl2_combo, AO1bl3_combo, AO2bl3_combo,  
             };
 
             foreach (var el in ao_combos)
@@ -273,16 +255,13 @@ namespace Moderon
         {
             if (AO1_combo.SelectedIndex == 0) SelectComboBox_AO(AO1_combo, code, AO1_lab, AO1combo_text, AO1combo_index);
             else if (AO2_combo.SelectedIndex == 0) SelectComboBox_AO(AO2_combo, code, AO2_lab, AO2combo_text, AO2combo_index);
-            else if (AO3_combo.SelectedIndex == 0) SelectComboBox_AO(AO3_combo, code, AO3_lab, AO3combo_text, AO3combo_index);
+            else if (AO3_combo.SelectedIndex == 0 && AO3_combo.Enabled) SelectComboBox_AO(AO3_combo, code, AO3_lab, AO3combo_text, AO3combo_index);
             else if (AO1bl1_combo.SelectedIndex == 0) SelectComboBox_AO(AO1bl1_combo, code, AO1bl1_lab, AO1bl1combo_text, AO1bl1combo_index);
             else if (AO2bl1_combo.SelectedIndex == 0) SelectComboBox_AO(AO2bl1_combo, code, AO2bl1_lab, AO2bl1combo_text, AO2bl1combo_index);
-            else if (AO3bl1_combo.SelectedIndex == 0) SelectComboBox_AO(AO2bl1_combo, code, AO2bl1_lab, AO2bl1combo_text, AO2bl1combo_index);
             else if (AO1bl2_combo.SelectedIndex == 0) SelectComboBox_AO(AO1bl2_combo, code, AO1bl2_lab, AO1bl2combo_text, AO1bl2combo_index);
             else if (AO2bl2_combo.SelectedIndex == 0) SelectComboBox_AO(AO2bl2_combo, code, AO2bl2_lab, AO2bl2combo_text, AO2bl2combo_index);
-            else if (AO3bl2_combo.SelectedIndex == 0) SelectComboBox_AO(AO2bl2_combo, code, AO2bl2_lab, AO2bl2combo_text, AO2bl2combo_index);
             else if (AO1bl3_combo.SelectedIndex == 0) SelectComboBox_AO(AO1bl3_combo, code, AO1bl3_lab, AO1bl3combo_text, AO1bl3combo_index);
             else if (AO2bl3_combo.SelectedIndex == 0) SelectComboBox_AO(AO2bl3_combo, code, AO2bl3_lab, AO2bl3combo_text, AO2bl3combo_index);
-            else if (AO3bl3_combo.SelectedIndex == 0) SelectComboBox_AO(AO2bl3_combo, code, AO2bl3_lab, AO2bl3combo_text, AO2bl3combo_index);
         }
 
         ///<summary>Удаление AO из определённого comboBox</summary>
@@ -338,15 +317,12 @@ namespace Moderon
             // Блок расширения 1
             RemoveAO_FromComboBox(AO1bl1_combo, name, AO1bl1_lab, AO1bl1combo_text, AO1bl1combo_index);
             RemoveAO_FromComboBox(AO2bl1_combo, name, AO2bl1_lab, AO2bl1combo_text, AO2bl1combo_index);
-            RemoveAO_FromComboBox(AO3bl1_combo, name, AO3bl1_lab, AO3bl1combo_text, AO3bl1combo_index);
             // Блок расширения 2
             RemoveAO_FromComboBox(AO1bl2_combo, name, AO1bl2_lab, AO1bl2combo_text, AO1bl2combo_index);
             RemoveAO_FromComboBox(AO2bl2_combo, name, AO2bl2_lab, AO2bl2combo_text, AO2bl2combo_index);
-            RemoveAO_FromComboBox(AO3bl2_combo, name, AO3bl2_lab, AO3bl2combo_text, AO3bl2combo_index);
             // Блок расширения 2
             RemoveAO_FromComboBox(AO1bl3_combo, name, AO1bl3_lab, AO1bl3combo_text, AO1bl3combo_index);
             RemoveAO_FromComboBox(AO2bl3_combo, name, AO2bl3_lab, AO2bl3combo_text, AO2bl3combo_index);
-            RemoveAO_FromComboBox(AO3bl3_combo, name, AO3bl3_lab, AO3bl3combo_text, AO3bl3combo_index);
 
             subAOcondition = false;                 // Сброс признака удаления из AO
             list_ao.Remove(findAo);                 // Удаление сигнала из списка AO

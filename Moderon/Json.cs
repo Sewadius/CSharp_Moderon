@@ -452,15 +452,12 @@ namespace Moderon
             // AO сигналы, блок 1
             AO1bl1_lab.Text = json_read.labelSignalsState[AO1bl1_lab.Name];
             AO2bl1_lab.Text = json_read.labelSignalsState[AO2bl1_lab.Name];
-            AO3bl1_lab.Text = json_read.labelSignalsState[AO3bl1_lab.Name];
             // AO сигналы, блок 2
             AO1bl2_lab.Text = json_read.labelSignalsState[AO1bl2_lab.Name];
             AO2bl2_lab.Text = json_read.labelSignalsState[AO2bl2_lab.Name];
-            AO3bl2_lab.Text = json_read.labelSignalsState[AO3bl2_lab.Name];
             // AO сигналы, блок 3
             AO1bl3_lab.Text = json_read.labelSignalsState[AO1bl3_lab.Name];
             AO2bl3_lab.Text = json_read.labelSignalsState[AO2bl3_lab.Name];
-            AO3bl3_lab.Text = json_read.labelSignalsState[AO3bl3_lab.Name];
             // DO сигналы, ПЛК
             DO1_lab.Text = json_read.labelSignalsState[DO1_lab.Name];
             DO2_lab.Text = json_read.labelSignalsState[DO2_lab.Name];
@@ -665,38 +662,29 @@ namespace Moderon
             for (int i = 0; i < json_read.comboSignalsItems[AO3_combo.Name].Length; i++)
                 AO3_combo.Items.Add(json_read.comboSignalsItems[AO3_combo.Name][i]);
             // AO сигналы, блок 1
-            AO1bl1_combo.Items.Clear(); AO2bl1_combo.Items.Clear(); AO3bl1_combo.Items.Clear();
+            AO1bl1_combo.Items.Clear(); AO2bl1_combo.Items.Clear();
             // AO1, блок 1
             for (int i = 0; i < json_read.comboSignalsItems[AO1bl1_combo.Name].Length; i++)
                 AO1bl1_combo.Items.Add(json_read.comboSignalsItems[AO1bl1_combo.Name][i]);
             // AO1, блок 2
             for (int i = 0; i < json_read.comboSignalsItems[AO2bl1_combo.Name].Length; i++)
                 AO2bl1_combo.Items.Add(json_read.comboSignalsItems[AO2bl1_combo.Name][i]);
-            // AO1, блок 3
-            for (int i = 0; i < json_read.comboSignalsItems[AO3bl1_combo.Name].Length; i++)
-                AO3bl1_combo.Items.Add(json_read.comboSignalsItems[AO3bl1_combo.Name][i]);
             // AO сигналы, блок 2
-            AO1bl2_combo.Items.Clear(); AO2bl2_combo.Items.Clear(); AO3bl2_combo.Items.Clear();
+            AO1bl2_combo.Items.Clear(); AO2bl2_combo.Items.Clear();
             // AO1, блок 2
             for (int i = 0; i < json_read.comboSignalsItems[AO1bl2_combo.Name].Length; i++)
                 AO1bl2_combo.Items.Add(json_read.comboSignalsItems[AO1bl2_combo.Name][i]);
             // AO2, блок 2
             for (int i = 0; i < json_read.comboSignalsItems[AO2bl2_combo.Name].Length; i++)
                 AO2bl2_combo.Items.Add(json_read.comboSignalsItems[AO2bl2_combo.Name][i]);
-            // AO3, блок 2
-            for (int i = 0; i < json_read.comboSignalsItems[AO3bl2_combo.Name].Length; i++)
-                AO3bl2_combo.Items.Add(json_read.comboSignalsItems[AO3bl2_combo.Name][i]);
             // AO сигналы, блок 3
-            AO1bl3_combo.Items.Clear(); AO2bl3_combo.Items.Clear(); AO3bl3_combo.Items.Clear();
+            AO1bl3_combo.Items.Clear(); AO2bl3_combo.Items.Clear();
             // AO1, блок 3
             for (int i = 0; i < json_read.comboSignalsItems[AO1bl3_combo.Name].Length; i++)
                 AO1bl3_combo.Items.Add(json_read.comboSignalsItems[AO1bl3_combo.Name][i]);
             // AO2, блок 3
             for (int i = 0; i < json_read.comboSignalsItems[AO2bl3_combo.Name].Length; i++)
                 AO2bl3_combo.Items.Add(json_read.comboSignalsItems[AO2bl3_combo.Name][i]);
-            // AO3, блок 3
-            for (int i = 0; i < json_read.comboSignalsItems[AO3bl3_combo.Name].Length; i++)
-                AO3bl3_combo.Items.Add(json_read.comboSignalsItems[AO3bl3_combo.Name][i]);
             // DO сигналы, ПЛК
             DO1_combo.Items.Clear(); DO2_combo.Items.Clear(); DO3_combo.Items.Clear();
             DO4_combo.Items.Clear(); DO5_combo.Items.Clear(); DO6_combo.Items.Clear();
@@ -1083,10 +1071,6 @@ namespace Moderon
             AO2bl1_combo.SelectedItem = json_read.comboSignalsState[AO2bl1_combo.Name];
             AO2bl1combo_index = AO2bl1_combo.SelectedIndex;
             AO2bl1combo_text = AO2bl1_combo.SelectedItem.ToString();
-            // AO3, блок 1
-            AO3bl1_combo.SelectedItem = json_read.comboSignalsState[AO3bl1_combo.Name];
-            AO3bl1combo_index = AO3bl1_combo.SelectedIndex;
-            AO3bl1combo_text = AO3bl1_combo.SelectedItem.ToString();
             // AO1, блок 2
             AO1bl2_combo.SelectedItem = json_read.comboSignalsState[AO1bl2_combo.Name];
             AO1bl2combo_index = AO1bl2_combo.SelectedIndex;
@@ -1095,10 +1079,6 @@ namespace Moderon
             AO2bl2_combo.SelectedItem = json_read.comboSignalsState[AO2bl2_combo.Name];
             AO2bl2combo_index = AO2bl2_combo.SelectedIndex;
             AO2bl2combo_text = AO2bl2_combo.SelectedItem.ToString();
-            // AO3, блок 2
-            AO3bl2_combo.SelectedItem = json_read.comboSignalsState[AO3bl2_combo.Name];
-            AO3bl2combo_index = AO3bl2_combo.SelectedIndex;
-            AO3bl2combo_text = AO3bl2_combo.SelectedItem.ToString();
             // AO1, блок 3
             AO1bl3_combo.SelectedItem = json_read.comboSignalsState[AO1bl3_combo.Name];
             AO1bl3combo_index = AO1bl3_combo.SelectedIndex;
@@ -1107,10 +1087,6 @@ namespace Moderon
             AO2bl3_combo.SelectedItem = json_read.comboSignalsState[AO2bl3_combo.Name];
             AO2bl3combo_index = AO2bl3_combo.SelectedIndex;
             AO2bl3combo_text = AO2bl3_combo.SelectedItem.ToString();
-            // AO3, блок 3
-            AO3bl3_combo.SelectedItem = json_read.comboSignalsState[AO3bl3_combo.Name];
-            AO3bl3combo_index = AO3bl3_combo.SelectedIndex;
-            AO3bl3combo_text = AO3bl3_combo.SelectedItem.ToString();
             // DO1, ПЛК
             DO1_combo.SelectedItem = json_read.comboSignalsState[DO1_combo.Name];
             DO1combo_index = DO1_combo.SelectedIndex;
@@ -1501,15 +1477,12 @@ namespace Moderon
             // AO сигналы, блок 1
             json.labelSignalsState.Add(AO1bl1_lab.Name, AO1bl1_lab.Text);
             json.labelSignalsState.Add(AO2bl1_lab.Name, AO2bl1_lab.Text);
-            json.labelSignalsState.Add(AO3bl1_lab.Name, AO3bl1_lab.Text);
             // AO сигналы, блок 2
             json.labelSignalsState.Add(AO1bl2_lab.Name, AO1bl2_lab.Text);
             json.labelSignalsState.Add(AO2bl2_lab.Name, AO2bl2_lab.Text);
-            json.labelSignalsState.Add(AO3bl2_lab.Name, AO3bl2_lab.Text);
             // AO сигналы, блок 3
             json.labelSignalsState.Add(AO1bl3_lab.Name, AO1bl3_lab.Text);
             json.labelSignalsState.Add(AO2bl3_lab.Name, AO2bl3_lab.Text);
-            json.labelSignalsState.Add(AO3bl3_lab.Name, AO3bl3_lab.Text);
             // DO сигналы, ПЛК
             json.labelSignalsState.Add(DO1_lab.Name, DO1_lab.Text);
             json.labelSignalsState.Add(DO2_lab.Name, DO2_lab.Text);
@@ -1605,15 +1578,12 @@ namespace Moderon
             // AO сигналы, блок 1
             json.comboSignalsState.Add(AO1bl1_combo.Name, AO1bl1_combo.SelectedItem.ToString());
             json.comboSignalsState.Add(AO2bl1_combo.Name, AO2bl1_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(AO3bl1_combo.Name, AO3bl1_combo.SelectedItem.ToString());
             // AO сигналы, блок 2
             json.comboSignalsState.Add(AO1bl2_combo.Name, AO1bl2_combo.SelectedItem.ToString());
             json.comboSignalsState.Add(AO2bl2_combo.Name, AO2bl2_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(AO3bl2_combo.Name, AO3bl2_combo.SelectedItem.ToString());
             // AO сигналы, блок 3
             json.comboSignalsState.Add(AO1bl3_combo.Name, AO1bl3_combo.SelectedItem.ToString());
             json.comboSignalsState.Add(AO2bl3_combo.Name, AO2bl3_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(AO3bl3_combo.Name, AO3bl3_combo.SelectedItem.ToString());
             // DO сигналы, ПЛК
             json.comboSignalsState.Add(DO1_combo.Name, DO1_combo.SelectedItem.ToString());
             json.comboSignalsState.Add(DO2_combo.Name, DO2_combo.SelectedItem.ToString());
@@ -1931,11 +1901,6 @@ namespace Moderon
             for (int i = 0; i < AO2bl1_combo.Items.Count; i++)
                 arr_AO2bl1_combo[i] = AO2bl1_combo.GetItemText(AO2bl1_combo.Items[i]);
             json.comboSignalsItems.Add(AO2bl1_combo.Name, arr_AO2bl1_combo);
-            // AO3, блок 1
-            string[] arr_AO3bl1_combo = new string[AO3bl1_combo.Items.Count];
-            for (int i = 0; i < AO3bl1_combo.Items.Count; i++)
-                arr_AO3bl1_combo[i] = AO3bl1_combo.GetItemText(AO3bl1_combo.Items[i]);
-            json.comboSignalsItems.Add(AO3bl1_combo.Name, arr_AO3bl1_combo);
             // AO1, блок 2
             string[] arr_AO1bl2_combo = new string[AO1bl2_combo.Items.Count];
             for (int i = 0; i < AO1bl2_combo.Items.Count; i++)
@@ -1946,11 +1911,6 @@ namespace Moderon
             for (int i = 0; i < AO2bl2_combo.Items.Count; i++)
                 arr_AO2bl2_combo[i] = AO2bl2_combo.GetItemText(AO2bl2_combo.Items[i]);
             json.comboSignalsItems.Add(AO2bl2_combo.Name, arr_AO2bl2_combo);
-            // AO3, блок 2
-            string[] arr_AO3bl2_combo = new string[AO3bl2_combo.Items.Count];
-            for (int i = 0; i < AO3bl2_combo.Items.Count; i++)
-                arr_AO3bl2_combo[i] = AO3bl2_combo.GetItemText(AO3bl2_combo.Items[i]);
-            json.comboSignalsItems.Add(AO3bl2_combo.Name, arr_AO3bl2_combo);
             // AO1, блок 3
             string[] arr_AO1bl3_combo = new string[AO1bl3_combo.Items.Count];
             for (int i = 0; i < AO1bl3_combo.Items.Count; i++)
@@ -1961,11 +1921,6 @@ namespace Moderon
             for (int i = 0; i < AO2bl3_combo.Items.Count; i++)
                 arr_AO2bl3_combo[i] = AO2bl3_combo.GetItemText(AO2bl3_combo.Items[i]);
             json.comboSignalsItems.Add(AO2bl3_combo.Name, arr_AO2bl3_combo);
-            // AO3, блок 3
-            string[] arr_AO3bl3_combo = new string[AO3bl3_combo.Items.Count];
-            for (int i = 0; i < AO3bl3_combo.Items.Count; i++)
-                arr_AO3bl3_combo[i] = AO3bl3_combo.GetItemText(AO3bl3_combo.Items[i]);
-            json.comboSignalsItems.Add(AO3bl3_combo.Name, arr_AO3bl3_combo);
             // DO сигналы
             // DO1, ПЛК
             string[] arr_DO1_combo = new string[DO1_combo.Items.Count];

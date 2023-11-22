@@ -462,8 +462,8 @@ namespace Moderon
             } 
             else
             {
-                if (type == "sensor") SensorAIType(AI4_typeCombo, 3);
-                else if (type == "di") SensorAIType(AI4_typeCombo, 2);
+                if (type == "sensor") SensorAIType(typeCombo, 3);
+                else if (type == "di") SensorAIType(typeCombo, 2);
             }
         }
 
