@@ -255,7 +255,7 @@ namespace Moderon
         {
             if (AO1_combo.SelectedIndex == 0) SelectComboBox_AO(AO1_combo, code, AO1_lab, AO1combo_text, AO1combo_index);
             else if (AO2_combo.SelectedIndex == 0) SelectComboBox_AO(AO2_combo, code, AO2_lab, AO2combo_text, AO2combo_index);
-            else if (AO3_combo.SelectedIndex == 0 && AO3_combo.Enabled) SelectComboBox_AO(AO3_combo, code, AO3_lab, AO3combo_text, AO3combo_index);
+            else if (AO3_combo.SelectedIndex == 0 && AO3_combo.Visible) SelectComboBox_AO(AO3_combo, code, AO3_lab, AO3combo_text, AO3combo_index);
             else if (AO1bl1_combo.SelectedIndex == 0) SelectComboBox_AO(AO1bl1_combo, code, AO1bl1_lab, AO1bl1combo_text, AO1bl1combo_index);
             else if (AO2bl1_combo.SelectedIndex == 0) SelectComboBox_AO(AO2bl1_combo, code, AO2bl1_lab, AO2bl1combo_text, AO2bl1combo_index);
             else if (AO1bl2_combo.SelectedIndex == 0) SelectComboBox_AO(AO1bl2_combo, code, AO1bl2_lab, AO1bl2combo_text, AO1bl2combo_index);

@@ -450,14 +450,25 @@
             this.DO3_combo = new System.Windows.Forms.ComboBox();
             this.DO2_combo = new System.Windows.Forms.ComboBox();
             this.DO1_combo = new System.Windows.Forms.ComboBox();
-            this.label79 = new System.Windows.Forms.Label();
-            this.label80 = new System.Windows.Forms.Label();
-            this.label81 = new System.Windows.Forms.Label();
-            this.label82 = new System.Windows.Forms.Label();
-            this.label83 = new System.Windows.Forms.Label();
-            this.label84 = new System.Windows.Forms.Label();
+            this.DO6_plkLabel = new System.Windows.Forms.Label();
+            this.DO5_plkLabel = new System.Windows.Forms.Label();
+            this.DO4_plkLabel = new System.Windows.Forms.Label();
+            this.DO3_plkLabel = new System.Windows.Forms.Label();
+            this.DO2_plkLabel = new System.Windows.Forms.Label();
+            this.DO1_plkLabel = new System.Windows.Forms.Label();
             this.label64 = new System.Windows.Forms.Label();
             this.tabAO = new System.Windows.Forms.TabPage();
+            this.plk_AOpanel = new System.Windows.Forms.Panel();
+            this.label63 = new System.Windows.Forms.Label();
+            this.AO1_combo = new System.Windows.Forms.ComboBox();
+            this.AO3_lab = new System.Windows.Forms.Label();
+            this.AO1_plkLabel = new System.Windows.Forms.Label();
+            this.AO2_lab = new System.Windows.Forms.Label();
+            this.AO1_lab = new System.Windows.Forms.Label();
+            this.AO3_combo = new System.Windows.Forms.ComboBox();
+            this.AO2_plkLabel = new System.Windows.Forms.Label();
+            this.AO3_plkLabel = new System.Windows.Forms.Label();
+            this.AO2_combo = new System.Windows.Forms.ComboBox();
             this.block3_AOpanel = new System.Windows.Forms.Panel();
             this.AO2bl3_lab = new System.Windows.Forms.Label();
             this.AO2bl3_combo = new System.Windows.Forms.ComboBox();
@@ -466,9 +477,6 @@
             this.label148 = new System.Windows.Forms.Label();
             this.AO1bl3_combo = new System.Windows.Forms.ComboBox();
             this.label155 = new System.Windows.Forms.Label();
-            this.AO3_lab = new System.Windows.Forms.Label();
-            this.AO2_lab = new System.Windows.Forms.Label();
-            this.AO1_lab = new System.Windows.Forms.Label();
             this.block2_AOpanel = new System.Windows.Forms.Panel();
             this.AO1bl2_lab = new System.Windows.Forms.Label();
             this.AO2bl2_lab = new System.Windows.Forms.Label();
@@ -485,13 +493,6 @@
             this.label105 = new System.Windows.Forms.Label();
             this.label104 = new System.Windows.Forms.Label();
             this.label103 = new System.Windows.Forms.Label();
-            this.AO3_combo = new System.Windows.Forms.ComboBox();
-            this.AO2_combo = new System.Windows.Forms.ComboBox();
-            this.AO1_combo = new System.Windows.Forms.ComboBox();
-            this.label71 = new System.Windows.Forms.Label();
-            this.label77 = new System.Windows.Forms.Label();
-            this.label78 = new System.Windows.Forms.Label();
-            this.label63 = new System.Windows.Forms.Label();
             this.tabAI = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
             this.AI6bl3_lab = new System.Windows.Forms.Label();
@@ -695,6 +696,7 @@
             this.netOptionLabel = new System.Windows.Forms.Label();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.comboPlkType = new System.Windows.Forms.ComboBox();
+            this.pl = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.sensorsPage.SuspendLayout();
@@ -753,6 +755,7 @@
             this.block2_DOpanel.SuspendLayout();
             this.block1_DOpanel.SuspendLayout();
             this.tabAO.SuspendLayout();
+            this.plk_AOpanel.SuspendLayout();
             this.block3_AOpanel.SuspendLayout();
             this.block2_AOpanel.SuspendLayout();
             this.block1_AOpanel.SuspendLayout();
@@ -768,6 +771,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PDF_manual)).BeginInit();
             this.loadCanPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
+            this.pl.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -4172,7 +4176,7 @@
             this.loadModbusPanel.Controls.Add(this.label59);
             this.loadModbusPanel.Controls.Add(this.label1);
             this.loadModbusPanel.Controls.Add(this.backOptionsButton);
-            this.loadModbusPanel.Location = new System.Drawing.Point(12, 947);
+            this.loadModbusPanel.Location = new System.Drawing.Point(5, 1015);
             this.loadModbusPanel.Name = "loadModbusPanel";
             this.loadModbusPanel.Size = new System.Drawing.Size(749, 34);
             this.loadModbusPanel.TabIndex = 12;
@@ -4431,7 +4435,7 @@
             this.signalsPanel.Controls.Add(this.backSignalsButton);
             this.signalsPanel.Location = new System.Drawing.Point(15, 177);
             this.signalsPanel.Name = "signalsPanel";
-            this.signalsPanel.Size = new System.Drawing.Size(750, 703);
+            this.signalsPanel.Size = new System.Drawing.Size(750, 816);
             this.signalsPanel.TabIndex = 16;
             this.signalsPanel.Visible = false;
             // 
@@ -4442,7 +4446,7 @@
             this.loadToExl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loadToExl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadToExl.ForeColor = System.Drawing.Color.White;
-            this.loadToExl.Location = new System.Drawing.Point(561, 671);
+            this.loadToExl.Location = new System.Drawing.Point(561, 784);
             this.loadToExl.Name = "loadToExl";
             this.loadToExl.Size = new System.Drawing.Size(173, 27);
             this.loadToExl.TabIndex = 61;
@@ -4457,7 +4461,7 @@
             this.loadPLC_SignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loadPLC_SignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadPLC_SignalsButton.ForeColor = System.Drawing.Color.White;
-            this.loadPLC_SignalsButton.Location = new System.Drawing.Point(408, 671);
+            this.loadPLC_SignalsButton.Location = new System.Drawing.Point(408, 784);
             this.loadPLC_SignalsButton.Name = "loadPLC_SignalsButton";
             this.loadPLC_SignalsButton.Size = new System.Drawing.Size(147, 27);
             this.loadPLC_SignalsButton.TabIndex = 60;
@@ -4471,7 +4475,7 @@
             this.signalsReadyLabel.AutoSize = true;
             this.signalsReadyLabel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.signalsReadyLabel.ForeColor = System.Drawing.Color.Green;
-            this.signalsReadyLabel.Location = new System.Drawing.Point(123, 677);
+            this.signalsReadyLabel.Location = new System.Drawing.Point(123, 790);
             this.signalsReadyLabel.Name = "signalsReadyLabel";
             this.signalsReadyLabel.Size = new System.Drawing.Size(272, 14);
             this.signalsReadyLabel.TabIndex = 23;
@@ -5075,28 +5079,10 @@
             // tabDO
             // 
             this.tabDO.AutoScroll = true;
+            this.tabDO.Controls.Add(this.pl);
             this.tabDO.Controls.Add(this.block3_DOpanel);
-            this.tabDO.Controls.Add(this.DO6_lab);
-            this.tabDO.Controls.Add(this.DO5_lab);
-            this.tabDO.Controls.Add(this.DO4_lab);
-            this.tabDO.Controls.Add(this.DO3_lab);
-            this.tabDO.Controls.Add(this.DO2_lab);
-            this.tabDO.Controls.Add(this.DO1_lab);
             this.tabDO.Controls.Add(this.block2_DOpanel);
             this.tabDO.Controls.Add(this.block1_DOpanel);
-            this.tabDO.Controls.Add(this.DO6_combo);
-            this.tabDO.Controls.Add(this.DO5_combo);
-            this.tabDO.Controls.Add(this.DO4_combo);
-            this.tabDO.Controls.Add(this.DO3_combo);
-            this.tabDO.Controls.Add(this.DO2_combo);
-            this.tabDO.Controls.Add(this.DO1_combo);
-            this.tabDO.Controls.Add(this.label79);
-            this.tabDO.Controls.Add(this.label80);
-            this.tabDO.Controls.Add(this.label81);
-            this.tabDO.Controls.Add(this.label82);
-            this.tabDO.Controls.Add(this.label83);
-            this.tabDO.Controls.Add(this.label84);
-            this.tabDO.Controls.Add(this.label64);
             this.tabDO.Location = new System.Drawing.Point(4, 22);
             this.tabDO.Name = "tabDO";
             this.tabDO.Size = new System.Drawing.Size(721, 762);
@@ -5129,7 +5115,7 @@
             this.block3_DOpanel.Controls.Add(this.label159);
             this.block3_DOpanel.Location = new System.Drawing.Point(3, 787);
             this.block3_DOpanel.Name = "block3_DOpanel";
-            this.block3_DOpanel.Size = new System.Drawing.Size(700, 260);
+            this.block3_DOpanel.Size = new System.Drawing.Size(700, 331);
             this.block3_DOpanel.TabIndex = 46;
             // 
             // DO7bl3_lab
@@ -5370,7 +5356,7 @@
             // 
             this.DO6_lab.AutoSize = true;
             this.DO6_lab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DO6_lab.Location = new System.Drawing.Point(441, 205);
+            this.DO6_lab.Location = new System.Drawing.Point(433, 190);
             this.DO6_lab.Name = "DO6_lab";
             this.DO6_lab.Size = new System.Drawing.Size(38, 14);
             this.DO6_lab.TabIndex = 44;
@@ -5380,7 +5366,7 @@
             // 
             this.DO5_lab.AutoSize = true;
             this.DO5_lab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DO5_lab.Location = new System.Drawing.Point(441, 174);
+            this.DO5_lab.Location = new System.Drawing.Point(433, 159);
             this.DO5_lab.Name = "DO5_lab";
             this.DO5_lab.Size = new System.Drawing.Size(38, 14);
             this.DO5_lab.TabIndex = 43;
@@ -5390,7 +5376,7 @@
             // 
             this.DO4_lab.AutoSize = true;
             this.DO4_lab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DO4_lab.Location = new System.Drawing.Point(441, 143);
+            this.DO4_lab.Location = new System.Drawing.Point(433, 128);
             this.DO4_lab.Name = "DO4_lab";
             this.DO4_lab.Size = new System.Drawing.Size(38, 14);
             this.DO4_lab.TabIndex = 42;
@@ -5400,7 +5386,7 @@
             // 
             this.DO3_lab.AutoSize = true;
             this.DO3_lab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DO3_lab.Location = new System.Drawing.Point(441, 112);
+            this.DO3_lab.Location = new System.Drawing.Point(433, 97);
             this.DO3_lab.Name = "DO3_lab";
             this.DO3_lab.Size = new System.Drawing.Size(38, 14);
             this.DO3_lab.TabIndex = 41;
@@ -5410,7 +5396,7 @@
             // 
             this.DO2_lab.AutoSize = true;
             this.DO2_lab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DO2_lab.Location = new System.Drawing.Point(441, 81);
+            this.DO2_lab.Location = new System.Drawing.Point(433, 66);
             this.DO2_lab.Name = "DO2_lab";
             this.DO2_lab.Size = new System.Drawing.Size(38, 14);
             this.DO2_lab.TabIndex = 40;
@@ -5420,7 +5406,7 @@
             // 
             this.DO1_lab.AutoSize = true;
             this.DO1_lab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DO1_lab.Location = new System.Drawing.Point(441, 50);
+            this.DO1_lab.Location = new System.Drawing.Point(433, 35);
             this.DO1_lab.Name = "DO1_lab";
             this.DO1_lab.Size = new System.Drawing.Size(38, 14);
             this.DO1_lab.TabIndex = 39;
@@ -5450,9 +5436,9 @@
             this.block2_DOpanel.Controls.Add(this.DO2bl2_combo);
             this.block2_DOpanel.Controls.Add(this.label100);
             this.block2_DOpanel.Controls.Add(this.label101);
-            this.block2_DOpanel.Location = new System.Drawing.Point(3, 524);
+            this.block2_DOpanel.Location = new System.Drawing.Point(2, 741);
             this.block2_DOpanel.Name = "block2_DOpanel";
-            this.block2_DOpanel.Size = new System.Drawing.Size(700, 260);
+            this.block2_DOpanel.Size = new System.Drawing.Size(700, 40);
             this.block2_DOpanel.TabIndex = 38;
             // 
             // DO7bl2_lab
@@ -5713,9 +5699,9 @@
             this.block1_DOpanel.Controls.Add(this.DO2bl1_combo);
             this.block1_DOpanel.Controls.Add(this.label89);
             this.block1_DOpanel.Controls.Add(this.label88);
-            this.block1_DOpanel.Location = new System.Drawing.Point(0, 261);
+            this.block1_DOpanel.Location = new System.Drawing.Point(6, 374);
             this.block1_DOpanel.Name = "block1_DOpanel";
-            this.block1_DOpanel.Size = new System.Drawing.Size(700, 260);
+            this.block1_DOpanel.Size = new System.Drawing.Size(514, 133);
             this.block1_DOpanel.TabIndex = 23;
             // 
             // DO7bl1_lab
@@ -5958,7 +5944,7 @@
             this.DO6_combo.FormattingEnabled = true;
             this.DO6_combo.Items.AddRange(new object[] {
             "Не выбрано"});
-            this.DO6_combo.Location = new System.Drawing.Point(54, 203);
+            this.DO6_combo.Location = new System.Drawing.Point(46, 188);
             this.DO6_combo.Name = "DO6_combo";
             this.DO6_combo.Size = new System.Drawing.Size(380, 21);
             this.DO6_combo.TabIndex = 20;
@@ -5970,7 +5956,7 @@
             this.DO5_combo.FormattingEnabled = true;
             this.DO5_combo.Items.AddRange(new object[] {
             "Не выбрано"});
-            this.DO5_combo.Location = new System.Drawing.Point(54, 172);
+            this.DO5_combo.Location = new System.Drawing.Point(46, 157);
             this.DO5_combo.Name = "DO5_combo";
             this.DO5_combo.Size = new System.Drawing.Size(380, 21);
             this.DO5_combo.TabIndex = 19;
@@ -5982,7 +5968,7 @@
             this.DO4_combo.FormattingEnabled = true;
             this.DO4_combo.Items.AddRange(new object[] {
             "Не выбрано"});
-            this.DO4_combo.Location = new System.Drawing.Point(54, 141);
+            this.DO4_combo.Location = new System.Drawing.Point(46, 126);
             this.DO4_combo.Name = "DO4_combo";
             this.DO4_combo.Size = new System.Drawing.Size(380, 21);
             this.DO4_combo.TabIndex = 18;
@@ -5994,7 +5980,7 @@
             this.DO3_combo.FormattingEnabled = true;
             this.DO3_combo.Items.AddRange(new object[] {
             "Не выбрано"});
-            this.DO3_combo.Location = new System.Drawing.Point(54, 110);
+            this.DO3_combo.Location = new System.Drawing.Point(46, 95);
             this.DO3_combo.Name = "DO3_combo";
             this.DO3_combo.Size = new System.Drawing.Size(380, 21);
             this.DO3_combo.TabIndex = 17;
@@ -6006,7 +5992,7 @@
             this.DO2_combo.FormattingEnabled = true;
             this.DO2_combo.Items.AddRange(new object[] {
             "Не выбрано"});
-            this.DO2_combo.Location = new System.Drawing.Point(54, 79);
+            this.DO2_combo.Location = new System.Drawing.Point(46, 64);
             this.DO2_combo.Name = "DO2_combo";
             this.DO2_combo.Size = new System.Drawing.Size(380, 21);
             this.DO2_combo.TabIndex = 16;
@@ -6018,77 +6004,77 @@
             this.DO1_combo.FormattingEnabled = true;
             this.DO1_combo.Items.AddRange(new object[] {
             "Не выбрано"});
-            this.DO1_combo.Location = new System.Drawing.Point(55, 48);
+            this.DO1_combo.Location = new System.Drawing.Point(47, 33);
             this.DO1_combo.Name = "DO1_combo";
             this.DO1_combo.Size = new System.Drawing.Size(380, 21);
             this.DO1_combo.TabIndex = 15;
             this.DO1_combo.SelectedIndexChanged += new System.EventHandler(this.DO1_combo_SelectedIndexChanged);
             // 
-            // label79
+            // DO6_plkLabel
             // 
-            this.label79.AutoSize = true;
-            this.label79.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label79.Location = new System.Drawing.Point(16, 205);
-            this.label79.Name = "label79";
-            this.label79.Size = new System.Drawing.Size(38, 14);
-            this.label79.TabIndex = 14;
-            this.label79.Text = "DO 6";
+            this.DO6_plkLabel.AutoSize = true;
+            this.DO6_plkLabel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DO6_plkLabel.Location = new System.Drawing.Point(8, 190);
+            this.DO6_plkLabel.Name = "DO6_plkLabel";
+            this.DO6_plkLabel.Size = new System.Drawing.Size(38, 14);
+            this.DO6_plkLabel.TabIndex = 14;
+            this.DO6_plkLabel.Text = "DO 6";
             // 
-            // label80
+            // DO5_plkLabel
             // 
-            this.label80.AutoSize = true;
-            this.label80.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label80.Location = new System.Drawing.Point(16, 174);
-            this.label80.Name = "label80";
-            this.label80.Size = new System.Drawing.Size(38, 14);
-            this.label80.TabIndex = 13;
-            this.label80.Text = "DO 5";
+            this.DO5_plkLabel.AutoSize = true;
+            this.DO5_plkLabel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DO5_plkLabel.Location = new System.Drawing.Point(8, 159);
+            this.DO5_plkLabel.Name = "DO5_plkLabel";
+            this.DO5_plkLabel.Size = new System.Drawing.Size(38, 14);
+            this.DO5_plkLabel.TabIndex = 13;
+            this.DO5_plkLabel.Text = "DO 5";
             // 
-            // label81
+            // DO4_plkLabel
             // 
-            this.label81.AutoSize = true;
-            this.label81.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label81.Location = new System.Drawing.Point(16, 143);
-            this.label81.Name = "label81";
-            this.label81.Size = new System.Drawing.Size(38, 14);
-            this.label81.TabIndex = 12;
-            this.label81.Text = "DO 4";
+            this.DO4_plkLabel.AutoSize = true;
+            this.DO4_plkLabel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DO4_plkLabel.Location = new System.Drawing.Point(8, 128);
+            this.DO4_plkLabel.Name = "DO4_plkLabel";
+            this.DO4_plkLabel.Size = new System.Drawing.Size(38, 14);
+            this.DO4_plkLabel.TabIndex = 12;
+            this.DO4_plkLabel.Text = "DO 4";
             // 
-            // label82
+            // DO3_plkLabel
             // 
-            this.label82.AutoSize = true;
-            this.label82.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label82.Location = new System.Drawing.Point(16, 112);
-            this.label82.Name = "label82";
-            this.label82.Size = new System.Drawing.Size(38, 14);
-            this.label82.TabIndex = 11;
-            this.label82.Text = "DO 3";
+            this.DO3_plkLabel.AutoSize = true;
+            this.DO3_plkLabel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DO3_plkLabel.Location = new System.Drawing.Point(8, 97);
+            this.DO3_plkLabel.Name = "DO3_plkLabel";
+            this.DO3_plkLabel.Size = new System.Drawing.Size(38, 14);
+            this.DO3_plkLabel.TabIndex = 11;
+            this.DO3_plkLabel.Text = "DO 3";
             // 
-            // label83
+            // DO2_plkLabel
             // 
-            this.label83.AutoSize = true;
-            this.label83.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label83.Location = new System.Drawing.Point(16, 81);
-            this.label83.Name = "label83";
-            this.label83.Size = new System.Drawing.Size(38, 14);
-            this.label83.TabIndex = 10;
-            this.label83.Text = "DO 2";
+            this.DO2_plkLabel.AutoSize = true;
+            this.DO2_plkLabel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DO2_plkLabel.Location = new System.Drawing.Point(8, 66);
+            this.DO2_plkLabel.Name = "DO2_plkLabel";
+            this.DO2_plkLabel.Size = new System.Drawing.Size(38, 14);
+            this.DO2_plkLabel.TabIndex = 10;
+            this.DO2_plkLabel.Text = "DO 2";
             // 
-            // label84
+            // DO1_plkLabel
             // 
-            this.label84.AutoSize = true;
-            this.label84.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label84.Location = new System.Drawing.Point(16, 50);
-            this.label84.Name = "label84";
-            this.label84.Size = new System.Drawing.Size(38, 14);
-            this.label84.TabIndex = 9;
-            this.label84.Text = "DO 1";
+            this.DO1_plkLabel.AutoSize = true;
+            this.DO1_plkLabel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DO1_plkLabel.Location = new System.Drawing.Point(8, 35);
+            this.DO1_plkLabel.Name = "DO1_plkLabel";
+            this.DO1_plkLabel.Size = new System.Drawing.Size(38, 14);
+            this.DO1_plkLabel.TabIndex = 9;
+            this.DO1_plkLabel.Text = "DO 1";
             // 
             // label64
             // 
             this.label64.AutoSize = true;
             this.label64.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label64.Location = new System.Drawing.Point(16, 19);
+            this.label64.Location = new System.Drawing.Point(8, 4);
             this.label64.Name = "label64";
             this.label64.Size = new System.Drawing.Size(88, 14);
             this.label64.TabIndex = 2;
@@ -6097,24 +6083,138 @@
             // tabAO
             // 
             this.tabAO.AutoScroll = true;
+            this.tabAO.Controls.Add(this.plk_AOpanel);
             this.tabAO.Controls.Add(this.block3_AOpanel);
-            this.tabAO.Controls.Add(this.AO3_lab);
-            this.tabAO.Controls.Add(this.AO2_lab);
-            this.tabAO.Controls.Add(this.AO1_lab);
             this.tabAO.Controls.Add(this.block2_AOpanel);
             this.tabAO.Controls.Add(this.block1_AOpanel);
-            this.tabAO.Controls.Add(this.AO3_combo);
-            this.tabAO.Controls.Add(this.AO2_combo);
-            this.tabAO.Controls.Add(this.AO1_combo);
-            this.tabAO.Controls.Add(this.label71);
-            this.tabAO.Controls.Add(this.label77);
-            this.tabAO.Controls.Add(this.label78);
-            this.tabAO.Controls.Add(this.label63);
             this.tabAO.Location = new System.Drawing.Point(4, 22);
             this.tabAO.Name = "tabAO";
             this.tabAO.Size = new System.Drawing.Size(721, 762);
             this.tabAO.TabIndex = 2;
             this.tabAO.Text = "AO сигналы";
+            // 
+            // plk_AOpanel
+            // 
+            this.plk_AOpanel.Controls.Add(this.label63);
+            this.plk_AOpanel.Controls.Add(this.AO1_combo);
+            this.plk_AOpanel.Controls.Add(this.AO3_lab);
+            this.plk_AOpanel.Controls.Add(this.AO1_plkLabel);
+            this.plk_AOpanel.Controls.Add(this.AO2_lab);
+            this.plk_AOpanel.Controls.Add(this.AO1_lab);
+            this.plk_AOpanel.Controls.Add(this.AO3_combo);
+            this.plk_AOpanel.Controls.Add(this.AO2_plkLabel);
+            this.plk_AOpanel.Controls.Add(this.AO3_plkLabel);
+            this.plk_AOpanel.Controls.Add(this.AO2_combo);
+            this.plk_AOpanel.Location = new System.Drawing.Point(6, 11);
+            this.plk_AOpanel.Name = "plk_AOpanel";
+            this.plk_AOpanel.Size = new System.Drawing.Size(511, 134);
+            this.plk_AOpanel.TabIndex = 33;
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label63.Location = new System.Drawing.Point(8, 4);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(88, 14);
+            this.label63.TabIndex = 2;
+            this.label63.Text = "Контроллер";
+            // 
+            // AO1_combo
+            // 
+            this.AO1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.AO1_combo.FormattingEnabled = true;
+            this.AO1_combo.Items.AddRange(new object[] {
+            "Не выбрано"});
+            this.AO1_combo.Location = new System.Drawing.Point(50, 33);
+            this.AO1_combo.Name = "AO1_combo";
+            this.AO1_combo.Size = new System.Drawing.Size(380, 21);
+            this.AO1_combo.TabIndex = 17;
+            this.AO1_combo.SelectedIndexChanged += new System.EventHandler(this.AO1_combo_SelectedIndexChanged);
+            // 
+            // AO3_lab
+            // 
+            this.AO3_lab.AutoSize = true;
+            this.AO3_lab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.AO3_lab.Location = new System.Drawing.Point(436, 97);
+            this.AO3_lab.Name = "AO3_lab";
+            this.AO3_lab.Size = new System.Drawing.Size(37, 14);
+            this.AO3_lab.TabIndex = 31;
+            this.AO3_lab.Text = "AO 3";
+            // 
+            // AO1_plkLabel
+            // 
+            this.AO1_plkLabel.AutoSize = true;
+            this.AO1_plkLabel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.AO1_plkLabel.Location = new System.Drawing.Point(8, 35);
+            this.AO1_plkLabel.Name = "AO1_plkLabel";
+            this.AO1_plkLabel.Size = new System.Drawing.Size(37, 14);
+            this.AO1_plkLabel.TabIndex = 12;
+            this.AO1_plkLabel.Text = "AO 1";
+            // 
+            // AO2_lab
+            // 
+            this.AO2_lab.AutoSize = true;
+            this.AO2_lab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.AO2_lab.Location = new System.Drawing.Point(436, 66);
+            this.AO2_lab.Name = "AO2_lab";
+            this.AO2_lab.Size = new System.Drawing.Size(37, 14);
+            this.AO2_lab.TabIndex = 30;
+            this.AO2_lab.Text = "AO 2";
+            // 
+            // AO1_lab
+            // 
+            this.AO1_lab.AutoSize = true;
+            this.AO1_lab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.AO1_lab.Location = new System.Drawing.Point(436, 35);
+            this.AO1_lab.Name = "AO1_lab";
+            this.AO1_lab.Size = new System.Drawing.Size(37, 14);
+            this.AO1_lab.TabIndex = 29;
+            this.AO1_lab.Text = "AO 1";
+            // 
+            // AO3_combo
+            // 
+            this.AO3_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.AO3_combo.FormattingEnabled = true;
+            this.AO3_combo.Items.AddRange(new object[] {
+            "Не выбрано"});
+            this.AO3_combo.Location = new System.Drawing.Point(49, 95);
+            this.AO3_combo.Name = "AO3_combo";
+            this.AO3_combo.Size = new System.Drawing.Size(380, 21);
+            this.AO3_combo.TabIndex = 19;
+            this.AO3_combo.SelectedIndexChanged += new System.EventHandler(this.AO3_combo_SelectedIndexChanged);
+            // 
+            // AO2_plkLabel
+            // 
+            this.AO2_plkLabel.AutoSize = true;
+            this.AO2_plkLabel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.AO2_plkLabel.Location = new System.Drawing.Point(8, 66);
+            this.AO2_plkLabel.Name = "AO2_plkLabel";
+            this.AO2_plkLabel.Size = new System.Drawing.Size(37, 14);
+            this.AO2_plkLabel.TabIndex = 13;
+            this.AO2_plkLabel.Text = "AO 2";
+            // 
+            // AO3_plkLabel
+            // 
+            this.AO3_plkLabel.AutoSize = true;
+            this.AO3_plkLabel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.AO3_plkLabel.Location = new System.Drawing.Point(8, 97);
+            this.AO3_plkLabel.Name = "AO3_plkLabel";
+            this.AO3_plkLabel.Size = new System.Drawing.Size(37, 14);
+            this.AO3_plkLabel.TabIndex = 14;
+            this.AO3_plkLabel.Text = "AO 3";
+            // 
+            // AO2_combo
+            // 
+            this.AO2_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.AO2_combo.FormattingEnabled = true;
+            this.AO2_combo.Items.AddRange(new object[] {
+            "Не выбрано"});
+            this.AO2_combo.Location = new System.Drawing.Point(49, 64);
+            this.AO2_combo.Name = "AO2_combo";
+            this.AO2_combo.Size = new System.Drawing.Size(380, 21);
+            this.AO2_combo.TabIndex = 18;
+            this.AO2_combo.SelectedIndexChanged += new System.EventHandler(this.AO2_combo_SelectedIndexChanged);
             // 
             // block3_AOpanel
             // 
@@ -6125,7 +6225,7 @@
             this.block3_AOpanel.Controls.Add(this.label148);
             this.block3_AOpanel.Controls.Add(this.AO1bl3_combo);
             this.block3_AOpanel.Controls.Add(this.label155);
-            this.block3_AOpanel.Location = new System.Drawing.Point(7, 342);
+            this.block3_AOpanel.Location = new System.Drawing.Point(6, 346);
             this.block3_AOpanel.Name = "block3_AOpanel";
             this.block3_AOpanel.Size = new System.Drawing.Size(511, 99);
             this.block3_AOpanel.TabIndex = 32;
@@ -6205,36 +6305,6 @@
             this.label155.TabIndex = 31;
             this.label155.Text = "AO 1";
             // 
-            // AO3_lab
-            // 
-            this.AO3_lab.AutoSize = true;
-            this.AO3_lab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.AO3_lab.Location = new System.Drawing.Point(444, 112);
-            this.AO3_lab.Name = "AO3_lab";
-            this.AO3_lab.Size = new System.Drawing.Size(37, 14);
-            this.AO3_lab.TabIndex = 31;
-            this.AO3_lab.Text = "AO 3";
-            // 
-            // AO2_lab
-            // 
-            this.AO2_lab.AutoSize = true;
-            this.AO2_lab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.AO2_lab.Location = new System.Drawing.Point(444, 81);
-            this.AO2_lab.Name = "AO2_lab";
-            this.AO2_lab.Size = new System.Drawing.Size(37, 14);
-            this.AO2_lab.TabIndex = 30;
-            this.AO2_lab.Text = "AO 2";
-            // 
-            // AO1_lab
-            // 
-            this.AO1_lab.AutoSize = true;
-            this.AO1_lab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.AO1_lab.Location = new System.Drawing.Point(444, 50);
-            this.AO1_lab.Name = "AO1_lab";
-            this.AO1_lab.Size = new System.Drawing.Size(37, 14);
-            this.AO1_lab.TabIndex = 29;
-            this.AO1_lab.Text = "AO 1";
-            // 
             // block2_AOpanel
             // 
             this.block2_AOpanel.Controls.Add(this.AO1bl2_lab);
@@ -6244,7 +6314,7 @@
             this.block2_AOpanel.Controls.Add(this.label106);
             this.block2_AOpanel.Controls.Add(this.label107);
             this.block2_AOpanel.Controls.Add(this.label109);
-            this.block2_AOpanel.Location = new System.Drawing.Point(7, 242);
+            this.block2_AOpanel.Location = new System.Drawing.Point(6, 246);
             this.block2_AOpanel.Name = "block2_AOpanel";
             this.block2_AOpanel.Size = new System.Drawing.Size(511, 99);
             this.block2_AOpanel.TabIndex = 28;
@@ -6333,11 +6403,11 @@
             this.block1_AOpanel.Controls.Add(this.label105);
             this.block1_AOpanel.Controls.Add(this.label104);
             this.block1_AOpanel.Controls.Add(this.label103);
-            this.block1_AOpanel.Location = new System.Drawing.Point(7, 142);
+            this.block1_AOpanel.Location = new System.Drawing.Point(6, 146);
             this.block1_AOpanel.Name = "block1_AOpanel";
             this.block1_AOpanel.Size = new System.Drawing.Size(511, 99);
             this.block1_AOpanel.TabIndex = 20;
-            this.block1_AOpanel.Visible = false;
+            this.block1_AOpanel.Paint += new System.Windows.Forms.PaintEventHandler(this.block1_AOpanel_Paint);
             // 
             // AO1bl1_lab
             // 
@@ -6412,82 +6482,6 @@
             this.label103.Size = new System.Drawing.Size(37, 14);
             this.label103.TabIndex = 23;
             this.label103.Text = "AO 2";
-            // 
-            // AO3_combo
-            // 
-            this.AO3_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.AO3_combo.FormattingEnabled = true;
-            this.AO3_combo.Items.AddRange(new object[] {
-            "Не выбрано"});
-            this.AO3_combo.Location = new System.Drawing.Point(57, 110);
-            this.AO3_combo.Name = "AO3_combo";
-            this.AO3_combo.Size = new System.Drawing.Size(380, 21);
-            this.AO3_combo.TabIndex = 19;
-            this.AO3_combo.SelectedIndexChanged += new System.EventHandler(this.AO3_combo_SelectedIndexChanged);
-            // 
-            // AO2_combo
-            // 
-            this.AO2_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.AO2_combo.FormattingEnabled = true;
-            this.AO2_combo.Items.AddRange(new object[] {
-            "Не выбрано"});
-            this.AO2_combo.Location = new System.Drawing.Point(57, 79);
-            this.AO2_combo.Name = "AO2_combo";
-            this.AO2_combo.Size = new System.Drawing.Size(380, 21);
-            this.AO2_combo.TabIndex = 18;
-            this.AO2_combo.SelectedIndexChanged += new System.EventHandler(this.AO2_combo_SelectedIndexChanged);
-            // 
-            // AO1_combo
-            // 
-            this.AO1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.AO1_combo.FormattingEnabled = true;
-            this.AO1_combo.Items.AddRange(new object[] {
-            "Не выбрано"});
-            this.AO1_combo.Location = new System.Drawing.Point(58, 48);
-            this.AO1_combo.Name = "AO1_combo";
-            this.AO1_combo.Size = new System.Drawing.Size(380, 21);
-            this.AO1_combo.TabIndex = 17;
-            this.AO1_combo.SelectedIndexChanged += new System.EventHandler(this.AO1_combo_SelectedIndexChanged);
-            // 
-            // label71
-            // 
-            this.label71.AutoSize = true;
-            this.label71.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label71.Location = new System.Drawing.Point(16, 112);
-            this.label71.Name = "label71";
-            this.label71.Size = new System.Drawing.Size(37, 14);
-            this.label71.TabIndex = 14;
-            this.label71.Text = "AO 3";
-            // 
-            // label77
-            // 
-            this.label77.AutoSize = true;
-            this.label77.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label77.Location = new System.Drawing.Point(16, 81);
-            this.label77.Name = "label77";
-            this.label77.Size = new System.Drawing.Size(37, 14);
-            this.label77.TabIndex = 13;
-            this.label77.Text = "AO 2";
-            // 
-            // label78
-            // 
-            this.label78.AutoSize = true;
-            this.label78.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label78.Location = new System.Drawing.Point(16, 50);
-            this.label78.Name = "label78";
-            this.label78.Size = new System.Drawing.Size(37, 14);
-            this.label78.TabIndex = 12;
-            this.label78.Text = "AO 1";
-            // 
-            // label63
-            // 
-            this.label63.AutoSize = true;
-            this.label63.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label63.Location = new System.Drawing.Point(16, 19);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(88, 14);
-            this.label63.TabIndex = 2;
-            this.label63.Text = "Контроллер";
             // 
             // tabAI
             // 
@@ -8489,7 +8483,7 @@
             this.backSignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.backSignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.backSignalsButton.ForeColor = System.Drawing.Color.White;
-            this.backSignalsButton.Location = new System.Drawing.Point(10, 671);
+            this.backSignalsButton.Location = new System.Drawing.Point(10, 784);
             this.backSignalsButton.Name = "backSignalsButton";
             this.backSignalsButton.Size = new System.Drawing.Size(94, 27);
             this.backSignalsButton.TabIndex = 58;
@@ -8504,7 +8498,7 @@
             this.helpPanel.Controls.Add(this.label140);
             this.helpPanel.Controls.Add(this.linkModeronWeb);
             this.helpPanel.Controls.Add(this.backHelpButton);
-            this.helpPanel.Location = new System.Drawing.Point(12, 898);
+            this.helpPanel.Location = new System.Drawing.Point(3, 978);
             this.helpPanel.Name = "helpPanel";
             this.helpPanel.Size = new System.Drawing.Size(746, 28);
             this.helpPanel.TabIndex = 17;
@@ -8843,6 +8837,32 @@
             this.comboPlkType.Visible = false;
             this.comboPlkType.SelectedIndexChanged += new System.EventHandler(this.ComboPlkType_SelectedIndexChanged);
             // 
+            // pl
+            // 
+            this.pl.Controls.Add(this.label64);
+            this.pl.Controls.Add(this.DO1_combo);
+            this.pl.Controls.Add(this.DO6_lab);
+            this.pl.Controls.Add(this.DO1_plkLabel);
+            this.pl.Controls.Add(this.DO5_lab);
+            this.pl.Controls.Add(this.DO1_lab);
+            this.pl.Controls.Add(this.DO4_lab);
+            this.pl.Controls.Add(this.DO2_combo);
+            this.pl.Controls.Add(this.DO3_lab);
+            this.pl.Controls.Add(this.DO2_plkLabel);
+            this.pl.Controls.Add(this.DO2_lab);
+            this.pl.Controls.Add(this.DO3_plkLabel);
+            this.pl.Controls.Add(this.DO6_combo);
+            this.pl.Controls.Add(this.DO4_plkLabel);
+            this.pl.Controls.Add(this.DO5_combo);
+            this.pl.Controls.Add(this.DO5_plkLabel);
+            this.pl.Controls.Add(this.DO4_combo);
+            this.pl.Controls.Add(this.DO6_plkLabel);
+            this.pl.Controls.Add(this.DO3_combo);
+            this.pl.Location = new System.Drawing.Point(6, 109);
+            this.pl.Name = "pl";
+            this.pl.Size = new System.Drawing.Size(514, 227);
+            this.pl.TabIndex = 47;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -8951,7 +8971,6 @@
             this.tabUI.ResumeLayout(false);
             this.tabUI.PerformLayout();
             this.tabDO.ResumeLayout(false);
-            this.tabDO.PerformLayout();
             this.block3_DOpanel.ResumeLayout(false);
             this.block3_DOpanel.PerformLayout();
             this.block2_DOpanel.ResumeLayout(false);
@@ -8959,7 +8978,8 @@
             this.block1_DOpanel.ResumeLayout(false);
             this.block1_DOpanel.PerformLayout();
             this.tabAO.ResumeLayout(false);
-            this.tabAO.PerformLayout();
+            this.plk_AOpanel.ResumeLayout(false);
+            this.plk_AOpanel.PerformLayout();
             this.block3_AOpanel.ResumeLayout(false);
             this.block3_AOpanel.PerformLayout();
             this.block2_AOpanel.ResumeLayout(false);
@@ -8988,6 +9008,8 @@
             this.loadCanPanel.ResumeLayout(false);
             this.loadCanPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
+            this.pl.ResumeLayout(false);
+            this.pl.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -9255,21 +9277,21 @@
         private System.Windows.Forms.ComboBox AO3_combo;
         private System.Windows.Forms.ComboBox AO2_combo;
         private System.Windows.Forms.ComboBox AO1_combo;
-        private System.Windows.Forms.Label label71;
-        private System.Windows.Forms.Label label77;
-        private System.Windows.Forms.Label label78;
+        private System.Windows.Forms.Label AO3_plkLabel;
+        private System.Windows.Forms.Label AO2_plkLabel;
+        private System.Windows.Forms.Label AO1_plkLabel;
         private System.Windows.Forms.ComboBox DO6_combo;
         private System.Windows.Forms.ComboBox DO5_combo;
         private System.Windows.Forms.ComboBox DO4_combo;
         private System.Windows.Forms.ComboBox DO3_combo;
         private System.Windows.Forms.ComboBox DO2_combo;
         private System.Windows.Forms.ComboBox DO1_combo;
-        private System.Windows.Forms.Label label79;
-        private System.Windows.Forms.Label label80;
-        private System.Windows.Forms.Label label81;
-        private System.Windows.Forms.Label label82;
-        private System.Windows.Forms.Label label83;
-        private System.Windows.Forms.Label label84;
+        private System.Windows.Forms.Label DO6_plkLabel;
+        private System.Windows.Forms.Label DO5_plkLabel;
+        private System.Windows.Forms.Label DO4_plkLabel;
+        private System.Windows.Forms.Label DO3_plkLabel;
+        private System.Windows.Forms.Label DO2_plkLabel;
+        private System.Windows.Forms.Label DO1_plkLabel;
         private System.Windows.Forms.Label signalsReadyLabel;
         private System.Windows.Forms.Panel block1_DOpanel;
         private System.Windows.Forms.ComboBox DO7bl1_combo;
@@ -9661,6 +9683,8 @@
         private System.Windows.Forms.ComboBox UI11_typeCombo;
         private System.Windows.Forms.ComboBox UI11_combo;
         private System.Windows.Forms.Label label193;
+        private System.Windows.Forms.Panel plk_AOpanel;
+        private System.Windows.Forms.Panel pl;
     }
 }
 
