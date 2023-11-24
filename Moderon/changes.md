@@ -247,4 +247,21 @@
 - создана панель для AO сигналов контроллера `plk_AOpanel`
 - добавлена константа `DELTA = 31` для расстояния между `comboBox`  
 - сдвиг панелей AO для блоков расширения `ComboPlkType_SelectedIndexChanged()`  
-- учёт `Visible` вместо `Enabled` при распределении AO в `signalsTableAO.cs`
+- учёт `Visible` вместо `Enabled` при распределении AO в `signalsTableAO.cs`  
+
+24.11.23 (пятница)  
+
+- заданы имена заголовков текста в панелях AO и DO выходов `AOblock1_header`  
+- добавлено скрытие панелей DO в `HideExpansionBlocksPanels()`
+- `ChangeSizeLocationSignalsPanels()` для изменения положения/размера панелей  
+- изменения в `ComboPlkType_SelectedIndexChanged()` для DO контроллера  
+- учёт `Visible` вместо `Enabled` в распределении DO, `signalsTableDO.cs`  
+- выбран отступ в `8 px` слева для сигналов в панелях AO, DO и UI  
+- добавлена панель `plk_UIpanel`, созданы имена для подписей сигналов UI  
+- созданы подписи для AO блоков расширения `AO1_bl1Label`  
+- добавлен DO8 блока расширения 1, внесены подписи для сигналов  
+- DO8 и форматирование панелей для 2 и 3 блока, дискретные выходы 
+- `ClearIO_codes()` добавлена очистка для DO8 подписи блоков расширения  
+- `SetComboInitial_signals()` выбор "Не выбрано" для DO8 сигналов  
+- заполнен `block1_UIpanel` элементами, 16 UI, подписи
+- сформированы панели для блоков расширения UI  

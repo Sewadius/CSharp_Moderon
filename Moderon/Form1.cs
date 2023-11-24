@@ -68,13 +68,19 @@ namespace Moderon
             Size = new Size(995, 680);      // Размер для основной формы
         }
 
-        ///<summary>Изначальное увеличение размера панелей в таблице сигналов</summary>
+        ///<summary>Изначальное увеличение размера панелей AO и DO в таблице сигналов</summary>
         private void InitialHeightPanels()
         {
+            // Для панелей AO сигналов
             plk_AOpanel.Height += DELTA;                                                                            // ПЛК для AO сигналов
             block1_AOpanel.Location = new Point(block1_AOpanel.Location.X, block1_AOpanel.Location.Y + DELTA);      // Блок 1, AO сигналы
             block2_AOpanel.Location = new Point(block2_AOpanel.Location.X, block2_AOpanel.Location.Y + DELTA);      // Блок 2, AO сигналы
             block3_AOpanel.Location = new Point(block3_AOpanel.Location.X, block3_AOpanel.Location.Y + DELTA);      // Блок 3, AO сигналы
+            // Для панелей DO сигналов
+            plk_DOpanel.Height += DELTA * 2;                                                                        // ПЛК для DO сигналов
+            block1_DOpanel.Location = new Point(block1_DOpanel.Location.X, block1_DOpanel.Location.Y + DELTA * 2);  // Блок 1, DO сигналы
+            block2_DOpanel.Location = new Point(block2_DOpanel.Location.X, block2_DOpanel.Location.Y + DELTA * 2);  // Блок 2, DO сигналы
+            block3_DOpanel.Location = new Point(block3_DOpanel.Location.X, block3_DOpanel.Location.Y + DELTA * 2);  // Блок 3, DO сигналы
         }
 
         ///<summary>Изменение размера формы</summary>
@@ -143,7 +149,14 @@ namespace Moderon
                 block1_AOpanel, block2_AOpanel, block3_AOpanel
             };
 
+            // Дискретные выходы DO для блоков M72E12RB (4), M72E12RA (6), M72E08RA (8)
+            var block_DO = new List<Panel>()
+            {
+                block1_DOpanel, block2_DOpanel, block3_DOpanel
+            };
+
             foreach (var el in block_AO) el.Hide();
+            foreach (var el in block_DO) el.Hide();
         }
 
         ///<summary>Изменение размера области для отображения руковоства PDF</summary>
@@ -190,35 +203,61 @@ namespace Moderon
             
         }
 
+        ///<summary>Изменение размера и положения панелей при изменении типа контроллера</summary>
+        private void ChangeSizeLocationSignalsPanels(bool flag)
+        {
+            if (flag)   // Для контроллера "Mini"
+            {
+                // Изменение размера и положения панелей для аналоговых выходов, AO
+                plk_AOpanel.Height -= DELTA;                                                                            // AO для контроллера
+                block1_AOpanel.Location = new Point(block1_AOpanel.Location.X, block1_AOpanel.Location.Y - DELTA);      // Блок 1, AO сигналы
+                block2_AOpanel.Location = new Point(block2_AOpanel.Location.X, block2_AOpanel.Location.Y - DELTA);      // Блок 2, AO сигналы
+                block3_AOpanel.Location = new Point(block3_AOpanel.Location.X, block3_AOpanel.Location.Y - DELTA);      // Блок 3, AO сигналы
+                // Изменение размера и положения панелей для дискретных выходов, DO
+                plk_DOpanel.Height -= DELTA * 2;                                                                        // DO для контроллера
+                block1_DOpanel.Location = new Point(block1_DOpanel.Location.X, block1_DOpanel.Location.Y - DELTA * 2);  // Блок 1, DO сигналы
+                block2_DOpanel.Location = new Point(block2_DOpanel.Location.X, block2_DOpanel.Location.Y - DELTA * 2);  // Блок 2, DO сигналы
+                block3_DOpanel.Location = new Point(block3_DOpanel.Location.X, block3_DOpanel.Location.Y - DELTA * 2);  // Блок 3, DO сигналы
+            }
+            else        // Для контроллера "Optimized"
+            {
+                // Изменение размера и положения панелей для аналоговых выходов, AO
+                plk_AOpanel.Height += DELTA;                                                                            // AO для контроллера
+                block1_AOpanel.Location = new Point(block1_AOpanel.Location.X, block1_AOpanel.Location.Y + DELTA);      // Блок 1, AO сигналы
+                block2_AOpanel.Location = new Point(block2_AOpanel.Location.X, block2_AOpanel.Location.Y + DELTA);      // Блок 2, AO сигналы
+                block3_AOpanel.Location = new Point(block3_AOpanel.Location.X, block3_AOpanel.Location.Y + DELTA);      // Блок 3, AO сигналы
+                // Изменение размера и положения панелей для дискретных выходов, DO
+                plk_DOpanel.Height += DELTA * 2;                                                                        // DO для контроллера
+                block1_DOpanel.Location = new Point(block1_DOpanel.Location.X, block1_DOpanel.Location.Y + DELTA * 2);  // Блок 1, DO сигналы
+                block2_DOpanel.Location = new Point(block2_DOpanel.Location.X, block2_DOpanel.Location.Y + DELTA * 2);  // Блок 2, DO сигналы
+                block3_DOpanel.Location = new Point(block3_DOpanel.Location.X, block3_DOpanel.Location.Y + DELTA * 2);  // Блок 3, DO сигналы
+            }
+        }
+
         ///<summary>Изменение типа контроллера "Mini" или "Optimized"</summary>
         private void ComboPlkType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var ui_combos = new List<ComboBox>() { UI8_combo, UI9_combo, UI10_combo, UI11_combo };
-            var ui_combos_type = new List<ComboBox>() { UI8_typeCombo, UI9_typeCombo, UI10_typeCombo, UI11_typeCombo };
-            var do_combos = new List<ComboBox>() { DO5_combo, DO6_combo };
+            var ui_combos = new List<ComboBox>() { UI8_combo, UI9_combo, UI10_combo, UI11_combo };                          // UI_combo
+            var ui_combos_type = new List<ComboBox>() { UI8_typeCombo, UI9_typeCombo, UI10_typeCombo, UI11_typeCombo };     // UI_typeCombo
+            var do_combos = new List<ComboBox>() { DO5_combo, DO6_combo };                                                  // DO_combo
+            var do_labels = new List<Label>() { DO5_plkLabel, DO6_plkLabel };                                               // DO подписи сигналов 
 
             if (comboPlkType.SelectedIndex == 0)                                    // Выбрали контроллер "Mini"
             {
                 foreach (var el in ui_combos) el.Enabled = false;                   // Блокировка UI входных сигналов
                 foreach (var el in ui_combos_type) el.Enabled = false;              // Блокировка UI типов для входных сигналов
-                foreach (var el in do_combos) el.Enabled = false;                   // Блокировка DO выходных сигналов
+                foreach (var el in do_combos) el.Hide();                            // Скрытие DO comboBox выходных сигналов
+                foreach (var el in do_labels) el.Hide();                            // Скрытие подписей для DO сигналов
                 AO3_plkLabel.Hide(); AO3_combo.Hide();                              // Скрытие AO3 выходного сигнала
-                // Изменение размера и положения панелей
-                plk_AOpanel.Height -= DELTA;                                                                            // AO для контроллера
-                block1_AOpanel.Location = new Point(block1_AOpanel.Location.X, block1_AOpanel.Location.Y - DELTA);      // Блок 1, AO сигналы
-                block2_AOpanel.Location = new Point(block2_AOpanel.Location.X, block2_AOpanel.Location.Y - DELTA);      // Блок 2, AO сигналы
-                block3_AOpanel.Location = new Point(block3_AOpanel.Location.X, block3_AOpanel.Location.Y - DELTA);      // Блок 3, AO сигналы
+                ChangeSizeLocationSignalsPanels(true);                              // Изменение размера и положения панелей
             }
             else if (comboPlkType.SelectedIndex == 1)                               // Выбрали контроллер "Optimized"
             {
                 foreach (var el in ui_combos) el.Enabled = true;                    // Разблокировка UI входных сигналов
-                foreach (var el in do_combos) el.Enabled = true;                    // Разблокировка DO выходных сигналов
+                foreach (var el in do_combos) el.Show();                            // Отображение DO comboBox выходных сигналов
+                foreach (var el in do_labels) el.Show();                            // Отображение подписей для DO сигналов
                 AO3_plkLabel.Show(); AO3_combo.Show();                              // Отображение AO3 выходного сигнала
-                // Изменение размера и положения панелей
-                plk_AOpanel.Height += DELTA;                                                                            // AO для контроллера
-                block1_AOpanel.Location = new Point(block1_AOpanel.Location.X, block1_AOpanel.Location.Y + DELTA);      // Блок 1, AO сигналы
-                block2_AOpanel.Location = new Point(block2_AOpanel.Location.X, block2_AOpanel.Location.Y + DELTA);      // Блок 2, AO сигналы
-                block3_AOpanel.Location = new Point(block3_AOpanel.Location.X, block3_AOpanel.Location.Y + DELTA);      // Блок 3, AO сигналы
+                ChangeSizeLocationSignalsPanels(false);                             // Изменение размера и положения панелей
             }
         }
 
@@ -228,9 +267,9 @@ namespace Moderon
             var do_signals = new List<Label>() 
             {
                 DO1_lab, DO2_lab, DO3_lab, DO4_lab, DO5_lab, DO6_lab,
-                DO1bl1_lab, DO2bl1_lab, DO3bl1_lab, DO4bl1_lab, DO5bl1_lab, DO6bl1_lab, DO7bl1_lab,
-                DO1bl2_lab, DO2bl2_lab, DO3bl2_lab, DO4bl2_lab, DO5bl2_lab, DO6bl2_lab, DO7bl2_lab,
-                DO1bl3_lab, DO2bl3_lab, DO3bl3_lab, DO4bl3_lab, DO5bl3_lab, DO6bl3_lab, DO7bl3_lab
+                DO1bl1_lab, DO2bl1_lab, DO3bl1_lab, DO4bl1_lab, DO5bl1_lab, DO6bl1_lab, DO7bl1_lab, DO8bl1_lab,
+                DO1bl2_lab, DO2bl2_lab, DO3bl2_lab, DO4bl2_lab, DO5bl2_lab, DO6bl2_lab, DO7bl2_lab, DO8bl2_lab,
+                DO1bl3_lab, DO2bl3_lab, DO3bl3_lab, DO4bl3_lab, DO5bl3_lab, DO6bl3_lab, DO7bl3_lab, DO8bl3_lab
             };
 
             var ao_signals = new List<Label>()
@@ -1362,11 +1401,6 @@ namespace Moderon
             // Числа, точка и Backspace
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != (char)Keys.Back)
                 e.Handled = true;
-        }
-
-        private void block1_AOpanel_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         // Нажали на пункт "О программе"
