@@ -71,16 +71,21 @@ namespace Moderon
         ///<summary>Изначальное увеличение размера панелей AO и DO в таблице сигналов</summary>
         private void InitialHeightPanels()
         {
-            // Для панелей AO сигналов
+            // Для панелей AO сигналов (1 сигнал)
             plk_AOpanel.Height += DELTA;                                                                            // ПЛК для AO сигналов
             block1_AOpanel.Location = new Point(block1_AOpanel.Location.X, block1_AOpanel.Location.Y + DELTA);      // Блок 1, AO сигналы
             block2_AOpanel.Location = new Point(block2_AOpanel.Location.X, block2_AOpanel.Location.Y + DELTA);      // Блок 2, AO сигналы
             block3_AOpanel.Location = new Point(block3_AOpanel.Location.X, block3_AOpanel.Location.Y + DELTA);      // Блок 3, AO сигналы
-            // Для панелей DO сигналов
+            // Для панелей DO сигналов (2 сигнала)
             plk_DOpanel.Height += DELTA * 2;                                                                        // ПЛК для DO сигналов
             block1_DOpanel.Location = new Point(block1_DOpanel.Location.X, block1_DOpanel.Location.Y + DELTA * 2);  // Блок 1, DO сигналы
             block2_DOpanel.Location = new Point(block2_DOpanel.Location.X, block2_DOpanel.Location.Y + DELTA * 2);  // Блок 2, DO сигналы
             block3_DOpanel.Location = new Point(block3_DOpanel.Location.X, block3_DOpanel.Location.Y + DELTA * 2);  // Блок 3, DO сигналы
+            // Для панелей UI сигналов (4 сигнала)
+            plk_UIpanel.Height += DELTA * 4;                                                                        // ПЛК для UI сигналов
+            block1_UIpanel.Location = new Point(block1_UIpanel.Location.X, block1_UIpanel.Location.Y + DELTA * 4);  // Блок 1, UI сигналы
+            block2_UIpanel.Location = new Point(block2_UIpanel.Location.X, block2_UIpanel.Location.Y + DELTA * 4);  // Блок 2, UI сигналы
+            block3_UIpanel.Location = new Point(block3_UIpanel.Location.X, block3_UIpanel.Location.Y + DELTA * 4);  // Блок 3, UI сигналы
         }
 
         ///<summary>Изменение размера формы</summary>
@@ -218,6 +223,11 @@ namespace Moderon
                 block1_DOpanel.Location = new Point(block1_DOpanel.Location.X, block1_DOpanel.Location.Y - DELTA * 2);  // Блок 1, DO сигналы
                 block2_DOpanel.Location = new Point(block2_DOpanel.Location.X, block2_DOpanel.Location.Y - DELTA * 2);  // Блок 2, DO сигналы
                 block3_DOpanel.Location = new Point(block3_DOpanel.Location.X, block3_DOpanel.Location.Y - DELTA * 2);  // Блок 3, DO сигналы
+                // Изменение размера и положения панелей для универсальных выходов, UI
+                plk_UIpanel.Height -= DELTA * 4;                                                                        // UI для контроллера
+                block1_UIpanel.Location = new Point(block1_UIpanel.Location.X, block1_UIpanel.Location.Y - DELTA * 4);  // Блок 1, UI сигналы
+                block2_UIpanel.Location = new Point(block2_UIpanel.Location.X, block2_UIpanel.Location.Y - DELTA * 4);  // Блок 2, UI сигналы
+                block3_UIpanel.Location = new Point(block3_UIpanel.Location.X, block3_UIpanel.Location.Y - DELTA * 4);  // Блок 3, UI сигналы
             }
             else        // Для контроллера "Optimized"
             {
@@ -231,6 +241,11 @@ namespace Moderon
                 block1_DOpanel.Location = new Point(block1_DOpanel.Location.X, block1_DOpanel.Location.Y + DELTA * 2);  // Блок 1, DO сигналы
                 block2_DOpanel.Location = new Point(block2_DOpanel.Location.X, block2_DOpanel.Location.Y + DELTA * 2);  // Блок 2, DO сигналы
                 block3_DOpanel.Location = new Point(block3_DOpanel.Location.X, block3_DOpanel.Location.Y + DELTA * 2);  // Блок 3, DO сигналы
+                // Изменение размера и положения панелей для универсальных выходов, UI
+                plk_UIpanel.Height += DELTA * 4;                                                                        // UI для контроллера
+                block1_UIpanel.Location = new Point(block1_UIpanel.Location.X, block1_UIpanel.Location.Y + DELTA * 4);  // Блок 1, UI сигналы
+                block2_UIpanel.Location = new Point(block2_UIpanel.Location.X, block2_UIpanel.Location.Y + DELTA * 4);  // Блок 2, UI сигналы
+                block3_UIpanel.Location = new Point(block3_UIpanel.Location.X, block3_UIpanel.Location.Y + DELTA * 4);  // Блок 3, UI сигналы
             }
         }
 
@@ -239,13 +254,15 @@ namespace Moderon
         {
             var ui_combos = new List<ComboBox>() { UI8_combo, UI9_combo, UI10_combo, UI11_combo };                          // UI_combo
             var ui_combos_type = new List<ComboBox>() { UI8_typeCombo, UI9_typeCombo, UI10_typeCombo, UI11_typeCombo };     // UI_typeCombo
+            var ui_labels = new List<Label>() { UI8_plkLabel, UI9_plkLabel, UI10_plkLabel, UI11_plkLabel };                 // UI подписи сигналов
             var do_combos = new List<ComboBox>() { DO5_combo, DO6_combo };                                                  // DO_combo
             var do_labels = new List<Label>() { DO5_plkLabel, DO6_plkLabel };                                               // DO подписи сигналов 
 
             if (comboPlkType.SelectedIndex == 0)                                    // Выбрали контроллер "Mini"
             {
-                foreach (var el in ui_combos) el.Enabled = false;                   // Блокировка UI входных сигналов
-                foreach (var el in ui_combos_type) el.Enabled = false;              // Блокировка UI типов для входных сигналов
+                foreach (var el in ui_combos) el.Hide();                            // Скрытие UI входных сигналов
+                foreach (var el in ui_combos_type) el.Hide();                       // Скрытие UI типов для входных сигналов
+                foreach (var el in ui_labels) el.Hide();                            // Скрытие подписей для UI сигналов
                 foreach (var el in do_combos) el.Hide();                            // Скрытие DO comboBox выходных сигналов
                 foreach (var el in do_labels) el.Hide();                            // Скрытие подписей для DO сигналов
                 AO3_plkLabel.Hide(); AO3_combo.Hide();                              // Скрытие AO3 выходного сигнала
@@ -253,7 +270,9 @@ namespace Moderon
             }
             else if (comboPlkType.SelectedIndex == 1)                               // Выбрали контроллер "Optimized"
             {
-                foreach (var el in ui_combos) el.Enabled = true;                    // Разблокировка UI входных сигналов
+                foreach (var el in ui_combos) el.Show();                            // Отображение UI входных сигналов
+                foreach (var el in ui_combos_type) el.Show();                       // Отображение UI типов для входных сигналов
+                foreach (var el in ui_labels) el.Show();                            // Отображение подписей для UI сигналов
                 foreach (var el in do_combos) el.Show();                            // Отображение DO comboBox выходных сигналов
                 foreach (var el in do_labels) el.Show();                            // Отображение подписей для DO сигналов
                 AO3_plkLabel.Show(); AO3_combo.Show();                              // Отображение AO3 выходного сигнала

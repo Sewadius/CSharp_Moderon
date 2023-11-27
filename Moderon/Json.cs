@@ -187,18 +187,18 @@ namespace Moderon
         ///<summary>Нажали "Загрузить" в главном меню</summary> 
         private void LoadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadJsonFile(); // Загрузка файла JSON в программу
-            ignoreEvents = true; // Временное отключение событий
-            LoadCheckBoxAll(); // Загрузка для всех сheckBox
-            LoadComboBoxElemAll(); // Загрузка для всех comboBox элементов
-            LoadTextBoxAll(); // Загрузка для всех textBox элементов
-            LoadLabelSignalsAll(); // Загрузка для подписей кодов таблицы сигналов
-            LoadComboItemsSignals(); // Загрузка элементов для comboBox таблицы сигналов
-            LoadComboTypeAIitems(); // Загрузка элементов для comboBox AI type
-            LoadComboSignalsAll(); // Загрузка состояний для comboBox таблицы сигналов
-            LoadComboTypeAIAll(); // Загрузка выбранного элемента для comboBox AI type
-            LoadSignalArrays(); // Загрузка для массива сигналов
-            ignoreEvents = false; // Возврат активации событий
+            LoadJsonFile();                 // Загрузка файла JSON в программу
+            ignoreEvents = true;            // Временное отключение событий
+            LoadCheckBoxAll();              // Загрузка для всех сheckBox
+            LoadComboBoxElemAll();          // Загрузка для всех comboBox элементов
+            LoadTextBoxAll();               // Загрузка для всех textBox элементов
+            LoadLabelSignalsAll();          // Загрузка для подписей кодов таблицы сигналов
+            LoadComboItemsSignals();        // Загрузка элементов для comboBox таблицы сигналов
+            LoadComboTypeAIitems();         // Загрузка элементов для comboBox AI type
+            LoadComboSignalsAll();          // Загрузка состояний для comboBox таблицы сигналов
+            LoadComboTypeAIAll();           // Загрузка выбранного элемента для comboBox AI type
+            LoadSignalArrays();             // Загрузка для массива сигналов
+            ignoreEvents = false;           // Возврат активации событий
         }
 
         ///<summary>Загрузка Json файла в программу</summary>

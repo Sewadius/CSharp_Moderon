@@ -265,3 +265,18 @@
 - `SetComboInitial_signals()` выбор "Не выбрано" для DO8 сигналов  
 - заполнен `block1_UIpanel` элементами, 16 UI, подписи
 - сформированы панели для блоков расширения UI  
+
+27.11.23 (понедельник)  
+
+- выбор, блок NTC по умолчанию для `UI_typeCombo` в `SetComboInitial_signals()`  
+- выбор `Не выбрано` для comboBox UI в `SetComboInitial_signals()`  
+- добавлены обработчики событий для DO8 в `signalsTableDO.cs`  
+- учёт сигналов DO8 в `AddtoCombosDO()` файла `signalsTableDO.cs`  
+- внесение DO8 в `AddNewDO()` файла `signalsTableDO.cs`  
+- изменения для DO8 удаления DO из всех comboBox `SubFromCombosDO()`  
+- обновление `InitialHeightPanels()` для сигналов UI  
+- изменения в `ChangeSizeLocationSignalsPanels()` для сигналов UI  
+- изменения `ComboPlkType_SelectedIndexChanged()` для UI сигналов ПЛК  
+- добавлены text и index для блоков расширения UI `signalsTableUI.cs`
+- учёт в `Set_UIComboTextIndex()` для сброса text/index, `signalsTableUI.cs`  
+- `ResetButton_signalsUIClick()` добавлены сигналы для блоков расширения  

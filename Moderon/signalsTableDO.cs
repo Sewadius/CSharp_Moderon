@@ -43,16 +43,16 @@ namespace Moderon
         // Сохранение наименования выбранного элемента для ПЛК и блоков расширения
         string
             DO1combo_text, DO2combo_text, DO3combo_text, DO4combo_text, DO5combo_text, DO6combo_text,
-            DO1bl1combo_text, DO2bl1combo_text, DO3bl1combo_text, DO4bl1combo_text, DO5bl1combo_text, DO6bl1combo_text, DO7bl1combo_text,
-            DO1bl2combo_text, DO2bl2combo_text, DO3bl2combo_text, DO4bl2combo_text, DO5bl2combo_text, DO6bl2combo_text, DO7bl2combo_text,
-            DO1bl3combo_text, DO2bl3combo_text, DO3bl3combo_text, DO4bl3combo_text, DO5bl3combo_text, DO6bl3combo_text, DO7bl3combo_text;
+            DO1bl1combo_text, DO2bl1combo_text, DO3bl1combo_text, DO4bl1combo_text, DO5bl1combo_text, DO6bl1combo_text, DO7bl1combo_text, DO8bl1combo_text,
+            DO1bl2combo_text, DO2bl2combo_text, DO3bl2combo_text, DO4bl2combo_text, DO5bl2combo_text, DO6bl2combo_text, DO7bl2combo_text, DO8bl2combo_text,
+            DO1bl3combo_text, DO2bl3combo_text, DO3bl3combo_text, DO4bl3combo_text, DO5bl3combo_text, DO6bl3combo_text, DO7bl3combo_text, DO8bl3combo_text;
 
         // Сохранение прошлого индекса comboBox элементов для ПЛК и блоков расширения
         int
-            DO1combo_index, DO2combo_index, DO3combo_index, DO4combo_index, DO5combo_index, DO6combo_index, DO7combo_index,
-            DO1bl1combo_index, DO2bl1combo_index, DO3bl1combo_index, DO4bl1combo_index, DO5bl1combo_index, DO6bl1combo_index, DO7bl1combo_index,
-            DO1bl2combo_index, DO2bl2combo_index, DO3bl2combo_index, DO4bl2combo_index, DO5bl2combo_index, DO6bl2combo_index, DO7bl2combo_index,
-            DO1bl3combo_index, DO2bl3combo_index, DO3bl3combo_index, DO4bl3combo_index, DO5bl3combo_index, DO6bl3combo_index, DO7bl3combo_index;
+            DO1combo_index, DO2combo_index, DO3combo_index, DO4combo_index, DO5combo_index, DO6combo_index,
+            DO1bl1combo_index, DO2bl1combo_index, DO3bl1combo_index, DO4bl1combo_index, DO5bl1combo_index, DO6bl1combo_index, DO7bl1combo_index, DO8bl1combo_index,
+            DO1bl2combo_index, DO2bl2combo_index, DO3bl2combo_index, DO4bl2combo_index, DO5bl2combo_index, DO6bl2combo_index, DO7bl2combo_index, DO8bl2combo_index,
+            DO1bl3combo_index, DO2bl3combo_index, DO3bl3combo_index, DO4bl3combo_index, DO5bl3combo_index, DO6bl3combo_index, DO7bl3combo_index, DO8bl3combo_index;
 
         ///<summary>Начальная установка для сигналов DO таблицы сигналов</summary> 
         public void Set_DOComboTextIndex()
@@ -66,17 +66,17 @@ namespace Moderon
             var do_signals = new List<string>()
             {
                 DO4combo_text, DO5combo_text, DO6combo_text,
-                DO1bl1combo_text, DO2bl1combo_text, DO3bl1combo_text, DO4bl1combo_text, DO5bl1combo_text, DO6bl1combo_text, DO7bl1combo_text,
-                DO1bl2combo_text, DO2bl2combo_text, DO3bl2combo_text, DO4bl2combo_text, DO5bl2combo_text, DO6bl2combo_text, DO7bl2combo_text,
-                DO1bl3combo_text, DO2bl3combo_text, DO3bl3combo_text, DO4bl3combo_text, DO5bl3combo_text, DO6bl3combo_text, DO7bl3combo_text
+                DO1bl1combo_text, DO2bl1combo_text, DO3bl1combo_text, DO4bl1combo_text, DO5bl1combo_text, DO6bl1combo_text, DO7bl1combo_text, DO8bl1combo_text,
+                DO1bl2combo_text, DO2bl2combo_text, DO3bl2combo_text, DO4bl2combo_text, DO5bl2combo_text, DO6bl2combo_text, DO7bl2combo_text, DO8bl2combo_text,
+                DO1bl3combo_text, DO2bl3combo_text, DO3bl3combo_text, DO4bl3combo_text, DO5bl3combo_text, DO6bl3combo_text, DO7bl3combo_text, DO8bl3combo_text
             };
 
             var do_signals_index = new List<int>()
             {
-                DO4combo_index, DO5combo_index, DO6combo_index, DO7combo_index,
-                DO1bl1combo_index, DO2bl1combo_index, DO3bl1combo_index, DO4bl1combo_index, DO5bl1combo_index, DO6bl1combo_index, DO7bl1combo_index,
-                DO1bl2combo_index, DO2bl2combo_index, DO3bl2combo_index, DO4bl2combo_index, DO5bl2combo_index, DO6bl2combo_index, DO7bl2combo_index,
-                DO1bl3combo_index, DO2bl3combo_index, DO3bl3combo_index, DO4bl3combo_index, DO5bl3combo_index, DO6bl3combo_index, DO7bl3combo_index
+                DO4combo_index, DO5combo_index, DO6combo_index,
+                DO1bl1combo_index, DO2bl1combo_index, DO3bl1combo_index, DO4bl1combo_index, DO5bl1combo_index, DO6bl1combo_index, DO7bl1combo_index, DO8bl1combo_index,
+                DO1bl2combo_index, DO2bl2combo_index, DO3bl2combo_index, DO4bl2combo_index, DO5bl2combo_index, DO6bl2combo_index, DO7bl2combo_index, DO8bl2combo_index,
+                DO1bl3combo_index, DO2bl3combo_index, DO3bl3combo_index, DO4bl3combo_index, DO5bl3combo_index, DO6bl3combo_index, DO7bl3combo_index, DO8bl3combo_index
             };
 
             for (var i = 0; i < do_signals.Count; i++)
@@ -177,7 +177,7 @@ namespace Moderon
                 DO1_combo, DO2_combo, DO3_combo, DO4_combo, DO5_combo, DO6_combo,
                 DO1bl1_combo, DO2bl1_combo, DO3bl1_combo, DO4bl1_combo, DO5bl1_combo, DO6bl1_combo, DO7bl1_combo, DO8bl1_combo,
                 DO1bl2_combo, DO2bl2_combo, DO3bl2_combo, DO4bl2_combo, DO5bl2_combo, DO6bl2_combo, DO7bl2_combo, DO8bl2_combo,
-                DO1bl3_combo, DO2bl3_combo, DO3bl3_combo, DO4bl3_combo, DO5bl3_combo, DO6bl3_combo, DO7bl3_combo, DO8bl2_combo
+                DO1bl3_combo, DO2bl3_combo, DO3bl3_combo, DO4bl3_combo, DO5bl3_combo, DO6bl3_combo, DO7bl3_combo, DO8bl3_combo
             };
 
             foreach (var el in do_combos)
@@ -199,14 +199,26 @@ namespace Moderon
                 DI1bl1_combo, DI2bl1_combo, DI3bl1_combo, DI4bl1_combo, DI5bl1_combo,
                 DI1bl2_combo, DI2bl2_combo, DI3bl2_combo, DI4bl2_combo, DI5bl2_combo,
                 DI1bl3_combo, DI2bl3_combo, DI3bl3_combo, DI4bl3_combo, DI5bl3_combo,
+                // Аналоговые выходы
                 AO1_combo, AO2_combo, AO3_combo, AO1bl1_combo, AO2bl1_combo,
                 AO1bl2_combo, AO2bl2_combo, AO1bl3_combo, AO2bl3_combo,
+                // Дискретные выходы
                 DO1_combo, DO2_combo, DO3_combo, DO4_combo, DO5_combo, DO6_combo,
                 DO1bl1_combo, DO2bl1_combo, DO3bl1_combo, DO4bl1_combo, DO5bl1_combo, DO6bl1_combo, DO7bl1_combo, DO8bl1_combo,
                 DO1bl2_combo, DO2bl2_combo, DO3bl2_combo, DO4bl2_combo, DO5bl2_combo, DO6bl2_combo, DO7bl2_combo, DO8bl2_combo,
                 DO1bl3_combo, DO2bl3_combo, DO3bl3_combo, DO4bl3_combo, DO5bl3_combo, DO6bl3_combo, DO7bl3_combo, DO8bl3_combo,
+                // Универсальные входы, ПЛК
                 UI1_combo, UI2_combo, UI3_combo, UI4_combo, UI5_combo, UI6_combo, UI7_combo, UI8_combo, UI9_combo,
-                UI10_combo, UI11_combo
+                UI10_combo, UI11_combo,
+                // Универсальные входы, блок расширения 1
+                UI1bl1_combo, UI2bl1_combo, UI3bl1_combo, UI4bl1_combo, UI5bl1_combo, UI6bl1_combo, UI7bl1_combo, UI8bl1_combo,
+                UI9bl1_combo, UI10bl1_combo, UI11bl1_combo, UI12bl1_combo, UI13bl1_combo, UI14bl1_combo, UI15bl1_combo, UI16bl1_combo,
+                // Универсальные входы, блок расширения 2
+                UI1bl2_combo, UI2bl2_combo, UI3bl2_combo, UI4bl2_combo, UI5bl2_combo, UI6bl2_combo, UI7bl2_combo, UI8bl2_combo,
+                UI9bl2_combo, UI10bl2_combo, UI11bl2_combo, UI12bl2_combo, UI13bl2_combo, UI14bl2_combo, UI15bl2_combo, UI16bl2_combo,
+                // Универсальные входы, блок расширения 3
+                UI1bl3_combo, UI2bl3_combo, UI3bl3_combo, UI4bl3_combo, UI5bl3_combo, UI6bl3_combo, UI7bl3_combo, UI8bl3_combo,
+                UI9bl3_combo, UI10bl3_combo, UI11bl3_combo, UI12bl3_combo, UI13bl3_combo, UI14bl3_combo, UI15bl3_combo, UI16bl3_combo
               };
 
             foreach (var el in combo_elements) el.SelectedItem = NOT_SELECTED;
@@ -227,8 +239,21 @@ namespace Moderon
             // Тип универасального входного сигнала
             var ui_typeCombos = new List<ComboBox>()
             {
+                // ПЛК
                 UI1_typeCombo, UI2_typeCombo, UI3_typeCombo, UI4_typeCombo, UI5_typeCombo, UI6_typeCombo,
-                UI7_typeCombo, UI8_typeCombo, UI9_typeCombo, UI10_typeCombo, UI11_typeCombo
+                UI7_typeCombo, UI8_typeCombo, UI9_typeCombo, UI10_typeCombo, UI11_typeCombo,
+                // Блок расширения 1
+                UI1bl1_typeCombo, UI2bl1_typeCombo, UI3bl1_typeCombo, UI4bl1_typeCombo, UI5bl1_typeCombo, UI6bl1_typeCombo,
+                UI7bl1_typeCombo, UI8bl1_typeCombo, UI9bl1_typeCombo, UI10bl1_typeCombo, UI11bl1_typeCombo, UI12bl1_typeCombo,
+                UI13bl1_typeCombo, UI14bl1_typeCombo, UI15bl1_typeCombo, UI16bl1_typeCombo,
+                // Блок расширения 2
+                UI1bl2_typeCombo, UI2bl2_typeCombo, UI3bl2_typeCombo, UI4bl2_typeCombo, UI5bl2_typeCombo, UI6bl2_typeCombo,
+                UI7bl2_typeCombo, UI8bl2_typeCombo, UI9bl2_typeCombo, UI10bl2_typeCombo, UI11bl2_typeCombo, UI12bl2_typeCombo,
+                UI13bl2_typeCombo, UI14bl2_typeCombo, UI15bl2_typeCombo, UI16bl2_typeCombo,
+                // Блок расширения 3
+                UI1bl3_typeCombo, UI2bl3_typeCombo, UI3bl3_typeCombo, UI4bl3_typeCombo, UI5bl3_typeCombo, UI6bl3_typeCombo,
+                UI7bl3_typeCombo, UI8bl3_typeCombo, UI9bl3_typeCombo, UI10bl3_typeCombo, UI11bl3_typeCombo, UI12bl3_typeCombo,
+                UI13bl3_typeCombo, UI14bl3_typeCombo, UI15bl3_typeCombo, UI16bl3_typeCombo
             };
 
             foreach (var el in ui_typeCombos)
@@ -402,6 +427,12 @@ namespace Moderon
             DO_combo_SelectedIndexChanged(DO7bl1_combo, ref DO7bl1combo_index, ref DO7bl1combo_text, ref DO7bl1_lab);
         }
 
+        ///<summary>Изменили DO8 блока расширения 1 comboBox</summary>
+        private void DO8bl1_combo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DO_combo_SelectedIndexChanged(DO8bl1_combo, ref DO8bl1combo_index, ref DO8bl1combo_text, ref DO8bl1_lab);
+        }
+
         ///<summary>Изменили DO1 блока расширения 2 comboBox</summary>
         private void DO1bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -442,6 +473,12 @@ namespace Moderon
         private void DO7bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
             DO_combo_SelectedIndexChanged(DO7bl2_combo, ref DO7bl2combo_index, ref DO7bl2combo_text, ref DO7bl2_lab);
+        }
+
+        ///<summary>Изменили DO8 блока расширения 2 comboBox</summary>
+        private void DO8bl2_combo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DO_combo_SelectedIndexChanged(DO8bl2_combo, ref DO8bl2combo_index, ref DO8bl2combo_text, ref DO8bl2_lab);
         }
 
         ///<summary>Изменили DO1 блока расширения 3 comboBox</summary>
@@ -486,6 +523,12 @@ namespace Moderon
             DO_combo_SelectedIndexChanged(DO7bl3_combo, ref DO7bl3combo_index, ref DO7bl3combo_text, ref DO7bl3_lab);
         }
 
+        ///<summary>Изменили DO8 блока расширения 3 comboBox</summary>
+        private void DO8bl3_combo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DO_combo_SelectedIndexChanged(DO8bl3_combo, ref DO8bl3combo_index, ref DO8bl3combo_text, ref DO8bl3_lab);
+        }
+
         ///<summary>Добавление DO в другие слоты для выбора в comboBox</summary>
         private void AddToCombo_DO(string name, ComboBox cm, ref ComboBox comboBox)
         { 
@@ -512,15 +555,15 @@ namespace Moderon
             // Блок расширения 1
             AddToCombo_DO(name, cm, ref DO1bl1_combo); AddToCombo_DO(name, cm, ref DO2bl1_combo); AddToCombo_DO(name, cm, ref DO3bl1_combo);
             AddToCombo_DO(name, cm, ref DO4bl1_combo); AddToCombo_DO(name, cm, ref DO5bl1_combo); AddToCombo_DO(name, cm, ref DO6bl1_combo);
-            AddToCombo_DO(name, cm, ref DO7bl1_combo);
+            AddToCombo_DO(name, cm, ref DO7bl1_combo); AddToCombo_DO(name, cm, ref DO8bl1_combo);
             // Блок расширения 2
             AddToCombo_DO(name, cm, ref DO1bl2_combo); AddToCombo_DO(name, cm, ref DO2bl2_combo); AddToCombo_DO(name, cm, ref DO3bl2_combo);
             AddToCombo_DO(name, cm, ref DO4bl2_combo); AddToCombo_DO(name, cm, ref DO5bl2_combo); AddToCombo_DO(name, cm, ref DO6bl2_combo);
-            AddToCombo_DO(name, cm, ref DO7bl2_combo);
+            AddToCombo_DO(name, cm, ref DO7bl2_combo); AddToCombo_DO(name, cm, ref DO8bl2_combo);
             // Блок расширения 3
             AddToCombo_DO(name, cm, ref DO1bl3_combo); AddToCombo_DO(name, cm, ref DO2bl3_combo); AddToCombo_DO(name, cm, ref DO3bl3_combo);
             AddToCombo_DO(name, cm, ref DO4bl3_combo); AddToCombo_DO(name, cm, ref DO5bl3_combo); AddToCombo_DO(name, cm, ref DO6bl3_combo);
-            AddToCombo_DO(name, cm, ref DO7bl3_combo);
+            AddToCombo_DO(name, cm, ref DO7bl3_combo); AddToCombo_DO(name, cm, ref DO8bl3_combo);
         }
 
         /// <summary>Удаление DO из других comboBox</summary>
@@ -569,6 +612,7 @@ namespace Moderon
             else if (DO5bl1_combo.SelectedIndex == 0) SelectComboBox_DO(DO5bl1_combo, code, DO5bl1_lab, DO5bl1combo_text, DO5bl1combo_index);
             else if (DO6bl1_combo.SelectedIndex == 0) SelectComboBox_DO(DO6bl1_combo, code, DO6bl1_lab, DO6bl1combo_text, DO6bl1combo_index);
             else if (DO7bl1_combo.SelectedIndex == 0) SelectComboBox_DO(DO7bl1_combo, code, DO7bl1_lab, DO7bl1combo_text, DO7bl1combo_index);
+            else if (DO8bl1_combo.SelectedIndex == 0) SelectComboBox_DO(DO8bl1_combo, code, DO8bl1_lab, DO8bl1combo_text, DO8bl1combo_index);
             // Блок расширения 2
             else if (DO1bl2_combo.SelectedIndex == 0) SelectComboBox_DO(DO1bl2_combo, code, DO1bl2_lab, DO1bl2combo_text, DO1bl2combo_index);
             else if (DO2bl2_combo.SelectedIndex == 0) SelectComboBox_DO(DO2bl2_combo, code, DO2bl2_lab, DO2bl2combo_text, DO2bl2combo_index);
@@ -577,6 +621,7 @@ namespace Moderon
             else if (DO5bl2_combo.SelectedIndex == 0) SelectComboBox_DO(DO5bl2_combo, code, DO5bl2_lab, DO5bl2combo_text, DO5bl2combo_index);
             else if (DO6bl2_combo.SelectedIndex == 0) SelectComboBox_DO(DO6bl2_combo, code, DO6bl2_lab, DO6bl2combo_text, DO6bl2combo_index);
             else if (DO7bl2_combo.SelectedIndex == 0) SelectComboBox_DO(DO7bl2_combo, code, DO7bl2_lab, DO7bl2combo_text, DO7bl2combo_index);
+            else if (DO8bl2_combo.SelectedIndex == 0) SelectComboBox_DO(DO8bl2_combo, code, DO8bl2_lab, DO8bl2combo_text, DO8bl2combo_index);
             // Блок расширения 3
             else if (DO1bl3_combo.SelectedIndex == 0) SelectComboBox_DO(DO1bl3_combo, code, DO1bl3_lab, DO1bl3combo_text, DO1bl3combo_index);
             else if (DO2bl3_combo.SelectedIndex == 0) SelectComboBox_DO(DO2bl3_combo, code, DO2bl3_lab, DO2bl3combo_text, DO2bl3combo_index);
@@ -585,6 +630,7 @@ namespace Moderon
             else if (DO5bl3_combo.SelectedIndex == 0) SelectComboBox_DO(DO5bl3_combo, code, DO5bl3_lab, DO5bl3combo_text, DO5bl3combo_index);
             else if (DO6bl3_combo.SelectedIndex == 0) SelectComboBox_DO(DO6bl3_combo, code, DO6bl3_lab, DO6bl3combo_text, DO6bl3combo_index);
             else if (DO7bl3_combo.SelectedIndex == 0) SelectComboBox_DO(DO7bl3_combo, code, DO7bl3_lab, DO7bl3combo_text, DO7bl3combo_index);
+            else if (DO8bl3_combo.SelectedIndex == 0) SelectComboBox_DO(DO8bl3_combo, code, DO8bl3_lab, DO8bl3combo_text, DO8bl3combo_index);
         }
 
         ///<summary>Удаление DO из определённого comboBox</summary>
@@ -641,28 +687,31 @@ namespace Moderon
             RemoveDO_FromComboBox(DO6_combo, name, DO6_lab, DO6combo_text, DO6combo_index);                 // DO6
             // Блок расширения 1
             RemoveDO_FromComboBox(DO1bl1_combo, name, DO1bl1_lab, DO1bl1combo_text, DO1bl1combo_index);     // DO1
-            RemoveDO_FromComboBox(DO2bl1_combo, name, DO2bl1_lab, DO2bl1combo_text, DO1bl1combo_index);     // DO2
-            RemoveDO_FromComboBox(DO3bl1_combo, name, DO3bl1_lab, DO3bl1combo_text, DO1bl1combo_index);     // DO3
-            RemoveDO_FromComboBox(DO4bl1_combo, name, DO4bl1_lab, DO4bl1combo_text, DO1bl1combo_index);     // DO4
-            RemoveDO_FromComboBox(DO5bl1_combo, name, DO5bl1_lab, DO5bl1combo_text, DO1bl1combo_index);     // DO5
-            RemoveDO_FromComboBox(DO6bl1_combo, name, DO6bl1_lab, DO6bl1combo_text, DO1bl1combo_index);     // DO6
-            RemoveDO_FromComboBox(DO7bl1_combo, name, DO7bl1_lab, DO7bl1combo_text, DO1bl1combo_index);     // DO7
+            RemoveDO_FromComboBox(DO2bl1_combo, name, DO2bl1_lab, DO2bl1combo_text, DO2bl1combo_index);     // DO2
+            RemoveDO_FromComboBox(DO3bl1_combo, name, DO3bl1_lab, DO3bl1combo_text, DO3bl1combo_index);     // DO3
+            RemoveDO_FromComboBox(DO4bl1_combo, name, DO4bl1_lab, DO4bl1combo_text, DO4bl1combo_index);     // DO4
+            RemoveDO_FromComboBox(DO5bl1_combo, name, DO5bl1_lab, DO5bl1combo_text, DO5bl1combo_index);     // DO5
+            RemoveDO_FromComboBox(DO6bl1_combo, name, DO6bl1_lab, DO6bl1combo_text, DO6bl1combo_index);     // DO6
+            RemoveDO_FromComboBox(DO7bl1_combo, name, DO7bl1_lab, DO7bl1combo_text, DO7bl1combo_index);     // DO7
+            RemoveDO_FromComboBox(DO8bl1_combo, name, DO8bl1_lab, DO8bl1combo_text, DO8bl1combo_index);     // DO8
             // Блок расширения 2
             RemoveDO_FromComboBox(DO1bl2_combo, name, DO1bl2_lab, DO1bl2combo_text, DO1bl2combo_index);     // DO1
-            RemoveDO_FromComboBox(DO2bl2_combo, name, DO2bl2_lab, DO2bl2combo_text, DO1bl2combo_index);     // DO2
-            RemoveDO_FromComboBox(DO3bl2_combo, name, DO3bl2_lab, DO3bl2combo_text, DO1bl2combo_index);     // DO3
-            RemoveDO_FromComboBox(DO4bl2_combo, name, DO4bl2_lab, DO4bl2combo_text, DO1bl2combo_index);     // DO4
-            RemoveDO_FromComboBox(DO5bl2_combo, name, DO5bl2_lab, DO5bl2combo_text, DO1bl2combo_index);     // DO5
-            RemoveDO_FromComboBox(DO6bl2_combo, name, DO6bl2_lab, DO6bl2combo_text, DO1bl2combo_index);     // DO6
-            RemoveDO_FromComboBox(DO7bl2_combo, name, DO7bl2_lab, DO7bl2combo_text, DO1bl2combo_index);     // DO7
+            RemoveDO_FromComboBox(DO2bl2_combo, name, DO2bl2_lab, DO2bl2combo_text, DO2bl2combo_index);     // DO2
+            RemoveDO_FromComboBox(DO3bl2_combo, name, DO3bl2_lab, DO3bl2combo_text, DO3bl2combo_index);     // DO3
+            RemoveDO_FromComboBox(DO4bl2_combo, name, DO4bl2_lab, DO4bl2combo_text, DO4bl2combo_index);     // DO4
+            RemoveDO_FromComboBox(DO5bl2_combo, name, DO5bl2_lab, DO5bl2combo_text, DO5bl2combo_index);     // DO5
+            RemoveDO_FromComboBox(DO6bl2_combo, name, DO6bl2_lab, DO6bl2combo_text, DO6bl2combo_index);     // DO6
+            RemoveDO_FromComboBox(DO7bl2_combo, name, DO7bl2_lab, DO7bl2combo_text, DO7bl2combo_index);     // DO7
+            RemoveDO_FromComboBox(DO8bl2_combo, name, DO8bl2_lab, DO8bl2combo_text, DO8bl2combo_index);     // DO8
             // Блок расширения 3
             RemoveDO_FromComboBox(DO1bl3_combo, name, DO1bl3_lab, DO1bl3combo_text, DO1bl3combo_index);     // DO1
-            RemoveDO_FromComboBox(DO2bl3_combo, name, DO2bl3_lab, DO2bl3combo_text, DO1bl3combo_index);     // DO2
-            RemoveDO_FromComboBox(DO3bl3_combo, name, DO3bl3_lab, DO3bl3combo_text, DO1bl3combo_index);     // DO3
-            RemoveDO_FromComboBox(DO4bl3_combo, name, DO4bl3_lab, DO4bl3combo_text, DO1bl3combo_index);     // DO4
-            RemoveDO_FromComboBox(DO5bl3_combo, name, DO5bl3_lab, DO5bl3combo_text, DO1bl3combo_index);     // DO5
-            RemoveDO_FromComboBox(DO6bl3_combo, name, DO6bl3_lab, DO6bl3combo_text, DO1bl3combo_index);     // DO6
-            RemoveDO_FromComboBox(DO7bl3_combo, name, DO7bl3_lab, DO7bl3combo_text, DO1bl3combo_index);     // DO7
+            RemoveDO_FromComboBox(DO2bl3_combo, name, DO2bl3_lab, DO2bl3combo_text, DO2bl3combo_index);     // DO2
+            RemoveDO_FromComboBox(DO3bl3_combo, name, DO3bl3_lab, DO3bl3combo_text, DO3bl3combo_index);     // DO3
+            RemoveDO_FromComboBox(DO4bl3_combo, name, DO4bl3_lab, DO4bl3combo_text, DO4bl3combo_index);     // DO4
+            RemoveDO_FromComboBox(DO5bl3_combo, name, DO5bl3_lab, DO5bl3combo_text, DO5bl3combo_index);     // DO5
+            RemoveDO_FromComboBox(DO6bl3_combo, name, DO6bl3_lab, DO6bl3combo_text, DO6bl3combo_index);     // DO6
+            RemoveDO_FromComboBox(DO7bl3_combo, name, DO7bl3_lab, DO7bl3combo_text, DO7bl3combo_index);     // DO7
+            RemoveDO_FromComboBox(DO8bl3_combo, name, DO8bl3_lab, DO8bl3combo_text, DO8bl3combo_index);     // DO8
 
             subDOcondition = false;                // Сброс признака удаление из DO
             list_do.Remove(find_do);               // Удаление сигнала из списка DO

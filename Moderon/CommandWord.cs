@@ -266,26 +266,26 @@ namespace Moderon
         private void BuildAoSignals()
         {
             // ПЛК
-            if (AO1_combo.SelectedItem.ToString() != NOT_SELECTED) // AO1
+            if (AO1_combo.SelectedItem.ToString() != NOT_SELECTED)      // AO1
                 aoSignals[0] = Convert.ToUInt16(AO1_lab.Text);
-            if (AO2_combo.SelectedItem.ToString() != NOT_SELECTED) // AO2
+            if (AO2_combo.SelectedItem.ToString() != NOT_SELECTED)      // AO2
                 aoSignals[1] = Convert.ToUInt16(AO2_lab.Text);
-            if (AO3_combo.SelectedItem.ToString() != NOT_SELECTED) // AO3
+            if (AO3_combo.SelectedItem.ToString() != NOT_SELECTED)      // AO3
                 aoSignals[2] = Convert.ToUInt16(AO3_lab.Text);
             // Блок расширения 1
-            if (AO1bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AO1
+            if (AO1bl1_combo.SelectedItem.ToString() != NOT_SELECTED)   // AO1
                 aoSignals[3] = Convert.ToUInt16(AO1bl1_lab.Text);
-            if (AO2bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AO2
+            if (AO2bl1_combo.SelectedItem.ToString() != NOT_SELECTED)   // AO2
                 aoSignals[4] = Convert.ToUInt16(AO2bl1_lab.Text);
             // Блок расширения 2
-            if (AO1bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AO1
+            if (AO1bl2_combo.SelectedItem.ToString() != NOT_SELECTED)   // AO1
                 aoSignals[6] = Convert.ToUInt16(AO1bl2_lab.Text);
-            if (AO2bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AO2
+            if (AO2bl2_combo.SelectedItem.ToString() != NOT_SELECTED)   // AO2
                 aoSignals[7] = Convert.ToUInt16(AO2bl2_lab.Text);
             // Блок расширения 3
-            if (AO1bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AO1
+            if (AO1bl3_combo.SelectedItem.ToString() != NOT_SELECTED)   // AO1
                 aoSignals[9] = Convert.ToUInt16(AO1bl3_lab.Text);
-            if (AO2bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AO2
+            if (AO2bl3_combo.SelectedItem.ToString() != NOT_SELECTED)   // AO2
                 aoSignals[10] = Convert.ToUInt16(AO2bl3_lab.Text);
         }
 
