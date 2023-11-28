@@ -125,7 +125,8 @@ namespace Moderon
         {
             SetComboInitial_signals(); // Начальная установка для comboBox
             // Добавление начальных DI
-            list_di.Add(new Di("Переключатель \"Стоп/Пуск\"", 3));
+            // list_di.Add(new Di("Переключатель \"Стоп/Пуск\"", 3));
+            list_ui.Add(new Ui("Переключатель \"Стоп/Пуск\"", 3, DI));
             // Добавление начальных DO
             list_do.Add(new Do("Сигнал \"Пуск/Стоп\" приточного вентилятора 1", 9));
             //list_do.Add(new Do("Сигнал \"Работа\"", 1));
@@ -139,11 +140,20 @@ namespace Moderon
             outFanStStopCheck.Checked = true;
             ignoreEvents = false;
             // Добавление к выбору начальных сигналов
-            // DI сигналы
+            
+            /*// DI сигналы
             DI1_combo.Items.Add(list_di.Find(x => x.Code == 3).Name); // Пуск/Старт
             list_di.Find(x => x.Code == 3).Select();
             DI1_combo.SelectedIndex = 1; // Выбор сигнала
-            if (showCode) DI1_lab.Text = 3.ToString();
+            if (showCode) DI1_lab.Text = 3.ToString(); */
+
+
+            // UI сигналы
+            UI1_combo.Items.Add(list_ui.Find(x => x.Code == 3).Name);       // Пуск/Старт
+            list_ui.Find(x => x.Code == 3).Select();
+            UI1_combo.SelectedIndex = 1;                                    // Выбор сигнала
+            if (showCode) UI1_lab.Text = (1000 + 3).ToString();
+
             // DO сигналы
             DO1_combo.Items.Add(list_do.Find(x => x.Code == 9).Name); // Сигнал "Пуск/Стоп" приточного вентилятора 1
             list_do.Find(x => x.Code == 9).Select();
@@ -265,12 +275,15 @@ namespace Moderon
         ///<summary>Проверка распределения сигналов</summary>
         private void CheckSignalsReady()
         {
-            bool a = true;
+            bool a = true;                      // Сигналы распределены по умолчанию
+
             foreach (var elem in list_do)
                 if (elem.Active) a = false;
             foreach (var elem in list_ao)
                 if (elem.Active) a = false;
             foreach (var elem in list_ai)
+                if (elem.Active) a = false;
+            foreach (var elem in list_ui)
                 if (elem.Active) a = false;
             foreach (var elem in list_di)
                 if (elem.Active) a = false;

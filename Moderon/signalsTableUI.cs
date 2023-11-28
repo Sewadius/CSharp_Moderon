@@ -10,7 +10,7 @@ namespace Moderon
         public ushort Code { get; private set; }
         public string Type { get; private set; }
         public bool Active { get; private set; } = true;            // Свободен к распределению по умолчанию
-        public Ui(string name, ushort code, string type)            // type: di / ai 
+        public Ui(string name, ushort code, string type)            // type: di - дискретные входы; ntc, 4_20 - аналоговые
         {
             Name = name; Code = code; Type = type;
         }
@@ -28,7 +28,12 @@ namespace Moderon
 
     public partial class Form1 : Form
     {
+        static readonly string
+            DI = "di";
+
         List<Ui> list_ui = new List<Ui>();
+
+        bool subUIcondition = false;    // Условие при удалении UI
 
         // Сохранение наименование для выбранного элемента для ПЛК
         string
@@ -148,6 +153,105 @@ namespace Moderon
         private void AddNewUI(ushort code, string type) 
         {
 
+        }
+
+        ///<summary>Добавление освободившегося UI к остальным comboBox</summary>
+        private void AddtoCombo_UI(string name, ComboBox cm, ref ComboBox comboBox)
+        {
+            bool notFound = true;                                       // Элемент в списке не найден
+
+            if (comboBox != cm)                                         // comboBox отличаются
+            {
+                Ui ui_find = list_ui.Find(x => x.Name == name);
+
+                if (ui_find != null)
+                {
+                    foreach (var el in comboBox.Items)
+                        if (el.ToString() == name) notFound = false;
+                    if (notFound) comboBox.Items.Add(ui_find.Name);
+                    notFound = false;
+                }
+            }
+        }
+
+        ///<summary>Добавление в другие слоты для выбора в comboBox</summary>
+        private void AddToCombosUI(string name, ComboBox cm)
+        {
+            // ПЛК
+            AddtoCombo_UI(name, cm, ref UI1_combo); AddtoCombo_UI(name, cm, ref UI2_combo); AddtoCombo_UI(name, cm, ref UI3_combo);
+            AddtoCombo_UI(name, cm, ref UI4_combo); AddtoCombo_UI(name, cm, ref UI5_combo); AddtoCombo_UI(name, cm, ref UI6_combo);
+            AddtoCombo_UI(name, cm, ref UI7_combo);
+        }
+
+        ///<summary>Удаление UI из других comboBox</summary>
+        private void SubFromCombosUI(string name, ComboBox cm)
+        {
+            var ui_combos = new List<ComboBox>()
+            {
+                UI1_combo, UI2_combo, UI3_combo, UI4_combo, UI5_combo, UI6_combo, UI7_combo
+            };
+
+            foreach (var el in ui_combos)
+                if (name != NOT_SELECTED && el != cm)
+                    el.Items.Remove(name);
+        }
+
+        ///<summary>Метод для изменения UI comboBox</summary>
+        private void UI_combo_SelectedIndexChanged(ComboBox comboBox, ref int combo_index, ref string combo_text, Label label, ComboBox typeCombo)
+        {
+            if (ignoreEvents) return;
+            string name = "";
+            Ui ui_find = null;
+            if (subUIcondition) return;                                             // Переход из вычета сигналов UI
+            if (comboBox.SelectedIndex == combo_index) return;                      // Индекс не поменялся
+            if (comboBox.SelectedIndex == 0)                                        // Выбрали "Не выбрано"
+            {
+                if (comboBox.Items.Count > 1)                                       // Больше одного элемента в списке
+                {
+                    string nameFind = combo_text;
+                    ui_find = list_ui.Find(x => x.Name == nameFind);
+                    list_ui.Remove(ui_find);                                        // Удаление сигнала из списка
+                    if (showCode) label.Text = "";
+                }
+                if (ui_find != null)                                                // Найден элемент
+                {
+                    ui_find.Dispose();                                              // Освобождение сигнала для распределения
+                    if (!list_ui.Contains(ui_find))
+                        list_ui.Add(ui_find);
+                }
+                if (!initialComboSignals) AddToCombosUI(combo_text, comboBox);      // Добавление к другим UI
+
+            }
+            else // Если выбран сигнал UI
+            {
+                name = string.Concat(comboBox.SelectedItem);
+                ui_find = list_ui.Find(x => x.Name == name);
+                list_ui.Remove(list_ui.Find(x => x.Name == name));                  // Удаление из списка UI
+                if (ui_find != null)
+                {
+                    ui_find.Select();
+                    if (list_ui.Contains(ui_find))
+                        list_ui.Add(ui_find);
+                    if (showCode) label.Text = ui_find.Code.ToString();
+                }
+                if (!initialComboSignals)                                           // Если не начальная расстановка
+                {
+                    SubFromCombosUI(name, comboBox);
+                    string nameFind = combo_text;
+                    ui_find = list_ui.Find(x => x.Name == nameFind);
+                    list_ui.Remove(ui_find);
+                    if (ui_find != null)
+                    {
+                        ui_find.Dispose();
+                        if (!list_ui.Contains(ui_find))
+                            list_ui.Add(ui_find);
+                    }
+                    AddToCombosUI(combo_text, comboBox);                            // Добавление к другим UI
+                }
+            }
+            combo_text = comboBox.SelectedItem.ToString();                          // Сохранение название выбранного элемента
+            combo_index = comboBox.SelectedIndex;                                   // Сохранение индекса выбранного элемента
+            CheckSignalsReady();
         }
     }
 }

@@ -280,3 +280,11 @@
 - добавлены text и index для блоков расширения UI `signalsTableUI.cs`
 - учёт в `Set_UIComboTextIndex()` для сброса text/index, `signalsTableUI.cs`  
 - `ResetButton_signalsUIClick()` добавлены сигналы для блоков расширения  
+
+28.11.23 (вторник)  
+
+- учёт UI при распределении в `CheckSignalsReady()`, `signalsTableDO.cs`  
+- `Form1_InitSignals()` замена сигнала DI на UI для "Пуск/Стоп"  
+- добавление `SubFromCombosUI()` для удаления из других UI comboBox  
+- создание `UI_combo_SelectedIndexChanged()` для изменения выбора UI comboBox
+- `AddToCombosUI()` добавлен, для внесения в другие comboBox UI
