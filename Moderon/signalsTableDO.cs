@@ -142,7 +142,7 @@ namespace Moderon
             // Добавление к выбору начальных сигналов
             
             /*// DI сигналы
-            DI1_combo.Items.Add(list_di.Find(x => x.Code == 3).Name); // Пуск/Старт
+            DI1_combo.Items.Add(list_di.Find(x => x.Code == 3).Name);       // Пуск/Старт
             list_di.Find(x => x.Code == 3).Select();
             DI1_combo.SelectedIndex = 1; // Выбор сигнала
             if (showCode) DI1_lab.Text = 3.ToString(); */
@@ -155,10 +155,11 @@ namespace Moderon
             if (showCode) UI1_lab.Text = (1000 + 3).ToString();
 
             // DO сигналы
-            DO1_combo.Items.Add(list_do.Find(x => x.Code == 9).Name); // Сигнал "Пуск/Стоп" приточного вентилятора 1
+            DO1_combo.Items.Add(list_do.Find(x => x.Code == 9).Name);       // Сигнал "Пуск/Стоп" приточного вентилятора 1
             list_do.Find(x => x.Code == 9).Select();
             DO1_combo.SelectedIndex = 1; // Выбор сигнала
             if (showCode) DO1_lab.Text = 9.ToString();
+
             /*DO2_combo.Items.Add(list_do.Find(x => x.Code == 1).Name); // Сигнал "Работа"
             DO2_combo.SelectedIndex = 1;
             if (showCode) DO2_lab.Text = 1.ToString();
@@ -167,6 +168,7 @@ namespace Moderon
             DO3_combo.SelectedIndex = 1;
             if (showCode) DO3_lab.Text = 3.ToString();
             list_do.Find(x => x.Code == 3).Select(); */
+
             initialComboSignals = false; // Сброс признака начальной настройки comboBox
         }
 

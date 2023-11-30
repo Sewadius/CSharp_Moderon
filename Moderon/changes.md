@@ -287,4 +287,15 @@
 - `Form1_InitSignals()` замена сигнала DI на UI для "Пуск/Стоп"  
 - добавление `SubFromCombosUI()` для удаления из других UI comboBox  
 - создание `UI_combo_SelectedIndexChanged()` для изменения выбора UI comboBox
-- `AddToCombosUI()` добавлен, для внесения в другие comboBox UI
+- `AddToCombosUI()` добавлен, для внесения в другие comboBox UI  
+
+29.11.23 (среда)  
+
+- добавлены обработчики для comboBox UI ПЛК `signalsTableUI.cs`  
+- форматирование для файла `CommandWord.cs`  
+
+30.11.23 (четверг)  
+
+- добавлены обработчики событий для всех сигналов comboBox UI  
+- `SubFromCombosUI()` добавлены блоки расширения 1, 2 и 3 в алгоритм  
+- сброс подписей для UI сигналов в таблице по блокам расширения  

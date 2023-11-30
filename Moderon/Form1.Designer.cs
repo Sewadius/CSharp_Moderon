@@ -4814,6 +4814,7 @@
             this.UI16bl3_combo.Name = "UI16bl3_combo";
             this.UI16bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI16bl3_combo.TabIndex = 143;
+            this.UI16bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI16bl3_combo_SelectedIndexChanged);
             // 
             // UI16bl3_typeCombo
             // 
@@ -4861,6 +4862,7 @@
             this.UI15bl3_combo.Name = "UI15bl3_combo";
             this.UI15bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI15bl3_combo.TabIndex = 139;
+            this.UI15bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI15bl3_combo_SelectedIndexChanged);
             // 
             // UI15bl3_typeCombo
             // 
@@ -4908,6 +4910,7 @@
             this.UI14bl3_combo.Name = "UI14bl3_combo";
             this.UI14bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI14bl3_combo.TabIndex = 135;
+            this.UI14bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI14bl3_combo_SelectedIndexChanged);
             // 
             // UI14bl3_typeCombo
             // 
@@ -4955,6 +4958,7 @@
             this.UI13bl3_combo.Name = "UI13bl3_combo";
             this.UI13bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI13bl3_combo.TabIndex = 131;
+            this.UI13bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI13bl3_combo_SelectedIndexChanged);
             // 
             // UI13bl3_typeCombo
             // 
@@ -5002,6 +5006,7 @@
             this.UI12bl3_combo.Name = "UI12bl3_combo";
             this.UI12bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI12bl3_combo.TabIndex = 127;
+            this.UI12bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI12bl3_combo_SelectedIndexChanged);
             // 
             // UI12bl3_typeCombo
             // 
@@ -5049,6 +5054,7 @@
             this.UI11bl3_combo.Name = "UI11bl3_combo";
             this.UI11bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI11bl3_combo.TabIndex = 123;
+            this.UI11bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI11bl3_combo_SelectedIndexChanged);
             // 
             // UI11bl3_typeCombo
             // 
@@ -5096,6 +5102,7 @@
             this.UI10bl3_combo.Name = "UI10bl3_combo";
             this.UI10bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI10bl3_combo.TabIndex = 119;
+            this.UI10bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI10bl3_combo_SelectedIndexChanged);
             // 
             // UI10bl3_typeCombo
             // 
@@ -5143,6 +5150,7 @@
             this.UI9bl3_combo.Name = "UI9bl3_combo";
             this.UI9bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI9bl3_combo.TabIndex = 115;
+            this.UI9bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI9bl3_combo_SelectedIndexChanged);
             // 
             // UI9bl3_typeCombo
             // 
@@ -5190,6 +5198,7 @@
             this.UI8bl3_combo.Name = "UI8bl3_combo";
             this.UI8bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI8bl3_combo.TabIndex = 111;
+            this.UI8bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI8bl3_combo_SelectedIndexChanged);
             // 
             // UI8bl3_typeCombo
             // 
@@ -5237,6 +5246,7 @@
             this.UI7bl3_combo.Name = "UI7bl3_combo";
             this.UI7bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI7bl3_combo.TabIndex = 107;
+            this.UI7bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI7bl3_combo_SelectedIndexChanged);
             // 
             // UI7bl3_typeCombo
             // 
@@ -5284,6 +5294,7 @@
             this.UI6bl3_combo.Name = "UI6bl3_combo";
             this.UI6bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI6bl3_combo.TabIndex = 103;
+            this.UI6bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI6bl3_combo_SelectedIndexChanged);
             // 
             // UI6bl3_typeCombo
             // 
@@ -5331,6 +5342,7 @@
             this.UI5bl3_combo.Name = "UI5bl3_combo";
             this.UI5bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI5bl3_combo.TabIndex = 99;
+            this.UI5bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI5bl3_combo_SelectedIndexChanged);
             // 
             // UI5bl3_typeCombo
             // 
@@ -5378,6 +5390,7 @@
             this.UI4bl3_combo.Name = "UI4bl3_combo";
             this.UI4bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI4bl3_combo.TabIndex = 95;
+            this.UI4bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI4bl3_combo_SelectedIndexChanged);
             // 
             // UI4bl3_typeCombo
             // 
@@ -5425,6 +5438,7 @@
             this.UI3bl3_combo.Name = "UI3bl3_combo";
             this.UI3bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI3bl3_combo.TabIndex = 91;
+            this.UI3bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI3bl3_combo_SelectedIndexChanged);
             // 
             // UI3bl3_typeCombo
             // 
@@ -5472,6 +5486,7 @@
             this.UI2bl3_combo.Name = "UI2bl3_combo";
             this.UI2bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI2bl3_combo.TabIndex = 87;
+            this.UI2bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI2bl3_combo_SelectedIndexChanged);
             // 
             // UI2bl3_typeCombo
             // 
@@ -5519,6 +5534,7 @@
             this.UI1bl3_combo.Name = "UI1bl3_combo";
             this.UI1bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI1bl3_combo.TabIndex = 83;
+            this.UI1bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI1bl3_combo_SelectedIndexChanged);
             // 
             // UIblock3_header
             // 
@@ -5648,6 +5664,7 @@
             this.UI16bl2_combo.Name = "UI16bl2_combo";
             this.UI16bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI16bl2_combo.TabIndex = 143;
+            this.UI16bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI16bl2_combo_SelectedIndexChanged);
             // 
             // UI16bl2_typeCombo
             // 
@@ -5695,6 +5712,7 @@
             this.UI15bl2_combo.Name = "UI15bl2_combo";
             this.UI15bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI15bl2_combo.TabIndex = 139;
+            this.UI15bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI15bl2_combo_SelectedIndexChanged);
             // 
             // UI15bl2_typeCombo
             // 
@@ -5742,6 +5760,7 @@
             this.UI14bl2_combo.Name = "UI14bl2_combo";
             this.UI14bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI14bl2_combo.TabIndex = 135;
+            this.UI14bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI14bl2_combo_SelectedIndexChanged);
             // 
             // UI14bl2_typeCombo
             // 
@@ -5789,6 +5808,7 @@
             this.UI13bl2_combo.Name = "UI13bl2_combo";
             this.UI13bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI13bl2_combo.TabIndex = 131;
+            this.UI13bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI13bl2_combo_SelectedIndexChanged);
             // 
             // UI13bl2_typeCombo
             // 
@@ -5836,6 +5856,7 @@
             this.UI12bl2_combo.Name = "UI12bl2_combo";
             this.UI12bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI12bl2_combo.TabIndex = 127;
+            this.UI12bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI12bl2_combo_SelectedIndexChanged);
             // 
             // UI12bl2_typeCombo
             // 
@@ -5883,6 +5904,7 @@
             this.UI11bl2_combo.Name = "UI11bl2_combo";
             this.UI11bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI11bl2_combo.TabIndex = 123;
+            this.UI11bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI11bl2_combo_SelectedIndexChanged);
             // 
             // UI11bl2_typeCombo
             // 
@@ -5930,6 +5952,7 @@
             this.UI10bl2_combo.Name = "UI10bl2_combo";
             this.UI10bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI10bl2_combo.TabIndex = 119;
+            this.UI10bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI10bl2_combo_SelectedIndexChanged);
             // 
             // UI10bl2_typeCombo
             // 
@@ -5977,6 +6000,7 @@
             this.UI9bl2_combo.Name = "UI9bl2_combo";
             this.UI9bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI9bl2_combo.TabIndex = 115;
+            this.UI9bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI9bl2_combo_SelectedIndexChanged);
             // 
             // UI9bl2_typeCombo
             // 
@@ -6024,6 +6048,7 @@
             this.UI8bl2_combo.Name = "UI8bl2_combo";
             this.UI8bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI8bl2_combo.TabIndex = 111;
+            this.UI8bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI8bl2_combo_SelectedIndexChanged);
             // 
             // UI8bl2_typeCombo
             // 
@@ -6071,6 +6096,7 @@
             this.UI7bl2_combo.Name = "UI7bl2_combo";
             this.UI7bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI7bl2_combo.TabIndex = 107;
+            this.UI7bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI7bl2_combo_SelectedIndexChanged);
             // 
             // UI7bl2_typeCombo
             // 
@@ -6118,6 +6144,7 @@
             this.UI6bl2_combo.Name = "UI6bl2_combo";
             this.UI6bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI6bl2_combo.TabIndex = 103;
+            this.UI6bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI6bl2_combo_SelectedIndexChanged);
             // 
             // UI6bl2_typeCombo
             // 
@@ -6165,6 +6192,7 @@
             this.UI5bl2_combo.Name = "UI5bl2_combo";
             this.UI5bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI5bl2_combo.TabIndex = 99;
+            this.UI5bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI5bl2_combo_SelectedIndexChanged);
             // 
             // UI5bl2_typeCombo
             // 
@@ -6212,6 +6240,7 @@
             this.UI4bl2_combo.Name = "UI4bl2_combo";
             this.UI4bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI4bl2_combo.TabIndex = 95;
+            this.UI4bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI4bl2_combo_SelectedIndexChanged);
             // 
             // UI4bl2_typeCombo
             // 
@@ -6259,6 +6288,7 @@
             this.UI3bl2_combo.Name = "UI3bl2_combo";
             this.UI3bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI3bl2_combo.TabIndex = 91;
+            this.UI3bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI3bl2_combo_SelectedIndexChanged);
             // 
             // UI3bl2_typeCombo
             // 
@@ -6306,6 +6336,7 @@
             this.UI2bl2_combo.Name = "UI2bl2_combo";
             this.UI2bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI2bl2_combo.TabIndex = 87;
+            this.UI2bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI2bl2_combo_SelectedIndexChanged);
             // 
             // UI2bl2_typeCombo
             // 
@@ -6353,6 +6384,7 @@
             this.UI1bl2_combo.Name = "UI1bl2_combo";
             this.UI1bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI1bl2_combo.TabIndex = 83;
+            this.UI1bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI1bl2_combo_SelectedIndexChanged);
             // 
             // UIblock2_header
             // 
@@ -6482,6 +6514,7 @@
             this.UI16bl1_combo.Name = "UI16bl1_combo";
             this.UI16bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI16bl1_combo.TabIndex = 143;
+            this.UI16bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI16bl1_combo_SelectedIndexChanged);
             // 
             // UI16bl1_typeCombo
             // 
@@ -6529,6 +6562,7 @@
             this.UI15bl1_combo.Name = "UI15bl1_combo";
             this.UI15bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI15bl1_combo.TabIndex = 139;
+            this.UI15bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI15bl1_combo_SelectedIndexChanged);
             // 
             // UI15bl1_typeCombo
             // 
@@ -6576,6 +6610,7 @@
             this.UI14bl1_combo.Name = "UI14bl1_combo";
             this.UI14bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI14bl1_combo.TabIndex = 135;
+            this.UI14bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI14bl1_combo_SelectedIndexChanged);
             // 
             // UI14bl1_typeCombo
             // 
@@ -6623,6 +6658,7 @@
             this.UI13bl1_combo.Name = "UI13bl1_combo";
             this.UI13bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI13bl1_combo.TabIndex = 131;
+            this.UI13bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI13bl1_combo_SelectedIndexChanged);
             // 
             // UI13bl1_typeCombo
             // 
@@ -6670,6 +6706,7 @@
             this.UI12bl1_combo.Name = "UI12bl1_combo";
             this.UI12bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI12bl1_combo.TabIndex = 127;
+            this.UI12bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI12bl1_combo_SelectedIndexChanged);
             // 
             // UI12bl1_typeCombo
             // 
@@ -6717,6 +6754,7 @@
             this.UI11bl1_combo.Name = "UI11bl1_combo";
             this.UI11bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI11bl1_combo.TabIndex = 123;
+            this.UI11bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI11bl1_combo_SelectedIndexChanged);
             // 
             // UI11bl1_typeCombo
             // 
@@ -6764,6 +6802,7 @@
             this.UI10bl1_combo.Name = "UI10bl1_combo";
             this.UI10bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI10bl1_combo.TabIndex = 119;
+            this.UI10bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI10bl1_combo_SelectedIndexChanged);
             // 
             // UI10bl1_typeCombo
             // 
@@ -6811,6 +6850,7 @@
             this.UI9bl1_combo.Name = "UI9bl1_combo";
             this.UI9bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI9bl1_combo.TabIndex = 115;
+            this.UI9bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI9bl1_combo_SelectedIndexChanged);
             // 
             // UI9bl1_typeCombo
             // 
@@ -6858,6 +6898,7 @@
             this.UI8bl1_combo.Name = "UI8bl1_combo";
             this.UI8bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI8bl1_combo.TabIndex = 111;
+            this.UI8bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI8bl1_combo_SelectedIndexChanged);
             // 
             // UI8bl1_typeCombo
             // 
@@ -6905,6 +6946,7 @@
             this.UI7bl1_combo.Name = "UI7bl1_combo";
             this.UI7bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI7bl1_combo.TabIndex = 107;
+            this.UI7bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI7bl1_combo_SelectedIndexChanged);
             // 
             // UI7bl1_typeCombo
             // 
@@ -6952,6 +6994,7 @@
             this.UI6bl1_combo.Name = "UI6bl1_combo";
             this.UI6bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI6bl1_combo.TabIndex = 103;
+            this.UI6bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI6bl1_combo_SelectedIndexChanged);
             // 
             // UI6bl1_typeCombo
             // 
@@ -6999,6 +7042,7 @@
             this.UI5bl1_combo.Name = "UI5bl1_combo";
             this.UI5bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI5bl1_combo.TabIndex = 99;
+            this.UI5bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI5bl1_combo_SelectedIndexChanged);
             // 
             // UI5bl1_typeCombo
             // 
@@ -7046,6 +7090,7 @@
             this.UI4bl1_combo.Name = "UI4bl1_combo";
             this.UI4bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI4bl1_combo.TabIndex = 95;
+            this.UI4bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI4bl1_combo_SelectedIndexChanged);
             // 
             // UI4bl1_typeCombo
             // 
@@ -7093,6 +7138,7 @@
             this.UI3bl1_combo.Name = "UI3bl1_combo";
             this.UI3bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI3bl1_combo.TabIndex = 91;
+            this.UI3bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI3bl1_combo_SelectedIndexChanged);
             // 
             // UI3bl1_typeCombo
             // 
@@ -7140,6 +7186,7 @@
             this.UI2bl1_combo.Name = "UI2bl1_combo";
             this.UI2bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI2bl1_combo.TabIndex = 87;
+            this.UI2bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI2bl1_combo_SelectedIndexChanged);
             // 
             // UI2bl1_typeCombo
             // 
@@ -7187,6 +7234,7 @@
             this.UI1bl1_combo.Name = "UI1bl1_combo";
             this.UI1bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI1bl1_combo.TabIndex = 83;
+            this.UI1bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI1bl1_combo_SelectedIndexChanged);
             // 
             // UIblock1_header
             // 
@@ -7331,6 +7379,7 @@
             this.UI1_combo.Name = "UI1_combo";
             this.UI1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI1_combo.TabIndex = 5;
+            this.UI1_combo.SelectedIndexChanged += new System.EventHandler(this.UI1_combo_SelectedIndexChanged);
             // 
             // UI11_combo
             // 
@@ -7343,6 +7392,7 @@
             this.UI11_combo.Name = "UI11_combo";
             this.UI11_combo.Size = new System.Drawing.Size(380, 21);
             this.UI11_combo.TabIndex = 79;
+            this.UI11_combo.SelectedIndexChanged += new System.EventHandler(this.UI11_combo_SelectedIndexChanged);
             // 
             // UI1_typeCombo
             // 
@@ -7425,6 +7475,7 @@
             this.UI2_combo.Name = "UI2_combo";
             this.UI2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI2_combo.TabIndex = 43;
+            this.UI2_combo.SelectedIndexChanged += new System.EventHandler(this.UI2_combo_SelectedIndexChanged);
             // 
             // UI10_combo
             // 
@@ -7437,6 +7488,7 @@
             this.UI10_combo.Name = "UI10_combo";
             this.UI10_combo.Size = new System.Drawing.Size(380, 21);
             this.UI10_combo.TabIndex = 75;
+            this.UI10_combo.SelectedIndexChanged += new System.EventHandler(this.UI10_combo_SelectedIndexChanged);
             // 
             // UI2_typeCombo
             // 
@@ -7519,6 +7571,7 @@
             this.UI3_combo.Name = "UI3_combo";
             this.UI3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI3_combo.TabIndex = 47;
+            this.UI3_combo.SelectedIndexChanged += new System.EventHandler(this.UI3_combo_SelectedIndexChanged);
             // 
             // UI9_combo
             // 
@@ -7531,6 +7584,7 @@
             this.UI9_combo.Name = "UI9_combo";
             this.UI9_combo.Size = new System.Drawing.Size(380, 21);
             this.UI9_combo.TabIndex = 71;
+            this.UI9_combo.SelectedIndexChanged += new System.EventHandler(this.UI9_combo_SelectedIndexChanged);
             // 
             // UI3_typeCombo
             // 
@@ -7613,6 +7667,7 @@
             this.UI4_combo.Name = "UI4_combo";
             this.UI4_combo.Size = new System.Drawing.Size(380, 21);
             this.UI4_combo.TabIndex = 51;
+            this.UI4_combo.SelectedIndexChanged += new System.EventHandler(this.UI4_combo_SelectedIndexChanged);
             // 
             // UI8_combo
             // 
@@ -7625,6 +7680,7 @@
             this.UI8_combo.Name = "UI8_combo";
             this.UI8_combo.Size = new System.Drawing.Size(380, 21);
             this.UI8_combo.TabIndex = 67;
+            this.UI8_combo.SelectedIndexChanged += new System.EventHandler(this.UI8_combo_SelectedIndexChanged);
             // 
             // UI4_typeCombo
             // 
@@ -7707,6 +7763,7 @@
             this.UI5_combo.Name = "UI5_combo";
             this.UI5_combo.Size = new System.Drawing.Size(380, 21);
             this.UI5_combo.TabIndex = 55;
+            this.UI5_combo.SelectedIndexChanged += new System.EventHandler(this.UI5_combo_SelectedIndexChanged);
             // 
             // UI7_combo
             // 
@@ -7719,6 +7776,7 @@
             this.UI7_combo.Name = "UI7_combo";
             this.UI7_combo.Size = new System.Drawing.Size(380, 21);
             this.UI7_combo.TabIndex = 63;
+            this.UI7_combo.SelectedIndexChanged += new System.EventHandler(this.UI7_combo_SelectedIndexChanged);
             // 
             // UI5_typeCombo
             // 
@@ -7801,6 +7859,7 @@
             this.UI6_combo.Name = "UI6_combo";
             this.UI6_combo.Size = new System.Drawing.Size(380, 21);
             this.UI6_combo.TabIndex = 59;
+            this.UI6_combo.SelectedIndexChanged += new System.EventHandler(this.UI6_combo_SelectedIndexChanged);
             // 
             // tabDO
             // 

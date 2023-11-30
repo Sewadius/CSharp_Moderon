@@ -317,8 +317,18 @@ namespace Moderon
 
             var ui_signals = new List<Label>()
             {
+                // ПЛК
                 UI1_lab, UI2_lab, UI3_lab, UI4_lab, UI5_lab, UI6_lab,
-                UI7_lab, UI8_lab, UI9_lab, UI10_lab, UI11_lab
+                UI7_lab, UI8_lab, UI9_lab, UI10_lab, UI11_lab,
+                // Блок расширения 1
+                UI1bl1_lab, UI2bl1_lab, UI3bl1_lab, UI4bl1_lab, UI5bl1_lab, UI6bl1_lab, UI7bl1_lab, UI8bl1_lab,
+                UI9bl1_lab, UI10bl1_lab, UI11bl1_lab, UI12bl1_lab, UI13bl1_lab, UI14bl1_lab, UI15bl1_lab, UI16bl1_lab,
+                // Блок расширения 2
+                UI1bl2_lab, UI2bl2_lab, UI3bl2_lab, UI4bl2_lab, UI5bl2_lab, UI6bl2_lab, UI7bl2_lab, UI8bl2_lab,
+                UI9bl2_lab, UI10bl2_lab, UI11bl2_lab, UI12bl2_lab, UI13bl2_lab, UI14bl2_lab, UI15bl2_lab, UI16bl2_lab,
+                // Блок расширения 3
+                UI1bl3_lab, UI2bl3_lab, UI3bl3_lab, UI4bl3_lab, UI5bl3_lab, UI6bl3_lab, UI7bl3_lab, UI8bl3_lab,
+                UI9bl3_lab, UI10bl3_lab, UI11bl3_lab, UI12bl3_lab, UI13bl3_lab, UI14bl3_lab, UI15bl3_lab, UI16bl3_lab,
             };
 
             List<Label> signals = do_signals.Concat(ao_signals)

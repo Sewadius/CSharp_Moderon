@@ -329,8 +329,10 @@ namespace Moderon
         private void CommandWord_1()
         {
             bool bit0, bit1, bit2, bit3, bit4;
-            bit0 = stopStartCheck.Checked; // Переключатель пуск/стоп
-            bit1 = bit2 = bit3 = bit4 = false; // Не используются
+
+            bit0 = stopStartCheck.Checked;                                      // Переключатель пуск/стоп
+            bit1 = bit2 = bit3 = bit4 = false;                                  // Не используются
+
             cmdW1 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2) +
                 8 * Convert.ToUInt16(bit3) + 16 * Convert.ToUInt16(bit4));
         }
@@ -339,10 +341,12 @@ namespace Moderon
         private void CommandWord_2()
         {
             bool bit0, bit1, bit2, bit3;
-            bit0 = dampCheck.Checked; // Наличие приточной заслонки
-            bit1 = dampCheck.Checked && confPrDampCheck.Checked; // Подтверждение открытия
+
+            bit0 = dampCheck.Checked;                                           // Наличие приточной заслонки
+            bit1 = dampCheck.Checked && confPrDampCheck.Checked;                // Подтверждение открытия
             bit2 = false; // Не используется
-            bit3 = dampCheck.Checked && heatPrDampCheck.Checked; // Обогрев заслонки
+            bit3 = dampCheck.Checked && heatPrDampCheck.Checked;                // Обогрев заслонки
+
             cmdW2 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2) +
                 8 * Convert.ToUInt16(bit3));
         }
@@ -351,10 +355,12 @@ namespace Moderon
         private void CommandWord_3()
         {
             bool bit0, bit1, bit2, bit3;
-            bit0 = outDampCheck.Checked; // Наличие вытяжной заслонки
-            bit1 = outDampCheck.Checked && confOutDampCheck.Checked; // Подтверждение открытия
+
+            bit0 = outDampCheck.Checked;                                        // Наличие вытяжной заслонки
+            bit1 = outDampCheck.Checked && confOutDampCheck.Checked;            // Подтверждение открытия
             bit2 = false; // Не используется
-            bit3 = outDampCheck.Checked && heatOutDampCheck.Checked; // Обогрев заслонки
+            bit3 = outDampCheck.Checked && heatOutDampCheck.Checked;            // Обогрев заслонки
+
             cmdW3 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2) +
                 8 * Convert.ToUInt16(bit3));
         }
@@ -363,9 +369,11 @@ namespace Moderon
         private void CommandWord_4()
         {
             bool bit0, bit1, bit2;
-            bit0 = filterCheck.Checked; // Воздушный фильтр 1
-            bit1 = filterCheck.Checked && filterPrCombo.SelectedIndex > 0; // Воздушный фильтр 2
-            bit2 = filterCheck.Checked && filterPrCombo.SelectedIndex > 1; // Воздушный фильтр 3
+
+            bit0 = filterCheck.Checked;                                         // Воздушный фильтр 1
+            bit1 = filterCheck.Checked && filterPrCombo.SelectedIndex > 0;      // Воздушный фильтр 2
+            bit2 = filterCheck.Checked && filterPrCombo.SelectedIndex > 1;      // Воздушный фильтр 3
+
             cmdW4 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2));
         }
 
@@ -373,9 +381,11 @@ namespace Moderon
         private void CommandWord_5()
         {
             bool bit0, bit1, bit2;
-            bit0 = filterCheck.Checked && filterOutCombo.SelectedIndex > 0; // Воздушный фильтр 1
-            bit1 = filterCheck.Checked && filterOutCombo.SelectedIndex > 1; // Воздушный фильтр 2
-            bit2 = filterCheck.Checked && filterOutCombo.SelectedIndex > 2; // Воздушный фильтр 3
+
+            bit0 = filterCheck.Checked && filterOutCombo.SelectedIndex > 0;     // Воздушный фильтр 1
+            bit1 = filterCheck.Checked && filterOutCombo.SelectedIndex > 1;     // Воздушный фильтр 2
+            bit2 = filterCheck.Checked && filterOutCombo.SelectedIndex > 2;     // Воздушный фильтр 3
+
             cmdW5 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2));
         }
 
@@ -383,17 +393,19 @@ namespace Moderon
         private void CommandWord_6()
         {
             bool bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8, bit9, bit10;
-            bit0 = prChanSensCheck.Checked; // Канальный датчик температуры, приток
-            bit1 = false; // Канальный датчик приток 2
-            bit2 = outdoorChanSensCheck.Checked; // Датчик наружного воздуха
-            bit3 = heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0; // Датчик обратной воды
-            bit4 = roomTempSensCheck.Checked; // Комнатный датчик температуры  
-            bit5 = recupCheck.Checked && recDefTempCheck.Checked; // Датчик защиты рекуператора
-            bit6 = chanHumSensCheck.Checked; // Канальный датчик влажности
-            bit7 = roomHumSensCheck.Checked; // Комнатный датчик влажности
+
+            bit0 = prChanSensCheck.Checked;                                     // Канальный датчик температуры, приток
+            bit1 = false;                                                       // Канальный датчик приток 2
+            bit2 = outdoorChanSensCheck.Checked;                                // Датчик наружного воздуха
+            bit3 = heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0;     // Датчик обратной воды
+            bit4 = roomTempSensCheck.Checked;                                   // Комнатный датчик температуры  
+            bit5 = recupCheck.Checked && recDefTempCheck.Checked;               // Датчик защиты рекуператора
+            bit6 = chanHumSensCheck.Checked;                                    // Канальный датчик влажности
+            bit7 = roomHumSensCheck.Checked;                                    // Комнатный датчик влажности
             bit8 = addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0; // Датчик обратной воды, догреватель
-            bit9 = outChanSensCheck.Checked; // Вытяжной канальный датчик
-            bit10 = false; // Датчик обратной воды гликолевого рекуператора
+            bit9 = outChanSensCheck.Checked;                                    // Вытяжной канальный датчик
+            bit10 = false;                                                      // Датчик обратной воды гликолевого рекуператора
+
             cmdW6 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2) +
                 8 * Convert.ToUInt16(bit3) + 16 * Convert.ToUInt16(bit4) + 32 * Convert.ToUInt16(bit5) +
                 64 * Convert.ToUInt16(bit6) + 128 * Convert.ToUInt16(bit7) + 256 * Convert.ToUInt16(bit8) +
@@ -404,8 +416,10 @@ namespace Moderon
         private void CommandWord_7()
         {
             bool bit0, bit1;
-            bit0 = false; // Резервный насос гликолевого
-            bit1 = false; // Наличие KPI резервного насоса
+
+            bit0 = false;                                                       // Резервный насос гликолевого
+            bit1 = false;                                                       // Наличие KPI резервного насоса
+
             cmdW7 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1));
         }
 
@@ -413,9 +427,11 @@ namespace Moderon
         private void CommandWord_8()
         {
             bool bit0, bit1, bit2;
+
             bit0 = recircCheck.Checked;                                         // Наличие рециркуляции
             bit1 = recircCheck.Checked && recircAOSigCheck.Checked;             // Управление 0-10 В
             bit2 = recircCheck.Checked && recircPrDampAOCheck.Checked;          // Сигнал 0-10 В на приточную заслонку
+
             cmdW8 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2));
         }
 
@@ -423,25 +439,30 @@ namespace Moderon
         private void CommandWord_9()
         {
             bool bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8, bit9, bit10;
-            if (recupCheck.Checked)
-            { // Выбран рекуператор
-                bit0 = recupTypeCombo.SelectedIndex == 1; // Пластинчатый рекуператор
-                bit1 = recupTypeCombo.SelectedIndex == 0; // Роторный рекуператор
-                bit2 = recupTypeCombo.SelectedIndex == 2; // Гликолевый рекуператор
+
+            if (recupCheck.Checked)                                             // Выбран рекуператор
+            { 
+                bit0 = recupTypeCombo.SelectedIndex == 1;                       // Пластинчатый рекуператор
+                bit1 = recupTypeCombo.SelectedIndex == 0;                       // Роторный рекуператор
+                bit2 = recupTypeCombo.SelectedIndex == 2;                       // Гликолевый рекуператор
+                // 0-10 В
                 bit3 = (recupTypeCombo.SelectedIndex == 0 && analogRotRecCheck.Checked) ||
                     (recupTypeCombo.SelectedIndex == 1 && bypassPlastCombo.SelectedIndex == 2) ||
-                        (recupTypeCombo.SelectedIndex == 2 && analogGlikRecCheck.Checked); // 0-10 В
-                bit4 = false; // Контактор рекуператора
+                        (recupTypeCombo.SelectedIndex == 2 && analogGlikRecCheck.Checked); 
+                bit4 = false;                                                   // Контактор рекуператора
+                // Откр/закр
                 bit5 = (recupTypeCombo.SelectedIndex == 0 && startRotRecCheck.Checked) ||
-                    (recupTypeCombo.SelectedIndex == 1 && bypassPlastCombo.SelectedIndex == 1); // Откр/закр
-                bit6 = false; // Наличие ATV212
-                bit7 = recDefPsCheck.Checked; // Датчик PS рекуператора
-                bit8 = recDefTempCheck.Checked; // Датчик температуры за рекуператором
-                bit9 = false; // Реле давления насоса гликолевого
-                bit10 = outSigAlarmRotRecCheck.Checked && recupTypeCombo.SelectedIndex == 0; // Внешний сигнал аварии роторного рекуператора
+                    (recupTypeCombo.SelectedIndex == 1 && bypassPlastCombo.SelectedIndex == 1); 
+                bit6 = false;                                                   // Наличие ATV212
+                bit7 = recDefPsCheck.Checked;                                   // Датчик PS рекуператора
+                bit8 = recDefTempCheck.Checked;                                 // Датчик температуры за рекуператором
+                bit9 = false;                                                   // Реле давления насоса гликолевого
+                // Внешний сигнал аварии роторного рекуператора
+                bit10 = outSigAlarmRotRecCheck.Checked && recupTypeCombo.SelectedIndex == 0; 
             }
             else
                 bit0 = bit1 = bit2 = bit3 = bit4 = bit5 = bit6 = bit7 = bit8 = bit9 = bit10 = false;
+
             cmdW9 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2) +
                 8 * Convert.ToUInt16(bit3) + 16 * Convert.ToUInt16(bit4) + 32 * Convert.ToUInt16(bit5) +
                 64 * Convert.ToUInt16(bit6) + 128 * Convert.ToUInt16(bit7) + 256 * Convert.ToUInt16(bit8) +
@@ -452,23 +473,25 @@ namespace Moderon
         private void CommandWord_10()
         {
             bool bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8, bit9, bit10, bit11;
-            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 1)
-            { // Выбран электрический нагреватель
-                bit0 = firstStHeatCombo.SelectedIndex == 2; // Управление 0-10 В
-                bit1 = firstStHeatCombo.SelectedIndex == 1; // Управление ШИМ 5В
-                bit2 = elHeatStagesCombo.SelectedIndex > 6; // Ступерь 8
-                bit3 = elHeatStagesCombo.SelectedIndex > 5; // Ступень 7
-                bit4 = elHeatStagesCombo.SelectedIndex > 4; // Ступень 6
-                bit5 = elHeatStagesCombo.SelectedIndex > 3; // Ступень 5
-                bit6 = elHeatStagesCombo.SelectedIndex > 2; // Ступень 4
-                bit7 = elHeatStagesCombo.SelectedIndex > 1; // Ступень 3
-                bit8 = elHeatStagesCombo.SelectedIndex > 0; // Ступень 2
-                bit9 = true;                                // Ступень 1 по умолчанию
-                bit10 = thermSwitchCombo.SelectedIndex > 0; // Термовыключатель 1
-                bit11 = thermSwitchCombo.SelectedIndex > 1; // Термовыключатель 2
+
+            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 1)        // Выбран электрический нагреватель
+            { 
+                bit0 = firstStHeatCombo.SelectedIndex == 2;                     // Управление 0-10 В
+                bit1 = firstStHeatCombo.SelectedIndex == 1;                     // Управление ШИМ 5В
+                bit2 = elHeatStagesCombo.SelectedIndex > 6;                     // Ступерь 8
+                bit3 = elHeatStagesCombo.SelectedIndex > 5;                     // Ступень 7
+                bit4 = elHeatStagesCombo.SelectedIndex > 4;                     // Ступень 6
+                bit5 = elHeatStagesCombo.SelectedIndex > 3;                     // Ступень 5
+                bit6 = elHeatStagesCombo.SelectedIndex > 2;                     // Ступень 4
+                bit7 = elHeatStagesCombo.SelectedIndex > 1;                     // Ступень 3
+                bit8 = elHeatStagesCombo.SelectedIndex > 0;                     // Ступень 2
+                bit9 = true;                                                    // Ступень 1 по умолчанию
+                bit10 = thermSwitchCombo.SelectedIndex > 0;                     // Термовыключатель 1
+                bit11 = thermSwitchCombo.SelectedIndex > 1;                     // Термовыключатель 2
             }
-            else // Не выбран электрический нагреватель
+            else                                                                // Не выбран электрический нагреватель
                 bit0 = bit1 = bit2 = bit3 = bit4 = bit5 = bit6 = bit7 = bit8 = bit9 = bit10 = bit11 = false;
+
             cmdW10 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2) +
                 8 * Convert.ToUInt16(bit3) + 16 * Convert.ToUInt16(bit4) + 32 * Convert.ToUInt16(bit5) +
                 64 * Convert.ToUInt16(bit6) + 128 * Convert.ToUInt16(bit7) + 256 * Convert.ToUInt16(bit8) +
@@ -504,34 +527,36 @@ namespace Moderon
         private void CommandWord_12()
         {
             bool bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8, bit9;
-            if (coolerCheck.Checked)
-            { // Выбран охладитель
-                if (coolTypeCombo.SelectedIndex == 0)
-                { // Фреоновый охладитель
-                    bit0 = false; // Наличие водяного охладителя
-                    bit1 = true; // Наличие фреонового охладителя
-                    bit2 = true; // Первая ступень
-                    bit3 = frCoolStagesCombo.SelectedIndex > 0; // Вторая ступень
-                    bit4 = frCoolStagesCombo.SelectedIndex > 1; // Третья ступень
-                    bit5 = frCoolStagesCombo.SelectedIndex > 2; // Четвертая ступень
-                    bit6 = analogFreonCheck.Checked; // Аналоговый сигнал охладителя
-                    bit7 = alarmFrCoolCheck.Checked; // Аварийный сигнал, фреон
-                    bit8 = thermoCoolerCheck.Checked; // Воздушный термостат
-                    bit9 = dehumModeCheck.Checked && addHeatCheck.Checked; // Режим осушителя
+
+            if (coolerCheck.Checked)                                                    // Выбран охладитель
+            { 
+                if (coolTypeCombo.SelectedIndex == 0)                                   // Фреоновый охладитель
+                { 
+                    bit0 = false;                                                       // Наличие водяного охладителя
+                    bit1 = true;                                                        // Наличие фреонового охладителя
+                    bit2 = true;                                                        // Первая ступень
+                    bit3 = frCoolStagesCombo.SelectedIndex > 0;                         // Вторая ступень
+                    bit4 = frCoolStagesCombo.SelectedIndex > 1;                         // Третья ступень
+                    bit5 = frCoolStagesCombo.SelectedIndex > 2;                         // Четвертая ступень
+                    bit6 = analogFreonCheck.Checked;                                    // Аналоговый сигнал охладителя
+                    bit7 = alarmFrCoolCheck.Checked;                                    // Аварийный сигнал, фреон
+                    bit8 = thermoCoolerCheck.Checked;                                   // Воздушный термостат
+                    bit9 = dehumModeCheck.Checked && addHeatCheck.Checked;              // Режим осушителя
                 } 
-                else // Водяной охладитель
+                else                                                                    // Водяной охладитель
                 {
-                    bit0 = true; // Наличие водяного охладителя
-                    bit1 = false; // Наличие фреонового охладителя
-                    bit2 = bit3 = bit4 = bit5 = false; // Ступени фреонового охладителя
-                    bit6 = analogCoolCheck.Checked; // Аналоговый сигнал
-                    bit7 = false; // Аварийный сигнал, фреон
-                    bit8 = false; // Воздушный термостат, фреон
-                    bit9 = false; // Режим осушителя, фреон
+                    bit0 = true;                                                        // Наличие водяного охладителя
+                    bit1 = false;                                                       // Наличие фреонового охладителя
+                    bit2 = bit3 = bit4 = bit5 = false;                                  // Ступени фреонового охладителя
+                    bit6 = analogCoolCheck.Checked;                                     // Аналоговый сигнал
+                    bit7 = false;                                                       // Аварийный сигнал, фреон
+                    bit8 = false;                                                       // Воздушный термостат, фреон
+                    bit9 = false;                                                       // Режим осушителя, фреон
                 }
             }
-            else // Нет выбранного охладителя
+            else                                                                        // Нет выбранного охладителя
                 bit0 = bit1 = bit2 = bit3 = bit4 = bit5 = bit6 = bit7 = bit8 = bit9 = false;
+
             cmdW12 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2) +
                 8 * Convert.ToUInt16(bit3) + 16 * Convert.ToUInt16(bit4) + 32 * Convert.ToUInt16(bit5) +
                 64 * Convert.ToUInt16(bit6) + 128 * Convert.ToUInt16(bit7) + 256 * Convert.ToUInt16(bit8) +
@@ -555,7 +580,7 @@ namespace Moderon
                 bit7 = pumpCurAddProtect.Checked;                                       // Наличие реле тока основного насоса
                 bit8 = pumpCurResAddProtect.Checked;                                    // Наличие реле тока резервного насоса
             }
-            else // Не выбран водяной догреватель
+            else                                                                        // Не выбран водяной догреватель
                 bit0 = bit1 = bit2 = bit3 = bit4 = bit5 = bit6 = bit7 = bit8 = false;
 
             cmdW13 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2) +
@@ -567,23 +592,25 @@ namespace Moderon
         private void CommandWord_14()
         {
             bool bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8, bit9, bit10, bit11;
-            if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 1)
-            { // Выбран электрический догреватель
-                bit0 = firstStAddHeatCombo.SelectedIndex == 2; // Управление 0-10 В
-                bit1 = firstStAddHeatCombo.SelectedIndex == 1; // Управление ШИМ 5В
-                bit2 = elHeatAddStagesCombo.SelectedIndex > 6; // Ступень 8
-                bit3 = elHeatAddStagesCombo.SelectedIndex > 5; // Ступень 7
-                bit4 = elHeatAddStagesCombo.SelectedIndex > 4; // Ступень 6
-                bit5 = elHeatAddStagesCombo.SelectedIndex > 3; // Ступень 5
-                bit6 = elHeatAddStagesCombo.SelectedIndex > 2; // Ступень 4
-                bit7 = elHeatAddStagesCombo.SelectedIndex > 1; // Ступень 3
-                bit8 = elHeatAddStagesCombo.SelectedIndex > 0; // Ступень 2
-                bit9 = true;                                   // Ступень 1 по умолчанию
-                bit10 = thermAddSwitchCombo.SelectedIndex > 0; // Термовыключатель 1
-                bit11 = thermAddSwitchCombo.SelectedIndex > 1; // Термовыключатель 2
+
+            if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 1)            // Выбран электрический догреватель
+            { 
+                bit0 = firstStAddHeatCombo.SelectedIndex == 2;                          // Управление 0-10 В
+                bit1 = firstStAddHeatCombo.SelectedIndex == 1;                          // Управление ШИМ 5В
+                bit2 = elHeatAddStagesCombo.SelectedIndex > 6;                          // Ступень 8
+                bit3 = elHeatAddStagesCombo.SelectedIndex > 5;                          // Ступень 7
+                bit4 = elHeatAddStagesCombo.SelectedIndex > 4;                          // Ступень 6
+                bit5 = elHeatAddStagesCombo.SelectedIndex > 3;                          // Ступень 5
+                bit6 = elHeatAddStagesCombo.SelectedIndex > 2;                          // Ступень 4
+                bit7 = elHeatAddStagesCombo.SelectedIndex > 1;                          // Ступень 3
+                bit8 = elHeatAddStagesCombo.SelectedIndex > 0;                          // Ступень 2
+                bit9 = true;                                                            // Ступень 1 по умолчанию
+                bit10 = thermAddSwitchCombo.SelectedIndex > 0;                          // Термовыключатель 1
+                bit11 = thermAddSwitchCombo.SelectedIndex > 1;                          // Термовыключатель 2
             }
             else
                 bit0 = bit1 = bit2 = bit3 = bit4 = bit5 = bit6 = bit7 = bit8 = bit9 = bit10 = bit11 = false;
+
             cmdW14 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2) +
                 8 * Convert.ToUInt16(bit3) + 16 * Convert.ToUInt16(bit4) + 32 * Convert.ToUInt16(bit5) +
                 64 * Convert.ToUInt16(bit6) + 128 * Convert.ToUInt16(bit7) + 256 * Convert.ToUInt16(bit8) +
@@ -594,17 +621,19 @@ namespace Moderon
         private void CommandWord_15()
         {
             bool bit0, bit1, bit2, bit3;
-            if (humidCheck.Checked)
-            { // Выбран увлажнитель
-                bit0 = true; // Наличие увлажнителя
+
+            if (humidCheck.Checked)                                                     // Выбран увлажнитель
+            { 
+                bit0 = true;                                                            // Наличие увлажнителя
                 // Наличие насоса сотового или пуск/стоп парового
                 bit1 = (humidTypeCombo.SelectedIndex == 0 && startHumidCheck.Checked) ||
                     (humidTypeCombo.SelectedIndex == 1 && powPumpHumidCheck.Checked);
-                bit2 = humidTypeCombo.SelectedIndex == 0 && analogHumCheck.Checked; // 0-10 В
-                bit3 = humidTypeCombo.SelectedIndex == 0 && alarmHumidCheck.Checked; // Аварийный сигнал
+                bit2 = humidTypeCombo.SelectedIndex == 0 && analogHumCheck.Checked;     // 0-10 В
+                bit3 = humidTypeCombo.SelectedIndex == 0 && alarmHumidCheck.Checked;    // Аварийный сигнал
             }
-            else // Не выбран увлажнитель
+            else                                                                        // Не выбран увлажнитель
                 bit0 = bit1 = bit2 = bit3 = false;
+
             cmdW15 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2) +
                 8 * Convert.ToUInt16(bit3));
         }
@@ -770,9 +799,9 @@ namespace Moderon
         ///<summary>Командное слово для пожарной сигнализации</summary>
         private void CommandWord_fire()
         {
-            if (!fireCheck.Checked) cmdW_fire = 0; // Нет сигнала
-            else if (fireCheck.Checked && fireTypeCombo.SelectedIndex == 0) cmdW_fire = 0; // Сигнал + НО
-            else if (fireCheck.Checked && fireTypeCombo.SelectedIndex == 1) cmdW_fire = 1; // Сигнал + НЗ
+            if (!fireCheck.Checked) cmdW_fire = 0;                                              // Нет сигнала
+            else if (fireCheck.Checked && fireTypeCombo.SelectedIndex == 0) cmdW_fire = 0;      // Сигнал + НО
+            else if (fireCheck.Checked && fireTypeCombo.SelectedIndex == 1) cmdW_fire = 1;      // Сигнал + НЗ
         }
 
         ///<summary>Выбрали заслонку</summary>
@@ -785,9 +814,9 @@ namespace Moderon
         private void ConfPrDampCheck_cmdCheckedChanged(object sender, EventArgs e)
         {
             CommandWord_2();
-            CheckMarkPrDamp_Spec(); // Проверка для подобранного привода
+            CheckMarkPrDamp_Spec();                                                             // Проверка для подобранного привода
             if (ignoreEvents) return;
-            ConfPrDampCheck_signalsDICheckedChanged(this, e); // Сигналы DI ПЛК
+            ConfPrDampCheck_signalsDICheckedChanged(this, e);                                   // Сигналы DI ПЛК
         }
 
         ///<summary>Выбрали обогрев приточной заслонки</summary>
@@ -795,7 +824,7 @@ namespace Moderon
         {
             CommandWord_2();
             if (ignoreEvents) return;
-            HeatPrDampCheck_signalsCheckedChanged(this, e); // Сигналы ПЛК
+            HeatPrDampCheck_signalsCheckedChanged(this, e);                                     // Сигналы ПЛК
         }
 
         ///<summary>Выбрали вытяжную заслонку</summary>
@@ -806,9 +835,9 @@ namespace Moderon
         private void ConfOutDampCheck_cmdCheckedChanged(object sender, EventArgs e)
         {
             CommandWord_3();
-            CheckMarkOutDamp_Spec(); // Проверка для подобранного привода
+            CheckMarkOutDamp_Spec();                                                            // Проверка для подобранного привода
             if (ignoreEvents) return;
-            ConfOutDampCheck_signalsDICheckedChanged(this, e); // Сигналы DI ПЛК
+            ConfOutDampCheck_signalsDICheckedChanged(this, e);                                  // Сигналы DI ПЛК
         }
 
         ///<summary>Выбрали обогрев вытяжной заслонки</summary>
@@ -816,7 +845,7 @@ namespace Moderon
         {
             CommandWord_3();
             if (ignoreEvents) return;
-            HeatOutDampCheck_signalsCheckedChanged(this, e); // Сигналы ПЛК
+            HeatOutDampCheck_signalsCheckedChanged(this, e);                                    // Сигналы ПЛК
         }
 
         ///<summary>Выбрали фильтр</summary>
@@ -830,7 +859,7 @@ namespace Moderon
         {
             CommandWord_4();
             if (ignoreEvents) return;
-            FilterPrCombo_signalsDISelectedIndexChanged(this, e); // Сигналы DI
+            FilterPrCombo_signalsDISelectedIndexChanged(this, e);                               // Сигналы DI
         }
 
         ///<summary>Изменили количество вытяжных фильтров</summary>
@@ -838,7 +867,7 @@ namespace Moderon
         {
             CommandWord_5();
             if (ignoreEvents) return;
-            FilterOutCombo_signalsDISelectedIndexChanged(this, e); // Сигналы DI
+            FilterOutCombo_signalsDISelectedIndexChanged(this, e);                              // Сигналы DI
         }
 
         ///<summary>Выбрали сигнал пожарной сигнализации</summary>
@@ -846,15 +875,15 @@ namespace Moderon
         {
             if (fireCheck.Checked) fireTypeCombo.Enabled = true;
             else fireTypeCombo.Enabled = false;
-            CommandWord_fire(); // Пересчет командного слова для ПС
+            CommandWord_fire();                                                                 // Пересчет командного слова для ПС
             if (ignoreEvents) return;
-            FireCheck_signalsDISelectedIndexChanged(this, e); // Сигналы DI
+            FireCheck_signalsDISelectedIndexChanged(this, e);                                   // Сигналы DI
         }
 
         ///<summary>Изменили тип пожарной сигнализации</summary>
         private void FireTypeCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CommandWord_fire(); // Пересчет командного слова для ПС
+            CommandWord_fire();                                                                 // Пересчет командного слова для ПС
         }
 
         ///<summary>Выбрали приточный канальный датчик температуры</summary>
@@ -862,7 +891,7 @@ namespace Moderon
         {
             CommandWord_6();
             if (ignoreEvents) return;
-            PrChanSensCheck_signalsAICheckedChanged(this, e); // Сигналы AI
+            PrChanSensCheck_signalsAICheckedChanged(this, e);                                   // Сигналы AI
         }
 
         ///<summary>Выбрали датчик температуры наружного воздуха</summary>
@@ -870,7 +899,7 @@ namespace Moderon
         {
             CommandWord_6();
             if (ignoreEvents) return;
-            OutdoorChanSensCheck_signalsAICheckedChanged(this, e); // Сигналы AI
+            OutdoorChanSensCheck_signalsAICheckedChanged(this, e);                              // Сигналы AI
         }
 
         ///<summary>Выбрали комнатный датчик температуры</summary>
@@ -878,7 +907,7 @@ namespace Moderon
         {
             CommandWord_6();
             if (ignoreEvents) return;
-            RoomTempSensCheck_signalsAICheckedChanged(this, e); // Сигналы AI
+            RoomTempSensCheck_signalsAICheckedChanged(this, e);                                 // Сигналы AI
         }
 
         ///<summary>Выбрали рекуператор</summary>
@@ -892,7 +921,7 @@ namespace Moderon
         {
             CommandWord_6(); CommandWord_9();
             if (ignoreEvents) return;
-            RecDefTempCheck_signalsAICheckedChanged(this, e); // Сигналы AI
+            RecDefTempCheck_signalsAICheckedChanged(this, e);                                   // Сигналы AI
         }
 
         ///<summary>Выбрали канальный датчик влажности</summary>
@@ -900,7 +929,7 @@ namespace Moderon
         {
             CommandWord_6();
             if (ignoreEvents) return;
-            ChanHumSensCheck_signalsAICheckedChanged(this, e); // Сигналы AI
+            ChanHumSensCheck_signalsAICheckedChanged(this, e);                                  // Сигналы AI
         }
 
         ///<summary>Выбрали комнатный датчик влажности</summary>
@@ -908,7 +937,7 @@ namespace Moderon
         {
             CommandWord_6();
             if (ignoreEvents) return;
-            RoomHumSensCheck_signalsAICheckedChanged(this, e); // Сигналы AI
+            RoomHumSensCheck_signalsAICheckedChanged(this, e);                                  // Сигналы AI
         }
 
         ///<summary>Выбрали канальный датчик Т вытяжного воздуха</summary>
@@ -916,7 +945,7 @@ namespace Moderon
         {
             CommandWord_6();
             if (ignoreEvents) return;
-            OutChanSensCheck_signalsAICheckedChanged(this, e); // Сигналы AI
+            OutChanSensCheck_signalsAICheckedChanged(this, e);                                  // Сигналы AI
         }
 
         ///<summary>Выбрали рециркуляцию</summary>
@@ -952,7 +981,7 @@ namespace Moderon
         {
             CommandWord_9();
             if (ignoreEvents) return;
-            BypassPlastCombo_signalsAOSelectedIndexChanged(this, e); // Сигналы AO ПЛК
+            BypassPlastCombo_signalsAOSelectedIndexChanged(this, e);                            // Сигналы AO ПЛК
         }
 
         ///<summary>Выбрали сигнал PS рекуператора</summary>
@@ -960,7 +989,7 @@ namespace Moderon
         {
             CommandWord_9();
             if (ignoreEvents) return;
-            RecDefPsCheck_signalsDICheckedChanged(this, e); // Сигналы DI
+            RecDefPsCheck_signalsDICheckedChanged(this, e);                                     // Сигналы DI
         }
 
         ///<summary>Выбрали основной калорифер</summary>
@@ -985,7 +1014,7 @@ namespace Moderon
         {
             CommandWord_10();
             if (ignoreEvents) return;
-            ElHeatStagesCombo_signalsDOSelectedIndexChanged(this, e); // Сигналы ПЛК
+            ElHeatStagesCombo_signalsDOSelectedIndexChanged(this, e);                           // Сигналы ПЛК
         }
 
         ///<summary>Изменили тип управления первой ступенью нагревателя</summary>
@@ -993,7 +1022,7 @@ namespace Moderon
         {
             CommandWord_10();
             if (ignoreEvents) return;
-            FirstStHeatCombo_SignalsAOSelectedIndexChanged(this, e); // Сигналы AO ПЛК
+            FirstStHeatCombo_SignalsAOSelectedIndexChanged(this, e);                            // Сигналы AO ПЛК
         }
 
         ///<summary>Изменили количество термовыключателей калорифера</summary>
@@ -1001,7 +1030,7 @@ namespace Moderon
         {
             CommandWord_10();
             if (ignoreEvents) return;
-            ThermSwitchCombo_signalsDISelectedIndexChanged(this, e); // Сигналы DI
+            ThermSwitchCombo_signalsDISelectedIndexChanged(this, e);                            // Сигналы DI
 
         }
 
@@ -1010,7 +1039,7 @@ namespace Moderon
         {
             CommandWord_11();
             if (ignoreEvents) return;
-            ConfHeatPumpCheck_signalsDICheckedChanged(this, e); // Сигналы DI  
+            ConfHeatPumpCheck_signalsDICheckedChanged(this, e);                                 // Сигналы DI  
         }
 
         ///<summary>Подтверждение работы резервного насоса водяного калорифера</summary>
@@ -1026,7 +1055,7 @@ namespace Moderon
         {
             CommandWord_11();
             if (ignoreEvents) return;
-            TF_heaterCheck_signalsDICheckedChanged(this, e); // Сигналы DI
+            TF_heaterCheck_signalsDICheckedChanged(this, e);                                    // Сигналы DI
         }
 
         ///<summary>Выбрали защиту по току для основного насоса калорифера</summary>
@@ -1034,7 +1063,7 @@ namespace Moderon
         {
             CommandWord_11();
             if (ignoreEvents) return;
-            PumpCurProtect_signalsDICheckedChanged(this, e); // Сигналы DI
+            PumpCurProtect_signalsDICheckedChanged(this, e);                                    // Сигналы DI
         }
 
         ///<summary>Выбрали защиту по току для резервного насоса калорифера</summary>
@@ -1042,7 +1071,7 @@ namespace Moderon
         {
             CommandWord_11();
             if (ignoreEvents) return;
-            PumpCurResProtect_signalsDICheckedChanged(this, e); // Сигналы DI
+            PumpCurResProtect_signalsDICheckedChanged(this, e);                                 // Сигналы DI
         }
 
         ///<summary>Выбрали догреватель</summary>
@@ -1066,7 +1095,7 @@ namespace Moderon
         {
             CommandWord_13();
             if (ignoreEvents) return;
-            PumpCurAddProtect_signalsDICheckedChanged(this, e); // Сигналы DI
+            PumpCurAddProtect_signalsDICheckedChanged(this, e);                                 // Сигналы DI
         }
 
         ///<summary>Выбрали защиту по току для резервного насоса догревателя</summary>
@@ -1074,7 +1103,7 @@ namespace Moderon
         {
             CommandWord_13();
             if (ignoreEvents) return;
-            PumpCurResAddProtect_signalsDICheckedChanged(this, e);  // Сигналы DI
+            PumpCurResAddProtect_signalsDICheckedChanged(this, e);                              // Сигналы DI
         }
 
         ///<summary>Изменили тип охладителя</summary>
@@ -1090,7 +1119,7 @@ namespace Moderon
         {
             CommandWord_12();
             if (ignoreEvents) return;
-            FrCoolStagesCombo_signalsDOSelectedIndexChanged(this, e); // Сигналы DO
+            FrCoolStagesCombo_signalsDOSelectedIndexChanged(this, e);                           // Сигналы DO
         }
 
         ///<summary>Выбрали аварийный сигнал для фреонового охладителя</summary>
@@ -1098,7 +1127,7 @@ namespace Moderon
         {
             CommandWord_12();
             if (ignoreEvents) return;
-            AlarmFrCoolCheck_signalsDICheckedChanged(this, e); // Сигналы DI
+            AlarmFrCoolCheck_signalsDICheckedChanged(this, e);                                  // Сигналы DI
         }
 
         ///<summary>Выбрали сигнал 0-10 В для фреонового охладителя</summary>
@@ -1106,14 +1135,14 @@ namespace Moderon
         {
             CommandWord_12();
             if (ignoreEvents) return;
-            AnalogFreonCheck_signalsAOCheckedChanged(this, e); // Сигналы AO
+            AnalogFreonCheck_signalsAOCheckedChanged(this, e);                                  // Сигналы AO
         }
 
         private void ThermoCoolerCheck_cmdCheckedChanged(object sender, EventArgs e)
         {
             CommandWord_12();
             if (ignoreEvents) return;
-            ThermoCoolerCheck_signalsDICheckedChanged(this, e); // Сигналы DI
+            ThermoCoolerCheck_signalsDICheckedChanged(this, e);                                 // Сигналы DI
         }
         
         ///<summary>Выбрали режим осушителя</summary>
@@ -1129,7 +1158,7 @@ namespace Moderon
         {
             CommandWord_13();
             if (ignoreEvents) return;
-            PumpAddHeatCheck_signalsDOCheckedChanged(this, e); // Сигналы DO
+            PumpAddHeatCheck_signalsDOCheckedChanged(this, e);                                  // Сигналы DO
         }
 
         ///<summary>Подтверждение работы основного насоса водяного догревателя</summary>
@@ -1137,7 +1166,7 @@ namespace Moderon
         {
             CommandWord_13();
             if (ignoreEvents) return;
-            ConfAddHeatPumpCheck_signalsDICheckedChanged(this, e);      // Сигналы DI
+            ConfAddHeatPumpCheck_signalsDICheckedChanged(this, e);                              // Сигналы DI
         }
 
         ///<summary>Подтверждение работы резервного насоса водяного догревателя</summary>
@@ -1145,7 +1174,7 @@ namespace Moderon
         {
             CommandWord_13();
             if (ignoreEvents) return;
-            ConfAddHeatResPumpCheck_signalsDICheckedChanged(this, e);   // Сигналы DI
+            ConfAddHeatResPumpCheck_signalsDICheckedChanged(this, e);                           // Сигналы DI
         }
 
         ///<summary>Выбрали термостат догревателя</summary>
@@ -1153,7 +1182,7 @@ namespace Moderon
         {
             CommandWord_13();
             if (ignoreEvents) return;
-            TF_addHeaterCheck_signalsDICheckedChanged(this, e); // Сигналы DI
+            TF_addHeaterCheck_signalsDICheckedChanged(this, e);                                 // Сигналы DI
         }
 
         ///<summary>Изменили количество ступеней электрического догревателя</summary>
@@ -1161,7 +1190,7 @@ namespace Moderon
         {
             CommandWord_14();
             if (ignoreEvents) return;
-            ElHeatAddStagesCombo_signalsSelectedIndexChanged(this, e); // Сигналы ПЛК
+            ElHeatAddStagesCombo_signalsSelectedIndexChanged(this, e);                          // Сигналы ПЛК
         }
 
         ///<summary>Изменили тип управления первой ступенью догревателя</summary>
@@ -1177,7 +1206,7 @@ namespace Moderon
         {
             CommandWord_14();
             if (ignoreEvents) return;
-            ThermAddSwitchCombo_signalsDISelectedIndexChanged(this, e); // Сигналы DI
+            ThermAddSwitchCombo_signalsDISelectedIndexChanged(this, e);                         // Сигналы DI
         }
 
         ///<summary>Выбрали увлажнитель</summary>
@@ -1201,7 +1230,7 @@ namespace Moderon
         {
             CommandWord_15();
             if (ignoreEvents) return;
-            AlarmHumidCheck_signalsDICheckedChanged(this, e); // Сигналы DI
+            AlarmHumidCheck_signalsDICheckedChanged(this, e);                                   // Сигналы DI
         }
 
         ///<summary>Выбрали подачу питания на насос увлажнителя</summary>
@@ -1213,7 +1242,7 @@ namespace Moderon
         {
             CommandWord_19(); CommandWord_20();
             if (ignoreEvents) return;
-            PrFanPSCheck_signalsDICheckedChanged(this, e); // Сигналы DI ПЛК
+            PrFanPSCheck_signalsDICheckedChanged(this, e);                                      // Сигналы DI ПЛК
         }
 
         ///<summary>Выбрали заслонку для приточного вентилятора</summary>
@@ -1239,7 +1268,7 @@ namespace Moderon
         {
             CommandWord_19(); CommandWord_20();
             if (ignoreEvents) return;
-            PrFanThermoCheck_signalsDICheckedChanged(this, e); // Сигналы DI ПЛК
+            PrFanThermoCheck_signalsDICheckedChanged(this, e);                                  // Сигналы DI ПЛК
         }
 
         ///<summary>Выбрали защиту по току приточного вентилятора</summary>
@@ -1247,7 +1276,7 @@ namespace Moderon
         {
             CommandWord_19(); CommandWord_20();
             if (ignoreEvents) return;
-            CurDefPrFanCheck_signalsDICheckedChanged(this, e); // Сигналы DI
+            CurDefPrFanCheck_signalsDICheckedChanged(this, e);                                  // Сигналы DI
         }
 
         ///<summary>Выбрали резерв приточного вентилятора</summary>
@@ -1265,7 +1294,7 @@ namespace Moderon
         {
             CommandWord_21(); CommandWord_22();
             if (ignoreEvents) return;
-            OutFanPSCheck_signalsDICheckedChanged(this, e); // Сигналы DI ПЛК
+            OutFanPSCheck_signalsDICheckedChanged(this, e);                                     // Сигналы DI ПЛК
         }
 
         ///<summary>Выбрали заслонку для вытяжного вентилятора</summary>
@@ -1291,7 +1320,7 @@ namespace Moderon
         {
             CommandWord_21(); CommandWord_22();
             if (ignoreEvents) return;
-            OutFanThermoCheck_signalsDICheckedChanged(this, e); // Сигналы DI ПЛК
+            OutFanThermoCheck_signalsDICheckedChanged(this, e);                                 // Сигналы DI ПЛК
         }
 
         ///<summary>Выбрали защиту по току для вытяжного вентилятора</summary>
@@ -1299,7 +1328,7 @@ namespace Moderon
         {
             CommandWord_21(); CommandWord_22();
             if (ignoreEvents) return;
-            CurDefOutFanCheck_signalsDICheckedChanged(this, e); // Сигналы DI ПЛК
+            CurDefOutFanCheck_signalsDICheckedChanged(this, e);                                 // Сигналы DI ПЛК
         }
 
         ///<summary>Командное слово для вытяжного резерва</summary>
