@@ -160,11 +160,11 @@ namespace Moderon
             DO1_combo.SelectedIndex = 1; // Выбор сигнала
             if (showCode) DO1_lab.Text = 9.ToString();
 
-            /*DO2_combo.Items.Add(list_do.Find(x => x.Code == 1).Name); // Сигнал "Работа"
+            /*DO2_combo.Items.Add(list_do.Find(x => x.Code == 1).Name);     // Сигнал "Работа"
             DO2_combo.SelectedIndex = 1;
             if (showCode) DO2_lab.Text = 1.ToString();
             list_do.Find(x => x.Code == 1).Select();
-            DO3_combo.Items.Add(list_do.Find(x => x.Code == 3).Name); // Сигнал "Авария"
+            DO3_combo.Items.Add(list_do.Find(x => x.Code == 3).Name);       // Сигнал "Авария"
             DO3_combo.SelectedIndex = 1;
             if (showCode) DO3_lab.Text = 3.ToString();
             list_do.Find(x => x.Code == 3).Select(); */
@@ -601,10 +601,11 @@ namespace Moderon
         ///<summary>Добавление нового DO и его назначение для переданного comboBox</summary>
         private void SelectComboBox_DO(ComboBox cm, ushort code, Label label, string text, int index)
         {
-            cm.Items.Add(list_do.Find(x => x.Code == code).Name);
+            string name = list_do.Find(x => x.Code == code).Name;           // Поиск есть ли уже такое наименование в элементах comboBox
+            if (!cm.Items.Contains(name)) cm.Items.Add(name);               // Добавление лишь когда совпадения нет
             cm.SelectedIndex = cm.Items.Count - 1;
-            text = cm.SelectedIndex.ToString();
-            index = cm.SelectedIndex;
+            text = cm.SelectedItem.ToString();                              // Сохранение названия выбранного элемента
+            index = cm.SelectedIndex;                                       // Сохранение выбранного индекса
             if (showCode) label.Text = code.ToString();
             list_do.Find(x => x.Code == code).Select();
         }

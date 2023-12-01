@@ -22,6 +22,7 @@ namespace Moderon
         private Point MENU_POSITION = new Point(3, 36);                 // Позиция для меню элементов
         private Point PANEL_POSITION = new Point(15, 90);               // Позиция для остальных панелей
         readonly private bool showCode = true;                          // Код сигнала отображается по умолчанию в таблице сигналов
+        private int plkChangeIndexLast = 1;                             // Сохранённое значение последнего выбранного типа контроллера
         
         private bool 
             hintEnabled = true,                                         // Отображение подсказок выбрано по умолчанию
@@ -52,7 +53,7 @@ namespace Moderon
         public Form1()
         {
             InitializeComponent();          // Загрузка конструктора формы
-            InitialHeightPanels();          // Изначальное увеличение размера панелей в таблице сигналов
+            //InitialHeightPanels();          // Изначальное увеличение размера панелей в таблице сигналов
             BlockTabControlInitial();       // Скрытие вкладок элементов
             SelectComboBoxesInitial();      // Изначальный выбор для comboBox
             SizePanels();                   // Изменение размера панелей
@@ -208,6 +209,44 @@ namespace Moderon
             
         }
 
+        ///<summary>Алгоритм перераспределения сигналов DO и UI при смене типа контроллера</summary>
+        private void RellocateSignals_plkChange(bool flag, ComboBox cm)
+        {
+            Do do_find = null;                                                          // DO сигнал для поиска
+            Ui ui_find = null;                                                          // UI сигнал для поиска
+
+            if (flag)                                                                   // Для сигналов DO
+                do_find = list_do.Find(x => x.Name == cm.SelectedItem.ToString());
+            else                                                                        // Для сигналов UI
+                ui_find = list_ui.Find(x => x.Name == cm.SelectedItem.ToString());
+            cm.SelectedIndex = 0;
+            if (do_find != null) AddNewDO(do_find.Code);
+            if (ui_find != null) AddNewUI(ui_find.Code, ui_find.Type);
+        }
+
+        ///<summary>Проверка распределенных сигналов на Optimized при выборе Mini ПЛК</summary>
+        private void CheckSignals_plkChange()
+        {
+            // Сигналы AO
+            if (AO3_combo.SelectedIndex != 0)                                               // AO3, есть ранее выбранный сигнал                               
+            {
+                Ao ao_find = list_ao.Find(x => x.Name == AO3_combo.SelectedItem.ToString());
+                AO3_combo.SelectedIndex = 0;
+                if (ao_find != null) AddNewAO(ao_find.Code);
+            }
+            // Сигналы DO
+            List<ComboBox> do_signals = new List<ComboBox>() { DO5_combo, DO6_combo };      // DO5, DO6
+
+            foreach (var el in do_signals)
+                if (el.SelectedIndex != 0) RellocateSignals_plkChange(true, el);            // Есть ранее выбранный сигнал  
+
+            // Сигналы UI
+            List<ComboBox> ui_signals = new List<ComboBox>() { UI8_combo, UI9_combo, UI10_combo, UI11_combo };
+
+            foreach (var el in ui_signals)
+                if (el.SelectedIndex != 0) RellocateSignals_plkChange(false, el);           // Есть ранее выбранный сигнал
+        }
+
         ///<summary>Изменение размера и положения панелей при изменении типа контроллера</summary>
         private void ChangeSizeLocationSignalsPanels(bool flag)
         {
@@ -258,8 +297,11 @@ namespace Moderon
             var do_combos = new List<ComboBox>() { DO5_combo, DO6_combo };                                                  // DO_combo
             var do_labels = new List<Label>() { DO5_plkLabel, DO6_plkLabel };                                               // DO подписи сигналов 
 
+            if (comboPlkType.SelectedIndex == plkChangeIndexLast) return;           // Выбранный индекс не изменился
+
             if (comboPlkType.SelectedIndex == 0)                                    // Выбрали контроллер "Mini"
             {
+                plkChangeIndexLast = 0;                                             // Сохранение нового значения состояния
                 foreach (var el in ui_combos) el.Hide();                            // Скрытие UI входных сигналов
                 foreach (var el in ui_combos_type) el.Hide();                       // Скрытие UI типов для входных сигналов
                 foreach (var el in ui_labels) el.Hide();                            // Скрытие подписей для UI сигналов
@@ -267,9 +309,11 @@ namespace Moderon
                 foreach (var el in do_labels) el.Hide();                            // Скрытие подписей для DO сигналов
                 AO3_plkLabel.Hide(); AO3_combo.Hide();                              // Скрытие AO3 выходного сигнала
                 ChangeSizeLocationSignalsPanels(true);                              // Изменение размера и положения панелей
+                CheckSignals_plkChange();                                           // Проверка распределённых сигналов на Optimized  
             }
             else if (comboPlkType.SelectedIndex == 1)                               // Выбрали контроллер "Optimized"
             {
+                plkChangeIndexLast = 1;                                             // Сохранение нового значения состояния
                 foreach (var el in ui_combos) el.Show();                            // Отображение UI входных сигналов
                 foreach (var el in ui_combos_type) el.Show();                       // Отображение UI типов для входных сигналов
                 foreach (var el in ui_labels) el.Show();                            // Отображение подписей для UI сигналов

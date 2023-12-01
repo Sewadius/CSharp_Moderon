@@ -557,9 +557,9 @@ namespace Moderon
             ushort code_1 = 6, code_2 = 39;                                                 // Подтверждение открытия приточной/вытяжной заслонки
 
             if (dampCheck.Checked && confPrDampCheck.Checked)                               // Приточная заслонка и подтверждение открытия
-                CheckAddDIToList("Подтверждение открытия приточной заслонки", code_1);
+                CheckAddUIToList("Подтверждение открытия приточной заслонки", code_1, DI);
             if (dampCheck.Checked && outDampCheck.Checked && confOutDampCheck.Checked)      // Вытяжная заслонка и подтверждение открытия
-                CheckAddDIToList("Подтверждение открытия вытяжной заслонки", code_2);
+                CheckAddUIToList("Подтверждение открытия вытяжной заслонки", code_2, DI);
             else                                                                            // Отмена выбора блока заслонки
             {
                 SubFromCombosDI(code_1); SubFromCombosDI(code_2);

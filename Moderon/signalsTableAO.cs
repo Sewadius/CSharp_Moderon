@@ -242,10 +242,11 @@ namespace Moderon
         ///<summary>Добавление нового DO и его назначение для переданного comboBox</summary>
         private void SelectComboBox_AO(ComboBox cm, ushort code, Label label, string text, int index)
         {
-            cm.Items.Add(list_ao.Find(x => x.Code == code).Name);
+            string name = list_ao.Find(x => x.Code == code).Name;                   // Поиск есть ли уже такое наименование в элементах comboBox
+            if (!cm.Items.Contains(name)) cm.Items.Add(name);                       // Добавление лишь когда совпадения нет
             cm.SelectedIndex = cm.Items.Count - 1;
-            text = cm.SelectedItem.ToString();
-            index = cm.SelectedIndex;
+            text = cm.SelectedItem.ToString();                                      // Сохранение названия сигнала
+            index = cm.SelectedIndex;                                               // Сохранение выбранного индекса comboBox
             if (showCode) label.Text = code.ToString();
             list_ao.Find(x => x.Code == code).Select();
         }
