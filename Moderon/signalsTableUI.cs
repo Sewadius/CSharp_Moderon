@@ -29,7 +29,7 @@ namespace Moderon
     public partial class Form1 : Form
     {
         static readonly string
-            DI = "di";
+            DI = "di", NTC = "NTC", mA_4_20 = "4-20 мА";
 
         List<Ui> list_ui = new List<Ui>();
 
@@ -211,13 +211,24 @@ namespace Moderon
         }
 
         ///<summary>Добавление нового UI и его назначение для переданного comboBox</summary>
-        private void SelectComboBox_UI(ComboBox cm, ushort code, Label label, string text, int index)
+        private void SelectComboBox_UI(ComboBox cm, ushort code, Label label, string text, int index, string type, ComboBox typeCombo)
         {
-            cm.Items.Add(list_ui.Find(x => x.Code == code).Name);
+            string name = list_ui.Find(x => x.Code == code).Name;       // Поиск есть ли такое наименование в элементах comboBox
+            if (!cm.Items.Contains(name)) cm.Items.Add(name);           // Добавление лишь когда совпадения нет
             cm.SelectedIndex = cm.Items.Count - 1;                      // Выбор последнего элемента
             text = cm.SelectedItem.ToString();                          // Сохранение названия выбранного элемента
             index = cm.SelectedIndex;                                   // Сохранение выбранного индекса
-            if (showCode) label.Text = code.ToString();
+            if (showCode)
+            {
+                if (type == DI)                                         // Для дискретного входа
+                    label.Text = (code + 1000).ToString();
+                else if (type == NTC)
+                    label.Text = code.ToString();                       // Аналоговый вход, тип NTC
+                else if (type == mA_4_20)
+                    label.Text = (code + 100).ToString();               // Аналоговый вход, тип 4-20 мА
+            }
+            if (type != DI)
+                typeCombo.Enabled = true;                               // Разблокировка comboBox для выбора типа сигнала
             list_ui.Find(x => x.Code == code).Select();
         }
 
@@ -225,27 +236,140 @@ namespace Moderon
         private void AddNewUI(ushort code, string type)
         {
             // ПЛК
-            if (UI1_combo.SelectedIndex == 0) SelectComboBox_UI(UI1_combo, code, UI1_lab, UI1combo_text, UI1combo_index);               // UI1
-            else if (UI2_combo.SelectedIndex == 0) SelectComboBox_UI(UI2_combo, code, UI2_lab, UI2combo_text, UI2combo_index);          // UI2
-            else if (UI3_combo.SelectedIndex == 0) SelectComboBox_UI(UI3_combo, code, UI3_lab, UI3combo_text, UI3combo_index);          // UI3
-            else if (UI4_combo.SelectedIndex == 0) SelectComboBox_UI(UI4_combo, code, UI4_lab, UI4combo_text, UI4combo_index);          // UI4
-            else if (UI5_combo.SelectedIndex == 0) SelectComboBox_UI(UI5_combo, code, UI5_lab, UI5combo_text, UI5combo_index);          // UI5
-            else if (UI6_combo.SelectedIndex == 0) SelectComboBox_UI(UI6_combo, code, UI6_lab, UI6combo_text, UI6combo_index);          // UI6
-            else if (UI7_combo.SelectedIndex == 0) SelectComboBox_UI(UI7_combo, code, UI7_lab, UI7combo_text, UI7combo_index);          // UI7
+            if (UI1_combo.SelectedIndex == 0) 
+                SelectComboBox_UI(UI1_combo, code, UI1_lab, UI1combo_text, UI1combo_index, type, UI1_typeCombo);        // UI1
+            else if (UI2_combo.SelectedIndex == 0) 
+                SelectComboBox_UI(UI2_combo, code, UI2_lab, UI2combo_text, UI2combo_index, type, UI2_typeCombo);        // UI2
+            else if (UI3_combo.SelectedIndex == 0) 
+                SelectComboBox_UI(UI3_combo, code, UI3_lab, UI3combo_text, UI3combo_index, type, UI3_typeCombo);        // UI3
+            else if (UI4_combo.SelectedIndex == 0) 
+                SelectComboBox_UI(UI4_combo, code, UI4_lab, UI4combo_text, UI4combo_index, type, UI4_typeCombo);        // UI4
+            else if (UI5_combo.SelectedIndex == 0) 
+                SelectComboBox_UI(UI5_combo, code, UI5_lab, UI5combo_text, UI5combo_index, type, UI5_typeCombo);        // UI5
+            else if (UI6_combo.SelectedIndex == 0) 
+                SelectComboBox_UI(UI6_combo, code, UI6_lab, UI6combo_text, UI6combo_index, type, UI6_typeCombo);        // UI6
+            else if (UI7_combo.SelectedIndex == 0) 
+                SelectComboBox_UI(UI7_combo, code, UI7_lab, UI7combo_text, UI7combo_index, type, UI7_typeCombo);        // UI7
             else if (UI8_combo.SelectedIndex == 0 && UI8_combo.Visible)                                                                  
-                SelectComboBox_UI(UI8_combo, code, UI8_lab, UI8combo_text, UI8combo_index);                                             // UI8
+                SelectComboBox_UI(UI8_combo, code, UI8_lab, UI8combo_text, UI8combo_index, type, UI8_typeCombo);        // UI8
             else if (UI9_combo.SelectedIndex == 0 && UI9_combo.Visible) 
-                SelectComboBox_UI(UI9_combo, code, UI9_lab, UI9combo_text, UI9combo_index);                                             // UI9
+                SelectComboBox_UI(UI9_combo, code, UI9_lab, UI9combo_text, UI9combo_index, type, UI9_typeCombo);        // UI9
             else if (UI10_combo.SelectedIndex == 0 && UI10_combo.Visible) 
-                SelectComboBox_UI(UI10_combo, code, UI10_lab, UI10combo_text, UI10combo_index);                                         // UI10
+                SelectComboBox_UI(UI10_combo, code, UI10_lab, UI10combo_text, UI10combo_index, type, UI10_typeCombo);   // UI10
             else if (UI11_combo.SelectedIndex == 0 && UI11_combo.Visible) 
-                SelectComboBox_UI(UI11_combo, code, UI11_lab, UI11combo_text, UI11combo_index);                                         // UI11
+                SelectComboBox_UI(UI11_combo, code, UI11_lab, UI11combo_text, UI11combo_index, type, UI11_typeCombo);   // UI11
         }
 
         ///<summary>Удаление UI из определённого comboBox</summary>
-        private void RemoveUI_FromComboBox(ComboBox cm, string name, Label label, string text, int index)
+        private void RemoveUI_FromComboBox(ComboBox cm, string name, Label label, string text, int index, ComboBox typeCombo)
         {
+            Ui find_ui;                                                                             // UI вход для поиска
 
+            for (int i = 0; i < cm.Items.Count; i++)
+                if (cm.Items[i].ToString() == name)                                                 // Есть совпадение по имени в списке
+                {
+                    cm.Items.Remove(name);                                                          // Удаление элемента по имени
+                    if (cm.Items.Count > 1)                                                         // Осталось больше одного элемента в списке
+                    {
+                        cm.SelectedIndex = cm.Items.Count - 1;                                      // Выбор последнего элемента
+                        if (cm.SelectedItem.ToString() == NOT_SELECTED)
+                        {
+                            SubFromCombosUI(cm.SelectedItem.ToString(), cm);                        // Удаление из других comboBox выбранного элемента
+                            find_ui = list_ui.Find(x => x.Name == cm.SelectedItem.ToString());
+                            if (find_ui != null)
+                            {
+                                list_ui.Remove(find_ui);
+                                if (showCode) label.Text = find_ui.Code.ToString();
+                            }
+                        }
+                    }
+                    else                                                                            // Только "Не выбрано"
+                    {
+                        cm.SelectedItem = NOT_SELECTED;
+                        label.Text = "";
+                    }
+                    text = cm.SelectedItem.ToString();                                              // Сохранение наименования выбранного UI
+                    index = cm.SelectedIndex;                                                       // Сохранение индекса выбранного UI
+                }
+        }
+
+        ///<summary>Удаление UI из всех comboBox</summary>
+        private void SubFromCombosUI(ushort code)
+        {
+            string name = "";
+            Ui find_ui = list_ui.Find(x => x.Code == code);
+            if (find_ui != null) name = find_ui.Name;
+            else return;
+
+            subUIcondition = true;      // Признак удаления UI, не работает событие indexChanged                                                    
+
+            // ПЛК (до 11 UI входов)
+            RemoveUI_FromComboBox(UI1_combo, name, UI1_lab, UI1combo_text, UI1combo_index, UI1_typeCombo);                          // UI1
+            RemoveUI_FromComboBox(UI2_combo, name, UI2_lab, UI2combo_text, UI2combo_index, UI2_typeCombo);                          // UI2
+            RemoveUI_FromComboBox(UI3_combo, name, UI3_lab, UI3combo_text, UI3combo_index, UI3_typeCombo);                          // UI3
+            RemoveUI_FromComboBox(UI4_combo, name, UI4_lab, UI4combo_text, UI4combo_index, UI4_typeCombo);                          // UI4
+            RemoveUI_FromComboBox(UI5_combo, name, UI5_lab, UI5combo_text, UI5combo_index, UI5_typeCombo);                          // UI5
+            RemoveUI_FromComboBox(UI6_combo, name, UI6_lab, UI6combo_text, UI6combo_index, UI6_typeCombo);                          // UI6
+            RemoveUI_FromComboBox(UI7_combo, name, UI7_lab, UI7combo_text, UI7combo_index, UI7_typeCombo);                          // UI7
+            RemoveUI_FromComboBox(UI8_combo, name, UI8_lab, UI8combo_text, UI8combo_index, UI8_typeCombo);                          // UI8
+            RemoveUI_FromComboBox(UI9_combo, name, UI9_lab, UI9combo_text, UI9combo_index, UI9_typeCombo);                          // UI9
+            RemoveUI_FromComboBox(UI10_combo, name, UI10_lab, UI10combo_text, UI10combo_index, UI10_typeCombo);                     // UI10
+            RemoveUI_FromComboBox(UI11_combo, name, UI11_lab, UI11combo_text, UI11combo_index, UI11_typeCombo);                     // UI11
+            // Блок расширения 1 (до 16 UI входов)
+            RemoveUI_FromComboBox(UI1bl1_combo, name, UI1bl1_lab, UI1bl1combo_text, UI1bl1combo_index, UI1bl1_typeCombo);           // UI1 блок 1
+            RemoveUI_FromComboBox(UI2bl1_combo, name, UI2bl1_lab, UI2bl1combo_text, UI2bl1combo_index, UI2bl1_typeCombo);           // UI2 блок 1
+            RemoveUI_FromComboBox(UI3bl1_combo, name, UI3bl1_lab, UI3bl1combo_text, UI3bl1combo_index, UI3bl1_typeCombo);           // UI3 блок 1
+            RemoveUI_FromComboBox(UI4bl1_combo, name, UI4bl1_lab, UI4bl1combo_text, UI4bl1combo_index, UI4bl1_typeCombo);           // UI4 блок 1
+            RemoveUI_FromComboBox(UI5bl1_combo, name, UI5bl1_lab, UI5bl1combo_text, UI5bl1combo_index, UI5bl1_typeCombo);           // UI5 блок 1
+            RemoveUI_FromComboBox(UI6bl1_combo, name, UI6bl1_lab, UI6bl1combo_text, UI6bl1combo_index, UI6bl1_typeCombo);           // UI6 блок 1
+            RemoveUI_FromComboBox(UI7bl1_combo, name, UI7bl1_lab, UI7bl1combo_text, UI7bl1combo_index, UI7bl1_typeCombo);           // UI7 блок 1
+            RemoveUI_FromComboBox(UI8bl1_combo, name, UI8bl1_lab, UI8bl1combo_text, UI8bl1combo_index, UI8bl1_typeCombo);           // UI8 блок 1
+            RemoveUI_FromComboBox(UI9bl1_combo, name, UI9bl1_lab, UI9bl1combo_text, UI9bl1combo_index, UI9bl1_typeCombo);           // UI9 блок 1
+            RemoveUI_FromComboBox(UI10bl1_combo, name, UI10bl1_lab, UI10bl1combo_text, UI10bl1combo_index, UI10bl1_typeCombo);      // UI10 блок 1
+            RemoveUI_FromComboBox(UI11bl1_combo, name, UI11bl1_lab, UI11bl1combo_text, UI11bl1combo_index, UI11bl1_typeCombo);      // UI11 блок 1
+            RemoveUI_FromComboBox(UI12bl1_combo, name, UI12bl1_lab, UI12bl1combo_text, UI12bl1combo_index, UI12bl1_typeCombo);      // UI12 блок 1
+            RemoveUI_FromComboBox(UI13bl1_combo, name, UI13bl1_lab, UI13bl1combo_text, UI13bl1combo_index, UI13bl1_typeCombo);      // UI13 блок 1
+            RemoveUI_FromComboBox(UI14bl1_combo, name, UI14bl1_lab, UI14bl1combo_text, UI14bl1combo_index, UI14bl1_typeCombo);      // UI14 блок 1
+            RemoveUI_FromComboBox(UI15bl1_combo, name, UI15bl1_lab, UI15bl1combo_text, UI15bl1combo_index, UI15bl1_typeCombo);      // UI15 блок 1
+            RemoveUI_FromComboBox(UI16bl1_combo, name, UI16bl1_lab, UI16bl1combo_text, UI16bl1combo_index, UI16bl1_typeCombo);      // UI16 блок 1
+            // Блок расширения 2 (до 16 UI входов)
+            RemoveUI_FromComboBox(UI1bl2_combo, name, UI1bl2_lab, UI1bl2combo_text, UI1bl2combo_index, UI1bl2_typeCombo);           // UI1 блок 2
+            RemoveUI_FromComboBox(UI2bl2_combo, name, UI2bl2_lab, UI2bl2combo_text, UI2bl2combo_index, UI2bl2_typeCombo);           // UI2 блок 2
+            RemoveUI_FromComboBox(UI3bl2_combo, name, UI3bl2_lab, UI3bl2combo_text, UI3bl2combo_index, UI3bl2_typeCombo);           // UI3 блок 2
+            RemoveUI_FromComboBox(UI4bl2_combo, name, UI4bl2_lab, UI4bl2combo_text, UI4bl2combo_index, UI4bl2_typeCombo);           // UI4 блок 2
+            RemoveUI_FromComboBox(UI5bl2_combo, name, UI5bl2_lab, UI5bl2combo_text, UI5bl2combo_index, UI5bl2_typeCombo);           // UI5 блок 2
+            RemoveUI_FromComboBox(UI6bl2_combo, name, UI6bl2_lab, UI6bl2combo_text, UI6bl2combo_index, UI6bl2_typeCombo);           // UI6 блок 2
+            RemoveUI_FromComboBox(UI7bl2_combo, name, UI7bl2_lab, UI7bl2combo_text, UI7bl2combo_index, UI7bl2_typeCombo);           // UI7 блок 2
+            RemoveUI_FromComboBox(UI8bl2_combo, name, UI8bl2_lab, UI8bl2combo_text, UI8bl2combo_index, UI8bl2_typeCombo);           // UI8 блок 2
+            RemoveUI_FromComboBox(UI9bl2_combo, name, UI9bl2_lab, UI9bl2combo_text, UI9bl2combo_index, UI9bl2_typeCombo);           // UI9 блок 2
+            RemoveUI_FromComboBox(UI10bl2_combo, name, UI10bl2_lab, UI10bl2combo_text, UI10bl2combo_index, UI10bl2_typeCombo);      // UI10 блок 2
+            RemoveUI_FromComboBox(UI11bl2_combo, name, UI11bl2_lab, UI11bl2combo_text, UI11bl2combo_index, UI11bl2_typeCombo);      // UI11 блок 2
+            RemoveUI_FromComboBox(UI12bl2_combo, name, UI12bl2_lab, UI12bl2combo_text, UI12bl2combo_index, UI12bl2_typeCombo);      // UI12 блок 2
+            RemoveUI_FromComboBox(UI13bl2_combo, name, UI13bl2_lab, UI13bl2combo_text, UI13bl2combo_index, UI13bl2_typeCombo);      // UI13 блок 2
+            RemoveUI_FromComboBox(UI14bl2_combo, name, UI14bl2_lab, UI14bl2combo_text, UI14bl2combo_index, UI14bl2_typeCombo);      // UI14 блок 2
+            RemoveUI_FromComboBox(UI15bl2_combo, name, UI15bl2_lab, UI15bl2combo_text, UI15bl2combo_index, UI15bl2_typeCombo);      // UI15 блок 2
+            RemoveUI_FromComboBox(UI16bl2_combo, name, UI16bl2_lab, UI16bl2combo_text, UI16bl2combo_index, UI16bl2_typeCombo);      // UI16 блок 2
+            // Блок расширения 3 (до 16 UI входов)
+            RemoveUI_FromComboBox(UI1bl3_combo, name, UI1bl3_lab, UI1bl3combo_text, UI1bl3combo_index, UI1bl3_typeCombo);           // UI1 блок 3
+            RemoveUI_FromComboBox(UI2bl3_combo, name, UI2bl3_lab, UI2bl3combo_text, UI2bl3combo_index, UI2bl3_typeCombo);           // UI2 блок 3
+            RemoveUI_FromComboBox(UI3bl3_combo, name, UI3bl3_lab, UI3bl3combo_text, UI3bl3combo_index, UI3bl3_typeCombo);           // UI3 блок 3
+            RemoveUI_FromComboBox(UI4bl3_combo, name, UI4bl3_lab, UI4bl3combo_text, UI4bl3combo_index, UI4bl3_typeCombo);           // UI4 блок 3
+            RemoveUI_FromComboBox(UI5bl3_combo, name, UI5bl3_lab, UI5bl3combo_text, UI5bl3combo_index, UI5bl3_typeCombo);           // UI5 блок 3
+            RemoveUI_FromComboBox(UI6bl3_combo, name, UI6bl3_lab, UI6bl3combo_text, UI6bl3combo_index, UI6bl3_typeCombo);           // UI6 блок 3
+            RemoveUI_FromComboBox(UI7bl3_combo, name, UI7bl3_lab, UI7bl3combo_text, UI7bl3combo_index, UI7bl3_typeCombo);           // UI7 блок 3
+            RemoveUI_FromComboBox(UI8bl3_combo, name, UI8bl3_lab, UI8bl3combo_text, UI8bl3combo_index, UI8bl3_typeCombo);           // UI8 блок 3
+            RemoveUI_FromComboBox(UI9bl3_combo, name, UI9bl3_lab, UI9bl3combo_text, UI9bl3combo_index, UI9bl3_typeCombo);           // UI9 блок 3
+            RemoveUI_FromComboBox(UI10bl3_combo, name, UI10bl3_lab, UI10bl3combo_text, UI10bl3combo_index, UI10bl3_typeCombo);      // UI10 блок 3
+            RemoveUI_FromComboBox(UI11bl3_combo, name, UI11bl3_lab, UI11bl3combo_text, UI11bl3combo_index, UI11bl3_typeCombo);      // UI11 блок 3
+            RemoveUI_FromComboBox(UI12bl3_combo, name, UI12bl3_lab, UI12bl3combo_text, UI12bl3combo_index, UI12bl3_typeCombo);      // UI12 блок 3
+            RemoveUI_FromComboBox(UI13bl3_combo, name, UI13bl3_lab, UI13bl3combo_text, UI13bl3combo_index, UI13bl3_typeCombo);      // UI13 блок 3
+            RemoveUI_FromComboBox(UI14bl3_combo, name, UI14bl3_lab, UI14bl3combo_text, UI14bl3combo_index, UI14bl3_typeCombo);      // UI14 блок 3
+            RemoveUI_FromComboBox(UI15bl3_combo, name, UI15bl3_lab, UI15bl3combo_text, UI15bl3combo_index, UI15bl3_typeCombo);      // UI15 блок 3
+            RemoveUI_FromComboBox(UI16bl3_combo, name, UI16bl3_lab, UI16bl3combo_text, UI16bl3combo_index, UI16bl3_typeCombo);      // UI16 блок 3
+
+            subUIcondition = false;         // Сброс признака удаления UI
+            list_ui.Remove(find_ui);        // Удаление сигнала из списка UI
+            CheckSignalsReady();            // Проверка распределения сигналов
         }
 
         ///<summary>Метод для изменения UI comboBox</summary>
@@ -262,6 +386,8 @@ namespace Moderon
                 {
                     string nameFind = combo_text;
                     ui_find = list_ui.Find(x => x.Name == nameFind);
+                    typeCombo.SelectedIndex = 0; typeCombo.Enabled = false;         // typeCombo в тип NTC и блокировка
+
                     list_ui.Remove(ui_find);                                        // Удаление сигнала из списка
                     if (showCode) label.Text = "";
                 }
@@ -280,12 +406,17 @@ namespace Moderon
                 list_ui.Remove(list_ui.Find(x => x.Name == name));                  // Удаление из списка UI
                 if (ui_find != null)
                 {
+                    if (ui_find.Type != DI) typeCombo.Enabled = true;               // typeCombo разблокировка
                     ui_find.Select();
                     list_ui.Add(ui_find);
                     if (showCode)                                                   // Выбрано отображение числовых кодов сигналов
                     {
-                        if (ui_find.Type == DI)                                     // Для дискретного входа
+                        if (ui_find.Type == DI)                                     // Для дискретного входа, DI
                             label.Text = (ui_find.Code + 1000).ToString();
+                        else if (ui_find.Type == NTC)                               // Аналоговый вход, тип NTC
+                            label.Text = ui_find.Code.ToString();
+                        else if (ui_find.Type == mA_4_20)
+                            label.Text = (ui_find.Code + 100).ToString();           // Аналоговый вход, тип 4-20 мА
                     }
                 }
                 if (!initialComboSignals)                                           // Если не начальная расстановка

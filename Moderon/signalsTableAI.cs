@@ -29,7 +29,7 @@ namespace Moderon
         bool subAIcondition = false; // Условие при удалении AI
 
         static readonly string 
-            NTC = "NTC", Pt1000 = "Pt1000", mA_4_20 = "4-20 мА", V0_10 = "0-10 В";
+            Pt1000 = "Pt1000", V0_10 = "0-10 В";
 
         // Сохранение наименования выбранного элемента для ПЛК и блоков расширения 1, 2, 3
         string
@@ -94,7 +94,7 @@ namespace Moderon
             if (ignoreEvents) return;
             string name = "";
             Ai ai_find = null;
-            if (subAIcondition) return;                                             // Переход из вычета сигналов AI
+              if (subAIcondition) return;                                             // Переход из вычета сигналов AI
             if (comboBox.SelectedIndex == combo_index) return;                      // Индекс не поменялся
             if (comboBox.SelectedIndex == 0)                                        // Выбрали "Не выбрано"
             {
@@ -636,9 +636,9 @@ namespace Moderon
             ushort code_1 = 9;                                                                          // Датчик обратной воды калорифера
 
             if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                                // Водяной калорифер
-                CheckAddAIToList("Датчик обратной воды калорифера", code_1, "sensor");
+                CheckAddUIToList("Датчик обратной воды калорифера", code_1, NTC);
             else // Отмена выбора нагревателя
-                SubFromCombosAI(code_1);
+                SubFromCombosUI(code_1);
         }
 
         ///<summary>Изменили тип основного нагревателя</summary>

@@ -311,4 +311,14 @@
 - AO сигнал с Optimized переподбирается заново при переходе на Mini  
 - `RellocateSignals_plkChange()` перераспределение сигналов при смене ПЛК
 - добавлен `CheckAddUIToList()` для добавления и проверки сигналов UI
-- создан `RemoveUI_FromComboBox()` удаление из comboBox
+- создан `RemoveUI_FromComboBox()` удаление из comboBox  
+
+04.12.23 (понедельник)
+
+- добавление `SubFromCombosUI(code)` для удаления из других `comboBox`  
+- учёт типа дискретного входа UI для `SelectComboBox_UI()`  
+- все выбираемые сигналы DI заменены на добавление UI `signalsTableDI.cs`  
+- `SelectComboBox_UI()` проверка наличия имени в элементах при добавлении 
+- `SelectComboBox_UI()` добавлен учёт типа сигнала, разблокировка `typeComboBox`
+- `SubFromCombosUI()` добавлен `typeCombo` в качестве параметра
+- `UI_combo_SelectedIndexChanged()` блокировка/разблокировка `typeCombo`

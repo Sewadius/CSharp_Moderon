@@ -342,239 +342,30 @@ namespace Moderon
                 if (el != comboBox && name != NOT_SELECTED) el.Items.Remove(name);
         }
 
-        ///<summary>Добавление нового DI и его назначение для переданного comboBox</summary>
-        private void SelectComboBox_DI(ComboBox cm, ushort code, Label label, string text, int index)
-        {
-            cm.Items.Add(list_di.Find(x => x.Code == code).Name);
-            cm.SelectedIndex = cm.Items.Count - 1;
-            text = cm.SelectedItem.ToString();
-            index = cm.SelectedIndex;
-            if (showCode) label.Text = code.ToString();
-            list_di.Find(x => x.Code == code).Select();
-        }
-
-        ///<summary>Добавление нового DI и его назначение для переданного comboBox к сигналам AI</summary>
-        private void SelectComboBoxDI_to_AI(ComboBox cm, ComboBox typeCombo, ushort code, Label label, string text, int index)
-        {
-            string name = list_di.Find(x => x.Code == code).Name;
-            cm.Items.Add(name);
-            RemoveFromAllCombosDI(name);
-            SensorAIType(typeCombo, 2);
-            if (!list_ai.Contains(new Ai(name, (ushort)(code + 1000), "di")))
-                list_ai.Add(new Ai(name, (ushort)(code + 1000), "di"));
-            // Выбор последнего добавленного элемента
-            cm.SelectedIndex = cm.Items.Count - 1;
-            text = cm.SelectedItem.ToString();
-            index = cm.SelectedIndex;
-            if (showCode) label.Text = (code + 1000).ToString();
-        }
-
-
-        ///<summary>Добавление нового DI и его назначение под выход, автораспределение</summary>
-        private void AddNewDI(ushort code)
-        {
-            // ПЛК
-            if (DI1_combo.SelectedIndex == 0) SelectComboBox_DI(DI1_combo, code, DI1_lab, DI1combo_text, DI1combo_index);
-            else if (DI2_combo.SelectedIndex == 0) SelectComboBox_DI(DI2_combo, code, DI2_lab, DI2combo_text, DI2combo_index);
-            else if (DI3_combo.SelectedIndex == 0) SelectComboBox_DI(DI3_combo, code, DI3_lab, DI3combo_text, DI3combo_index);
-            else if (DI4_combo.SelectedIndex == 0) SelectComboBox_DI(DI4_combo, code, DI4_lab, DI4combo_text, DI4combo_index);
-            else if (DI5_combo.SelectedIndex == 0) SelectComboBox_DI(DI5_combo, code, DI5_lab, DI5combo_text, DI5combo_index);
-            else if (AI4_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI4_combo, AI4_typeCombo, code, AI4_lab, AI4combo_text, AI4combo_index);
-            else if (AI5_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI5_combo, AI5_typeCombo, code, AI5_lab, AI5combo_text, AI5combo_index);
-            else if (AI6_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI6_combo, AI6_typeCombo, code, AI6_lab, AI6combo_text, AI6combo_index);
-            else if (AI1_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI1_combo, AI1_typeCombo, code, AI1_lab, AI1combo_text, AI1combo_index);
-            else if (AI2_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI2_combo, AI2_typeCombo, code, AI2_lab, AI2combo_text, AI2combo_index);
-            else if (AI3_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI3_combo, AI3_typeCombo, code, AI3_lab, AI3combo_text, AI3combo_index);
-            // Блок расширения 1
-            else if (DI1bl1_combo.SelectedIndex == 0) SelectComboBox_DI(DI1bl1_combo, code, DI1bl1_lab, DI1bl1combo_text, DI1bl1combo_index);
-            else if (DI2bl1_combo.SelectedIndex == 0) SelectComboBox_DI(DI2bl1_combo, code, DI2bl1_lab, DI2bl1combo_text, DI2bl1combo_index);
-            else if (DI3bl1_combo.SelectedIndex == 0) SelectComboBox_DI(DI3bl1_combo, code, DI3bl1_lab, DI3bl1combo_text, DI3bl1combo_index);
-            else if (DI4bl1_combo.SelectedIndex == 0) SelectComboBox_DI(DI4bl1_combo, code, DI4bl1_lab, DI4bl1combo_text, DI4bl1combo_index);
-            else if (DI5bl1_combo.SelectedIndex == 0) SelectComboBox_DI(DI5bl1_combo, code, DI5bl1_lab, DI5bl1combo_text, DI5bl1combo_index);
-            else if (AI4bl1_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI4bl1_combo, AI4bl1_typeCombo, code, AI4bl1_lab, AI4bl1combo_text, AI4bl1combo_index);
-            else if (AI5bl1_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI5bl1_combo, AI5bl1_typeCombo, code, AI5bl1_lab, AI5bl1combo_text, AI5bl1combo_index);
-            else if (AI6bl1_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI6bl1_combo, AI6bl1_typeCombo, code, AI6bl1_lab, AI6bl1combo_text, AI6bl1combo_index);
-            else if (AI1bl1_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI1bl1_combo, AI1bl1_typeCombo, code, AI1bl1_lab, AI1bl1combo_text, AI1bl1combo_index);
-            else if (AI2bl1_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI2bl1_combo, AI2bl1_typeCombo, code, AI2bl1_lab, AI2bl1combo_text, AI2bl1combo_index);
-            else if (AI3bl1_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI3bl1_combo, AI3bl1_typeCombo, code, AI3bl1_lab, AI3bl1combo_text, AI3bl1combo_index);
-            // Блок расширения 2
-            else if (DI1bl2_combo.SelectedIndex == 0) SelectComboBox_DI(DI1bl2_combo, code, DI1bl2_lab, DI1bl2combo_text, DI1bl2combo_index);
-            else if (DI2bl2_combo.SelectedIndex == 0) SelectComboBox_DI(DI2bl2_combo, code, DI2bl2_lab, DI2bl2combo_text, DI2bl2combo_index);
-            else if (DI3bl2_combo.SelectedIndex == 0) SelectComboBox_DI(DI3bl2_combo, code, DI3bl2_lab, DI3bl2combo_text, DI3bl2combo_index);
-            else if (DI4bl2_combo.SelectedIndex == 0) SelectComboBox_DI(DI4bl2_combo, code, DI4bl2_lab, DI4bl2combo_text, DI4bl2combo_index);
-            else if (DI5bl2_combo.SelectedIndex == 0) SelectComboBox_DI(DI5bl2_combo, code, DI5bl2_lab, DI5bl2combo_text, DI5bl2combo_index);
-            else if (AI4bl2_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI4bl2_combo, AI4bl2_typeCombo, code, AI4bl2_lab, AI4bl2combo_text, AI4bl2combo_index);
-            else if (AI5bl2_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI4bl2_combo, AI4bl2_typeCombo, code, AI4bl2_lab, AI4bl2combo_text, AI4bl2combo_index);
-            else if (AI6bl2_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI4bl2_combo, AI4bl2_typeCombo, code, AI4bl2_lab, AI4bl2combo_text, AI4bl2combo_index);
-            else if (AI1bl2_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI4bl2_combo, AI4bl2_typeCombo, code, AI4bl2_lab, AI4bl2combo_text, AI4bl2combo_index);
-            else if (AI2bl2_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI4bl2_combo, AI4bl2_typeCombo, code, AI4bl2_lab, AI4bl2combo_text, AI4bl2combo_index);
-            else if (AI3bl2_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI4bl2_combo, AI4bl2_typeCombo, code, AI4bl2_lab, AI4bl2combo_text, AI4bl2combo_index);
-            // Блок расширения 3
-            else if (DI1bl3_combo.SelectedIndex == 0) SelectComboBox_DI(DI1bl3_combo, code, DI1bl3_lab, DI1bl3combo_text, DI1bl3combo_index);
-            else if (DI2bl3_combo.SelectedIndex == 0) SelectComboBox_DI(DI2bl3_combo, code, DI2bl3_lab, DI2bl3combo_text, DI2bl3combo_index);
-            else if (DI3bl3_combo.SelectedIndex == 0) SelectComboBox_DI(DI3bl3_combo, code, DI3bl3_lab, DI3bl3combo_text, DI3bl3combo_index);
-            else if (DI4bl3_combo.SelectedIndex == 0) SelectComboBox_DI(DI4bl3_combo, code, DI4bl3_lab, DI4bl3combo_text, DI4bl3combo_index);
-            else if (DI5bl3_combo.SelectedIndex == 0) SelectComboBox_DI(DI5bl3_combo, code, DI5bl3_lab, DI5bl3combo_text, DI5bl3combo_index);
-            else if (AI4bl3_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI4bl3_combo, AI4bl3_typeCombo, code, AI4bl3_lab, AI4bl3combo_text, AI4bl3combo_index);
-            else if (AI5bl3_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI5bl3_combo, AI5bl3_typeCombo, code, AI5bl3_lab, AI5bl3combo_text, AI5bl3combo_index);
-            else if (AI6bl3_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI6bl3_combo, AI6bl3_typeCombo, code, AI6bl3_lab, AI6bl3combo_text, AI6bl3combo_index);
-            else if (AI1bl3_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI1bl3_combo, AI1bl3_typeCombo, code, AI1bl3_lab, AI1bl3combo_text, AI1bl3combo_index);
-            else if (AI2bl3_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI2bl3_combo, AI2bl3_typeCombo, code, AI2bl3_lab, AI2bl3combo_text, AI2bl3combo_index);
-            else if (AI3bl3_combo.SelectedIndex == 0) SelectComboBoxDI_to_AI(AI3bl3_combo, AI3bl3_typeCombo, code, AI3bl3_lab, AI3bl3combo_text, AI3bl3combo_index);
-        }
-
-        ///<summary>Удаление DI из определённого comboBox, дискретный/аналоговый вход</summary>
-        private void RemoveDI_FromComboBox(ComboBox comboBox, string name, Label label, string text, int index, bool di_type)
-        {
-            Di find_di;                                                                                 // Дискретный вход для поиска
-            Ai find_ai;                                                                                 // Аналоговый вход для поиска
-            for (int i = 0; i < comboBox.Items.Count; i++)
-                if (comboBox.Items[i].ToString() == name)                                               // Есть совпадение по имени в списке
-                {
-                    comboBox.Items.Remove(name);                                                        // Удаление элемента по имени
-                    if (comboBox.Items.Count > 1)                                                       // Осталось больше одного элемента в списке
-                    {
-                        comboBox.SelectedIndex = comboBox.Items.Count - 1;                              // Выбор последнего элемента
-                        if (comboBox.SelectedItem.ToString() == NOT_SELECTED)
-                        {
-                            SubFromCombosDI(comboBox.SelectedItem.ToString(), comboBox);                // Удаление из других comboBox выбранного элемента
-                            if (di_type)                                                                // Дискретный тип comboBox
-                            {
-                                find_di = list_di.Find(x => x.Name == comboBox.SelectedItem.ToString());
-                                if (find_di != null)
-                                {
-                                    list_di.Remove(find_di);
-                                    if (showCode) label.Text = find_di.Code.ToString();
-                                }
-                            }
-                            else                                                                        // Аналоговый тип comboBox
-                            {
-                                find_ai = list_ai.Find(x => x.Name == comboBox.SelectedItem.ToString());
-                                if (find_ai != null)
-                                {
-                                    list_ai.Remove(find_ai);
-                                    if (showCode) label.Text = find_ai.Code.ToString();
-                                }
-                            }     
-                        }
-                    }
-                    else                                                                                // Только "Не выбрано"
-                    {
-                        comboBox.SelectedItem = NOT_SELECTED;
-                        label.Text = "";
-                    }
-                    text = comboBox.SelectedItem.ToString();                                            // Сохранение наименование выбранного DI
-                    index = comboBox.SelectedIndex;                                                     // Сохранение индекса выбранного DI
-                }
-        }
-
-        ///<summary>Удаление DI из всех comboBox</summary>
-        private void SubFromCombosDI(ushort code)
-        {
-            string name = "";                                                                  // Текстовое название дискретного входа
-            Di findDi = list_di.Find(x => x.Code == code);
-            if (findDi != null) name = findDi.Name;
-            else return;
-
-            subDIcondition = true; subAIcondition = true;                                      // Признак удаления DI и AI, не работает событие indexChanged
-
-            // ПЛК
-            RemoveDI_FromComboBox(DI1_combo, name, DI1_lab, DI1combo_text, DI1combo_index, true);                         // DI1
-            RemoveDI_FromComboBox(DI2_combo, name, DI2_lab, DI2combo_text, DI2combo_index, true);                         // DI2
-            RemoveDI_FromComboBox(DI3_combo, name, DI3_lab, DI3combo_text, DI3combo_index, true);                         // DI3
-            RemoveDI_FromComboBox(DI4_combo, name, DI4_lab, DI4combo_text, DI4combo_index, true);                         // DI4
-            RemoveDI_FromComboBox(DI5_combo, name, DI5_lab, DI5combo_text, DI5combo_index, true);                         // DI5
-            // Блок расширения 1
-            RemoveDI_FromComboBox(DI1bl1_combo, name, DI1bl1_lab, DI1bl1combo_text, DI1bl1combo_index, true);             // DI1
-            RemoveDI_FromComboBox(DI2bl1_combo, name, DI2bl1_lab, DI2bl1combo_text, DI2bl1combo_index, true);             // DI2
-            RemoveDI_FromComboBox(DI3bl1_combo, name, DI3bl1_lab, DI3bl1combo_text, DI3bl1combo_index, true);             // DI3
-            RemoveDI_FromComboBox(DI4bl1_combo, name, DI4bl1_lab, DI4bl1combo_text, DI4bl1combo_index, true);             // DI4
-            RemoveDI_FromComboBox(DI5bl1_combo, name, DI5bl1_lab, DI5bl1combo_text, DI5bl1combo_index, true);             // DI5
-            // Блок расширения 2
-            RemoveDI_FromComboBox(DI1bl2_combo, name, DI1bl2_lab, DI1bl2combo_text, DI1bl2combo_index, true);             // DI1
-            RemoveDI_FromComboBox(DI2bl2_combo, name, DI2bl2_lab, DI2bl2combo_text, DI2bl2combo_index, true);             // DI2
-            RemoveDI_FromComboBox(DI3bl2_combo, name, DI3bl2_lab, DI3bl2combo_text, DI3bl2combo_index, true);             // DI3
-            RemoveDI_FromComboBox(DI4bl2_combo, name, DI4bl2_lab, DI4bl2combo_text, DI4bl2combo_index, true);             // DI4
-            RemoveDI_FromComboBox(DI5bl2_combo, name, DI5bl2_lab, DI5bl2combo_text, DI5bl2combo_index, true);             // DI5
-            // Блок расширения 3
-            RemoveDI_FromComboBox(DI1bl3_combo, name, DI1bl3_lab, DI1bl3combo_text, DI1bl3combo_index, true);             // DI1
-            RemoveDI_FromComboBox(DI2bl3_combo, name, DI2bl3_lab, DI2bl3combo_text, DI2bl3combo_index, true);             // DI2
-            RemoveDI_FromComboBox(DI3bl3_combo, name, DI3bl3_lab, DI3bl3combo_text, DI3bl3combo_index, true);             // DI3
-            RemoveDI_FromComboBox(DI4bl3_combo, name, DI4bl3_lab, DI4bl3combo_text, DI4bl3combo_index, true);             // DI4
-            RemoveDI_FromComboBox(DI5bl3_combo, name, DI5bl3_lab, DI5bl3combo_text, DI5bl3combo_index, true);             // DI5
-            // ПЛК. аналоговые входы
-            RemoveDI_FromComboBox(AI1_combo, name, AI1_lab, AI1combo_text, AI1combo_index, false);                        // AI1  
-            RemoveDI_FromComboBox(AI2_combo, name, AI2_lab, AI2combo_text, AI2combo_index, false);                        // AI2
-            RemoveDI_FromComboBox(AI3_combo, name, AI3_lab, AI3combo_text, AI3combo_index, false);                        // AI3
-            RemoveDI_FromComboBox(AI4_combo, name, AI4_lab, AI4combo_text, AI4combo_index, false);                        // AI4
-            RemoveDI_FromComboBox(AI5_combo, name, AI5_lab, AI5combo_text, AI5combo_index, false);                        // AI5
-            RemoveDI_FromComboBox(AI6_combo, name, AI6_lab, AI6combo_text, AI6combo_index, false);                        // AI6
-            // Блок расширирения 1, аналоговые входы
-            RemoveDI_FromComboBox(AI1bl1_combo, name, AI1bl1_lab, AI1bl1combo_text, AI1bl1combo_index, false);            // AI1
-            RemoveDI_FromComboBox(AI2bl1_combo, name, AI2bl1_lab, AI2bl1combo_text, AI2bl1combo_index, false);            // AI2
-            RemoveDI_FromComboBox(AI3bl1_combo, name, AI3bl1_lab, AI3bl1combo_text, AI3bl1combo_index, false);            // AI3
-            RemoveDI_FromComboBox(AI4bl1_combo, name, AI4bl1_lab, AI4bl1combo_text, AI4bl1combo_index, false);            // AI4
-            RemoveDI_FromComboBox(AI5bl1_combo, name, AI5bl1_lab, AI5bl1combo_text, AI5bl1combo_index, false);            // AI5
-            RemoveDI_FromComboBox(AI6bl1_combo, name, AI6bl1_lab, AI6bl1combo_text, AI6bl1combo_index, false);            // AI6
-            // Блок расширирения 2, аналоговые входы
-            RemoveDI_FromComboBox(AI1bl2_combo, name, AI1bl2_lab, AI1bl2combo_text, AI1bl2combo_index, false);            // AI1
-            RemoveDI_FromComboBox(AI2bl2_combo, name, AI2bl2_lab, AI2bl2combo_text, AI2bl2combo_index, false);            // AI2
-            RemoveDI_FromComboBox(AI3bl2_combo, name, AI3bl2_lab, AI3bl2combo_text, AI3bl2combo_index, false);            // AI3
-            RemoveDI_FromComboBox(AI4bl2_combo, name, AI4bl2_lab, AI4bl2combo_text, AI4bl2combo_index, false);            // AI4
-            RemoveDI_FromComboBox(AI5bl2_combo, name, AI5bl2_lab, AI5bl2combo_text, AI5bl2combo_index, false);            // AI5
-            RemoveDI_FromComboBox(AI6bl2_combo, name, AI6bl2_lab, AI6bl2combo_text, AI6bl2combo_index, false);            // AI6
-            // Блок расширирения 3, аналоговые входы
-            RemoveDI_FromComboBox(AI1bl3_combo, name, AI1bl3_lab, AI1bl3combo_text, AI1bl3combo_index, false);            // AI1
-            RemoveDI_FromComboBox(AI2bl3_combo, name, AI2bl3_lab, AI2bl3combo_text, AI2bl3combo_index, false);            // AI2
-            RemoveDI_FromComboBox(AI3bl3_combo, name, AI3bl3_lab, AI3bl3combo_text, AI3bl3combo_index, false);            // AI3
-            RemoveDI_FromComboBox(AI4bl3_combo, name, AI4bl3_lab, AI4bl3combo_text, AI4bl3combo_index, false);            // AI4
-            RemoveDI_FromComboBox(AI5bl3_combo, name, AI5bl3_lab, AI5bl3combo_text, AI5bl3combo_index, false);            // AI5
-            RemoveDI_FromComboBox(AI6bl3_combo, name, AI6bl3_lab, AI6bl3combo_text, AI6bl3combo_index, false);            // AI6
-
-            subDIcondition = false; subAIcondition = false;                     // Сброс признака удаления DI и AI 
-            list_di.Remove(findDi);                                             // Удаление сигнала из списка DI
-            CheckSignalsReady();                                                // Проверка распределения сигналов
-        }
-
-        ///<summary>Метод для добавления DI к списку сигналов</summary>
-        private void AddToListDI(string name, ushort code)
-        {
-            list_di.Add(new Di(name, code));                                    // Добавление к свободному comboBox входа
-            AddNewDI(code);
-        }
-
-        ///<summary>Проверка и добавление дискретного входа</summary>
-        private void CheckAddDIToList(string name, ushort code) 
-        {
-            Di find_di = list_di.Find(x => x.Code == code);
-            if (find_di == null)                                                // Нет такой записи
-                AddToListDI(name, code);
-        }
-
         ///<summary>Выбрали блок заслонки</summary>
         private void DampCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 6, code_2 = 39;                                                 // Подтверждение открытия приточной/вытяжной заслонки
+            ushort code_1 = 6, code_2 = 39;                                                     // Подтверждение открытия приточной/вытяжной заслонки
 
-            if (dampCheck.Checked && confPrDampCheck.Checked)                               // Приточная заслонка и подтверждение открытия
+            if (dampCheck.Checked && confPrDampCheck.Checked)                                   // Приточная заслонка и подтверждение открытия
                 CheckAddUIToList("Подтверждение открытия приточной заслонки", code_1, DI);
-            if (dampCheck.Checked && outDampCheck.Checked && confOutDampCheck.Checked)      // Вытяжная заслонка и подтверждение открытия
+            if (dampCheck.Checked && outDampCheck.Checked && confOutDampCheck.Checked)          // Вытяжная заслонка и подтверждение открытия
                 CheckAddUIToList("Подтверждение открытия вытяжной заслонки", code_2, DI);
-            else                                                                            // Отмена выбора блока заслонки
+            else                                                                                // Отмена выбора блока заслонки
             {
-                SubFromCombosDI(code_1); SubFromCombosDI(code_2);
+                SubFromCombosUI(code_1); SubFromCombosUI(code_2);
             }
         }
 
         ///<summary>Выбрали подтверждение открытия приточной заслонки</summary>
         private void ConfPrDampCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 6;                                                              // Подтверждение открытия приточной заслонки
+            ushort code_1 = 6;                                                                  // Подтверждение открытия приточной заслонки
 
-            if (dampCheck.Checked && confPrDampCheck.Checked)                               // Выбрана приточная заслонка и подтвреждение открытия
-                CheckAddDIToList("Подтверждение открытия приточной заслонки", code_1);
-            else                                                                            // Отмена выбора сигнала
-                SubFromCombosDI(code_1);
+            if (dampCheck.Checked && confPrDampCheck.Checked)                                   // Выбрана приточная заслонка и подтвреждение открытия
+                CheckAddUIToList("Подтверждение открытия приточной заслонки", code_1, DI);
+            else                                                                                // Отмена выбора сигнала
+                SubFromCombosUI(code_1);
         }
 
         ///<summary>Выбрали вытяжную заслонку</summary>
@@ -585,10 +376,10 @@ namespace Moderon
             if (comboSysType.SelectedIndex == 1 && dampCheck.Checked && outDampCheck.Checked)           // ПВ-система, выбрана вытяжная заслонка
             { 
                 if (confOutDampCheck.Checked)                                                           // Подтверждение открытия
-                    CheckAddDIToList("Подтверждение открытия вытяжной заслонки", code_1);
+                    CheckAddUIToList("Подтверждение открытия вытяжной заслонки", code_1, DI);
             }
             else                                                                                        // Отмена выбора заслонки
-                SubFromCombosDI(code_1);
+                SubFromCombosUI(code_1);
         }
 
         ///<summary>Выбрали подтверждение открытия вытяжной заслонки</summary>
@@ -599,9 +390,9 @@ namespace Moderon
             if (comboSysType.SelectedIndex == 1 && dampCheck.Checked && outDampCheck.Checked)           // ПВ-система, выбрана вытяжная заслонка
             { 
                 if (confOutDampCheck.Checked)                                                           // Подтверждение открытия
-                    CheckAddDIToList("Подтверждение открытия вытяжной заслонки", code_1);
+                    CheckAddUIToList("Подтверждение открытия вытяжной заслонки", code_1, DI);
                 else                                                                                    // Отмена выбора подтверждения открытия
-                    SubFromCombosDI(code_1);
+                    SubFromCombosUI(code_1);
             }
         }
 
@@ -612,13 +403,13 @@ namespace Moderon
 
             if (prFanPSCheck.Checked)                                                                   // Выбрали PS
             {
-                CheckAddDIToList("PS приточного вентилятора 1", code_1);
+                CheckAddUIToList("PS приточного вентилятора 1", code_1, DI);
                 if (checkResPrFan.Checked)                                                              // Если выбран резерв
-                    CheckAddDIToList("PS приточного вентилятора 2", code_2);
+                    CheckAddUIToList("PS приточного вентилятора 2", code_2, DI);
             }
-            else                                                                                          // Отмена выбора PS
+            else                                                                                        // Отмена выбора PS
             {
-                SubFromCombosDI(code_1); SubFromCombosDI(code_2);
+                SubFromCombosUI(code_1); SubFromCombosUI(code_2);
             }
         }
 
@@ -629,13 +420,13 @@ namespace Moderon
 
             if (prFanThermoCheck.Checked)                                                               // Выбрали термоконтакты
             {
-                CheckAddDIToList("Термоконтакты приточного вентилятора 1", code_1);
+                CheckAddUIToList("Термоконтакты приточного вентилятора 1", code_1, DI);
                 if (checkResPrFan.Checked)                                                              // Если выбран резерв
-                    CheckAddDIToList("Термоконтакты приточного вентилятора 2", code_2);
+                    CheckAddUIToList("Термоконтакты приточного вентилятора 2", code_2, DI);
             }
             else                                                                                        // Отмена выбора термоконтактов
             {
-                SubFromCombosDI(code_1); SubFromCombosDI(code_2);
+                SubFromCombosUI(code_1); SubFromCombosUI(code_2);
             }
         }
 
@@ -694,13 +485,13 @@ namespace Moderon
 
             if (curDefPrFanCheck.Checked) // Выбрана защита по току
             {
-                CheckAddDIToList("Защита по току приточного вентилятора 1", code_1);
+                CheckAddUIToList("Защита по току приточного вентилятора 1", code_1, DI);
                 if (checkResPrFan.Checked) // Если выбран резерв
-                    CheckAddDIToList("Защита по току приточного вентилятора 2", code_2);
+                    CheckAddUIToList("Защита по току приточного вентилятора 2", code_2, DI);
             } 
             else // Отмена выбора защиты по току
             {
-                SubFromCombosDI(code_1); SubFromCombosDI(code_2);
+                SubFromCombosUI(code_1); SubFromCombosUI(code_2);
             }
         }
 
@@ -715,17 +506,17 @@ namespace Moderon
             if (checkResPrFan.Checked)                                                              // Выбран резерв приточного
             {
                 if (prFanPSCheck.Checked)                                                           // Выбран сигнал PS
-                    AddToListDI("PS приточного вентилятора 2", code_1);
+                    CheckAddUIToList("PS приточного вентилятора 2", code_1, DI);
                 if (prFanThermoCheck.Checked)                                                       // Выбраны термоконтакты приточного
-                    AddToListDI("Термоконтакты приточного вентилятора 2", code_2);
+                    CheckAddUIToList("Термоконтакты приточного вентилятора 2", code_2, DI);
                 if (prFanAlarmCheck.Checked)                                                        // Выбран сигнал аварии
-                    AddToListDI("Сигнал аварии приточного вентилятора 2", code_3);
+                    CheckAddUIToList("Сигнал аварии приточного вентилятора 2", code_3, DI);
                 if (curDefPrFanCheck.Checked)                                                       // Выбрана защита по току
-                    AddToListDI("Защита по току приточного вентилятора 2", code_4);
+                    CheckAddUIToList("Защита по току приточного вентилятора 2", code_4, DI);
             }
             else                                                                                    // Отмена выбора резерва приточного
             {
-                SubFromCombosDI(code_1); SubFromCombosDI(code_2); SubFromCombosDI(code_3); SubFromCombosDI(code_4);
+                SubFromCombosUI(code_1); SubFromCombosUI(code_2); SubFromCombosUI(code_3); SubFromCombosUI(code_4);
             }
         }
 
@@ -736,12 +527,10 @@ namespace Moderon
 
             if (prDampFanCheck.Checked && prDampConfirmFanCheck.Checked)                        // Выбрали подтверждение открытия
             {
-                AddToListDI("Подтверждение для заслонки приточного вентилятора", code_1);
+                CheckAddUIToList("Подтверждение для заслонки приточного вентилятора", code_1, DI);
             }
             else                                                                                // Отмена выбора подтверждения открытия
-            {
-                SubFromCombosDI(code_1);
-            }
+                SubFromCombosUI(code_1);
         }
 
         ///<summary>Выбрали PS вытяжного вентилятора</summary>
@@ -751,13 +540,13 @@ namespace Moderon
 
             if (comboSysType.SelectedIndex == 1 && outFanPSCheck.Checked)                           // Выбрали PS вытяжного вентилятора
             {
-                CheckAddDIToList("PS вытяжного вентилятора 1", code_1);
+                CheckAddUIToList("PS вытяжного вентилятора 1", code_1, DI);
                 if (checkResOutFan.Checked)                                                         // Если выбран резерв
-                    CheckAddDIToList("PS вытяжного вентилятора 2", code_2);
+                    CheckAddUIToList("PS вытяжного вентилятора 2", code_2, DI);
             }
             else                                                                                    // Отмена выбора PS
             {
-                SubFromCombosDI(code_1); SubFromCombosDI(code_2);
+                SubFromCombosUI(code_1); SubFromCombosUI(code_2);
             }
         }
 
@@ -768,13 +557,13 @@ namespace Moderon
             
             if (comboSysType.SelectedIndex == 1 && outFanThermoCheck.Checked)
             {
-                CheckAddDIToList("Термоконтакты вытяжного вентилятора 1", code_1);
+                CheckAddUIToList("Термоконтакты вытяжного вентилятора 1", code_1, DI);
                 if (checkResOutFan.Checked)                                                         // Если выбран резерв
-                    CheckAddDIToList("Термоконтакты вытяжного вентилятора 2", code_2);
+                    CheckAddUIToList("Термоконтакты вытяжного вентилятора 2", code_2, DI);
             }
             else                                                                                    // Отмена выбора термоконтактов
             {
-                SubFromCombosDI(code_1); SubFromCombosDI(code_2);
+                SubFromCombosUI(code_1); SubFromCombosUI(code_2);
             }
         }
 
@@ -833,13 +622,13 @@ namespace Moderon
 
             if (comboSysType.SelectedIndex == 1 && curDefOutFanCheck.Checked)
             {
-                CheckAddDIToList("Защита по току вытяжного вентилятора 1", code_1);
+                CheckAddUIToList("Защита по току вытяжного вентилятора 1", code_1, DI);
                 if (checkResOutFan.Checked)                                                         // Если выбран резерв
-                    CheckAddDIToList("Защита по току вытяжного вентилятора 2", code_2);
+                    CheckAddUIToList("Защита по току вытяжного вентилятора 2", code_2, DI);
             }
             else                                                                                    // Отмена выбора защиты по току
             {
-                SubFromCombosDI(code_1); SubFromCombosDI(code_2);
+                SubFromCombosUI(code_1); SubFromCombosUI(code_2);
             }
         }
 
@@ -854,17 +643,17 @@ namespace Moderon
             if (comboSysType.SelectedIndex == 1 && checkResOutFan.Checked)                          // Выбран резерв вытяжного
             {
                 if (outFanPSCheck.Checked)                                                          // Выбран сигнал PS
-                    AddToListDI("PS вытяжного вентилятора 2", code_1);
+                    CheckAddUIToList("PS вытяжного вентилятора 2", code_1, DI);
                 if (outFanThermoCheck.Checked)                                                      // Выбраны термоконтакты
-                    AddToListDI("Термоконтакты вытяжного вентилятора 2", code_2);
+                    CheckAddUIToList("Термоконтакты вытяжного вентилятора 2", code_2, DI);
                 if (outFanAlarmCheck.Checked)                                                       // Выбрали сигнал аварии
-                    AddToListDI("Сигнал аварии вытяжного вентилятора 2", code_3);
+                    CheckAddUIToList("Сигнал аварии вытяжного вентилятора 2", code_3, DI);
                 if (curDefOutFanCheck.Checked)                                                      // Защита по току
-                    AddToListDI("Защита по току вытяжного вентилятора 2", code_4);
+                    CheckAddUIToList("Защита по току вытяжного вентилятора 2", code_4, DI);
             }
             else // Отмена выбора резерва вытяжного
             {
-                SubFromCombosDI(code_1); SubFromCombosDI(code_2); SubFromCombosDI(code_3); SubFromCombosDI(code_4);
+                SubFromCombosUI(code_1); SubFromCombosUI(code_2); SubFromCombosUI(code_3); SubFromCombosUI(code_4);
             }
         }
 
@@ -875,11 +664,11 @@ namespace Moderon
 
             if (outDampFanCheck.Checked && outDampConfirmFanCheck.Checked)                          // Выбрали подтверждение открытия
             {
-                AddToListDI("Подтверждение для заслонки вытяжного вентилятора", code);
+                CheckAddUIToList("Подтверждение для заслонки вытяжного вентилятора", code, DI);
             }
             else                                                                                    // Отмена выбора подтверждения открытия
             {
-                SubFromCombosDI(code);
+                SubFromCombosUI(code);
             }
         }
 
@@ -891,13 +680,13 @@ namespace Moderon
             if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                            // Выбран водяной нагреватель
             { 
                 if (TF_heaterCheck.Checked)                                                         // Выбран термостат
-                    CheckAddDIToList("Термостат водяного калорифера", code_1);
+                    CheckAddUIToList("Термостат водяного калорифера", code_1, DI);
                 if (confHeatPumpCheck.Checked)                                                      // Подтверждение работы насоса
-                    CheckAddDIToList("Подтверждение работы насоса водяного калорифера", code_2);
+                    CheckAddUIToList("Подтверждение работы насоса водяного калорифера", code_2, DI);
             }
             else                                                                                    // Отмена выбора нагревателя
             {
-                SubFromCombosDI(code_1); SubFromCombosDI(code_2);
+                SubFromCombosUI(code_1); SubFromCombosUI(code_2);
             }
             ThermSwitchCombo_signalsDISelectedIndexChanged(this, e);                                // Проверка термовыключателей
         }
@@ -912,13 +701,13 @@ namespace Moderon
                 if (heatTypeCombo.SelectedIndex == 0)                                               // Водяной калорифер
                 {
                     if (TF_heaterCheck.Checked)                                                     // Воздушный термостат
-                        CheckAddDIToList("Термостат водяного калорифера", code_1);
+                        CheckAddUIToList("Термостат водяного калорифера", code_1, DI);
                     if (confHeatPumpCheck.Checked)                                                  // Подтверждение работы насоса
-                        CheckAddDIToList("Подтверждение работы насоса водяного калорифера", code_2);
+                        CheckAddUIToList("Подтверждение работы насоса водяного калорифера", code_2, DI);
                 }
                 else                                                                                // Электрокалорифер
                 {
-                    SubFromCombosDI(code_1); SubFromCombosDI(code_2);
+                    SubFromCombosUI(code_1); SubFromCombosUI(code_2);
                 }
                 ThermSwitchCombo_signalsDISelectedIndexChanged(this, e); // Проверка термовыключателей
             }
@@ -932,9 +721,9 @@ namespace Moderon
             if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                            // Выбран водяной калорифер
             { 
                 if (TF_heaterCheck.Checked) // Выбрали воздушный термостат
-                    CheckAddDIToList("Термостат водяного калорифера", code_1);
+                    CheckAddUIToList("Термостат водяного калорифера", code_1, DI);
                 else // Отмена выбора
-                    SubFromCombosDI(code_1);
+                    SubFromCombosUI(code_1);
             }
         }
 
@@ -946,9 +735,9 @@ namespace Moderon
             if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                            // Выбран водяной калорифер
             { 
                 if (confHeatPumpCheck.Checked)                                                      // Выбрали подтверждение работы насоса
-                    CheckAddDIToList("Подтверждение работы основного насоса калорифера", code_1);
+                    CheckAddUIToList("Подтверждение работы основного насоса калорифера", code_1, DI);
                 else                                                                                // Отмена выбора
-                    SubFromCombosDI(code_1);
+                    SubFromCombosUI(code_1);
             }
         }
 
@@ -960,9 +749,9 @@ namespace Moderon
             if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                                // Выбран водяной калорифер
             {
                 if (reservPumpHeater.Checked && confHeatResPumpCheck.Checked)                           // Есть насос и подтверждение работы насоса
-                    CheckAddDIToList("Подтверждение работы резервного насоса калорифера", code_1);
+                    CheckAddUIToList("Подтверждение работы резервного насоса калорифера", code_1, DI);
                 else
-                    SubFromCombosDI(code_1);
+                    SubFromCombosUI(code_1);
             }
         }
 
@@ -974,9 +763,9 @@ namespace Moderon
             if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                            // Выбран водяной калорифер
             {
                 if (pumpCurProtect.Checked)                                                         // Выбрали защиту по току
-                    CheckAddDIToList("Защита по току основного насоса калорифера", code_1);
+                    CheckAddUIToList("Защита по току основного насоса калорифера", code_1, DI);
                 else
-                    SubFromCombosDI(code_1);                                                        // Отмена выбора
+                    SubFromCombosUI(code_1);                                                        // Отмена выбора
             }
         }
 
@@ -988,9 +777,9 @@ namespace Moderon
             if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                            // Выбран водяной калорифер
             {
                 if (reservPumpHeater.Checked && pumpCurResProtect.Checked)                          // Выбран резервный насос и защита по току
-                    CheckAddDIToList("Защита по току резервного насоса калорифера", code_1);
+                    CheckAddUIToList("Защита по току резервного насоса калорифера", code_1, DI);
                 else
-                    SubFromCombosDI(code_1);                                                        // Отмена выбора
+                    SubFromCombosUI(code_1);                                                        // Отмена выбора
             }
         }
 
@@ -1003,23 +792,23 @@ namespace Moderon
             { 
                 if (thermSwitchCombo.SelectedIndex == 0)                                            // Нет термовыключателей
                 {
-                    SubFromCombosDI(code_1); SubFromCombosDI(code_2);
+                    SubFromCombosUI(code_1); SubFromCombosUI(code_2);
                 }
                 else if (thermSwitchCombo.SelectedIndex == 1)                                       // Один термовыключатель
                 {
-                    SubFromCombosDI(code_2);
-                    CheckAddDIToList("Термовыключатель пожара ТЭНов калорифера", code_1);
+                    SubFromCombosUI(code_2);
+                    CheckAddUIToList("Термовыключатель пожара ТЭНов калорифера", code_1, DI);
                 }
                 else if (thermSwitchCombo.SelectedIndex == 2)                                       // Два термовыключателя
                 {
-                    CheckAddDIToList("Термовыключатель пожара ТЭНов калорифера", code_1);
-                    CheckAddDIToList("Термовыключатель перегрева ТЭНов калорифера", code_2);
+                    CheckAddUIToList("Термовыключатель пожара ТЭНов калорифера", code_1, DI);
+                    CheckAddUIToList("Термовыключатель перегрева ТЭНов калорифера", code_2, DI);
                 }
             }
             // Выбран водяной калорифер, либо нет нагревателя
             if ((heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0) || !heaterCheck.Checked)
             { 
-                SubFromCombosDI(code_1); SubFromCombosDI(code_2); // Удаление сигналов
+                SubFromCombosUI(code_1); SubFromCombosUI(code_2);                                   // Удаление сигналов
             }
         }
 
@@ -1031,13 +820,13 @@ namespace Moderon
             if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0)                        // Выбран водяной догреватель
             { 
                 if (TF_addHeaterCheck.Checked)                                                      // Выбран термостат
-                    CheckAddDIToList("Термостат водяного догревателя", code_1);
+                    CheckAddUIToList("Термостат водяного догревателя", code_1, DI);
                 if (confAddHeatPumpCheck.Checked)                                                   // Подтверждение работы насоса
-                    CheckAddDIToList("Подтверждение работы насоса водяного догревателя", code_2);
+                    CheckAddUIToList("Подтверждение работы насоса водяного догревателя", code_2, DI);
             } 
             else                                                                                    // Отмена выбора догревателя
             {
-                SubFromCombosDI(code_1); SubFromCombosDI(code_2);
+                SubFromCombosUI(code_1); SubFromCombosUI(code_2);
             }
             ThermAddSwitchCombo_signalsDISelectedIndexChanged(this, e);                             // Проверка для термовыключателей
         }
@@ -1052,13 +841,13 @@ namespace Moderon
                 if (heatAddTypeCombo.SelectedIndex == 0)                                            // Водяной догреватель
                 {
                     if (TF_addHeaterCheck.Checked)                                                  // Воздушный термостат
-                        CheckAddDIToList("Термостат водяного догревателя", code_1);
+                        CheckAddUIToList("Термостат водяного догревателя", code_1, DI);
                     if (confAddHeatPumpCheck.Checked)                                               // Подтверждение работы насоса
-                        CheckAddDIToList("Подтверждение работы насоса водяного догревателя", code_2);
+                        CheckAddUIToList("Подтверждение работы насоса водяного догревателя", code_2, DI);
                 }
                 else // Электродогреватель
                 {
-                    SubFromCombosDI(code_1); SubFromCombosDI(code_2);                               // Удаление сигналов
+                    SubFromCombosUI(code_1); SubFromCombosUI(code_2);                               // Удаление сигналов
                 }
                 ThermAddSwitchCombo_signalsDISelectedIndexChanged(this, e);                         // Проверка для термовыключателей
             }
@@ -1072,9 +861,9 @@ namespace Moderon
             if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0)                        // Выбран водяной догреватель
             { 
                 if (TF_addHeaterCheck.Checked)                                                      // Выбрали воздушный термостат
-                    CheckAddDIToList("Термостат водяного догревателя", code_1);
+                    CheckAddUIToList("Термостат водяного догревателя", code_1, DI);
                 else                                                                                // Отмена выбора
-                    SubFromCombosDI(code_1);
+                    SubFromCombosUI(code_1);
             }
         }
 
@@ -1086,9 +875,9 @@ namespace Moderon
             if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0)                        // Выбран водяной догреватель
             {
                 if (pumpAddHeatCheck.Checked && pumpCurAddProtect.Checked)                          // Выбран насос и защита по току
-                    CheckAddDIToList("Защита по току основного насоса догревателя", code_1);
+                    CheckAddUIToList("Защита по току основного насоса догревателя", code_1, DI);
                 else                                                                                // Отмена выбора
-                    SubFromCombosDI(code_1);
+                    SubFromCombosUI(code_1);
             }    
         }
 
@@ -1100,9 +889,9 @@ namespace Moderon
             if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0)                        // Выбран водяной догреватель
             {
                 if (reservPumpAddHeater.Checked && pumpCurResAddProtect.Checked)                    // Выбран резервный насос и защита по току
-                    CheckAddDIToList("Защита по току резервного насоса догревателя", code_1);
+                    CheckAddUIToList("Защита по току резервного насоса догревателя", code_1, DI);
                 else                                                                                // Отмена выбора
-                    SubFromCombosDI(code_1);
+                    SubFromCombosUI(code_1);
             }
         }
 
@@ -1114,9 +903,9 @@ namespace Moderon
             if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0)                        // Выбран водяной догреватель
             { 
                 if (pumpAddHeatCheck.Checked && confAddHeatPumpCheck.Checked)                       // Есть насос и подтверждение работы насоса
-                    CheckAddDIToList("Подтверждение работы основного насоса догревателя", code_1);
+                    CheckAddUIToList("Подтверждение работы основного насоса догревателя", code_1, DI);
                 else                                                                                // Отмена выбора
-                    SubFromCombosDI(code_1);
+                    SubFromCombosUI(code_1);
             }
         }
 
@@ -1128,9 +917,9 @@ namespace Moderon
             if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0)                                    // Выбран водяной догреватель
             {
                 if (reservPumpAddHeater.Checked && confAddHeatResPumpCheck.Checked)                             // Есть резервный насос и подтверждение работы
-                    CheckAddDIToList("Подтверждение работы резервного насоса догревателя", code_1);
+                    CheckAddUIToList("Подтверждение работы резервного насоса догревателя", code_1, DI);
                 else                                                                                            // Отмена выбора
-                    SubFromCombosDI(code_1);
+                    SubFromCombosUI(code_1);
             }
         }
 
@@ -1143,23 +932,23 @@ namespace Moderon
             { 
                 if (thermAddSwitchCombo.SelectedIndex == 0)                                         // Нет термовыключателей
                 {
-                    SubFromCombosDI(code_1); SubFromCombosDI(code_2);
+                    SubFromCombosUI(code_1); SubFromCombosUI(code_2);
                 }
                 else if (thermAddSwitchCombo.SelectedIndex == 1)                                    // Один термовыключатель
                 {
-                    SubFromCombosDI(code_2);
-                    CheckAddDIToList("Термовыключатель пожара ТЭНов догревателя", code_1);
+                    SubFromCombosUI(code_2);
+                    CheckAddUIToList("Термовыключатель пожара ТЭНов догревателя", code_1, DI);
                 }
                 else if (thermAddSwitchCombo.SelectedIndex == 2)                                    // Два термовыключателя
                 {
-                    CheckAddDIToList("Термовыключатель пожара ТЭНов догревателя", code_1);
-                    CheckAddDIToList("Термовыключатель перегрева ТЭНов догревателя", code_2);
+                    CheckAddUIToList("Термовыключатель пожара ТЭНов догревателя", code_1, DI);
+                    CheckAddUIToList("Термовыключатель перегрева ТЭНов догревателя", code_2, DI);
                 }
             }
             // Выбран водяной догреватель, либо нет догревателя
             if ((addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0) || !addHeatCheck.Checked)
             { 
-                SubFromCombosDI(code_1); SubFromCombosDI(code_2);                                   // Удаление сигналов
+                SubFromCombosUI(code_1); SubFromCombosUI(code_2);                                   // Удаление сигналов
             } 
         }
 
@@ -1171,25 +960,25 @@ namespace Moderon
 
             if (filterCheck.Checked)                                                                // Выбрали фильтры
             {
-                CheckAddDIToList("Приточный фильтр 1", code_1);
+                CheckAddUIToList("Приточный фильтр 1", code_1, DI);
                 if (filterPrCombo.SelectedIndex > 0)                                                // Два приточных фильтра
-                    CheckAddDIToList("Приточный фильтр 2", code_2);
+                    CheckAddUIToList("Приточный фильтр 2", code_2, DI);
                 if (filterPrCombo.SelectedIndex > 1)                                                // Три приточных фильтра
-                    CheckAddDIToList("Приточный фильтр 3", code_3);
+                    CheckAddUIToList("Приточный фильтр 3", code_3, DI);
                 if (comboSysType.SelectedIndex == 1)                                                // Выбрана ПВ-система
                 {
                     if (filterOutCombo.SelectedIndex > 0)                                           // Один вытяжной фильтр
-                        CheckAddDIToList("Вытяжной фильтр 1", code_4);
+                        CheckAddUIToList("Вытяжной фильтр 1", code_4, DI);
                     if (filterOutCombo.SelectedIndex > 1)                                           // Два вытяжных фильтра
-                        CheckAddDIToList("Вытяжной фильтр 2", code_5);
+                        CheckAddUIToList("Вытяжной фильтр 2", code_5, DI);
                     if (filterOutCombo.SelectedIndex > 2)                                           // Три вытяжных фильтра
-                        CheckAddDIToList("Вытяжной фильтр 3", code_6);
+                        CheckAddUIToList("Вытяжной фильтр 3", code_6, DI);
                 }
             }
             else                                                                                    // Отмена выбора фильтров
             {
-                SubFromCombosDI(code_1); SubFromCombosDI(code_2); SubFromCombosDI(code_3);
-                SubFromCombosDI(code_4); SubFromCombosDI(code_5); SubFromCombosDI(code_6);
+                SubFromCombosUI(code_1); SubFromCombosUI(code_2); SubFromCombosUI(code_3);
+                SubFromCombosUI(code_4); SubFromCombosUI(code_5); SubFromCombosUI(code_6);
             }
         }
 
@@ -1202,17 +991,17 @@ namespace Moderon
             {
                 if (filterPrCombo.SelectedIndex == 0)                                               // Один фильтр
                 {
-                    SubFromCombosDI(code_1); SubFromCombosDI(code_2);                               // Удаление сигналов
+                    SubFromCombosUI(code_1); SubFromCombosUI(code_2);                               // Удаление сигналов
                 }
                 else if (filterPrCombo.SelectedIndex == 1)                                          // Два приточных фильтра
                 {
-                    SubFromCombosDI(code_2);
-                    CheckAddDIToList("Приточный фильтр 2", code_1);
+                    SubFromCombosUI(code_2);
+                    CheckAddUIToList("Приточный фильтр 2", code_1, DI);
                 }
                 else if (filterPrCombo.SelectedIndex == 2)                                          // Три приточных фильтра
                 {
-                    CheckAddDIToList("Приточный фильтр 2", code_1);
-                    CheckAddDIToList("Приточный фильтр 3", code_2);
+                    CheckAddUIToList("Приточный фильтр 2", code_1, DI);
+                    CheckAddUIToList("Приточный фильтр 3", code_2, DI);
                 }
             }
         }
@@ -1226,24 +1015,24 @@ namespace Moderon
             { 
                 if (filterOutCombo.SelectedIndex == 0)                                              // Нет вытяжных фильтров
                 { 
-                    SubFromCombosDI(code_1); SubFromCombosDI(code_2); SubFromCombosDI(code_3);      // Удаление сигналов
+                    SubFromCombosUI(code_1); SubFromCombosUI(code_2); SubFromCombosUI(code_3);      // Удаление сигналов
                 }
                 else if (filterOutCombo.SelectedIndex == 1)                                         // Один вытяжной фильтр
                 {
-                    SubFromCombosDI(code_2); SubFromCombosDI(code_3);
-                    CheckAddDIToList("Вытяжной фильтр 1", code_1);
+                    SubFromCombosUI(code_2); SubFromCombosUI(code_3);
+                    CheckAddUIToList("Вытяжной фильтр 1", code_1, DI);
                 }
                 else if (filterOutCombo.SelectedIndex == 2)                                         // Два вытяжных фильтра
                 {
-                    SubFromCombosDI(code_3);
-                    CheckAddDIToList("Вытяжной фильтр 1", code_1);
-                    CheckAddDIToList("Вытяжной фильтр 2", code_2);
+                    SubFromCombosUI(code_3);
+                    CheckAddUIToList("Вытяжной фильтр 1", code_1, DI);
+                    CheckAddUIToList("Вытяжной фильтр 2", code_2, DI);
                 }
                 else if (filterOutCombo.SelectedIndex == 3)                                         // Три вытяжных фильтра
                 {
-                    CheckAddDIToList("Вытяжной фильтр 1", code_1);
-                    CheckAddDIToList("Вытяжной фильтр 2", code_2);
-                    CheckAddDIToList("Вытяжной фильтр 3", code_3);
+                    CheckAddUIToList("Вытяжной фильтр 1", code_1, DI);
+                    CheckAddUIToList("Вытяжной фильтр 2", code_2, DI);
+                    CheckAddUIToList("Вытяжной фильтр 3", code_3, DI);
                 }
             } 
         }
@@ -1256,13 +1045,13 @@ namespace Moderon
             if (coolerCheck.Checked && coolTypeCombo.SelectedIndex == 0)                            // Выбран фреоновый охладитель
             { 
                 if (thermoCoolerCheck.Checked)                                                      // Выбран термостат
-                    CheckAddDIToList("Термостат фреонового охладителя", code_1);
+                    CheckAddUIToList("Термостат фреонового охладителя", code_1, DI);
                 if (alarmFrCoolCheck.Checked)                                                       // Авария фреонового охладителя
-                    CheckAddDIToList("Авария фреонового охладителя", code_2);
+                    CheckAddUIToList("Авария фреонового охладителя", code_2, DI);
             }
             else                                                                                    // Отмена выбора охладителя
             {
-                SubFromCombosDI(code_1); SubFromCombosDI(code_2);
+                SubFromCombosUI(code_1); SubFromCombosUI(code_2);
             }
         }
 
@@ -1276,13 +1065,13 @@ namespace Moderon
                 if (coolTypeCombo.SelectedIndex == 0)                                               // Фреоновый охладитель
                 {
                     if (thermoCoolerCheck.Checked)                                                  // Выбран термостат
-                        CheckAddDIToList("Термостат фреонового охладителя", code_1);
+                        CheckAddUIToList("Термостат фреонового охладителя", code_1, DI);
                     if (alarmFrCoolCheck.Checked)                                                   // Выбран сигнал аварии
-                        CheckAddDIToList("Авария фреонового охладителя", code_2);
+                        CheckAddUIToList("Авария фреонового охладителя", code_2, DI);
                 }
                 else if (coolTypeCombo.SelectedIndex == 1)                                          // Водяной охладитель
                 {
-                    SubFromCombosDI(code_1); SubFromCombosDI(code_2);
+                    SubFromCombosUI(code_1); SubFromCombosUI(code_2);
                 }
             }
         }
@@ -1295,9 +1084,9 @@ namespace Moderon
             if (coolerCheck.Checked && coolTypeCombo.SelectedIndex == 0)                            // Выбран фреоновый охладитель
             { 
                 if (thermoCoolerCheck.Checked)                                                      // Выбран термостат
-                    CheckAddDIToList("Термостат фреонового охладителя", code_1);
+                    CheckAddUIToList("Термостат фреонового охладителя", code_1, DI);
                 else                                                                                // Отмена выбора
-                    SubFromCombosDI(code_1);
+                    SubFromCombosUI(code_1);
             }
         }
 
@@ -1309,9 +1098,9 @@ namespace Moderon
             if (coolerCheck.Checked && coolTypeCombo.SelectedIndex == 0)                            // Выбран фреоновый охладитель
             { 
                 if (alarmFrCoolCheck.Checked)                                                       // Выбран сигнал аварии
-                    CheckAddDIToList("Авария фреонового охладителя", code_1);
+                    CheckAddUIToList("Авария фреонового охладителя", code_1, DI);
                 else                                                                                // Отмена выбора
-                    SubFromCombosDI(code_1);
+                    SubFromCombosUI(code_1);
             }
         }
 
@@ -1323,10 +1112,10 @@ namespace Moderon
             if (humidCheck.Checked)                                                                 // Когда выбран увлажнитель
             {
                 if (humidTypeCombo.SelectedIndex == 0)                                              // Паровой увлажнитель
-                    CheckAddDIToList("Авария парового увлажнителя", code_1);
+                    CheckAddUIToList("Авария парового увлажнителя", code_1, DI);
             }
             else                                                                                    // Отмена выбора увлажнителя
-                SubFromCombosDI(code_1);
+                SubFromCombosUI(code_1);
         }
 
         ///<summary>Изменили тип увлажнителя</summary>
@@ -1339,10 +1128,10 @@ namespace Moderon
                 if (humidTypeCombo.SelectedIndex == 0)                                              // Паровой увлажнитель
                 {
                     if (alarmHumidCheck.Checked)
-                        CheckAddDIToList("Авария парового увлажнителя", code_1);
+                        CheckAddUIToList("Авария парового увлажнителя", code_1, DI);
                 }
                 else if (humidTypeCombo.SelectedIndex == 1)                                         // Сотовый увлажнитель
-                    SubFromCombosDI(code_1);
+                    SubFromCombosUI(code_1);
             }
         }
 
@@ -1354,9 +1143,9 @@ namespace Moderon
             if (humidCheck.Checked && humidTypeCombo.SelectedIndex == 0)                            // Выбран паровой увлажнитель
             { 
                 if (alarmHumidCheck.Checked)
-                    CheckAddDIToList("Авария парового увлажнителя", code_1);
+                    CheckAddUIToList("Авария парового увлажнителя", code_1, DI);
                 else                                                                                // Отмена выбора
-                    SubFromCombosDI(code_1);
+                    SubFromCombosUI(code_1);
             }
         }
 
@@ -1368,13 +1157,13 @@ namespace Moderon
             if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)                              // Выбрали рекуператор
             {
                 if (recDefPsCheck.Checked)                                                          // Выбрали сигнал PS
-                    CheckAddDIToList("PS рекуператора", code_1);
+                    CheckAddUIToList("PS рекуператора", code_1, DI);
                 if (recupTypeCombo.SelectedIndex == 0)                                              // Роторный рекуператор
-                    CheckAddDIToList("Авария роторного рекуператора", code_2);
+                    CheckAddUIToList("Авария роторного рекуператора", code_2, DI);
             }
             else // Отмена выбора рекуператора
             { 
-                SubFromCombosDI(code_1); SubFromCombosDI(code_2);
+                SubFromCombosUI(code_1); SubFromCombosUI(code_2);
             }
         }
 
@@ -1386,9 +1175,9 @@ namespace Moderon
             if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)                              // Выбран рекуператор
             {
                 if (recupTypeCombo.SelectedIndex == 0)                                              // Роторный рекуператор
-                    CheckAddDIToList("Авария роторного рекуператора", code_1);
+                    CheckAddUIToList("Авария роторного рекуператора", code_1, DI);
                 else                                                                                // Другой тип рекуператора
-                    SubFromCombosDI(code_1);
+                    SubFromCombosUI(code_1);
             }
         }
 
@@ -1400,9 +1189,9 @@ namespace Moderon
             if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)                              // Выбран рекуператор
             { 
                 if (recDefPsCheck.Checked)                                                          // Выбрали сигнал PS
-                    CheckAddDIToList("PS рекуператора", code_1);
+                    CheckAddUIToList("PS рекуператора", code_1, DI);
                 else                                                                                // Отмена выбора сигнала PS
-                    SubFromCombosDI(code_1);
+                    SubFromCombosUI(code_1);
             }
         }
 
@@ -1412,9 +1201,9 @@ namespace Moderon
             ushort code_1 = 3;                                                                      // Переключатель "Стоп/Пуск"
 
             if (stopStartCheck.Checked)                                                             // Выбрали сигнал для переключателя
-                CheckAddDIToList("Переключатель \"Стоп/Пуск\"", code_1);
+                CheckAddUIToList("Переключатель \"Стоп/Пуск\"", code_1, DI);
             else // Отмена выбора сигнала переключателя
-                SubFromCombosDI(code_1);
+                SubFromCombosUI(code_1);
         }
 
         ///<summary>Выбрали сигнал аварии для приточного вентилятора</summary> 
@@ -1424,13 +1213,13 @@ namespace Moderon
 
             if (prFanAlarmCheck.Checked)                                                            // Выбрали сигнал аварии
             {
-                CheckAddDIToList("Сигнал аварии приточного вентилятора 1", code_1);
+                CheckAddUIToList("Сигнал аварии приточного вентилятора 1", code_1, DI);
                 if (checkResPrFan.Checked)                                                          // Выбран резерв приточного вентилятора
-                    CheckAddDIToList("Сигнал аварии приточного вентилятора 2", code_2);
+                    CheckAddUIToList("Сигнал аварии приточного вентилятора 2", code_2, DI);
             }
             else                                                                                    // Отмена выбора сигнала аварии
             {
-                SubFromCombosDI(code_1); SubFromCombosDI(code_2);
+                SubFromCombosUI(code_1); SubFromCombosUI(code_2);
             }
         }
 
@@ -1441,13 +1230,13 @@ namespace Moderon
 
             if (outFanAlarmCheck.Checked)                                                           // Выбрали сигнал аварии
             {
-                CheckAddDIToList("Сигнал аварии вытяжного вентилятора 1", code_1);
+                CheckAddUIToList("Сигнал аварии вытяжного вентилятора 1", code_1, DI);
                 if (checkResOutFan.Checked)                                                         // Выбран резерв вытяжного вентилятора
-                    CheckAddDIToList("Сигнал аварии вытяжного вентилятора 2", code_2);
+                    CheckAddUIToList("Сигнал аварии вытяжного вентилятора 2", code_2, DI);
             }
             else                                                                                    // Отмена выбора сигнала аварии
             {
-                SubFromCombosDI(code_1); SubFromCombosDI(code_2);
+                SubFromCombosUI(code_1); SubFromCombosUI(code_2);
             }
         }
 
@@ -1457,9 +1246,9 @@ namespace Moderon
             ushort code_1 = 98;                                                                     // Сигнал пожарной сигнализации
 
             if (fireCheck.Checked)                                                                  // Выбран сигнал
-                CheckAddDIToList("Сигнал пожарной сигнализации", code_1);
+                CheckAddUIToList("Сигнал пожарной сигнализации", code_1, DI);
             else                                                                                    // Отмена выбора сигнала пожарной сигнализации
-                SubFromCombosDI(code_1);
+                SubFromCombosUI(code_1);
         }
     }
 }
