@@ -366,14 +366,12 @@ namespace Moderon
                 if (prFanControlCombo.SelectedIndex == 0)                       // Внешние контакты
                 {
                     prFanSpeedCheck.Enabled = true;                             // Разблокировка выбора опции скорости
-                    prFanPowSupCheck.Enabled = true;                            // Разблокировка выбора опции питания
                 }
                 else if (prFanControlCombo.SelectedIndex == 1)                  // Modbus
                 {
                     if (prFanSpeedCheck.Checked)                                // Снятие выбора опции
                         prFanSpeedCheck.Checked = false;
                     prFanSpeedCheck.Enabled = false;                            // Блокировка выбора опции скорости
-                    prFanPowSupCheck.Enabled = false;                           // Блокировка опции выбора питания
                 }
             }
             PrFanControlCombo_signalsDISelectedIndexChanged(this, e);           // Проверка для сигналов DI
@@ -420,14 +418,12 @@ namespace Moderon
                 if (outFanControlCombo.SelectedIndex == 0)                      // Внешние контакты
                 {
                     outFanSpeedCheck.Enabled = true;                            // Разблокировка выбора скорости
-                    outFanPowSupCheck.Enabled = true;                           // Разблокировка выбора питания
                 }
                 else if (outFanControlCombo.SelectedIndex == 1)                 // Modbus
                 {
                     if (outFanSpeedCheck.Checked)                               // Отмена выбора опции скорости
                         outFanSpeedCheck.Checked = false;
                     outFanSpeedCheck.Enabled = false;                           // Блокировка выбора скорости
-                    outFanPowSupCheck.Enabled = false;                          // Блокировка выбора питания
                 }
             }
             OutFanControlCombo_signalsDISelectedIndexChanged(this, e);          // Проверка для сигналов DI

@@ -38,46 +38,46 @@ namespace Moderon
             BuildAiSignals();                       // Сборка массива для сигналов AI
             BuildDoSignals();                       // Сборка массива для сигналов DO
             BuildAoSignals();                       // Сборка массива для сигналов AO
-            dataCanTextBox.Text = "";               // Очистка текстового поля
+            cmdWordsTextBox.Text = "";              // Очистка текстового поля
 
             for (ushort counter = 1; counter <= cmdWords.Length; counter++) 
             { // Для командных слов
-                dataCanTextBox.Text += counter.ToString() + ") " + 
+                cmdWordsTextBox.Text += counter.ToString() + ") " + 
                     cmdWords[counter - 1].ToString();
-                if (counter < cmdWords.Length) dataCanTextBox.Text += Environment.NewLine;
+                if (counter < cmdWords.Length) cmdWordsTextBox.Text += Environment.NewLine;
                 ++count;
-            }
+            } /*
             for (ushort counter = 1; counter <= diSignals.Length; counter++) // DI
             { // Для сигналов DI (DI1 - DI20) - по 5 сигналов
-                dataCanTextBox.Text += Environment.NewLine;
-                dataCanTextBox.Text += (count.ToString() + "_DI_" + counter.ToString() + ") " +
+                cmdWordsTextBox.Text += Environment.NewLine;
+                cmdWordsTextBox.Text += (count.ToString() + "_DI_" + counter.ToString() + ") " +
                     diSignals[counter - 1]).ToString();
                 ++count;
             }
             for (ushort counter = 1; counter <= aiSignals.Length; counter++) // AI
             { // Для сигналов AI (AI1 - AI24) - по 6 сигналов
-                dataCanTextBox.Text += Environment.NewLine;
-                dataCanTextBox.Text += (count.ToString() + "_AI_" + counter.ToString() + ") " +
+                cmdWordsTextBox.Text += Environment.NewLine;
+                cmdWordsTextBox.Text += (count.ToString() + "_AI_" + counter.ToString() + ") " +
                     aiSignals[counter - 1]).ToString();
                 ++count;
             }
             for (ushort counter = 1; counter <= doSignals.Length; counter++) // DO
             { // Для сигналов DO (DO1 - DO28) - по 7 сигналов
-                dataCanTextBox.Text += Environment.NewLine;
-                dataCanTextBox.Text += (count.ToString() + "_DO_" + counter.ToString() + ") " +
+                cmdWordsTextBox.Text += Environment.NewLine;
+                cmdWordsTextBox.Text += (count.ToString() + "_DO_" + counter.ToString() + ") " +
                     doSignals[counter - 1]).ToString();
                 ++count;
             }
             for (ushort counter = 1; counter <= aoSignals.Length; counter++) // AO
             { // Для сигналов AO (AO1 - AO12) - по 3 сигнала
-                dataCanTextBox.Text += Environment.NewLine;
-                dataCanTextBox.Text += (count.ToString() + "_AO_" + counter.ToString() + ") " +
+                cmdWordsTextBox.Text += Environment.NewLine;
+                cmdWordsTextBox.Text += (count.ToString() + "_AO_" + counter.ToString() + ") " +
                     aoSignals[counter - 1]).ToString();
                 ++count;
             }
             // Для сигнала пожарной сигнализации
-            dataCanTextBox.Text += Environment.NewLine;
-            dataCanTextBox.Text += (count.ToString() + "_fire" + ") " + cmdW_fire.ToString());
+            cmdWordsTextBox.Text += Environment.NewLine;
+            cmdWordsTextBox.Text += (count.ToString() + "_fire" + ") " + cmdW_fire.ToString()); */
         }
 
         ///<summary>Сборка массива командных слов из полученных значений</summary>
@@ -659,8 +659,8 @@ namespace Moderon
             bit4 = curDefPrFanCheck.Checked;            // Защита по току
             bit5 = prDampFanCheck.Checked;              // Наличие заслонки вентилятора
             bit6 = prDampConfirmFanCheck.Checked;       // Наличие подтверждения заслонки вентилятора
-            bit7 = prFanPowSupCheck.Checked;            // Наличие контактора, сигнал подачи питания
-            bit8 = prFanStStopCheck.Checked;            // Наличие сухого контакта - запуск ПЧ
+            bit7 = prFanStStopCheck.Checked;            // Наличие сухого контакта - запуск ПЧ 
+            bit8 = false;                               // Наличие контактора, сигнал подачи питания
             bit9 = false;                               // Наличие ATV12 или ATV310
             bit10 = false;                              // Наличие ATV212
             bit11 = prFanSpeedCheck.Checked;            // Управление 0-10 В
@@ -688,8 +688,8 @@ namespace Moderon
                 bit4 = curDefPrFanCheck.Checked;                // Защита по току
                 bit5 = prDampFanCheck.Checked;                  // Наличие заслонки
                 bit6 = prDampConfirmFanCheck.Checked;           // Наличие подтверждения заслонки
-                bit7 = prFanPowSupCheck.Checked;                // Наличие контактора, сигнал подачи питания
-                bit8 = prFanStStopCheck.Checked;                // Наличие сухого контакта - запуск ПЧ
+                bit7 = prFanStStopCheck.Checked;                // Наличие сухого контакта - запуск ПЧ                   
+                bit8 = false;                                   // Наличие контактора, сигнал подачи питания
                 bit9 = false;                                   // Наличие ATV12 или ATV310
                 bit10 = false;                                  // Наличие ATV212
                 bit11 = prFanSpeedCheck.Checked;                // Управление 0-10 В
@@ -721,8 +721,8 @@ namespace Moderon
                 bit4 = curDefOutFanCheck.Checked;               // Защита по току
                 bit5 = outDampFanCheck.Checked;                 // Наличие заслонки вентилятора
                 bit6 = outDampConfirmFanCheck.Checked;          // Наличие подтверждения заслонки вентилятора
-                bit7 = outFanPowSupCheck.Checked;               // Наличие контактора, сигнал подачи питания
-                bit8 = outFanStStopCheck.Checked;               // Наличие сухого контакта - запуск ПЧ
+                bit7 = outFanStStopCheck.Checked;               // Наличие сухого контакта - запуск ПЧ                    
+                bit8 = false;                                   // Наличие контактора, сигнал подачи питания
                 bit9 = false;                                   // Наличие ATV12 или ATV310
                 bit10 = false;                                  // Наличие ATV212
                 bit11 = outFanSpeedCheck.Checked;               // Управление 0-10 В
@@ -754,8 +754,8 @@ namespace Moderon
                 bit4 = curDefOutFanCheck.Checked;                               // Защита по току
                 bit5 = outDampFanCheck.Checked;                                 // Наличие заслонки вентилятора
                 bit6 = outDampConfirmFanCheck.Checked;                          // Наличие подтверждения заслонки вентилятора
-                bit7 = outFanPowSupCheck.Checked;                               // Наличие контактора, сигнал подачи питания
-                bit8 = outFanStStopCheck.Checked;                               // Наличие сухого контакта - запуск ПЧ
+                bit7 = outFanStStopCheck.Checked;                               // Наличие сухого контакта - запуск ПЧ                    
+                bit8 = false;                                                   // Наличие контактора, сигнал подачи питания
                 bit9 = false;                                                   // Наличие ATV12 или ATV310
                 bit10 = false;                                                  // Наличие ATV212
                 bit11 = outFanSpeedCheck.Checked;                               // Управление 0-10 В

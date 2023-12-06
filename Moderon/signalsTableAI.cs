@@ -649,9 +649,9 @@ namespace Moderon
             if (heaterCheck.Checked)                                                                    // Когда выбран нагреватель
             {
                 if (heatTypeCombo.SelectedIndex == 0)                                                   // Водяной калорифер
-                    CheckAddAIToList("Датчик обратной воды калорифера", code_1, "sensor");
+                    CheckAddUIToList("Датчик обратной воды калорифера", code_1, NTC);
                 else if (heatTypeCombo.SelectedIndex == 1)                                              // Электрокалорифер
-                    SubFromCombosAI(code_1);
+                    SubFromCombosUI(code_1);
             }
         }
 
@@ -661,9 +661,9 @@ namespace Moderon
             ushort code_1 = 11;                                                                         // Датчик обратной воды догревателя
 
             if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0)                            // Когда выбран водяной догреватель
-                CheckAddAIToList("Датчик обратной воды догревателя", code_1, "sensor");
+                CheckAddUIToList("Датчик обратной воды догревателя", code_1, NTC);
             else                                                                                        // Отмена выбора догревателя
-                SubFromCombosAI(code_1);
+                SubFromCombosUI(code_1);
         }
 
         ///<summary>Изменили тип догревателя</summary>
@@ -674,9 +674,9 @@ namespace Moderon
             if (addHeatCheck.Checked)                                                                   // Когда выбран догреватель
             {
                 if (heatAddTypeCombo.SelectedIndex == 0)                                                // Водяной догреватель
-                    CheckAddAIToList("Датчик обратной воды догревателя", code_1, "sensor");
+                    CheckAddUIToList("Датчик обратной воды догревателя", code_1, NTC);
                 else if (heatAddTypeCombo.SelectedIndex == 1)                                           // Электрокалорифер
-                    SubFromCombosAI(code_1);
+                    SubFromCombosUI(code_1);
             }
         }
 
@@ -688,10 +688,10 @@ namespace Moderon
             if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)                                  // Рекуператор
             {
                 if (recDefTempCheck.Checked)                                                            // Выбрана защита по температурному датчику
-                    CheckAddAIToList("Датчик температуры защиты рекуператора", code_1, "sensor");
+                    CheckAddUIToList("Датчик температуры защиты рекуператора", code_1, NTC);
             }
             else                                                                                        // Отмена выбора рекуператора
-                SubFromCombosAI(code_1);
+                SubFromCombosUI(code_1);
         }
 
         ///<summary>Выбрали температурный датчик защиты рекуператора</summary>
@@ -702,9 +702,9 @@ namespace Moderon
             if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)                                  // ПВ и рекуператор
             {
                 if (recDefTempCheck.Checked)                                                            // Выбрали защиту по температурному датчику
-                    CheckAddAIToList("Датчик температуры защиты рекуператора", code_1, "sensor");
+                    CheckAddUIToList("Датчик температуры защиты рекуператора", code_1, NTC);
                 else // Отмена выбора датчика
-                    SubFromCombosAI(code_1);
+                    SubFromCombosUI(code_1);
             }
         }
 
@@ -714,9 +714,9 @@ namespace Moderon
             ushort code_1 = 1;                                                                          // Канальный датчик температуры
 
             if (prChanSensCheck.Checked)                                                                // Выбрали датчик 
-                CheckAddAIToList("Канальный датчик Т приточного воздуха", code_1, "sensor");
+                CheckAddUIToList("Канальный датчик Т приточного воздуха", code_1, NTC);
             else                                                                                        // Отмена выбора датчика
-                SubFromCombosAI(code_1);
+                SubFromCombosUI(code_1);
         }
 
         ///<summary>Выбрали комнатный датчик температуры</summary>
@@ -725,9 +725,9 @@ namespace Moderon
             ushort code_1 = 4;                                                                          // Комнатный датчик температуры
 
             if (roomTempSensCheck.Checked)                                                              // Выбрали датчик 
-                CheckAddAIToList("Датчик температуры комнатный", code_1, "sensor");
+                CheckAddUIToList("Датчик температуры комнатный", code_1, NTC);
             else                                                                                        // Отмена выбора датчика
-                SubFromCombosAI(code_1);
+                SubFromCombosUI(code_1);
         }
 
         ///<summary>Выбрали канальный датчик влажности</summary>
@@ -736,9 +736,9 @@ namespace Moderon
             ushort code_1 = 17;                                                                         // Канальный датчик влажности
 
             if (chanHumSensCheck.Checked)                                                               // Выбрали датчик 
-                CheckAddAIToList("Канальный датчик влажности", code_1, "humidSensor");
+                CheckAddUIToList("Канальный датчик влажности", code_1, NTC);
             else                                                                                        // Отмена выбора датчика
-                SubFromCombosAI(code_1);
+                SubFromCombosUI(code_1);
         }
 
         ///<summary>Выбрали комнатный датчик влажности</summary>
@@ -747,9 +747,9 @@ namespace Moderon
             ushort code_1 = 18;                                                                         // Комнатный датчик влажности
 
             if (roomHumSensCheck.Checked)                                                               // Выбрали датчик 
-                CheckAddAIToList("Комнатный датчик влажности", code_1, "humidSensor");
+                CheckAddUIToList("Комнатный датчик влажности", code_1, NTC);
             else                                                                                        // Отмена выбора датчика
-                SubFromCombosAI(code_1);
+                SubFromCombosUI(code_1);
         }
 
         ///<summary>Выбрали датчик температуры наружного воздуха</summary>
@@ -758,9 +758,9 @@ namespace Moderon
             ushort code_1 = 3;                                                                          // Датчик температуры наружного воздуха
 
             if (outdoorChanSensCheck.Checked)                                                           // Выбрали датчик 
-                CheckAddAIToList("Датчик температуры наружного воздуха", code_1, "sensor");
+                CheckAddUIToList("Датчик температуры наружного воздуха", code_1, NTC);
             else                                                                                        // Отмена выбора датчика
-                SubFromCombosAI(code_1);
+                SubFromCombosUI(code_1);
         }
 
         ///<summary>Выбрали канальный датчик Т вытяжного воздуха</summary>
@@ -769,9 +769,9 @@ namespace Moderon
             ushort code_1 = 5;                                                                          // Канальный датчик температуры вытяжного воздуха
 
             if (outChanSensCheck.Checked)                                                               // Выбрали датчик 
-                CheckAddAIToList("Канальный датчик Т вытяжного воздуха", code_1, "sensor");
+                CheckAddUIToList("Канальный датчик Т вытяжного воздуха", code_1, NTC);
             else // Отмена выбора датчика
-                SubFromCombosAI(code_1);
+                SubFromCombosUI(code_1);
         }
     }
 }

@@ -128,7 +128,7 @@ namespace Moderon
             // list_di.Add(new Di("Переключатель \"Стоп/Пуск\"", 3));
             list_ui.Add(new Ui("Переключатель \"Стоп/Пуск\"", 3, DI));
             // Добавление начальных DO
-            list_do.Add(new Do("Сигнал \"Пуск/Стоп\" приточного вентилятора 1", 9));
+            list_do.Add(new Do("Сигнал \"Пуск/Стоп\" приточного вентилятора 1", 8));
             //list_do.Add(new Do("Сигнал \"Работа\"", 1));
             //list_do.Add(new Do("Сигнал \"Авария\"", 3));
             // Выбор сигналов "Работа" и "Авария" по умолчанию после сброса
@@ -155,10 +155,10 @@ namespace Moderon
             if (showCode) UI1_lab.Text = (1000 + 3).ToString();
 
             // DO сигналы
-            DO1_combo.Items.Add(list_do.Find(x => x.Code == 9).Name);       // Сигнал "Пуск/Стоп" приточного вентилятора 1
-            list_do.Find(x => x.Code == 9).Select();
+            DO1_combo.Items.Add(list_do.Find(x => x.Code == 8).Name);       // Сигнал "Пуск/Стоп" приточного вентилятора 1
+            list_do.Find(x => x.Code == 8).Select();
             DO1_combo.SelectedIndex = 1; // Выбор сигнала
-            if (showCode) DO1_lab.Text = 9.ToString();
+            if (showCode) DO1_lab.Text = 8.ToString();
 
             /*DO2_combo.Items.Add(list_do.Find(x => x.Code == 1).Name);     // Сигнал "Работа"
             DO2_combo.SelectedIndex = 1;
@@ -175,7 +175,8 @@ namespace Moderon
         ///<summary>Очистка массивов сигналов DI, DO, AI, AO</summary>
         private void ResetSignalsLists()
         {
-            list_di.Clear(); list_do.Clear(); list_ai.Clear(); list_ao.Clear();
+            list_ui.Clear(); list_do.Clear(); list_ao.Clear();
+            list_di.Clear();  list_ai.Clear(); 
         }
 
         ///<summary>Нажали на кнопку "Сброс"</summary>
@@ -275,7 +276,7 @@ namespace Moderon
         }
 
         ///<summary>Проверка распределения сигналов</summary>
-        private void CheckSignalsReady()
+        private bool CheckSignalsReady()
         {
             bool a = true;                      // Сигналы распределены по умолчанию
 
@@ -306,6 +307,7 @@ namespace Moderon
                 loadToExl.Hide();                                   // Скрытие кнопки экспорта таблицы сигналов в Excel
                 saveSpecToolStripMenuItem.Enabled = false;          // Невозможность сохранить спецификацию
             }
+            return a;
         }
 
         ///<summary>Метод для изменения DO comboBox</summary>
@@ -1185,7 +1187,7 @@ namespace Moderon
         ///<summary>Изменили тип системы</summary>
         private void ComboSysType_signalsSelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 23, code_2 = 29;                                                // Сигнал "Пуск/Стоп" вытяжного вентилятора 1, 2
+            ushort code_1 = 22, code_2 = 28;                                                // Сигнал "Пуск/Стоп" вытяжного вентилятора 1, 2
 
             if (comboSysType.SelectedIndex == 1)                                            // Выбрана ПВ-система
             {
@@ -1203,18 +1205,16 @@ namespace Moderon
         private void CheckResPrFan_signalsDOCheckedChanged(object sender, EventArgs e)
         {
             // Сигнал "Пуск/Стоп" приточного вентилятора 2 / сигнал подачи питания приточного вентилятора 2
-            ushort code_1 = 15, code_2 = 14;
+            ushort code_1 = 14;
 
             if (checkResPrFan.Checked)                                                          // Выбрали резервирование
             {
                 if (prFanStStopCheck.Checked)                                                   // Выбран сигнал "Пуск/Стоп"
                     AddToListDo("Сигнал \"Пуск/Стоп\" приточного вентилятора 2", code_1);
-                if (prFanPowSupCheck.Checked)                                                   // Выбран сигнал подачи питания
-                    AddToListDo("Подача питания приточного вентилятора 2", code_2);
             }
             else // Отмена выбора резервирования
             {
-                SubFromCombosDO(code_1); SubFromCombosDO(code_2);                               // Отмена выбора сигнала "Пуск/Стоп" / сигнала подачи питания
+                SubFromCombosDO(code_1);                                                        // Отмена выбора сигнала "Пуск/Стоп"
             }
         }
 
@@ -1222,18 +1222,16 @@ namespace Moderon
         private void CheckResOutFan_signalsCheckedChanged(object sender, EventArgs e)
         {
             // Сигнал "Пуск/Стоп" вытяжного вентилятора 2 / сигнал подачи питания вытяжного вентилятора 2
-            ushort code_1 = 29, code_2 = 28;
+            ushort code_1 = 28;
 
             if (comboSysType.SelectedIndex == 1 && checkResOutFan.Checked)                      // ПВ-система и резерв вытяжного
             {
                 if (outFanStStopCheck.Checked)                                                  // Выбран сигнал "Пуск/Стоп"
                     AddToListDo("Сигнал \"Пуск/Стоп\" вытяжного вентилятора 2", code_1);
-                if (outFanPowSupCheck.Checked)                                                  // Выбран сигнал подачи питания
-                    AddToListDo("Подача питания вытяжного вентилятора 2", code_2);
             }
             else // Не выбран резерв вытяжного вентилятора
             {
-                SubFromCombosDO(code_1); SubFromCombosDO(code_2);                               // Отмена выбора сигнала "Пуск/Стоп" / сигнала подачи питания
+                SubFromCombosDO(code_1);                                                        // Отмена выбора сигнала "Пуск/Стоп"
             }
         }
 
@@ -1373,50 +1371,12 @@ namespace Moderon
                 SubFromCombosDO(code_1);
         }
 
-        ///<summary>Выбрали подачу питания для приточного вентилятора</summary>
-        private void PrFanPowSupCheck_CheckedChanged(object sender, EventArgs e)
-        {
-            if (ignoreEvents) return;
-
-            ushort code_1 = 8, code_2 = 14;                                                 // Сигнал "Подача питания" П вентилятор 1 / 2
- 
-            if (prFanPowSupCheck.Checked)                                                   // Выбрали сигнал подачи питания
-            {
-                AddToListDo("Подача питания приточного вентилятора 1", code_1);
-                if (checkResPrFan.Checked)                                                  // Выбран резерв приточного вентилятора
-                    AddToListDo("Подача питания приточного вентилятора 2", code_2);
-            }
-            else                                                                            // Отмена выбора сигнала подачи питания
-            {
-                SubFromCombosDO(code_1); SubFromCombosDO(code_2);
-            }    
-        }
-
-        ///<summary>Выбрали подачу питания для вытяжного вентилятора</summary>
-        private void OutFanPowSupCheck_CheckedChanged(object sender, EventArgs e)
-        {
-            if (ignoreEvents) return;
-
-            ushort code_1 = 22, code_2 = 28;                                                // Сигнал "Подача питания" В вентилятор 1 / 2
-
-            if (outFanPowSupCheck.Checked)                                                  // Выбрали сигнал подачи питания
-            {
-                AddToListDo("Подача питания вытяжного вентилятора 1", code_1);
-                if (checkResOutFan.Checked)                                                 // Выбран резерв вытяжного вентилятора
-                    AddToListDo("Подача питания вытяжного вентилятора 2", code_2);
-            }
-            else                                                                            // Отмена выбора сигнала подачи питания
-            {
-                SubFromCombosDO(code_1); SubFromCombosDO(code_2);
-            }
-        }
-
         ///<summary>Выбрали сигнал "Пуск/Стоп" для приточного и резервного вентилятора</summary>
         private void PrFanStStopCheck_CheckedChanged(object sender, EventArgs e)
         {
             if (ignoreEvents) return;
 
-            ushort code_1 = 9, code_2 = 15;                                                         // Сигнал "Пуск/Стоп" вентилятор П основной / резерв
+            ushort code_1 = 8, code_2 = 14;                                                         // Сигнал "Пуск/Стоп" вентилятор П основной / резерв
  
             if (prFanStStopCheck.Checked)                                                           // Выбрали сигнал "Пуск/Стоп"
             {
@@ -1435,7 +1395,7 @@ namespace Moderon
         {
             if (ignoreEvents) return;
 
-            ushort code_1 = 23, code_2 = 29;                                                            // Сигнал "Пуск/Стоп" вентилятор В основной / резерв
+            ushort code_1 = 22, code_2 = 28;                                                            // Сигнал "Пуск/Стоп" вентилятор В основной / резерв
 
 
             if (outFanStStopCheck.Checked)                                                              // Выбрали сигнал "Пуск/Стоп"

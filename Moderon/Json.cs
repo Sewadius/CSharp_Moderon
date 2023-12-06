@@ -296,7 +296,6 @@ namespace Moderon
             prFanThermoCheck.Checked = json_read.checkBoxState[prFanThermoCheck.Name];
             curDefPrFanCheck.Checked = json_read.checkBoxState[curDefPrFanCheck.Name];
             checkResPrFan.Checked = json_read.checkBoxState[checkResPrFan.Name];
-            prFanPowSupCheck.Checked = json_read.checkBoxState[prFanPowSupCheck.Name];
             prFanAlarmCheck.Checked = json_read.checkBoxState[prFanAlarmCheck.Name];
             prFanStStopCheck.Checked = json_read.checkBoxState[prFanStStopCheck.Name];
             prFanSpeedCheck.Checked = json_read.checkBoxState[prFanSpeedCheck.Name];
@@ -306,7 +305,6 @@ namespace Moderon
             outFanThermoCheck.Checked = json_read.checkBoxState[outFanThermoCheck.Name];
             curDefOutFanCheck.Checked = json_read.checkBoxState[curDefOutFanCheck.Name];
             checkResOutFan.Checked = json_read.checkBoxState[checkResOutFan.Name];
-            outFanPowSupCheck.Checked = json_read.checkBoxState[outFanPowSupCheck.Name];
             outFanAlarmCheck.Checked = json_read.checkBoxState[outFanAlarmCheck.Name];
             outFanStStopCheck.Checked = json_read.checkBoxState[outFanStStopCheck.Name];
             outFanSpeedCheck.Checked = json_read.checkBoxState[outFanSpeedCheck.Name];
@@ -1331,7 +1329,6 @@ namespace Moderon
             json.checkBoxState.Add(prFanThermoCheck.Name, prFanThermoCheck.Checked);
             json.checkBoxState.Add(curDefPrFanCheck.Name, curDefPrFanCheck.Checked);
             json.checkBoxState.Add(checkResPrFan.Name, checkResPrFan.Checked);
-            json.checkBoxState.Add(prFanPowSupCheck.Name, prFanPowSupCheck.Checked);
             json.checkBoxState.Add(prFanAlarmCheck.Name, prFanAlarmCheck.Checked);
             json.checkBoxState.Add(prFanStStopCheck.Name, prFanStStopCheck.Checked);
             json.checkBoxState.Add(prFanSpeedCheck.Name, prFanSpeedCheck.Checked);
@@ -1341,7 +1338,6 @@ namespace Moderon
             json.checkBoxState.Add(outFanThermoCheck.Name, outFanThermoCheck.Checked);
             json.checkBoxState.Add(curDefOutFanCheck.Name, curDefOutFanCheck.Checked);
             json.checkBoxState.Add(checkResOutFan.Name, checkResOutFan.Checked);
-            json.checkBoxState.Add(outFanPowSupCheck.Name, outFanPowSupCheck.Checked);
             json.checkBoxState.Add(outFanAlarmCheck.Name, outFanAlarmCheck.Checked);
             json.checkBoxState.Add(outFanStStopCheck.Name, outFanStStopCheck.Checked);
             json.checkBoxState.Add(outFanSpeedCheck.Name, outFanSpeedCheck.Checked);

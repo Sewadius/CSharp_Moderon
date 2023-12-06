@@ -161,8 +161,8 @@ namespace Moderon
                 block1_DOpanel, block2_DOpanel, block3_DOpanel
             };
 
-            foreach (var el in block_AO) el.Hide();
-            foreach (var el in block_DO) el.Hide();
+            // foreach (var el in block_AO) el.Hide();
+            // foreach (var el in block_DO) el.Hide();
         }
 
         ///<summary>Изменение размера области для отображения руковоства PDF</summary>
@@ -699,9 +699,9 @@ namespace Moderon
             var fanPrOutOptions = new List<CheckBox>()
             {
                 prFanPSCheck, prFanFC_check, prFanThermoCheck, curDefPrFanCheck, checkResPrFan, 
-                prFanPowSupCheck, prFanAlarmCheck, prFanStStopCheck, prFanSpeedCheck,
+                prFanAlarmCheck, prFanStStopCheck, prFanSpeedCheck,
                 outFanPSCheck, outFanFC_check, outFanThermoCheck, curDefOutFanCheck, checkResOutFan,
-                outFanPowSupCheck, outFanAlarmCheck, outFanStStopCheck, outFanSpeedCheck
+                outFanAlarmCheck, outFanStStopCheck, outFanSpeedCheck
             };
 
             var fanTextBox = new List<TextBox>()
@@ -1126,9 +1126,7 @@ namespace Moderon
             if (prFanFC_check.Checked)                             // Выбрали ПЧ приточного вентилятора
             {
                 prFanControlCombo.Enabled = true;
-                                                                   // Разблокировка опций для ПЧ
-                if (prFanControlCombo.SelectedIndex == 0)          // Только для внешних контактов
-                    prFanPowSupCheck.Enabled = true;
+                // Разблокировка опций для ПЧ
                 prFanAlarmCheck.Enabled = true;
                 prFanSpeedCheck.Enabled = true;
             }  
@@ -1136,7 +1134,6 @@ namespace Moderon
             {
                 prFanControlCombo.Enabled = false;
                 // Блокировка выбора опций для ПЧ
-                prFanPowSupCheck.Enabled = false;
                 prFanAlarmCheck.Enabled = false;
                 prFanSpeedCheck.Enabled = false;
             }
@@ -1178,9 +1175,6 @@ namespace Moderon
             if (outFanFC_check.Checked)                         // Выбрали ПЧ вытяжного вентилятора
             {
                 outFanControlCombo.Enabled = true;
-                // Разблокировка опций для ПЧ
-                if (outFanControlCombo.SelectedIndex == 0)      // Только для внешних контактов
-                    outFanPowSupCheck.Enabled = true;
                 outFanAlarmCheck.Enabled = true;
                 outFanSpeedCheck.Enabled = true;
             } 
@@ -1188,7 +1182,6 @@ namespace Moderon
             {
                 outFanControlCombo.Enabled = false;
                 // Блокировка выбора опций для ПЧ
-                outFanPowSupCheck.Enabled = false;
                 outFanAlarmCheck.Enabled = false;
                 outFanSpeedCheck.Enabled = false;
             }
@@ -1300,6 +1293,7 @@ namespace Moderon
             mainPage.Hide();                                    // Скрытие панели опций элементов
             signalsPanel.Hide();                                // Скрытие панели распределения сигналов
             helpPanel.Hide();                                   // Скрытие панели отображения помощи
+            comboPlkType.Hide();                                // Скрытие выбора типа контроллера
             label_comboSysType.Text = "ЗАГРУЗКА ПРОГРАММЫ";
             comboSysType.Hide(); panelElements.Hide();
             loadCanPanel.Location = PANEL_POSITION;
@@ -1410,7 +1404,7 @@ namespace Moderon
             //ToolStripMenuItem_load_Click(this, e);                                    // Открытие панели настроек
             LoadCanPanel_Open(this, e);                                                 // Открытие панели загрузки в контроллер, CAN порт
             fromSignalsMove = true;                                                     // Переход из панели выбора сигналов
-            FormNetButton_Click(this, e);                                               // Формирование списка сигналов для записи
+            // FormNetButton_Click(this, e);                                               // Формирование списка сигналов для записи
         }
 
         ///<summary>Нажали на ссылку сайта ONI</summary>
@@ -1474,6 +1468,13 @@ namespace Moderon
             // Числа, точка и Backspace
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != (char)Keys.Back)
                 e.Handled = true;
+        }
+
+        ///<summary>Фокус для вкладки "Командные слова"</summary>
+        private void CmdWordsTextBox_Enter(object sender, EventArgs e)
+        {
+            if (CheckSignalsReady()) FormNetButton_Click(this, e);
+            else cmdWordsTextBox.Text = "";
         }
 
         // Нажали на пункт "О программе"
