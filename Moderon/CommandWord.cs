@@ -34,8 +34,6 @@ namespace Moderon
             ushort count = 1;                       // Глобальный счетчик учета позиции
             ResetSignalsAll();                      // Сброс для массивов сигналов
             BuildCmdWords();                        // Сборка массива командных слов
-            BuildDiSignals();                       // Сборка массива для сигналов DI
-            BuildAiSignals();                       // Сборка массива для сигналов AI
             BuildDoSignals();                       // Сборка массива для сигналов DO
             BuildAoSignals();                       // Сборка массива для сигналов AO
             cmdWordsTextBox.Text = "";              // Очистка текстового поля
@@ -91,112 +89,6 @@ namespace Moderon
             cmdWords[20] = cmdW21; cmdWords[21] = cmdW22; cmdWords[22] = cmdW23; cmdWords[23] = cmdW24;
             cmdWords[24] = cmdW25; cmdWords[25] = cmdW26; cmdWords[26] = cmdW27; cmdWords[27] = cmdW28;
             cmdWords[28] = cmdW29; cmdWords[29] = cmdW30;
-        }
-
-        ///<summary>Сборка массива для сигналов DI</summary>
-        private void BuildDiSignals()
-        {
-            // ПЛК
-            if (DI1_combo.SelectedItem.ToString() != NOT_SELECTED) // DI1
-                diSignals[0] = Convert.ToUInt16(DI1_lab.Text);
-            if (DI2_combo.SelectedItem.ToString() != NOT_SELECTED) // DI2
-                diSignals[1] = Convert.ToUInt16(DI2_lab.Text);
-            if (DI3_combo.SelectedItem.ToString() != NOT_SELECTED) // DI3
-                diSignals[2] = Convert.ToUInt16(DI3_lab.Text);
-            if (DI4_combo.SelectedItem.ToString() != NOT_SELECTED) // DI4
-                diSignals[3] = Convert.ToUInt16(DI4_lab.Text);
-            if (DI5_combo.SelectedItem.ToString() != NOT_SELECTED) // DI5
-                diSignals[4] = Convert.ToUInt16(DI5_lab.Text);
-            // Блок расширения 1
-            if (DI1bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DI1
-                diSignals[5] = Convert.ToUInt16(DI1bl1_lab.Text);
-            if (DI2bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DI2
-                diSignals[6] = Convert.ToUInt16(DI2bl1_lab.Text);
-            if (DI3bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DI3
-                diSignals[7] = Convert.ToUInt16(DI3bl1_lab.Text);
-            if (DI4bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DI4
-                diSignals[8] = Convert.ToUInt16(DI4bl1_lab.Text);
-            if (DI5bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DI5
-                diSignals[9] = Convert.ToUInt16(DI5bl1_lab.Text);
-            // Блок расширения 2
-            if (DI1bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DI1
-                diSignals[10] = Convert.ToUInt16(DI1bl2_lab.Text);
-            if (DI2bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DI2
-                diSignals[11] = Convert.ToUInt16(DI2bl2_lab.Text);
-            if (DI3bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DI3
-                diSignals[12] = Convert.ToUInt16(DI3bl2_lab.Text);
-            if (DI4bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DI4
-                diSignals[13] = Convert.ToUInt16(DI4bl2_lab.Text);
-            if (DI5bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DI5
-                diSignals[14] = Convert.ToUInt16(DI5bl2_lab.Text);
-            // Блок расширения 3
-            if (DI1bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DI1
-                diSignals[15] = Convert.ToUInt16(DI1bl3_lab.Text);
-            if (DI2bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DI2
-                diSignals[16] = Convert.ToUInt16(DI2bl3_lab.Text);
-            if (DI3bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DI3
-                diSignals[17] = Convert.ToUInt16(DI3bl3_lab.Text);
-            if (DI4bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DI4
-                diSignals[18] = Convert.ToUInt16(DI4bl3_lab.Text);
-            if (DI5bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DI5
-                diSignals[19] = Convert.ToUInt16(DI5bl3_lab.Text);
-        }
-
-        ///<summary>Сборка массива для сигналов AI</summary>
-        private void BuildAiSignals()
-        {
-            // ПЛК
-            if (AI1_combo.SelectedItem.ToString() != NOT_SELECTED) // AI1
-                aiSignals[0] = Convert.ToUInt16(AI1_lab.Text);
-            if (AI2_combo.SelectedItem.ToString() != NOT_SELECTED) // AI2
-                aiSignals[1] = Convert.ToUInt16(AI2_lab.Text);
-            if (AI3_combo.SelectedItem.ToString() != NOT_SELECTED) // AI3
-                aiSignals[2] = Convert.ToUInt16(AI3_lab.Text);
-            if (AI4_combo.SelectedItem.ToString() != NOT_SELECTED) // AI4
-                aiSignals[3] = Convert.ToUInt16(AI4_lab.Text);
-            if (AI5_combo.SelectedItem.ToString() != NOT_SELECTED) // AI5
-                aiSignals[4] = Convert.ToUInt16(AI5_lab.Text);
-            if (AI6_combo.SelectedItem.ToString() != NOT_SELECTED) // AI6
-                aiSignals[5] = Convert.ToUInt16(AI6_lab.Text);
-            // Блок расширения 1
-            if (AI1bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AI1
-                aiSignals[6] = Convert.ToUInt16(AI1bl1_lab.Text);
-            if (AI2bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AI2
-                aiSignals[7] = Convert.ToUInt16(AI2bl1_lab.Text);
-            if (AI3bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AI3
-                aiSignals[8] = Convert.ToUInt16(AI3bl1_lab.Text);
-            if (AI4bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AI4
-                aiSignals[9] = Convert.ToUInt16(AI4bl1_lab.Text);
-            if (AI5bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AI5
-                aiSignals[10] = Convert.ToUInt16(AI5bl1_lab.Text);
-            if (AI6bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // AI6
-                aiSignals[11] = Convert.ToUInt16(AI6bl1_lab.Text);
-            // Блок расширения 2
-            if (AI1bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AI1
-                aiSignals[12] = Convert.ToUInt16(AI1bl2_lab.Text);
-            if (AI2bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AI2
-                aiSignals[13] = Convert.ToUInt16(AI2bl2_lab.Text);
-            if (AI3bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AI3
-                aiSignals[14] = Convert.ToUInt16(AI3bl2_lab.Text);
-            if (AI4bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AI4
-                aiSignals[15] = Convert.ToUInt16(AI4bl2_lab.Text);
-            if (AI5bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AI5
-                aiSignals[16] = Convert.ToUInt16(AI5bl2_lab.Text);
-            if (AI6bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // AI6
-                aiSignals[17] = Convert.ToUInt16(AI6bl2_lab.Text);
-            // Блок расширения 3
-            if (AI1bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AI1
-                aiSignals[18] = Convert.ToUInt16(AI1bl3_lab.Text);
-            if (AI2bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AI2
-                aiSignals[19] = Convert.ToUInt16(AI2bl3_lab.Text);
-            if (AI3bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AI3
-                aiSignals[20] = Convert.ToUInt16(AI3bl3_lab.Text);
-            if (AI4bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AI4
-                aiSignals[21] = Convert.ToUInt16(AI4bl3_lab.Text);
-            if (AI5bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AI5
-                aiSignals[22] = Convert.ToUInt16(AI5bl3_lab.Text);
-            if (AI6bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // AI6
-                aiSignals[23] = Convert.ToUInt16(AI6bl3_lab.Text);
         }
 
         ///<summary>Сборка массива для сигналов DO</summary>
@@ -1242,7 +1134,7 @@ namespace Moderon
         {
             CommandWord_19(); CommandWord_20();
             if (ignoreEvents) return;
-            PrFanPSCheck_signalsDICheckedChanged(this, e);                                      // Сигналы DI ПЛК
+            PrFanPSCheck_signalsDICheckedChanged(this, e);                                      // Сигналы DI
         }
 
         ///<summary>Выбрали заслонку для приточного вентилятора</summary>
@@ -1263,12 +1155,28 @@ namespace Moderon
             CommandWord_19(); CommandWord_20();
         }
 
+        ///<summary>Выбрали управление скоростью для приточного вентилятора</summary>
+        private void PrFanSpeedCheck_cmdCheckedChanged(object sender, EventArgs e)
+        {
+            CommandWord_19(); CommandWord_20();
+            if (ignoreEvents) return;
+            PrFanSpeedCheck_signalsAOCheckedChanged(this, e);                                   // Сигналы AO
+        }
+
+        ///<summary>Выбрали выход аварии с ПЧ для приточного вентилятора</summary>
+        private void PrFanAlarmCheck_cmdCheckedChanged(object sender, EventArgs e)
+        {
+            CommandWord_19(); CommandWord_20();
+            if (ignoreEvents) return;
+            PrFanAlarmCheck_signalsDICheckedChanged(this, e);                                   // Сигналы DI
+        }
+
         ///<summary>Выбрали термоконтакты приточного вентилятора</summary>
         private void PrFanThermoCheck_cmdCheckedChanged(object sender, EventArgs e)
         {
             CommandWord_19(); CommandWord_20();
             if (ignoreEvents) return;
-            PrFanThermoCheck_signalsDICheckedChanged(this, e);                                  // Сигналы DI ПЛК
+            PrFanThermoCheck_signalsDICheckedChanged(this, e);                                  // Сигналы DI
         }
 
         ///<summary>Выбрали защиту по току приточного вентилятора</summary>
@@ -1294,7 +1202,7 @@ namespace Moderon
         {
             CommandWord_21(); CommandWord_22();
             if (ignoreEvents) return;
-            OutFanPSCheck_signalsDICheckedChanged(this, e);                                     // Сигналы DI ПЛК
+            OutFanPSCheck_signalsDICheckedChanged(this, e);                                     // Сигналы DI
         }
 
         ///<summary>Выбрали заслонку для вытяжного вентилятора</summary>
@@ -1309,10 +1217,26 @@ namespace Moderon
             CommandWord_21(); CommandWord_22();
         }
 
-        ///<summary>Выбрали вытяжной вентилятор</summary>
+        ///<summary>Выбрали ПЧ для вытяжного вентилятора</summary>
         private void OutFanFC_check_cmdCheckedChanged(object sender, EventArgs e)
         {
             CommandWord_21(); CommandWord_22();
+        }
+
+        ///<summary>Выбрали управление скоростью для вытяжного вентилятора</summary>
+        private void OutFanSpeedCheck_cmdCheckedChanged(object sender, EventArgs e)
+        {
+            CommandWord_21(); CommandWord_22();
+            if (ignoreEvents) return;
+            OutFanSpeedCheck_signalsAOCheckedChanged(this, e);                                  // Сигналы AO
+        }
+
+        ///<summary>Выбрали выход аварии с ПЧ для вытяжного вентилятора</summary>
+        private void OutFanAlarmCheck_cmdCheckedChanged(object sender, EventArgs e)
+        {
+            CommandWord_21(); CommandWord_22();
+            if (ignoreEvents) return;
+            OutFanAlarmCheck_CheckedChanged(this, e);                                           // Сигналы DI
         }
 
         ///<summary>Выбрали термоконтакты вытяжного вентилятора</summary>
@@ -1320,7 +1244,7 @@ namespace Moderon
         {
             CommandWord_21(); CommandWord_22();
             if (ignoreEvents) return;
-            OutFanThermoCheck_signalsDICheckedChanged(this, e);                                 // Сигналы DI ПЛК
+            OutFanThermoCheck_signalsDICheckedChanged(this, e);                                 // Сигналы DI
         }
 
         ///<summary>Выбрали защиту по току для вытяжного вентилятора</summary>
@@ -1328,7 +1252,7 @@ namespace Moderon
         {
             CommandWord_21(); CommandWord_22();
             if (ignoreEvents) return;
-            CurDefOutFanCheck_signalsDICheckedChanged(this, e);                                 // Сигналы DI ПЛК
+            CurDefOutFanCheck_signalsDICheckedChanged(this, e);                                 // Сигналы DI
         }
 
         ///<summary>Командное слово для вытяжного резерва</summary>

@@ -176,13 +176,12 @@ namespace Moderon
         private void ResetSignalsLists()
         {
             list_ui.Clear(); list_do.Clear(); list_ao.Clear();
-            list_di.Clear();  list_ai.Clear(); 
         }
 
         ///<summary>Нажали на кнопку "Сброс"</summary>
         private void ResetButton_signalsDOClick(object sender, EventArgs e)
         {
-            subDOcondition = subAOcondition = subDIcondition = false;               // Очистка переменных
+            subDOcondition = subAOcondition = false;               // Очистка переменных
 
             // Очистка DO comboBox ПЛК и блоков расширения
             var do_combos = new List<ComboBox>()
@@ -204,14 +203,6 @@ namespace Moderon
         {
             var combo_elements = new List<ComboBox>()
             {
-                AI1_combo, AI2_combo, AI3_combo, AI4_combo, AI5_combo, AI6_combo,
-                AI1bl1_combo, AI2bl1_combo, AI3bl1_combo, AI4bl1_combo, AI5bl1_combo, AI6bl1_combo,
-                AI1bl2_combo, AI2bl2_combo, AI3bl2_combo, AI4bl2_combo, AI5bl2_combo, AI6bl2_combo,
-                AI1bl3_combo, AI2bl3_combo, AI3bl3_combo, AI4bl3_combo, AI5bl3_combo, AI6bl3_combo,
-                DI1_combo, DI2_combo, DI3_combo, DI4_combo, DI5_combo,
-                DI1bl1_combo, DI2bl1_combo, DI3bl1_combo, DI4bl1_combo, DI5bl1_combo,
-                DI1bl2_combo, DI2bl2_combo, DI3bl2_combo, DI4bl2_combo, DI5bl2_combo,
-                DI1bl3_combo, DI2bl3_combo, DI3bl3_combo, DI4bl3_combo, DI5bl3_combo,
                 // Аналоговые выходы
                 AO1_combo, AO2_combo, AO3_combo, AO1bl1_combo, AO2bl1_combo,
                 AO1bl2_combo, AO2bl2_combo, AO1bl3_combo, AO2bl3_combo,
@@ -235,19 +226,6 @@ namespace Moderon
               };
 
             foreach (var el in combo_elements) el.SelectedItem = NOT_SELECTED;
-
-            var ai_typeCombos = new List<ComboBox>()
-            {
-                AI1_typeCombo, AI2_typeCombo, AI3_typeCombo, AI4_typeCombo, AI5_typeCombo, AI6_typeCombo,
-                AI1bl1_typeCombo, AI2bl1_typeCombo, AI3bl1_typeCombo, AI4bl1_typeCombo, AI5bl1_typeCombo, AI6bl1_typeCombo,
-                AI1bl2_typeCombo, AI2bl2_typeCombo, AI3bl2_typeCombo, AI4bl2_typeCombo, AI5bl2_typeCombo, AI6bl2_typeCombo,
-                AI1bl3_typeCombo, AI2bl3_typeCombo, AI3bl3_typeCombo, AI4bl3_typeCombo, AI5bl3_typeCombo, AI6bl3_typeCombo
-            };
-
-            foreach (var el in ai_typeCombos)
-            {
-                el.SelectedItem = NTC; el.Enabled = false;
-            }
 
             // Тип универасального входного сигнала
             var ui_typeCombos = new List<ComboBox>()
@@ -284,11 +262,7 @@ namespace Moderon
                 if (elem.Active) a = false;
             foreach (var elem in list_ao)
                 if (elem.Active) a = false;
-            foreach (var elem in list_ai)
-                if (elem.Active) a = false;
             foreach (var elem in list_ui)
-                if (elem.Active) a = false;
-            foreach (var elem in list_di)
                 if (elem.Active) a = false;
 
             if (a) // Сигналы распределены

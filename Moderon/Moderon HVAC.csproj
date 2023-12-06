@@ -110,9 +110,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="signalsTableAI.cs" />
+    <Compile Include="signalsTableAI.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="signalsTableAO.cs" />
-    <Compile Include="signalsTableDI.cs" />
+    <Compile Include="signalsTableDI.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="signalsTableDO.cs" />
     <Compile Include="signalsTableUI.cs" />
     <Compile Include="Spec.cs">

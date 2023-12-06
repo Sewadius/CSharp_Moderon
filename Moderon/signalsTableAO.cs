@@ -744,7 +744,7 @@ namespace Moderon
         }
 
         ///<summary>Выбрали управление скоростью для приточного вентилятора</summary>
-        private void PrFanSpeedCheck_CheckedChanged(object sender, EventArgs e)
+        private void PrFanSpeedCheck_signalsAOCheckedChanged(object sender, EventArgs e)
         {
             ushort code_1 = 1, code_2 = 3;                                          // Скорость приточного 1 и 2
 
@@ -761,7 +761,7 @@ namespace Moderon
         }
 
         ///<summary>Выбрали управление скоростью для вытяжного вентилятора</summary>
-        private void OutFanSpeedCheck_CheckedChanged(object sender, EventArgs e)
+        private void OutFanSpeedCheck_signalsAOCheckedChanged(object sender, EventArgs e)
         {
             ushort code_1 = 5, code_2 = 7;                                          // Скорость вытяжного 1 и 2
 

@@ -62,8 +62,6 @@ namespace Moderon
             // Начальная установка для входов и выходов
             Set_UIComboTextIndex();         // Входные сигналы, UI
             Set_DOComboTextIndex();         // Дискретные выходы, DO
-            Set_DIComboTextIndex();         // Дискретный входы, DI
-            Set_AIComboTextIndex();         // Аналоговые входы, AI
             Set_AOComboTextIndex();         // Аналоговый выходы, AO
 
             Size = new Size(995, 680);      // Размер для основной формы
@@ -343,22 +341,6 @@ namespace Moderon
                 AO1bl3_lab, AO2bl3_lab, 
             };
 
-            var ai_signals = new List<Label>()
-            {
-                AI1_lab, AI2_lab, AI3_lab, AI4_lab, AI5_lab, AI6_lab, 
-                AI1bl1_lab, AI2bl1_lab, AI3bl1_lab, AI4bl1_lab, AI5bl1_lab, AI6bl1_lab, 
-                AI1bl2_lab, AI2bl2_lab, AI3bl2_lab, AI4bl2_lab, AI5bl2_lab, AI6bl2_lab,
-                AI1bl3_lab, AI2bl3_lab, AI3bl3_lab, AI4bl3_lab, AI5bl3_lab, AI6bl3_lab 
-            };
-
-            var di_signals = new List<Label>()
-            {
-                DI1_lab, DI2_lab, DI3_lab, DI4_lab, DI5_lab, 
-                DI1bl1_lab, DI2bl1_lab, DI3bl1_lab, DI4bl1_lab, DI5bl1_lab, 
-                DI1bl2_lab, DI2bl2_lab, DI3bl2_lab, DI4bl2_lab, DI5bl2_lab,
-                DI1bl3_lab, DI2bl3_lab, DI3bl3_lab, DI4bl3_lab, DI5bl3_lab 
-            };
-
             var ui_signals = new List<Label>()
             {
                 // ПЛК
@@ -375,8 +357,7 @@ namespace Moderon
                 UI9bl3_lab, UI10bl3_lab, UI11bl3_lab, UI12bl3_lab, UI13bl3_lab, UI14bl3_lab, UI15bl3_lab, UI16bl3_lab,
             };
 
-            List<Label> signals = do_signals.Concat(ao_signals)
-                .Concat(ai_signals).Concat(di_signals).Concat(ui_signals).ToList();
+            List<Label> signals = do_signals.Concat(ao_signals).Concat(ui_signals).ToList();
 
             foreach (var label in signals) label.Text = ""; 
         }
@@ -673,8 +654,6 @@ namespace Moderon
             ResetButton_signalsUIClick(this, e);            // Сброс сигналов ПЛК, UI
             ResetButton_signalsDOClick(this, e);            // Сброс сигналов ПЛК, DO
             ResetButton_signalsAOClick(this, e);            // Сброс сигналов ПЛК, AO
-            ResetButton_signalsDIClick(this, e);            // Сброс сигналов ПЛК, DI
-            ResetButton_signalsAIClick(this, e);            // Сброс сигналов ПЛК, AI
             ClearIO_codes();                                // Очистка кодов для comboBox
             Form1_InitSignals(this, e);                     // Начальная расстановка сигналов
         }
@@ -1347,8 +1326,6 @@ namespace Moderon
             PDF_ReSize(Size.Width, Size.Height);                                            // Область для отображения PDF
             //ToolStripMenuItem_help.Enabled = false;                                       // Блокировка повторного выбора "Помощь"
         }
-
-
 
         // Нажали кнопку "Назад" в панели настроек
         private void BackOptionsButton_Click(object sender, EventArgs e)
