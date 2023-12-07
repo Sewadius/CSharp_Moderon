@@ -4579,10 +4579,11 @@
             this.block3_UIpanel.Controls.Add(this.UIblock3_header);
             this.block3_UIpanel.Controls.Add(this.UI1bl3_typeCombo);
             this.block3_UIpanel.Controls.Add(this.UI1bl3_lab);
-            this.block3_UIpanel.Location = new System.Drawing.Point(6, 1474);
+            this.block3_UIpanel.Location = new System.Drawing.Point(6, 1470);
             this.block3_UIpanel.Name = "block3_UIpanel";
             this.block3_UIpanel.Size = new System.Drawing.Size(637, 537);
             this.block3_UIpanel.TabIndex = 147;
+            this.block3_UIpanel.Visible = false;
             // 
             // UI16_bl3Label
             // 
@@ -4593,11 +4594,13 @@
             this.UI16_bl3Label.Size = new System.Drawing.Size(41, 14);
             this.UI16_bl3Label.TabIndex = 142;
             this.UI16_bl3Label.Text = "UI 16";
+            this.UI16_bl3Label.Visible = false;
             // 
             // UI16bl3_combo
             // 
             this.UI16bl3_combo.DisplayMember = "Не выбрано";
             this.UI16bl3_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI16bl3_combo.Enabled = false;
             this.UI16bl3_combo.FormattingEnabled = true;
             this.UI16bl3_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -4605,6 +4608,7 @@
             this.UI16bl3_combo.Name = "UI16bl3_combo";
             this.UI16bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI16bl3_combo.TabIndex = 143;
+            this.UI16bl3_combo.Visible = false;
             this.UI16bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI16bl3_combo_SelectedIndexChanged);
             // 
             // UI16bl3_typeCombo
@@ -4613,6 +4617,7 @@
             "NTC",
             "4-20 мА"});
             this.UI16bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI16bl3_typeCombo.Enabled = false;
             this.UI16bl3_typeCombo.FormattingEnabled = true;
             this.UI16bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -4621,6 +4626,7 @@
             this.UI16bl3_typeCombo.Name = "UI16bl3_typeCombo";
             this.UI16bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI16bl3_typeCombo.TabIndex = 144;
+            this.UI16bl3_typeCombo.Visible = false;
             this.UI16bl3_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI16bl3_typeCombo_SelectedIndexChanged);
             // 
             // UI16bl3_lab
@@ -4642,11 +4648,13 @@
             this.UI15_bl3Label.Size = new System.Drawing.Size(41, 14);
             this.UI15_bl3Label.TabIndex = 138;
             this.UI15_bl3Label.Text = "UI 15";
+            this.UI15_bl3Label.Visible = false;
             // 
             // UI15bl3_combo
             // 
             this.UI15bl3_combo.DisplayMember = "Не выбрано";
             this.UI15bl3_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI15bl3_combo.Enabled = false;
             this.UI15bl3_combo.FormattingEnabled = true;
             this.UI15bl3_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -4654,6 +4662,7 @@
             this.UI15bl3_combo.Name = "UI15bl3_combo";
             this.UI15bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI15bl3_combo.TabIndex = 139;
+            this.UI15bl3_combo.Visible = false;
             this.UI15bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI15bl3_combo_SelectedIndexChanged);
             // 
             // UI15bl3_typeCombo
@@ -4662,6 +4671,7 @@
             "NTC",
             "4-20 мА"});
             this.UI15bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI15bl3_typeCombo.Enabled = false;
             this.UI15bl3_typeCombo.FormattingEnabled = true;
             this.UI15bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -4670,6 +4680,7 @@
             this.UI15bl3_typeCombo.Name = "UI15bl3_typeCombo";
             this.UI15bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI15bl3_typeCombo.TabIndex = 140;
+            this.UI15bl3_typeCombo.Visible = false;
             this.UI15bl3_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI15bl3_typeCombo_SelectedIndexChanged);
             // 
             // UI15bl3_lab
@@ -4691,11 +4702,13 @@
             this.UI14_bl3Label.Size = new System.Drawing.Size(41, 14);
             this.UI14_bl3Label.TabIndex = 134;
             this.UI14_bl3Label.Text = "UI 14";
+            this.UI14_bl3Label.Visible = false;
             // 
             // UI14bl3_combo
             // 
             this.UI14bl3_combo.DisplayMember = "Не выбрано";
             this.UI14bl3_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI14bl3_combo.Enabled = false;
             this.UI14bl3_combo.FormattingEnabled = true;
             this.UI14bl3_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -4703,6 +4716,7 @@
             this.UI14bl3_combo.Name = "UI14bl3_combo";
             this.UI14bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI14bl3_combo.TabIndex = 135;
+            this.UI14bl3_combo.Visible = false;
             this.UI14bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI14bl3_combo_SelectedIndexChanged);
             // 
             // UI14bl3_typeCombo
@@ -4711,6 +4725,7 @@
             "NTC",
             "4-20 мА"});
             this.UI14bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI14bl3_typeCombo.Enabled = false;
             this.UI14bl3_typeCombo.FormattingEnabled = true;
             this.UI14bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -4719,6 +4734,7 @@
             this.UI14bl3_typeCombo.Name = "UI14bl3_typeCombo";
             this.UI14bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI14bl3_typeCombo.TabIndex = 136;
+            this.UI14bl3_typeCombo.Visible = false;
             this.UI14bl3_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI14bl3_typeCombo_SelectedIndexChanged);
             // 
             // UI14bl3_lab
@@ -4740,11 +4756,13 @@
             this.UI13_bl3Label.Size = new System.Drawing.Size(41, 14);
             this.UI13_bl3Label.TabIndex = 130;
             this.UI13_bl3Label.Text = "UI 13";
+            this.UI13_bl3Label.Visible = false;
             // 
             // UI13bl3_combo
             // 
             this.UI13bl3_combo.DisplayMember = "Не выбрано";
             this.UI13bl3_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI13bl3_combo.Enabled = false;
             this.UI13bl3_combo.FormattingEnabled = true;
             this.UI13bl3_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -4752,6 +4770,7 @@
             this.UI13bl3_combo.Name = "UI13bl3_combo";
             this.UI13bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI13bl3_combo.TabIndex = 131;
+            this.UI13bl3_combo.Visible = false;
             this.UI13bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI13bl3_combo_SelectedIndexChanged);
             // 
             // UI13bl3_typeCombo
@@ -4760,6 +4779,7 @@
             "NTC",
             "4-20 мА"});
             this.UI13bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI13bl3_typeCombo.Enabled = false;
             this.UI13bl3_typeCombo.FormattingEnabled = true;
             this.UI13bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -4768,6 +4788,7 @@
             this.UI13bl3_typeCombo.Name = "UI13bl3_typeCombo";
             this.UI13bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI13bl3_typeCombo.TabIndex = 132;
+            this.UI13bl3_typeCombo.Visible = false;
             this.UI13bl3_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI13bl3_typeCombo_SelectedIndexChanged);
             // 
             // UI13bl3_lab
@@ -4789,11 +4810,13 @@
             this.UI12_bl3Label.Size = new System.Drawing.Size(41, 14);
             this.UI12_bl3Label.TabIndex = 126;
             this.UI12_bl3Label.Text = "UI 12";
+            this.UI12_bl3Label.Visible = false;
             // 
             // UI12bl3_combo
             // 
             this.UI12bl3_combo.DisplayMember = "Не выбрано";
             this.UI12bl3_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI12bl3_combo.Enabled = false;
             this.UI12bl3_combo.FormattingEnabled = true;
             this.UI12bl3_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -4801,6 +4824,7 @@
             this.UI12bl3_combo.Name = "UI12bl3_combo";
             this.UI12bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI12bl3_combo.TabIndex = 127;
+            this.UI12bl3_combo.Visible = false;
             this.UI12bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI12bl3_combo_SelectedIndexChanged);
             // 
             // UI12bl3_typeCombo
@@ -4809,6 +4833,7 @@
             "NTC",
             "4-20 мА"});
             this.UI12bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI12bl3_typeCombo.Enabled = false;
             this.UI12bl3_typeCombo.FormattingEnabled = true;
             this.UI12bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -4817,6 +4842,7 @@
             this.UI12bl3_typeCombo.Name = "UI12bl3_typeCombo";
             this.UI12bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI12bl3_typeCombo.TabIndex = 128;
+            this.UI12bl3_typeCombo.Visible = false;
             this.UI12bl3_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI12bl3_typeCombo_SelectedIndexChanged);
             // 
             // UI12bl3_lab
@@ -4838,11 +4864,13 @@
             this.UI11_bl3Label.Size = new System.Drawing.Size(41, 14);
             this.UI11_bl3Label.TabIndex = 122;
             this.UI11_bl3Label.Text = "UI 11";
+            this.UI11_bl3Label.Visible = false;
             // 
             // UI11bl3_combo
             // 
             this.UI11bl3_combo.DisplayMember = "Не выбрано";
             this.UI11bl3_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI11bl3_combo.Enabled = false;
             this.UI11bl3_combo.FormattingEnabled = true;
             this.UI11bl3_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -4850,6 +4878,7 @@
             this.UI11bl3_combo.Name = "UI11bl3_combo";
             this.UI11bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI11bl3_combo.TabIndex = 123;
+            this.UI11bl3_combo.Visible = false;
             this.UI11bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI11bl3_combo_SelectedIndexChanged);
             // 
             // UI11bl3_typeCombo
@@ -4858,6 +4887,7 @@
             "NTC",
             "4-20 мА"});
             this.UI11bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI11bl3_typeCombo.Enabled = false;
             this.UI11bl3_typeCombo.FormattingEnabled = true;
             this.UI11bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -4866,6 +4896,7 @@
             this.UI11bl3_typeCombo.Name = "UI11bl3_typeCombo";
             this.UI11bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI11bl3_typeCombo.TabIndex = 124;
+            this.UI11bl3_typeCombo.Visible = false;
             this.UI11bl3_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI11bl3_typeCombo_SelectedIndexChanged);
             // 
             // UI11bl3_lab
@@ -4887,11 +4918,13 @@
             this.UI10_bl3Label.Size = new System.Drawing.Size(41, 14);
             this.UI10_bl3Label.TabIndex = 118;
             this.UI10_bl3Label.Text = "UI 10";
+            this.UI10_bl3Label.Visible = false;
             // 
             // UI10bl3_combo
             // 
             this.UI10bl3_combo.DisplayMember = "Не выбрано";
             this.UI10bl3_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI10bl3_combo.Enabled = false;
             this.UI10bl3_combo.FormattingEnabled = true;
             this.UI10bl3_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -4899,6 +4932,7 @@
             this.UI10bl3_combo.Name = "UI10bl3_combo";
             this.UI10bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI10bl3_combo.TabIndex = 119;
+            this.UI10bl3_combo.Visible = false;
             this.UI10bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI10bl3_combo_SelectedIndexChanged);
             // 
             // UI10bl3_typeCombo
@@ -4907,6 +4941,7 @@
             "NTC",
             "4-20 мА"});
             this.UI10bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI10bl3_typeCombo.Enabled = false;
             this.UI10bl3_typeCombo.FormattingEnabled = true;
             this.UI10bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -4915,6 +4950,7 @@
             this.UI10bl3_typeCombo.Name = "UI10bl3_typeCombo";
             this.UI10bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI10bl3_typeCombo.TabIndex = 120;
+            this.UI10bl3_typeCombo.Visible = false;
             this.UI10bl3_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI10bl3_typeCombo_SelectedIndexChanged);
             // 
             // UI10bl3_lab
@@ -4936,11 +4972,13 @@
             this.UI9_bl3Label.Size = new System.Drawing.Size(33, 14);
             this.UI9_bl3Label.TabIndex = 114;
             this.UI9_bl3Label.Text = "UI 9";
+            this.UI9_bl3Label.Visible = false;
             // 
             // UI9bl3_combo
             // 
             this.UI9bl3_combo.DisplayMember = "Не выбрано";
             this.UI9bl3_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI9bl3_combo.Enabled = false;
             this.UI9bl3_combo.FormattingEnabled = true;
             this.UI9bl3_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -4948,6 +4986,7 @@
             this.UI9bl3_combo.Name = "UI9bl3_combo";
             this.UI9bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI9bl3_combo.TabIndex = 115;
+            this.UI9bl3_combo.Visible = false;
             this.UI9bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI9bl3_combo_SelectedIndexChanged);
             // 
             // UI9bl3_typeCombo
@@ -4956,6 +4995,7 @@
             "NTC",
             "4-20 мА"});
             this.UI9bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI9bl3_typeCombo.Enabled = false;
             this.UI9bl3_typeCombo.FormattingEnabled = true;
             this.UI9bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -4964,6 +5004,7 @@
             this.UI9bl3_typeCombo.Name = "UI9bl3_typeCombo";
             this.UI9bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI9bl3_typeCombo.TabIndex = 116;
+            this.UI9bl3_typeCombo.Visible = false;
             this.UI9bl3_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI9bl3_typeCombo_SelectedIndexChanged);
             // 
             // UI9bl3_lab
@@ -4985,11 +5026,13 @@
             this.UI8_bl3Label.Size = new System.Drawing.Size(33, 14);
             this.UI8_bl3Label.TabIndex = 110;
             this.UI8_bl3Label.Text = "UI 8";
+            this.UI8_bl3Label.Visible = false;
             // 
             // UI8bl3_combo
             // 
             this.UI8bl3_combo.DisplayMember = "Не выбрано";
             this.UI8bl3_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI8bl3_combo.Enabled = false;
             this.UI8bl3_combo.FormattingEnabled = true;
             this.UI8bl3_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -4997,6 +5040,7 @@
             this.UI8bl3_combo.Name = "UI8bl3_combo";
             this.UI8bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI8bl3_combo.TabIndex = 111;
+            this.UI8bl3_combo.Visible = false;
             this.UI8bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI8bl3_combo_SelectedIndexChanged);
             // 
             // UI8bl3_typeCombo
@@ -5005,6 +5049,7 @@
             "NTC",
             "4-20 мА"});
             this.UI8bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI8bl3_typeCombo.Enabled = false;
             this.UI8bl3_typeCombo.FormattingEnabled = true;
             this.UI8bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -5013,6 +5058,7 @@
             this.UI8bl3_typeCombo.Name = "UI8bl3_typeCombo";
             this.UI8bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI8bl3_typeCombo.TabIndex = 112;
+            this.UI8bl3_typeCombo.Visible = false;
             this.UI8bl3_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI8bl3_typeCombo_SelectedIndexChanged);
             // 
             // UI8bl3_lab
@@ -5034,11 +5080,13 @@
             this.UI7_bl3Label.Size = new System.Drawing.Size(33, 14);
             this.UI7_bl3Label.TabIndex = 106;
             this.UI7_bl3Label.Text = "UI 7";
+            this.UI7_bl3Label.Visible = false;
             // 
             // UI7bl3_combo
             // 
             this.UI7bl3_combo.DisplayMember = "Не выбрано";
             this.UI7bl3_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI7bl3_combo.Enabled = false;
             this.UI7bl3_combo.FormattingEnabled = true;
             this.UI7bl3_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -5046,6 +5094,7 @@
             this.UI7bl3_combo.Name = "UI7bl3_combo";
             this.UI7bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI7bl3_combo.TabIndex = 107;
+            this.UI7bl3_combo.Visible = false;
             this.UI7bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI7bl3_combo_SelectedIndexChanged);
             // 
             // UI7bl3_typeCombo
@@ -5054,6 +5103,7 @@
             "NTC",
             "4-20 мА"});
             this.UI7bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI7bl3_typeCombo.Enabled = false;
             this.UI7bl3_typeCombo.FormattingEnabled = true;
             this.UI7bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -5062,6 +5112,7 @@
             this.UI7bl3_typeCombo.Name = "UI7bl3_typeCombo";
             this.UI7bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI7bl3_typeCombo.TabIndex = 108;
+            this.UI7bl3_typeCombo.Visible = false;
             this.UI7bl3_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI7bl3_typeCombo_SelectedIndexChanged);
             // 
             // UI7bl3_lab
@@ -5083,11 +5134,13 @@
             this.UI6_bl3Label.Size = new System.Drawing.Size(33, 14);
             this.UI6_bl3Label.TabIndex = 102;
             this.UI6_bl3Label.Text = "UI 6";
+            this.UI6_bl3Label.Visible = false;
             // 
             // UI6bl3_combo
             // 
             this.UI6bl3_combo.DisplayMember = "Не выбрано";
             this.UI6bl3_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI6bl3_combo.Enabled = false;
             this.UI6bl3_combo.FormattingEnabled = true;
             this.UI6bl3_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -5095,6 +5148,7 @@
             this.UI6bl3_combo.Name = "UI6bl3_combo";
             this.UI6bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI6bl3_combo.TabIndex = 103;
+            this.UI6bl3_combo.Visible = false;
             this.UI6bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI6bl3_combo_SelectedIndexChanged);
             // 
             // UI6bl3_typeCombo
@@ -5103,6 +5157,7 @@
             "NTC",
             "4-20 мА"});
             this.UI6bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI6bl3_typeCombo.Enabled = false;
             this.UI6bl3_typeCombo.FormattingEnabled = true;
             this.UI6bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -5111,6 +5166,7 @@
             this.UI6bl3_typeCombo.Name = "UI6bl3_typeCombo";
             this.UI6bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI6bl3_typeCombo.TabIndex = 104;
+            this.UI6bl3_typeCombo.Visible = false;
             this.UI6bl3_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI6bl3_typeCombo_SelectedIndexChanged);
             // 
             // UI6bl3_lab
@@ -5132,11 +5188,13 @@
             this.UI5_bl3Label.Size = new System.Drawing.Size(33, 14);
             this.UI5_bl3Label.TabIndex = 98;
             this.UI5_bl3Label.Text = "UI 5";
+            this.UI5_bl3Label.Visible = false;
             // 
             // UI5bl3_combo
             // 
             this.UI5bl3_combo.DisplayMember = "Не выбрано";
             this.UI5bl3_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI5bl3_combo.Enabled = false;
             this.UI5bl3_combo.FormattingEnabled = true;
             this.UI5bl3_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -5144,6 +5202,7 @@
             this.UI5bl3_combo.Name = "UI5bl3_combo";
             this.UI5bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI5bl3_combo.TabIndex = 99;
+            this.UI5bl3_combo.Visible = false;
             this.UI5bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI5bl3_combo_SelectedIndexChanged);
             // 
             // UI5bl3_typeCombo
@@ -5152,6 +5211,7 @@
             "NTC",
             "4-20 мА"});
             this.UI5bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI5bl3_typeCombo.Enabled = false;
             this.UI5bl3_typeCombo.FormattingEnabled = true;
             this.UI5bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -5160,6 +5220,7 @@
             this.UI5bl3_typeCombo.Name = "UI5bl3_typeCombo";
             this.UI5bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI5bl3_typeCombo.TabIndex = 100;
+            this.UI5bl3_typeCombo.Visible = false;
             this.UI5bl3_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI5bl3_typeCombo_SelectedIndexChanged);
             // 
             // UI5bl3_lab
@@ -5181,11 +5242,13 @@
             this.UI4_bl3Label.Size = new System.Drawing.Size(33, 14);
             this.UI4_bl3Label.TabIndex = 94;
             this.UI4_bl3Label.Text = "UI 4";
+            this.UI4_bl3Label.Visible = false;
             // 
             // UI4bl3_combo
             // 
             this.UI4bl3_combo.DisplayMember = "Не выбрано";
             this.UI4bl3_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI4bl3_combo.Enabled = false;
             this.UI4bl3_combo.FormattingEnabled = true;
             this.UI4bl3_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -5193,6 +5256,7 @@
             this.UI4bl3_combo.Name = "UI4bl3_combo";
             this.UI4bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI4bl3_combo.TabIndex = 95;
+            this.UI4bl3_combo.Visible = false;
             this.UI4bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI4bl3_combo_SelectedIndexChanged);
             // 
             // UI4bl3_typeCombo
@@ -5201,6 +5265,7 @@
             "NTC",
             "4-20 мА"});
             this.UI4bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI4bl3_typeCombo.Enabled = false;
             this.UI4bl3_typeCombo.FormattingEnabled = true;
             this.UI4bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -5209,6 +5274,7 @@
             this.UI4bl3_typeCombo.Name = "UI4bl3_typeCombo";
             this.UI4bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI4bl3_typeCombo.TabIndex = 96;
+            this.UI4bl3_typeCombo.Visible = false;
             this.UI4bl3_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI4bl3_typeCombo_SelectedIndexChanged);
             // 
             // UI4bl3_lab
@@ -5230,11 +5296,13 @@
             this.UI3_bl3Label.Size = new System.Drawing.Size(33, 14);
             this.UI3_bl3Label.TabIndex = 90;
             this.UI3_bl3Label.Text = "UI 3";
+            this.UI3_bl3Label.Visible = false;
             // 
             // UI3bl3_combo
             // 
             this.UI3bl3_combo.DisplayMember = "Не выбрано";
             this.UI3bl3_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI3bl3_combo.Enabled = false;
             this.UI3bl3_combo.FormattingEnabled = true;
             this.UI3bl3_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -5242,6 +5310,7 @@
             this.UI3bl3_combo.Name = "UI3bl3_combo";
             this.UI3bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI3bl3_combo.TabIndex = 91;
+            this.UI3bl3_combo.Visible = false;
             this.UI3bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI3bl3_combo_SelectedIndexChanged);
             // 
             // UI3bl3_typeCombo
@@ -5250,6 +5319,7 @@
             "NTC",
             "4-20 мА"});
             this.UI3bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI3bl3_typeCombo.Enabled = false;
             this.UI3bl3_typeCombo.FormattingEnabled = true;
             this.UI3bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -5258,6 +5328,7 @@
             this.UI3bl3_typeCombo.Name = "UI3bl3_typeCombo";
             this.UI3bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI3bl3_typeCombo.TabIndex = 92;
+            this.UI3bl3_typeCombo.Visible = false;
             this.UI3bl3_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI3bl3_typeCombo_SelectedIndexChanged);
             // 
             // UI3bl3_lab
@@ -5279,11 +5350,13 @@
             this.UI2_bl3Label.Size = new System.Drawing.Size(33, 14);
             this.UI2_bl3Label.TabIndex = 86;
             this.UI2_bl3Label.Text = "UI 2";
+            this.UI2_bl3Label.Visible = false;
             // 
             // UI2bl3_combo
             // 
             this.UI2bl3_combo.DisplayMember = "Не выбрано";
             this.UI2bl3_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI2bl3_combo.Enabled = false;
             this.UI2bl3_combo.FormattingEnabled = true;
             this.UI2bl3_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -5291,6 +5364,7 @@
             this.UI2bl3_combo.Name = "UI2bl3_combo";
             this.UI2bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI2bl3_combo.TabIndex = 87;
+            this.UI2bl3_combo.Visible = false;
             this.UI2bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI2bl3_combo_SelectedIndexChanged);
             // 
             // UI2bl3_typeCombo
@@ -5299,6 +5373,7 @@
             "NTC",
             "4-20 мА"});
             this.UI2bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI2bl3_typeCombo.Enabled = false;
             this.UI2bl3_typeCombo.FormattingEnabled = true;
             this.UI2bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -5307,6 +5382,7 @@
             this.UI2bl3_typeCombo.Name = "UI2bl3_typeCombo";
             this.UI2bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI2bl3_typeCombo.TabIndex = 88;
+            this.UI2bl3_typeCombo.Visible = false;
             this.UI2bl3_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI2bl3_typeCombo_SelectedIndexChanged);
             // 
             // UI2bl3_lab
@@ -5328,11 +5404,13 @@
             this.UI1_bl3Label.Size = new System.Drawing.Size(33, 14);
             this.UI1_bl3Label.TabIndex = 82;
             this.UI1_bl3Label.Text = "UI 1";
+            this.UI1_bl3Label.Visible = false;
             // 
             // UI1bl3_combo
             // 
             this.UI1bl3_combo.DisplayMember = "Не выбрано";
             this.UI1bl3_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI1bl3_combo.Enabled = false;
             this.UI1bl3_combo.FormattingEnabled = true;
             this.UI1bl3_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -5340,6 +5418,7 @@
             this.UI1bl3_combo.Name = "UI1bl3_combo";
             this.UI1bl3_combo.Size = new System.Drawing.Size(380, 21);
             this.UI1bl3_combo.TabIndex = 83;
+            this.UI1bl3_combo.Visible = false;
             this.UI1bl3_combo.SelectedIndexChanged += new System.EventHandler(this.UI1bl3_combo_SelectedIndexChanged);
             // 
             // UIblock3_header
@@ -5358,6 +5437,7 @@
             "NTC",
             "4-20 мА"});
             this.UI1bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI1bl3_typeCombo.Enabled = false;
             this.UI1bl3_typeCombo.FormattingEnabled = true;
             this.UI1bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -5366,6 +5446,7 @@
             this.UI1bl3_typeCombo.Name = "UI1bl3_typeCombo";
             this.UI1bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI1bl3_typeCombo.TabIndex = 84;
+            this.UI1bl3_typeCombo.Visible = false;
             this.UI1bl3_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI1bl3_typeCombo_SelectedIndexChanged);
             // 
             // UI1bl3_lab
@@ -5445,10 +5526,11 @@
             this.block2_UIpanel.Controls.Add(this.UIblock2_header);
             this.block2_UIpanel.Controls.Add(this.UI1bl2_typeCombo);
             this.block2_UIpanel.Controls.Add(this.UI1bl2_lab);
-            this.block2_UIpanel.Location = new System.Drawing.Point(6, 935);
+            this.block2_UIpanel.Location = new System.Drawing.Point(6, 932);
             this.block2_UIpanel.Name = "block2_UIpanel";
             this.block2_UIpanel.Size = new System.Drawing.Size(637, 537);
             this.block2_UIpanel.TabIndex = 146;
+            this.block2_UIpanel.Visible = false;
             // 
             // UI16_bl2Label
             // 
@@ -5459,11 +5541,13 @@
             this.UI16_bl2Label.Size = new System.Drawing.Size(41, 14);
             this.UI16_bl2Label.TabIndex = 142;
             this.UI16_bl2Label.Text = "UI 16";
+            this.UI16_bl2Label.Visible = false;
             // 
             // UI16bl2_combo
             // 
             this.UI16bl2_combo.DisplayMember = "Не выбрано";
             this.UI16bl2_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI16bl2_combo.Enabled = false;
             this.UI16bl2_combo.FormattingEnabled = true;
             this.UI16bl2_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -5471,6 +5555,7 @@
             this.UI16bl2_combo.Name = "UI16bl2_combo";
             this.UI16bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI16bl2_combo.TabIndex = 143;
+            this.UI16bl2_combo.Visible = false;
             this.UI16bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI16bl2_combo_SelectedIndexChanged);
             // 
             // UI16bl2_typeCombo
@@ -5479,6 +5564,7 @@
             "NTC",
             "4-20 мА"});
             this.UI16bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI16bl2_typeCombo.Enabled = false;
             this.UI16bl2_typeCombo.FormattingEnabled = true;
             this.UI16bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -5487,6 +5573,7 @@
             this.UI16bl2_typeCombo.Name = "UI16bl2_typeCombo";
             this.UI16bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI16bl2_typeCombo.TabIndex = 144;
+            this.UI16bl2_typeCombo.Visible = false;
             this.UI16bl2_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI16bl2_typeCombo_SelectedIndexChanged);
             // 
             // UI16bl2_lab
@@ -5508,11 +5595,13 @@
             this.UI15_bl2Label.Size = new System.Drawing.Size(41, 14);
             this.UI15_bl2Label.TabIndex = 138;
             this.UI15_bl2Label.Text = "UI 15";
+            this.UI15_bl2Label.Visible = false;
             // 
             // UI15bl2_combo
             // 
             this.UI15bl2_combo.DisplayMember = "Не выбрано";
             this.UI15bl2_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI15bl2_combo.Enabled = false;
             this.UI15bl2_combo.FormattingEnabled = true;
             this.UI15bl2_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -5520,6 +5609,7 @@
             this.UI15bl2_combo.Name = "UI15bl2_combo";
             this.UI15bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI15bl2_combo.TabIndex = 139;
+            this.UI15bl2_combo.Visible = false;
             this.UI15bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI15bl2_combo_SelectedIndexChanged);
             // 
             // UI15bl2_typeCombo
@@ -5528,6 +5618,7 @@
             "NTC",
             "4-20 мА"});
             this.UI15bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI15bl2_typeCombo.Enabled = false;
             this.UI15bl2_typeCombo.FormattingEnabled = true;
             this.UI15bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -5536,6 +5627,7 @@
             this.UI15bl2_typeCombo.Name = "UI15bl2_typeCombo";
             this.UI15bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI15bl2_typeCombo.TabIndex = 140;
+            this.UI15bl2_typeCombo.Visible = false;
             this.UI15bl2_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI15bl2_typeCombo_SelectedIndexChanged);
             // 
             // UI15bl2_lab
@@ -5557,11 +5649,13 @@
             this.UI14_bl2Label.Size = new System.Drawing.Size(41, 14);
             this.UI14_bl2Label.TabIndex = 134;
             this.UI14_bl2Label.Text = "UI 14";
+            this.UI14_bl2Label.Visible = false;
             // 
             // UI14bl2_combo
             // 
             this.UI14bl2_combo.DisplayMember = "Не выбрано";
             this.UI14bl2_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI14bl2_combo.Enabled = false;
             this.UI14bl2_combo.FormattingEnabled = true;
             this.UI14bl2_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -5569,6 +5663,7 @@
             this.UI14bl2_combo.Name = "UI14bl2_combo";
             this.UI14bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI14bl2_combo.TabIndex = 135;
+            this.UI14bl2_combo.Visible = false;
             this.UI14bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI14bl2_combo_SelectedIndexChanged);
             // 
             // UI14bl2_typeCombo
@@ -5577,6 +5672,7 @@
             "NTC",
             "4-20 мА"});
             this.UI14bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI14bl2_typeCombo.Enabled = false;
             this.UI14bl2_typeCombo.FormattingEnabled = true;
             this.UI14bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -5585,6 +5681,7 @@
             this.UI14bl2_typeCombo.Name = "UI14bl2_typeCombo";
             this.UI14bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI14bl2_typeCombo.TabIndex = 136;
+            this.UI14bl2_typeCombo.Visible = false;
             this.UI14bl2_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI14bl2_typeCombo_SelectedIndexChanged);
             // 
             // UI14bl2_lab
@@ -5606,11 +5703,13 @@
             this.UI13_bl2Label.Size = new System.Drawing.Size(41, 14);
             this.UI13_bl2Label.TabIndex = 130;
             this.UI13_bl2Label.Text = "UI 13";
+            this.UI13_bl2Label.Visible = false;
             // 
             // UI13bl2_combo
             // 
             this.UI13bl2_combo.DisplayMember = "Не выбрано";
             this.UI13bl2_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI13bl2_combo.Enabled = false;
             this.UI13bl2_combo.FormattingEnabled = true;
             this.UI13bl2_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -5618,6 +5717,7 @@
             this.UI13bl2_combo.Name = "UI13bl2_combo";
             this.UI13bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI13bl2_combo.TabIndex = 131;
+            this.UI13bl2_combo.Visible = false;
             this.UI13bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI13bl2_combo_SelectedIndexChanged);
             // 
             // UI13bl2_typeCombo
@@ -5626,6 +5726,7 @@
             "NTC",
             "4-20 мА"});
             this.UI13bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI13bl2_typeCombo.Enabled = false;
             this.UI13bl2_typeCombo.FormattingEnabled = true;
             this.UI13bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -5634,6 +5735,7 @@
             this.UI13bl2_typeCombo.Name = "UI13bl2_typeCombo";
             this.UI13bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI13bl2_typeCombo.TabIndex = 132;
+            this.UI13bl2_typeCombo.Visible = false;
             this.UI13bl2_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI13bl2_typeCombo_SelectedIndexChanged);
             // 
             // UI13bl2_lab
@@ -5655,11 +5757,13 @@
             this.UI12_bl2Label.Size = new System.Drawing.Size(41, 14);
             this.UI12_bl2Label.TabIndex = 126;
             this.UI12_bl2Label.Text = "UI 12";
+            this.UI12_bl2Label.Visible = false;
             // 
             // UI12bl2_combo
             // 
             this.UI12bl2_combo.DisplayMember = "Не выбрано";
             this.UI12bl2_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI12bl2_combo.Enabled = false;
             this.UI12bl2_combo.FormattingEnabled = true;
             this.UI12bl2_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -5667,6 +5771,7 @@
             this.UI12bl2_combo.Name = "UI12bl2_combo";
             this.UI12bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI12bl2_combo.TabIndex = 127;
+            this.UI12bl2_combo.Visible = false;
             this.UI12bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI12bl2_combo_SelectedIndexChanged);
             // 
             // UI12bl2_typeCombo
@@ -5675,6 +5780,7 @@
             "NTC",
             "4-20 мА"});
             this.UI12bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI12bl2_typeCombo.Enabled = false;
             this.UI12bl2_typeCombo.FormattingEnabled = true;
             this.UI12bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -5683,6 +5789,7 @@
             this.UI12bl2_typeCombo.Name = "UI12bl2_typeCombo";
             this.UI12bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI12bl2_typeCombo.TabIndex = 128;
+            this.UI12bl2_typeCombo.Visible = false;
             this.UI12bl2_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI12bl2_typeCombo_SelectedIndexChanged);
             // 
             // UI12bl2_lab
@@ -5704,11 +5811,13 @@
             this.UI11_bl2Label.Size = new System.Drawing.Size(41, 14);
             this.UI11_bl2Label.TabIndex = 122;
             this.UI11_bl2Label.Text = "UI 11";
+            this.UI11_bl2Label.Visible = false;
             // 
             // UI11bl2_combo
             // 
             this.UI11bl2_combo.DisplayMember = "Не выбрано";
             this.UI11bl2_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI11bl2_combo.Enabled = false;
             this.UI11bl2_combo.FormattingEnabled = true;
             this.UI11bl2_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -5716,6 +5825,7 @@
             this.UI11bl2_combo.Name = "UI11bl2_combo";
             this.UI11bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI11bl2_combo.TabIndex = 123;
+            this.UI11bl2_combo.Visible = false;
             this.UI11bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI11bl2_combo_SelectedIndexChanged);
             // 
             // UI11bl2_typeCombo
@@ -5724,6 +5834,7 @@
             "NTC",
             "4-20 мА"});
             this.UI11bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI11bl2_typeCombo.Enabled = false;
             this.UI11bl2_typeCombo.FormattingEnabled = true;
             this.UI11bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -5732,6 +5843,7 @@
             this.UI11bl2_typeCombo.Name = "UI11bl2_typeCombo";
             this.UI11bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI11bl2_typeCombo.TabIndex = 124;
+            this.UI11bl2_typeCombo.Visible = false;
             this.UI11bl2_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI11bl2_typeCombo_SelectedIndexChanged);
             // 
             // UI11bl2_lab
@@ -5753,11 +5865,13 @@
             this.UI10_bl2Label.Size = new System.Drawing.Size(41, 14);
             this.UI10_bl2Label.TabIndex = 118;
             this.UI10_bl2Label.Text = "UI 10";
+            this.UI10_bl2Label.Visible = false;
             // 
             // UI10bl2_combo
             // 
             this.UI10bl2_combo.DisplayMember = "Не выбрано";
             this.UI10bl2_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI10bl2_combo.Enabled = false;
             this.UI10bl2_combo.FormattingEnabled = true;
             this.UI10bl2_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -5765,6 +5879,7 @@
             this.UI10bl2_combo.Name = "UI10bl2_combo";
             this.UI10bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI10bl2_combo.TabIndex = 119;
+            this.UI10bl2_combo.Visible = false;
             this.UI10bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI10bl2_combo_SelectedIndexChanged);
             // 
             // UI10bl2_typeCombo
@@ -5773,6 +5888,7 @@
             "NTC",
             "4-20 мА"});
             this.UI10bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI10bl2_typeCombo.Enabled = false;
             this.UI10bl2_typeCombo.FormattingEnabled = true;
             this.UI10bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -5781,6 +5897,7 @@
             this.UI10bl2_typeCombo.Name = "UI10bl2_typeCombo";
             this.UI10bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI10bl2_typeCombo.TabIndex = 120;
+            this.UI10bl2_typeCombo.Visible = false;
             this.UI10bl2_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI10bl2_typeCombo_SelectedIndexChanged);
             // 
             // UI10bl2_lab
@@ -5802,11 +5919,13 @@
             this.UI9_bl2Label.Size = new System.Drawing.Size(33, 14);
             this.UI9_bl2Label.TabIndex = 114;
             this.UI9_bl2Label.Text = "UI 9";
+            this.UI9_bl2Label.Visible = false;
             // 
             // UI9bl2_combo
             // 
             this.UI9bl2_combo.DisplayMember = "Не выбрано";
             this.UI9bl2_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI9bl2_combo.Enabled = false;
             this.UI9bl2_combo.FormattingEnabled = true;
             this.UI9bl2_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -5814,6 +5933,7 @@
             this.UI9bl2_combo.Name = "UI9bl2_combo";
             this.UI9bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI9bl2_combo.TabIndex = 115;
+            this.UI9bl2_combo.Visible = false;
             this.UI9bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI9bl2_combo_SelectedIndexChanged);
             // 
             // UI9bl2_typeCombo
@@ -5822,6 +5942,7 @@
             "NTC",
             "4-20 мА"});
             this.UI9bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI9bl2_typeCombo.Enabled = false;
             this.UI9bl2_typeCombo.FormattingEnabled = true;
             this.UI9bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -5830,6 +5951,7 @@
             this.UI9bl2_typeCombo.Name = "UI9bl2_typeCombo";
             this.UI9bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI9bl2_typeCombo.TabIndex = 116;
+            this.UI9bl2_typeCombo.Visible = false;
             this.UI9bl2_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI9bl2_typeCombo_SelectedIndexChanged);
             // 
             // UI9bl2_lab
@@ -5851,11 +5973,13 @@
             this.UI8_bl2Label.Size = new System.Drawing.Size(33, 14);
             this.UI8_bl2Label.TabIndex = 110;
             this.UI8_bl2Label.Text = "UI 8";
+            this.UI8_bl2Label.Visible = false;
             // 
             // UI8bl2_combo
             // 
             this.UI8bl2_combo.DisplayMember = "Не выбрано";
             this.UI8bl2_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI8bl2_combo.Enabled = false;
             this.UI8bl2_combo.FormattingEnabled = true;
             this.UI8bl2_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -5863,6 +5987,7 @@
             this.UI8bl2_combo.Name = "UI8bl2_combo";
             this.UI8bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI8bl2_combo.TabIndex = 111;
+            this.UI8bl2_combo.Visible = false;
             this.UI8bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI8bl2_combo_SelectedIndexChanged);
             // 
             // UI8bl2_typeCombo
@@ -5871,6 +5996,7 @@
             "NTC",
             "4-20 мА"});
             this.UI8bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI8bl2_typeCombo.Enabled = false;
             this.UI8bl2_typeCombo.FormattingEnabled = true;
             this.UI8bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -5879,6 +6005,7 @@
             this.UI8bl2_typeCombo.Name = "UI8bl2_typeCombo";
             this.UI8bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI8bl2_typeCombo.TabIndex = 112;
+            this.UI8bl2_typeCombo.Visible = false;
             this.UI8bl2_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI8bl2_typeCombo_SelectedIndexChanged);
             // 
             // UI8bl2_lab
@@ -5900,11 +6027,13 @@
             this.UI7_bl2Label.Size = new System.Drawing.Size(33, 14);
             this.UI7_bl2Label.TabIndex = 106;
             this.UI7_bl2Label.Text = "UI 7";
+            this.UI7_bl2Label.Visible = false;
             // 
             // UI7bl2_combo
             // 
             this.UI7bl2_combo.DisplayMember = "Не выбрано";
             this.UI7bl2_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI7bl2_combo.Enabled = false;
             this.UI7bl2_combo.FormattingEnabled = true;
             this.UI7bl2_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -5912,6 +6041,7 @@
             this.UI7bl2_combo.Name = "UI7bl2_combo";
             this.UI7bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI7bl2_combo.TabIndex = 107;
+            this.UI7bl2_combo.Visible = false;
             this.UI7bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI7bl2_combo_SelectedIndexChanged);
             // 
             // UI7bl2_typeCombo
@@ -5920,6 +6050,7 @@
             "NTC",
             "4-20 мА"});
             this.UI7bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI7bl2_typeCombo.Enabled = false;
             this.UI7bl2_typeCombo.FormattingEnabled = true;
             this.UI7bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -5928,6 +6059,7 @@
             this.UI7bl2_typeCombo.Name = "UI7bl2_typeCombo";
             this.UI7bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI7bl2_typeCombo.TabIndex = 108;
+            this.UI7bl2_typeCombo.Visible = false;
             this.UI7bl2_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI7bl2_typeCombo_SelectedIndexChanged);
             // 
             // UI7bl2_lab
@@ -5949,11 +6081,13 @@
             this.UI6_bl2Label.Size = new System.Drawing.Size(33, 14);
             this.UI6_bl2Label.TabIndex = 102;
             this.UI6_bl2Label.Text = "UI 6";
+            this.UI6_bl2Label.Visible = false;
             // 
             // UI6bl2_combo
             // 
             this.UI6bl2_combo.DisplayMember = "Не выбрано";
             this.UI6bl2_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI6bl2_combo.Enabled = false;
             this.UI6bl2_combo.FormattingEnabled = true;
             this.UI6bl2_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -5961,6 +6095,7 @@
             this.UI6bl2_combo.Name = "UI6bl2_combo";
             this.UI6bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI6bl2_combo.TabIndex = 103;
+            this.UI6bl2_combo.Visible = false;
             this.UI6bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI6bl2_combo_SelectedIndexChanged);
             // 
             // UI6bl2_typeCombo
@@ -5969,6 +6104,7 @@
             "NTC",
             "4-20 мА"});
             this.UI6bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI6bl2_typeCombo.Enabled = false;
             this.UI6bl2_typeCombo.FormattingEnabled = true;
             this.UI6bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -5977,6 +6113,7 @@
             this.UI6bl2_typeCombo.Name = "UI6bl2_typeCombo";
             this.UI6bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI6bl2_typeCombo.TabIndex = 104;
+            this.UI6bl2_typeCombo.Visible = false;
             this.UI6bl2_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI6bl2_typeCombo_SelectedIndexChanged);
             // 
             // UI6bl2_lab
@@ -5998,11 +6135,13 @@
             this.UI5_bl2Label.Size = new System.Drawing.Size(33, 14);
             this.UI5_bl2Label.TabIndex = 98;
             this.UI5_bl2Label.Text = "UI 5";
+            this.UI5_bl2Label.Visible = false;
             // 
             // UI5bl2_combo
             // 
             this.UI5bl2_combo.DisplayMember = "Не выбрано";
             this.UI5bl2_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI5bl2_combo.Enabled = false;
             this.UI5bl2_combo.FormattingEnabled = true;
             this.UI5bl2_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -6010,6 +6149,7 @@
             this.UI5bl2_combo.Name = "UI5bl2_combo";
             this.UI5bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI5bl2_combo.TabIndex = 99;
+            this.UI5bl2_combo.Visible = false;
             this.UI5bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI5bl2_combo_SelectedIndexChanged);
             // 
             // UI5bl2_typeCombo
@@ -6018,6 +6158,7 @@
             "NTC",
             "4-20 мА"});
             this.UI5bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI5bl2_typeCombo.Enabled = false;
             this.UI5bl2_typeCombo.FormattingEnabled = true;
             this.UI5bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -6026,6 +6167,7 @@
             this.UI5bl2_typeCombo.Name = "UI5bl2_typeCombo";
             this.UI5bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI5bl2_typeCombo.TabIndex = 100;
+            this.UI5bl2_typeCombo.Visible = false;
             this.UI5bl2_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI5bl2_typeCombo_SelectedIndexChanged);
             // 
             // UI5bl2_lab
@@ -6047,11 +6189,13 @@
             this.UI4_bl2Label.Size = new System.Drawing.Size(33, 14);
             this.UI4_bl2Label.TabIndex = 94;
             this.UI4_bl2Label.Text = "UI 4";
+            this.UI4_bl2Label.Visible = false;
             // 
             // UI4bl2_combo
             // 
             this.UI4bl2_combo.DisplayMember = "Не выбрано";
             this.UI4bl2_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI4bl2_combo.Enabled = false;
             this.UI4bl2_combo.FormattingEnabled = true;
             this.UI4bl2_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -6059,6 +6203,7 @@
             this.UI4bl2_combo.Name = "UI4bl2_combo";
             this.UI4bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI4bl2_combo.TabIndex = 95;
+            this.UI4bl2_combo.Visible = false;
             this.UI4bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI4bl2_combo_SelectedIndexChanged);
             // 
             // UI4bl2_typeCombo
@@ -6067,6 +6212,7 @@
             "NTC",
             "4-20 мА"});
             this.UI4bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI4bl2_typeCombo.Enabled = false;
             this.UI4bl2_typeCombo.FormattingEnabled = true;
             this.UI4bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -6075,6 +6221,7 @@
             this.UI4bl2_typeCombo.Name = "UI4bl2_typeCombo";
             this.UI4bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI4bl2_typeCombo.TabIndex = 96;
+            this.UI4bl2_typeCombo.Visible = false;
             this.UI4bl2_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI4bl2_typeCombo_SelectedIndexChanged);
             // 
             // UI4bl2_lab
@@ -6096,11 +6243,13 @@
             this.UI3_bl2Label.Size = new System.Drawing.Size(33, 14);
             this.UI3_bl2Label.TabIndex = 90;
             this.UI3_bl2Label.Text = "UI 3";
+            this.UI3_bl2Label.Visible = false;
             // 
             // UI3bl2_combo
             // 
             this.UI3bl2_combo.DisplayMember = "Не выбрано";
             this.UI3bl2_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI3bl2_combo.Enabled = false;
             this.UI3bl2_combo.FormattingEnabled = true;
             this.UI3bl2_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -6108,6 +6257,7 @@
             this.UI3bl2_combo.Name = "UI3bl2_combo";
             this.UI3bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI3bl2_combo.TabIndex = 91;
+            this.UI3bl2_combo.Visible = false;
             this.UI3bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI3bl2_combo_SelectedIndexChanged);
             // 
             // UI3bl2_typeCombo
@@ -6116,6 +6266,7 @@
             "NTC",
             "4-20 мА"});
             this.UI3bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI3bl2_typeCombo.Enabled = false;
             this.UI3bl2_typeCombo.FormattingEnabled = true;
             this.UI3bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -6124,6 +6275,7 @@
             this.UI3bl2_typeCombo.Name = "UI3bl2_typeCombo";
             this.UI3bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI3bl2_typeCombo.TabIndex = 92;
+            this.UI3bl2_typeCombo.Visible = false;
             this.UI3bl2_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI3bl2_typeCombo_SelectedIndexChanged);
             // 
             // UI3bl2_lab
@@ -6145,11 +6297,13 @@
             this.UI2_bl2Label.Size = new System.Drawing.Size(33, 14);
             this.UI2_bl2Label.TabIndex = 86;
             this.UI2_bl2Label.Text = "UI 2";
+            this.UI2_bl2Label.Visible = false;
             // 
             // UI2bl2_combo
             // 
             this.UI2bl2_combo.DisplayMember = "Не выбрано";
             this.UI2bl2_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI2bl2_combo.Enabled = false;
             this.UI2bl2_combo.FormattingEnabled = true;
             this.UI2bl2_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -6157,6 +6311,7 @@
             this.UI2bl2_combo.Name = "UI2bl2_combo";
             this.UI2bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI2bl2_combo.TabIndex = 87;
+            this.UI2bl2_combo.Visible = false;
             this.UI2bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI2bl2_combo_SelectedIndexChanged);
             // 
             // UI2bl2_typeCombo
@@ -6165,6 +6320,7 @@
             "NTC",
             "4-20 мА"});
             this.UI2bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI2bl2_typeCombo.Enabled = false;
             this.UI2bl2_typeCombo.FormattingEnabled = true;
             this.UI2bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -6173,6 +6329,7 @@
             this.UI2bl2_typeCombo.Name = "UI2bl2_typeCombo";
             this.UI2bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI2bl2_typeCombo.TabIndex = 88;
+            this.UI2bl2_typeCombo.Visible = false;
             this.UI2bl2_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI2bl2_typeCombo_SelectedIndexChanged);
             // 
             // UI2bl2_lab
@@ -6194,11 +6351,13 @@
             this.UI1_bl2Label.Size = new System.Drawing.Size(33, 14);
             this.UI1_bl2Label.TabIndex = 82;
             this.UI1_bl2Label.Text = "UI 1";
+            this.UI1_bl2Label.Visible = false;
             // 
             // UI1bl2_combo
             // 
             this.UI1bl2_combo.DisplayMember = "Не выбрано";
             this.UI1bl2_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI1bl2_combo.Enabled = false;
             this.UI1bl2_combo.FormattingEnabled = true;
             this.UI1bl2_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -6206,6 +6365,7 @@
             this.UI1bl2_combo.Name = "UI1bl2_combo";
             this.UI1bl2_combo.Size = new System.Drawing.Size(380, 21);
             this.UI1bl2_combo.TabIndex = 83;
+            this.UI1bl2_combo.Visible = false;
             this.UI1bl2_combo.SelectedIndexChanged += new System.EventHandler(this.UI1bl2_combo_SelectedIndexChanged);
             // 
             // UIblock2_header
@@ -6224,6 +6384,7 @@
             "NTC",
             "4-20 мА"});
             this.UI1bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI1bl2_typeCombo.Enabled = false;
             this.UI1bl2_typeCombo.FormattingEnabled = true;
             this.UI1bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -6232,6 +6393,7 @@
             this.UI1bl2_typeCombo.Name = "UI1bl2_typeCombo";
             this.UI1bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI1bl2_typeCombo.TabIndex = 84;
+            this.UI1bl2_typeCombo.Visible = false;
             this.UI1bl2_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI1bl2_typeCombo_SelectedIndexChanged);
             // 
             // UI1bl2_lab
@@ -6311,10 +6473,11 @@
             this.block1_UIpanel.Controls.Add(this.UIblock1_header);
             this.block1_UIpanel.Controls.Add(this.UI1bl1_typeCombo);
             this.block1_UIpanel.Controls.Add(this.UI1bl1_lab);
-            this.block1_UIpanel.Location = new System.Drawing.Point(6, 397);
+            this.block1_UIpanel.Location = new System.Drawing.Point(6, 394);
             this.block1_UIpanel.Name = "block1_UIpanel";
             this.block1_UIpanel.Size = new System.Drawing.Size(637, 537);
             this.block1_UIpanel.TabIndex = 83;
+            this.block1_UIpanel.Visible = false;
             // 
             // UI16_bl1Label
             // 
@@ -6325,11 +6488,13 @@
             this.UI16_bl1Label.Size = new System.Drawing.Size(41, 14);
             this.UI16_bl1Label.TabIndex = 142;
             this.UI16_bl1Label.Text = "UI 16";
+            this.UI16_bl1Label.Visible = false;
             // 
             // UI16bl1_combo
             // 
             this.UI16bl1_combo.DisplayMember = "Не выбрано";
             this.UI16bl1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI16bl1_combo.Enabled = false;
             this.UI16bl1_combo.FormattingEnabled = true;
             this.UI16bl1_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -6337,6 +6502,7 @@
             this.UI16bl1_combo.Name = "UI16bl1_combo";
             this.UI16bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI16bl1_combo.TabIndex = 143;
+            this.UI16bl1_combo.Visible = false;
             this.UI16bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI16bl1_combo_SelectedIndexChanged);
             // 
             // UI16bl1_typeCombo
@@ -6345,6 +6511,7 @@
             "NTC",
             "4-20 мА"});
             this.UI16bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI16bl1_typeCombo.Enabled = false;
             this.UI16bl1_typeCombo.FormattingEnabled = true;
             this.UI16bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -6353,6 +6520,7 @@
             this.UI16bl1_typeCombo.Name = "UI16bl1_typeCombo";
             this.UI16bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI16bl1_typeCombo.TabIndex = 144;
+            this.UI16bl1_typeCombo.Visible = false;
             this.UI16bl1_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI16bl1_typeCombo_SelectedIndexChanged);
             // 
             // UI16bl1_lab
@@ -6374,11 +6542,13 @@
             this.UI15_bl1Label.Size = new System.Drawing.Size(41, 14);
             this.UI15_bl1Label.TabIndex = 138;
             this.UI15_bl1Label.Text = "UI 15";
+            this.UI15_bl1Label.Visible = false;
             // 
             // UI15bl1_combo
             // 
             this.UI15bl1_combo.DisplayMember = "Не выбрано";
             this.UI15bl1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI15bl1_combo.Enabled = false;
             this.UI15bl1_combo.FormattingEnabled = true;
             this.UI15bl1_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -6386,6 +6556,7 @@
             this.UI15bl1_combo.Name = "UI15bl1_combo";
             this.UI15bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI15bl1_combo.TabIndex = 139;
+            this.UI15bl1_combo.Visible = false;
             this.UI15bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI15bl1_combo_SelectedIndexChanged);
             // 
             // UI15bl1_typeCombo
@@ -6394,6 +6565,7 @@
             "NTC",
             "4-20 мА"});
             this.UI15bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI15bl1_typeCombo.Enabled = false;
             this.UI15bl1_typeCombo.FormattingEnabled = true;
             this.UI15bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -6402,6 +6574,7 @@
             this.UI15bl1_typeCombo.Name = "UI15bl1_typeCombo";
             this.UI15bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI15bl1_typeCombo.TabIndex = 140;
+            this.UI15bl1_typeCombo.Visible = false;
             this.UI15bl1_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI15bl1_typeCombo_SelectedIndexChanged);
             // 
             // UI15bl1_lab
@@ -6423,11 +6596,13 @@
             this.UI14_bl1Label.Size = new System.Drawing.Size(41, 14);
             this.UI14_bl1Label.TabIndex = 134;
             this.UI14_bl1Label.Text = "UI 14";
+            this.UI14_bl1Label.Visible = false;
             // 
             // UI14bl1_combo
             // 
             this.UI14bl1_combo.DisplayMember = "Не выбрано";
             this.UI14bl1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI14bl1_combo.Enabled = false;
             this.UI14bl1_combo.FormattingEnabled = true;
             this.UI14bl1_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -6435,6 +6610,7 @@
             this.UI14bl1_combo.Name = "UI14bl1_combo";
             this.UI14bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI14bl1_combo.TabIndex = 135;
+            this.UI14bl1_combo.Visible = false;
             this.UI14bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI14bl1_combo_SelectedIndexChanged);
             // 
             // UI14bl1_typeCombo
@@ -6443,6 +6619,7 @@
             "NTC",
             "4-20 мА"});
             this.UI14bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI14bl1_typeCombo.Enabled = false;
             this.UI14bl1_typeCombo.FormattingEnabled = true;
             this.UI14bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -6451,6 +6628,7 @@
             this.UI14bl1_typeCombo.Name = "UI14bl1_typeCombo";
             this.UI14bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI14bl1_typeCombo.TabIndex = 136;
+            this.UI14bl1_typeCombo.Visible = false;
             this.UI14bl1_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI14bl1_typeCombo_SelectedIndexChanged);
             // 
             // UI14bl1_lab
@@ -6472,11 +6650,13 @@
             this.UI13_bl1Label.Size = new System.Drawing.Size(41, 14);
             this.UI13_bl1Label.TabIndex = 130;
             this.UI13_bl1Label.Text = "UI 13";
+            this.UI13_bl1Label.Visible = false;
             // 
             // UI13bl1_combo
             // 
             this.UI13bl1_combo.DisplayMember = "Не выбрано";
             this.UI13bl1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI13bl1_combo.Enabled = false;
             this.UI13bl1_combo.FormattingEnabled = true;
             this.UI13bl1_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -6484,6 +6664,7 @@
             this.UI13bl1_combo.Name = "UI13bl1_combo";
             this.UI13bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI13bl1_combo.TabIndex = 131;
+            this.UI13bl1_combo.Visible = false;
             this.UI13bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI13bl1_combo_SelectedIndexChanged);
             // 
             // UI13bl1_typeCombo
@@ -6492,6 +6673,7 @@
             "NTC",
             "4-20 мА"});
             this.UI13bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI13bl1_typeCombo.Enabled = false;
             this.UI13bl1_typeCombo.FormattingEnabled = true;
             this.UI13bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -6500,6 +6682,7 @@
             this.UI13bl1_typeCombo.Name = "UI13bl1_typeCombo";
             this.UI13bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI13bl1_typeCombo.TabIndex = 132;
+            this.UI13bl1_typeCombo.Visible = false;
             this.UI13bl1_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI13bl1_typeCombo_SelectedIndexChanged);
             // 
             // UI13bl1_lab
@@ -6521,11 +6704,13 @@
             this.UI12_bl1Label.Size = new System.Drawing.Size(41, 14);
             this.UI12_bl1Label.TabIndex = 126;
             this.UI12_bl1Label.Text = "UI 12";
+            this.UI12_bl1Label.Visible = false;
             // 
             // UI12bl1_combo
             // 
             this.UI12bl1_combo.DisplayMember = "Не выбрано";
             this.UI12bl1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI12bl1_combo.Enabled = false;
             this.UI12bl1_combo.FormattingEnabled = true;
             this.UI12bl1_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -6533,6 +6718,7 @@
             this.UI12bl1_combo.Name = "UI12bl1_combo";
             this.UI12bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI12bl1_combo.TabIndex = 127;
+            this.UI12bl1_combo.Visible = false;
             this.UI12bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI12bl1_combo_SelectedIndexChanged);
             // 
             // UI12bl1_typeCombo
@@ -6541,6 +6727,7 @@
             "NTC",
             "4-20 мА"});
             this.UI12bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI12bl1_typeCombo.Enabled = false;
             this.UI12bl1_typeCombo.FormattingEnabled = true;
             this.UI12bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -6549,6 +6736,7 @@
             this.UI12bl1_typeCombo.Name = "UI12bl1_typeCombo";
             this.UI12bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI12bl1_typeCombo.TabIndex = 128;
+            this.UI12bl1_typeCombo.Visible = false;
             this.UI12bl1_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI12bl1_typeCombo_SelectedIndexChanged);
             // 
             // UI12bl1_lab
@@ -6570,11 +6758,13 @@
             this.UI11_bl1Label.Size = new System.Drawing.Size(41, 14);
             this.UI11_bl1Label.TabIndex = 122;
             this.UI11_bl1Label.Text = "UI 11";
+            this.UI11_bl1Label.Visible = false;
             // 
             // UI11bl1_combo
             // 
             this.UI11bl1_combo.DisplayMember = "Не выбрано";
             this.UI11bl1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI11bl1_combo.Enabled = false;
             this.UI11bl1_combo.FormattingEnabled = true;
             this.UI11bl1_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -6582,6 +6772,7 @@
             this.UI11bl1_combo.Name = "UI11bl1_combo";
             this.UI11bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI11bl1_combo.TabIndex = 123;
+            this.UI11bl1_combo.Visible = false;
             this.UI11bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI11bl1_combo_SelectedIndexChanged);
             // 
             // UI11bl1_typeCombo
@@ -6590,6 +6781,7 @@
             "NTC",
             "4-20 мА"});
             this.UI11bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI11bl1_typeCombo.Enabled = false;
             this.UI11bl1_typeCombo.FormattingEnabled = true;
             this.UI11bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -6598,6 +6790,7 @@
             this.UI11bl1_typeCombo.Name = "UI11bl1_typeCombo";
             this.UI11bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI11bl1_typeCombo.TabIndex = 124;
+            this.UI11bl1_typeCombo.Visible = false;
             this.UI11bl1_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI11bl1_typeCombo_SelectedIndexChanged);
             // 
             // UI11bl1_lab
@@ -6619,11 +6812,13 @@
             this.UI10_bl1Label.Size = new System.Drawing.Size(41, 14);
             this.UI10_bl1Label.TabIndex = 118;
             this.UI10_bl1Label.Text = "UI 10";
+            this.UI10_bl1Label.Visible = false;
             // 
             // UI10bl1_combo
             // 
             this.UI10bl1_combo.DisplayMember = "Не выбрано";
             this.UI10bl1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI10bl1_combo.Enabled = false;
             this.UI10bl1_combo.FormattingEnabled = true;
             this.UI10bl1_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -6631,6 +6826,7 @@
             this.UI10bl1_combo.Name = "UI10bl1_combo";
             this.UI10bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI10bl1_combo.TabIndex = 119;
+            this.UI10bl1_combo.Visible = false;
             this.UI10bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI10bl1_combo_SelectedIndexChanged);
             // 
             // UI10bl1_typeCombo
@@ -6639,6 +6835,7 @@
             "NTC",
             "4-20 мА"});
             this.UI10bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI10bl1_typeCombo.Enabled = false;
             this.UI10bl1_typeCombo.FormattingEnabled = true;
             this.UI10bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -6647,6 +6844,7 @@
             this.UI10bl1_typeCombo.Name = "UI10bl1_typeCombo";
             this.UI10bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI10bl1_typeCombo.TabIndex = 120;
+            this.UI10bl1_typeCombo.Visible = false;
             this.UI10bl1_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI10bl1_typeCombo_SelectedIndexChanged);
             // 
             // UI10bl1_lab
@@ -6668,11 +6866,13 @@
             this.UI9_bl1Label.Size = new System.Drawing.Size(33, 14);
             this.UI9_bl1Label.TabIndex = 114;
             this.UI9_bl1Label.Text = "UI 9";
+            this.UI9_bl1Label.Visible = false;
             // 
             // UI9bl1_combo
             // 
             this.UI9bl1_combo.DisplayMember = "Не выбрано";
             this.UI9bl1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI9bl1_combo.Enabled = false;
             this.UI9bl1_combo.FormattingEnabled = true;
             this.UI9bl1_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -6680,6 +6880,7 @@
             this.UI9bl1_combo.Name = "UI9bl1_combo";
             this.UI9bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI9bl1_combo.TabIndex = 115;
+            this.UI9bl1_combo.Visible = false;
             this.UI9bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI9bl1_combo_SelectedIndexChanged);
             // 
             // UI9bl1_typeCombo
@@ -6688,6 +6889,7 @@
             "NTC",
             "4-20 мА"});
             this.UI9bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI9bl1_typeCombo.Enabled = false;
             this.UI9bl1_typeCombo.FormattingEnabled = true;
             this.UI9bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -6696,6 +6898,7 @@
             this.UI9bl1_typeCombo.Name = "UI9bl1_typeCombo";
             this.UI9bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI9bl1_typeCombo.TabIndex = 116;
+            this.UI9bl1_typeCombo.Visible = false;
             this.UI9bl1_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI9bl1_typeCombo_SelectedIndexChanged);
             // 
             // UI9bl1_lab
@@ -6717,11 +6920,13 @@
             this.UI8_bl1Label.Size = new System.Drawing.Size(33, 14);
             this.UI8_bl1Label.TabIndex = 110;
             this.UI8_bl1Label.Text = "UI 8";
+            this.UI8_bl1Label.Visible = false;
             // 
             // UI8bl1_combo
             // 
             this.UI8bl1_combo.DisplayMember = "Не выбрано";
             this.UI8bl1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI8bl1_combo.Enabled = false;
             this.UI8bl1_combo.FormattingEnabled = true;
             this.UI8bl1_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -6729,6 +6934,7 @@
             this.UI8bl1_combo.Name = "UI8bl1_combo";
             this.UI8bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI8bl1_combo.TabIndex = 111;
+            this.UI8bl1_combo.Visible = false;
             this.UI8bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI8bl1_combo_SelectedIndexChanged);
             // 
             // UI8bl1_typeCombo
@@ -6737,6 +6943,7 @@
             "NTC",
             "4-20 мА"});
             this.UI8bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI8bl1_typeCombo.Enabled = false;
             this.UI8bl1_typeCombo.FormattingEnabled = true;
             this.UI8bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -6745,6 +6952,7 @@
             this.UI8bl1_typeCombo.Name = "UI8bl1_typeCombo";
             this.UI8bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI8bl1_typeCombo.TabIndex = 112;
+            this.UI8bl1_typeCombo.Visible = false;
             this.UI8bl1_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI8bl1_typeCombo_SelectedIndexChanged);
             // 
             // UI8bl1_lab
@@ -6766,11 +6974,13 @@
             this.UI7_bl1Label.Size = new System.Drawing.Size(33, 14);
             this.UI7_bl1Label.TabIndex = 106;
             this.UI7_bl1Label.Text = "UI 7";
+            this.UI7_bl1Label.Visible = false;
             // 
             // UI7bl1_combo
             // 
             this.UI7bl1_combo.DisplayMember = "Не выбрано";
             this.UI7bl1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI7bl1_combo.Enabled = false;
             this.UI7bl1_combo.FormattingEnabled = true;
             this.UI7bl1_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -6778,6 +6988,7 @@
             this.UI7bl1_combo.Name = "UI7bl1_combo";
             this.UI7bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI7bl1_combo.TabIndex = 107;
+            this.UI7bl1_combo.Visible = false;
             this.UI7bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI7bl1_combo_SelectedIndexChanged);
             // 
             // UI7bl1_typeCombo
@@ -6786,6 +6997,7 @@
             "NTC",
             "4-20 мА"});
             this.UI7bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI7bl1_typeCombo.Enabled = false;
             this.UI7bl1_typeCombo.FormattingEnabled = true;
             this.UI7bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -6794,6 +7006,7 @@
             this.UI7bl1_typeCombo.Name = "UI7bl1_typeCombo";
             this.UI7bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI7bl1_typeCombo.TabIndex = 108;
+            this.UI7bl1_typeCombo.Visible = false;
             this.UI7bl1_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI7bl1_typeCombo_SelectedIndexChanged);
             // 
             // UI7bl1_lab
@@ -6815,11 +7028,13 @@
             this.UI6_bl1Label.Size = new System.Drawing.Size(33, 14);
             this.UI6_bl1Label.TabIndex = 102;
             this.UI6_bl1Label.Text = "UI 6";
+            this.UI6_bl1Label.Visible = false;
             // 
             // UI6bl1_combo
             // 
             this.UI6bl1_combo.DisplayMember = "Не выбрано";
             this.UI6bl1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI6bl1_combo.Enabled = false;
             this.UI6bl1_combo.FormattingEnabled = true;
             this.UI6bl1_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -6827,6 +7042,7 @@
             this.UI6bl1_combo.Name = "UI6bl1_combo";
             this.UI6bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI6bl1_combo.TabIndex = 103;
+            this.UI6bl1_combo.Visible = false;
             this.UI6bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI6bl1_combo_SelectedIndexChanged);
             // 
             // UI6bl1_typeCombo
@@ -6835,6 +7051,7 @@
             "NTC",
             "4-20 мА"});
             this.UI6bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI6bl1_typeCombo.Enabled = false;
             this.UI6bl1_typeCombo.FormattingEnabled = true;
             this.UI6bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -6843,6 +7060,7 @@
             this.UI6bl1_typeCombo.Name = "UI6bl1_typeCombo";
             this.UI6bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI6bl1_typeCombo.TabIndex = 104;
+            this.UI6bl1_typeCombo.Visible = false;
             this.UI6bl1_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI6bl1_typeCombo_SelectedIndexChanged);
             // 
             // UI6bl1_lab
@@ -6864,11 +7082,13 @@
             this.UI5_bl1Label.Size = new System.Drawing.Size(33, 14);
             this.UI5_bl1Label.TabIndex = 98;
             this.UI5_bl1Label.Text = "UI 5";
+            this.UI5_bl1Label.Visible = false;
             // 
             // UI5bl1_combo
             // 
             this.UI5bl1_combo.DisplayMember = "Не выбрано";
             this.UI5bl1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI5bl1_combo.Enabled = false;
             this.UI5bl1_combo.FormattingEnabled = true;
             this.UI5bl1_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -6876,6 +7096,7 @@
             this.UI5bl1_combo.Name = "UI5bl1_combo";
             this.UI5bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI5bl1_combo.TabIndex = 99;
+            this.UI5bl1_combo.Visible = false;
             this.UI5bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI5bl1_combo_SelectedIndexChanged);
             // 
             // UI5bl1_typeCombo
@@ -6884,6 +7105,7 @@
             "NTC",
             "4-20 мА"});
             this.UI5bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI5bl1_typeCombo.Enabled = false;
             this.UI5bl1_typeCombo.FormattingEnabled = true;
             this.UI5bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -6892,6 +7114,7 @@
             this.UI5bl1_typeCombo.Name = "UI5bl1_typeCombo";
             this.UI5bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI5bl1_typeCombo.TabIndex = 100;
+            this.UI5bl1_typeCombo.Visible = false;
             this.UI5bl1_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI5bl1_typeCombo_SelectedIndexChanged);
             // 
             // UI5bl1_lab
@@ -6913,11 +7136,13 @@
             this.UI4_bl1Label.Size = new System.Drawing.Size(33, 14);
             this.UI4_bl1Label.TabIndex = 94;
             this.UI4_bl1Label.Text = "UI 4";
+            this.UI4_bl1Label.Visible = false;
             // 
             // UI4bl1_combo
             // 
             this.UI4bl1_combo.DisplayMember = "Не выбрано";
             this.UI4bl1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI4bl1_combo.Enabled = false;
             this.UI4bl1_combo.FormattingEnabled = true;
             this.UI4bl1_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -6925,6 +7150,7 @@
             this.UI4bl1_combo.Name = "UI4bl1_combo";
             this.UI4bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI4bl1_combo.TabIndex = 95;
+            this.UI4bl1_combo.Visible = false;
             this.UI4bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI4bl1_combo_SelectedIndexChanged);
             // 
             // UI4bl1_typeCombo
@@ -6933,6 +7159,7 @@
             "NTC",
             "4-20 мА"});
             this.UI4bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI4bl1_typeCombo.Enabled = false;
             this.UI4bl1_typeCombo.FormattingEnabled = true;
             this.UI4bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -6941,6 +7168,7 @@
             this.UI4bl1_typeCombo.Name = "UI4bl1_typeCombo";
             this.UI4bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI4bl1_typeCombo.TabIndex = 96;
+            this.UI4bl1_typeCombo.Visible = false;
             this.UI4bl1_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI4bl1_typeCombo_SelectedIndexChanged);
             // 
             // UI4bl1_lab
@@ -6962,11 +7190,13 @@
             this.UI3_bl1Label.Size = new System.Drawing.Size(33, 14);
             this.UI3_bl1Label.TabIndex = 90;
             this.UI3_bl1Label.Text = "UI 3";
+            this.UI3_bl1Label.Visible = false;
             // 
             // UI3bl1_combo
             // 
             this.UI3bl1_combo.DisplayMember = "Не выбрано";
             this.UI3bl1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI3bl1_combo.Enabled = false;
             this.UI3bl1_combo.FormattingEnabled = true;
             this.UI3bl1_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -6974,6 +7204,7 @@
             this.UI3bl1_combo.Name = "UI3bl1_combo";
             this.UI3bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI3bl1_combo.TabIndex = 91;
+            this.UI3bl1_combo.Visible = false;
             this.UI3bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI3bl1_combo_SelectedIndexChanged);
             // 
             // UI3bl1_typeCombo
@@ -6982,6 +7213,7 @@
             "NTC",
             "4-20 мА"});
             this.UI3bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI3bl1_typeCombo.Enabled = false;
             this.UI3bl1_typeCombo.FormattingEnabled = true;
             this.UI3bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -6990,6 +7222,7 @@
             this.UI3bl1_typeCombo.Name = "UI3bl1_typeCombo";
             this.UI3bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI3bl1_typeCombo.TabIndex = 92;
+            this.UI3bl1_typeCombo.Visible = false;
             this.UI3bl1_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI3bl1_typeCombo_SelectedIndexChanged);
             // 
             // UI3bl1_lab
@@ -7011,11 +7244,13 @@
             this.UI2_bl1Label.Size = new System.Drawing.Size(33, 14);
             this.UI2_bl1Label.TabIndex = 86;
             this.UI2_bl1Label.Text = "UI 2";
+            this.UI2_bl1Label.Visible = false;
             // 
             // UI2bl1_combo
             // 
             this.UI2bl1_combo.DisplayMember = "Не выбрано";
             this.UI2bl1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI2bl1_combo.Enabled = false;
             this.UI2bl1_combo.FormattingEnabled = true;
             this.UI2bl1_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -7023,6 +7258,7 @@
             this.UI2bl1_combo.Name = "UI2bl1_combo";
             this.UI2bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI2bl1_combo.TabIndex = 87;
+            this.UI2bl1_combo.Visible = false;
             this.UI2bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI2bl1_combo_SelectedIndexChanged);
             // 
             // UI2bl1_typeCombo
@@ -7031,6 +7267,7 @@
             "NTC",
             "4-20 мА"});
             this.UI2bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI2bl1_typeCombo.Enabled = false;
             this.UI2bl1_typeCombo.FormattingEnabled = true;
             this.UI2bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -7039,6 +7276,7 @@
             this.UI2bl1_typeCombo.Name = "UI2bl1_typeCombo";
             this.UI2bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI2bl1_typeCombo.TabIndex = 88;
+            this.UI2bl1_typeCombo.Visible = false;
             this.UI2bl1_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI2bl1_typeCombo_SelectedIndexChanged);
             // 
             // UI2bl1_lab
@@ -7060,11 +7298,13 @@
             this.UI1_bl1Label.Size = new System.Drawing.Size(33, 14);
             this.UI1_bl1Label.TabIndex = 82;
             this.UI1_bl1Label.Text = "UI 1";
+            this.UI1_bl1Label.Visible = false;
             // 
             // UI1bl1_combo
             // 
             this.UI1bl1_combo.DisplayMember = "Не выбрано";
             this.UI1bl1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI1bl1_combo.Enabled = false;
             this.UI1bl1_combo.FormattingEnabled = true;
             this.UI1bl1_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -7072,6 +7312,7 @@
             this.UI1bl1_combo.Name = "UI1bl1_combo";
             this.UI1bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.UI1bl1_combo.TabIndex = 83;
+            this.UI1bl1_combo.Visible = false;
             this.UI1bl1_combo.SelectedIndexChanged += new System.EventHandler(this.UI1bl1_combo_SelectedIndexChanged);
             // 
             // UIblock1_header
@@ -7090,6 +7331,7 @@
             "NTC",
             "4-20 мА"});
             this.UI1bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UI1bl1_typeCombo.Enabled = false;
             this.UI1bl1_typeCombo.FormattingEnabled = true;
             this.UI1bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
@@ -7098,6 +7340,7 @@
             this.UI1bl1_typeCombo.Name = "UI1bl1_typeCombo";
             this.UI1bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
             this.UI1bl1_typeCombo.TabIndex = 84;
+            this.UI1bl1_typeCombo.Visible = false;
             this.UI1bl1_typeCombo.SelectedIndexChanged += new System.EventHandler(this.UI1bl1_typeCombo_SelectedIndexChanged);
             // 
             // UI1bl1_lab
@@ -7979,10 +8222,12 @@
             this.block3_DOpanel.Controls.Add(this.DOblock3_header);
             this.block3_DOpanel.Controls.Add(this.DO1bl3_combo);
             this.block3_DOpanel.Controls.Add(this.DO1_bl3Label);
+            this.block3_DOpanel.Enabled = false;
             this.block3_DOpanel.Location = new System.Drawing.Point(3, 820);
             this.block3_DOpanel.Name = "block3_DOpanel";
             this.block3_DOpanel.Size = new System.Drawing.Size(518, 289);
             this.block3_DOpanel.TabIndex = 46;
+            this.block3_DOpanel.Visible = false;
             // 
             // DO8bl3_lab
             // 
@@ -8277,10 +8522,12 @@
             this.block2_DOpanel.Controls.Add(this.DO2bl2_combo);
             this.block2_DOpanel.Controls.Add(this.DO5_bl2Label);
             this.block2_DOpanel.Controls.Add(this.DO6_bl2Label);
+            this.block2_DOpanel.Enabled = false;
             this.block2_DOpanel.Location = new System.Drawing.Point(6, 529);
             this.block2_DOpanel.Name = "block2_DOpanel";
             this.block2_DOpanel.Size = new System.Drawing.Size(514, 289);
             this.block2_DOpanel.TabIndex = 38;
+            this.block2_DOpanel.Visible = false;
             // 
             // DO8bl2_lab
             // 
@@ -8575,10 +8822,12 @@
             this.block1_DOpanel.Controls.Add(this.DO2bl1_combo);
             this.block1_DOpanel.Controls.Add(this.DO5_bl1Label);
             this.block1_DOpanel.Controls.Add(this.DO6_bl1Label);
+            this.block1_DOpanel.Enabled = false;
             this.block1_DOpanel.Location = new System.Drawing.Point(6, 239);
             this.block1_DOpanel.Name = "block1_DOpanel";
             this.block1_DOpanel.Size = new System.Drawing.Size(514, 289);
             this.block1_DOpanel.TabIndex = 23;
+            this.block1_DOpanel.Visible = false;
             // 
             // DO8bl1_lab
             // 
@@ -8593,6 +8842,7 @@
             // DO8bl1_combo
             // 
             this.DO8bl1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DO8bl1_combo.Enabled = false;
             this.DO8bl1_combo.FormattingEnabled = true;
             this.DO8bl1_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -8600,6 +8850,7 @@
             this.DO8bl1_combo.Name = "DO8bl1_combo";
             this.DO8bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.DO8bl1_combo.TabIndex = 46;
+            this.DO8bl1_combo.Visible = false;
             this.DO8bl1_combo.SelectedIndexChanged += new System.EventHandler(this.DO8bl1_combo_SelectedIndexChanged);
             // 
             // DO8_bl1Label
@@ -8611,6 +8862,7 @@
             this.DO8_bl1Label.Size = new System.Drawing.Size(38, 14);
             this.DO8_bl1Label.TabIndex = 45;
             this.DO8_bl1Label.Text = "DO 8";
+            this.DO8_bl1Label.Visible = false;
             // 
             // DO7bl1_lab
             // 
@@ -8685,6 +8937,7 @@
             // DO7bl1_combo
             // 
             this.DO7bl1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DO7bl1_combo.Enabled = false;
             this.DO7bl1_combo.FormattingEnabled = true;
             this.DO7bl1_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -8692,6 +8945,7 @@
             this.DO7bl1_combo.Name = "DO7bl1_combo";
             this.DO7bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.DO7bl1_combo.TabIndex = 37;
+            this.DO7bl1_combo.Visible = false;
             this.DO7bl1_combo.SelectedIndexChanged += new System.EventHandler(this.DO7bl1_combo_SelectedIndexChanged);
             // 
             // DOblock1_header
@@ -8713,10 +8967,12 @@
             this.DO7_bl1Label.Size = new System.Drawing.Size(38, 14);
             this.DO7_bl1Label.TabIndex = 36;
             this.DO7_bl1Label.Text = "DO 7";
+            this.DO7_bl1Label.Visible = false;
             // 
             // DO1bl1_combo
             // 
             this.DO1bl1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DO1bl1_combo.Enabled = false;
             this.DO1bl1_combo.FormattingEnabled = true;
             this.DO1bl1_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -8724,11 +8980,13 @@
             this.DO1bl1_combo.Name = "DO1bl1_combo";
             this.DO1bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.DO1bl1_combo.TabIndex = 30;
+            this.DO1bl1_combo.Visible = false;
             this.DO1bl1_combo.SelectedIndexChanged += new System.EventHandler(this.DO1bl1_combo_SelectedIndexChanged);
             // 
             // DO6bl1_combo
             // 
             this.DO6bl1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DO6bl1_combo.Enabled = false;
             this.DO6bl1_combo.FormattingEnabled = true;
             this.DO6bl1_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -8736,6 +8994,7 @@
             this.DO6bl1_combo.Name = "DO6bl1_combo";
             this.DO6bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.DO6bl1_combo.TabIndex = 35;
+            this.DO6bl1_combo.Visible = false;
             this.DO6bl1_combo.SelectedIndexChanged += new System.EventHandler(this.DO6bl1_combo_SelectedIndexChanged);
             // 
             // DO1_bl1Label
@@ -8747,10 +9006,12 @@
             this.DO1_bl1Label.Size = new System.Drawing.Size(38, 14);
             this.DO1_bl1Label.TabIndex = 24;
             this.DO1_bl1Label.Text = "DO 1";
+            this.DO1_bl1Label.Visible = false;
             // 
             // DO5bl1_combo
             // 
             this.DO5bl1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DO5bl1_combo.Enabled = false;
             this.DO5bl1_combo.FormattingEnabled = true;
             this.DO5bl1_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -8758,6 +9019,7 @@
             this.DO5bl1_combo.Name = "DO5bl1_combo";
             this.DO5bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.DO5bl1_combo.TabIndex = 34;
+            this.DO5bl1_combo.Visible = false;
             this.DO5bl1_combo.SelectedIndexChanged += new System.EventHandler(this.DO5bl1_combo_SelectedIndexChanged);
             // 
             // DO2_bl1Label
@@ -8769,10 +9031,12 @@
             this.DO2_bl1Label.Size = new System.Drawing.Size(38, 14);
             this.DO2_bl1Label.TabIndex = 25;
             this.DO2_bl1Label.Text = "DO 2";
+            this.DO2_bl1Label.Visible = false;
             // 
             // DO4bl1_combo
             // 
             this.DO4bl1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DO4bl1_combo.Enabled = false;
             this.DO4bl1_combo.FormattingEnabled = true;
             this.DO4bl1_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -8780,6 +9044,7 @@
             this.DO4bl1_combo.Name = "DO4bl1_combo";
             this.DO4bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.DO4bl1_combo.TabIndex = 33;
+            this.DO4bl1_combo.Visible = false;
             this.DO4bl1_combo.SelectedIndexChanged += new System.EventHandler(this.DO4bl1_combo_SelectedIndexChanged);
             // 
             // DO3_bl1Label
@@ -8791,10 +9056,12 @@
             this.DO3_bl1Label.Size = new System.Drawing.Size(38, 14);
             this.DO3_bl1Label.TabIndex = 26;
             this.DO3_bl1Label.Text = "DO 3";
+            this.DO3_bl1Label.Visible = false;
             // 
             // DO3bl1_combo
             // 
             this.DO3bl1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DO3bl1_combo.Enabled = false;
             this.DO3bl1_combo.FormattingEnabled = true;
             this.DO3bl1_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -8802,6 +9069,7 @@
             this.DO3bl1_combo.Name = "DO3bl1_combo";
             this.DO3bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.DO3bl1_combo.TabIndex = 32;
+            this.DO3bl1_combo.Visible = false;
             this.DO3bl1_combo.SelectedIndexChanged += new System.EventHandler(this.DO3bl1_combo_SelectedIndexChanged);
             // 
             // DO4_bl1Label
@@ -8813,10 +9081,12 @@
             this.DO4_bl1Label.Size = new System.Drawing.Size(38, 14);
             this.DO4_bl1Label.TabIndex = 27;
             this.DO4_bl1Label.Text = "DO 4";
+            this.DO4_bl1Label.Visible = false;
             // 
             // DO2bl1_combo
             // 
             this.DO2bl1_combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DO2bl1_combo.Enabled = false;
             this.DO2bl1_combo.FormattingEnabled = true;
             this.DO2bl1_combo.Items.AddRange(new object[] {
             "Не выбрано"});
@@ -8824,6 +9094,7 @@
             this.DO2bl1_combo.Name = "DO2bl1_combo";
             this.DO2bl1_combo.Size = new System.Drawing.Size(380, 21);
             this.DO2bl1_combo.TabIndex = 31;
+            this.DO2bl1_combo.Visible = false;
             this.DO2bl1_combo.SelectedIndexChanged += new System.EventHandler(this.DO2bl1_combo_SelectedIndexChanged);
             // 
             // DO5_bl1Label
@@ -8835,6 +9106,7 @@
             this.DO5_bl1Label.Size = new System.Drawing.Size(38, 14);
             this.DO5_bl1Label.TabIndex = 28;
             this.DO5_bl1Label.Text = "DO 5";
+            this.DO5_bl1Label.Visible = false;
             // 
             // DO6_bl1Label
             // 
@@ -8845,6 +9117,7 @@
             this.DO6_bl1Label.Size = new System.Drawing.Size(38, 14);
             this.DO6_bl1Label.TabIndex = 29;
             this.DO6_bl1Label.Text = "DO 6";
+            this.DO6_bl1Label.Visible = false;
             // 
             // tabAO
             // 
@@ -8991,10 +9264,12 @@
             this.block3_AOpanel.Controls.Add(this.AOblock3_header);
             this.block3_AOpanel.Controls.Add(this.AO1bl3_combo);
             this.block3_AOpanel.Controls.Add(this.AO1_bl3Label);
+            this.block3_AOpanel.Enabled = false;
             this.block3_AOpanel.Location = new System.Drawing.Point(6, 346);
             this.block3_AOpanel.Name = "block3_AOpanel";
             this.block3_AOpanel.Size = new System.Drawing.Size(511, 99);
             this.block3_AOpanel.TabIndex = 32;
+            this.block3_AOpanel.Visible = false;
             // 
             // AO2bl3_lab
             // 
@@ -9079,10 +9354,12 @@
             this.block2_AOpanel.Controls.Add(this.AOblock2_header);
             this.block2_AOpanel.Controls.Add(this.AO1_bl2Label);
             this.block2_AOpanel.Controls.Add(this.AO2_bl2Label);
+            this.block2_AOpanel.Enabled = false;
             this.block2_AOpanel.Location = new System.Drawing.Point(6, 246);
             this.block2_AOpanel.Name = "block2_AOpanel";
             this.block2_AOpanel.Size = new System.Drawing.Size(511, 99);
             this.block2_AOpanel.TabIndex = 28;
+            this.block2_AOpanel.Visible = false;
             // 
             // AO1bl2_lab
             // 
@@ -9167,10 +9444,12 @@
             this.block1_AOpanel.Controls.Add(this.AOblock1_header);
             this.block1_AOpanel.Controls.Add(this.AO1_bl1Label);
             this.block1_AOpanel.Controls.Add(this.AO2_bl1Label);
+            this.block1_AOpanel.Enabled = false;
             this.block1_AOpanel.Location = new System.Drawing.Point(6, 146);
             this.block1_AOpanel.Name = "block1_AOpanel";
             this.block1_AOpanel.Size = new System.Drawing.Size(511, 99);
             this.block1_AOpanel.TabIndex = 20;
+            this.block1_AOpanel.Visible = false;
             // 
             // AO1bl1_lab
             // 

@@ -86,6 +86,59 @@ namespace Moderon
                 do_signals_index[i] = 0;
         }
 
+        /// <summary>Изначальная блокировка и скрытие comboBox DO блоков расширение, скрытие подписей сигналов</summary>
+        private void DoCombosBlocks_Reset()
+        {
+            DoCombosBlock_1_Reset();                // Блок расширения 1
+            DoCombosBlock_2_Reset();                // Блок расширения 2
+            DoCombosBlock_3_Reset();                // Блок расширения 3
+        }
+
+        /// <summary>Блокировка и скрытие comboBox DO блока расширения 1, скрытие подписей сигналов</summary>
+        private void DoCombosBlock_1_Reset()
+        {
+            var do_combos = new List<ComboBox>() { 
+                DO1bl1_combo, DO2bl1_combo, DO3bl1_combo, DO4bl1_combo, DO5bl1_combo, DO6bl1_combo, DO7bl1_combo, DO8bl1_combo 
+            };
+            var do_labels = new List<Label>()
+            {
+                DO1_bl1Label, DO2_bl1Label, DO3_bl1Label, DO4_bl1Label, DO5_bl1Label, DO6_bl1Label, DO7_bl1Label, DO8_bl1Label 
+            };
+
+            foreach (var el in do_combos) { el.SelectedIndex = 0; el.Hide(); el.Enabled = false; }
+            foreach (var el in do_labels) el.Hide();
+        }
+
+        /// <summary>Блокировка и скрытие comboBox DO блока расширения 2, скрытие подписей сигналов</summary>
+        private void DoCombosBlock_2_Reset()
+        {
+            var do_combos = new List<ComboBox>() {
+                DO1bl2_combo, DO2bl2_combo, DO3bl2_combo, DO4bl2_combo, DO5bl2_combo, DO6bl2_combo, DO7bl2_combo, DO8bl2_combo
+            };
+            var do_labels = new List<Label>()
+            {
+                DO1_bl2Label, DO2_bl2Label, DO3_bl2Label, DO4_bl2Label, DO5_bl2Label, DO6_bl2Label, DO7_bl2Label, DO8_bl2Label
+            };
+
+            foreach (var el in do_combos) { el.Hide(); el.Enabled = false; }
+            foreach (var el in do_labels) el.Hide();
+        }
+
+        /// <summary>Блокировка и скрытие comboBox DO блока расширения 3, скрытие подписей сигналов</summary>
+        private void DoCombosBlock_3_Reset()
+        {
+            var do_combos = new List<ComboBox>() {
+                DO1bl3_combo, DO2bl3_combo, DO3bl3_combo, DO4bl3_combo, DO5bl3_combo, DO6bl3_combo, DO7bl3_combo, DO8bl3_combo
+            };
+            var do_labels = new List<Label>()
+            {
+                DO1_bl3Label, DO2_bl3Label, DO3_bl3Label, DO4_bl3Label, DO5_bl3Label, DO6_bl3Label, DO7_bl3Label, DO8_bl3Label
+            };
+
+            foreach (var el in do_combos) { el.Hide(); el.Enabled = false; }
+            foreach (var el in do_labels) el.Hide();
+        }
+
         ///<summary>Нажали на кнопку "Сформировать"</summary> 
         public void FormSignalsButton_Click(object sender, EventArgs e)
         {
@@ -597,32 +650,56 @@ namespace Moderon
             else if (DO5_combo.SelectedIndex == 0 && DO5_combo.Visible) SelectComboBox_DO(DO5_combo, code, DO5_lab, DO5combo_text, DO5combo_index);
             else if (DO6_combo.SelectedIndex == 0 && DO6_combo.Visible) SelectComboBox_DO(DO6_combo, code, DO6_lab, DO6combo_text, DO6combo_index);
             // Блок расширения 1
-            else if (DO1bl1_combo.SelectedIndex == 0) SelectComboBox_DO(DO1bl1_combo, code, DO1bl1_lab, DO1bl1combo_text, DO1bl1combo_index);
-            else if (DO2bl1_combo.SelectedIndex == 0) SelectComboBox_DO(DO2bl1_combo, code, DO2bl1_lab, DO2bl1combo_text, DO2bl1combo_index);
-            else if (DO3bl1_combo.SelectedIndex == 0) SelectComboBox_DO(DO3bl1_combo, code, DO3bl1_lab, DO3bl1combo_text, DO3bl1combo_index);
-            else if (DO4bl1_combo.SelectedIndex == 0) SelectComboBox_DO(DO4bl1_combo, code, DO4bl1_lab, DO4bl1combo_text, DO4bl1combo_index);
-            else if (DO5bl1_combo.SelectedIndex == 0) SelectComboBox_DO(DO5bl1_combo, code, DO5bl1_lab, DO5bl1combo_text, DO5bl1combo_index);
-            else if (DO6bl1_combo.SelectedIndex == 0) SelectComboBox_DO(DO6bl1_combo, code, DO6bl1_lab, DO6bl1combo_text, DO6bl1combo_index);
-            else if (DO7bl1_combo.SelectedIndex == 0) SelectComboBox_DO(DO7bl1_combo, code, DO7bl1_lab, DO7bl1combo_text, DO7bl1combo_index);
-            else if (DO8bl1_combo.SelectedIndex == 0) SelectComboBox_DO(DO8bl1_combo, code, DO8bl1_lab, DO8bl1combo_text, DO8bl1combo_index);
+            else if (DO1bl1_combo.SelectedIndex == 0 && DO1bl1_combo.Enabled) 
+                SelectComboBox_DO(DO1bl1_combo, code, DO1bl1_lab, DO1bl1combo_text, DO1bl1combo_index);
+            else if (DO2bl1_combo.SelectedIndex == 0 && DO2bl1_combo.Enabled) 
+                SelectComboBox_DO(DO2bl1_combo, code, DO2bl1_lab, DO2bl1combo_text, DO2bl1combo_index);
+            else if (DO3bl1_combo.SelectedIndex == 0 && DO3bl1_combo.Enabled) 
+                SelectComboBox_DO(DO3bl1_combo, code, DO3bl1_lab, DO3bl1combo_text, DO3bl1combo_index);
+            else if (DO4bl1_combo.SelectedIndex == 0 && DO4bl1_combo.Enabled) 
+                SelectComboBox_DO(DO4bl1_combo, code, DO4bl1_lab, DO4bl1combo_text, DO4bl1combo_index);
+            else if (DO5bl1_combo.SelectedIndex == 0 && DO5bl1_combo.Enabled) 
+                SelectComboBox_DO(DO5bl1_combo, code, DO5bl1_lab, DO5bl1combo_text, DO5bl1combo_index);
+            else if (DO6bl1_combo.SelectedIndex == 0 && DO6bl1_combo.Enabled) 
+                SelectComboBox_DO(DO6bl1_combo, code, DO6bl1_lab, DO6bl1combo_text, DO6bl1combo_index);
+            else if (DO7bl1_combo.SelectedIndex == 0 && DO7bl1_combo.Enabled) 
+                SelectComboBox_DO(DO7bl1_combo, code, DO7bl1_lab, DO7bl1combo_text, DO7bl1combo_index);
+            else if (DO8bl1_combo.SelectedIndex == 0 && DO8bl1_combo.Enabled) 
+                SelectComboBox_DO(DO8bl1_combo, code, DO8bl1_lab, DO8bl1combo_text, DO8bl1combo_index);
             // Блок расширения 2
-            else if (DO1bl2_combo.SelectedIndex == 0) SelectComboBox_DO(DO1bl2_combo, code, DO1bl2_lab, DO1bl2combo_text, DO1bl2combo_index);
-            else if (DO2bl2_combo.SelectedIndex == 0) SelectComboBox_DO(DO2bl2_combo, code, DO2bl2_lab, DO2bl2combo_text, DO2bl2combo_index);
-            else if (DO3bl2_combo.SelectedIndex == 0) SelectComboBox_DO(DO3bl2_combo, code, DO3bl2_lab, DO3bl2combo_text, DO3bl2combo_index);
-            else if (DO4bl2_combo.SelectedIndex == 0) SelectComboBox_DO(DO4bl2_combo, code, DO4bl2_lab, DO4bl2combo_text, DO4bl2combo_index);
-            else if (DO5bl2_combo.SelectedIndex == 0) SelectComboBox_DO(DO5bl2_combo, code, DO5bl2_lab, DO5bl2combo_text, DO5bl2combo_index);
-            else if (DO6bl2_combo.SelectedIndex == 0) SelectComboBox_DO(DO6bl2_combo, code, DO6bl2_lab, DO6bl2combo_text, DO6bl2combo_index);
-            else if (DO7bl2_combo.SelectedIndex == 0) SelectComboBox_DO(DO7bl2_combo, code, DO7bl2_lab, DO7bl2combo_text, DO7bl2combo_index);
-            else if (DO8bl2_combo.SelectedIndex == 0) SelectComboBox_DO(DO8bl2_combo, code, DO8bl2_lab, DO8bl2combo_text, DO8bl2combo_index);
+            else if (DO1bl2_combo.SelectedIndex == 0 && DO1bl2_combo.Enabled) 
+                SelectComboBox_DO(DO1bl2_combo, code, DO1bl2_lab, DO1bl2combo_text, DO1bl2combo_index);
+            else if (DO2bl2_combo.SelectedIndex == 0 && DO2bl2_combo.Enabled) 
+                SelectComboBox_DO(DO2bl2_combo, code, DO2bl2_lab, DO2bl2combo_text, DO2bl2combo_index);
+            else if (DO3bl2_combo.SelectedIndex == 0 && DO3bl2_combo.Enabled) 
+                SelectComboBox_DO(DO3bl2_combo, code, DO3bl2_lab, DO3bl2combo_text, DO3bl2combo_index);
+            else if (DO4bl2_combo.SelectedIndex == 0 && DO4bl2_combo.Enabled) 
+                SelectComboBox_DO(DO4bl2_combo, code, DO4bl2_lab, DO4bl2combo_text, DO4bl2combo_index);
+            else if (DO5bl2_combo.SelectedIndex == 0 && DO5bl2_combo.Enabled) 
+                SelectComboBox_DO(DO5bl2_combo, code, DO5bl2_lab, DO5bl2combo_text, DO5bl2combo_index);
+            else if (DO6bl2_combo.SelectedIndex == 0 && DO6bl2_combo.Enabled) 
+                SelectComboBox_DO(DO6bl2_combo, code, DO6bl2_lab, DO6bl2combo_text, DO6bl2combo_index);
+            else if (DO7bl2_combo.SelectedIndex == 0 && DO7bl2_combo.Enabled) 
+                SelectComboBox_DO(DO7bl2_combo, code, DO7bl2_lab, DO7bl2combo_text, DO7bl2combo_index);
+            else if (DO8bl2_combo.SelectedIndex == 0 && DO8bl2_combo.Enabled) 
+                SelectComboBox_DO(DO8bl2_combo, code, DO8bl2_lab, DO8bl2combo_text, DO8bl2combo_index);
             // Блок расширения 3
-            else if (DO1bl3_combo.SelectedIndex == 0) SelectComboBox_DO(DO1bl3_combo, code, DO1bl3_lab, DO1bl3combo_text, DO1bl3combo_index);
-            else if (DO2bl3_combo.SelectedIndex == 0) SelectComboBox_DO(DO2bl3_combo, code, DO2bl3_lab, DO2bl3combo_text, DO2bl3combo_index);
-            else if (DO3bl3_combo.SelectedIndex == 0) SelectComboBox_DO(DO3bl3_combo, code, DO3bl3_lab, DO3bl3combo_text, DO3bl3combo_index);
-            else if (DO4bl3_combo.SelectedIndex == 0) SelectComboBox_DO(DO4bl3_combo, code, DO4bl3_lab, DO4bl3combo_text, DO4bl3combo_index);
-            else if (DO5bl3_combo.SelectedIndex == 0) SelectComboBox_DO(DO5bl3_combo, code, DO5bl3_lab, DO5bl3combo_text, DO5bl3combo_index);
-            else if (DO6bl3_combo.SelectedIndex == 0) SelectComboBox_DO(DO6bl3_combo, code, DO6bl3_lab, DO6bl3combo_text, DO6bl3combo_index);
-            else if (DO7bl3_combo.SelectedIndex == 0) SelectComboBox_DO(DO7bl3_combo, code, DO7bl3_lab, DO7bl3combo_text, DO7bl3combo_index);
-            else if (DO8bl3_combo.SelectedIndex == 0) SelectComboBox_DO(DO8bl3_combo, code, DO8bl3_lab, DO8bl3combo_text, DO8bl3combo_index);
+            else if (DO1bl3_combo.SelectedIndex == 0 && DO1bl3_combo.Enabled) 
+                SelectComboBox_DO(DO1bl3_combo, code, DO1bl3_lab, DO1bl3combo_text, DO1bl3combo_index);
+            else if (DO2bl3_combo.SelectedIndex == 0 && DO2bl3_combo.Enabled) 
+                SelectComboBox_DO(DO2bl3_combo, code, DO2bl3_lab, DO2bl3combo_text, DO2bl3combo_index);
+            else if (DO3bl3_combo.SelectedIndex == 0 && DO3bl3_combo.Enabled)
+                SelectComboBox_DO(DO3bl3_combo, code, DO3bl3_lab, DO3bl3combo_text, DO3bl3combo_index);
+            else if (DO4bl3_combo.SelectedIndex == 0 && DO4bl3_combo.Enabled)
+                SelectComboBox_DO(DO4bl3_combo, code, DO4bl3_lab, DO4bl3combo_text, DO4bl3combo_index);
+            else if (DO5bl3_combo.SelectedIndex == 0 && DO5bl3_combo.Enabled) 
+                SelectComboBox_DO(DO5bl3_combo, code, DO5bl3_lab, DO5bl3combo_text, DO5bl3combo_index);
+            else if (DO6bl3_combo.SelectedIndex == 0 && DO6bl3_combo.Enabled) 
+                SelectComboBox_DO(DO6bl3_combo, code, DO6bl3_lab, DO6bl3combo_text, DO6bl3combo_index);
+            else if (DO7bl3_combo.SelectedIndex == 0 && DO7bl3_combo.Enabled) 
+                SelectComboBox_DO(DO7bl3_combo, code, DO7bl3_lab, DO7bl3combo_text, DO7bl3combo_index);
+            else if (DO8bl3_combo.SelectedIndex == 0 && DO8bl3_combo.Enabled) 
+                SelectComboBox_DO(DO8bl3_combo, code, DO8bl3_lab, DO8bl3combo_text, DO8bl3combo_index);
         }
 
         ///<summary>Удаление DO из определённого comboBox</summary>

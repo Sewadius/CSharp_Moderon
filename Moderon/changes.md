@@ -349,4 +349,19 @@
 - добавлен `OutFanSpeedCheck_cmdCheckedChanged()` для учёта 0-10 В вентилятора  
 - внесён `PrFanAlarmCheck_cmdCheckedChanged()` сигнала аварии П вентилятора
 - удаление обработчиков событий для сигналов AI и DI
-- удаление классов `Ai` и `Di` для неиспользуемых сигналов
+- удаление классов `Ai` и `Di` для неиспользуемых сигналов  
+
+07.12.23 (четверг)
+
+- создан `AddFirstBlockAO_M72E12RB()` для добавления 1-го блока AO
+- проверка распеределения на `Enabled` для `AddNewAO()`
+- внесён `RemoveFirstBlockAO_M72E12RB()` для удаления 1-го блока AO
+- учёт добавления/удаления 1-го блока AO для `ComboPlkType_SelectedIndexChanged()`  
+- `AddNewDO()` добавлены проверки на `Enabled` для сигналов `DO`
+- создан `DO_block1_panelChanged_M72E12RB()` для панели DO блока 1 под блок AO  
+- добавлена константа `HEIGHT_DO_PANEL_BLOCK = 289`, высота панели DO блока
+- создан `DoCombosBlocks_Reset()` для сброса панелей DO сигналов блоков
+- добавлен `UI_block1_panelChanged_M72E12RB()` для панели UI блока 1 под блок AO
+- создание `UiCombosBlocks_Reset()` для сброса панелей `UI` блоков
+- внесена константа `HEIGHT_UI_PANEL_BLOCK = 537` высоты панели UI блока
+- учёт заблокированных сигналов при распределении `AddNewUI()`

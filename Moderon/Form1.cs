@@ -11,7 +11,11 @@ namespace Moderon
     {
         // Статус для состояния входов/выходов и названия для блоков расширения
         readonly static public string
-            NOT_SELECTED = "Не выбрано", M72E08RA = "M72E08RA", M72E12RA = "M72E12RA", M72E12RB = "M72E12RB", M72E16NA = "M72E16NA";
+            NOT_SELECTED = "Не выбрано", 
+            M72E08RA = "M72E08RA",                  // 8 DO
+            M72E12RA = "M72E12RA",                  // 6 DO, 6 UI
+            M72E12RB = "M72E12RB",                  // 4 DO, 6 UI, 2 AO
+            M72E16NA = "M72E16NA";                  // 16 UI
 
         /// <summary>Список для определения задействованных блоков расширения</summary>
         static public List<string> expansion_blocks = new List<string>();
@@ -19,6 +23,8 @@ namespace Moderon
 
         private const int HEIGHT = 280;                                 // Высота для панелей настройки элементов
         private const int DELTA = 31;                                   // Расстояние между comboBox в таблице сигналов
+        private const int HEIGHT_DO_PANEL_BLOCK = 289;                  // Высота панели блока расширения для DO панели
+        private const int HEIGHT_UI_PANEL_BLOCK = 537;                  // Высота панели блока расширения для UI панели
         private Point MENU_POSITION = new Point(3, 36);                 // Позиция для меню элементов
         private Point PANEL_POSITION = new Point(15, 90);               // Позиция для остальных панелей
         readonly private bool showCode = true;                          // Код сигнала отображается по умолчанию в таблице сигналов
@@ -53,7 +59,6 @@ namespace Moderon
         public Form1()
         {
             InitializeComponent();          // Загрузка конструктора формы
-            //InitialHeightPanels();          // Изначальное увеличение размера панелей в таблице сигналов
             BlockTabControlInitial();       // Скрытие вкладок элементов
             SelectComboBoxesInitial();      // Изначальный выбор для comboBox
             SizePanels();                   // Изменение размера панелей
@@ -64,27 +69,11 @@ namespace Moderon
             Set_DOComboTextIndex();         // Дискретные выходы, DO
             Set_AOComboTextIndex();         // Аналоговый выходы, AO
 
-            Size = new Size(995, 680);      // Размер для основной формы
-        }
+            // Подготовка для блоков расширения
+            DoCombosBlocks_Reset();         // Скрытие и блокировка comboBox DO блоков расширение, скрытие Label подписей
+            UiCombosBlocks_Reset();         // Скрытие и блокировка comboBox UI блоков расширение, скрытие Label подписей
 
-        ///<summary>Изначальное увеличение размера панелей AO и DO в таблице сигналов</summary>
-        private void InitialHeightPanels()
-        {
-            // Для панелей AO сигналов (1 сигнал)
-            plk_AOpanel.Height += DELTA;                                                                            // ПЛК для AO сигналов
-            block1_AOpanel.Location = new Point(block1_AOpanel.Location.X, block1_AOpanel.Location.Y + DELTA);      // Блок 1, AO сигналы
-            block2_AOpanel.Location = new Point(block2_AOpanel.Location.X, block2_AOpanel.Location.Y + DELTA);      // Блок 2, AO сигналы
-            block3_AOpanel.Location = new Point(block3_AOpanel.Location.X, block3_AOpanel.Location.Y + DELTA);      // Блок 3, AO сигналы
-            // Для панелей DO сигналов (2 сигнала)
-            plk_DOpanel.Height += DELTA * 2;                                                                        // ПЛК для DO сигналов
-            block1_DOpanel.Location = new Point(block1_DOpanel.Location.X, block1_DOpanel.Location.Y + DELTA * 2);  // Блок 1, DO сигналы
-            block2_DOpanel.Location = new Point(block2_DOpanel.Location.X, block2_DOpanel.Location.Y + DELTA * 2);  // Блок 2, DO сигналы
-            block3_DOpanel.Location = new Point(block3_DOpanel.Location.X, block3_DOpanel.Location.Y + DELTA * 2);  // Блок 3, DO сигналы
-            // Для панелей UI сигналов (4 сигнала)
-            plk_UIpanel.Height += DELTA * 4;                                                                        // ПЛК для UI сигналов
-            block1_UIpanel.Location = new Point(block1_UIpanel.Location.X, block1_UIpanel.Location.Y + DELTA * 4);  // Блок 1, UI сигналы
-            block2_UIpanel.Location = new Point(block2_UIpanel.Location.X, block2_UIpanel.Location.Y + DELTA * 4);  // Блок 2, UI сигналы
-            block3_UIpanel.Location = new Point(block3_UIpanel.Location.X, block3_UIpanel.Location.Y + DELTA * 4);  // Блок 3, UI сигналы
+            Size = new Size(995, 680);      // Размер для основной формы
         }
 
         ///<summary>Изменение размера формы</summary>
@@ -144,7 +133,7 @@ namespace Moderon
                 new Point(width - recup_delta, fan_height) : new Point(width - recup_2_delta, fan_height);
         }
 
-        ///<summary>Скрытие панелей блоков расширения</summary>
+        ///<summary>Скрытие и блокировка панелей блоков расширения</summary>
         private void HideExpansionBlocksPanels()
         {
             // Аналоговые выходы AO для блока M72E12RB
@@ -159,8 +148,8 @@ namespace Moderon
                 block1_DOpanel, block2_DOpanel, block3_DOpanel
             };
 
-            // foreach (var el in block_AO) el.Hide();
-            // foreach (var el in block_DO) el.Hide();
+            foreach (var el in block_AO) { el.Hide(); el.Enabled = false; }         // Скрытие и блокировка для AO панелей
+            foreach (var el in block_DO) { el.Hide(); el.Enabled = false; }         // Скрытие и блокировка для DO панелей
         }
 
         ///<summary>Изменение размера области для отображения руковоства PDF</summary>
@@ -308,6 +297,7 @@ namespace Moderon
                 AO3_plkLabel.Hide(); AO3_combo.Hide();                              // Скрытие AO3 выходного сигнала
                 ChangeSizeLocationSignalsPanels(true);                              // Изменение размера и положения панелей
                 CheckSignals_plkChange();                                           // Проверка распределённых сигналов на Optimized  
+                AddFirstBlockAO_M72E12RB();                                         // Провера на добавление 1-го блока расширения AO
             }
             else if (comboPlkType.SelectedIndex == 1)                               // Выбрали контроллер "Optimized"
             {
@@ -319,6 +309,7 @@ namespace Moderon
                 foreach (var el in do_labels) el.Show();                            // Отображение подписей для DO сигналов
                 AO3_plkLabel.Show(); AO3_combo.Show();                              // Отображение AO3 выходного сигнала
                 ChangeSizeLocationSignalsPanels(false);                             // Изменение размера и положения панелей
+                RemoveFirstBlockAO_M72E12RB();                                      // Проверка на удаление 1-го блока расширения AO
             }
         }
 
@@ -655,6 +646,9 @@ namespace Moderon
             ResetButton_signalsDOClick(this, e);            // Сброс сигналов ПЛК, DO
             ResetButton_signalsAOClick(this, e);            // Сброс сигналов ПЛК, AO
             ClearIO_codes();                                // Очистка кодов для comboBox
+            // Очистка панелей для блоков расширения
+            DoCombosBlocks_Reset();                         // Блок и скрытие элементов для DO панелей блоков расширения
+            UiCombosBlocks_Reset();                         // Блок и скрытие элементов для UI панелей блоков расширения
             Form1_InitSignals(this, e);                     // Начальная расстановка сигналов
         }
 
