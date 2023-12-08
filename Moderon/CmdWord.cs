@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Security.AccessControl;
 using System.Windows.Forms;
 
 // Файл для формирования и вывода готовых командных слов под запись
@@ -72,10 +71,10 @@ namespace Moderon
                 cmdWordsTextBox.Text += (count.ToString() + "_AO_" + counter.ToString() + ") " +
                     aoSignals[counter - 1]).ToString();
                 ++count;
-            }
+            } */
             // Для сигнала пожарной сигнализации
             cmdWordsTextBox.Text += Environment.NewLine;
-            cmdWordsTextBox.Text += (count.ToString() + "_fire" + ") " + cmdW_fire.ToString()); */
+            cmdWordsTextBox.Text += (count.ToString() + "_fire" + ") " + cmdW_fire.ToString());
         }
 
         ///<summary>Сборка массива командных слов из полученных значений</summary>

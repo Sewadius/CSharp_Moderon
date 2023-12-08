@@ -83,9 +83,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandWord.cs">
+    <Compile Include="CmdWord.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ExpBlocks.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,10 +100,10 @@
       <DependentUpon>FormInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Json.cs" />
-    <Compile Include="loadNet.cs">
+    <Compile Include="LoadNet.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="modbusTCP.cs" />
+    <Compile Include="ModbusTCP.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -110,15 +111,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="signalsTableAI.cs">
+    <Compile Include="SignalsTableAI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="signalsTableAO.cs" />
-    <Compile Include="signalsTableDI.cs">
+    <Compile Include="SignalsTableAO.cs" />
+    <Compile Include="SignalsTableDI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="signalsTableDO.cs" />
-    <Compile Include="signalsTableUI.cs" />
+    <Compile Include="SignalsTableDO.cs" />
+    <Compile Include="SignalsTableUI.cs" />
     <Compile Include="Spec.cs">
       <SubType>Form</SubType>
     </Compile>

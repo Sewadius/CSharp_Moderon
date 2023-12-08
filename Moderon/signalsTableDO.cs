@@ -7,9 +7,7 @@ using System.Collections.Generic;
 
 namespace Moderon
 {
-    /// <summary>
-    /// Класс для дискретных выходов
-    /// </summary>
+    /// <summary>Класс для дискретных выходов</summary>
     class Do
     {
         public string Name { get; private set; }
@@ -84,59 +82,6 @@ namespace Moderon
 
             for (var i = 0; i < do_signals_index.Count; i++)
                 do_signals_index[i] = 0;
-        }
-
-        /// <summary>Изначальная блокировка и скрытие comboBox DO блоков расширение, скрытие подписей сигналов</summary>
-        private void DoCombosBlocks_Reset()
-        {
-            DoCombosBlock_1_Reset();                // Блок расширения 1
-            DoCombosBlock_2_Reset();                // Блок расширения 2
-            DoCombosBlock_3_Reset();                // Блок расширения 3
-        }
-
-        /// <summary>Блокировка и скрытие comboBox DO блока расширения 1, скрытие подписей сигналов</summary>
-        private void DoCombosBlock_1_Reset()
-        {
-            var do_combos = new List<ComboBox>() { 
-                DO1bl1_combo, DO2bl1_combo, DO3bl1_combo, DO4bl1_combo, DO5bl1_combo, DO6bl1_combo, DO7bl1_combo, DO8bl1_combo 
-            };
-            var do_labels = new List<Label>()
-            {
-                DO1_bl1Label, DO2_bl1Label, DO3_bl1Label, DO4_bl1Label, DO5_bl1Label, DO6_bl1Label, DO7_bl1Label, DO8_bl1Label 
-            };
-
-            foreach (var el in do_combos) { el.SelectedIndex = 0; el.Hide(); el.Enabled = false; }
-            foreach (var el in do_labels) el.Hide();
-        }
-
-        /// <summary>Блокировка и скрытие comboBox DO блока расширения 2, скрытие подписей сигналов</summary>
-        private void DoCombosBlock_2_Reset()
-        {
-            var do_combos = new List<ComboBox>() {
-                DO1bl2_combo, DO2bl2_combo, DO3bl2_combo, DO4bl2_combo, DO5bl2_combo, DO6bl2_combo, DO7bl2_combo, DO8bl2_combo
-            };
-            var do_labels = new List<Label>()
-            {
-                DO1_bl2Label, DO2_bl2Label, DO3_bl2Label, DO4_bl2Label, DO5_bl2Label, DO6_bl2Label, DO7_bl2Label, DO8_bl2Label
-            };
-
-            foreach (var el in do_combos) { el.Hide(); el.Enabled = false; }
-            foreach (var el in do_labels) el.Hide();
-        }
-
-        /// <summary>Блокировка и скрытие comboBox DO блока расширения 3, скрытие подписей сигналов</summary>
-        private void DoCombosBlock_3_Reset()
-        {
-            var do_combos = new List<ComboBox>() {
-                DO1bl3_combo, DO2bl3_combo, DO3bl3_combo, DO4bl3_combo, DO5bl3_combo, DO6bl3_combo, DO7bl3_combo, DO8bl3_combo
-            };
-            var do_labels = new List<Label>()
-            {
-                DO1_bl3Label, DO2_bl3Label, DO3_bl3Label, DO4_bl3Label, DO5_bl3Label, DO6_bl3Label, DO7_bl3Label, DO8_bl3Label
-            };
-
-            foreach (var el in do_combos) { el.Hide(); el.Enabled = false; }
-            foreach (var el in do_labels) el.Hide();
         }
 
         ///<summary>Нажали на кнопку "Сформировать"</summary> 
@@ -647,8 +592,8 @@ namespace Moderon
             else if (DO2_combo.SelectedIndex == 0) SelectComboBox_DO(DO2_combo, code, DO2_lab, DO2combo_text, DO2combo_index);
             else if (DO3_combo.SelectedIndex == 0) SelectComboBox_DO(DO3_combo, code, DO3_lab, DO3combo_text, DO3combo_index);
             else if (DO4_combo.SelectedIndex == 0) SelectComboBox_DO(DO4_combo, code, DO4_lab, DO4combo_text, DO4combo_index);
-            else if (DO5_combo.SelectedIndex == 0 && DO5_combo.Visible) SelectComboBox_DO(DO5_combo, code, DO5_lab, DO5combo_text, DO5combo_index);
-            else if (DO6_combo.SelectedIndex == 0 && DO6_combo.Visible) SelectComboBox_DO(DO6_combo, code, DO6_lab, DO6combo_text, DO6combo_index);
+            else if (DO5_combo.SelectedIndex == 0 && DO5_combo.Enabled) SelectComboBox_DO(DO5_combo, code, DO5_lab, DO5combo_text, DO5combo_index);
+            else if (DO6_combo.SelectedIndex == 0 && DO6_combo.Enabled) SelectComboBox_DO(DO6_combo, code, DO6_lab, DO6combo_text, DO6combo_index);
             // Блок расширения 1
             else if (DO1bl1_combo.SelectedIndex == 0 && DO1bl1_combo.Enabled) 
                 SelectComboBox_DO(DO1bl1_combo, code, DO1bl1_lab, DO1bl1combo_text, DO1bl1combo_index);

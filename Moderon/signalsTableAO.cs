@@ -4,9 +4,7 @@ using System.Windows.Forms;
 
 namespace Moderon
 {
-    /// <summary>
-    /// Класс для аналоговых выходов
-    /// </summary>
+    /// <summary>Класс для аналоговых выходов</summary>
     class Ao
     {
         public string Name { get; private set; }
@@ -284,33 +282,17 @@ namespace Moderon
             foreach (var el in do_labels) el.Show();
         }
 
-        ///<summary>Проверка необходимости добавления первого блока расширения M72E12RB</summary>
-        private void AddFirstBlockAO_M72E12RB()
-        {
-            ushort count_AO_plk = 2;                                                // Количество 2 AO для ПЛК Mini 
-            if (plkChangeIndexLast == 1) count_AO_plk = 3;                          // Количество 3 AO для ПЛК Optimized
-
-            // Добавление блока M72E12RB в качестве 1-го блока расширения
-            if (list_ao.Count > count_AO_plk && !expansion_blocks.Contains(M72E12RB) && expansion_blocks.Count == 0)
-            {
-                expansion_blocks.Add(M72E12RB);                                     // Добавление блока M72E12RB в список блоков расширения
-                block1_AOpanel.Show(); block1_AOpanel.Enabled = true;               // Отображение и разблокировка панели AO для блока расширения 1
-                DO_block1_panelChanged_M72E12RB();                                  // Изменение панели блока расширения 1 для сигналов DO
-                UI_block1_panelChanged_M72E12RB();                                  // Изменение панели блока расширения 1 для сигналов UI
-            }
-        }
-
         ///<summary>Добавление нового AO и его назначение под выход, автораспределение</summary>
         private void AddNewAO(ushort code)
         {
-            AddFirstBlockAO_M72E12RB();                                           // Проверка необходимости добавить 1-й блок расширения M72E12RB
+            AddFirstBlockAO_M72E12RB();         // Проверка необходимости добавить 1-й блок расширения M72E12RB
 
             // ПЛК
             if (AO1_combo.SelectedIndex == 0) 
                 SelectComboBox_AO(AO1_combo, code, AO1_lab, AO1combo_text, AO1combo_index);
             else if (AO2_combo.SelectedIndex == 0) 
                 SelectComboBox_AO(AO2_combo, code, AO2_lab, AO2combo_text, AO2combo_index);
-            else if (AO3_combo.SelectedIndex == 0 && AO3_combo.Visible) 
+            else if (AO3_combo.SelectedIndex == 0 && AO3_combo.Enabled) 
                 SelectComboBox_AO(AO3_combo, code, AO3_lab, AO3combo_text, AO3combo_index);
             // Блок расширения 1
             else if (AO1bl1_combo.SelectedIndex == 0 && block1_AOpanel.Enabled) 
@@ -361,26 +343,6 @@ namespace Moderon
                     index = comboBox.SelectedIndex;                                                         // Сохранение индекса выбранного AO
                     break;
                 }                                  
-
-        }
-
-        ///<summary>Проверка для удаления первого блока расширения M72E12RB сигналов AO</summary>
-        private void RemoveFirstBlockAO_M72E12RB()
-        {
-            ushort count_AO_plk = 2;                                                // Количество 2 AO для ПЛК Mini 
-            if (plkChangeIndexLast == 1) count_AO_plk = 3;                          // Количество 3 AO для ПЛК Optimized
-
-            // Условия для удаления M72E12RB в качестве 1-го блока расширения
-            if (list_ao.Count <= count_AO_plk && expansion_blocks.Contains(M72E12RB) && expansion_blocks.Count == 1)
-            {
-                expansion_blocks.Remove(M72E12RB);
-                AO1bl1_combo.SelectedIndex = 0; AO2bl1_combo.SelectedIndex = 0;     // Сброс сигналов, если были на блоке
-                block1_AOpanel.Hide(); block1_AOpanel.Enabled = false;              // Скрытие и блокировка панели
-                block1_DOpanel.Hide();                                              // Скрытие панели DO для блока расширения 1
-                block1_UIpanel.Hide();                                              // Скрытие панели UI для блока расширения 1
-                DoCombosBlock_1_Reset();                                            // Скрытие и блокировка элементов DO блока расширения 1
-                UiCombosBlock_1_Reset();                                            // Скрытие и блокировка элементов UI блока расширения 1
-            }
         }
           
         ///<summary>Удаление AO из всех comboBox</summary>

@@ -5,7 +5,6 @@ namespace Moderon
 {
     public partial class Form1 : Form
     {
-
         ///<summary>Выбрали основной нагреватель</summary>
         private void HeaterCheck_signalsAICheckedChanged(object sender, EventArgs e)
         {
