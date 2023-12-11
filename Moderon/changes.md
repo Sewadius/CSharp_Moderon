@@ -375,3 +375,9 @@
 - замена свойства `Visible` на `Enabled` для UI, AO, DO при распеределении
 - `CheckSignals_M72E12RB()` для автораспределения сигналов с блока  
 - `RellocateSignals_DO_UI_signals()` переименован для использования с блоками
+
+11.12.23 (понедельник)
+
+- исправлена ошибка `nullReference` в `ExpBlocks.cs`
+- распределение сигналов AO, DO, UI с блока расширения `CheckSignals_M72E12RB()`
+- создан `AddSecondBlockAO_M72E12RB()` для добавления 2-го блока расширения

@@ -286,6 +286,7 @@ namespace Moderon
         private void AddNewAO(ushort code)
         {
             AddFirstBlockAO_M72E12RB();         // Проверка необходимости добавить 1-й блок расширения M72E12RB
+            AddSecondBlockAO_M72E12RB();        // Проверка необходимости добавить 2-й блок расширения M72E12RB
 
             // ПЛК
             if (AO1_combo.SelectedIndex == 0) 

@@ -31,7 +31,7 @@ namespace Moderon
             M72E12RA = new ExpBlock("M72E12RA", 6, 0, 6),               // 6 DO, 0 AO, 6 UI
             M72E12RB = new ExpBlock("M72E12RB", 4, 2, 6),               // 4 DO, 2 AO, 6 UI
             M72E16NA = new ExpBlock("M72E16NA", 0, 0, 16);              // 0 DO, 0 AO, 16 UI
-                                                                         
+
         /// <summary>Список для определения задействованных блоков расширения</summary>
         static private List<ExpBlock> expansion_blocks = new List<ExpBlock>();
 
@@ -55,23 +55,21 @@ namespace Moderon
         private void RellocateSignals_DO_UI_signals(bool flag, ComboBox cm)
         {
             Do do_find = null;                                                          // DO сигнал для поиска
-            Ui ui_find = null;                                                          // UI сигнал для поиска
-
-            string name = cm.SelectedItem.ToString();
+            Ui ui_find = null;                                                          // UI сигнал для поиска  
 
             if (flag)                                                                   // Для сигналов DO
-                do_find = list_do.Find(x => x.Name == name);
+                do_find = list_do.Find(x => x.Name == cm.SelectedItem.ToString());
             else                                                                        // Для сигналов UI
-                ui_find = list_ui.Find(x => x.Name == name);
+                ui_find = list_ui.Find(x => x.Name == cm.SelectedItem.ToString());
 
             cm.SelectedIndex = 0;                                                       // Сброс в "Не выбрано"
             if (do_find != null)
             {
-                cm.Items.Remove(name); AddNewDO(do_find.Code);                          // Удаление имени сигнала и распределение для DO
+                AddNewDO(do_find.Code);                          // Удаление имени сигнала и распределение для DO
             }
             if (ui_find != null)
             {
-                cm.Items.Remove(name); AddNewUI(ui_find.Code, ui_find.Type);            // Удаление имени сигнала и распределение для UI
+                AddNewUI(ui_find.Code, ui_find.Type);            // Удаление имени сигнала и распределение для UI
             }
         }
 
@@ -79,23 +77,15 @@ namespace Moderon
         private void CheckSignals_plkChange()
         {
             // Сигналы AO
-            if (AO3_combo.SelectedIndex != 0)                                               // AO3, есть ранее выбранный сигнал                               
+            if (AO3_combo.SelectedIndex != 0)                                                   // AO3, есть ранее выбранный сигнал                               
             {
-                string name = "";
-
-                if (AO3_combo.SelectedItem.ToString() != null)
-                    name = AO3_combo.SelectedItem.ToString();
-
                 // Поиск по имени выбранного сигнала на comboBox
-                Ao ao_find = list_ao.Find(x => x.Name == name);
+                Ao ao_find = list_ao.Find(x => x.Name == AO3_combo.SelectedItem.ToString());
                 AO3_combo.SelectedIndex = 0;
-                if (ao_find != null)
-                {
-                    AO3_combo.Items.Remove(name); AddNewAO(ao_find.Code);
-                }
+                if (ao_find != null) AddNewAO(ao_find.Code);
             }
             // Сигналы DO
-            List<ComboBox> do_signals = new List<ComboBox>() { DO5_combo, DO6_combo };      // DO5, DO6
+            List<ComboBox> do_signals = new List<ComboBox>() { DO5_combo, DO6_combo };          // DO5, DO6
 
             foreach (var el in do_signals)
                 if (el.SelectedIndex != 0) RellocateSignals_DO_UI_signals(true, el);            // Есть ранее выбранный сигнал DO  
@@ -110,8 +100,11 @@ namespace Moderon
         ///<summary>Проверка распределенных сигналов при удалении блока расширения M72E12RB сигналов AO</summary>
         private void CheckSignals_M72E12RB()
         {
-            List <ComboBox> ao_signals = new List<ComboBox>() { AO1bl1_combo, AO2bl1_combo };                               // Сигналы AO
-            List <ComboBox> do_signals = new List<ComboBox> { DO1bl1_combo, DO2bl1_combo, DO3bl1_combo, DO4bl1_combo };     // Сигналы DO
+            List<ComboBox> ao_signals = new List<ComboBox>() { AO1bl1_combo, AO2bl1_combo };                                   // Сигналы AO
+            List<ComboBox> do_signals = new List<ComboBox>() { DO1bl1_combo, DO2bl1_combo, DO3bl1_combo, DO4bl1_combo };       // Сигналы DO
+            List<ComboBox> ui_signals = new List<ComboBox>() {                                                                 // Сигналы UI
+                UI1bl1_combo, UI2bl1_combo, UI3bl1_combo, UI4bl1_combo, UI5bl1_combo, UI6bl1_combo
+            };
 
             // Для сигналов AO
             foreach (var el in ao_signals)
@@ -126,9 +119,13 @@ namespace Moderon
                 }
             }
 
-            // Для сигналов DDO
+            // Для сигналов DO
             foreach (var el in do_signals)
                 if (el.SelectedIndex != 0) RellocateSignals_DO_UI_signals(true, el);        // Есть ранее выбранный сигнал DO
+
+            // Для сигналов UI
+            foreach (var el in ui_signals)
+                if (el.SelectedIndex != 0) RellocateSignals_DO_UI_signals(false, el);       // Есть ранее выбранный сигнал UI
         }
 
         ///<summary>Изменение типа контроллера "Mini" или "Optimized"</summary>
@@ -162,7 +159,8 @@ namespace Moderon
 
                 ChangeSizeLocationSignalsPanels(true);                              // Изменение размера и положения панелей
                 CheckSignals_plkChange();                                           // Проверка распределённых сигналов на Optimized  
-                AddFirstBlockAO_M72E12RB();                                         // Провера на добавление 1-го блока расширения AO
+                AddFirstBlockAO_M72E12RB();                                         // Проверка на добавление 1-го блока расширения AO
+                AddSecondBlockAO_M72E12RB();                                        // Проверка на добавление 2-го блока расширения AO
             }
             else if (comboPlkType.SelectedIndex == 1)                               // Выбрали контроллер "Optimized"
             {
@@ -187,7 +185,7 @@ namespace Moderon
             }
         }
 
-        ///<summary>Проверка для добавления первого блока расширения M72E12RB сигналов AO</summary>
+        ///<summary>Проверка для добавления 1-го блока расширения M72E12RB сигналов AO</summary>
         private void AddFirstBlockAO_M72E12RB()
         {
             ushort count_AO_plk = 2;                                                // Количество 2 AO для ПЛК Mini 
@@ -203,7 +201,25 @@ namespace Moderon
             }
         }
 
-        ///<summary>Проверка для удаления первого блока расширения M72E12RB сигналов AO</summary>
+        ///<summary>Проверка для добавления 2-го блока расширения M72E12RB сигналов AO</summary>
+        private void AddSecondBlockAO_M72E12RB()
+        {
+            ushort count_AO = 2;                                                // Количество 2 AO для ПЛК Mini 
+            if (plkChangeIndexLast == 1) count_AO = 3;                          // Количество 3 AO для ПЛК Optimized
+
+            // Проверка количества AO в первом блоке расширения
+            if (expansion_blocks.Contains(M72E12RB)) count_AO += 2;
+
+            // Добавление блока M72E12RB в качестве 2-го блока расширения
+            if (list_ao.Count > count_AO && expansion_blocks.Contains(M72E12RB) && expansion_blocks.Count == 1)
+            {
+                expansion_blocks.Add (M72E12RB);                                    // Добавление блока M72E12RB в список блоков расширения
+                block2_AOpanel.Show(); block2_AOpanel.Enabled = true;               // Отображение и разблокировка панели AO для блока расширения 2
+
+            }
+        }
+
+        ///<summary>Проверка для удаления 1-го блока расширения M72E12RB сигналов AO</summary>
         private void RemoveFirstBlockAO_M72E12RB()
         {
             ushort count_AO_plk = 2;                                                // Количество 2 AO для ПЛК Mini 
@@ -214,7 +230,7 @@ namespace Moderon
             {
                 expansion_blocks.Remove(M72E12RB);
                 // AO1bl1_combo.SelectedIndex = 0; AO2bl1_combo.SelectedIndex = 0;     // Сброс сигналов, если были на блоке
-                CheckSignals_M72E12RB();                                            // Автораспределение сигналов с блока
+                CheckSignals_M72E12RB();                                            // Автораспределение ранее выбранных сигналов с блока
                 block1_AOpanel.Hide(); block1_AOpanel.Enabled = false;              // Скрытие и блокировка панели
                 block1_DOpanel.Hide();                                              // Скрытие панели DO для блока расширения 1
                 block1_UIpanel.Hide();                                              // Скрытие панели UI для блока расширения 1
