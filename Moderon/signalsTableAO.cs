@@ -249,44 +249,12 @@ namespace Moderon
             list_ao.Find(x => x.Code == code).Select();
         }
 
-        ///<summary>Изменение панели UI блока расширения 1 под M72E12RB (6 UI)</summary>
-        private void UI_block1_panelChanged_M72E12RB()
-        {
-            var ui_combos = new List<ComboBox>() { UI1bl1_combo, UI2bl1_combo, UI3bl1_combo, UI4bl1_combo, UI5bl1_combo, UI6bl1_combo };
-            var ui_type_combos = new List<ComboBox>() 
-            {
-                UI1bl1_typeCombo, UI2bl1_typeCombo, UI3bl1_typeCombo, UI4bl1_typeCombo, UI5bl1_typeCombo, UI6bl1_typeCombo
-            };
-            var ui_labels = new List<Label>() { UI1_bl1Label, UI2_bl1Label, UI3_bl1Label, UI4_bl1Label, UI5_bl1Label, UI6_bl1Label };
-
-            UIblock1_header.Text = "Блок расширения 1 - M72E12RB";
-            block1_UIpanel.Height = HEIGHT_UI_PANEL_BLOCK - 10 * DELTA;
-            block1_UIpanel.Show(); block1_UIpanel.Enabled = true;
-
-            foreach (var el in ui_combos) { el.Show(); el.Enabled = true; }
-            foreach (var el in ui_type_combos) el.Show();
-            foreach (var el in ui_labels) el.Show();
-        }
-
-        ///<summary>Изменение панели DO блока расширения 1 под M72E12RB (4 DO)</summary>
-        private void DO_block1_panelChanged_M72E12RB()
-        {
-            var do_combos = new List<ComboBox>() { DO1bl1_combo, DO2bl1_combo, DO3bl1_combo, DO4bl1_combo };
-            var do_labels = new List<Label>() { DO1_bl1Label, DO2_bl1Label, DO3_bl1Label, DO4_bl1Label };
-
-            DOblock1_header.Text = "Блок расширения 1 - M72E12RB";
-            block1_DOpanel.Height = HEIGHT_DO_PANEL_BLOCK - 4 * DELTA;
-            block1_DOpanel.Show(); block1_DOpanel.Enabled = true;
-
-            foreach (var el in do_combos) { el.Show(); el.Enabled = true; }
-            foreach (var el in do_labels) el.Show();
-        }
-
         ///<summary>Добавление нового AO и его назначение под выход, автораспределение</summary>
         private void AddNewAO(ushort code)
         {
             AddFirstBlockAO_M72E12RB();         // Проверка необходимости добавить 1-й блок расширения M72E12RB
             AddSecondBlockAO_M72E12RB();        // Проверка необходимости добавить 2-й блок расширения M72E12RB
+            AddThirdBlockAO_M72E12RB();         // Проверка необходимости добавить 3-й блок расширения M72E12RB
 
             // ПЛК
             if (AO1_combo.SelectedIndex == 0) 
@@ -374,6 +342,8 @@ namespace Moderon
             subAOcondition = false;                 // Сброс признака удаления из AO
             list_ao.Remove(findAo);                 // Удаление сигнала из списка AO
 
+            RemoveThirdBlockAO_M72E12RB();          // Проверка для удаления 3-го блока расширения AO
+            RemoveSecondBlockAO_M72E12RB();         // Проверка для удаления 2-го блока расширения AO
             RemoveFirstBlockAO_M72E12RB();          // Проверка для удаления 1-го блока расширения AO
             CheckSignalsReady();                    // Проверка распределения сигналов
         }

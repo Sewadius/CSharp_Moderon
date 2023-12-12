@@ -380,4 +380,17 @@
 
 - исправлена ошибка `nullReference` в `ExpBlocks.cs`
 - распределение сигналов AO, DO, UI с блока расширения `CheckSignals_M72E12RB()`
-- создан `AddSecondBlockAO_M72E12RB()` для добавления 2-го блока расширения
+- создан `AddSecondBlockAO_M72E12RB()` для добавления 2-го блока расширения  
+
+12.12.23 (вторник)
+
+- обработка сигналов AO элементов перед сигналами DO - `Form1.cs`
+- создан `DO_block2_panelChanged_M72E12RB()` для панели DO блока расширения 2
+- `UI_block2_panelChanged_M72E12RB()` для панели UI блока расширения 2
+- `DO_block2_panelChanged_M72E12RB()` учёт расположения панели DO блока 2
+- `UI_block2_panelChanged_M72E12RB()` учёт расположения панели UI блока 2
+- создан `RemoveSecondBlockAO_M72E12RB()` проверки удаления 2-го блока
+- добавлен `CheckSignals_block2_M72E12RB()` для распределения сигналов с блока 2
+- формирование `RemoveSecondBlockAO_M72E12RB()` удаления 2-го блока AO
+- сформирован `AddThirdBlockAO_M72E12RB()` добавления 3-го блока AO
+

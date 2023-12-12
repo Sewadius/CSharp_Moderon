@@ -55,8 +55,8 @@ namespace Moderon
 
             // Начальная установка для входов и выходов
             Set_UIComboTextIndex();         // Входные сигналы, UI
-            Set_DOComboTextIndex();         // Дискретные выходы, DO
             Set_AOComboTextIndex();         // Аналоговый выходы, AO
+            Set_DOComboTextIndex();         // Дискретные выходы, DO
 
             // Подготовка для блоков расширения
             DoCombosBlocks_Reset();         // Скрытие и блокировка comboBox DO блоков расширение, скрытие Label подписей
@@ -343,8 +343,8 @@ namespace Moderon
             }
             HeaterCheck_cmdCheckedChanged(this, e); // Командное слово
             if (ignoreEvents) return;
-            HeaterCheck_signalsDOCheckedChanged(this, e);   // Сигналы DO ПЛК
             HeaterCheck_signalsAOCheckedChanged(this, e);   // Сигналы AO ПЛК
+            HeaterCheck_signalsDOCheckedChanged(this, e);   // Сигналы DO ПЛК
             HeaterCheck_signalsDICheckedChanged(this, e);   // Сигналы DI ПЛК
             HeaterCheck_signalsAICheckedChanged(this, e);   // Сигналы AI ПЛК
         }
@@ -372,8 +372,8 @@ namespace Moderon
             }
             CoolerCheck_cmdCheckedChanged(this, e);         // Командное слово
             if (ignoreEvents) return;
-            CoolerCheck_signalsDOCheckedChanged(this, e);   // Сигналы DO ПЛК
             CoolerCheck_signalsAOCheckedChanged(this, e);   // Сигналы AO ПЛК
+            CoolerCheck_signalsDOCheckedChanged(this, e);   // Сигналы DO ПЛК
             CoolerCheck_signalsDICheckedChanged(this, e);   // Сигналы DI ПЛК
         }
 
@@ -393,8 +393,8 @@ namespace Moderon
             CheckHumidSensors();                            // Проверка датчиков влажности
             HumidCheck_cmdCheckedChanged(this, e);          // Командное слово
             if (ignoreEvents) return;
-            HumidCheck_signalsDOCheckedChanged(this, e);    // Сигналы DO ПЛК
             HumidCheck_signalsAOCheckedChanged(this, e);    // Сигналы AO ПЛК
+            HumidCheck_signalsDOCheckedChanged(this, e);    // Сигналы DO ПЛК
             HumidCheck_signalsDICheckedChanged(this, e);    // Сигналы DI ПЛК
         }
 
@@ -424,8 +424,8 @@ namespace Moderon
             CheckHumidSensors();                            // Проверка датчиков влажности
             AddHeatCheck_cmdCheckedChanged(this, e);        // Командное слово
             if (ignoreEvents) return;
-            AddHeatCheck_signalsDOCheckedChanged(this, e);  // Сигналы DO ПЛК
             AddHeatCheck_signalsAOCheckedChanged(this, e);  // Сигналы AO ПЛК
+            AddHeatCheck_signalsDOCheckedChanged(this, e);  // Сигналы DO ПЛК
             AddHeatCheck_signalsDICheckedChanged(this, e);  // Сигналы DI ПЛК
             AddHeatCheck_signalsAICheckedChanged(this, e);  // Сигналы AI ПЛК
         }
@@ -476,8 +476,8 @@ namespace Moderon
             }
             RecupCheck_cmdCheckedChanged(this, e);          // Командное слово
             if (ignoreEvents) return;
-            RecupCheck_signalsDOCheckedChanged(this, e);    // Сигналы DO ПЛК
             RecupCheck_signalsAOCheckedChanged(this, e);    // Сигналы AO ПЛК
+            RecupCheck_signalsDOCheckedChanged(this, e);    // Сигналы DO ПЛК
             RecupCheck_signalsDICheckedChanged(this, e);    // Сигналы DI ПЛК
             RecupCheck_signalsAICheckedChanged(this, e);    // Сигналы AI ПЛК
         }
