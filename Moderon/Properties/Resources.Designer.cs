@@ -173,6 +173,16 @@ namespace Moderon.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap red_cross {
+            get {
+                object obj = ResourceManager.GetObject("red_cross", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap rotorRecup {
             get {
                 object obj = ResourceManager.GetObject("rotorRecup", resourceCulture);

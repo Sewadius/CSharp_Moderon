@@ -89,8 +89,11 @@ namespace Moderon
             recupPanel.Size = new Size(Size.Width - deltaW_FanPanel, recupPanel.Height);
             secHeatPanel.Size = new Size(Size.Width - deltaW_FanPanel, secHeatPanel.Height);
 
-            // Положение для панели элементов
+            // Положение для панели элементов, панели блоков расширения и изображения подбора оборудования
             panelElements.Location = new Point(Size.Width - deltaW_panel, height_panel1);
+            panelBlocks.Location = new Point(Size.Width - deltaW_panel, height_panel1 + 
+                panelElements.Height + BETWEEN_PANELS);
+            pic_signalsReady.Location = new Point(panelElements.Location.X, panelElements.Location.Y - BETWEEN_PANELS * 4);
 
             PicturesMove(Size.Width);                       // Перемещение изображений
             PDF_ReSize(Size.Width, Size.Height);            // Область для отображения PDF
@@ -241,13 +244,14 @@ namespace Moderon
         /// <summary>Назначение подсказок при загрузке Form1</summary>
         private void Form1_Load(object sender, EventArgs e)
         {
-            string 
+            string
                 ai_sig = "Добавляет AI сигнал",
                 di_sig = "Добавляет DI сигнал",
                 do_sig = "Добавляет DO сигнал",
                 ao_sig = "Добавляет AO сигнал",
                 ps = "Добавляет DI сигнал и датчик давления",
-                drive = "Привод добавлен в спецификацию";
+                drive = "Привод добавлен в спецификацию",
+                pic_sig_ready = "Состояние карты входов/выходов";
 
             toolTip.Active = hintEnabled;
 
@@ -285,6 +289,8 @@ namespace Moderon
             driveTip.SetToolTip(markPrDampPanel, drive);
             driveTip.SetToolTip(markOutDampPanel, drive);
             driveTip.SetToolTip(markRecircPanel, drive);
+            // Изображение для карты входов/выходов
+            toolTip.SetToolTip(pic_signalsReady, pic_sig_ready);
             // Изменение размера для tabControl выбора оборудования
             mainPage.Height = 465; 
             Form1_InitCmdWord(this, e); // Подготовка командных слов
@@ -482,6 +488,17 @@ namespace Moderon
             RecupCheck_signalsAICheckedChanged(this, e);    // Сигналы AI ПЛК
         }
 
+        ///<summary>Скрытие элементов для панели блоков расширения</summary>
+        private void Hide_panelBlocks_elements()
+        {
+            List<Label> blocks_labels = new List<Label>()
+            {
+                M72E08RA_label, M72E12RA_label, M72E12RB_label, M72E16NA_label
+            };
+            foreach (var el in blocks_labels) el.Hide();
+            panelBlocks.Hide();
+        }
+
         ///<summary>Нажали на кнопку "Сброс"</summary>
         private void ResetButton_Click(object sender, EventArgs e)
         {
@@ -521,6 +538,7 @@ namespace Moderon
             // Очистка панелей для блоков расширения
             DoCombosBlocks_Reset();                         // Блок и скрытие элементов для DO панелей блоков расширения
             UiCombosBlocks_Reset();                         // Блок и скрытие элементов для UI панелей блоков расширения
+            Hide_panelBlocks_elements();                    // Скрытие элементов для панели блоков расширения
             Form1_InitSignals(this, e);                     // Начальная расстановка сигналов
         }
 

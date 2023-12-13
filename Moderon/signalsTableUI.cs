@@ -382,6 +382,8 @@ namespace Moderon
                 SelectComboBox_UI(UI15bl3_combo, code, UI15bl3_lab, UI15bl3combo_text, UI15bl3combo_index, type, UI15bl3_typeCombo);   // UI15 блок 3
             else if (UI16bl3_combo.SelectedIndex == 0 && UI16bl3_combo.Enabled)
                 SelectComboBox_UI(UI16bl3_combo, code, UI16bl3_lab, UI16bl3combo_text, UI16bl3combo_index, type, UI16bl3_typeCombo);   // UI16 блок 3
+            
+            CheckSignalsReady();    // Проверка распределения сигналов
         }
 
         ///<summary>Удаление UI из определённого comboBox</summary>

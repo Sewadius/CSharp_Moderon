@@ -369,7 +369,7 @@
 08.12.23 (пятница)
 
 - добален новый файл `ExpBlocks.cs` для алгоритма блоков расширения
-- создан класс `ExpBlock` для предтавления блока расширения
+- создан класс `ExpBlock` для представления блока расширения
 - добавлены возможные блоки расширения в виде экземпляров класса `ExpBlock`
 - `ComboPlkType_SelectedIndexChanged()` добавлена блокировка DO/AO сигналов
 - замена свойства `Visible` на `Enabled` для UI, AO, DO при распеределении
@@ -394,3 +394,22 @@
 - формирование `RemoveSecondBlockAO_M72E12RB()` удаления 2-го блока AO
 - сформирован `AddThirdBlockAO_M72E12RB()` добавления 3-го блока AO
 
+13.12.23 (среда)
+
+- изменения `RellocateSignals_DO_UI_AO_signals()`, поддержка AO сигналов
+- добавлен `RellocateSignals_fromLists()` для обработки из списков comboBox
+- рефакторинг алгоритма для блоков с использованием `RellocateSignals_fromLists()`
+- `SelectComboBox_AO()` передача по ссылке `ref` для индекса и имени
+- `SelectComboBox_AO()` условия проверки наличия имени при добавлении
+- добавлен `UI_panelBlock_M72E12RB_add()` добавление панелей UI блоков
+- создан `UI_showEnable_combos_labels()` отображение UI `Labels` и `comboBox`
+- внесён `DO_panelBlock_M72E12RB_add()` добавление панелей DO блоков
+- `DO_showEnable_combos_labels()` отображение DO `Labels` и `comboBox`  
+- создана `panelBlocks` для отображения количества блоков расширения
+- добавлен `Hide_panelBlocks_elements()` для скрытия элементов панели блоков
+- добавление `CheckSignalsReady()` в `AddNewAO()` и `AddNewDO()`
+- `CheckPanelBlocks()` поддержка 1 блока AO и отображение элементов
+- `CheckPanelBlocks()` изменения для трёх блоков расширения AO
+- добавлено изображение `red_cross.png` в ресурсы как признак "нет подбора"
+- создан `pictureBox` `pic_signalsReady` для отображения подбора
+- `CheckSignalsReady()` добавлен в `AddNewUI()`

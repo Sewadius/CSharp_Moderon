@@ -2,6 +2,7 @@
 using System;
 using System.Drawing;
 using System.Collections.Generic;
+using System.Linq;
 
 // Файл для работы с таблицей сигналов ПЛК и блоков расширения
 
@@ -92,7 +93,8 @@ namespace Moderon
 
             mainPage.Hide(); loadModbusPanel.Hide();
             label_comboSysType.Text = "ТАБЛИЦА СИГНАЛОВ";
-            comboSysType.Hide(); panelElements.Hide();
+            comboSysType.Hide(); 
+            panelElements.Hide(); panelBlocks.Hide();       // Скрытие панели выбора элементов и блоков расширения
             signalsPanel.Location = p1;
             signalsPanel.Show();
             signalsPanel.Height = 845;
@@ -111,7 +113,9 @@ namespace Moderon
             mainPage.Show();
             label_comboSysType.Text = "ТИП СИСТЕМЫ";
             comboSysType.Show();
-            panelElements.Show();
+            panelElements.Show();                           // Отображение панели выбора элементов
+            // Отображение панели блоков расширения при наличии
+            if (expansion_blocks.Count > 0) panelBlocks.Show();
             formSignalsButton.Show();                       // Отображение кнопки "Сформировать IO"
             // ToolStripMenuItem_load.Enabled = true;       // Разблокировка "Настройка" (опция оключена!)
             fromSignalsMove = false;                        // Сброс признака перехода с панели выбора сигналов
@@ -251,16 +255,59 @@ namespace Moderon
             }
         }
 
+        ///<summary>Проверка и содерижимое для панели блоков расширения</summary>
+        private void CheckPanelBlocks()
+        {
+            var M72E08RA_count = expansion_blocks.Where(x => x == M72E08RA).Count();        // Количество блоков расширения M72E08RA
+            var M72E12RA_count = expansion_blocks.Where(x => x == M72E12RA).Count();        // Количество блоков расширения M72E12RA
+            var M72E12RB_count = expansion_blocks.Where(x => x == M72E12RB).Count();        // Количество блоков расширения M72E12RB
+            var M72E16NA_count = expansion_blocks.Where(x => x == M72E16NA).Count();        // Количество блоков расширения M72E16NA
+
+            if (expansion_blocks.Count > 0 && panelElements.Visible) panelBlocks.Show();    // Отображение панели блоков расширения
+
+            if (expansion_blocks.Count == 1)                                                // Один блок расширения
+            {
+                if (M72E12RB_count == 1)                                                    // Для блока M72E12RB
+                {
+                    M72E12RB_label.Text = "M72E12RB - 1 шт."; M72E12RB_label.Show();
+                    M72E12RB_label.Location = new Point(13, 40);
+                    M72E08RA_label.Hide(); M72E12RA_label.Hide(); M72E16NA_label.Hide();
+                }
+            }
+            else if (expansion_blocks.Count == 2)                                           // Два блока расширения
+            {
+                if (M72E12RB_count == 2)                                                    // Два блока M72E12RB
+                {
+                    M72E12RB_label.Text = "M72E12RB - 2 шт."; M72E12RB_label.Show();
+                    M72E12RB_label.Location = new Point(13, 40);
+                    M72E08RA_label.Hide(); M72E12RA_label.Hide(); M72E16NA_label.Hide();
+                }
+            }
+            else if (expansion_blocks.Count == 3)                                           // Три блока расширения
+            {
+                if (M72E12RB_count == 3)                                                    // Три блока M72E12RB
+                {
+                    M72E12RB_label.Text = "M72E12RB - 3 шт."; M72E12RB_label.Show();
+                    M72E12RB_label.Location = new Point(13, 40);
+                    M72E08RA_label.Hide(); M72E12RA_label.Hide(); M72E16NA_label.Hide();
+                }
+            }
+            else                                                                            // Нет блоков расширения
+            {
+                Hide_panelBlocks_elements();                                                // Скрытие панели блоков расширения и подписей
+            }
+        }
+
         ///<summary>Проверка распределения сигналов</summary>
         private bool CheckSignalsReady()
         {
             bool a = true;                      // Сигналы распределены по умолчанию
 
-            foreach (var elem in list_do)
+            foreach (var elem in list_do)       // Нераспеределённый сигнал в DO
                 if (elem.Active) a = false;
-            foreach (var elem in list_ao)
+            foreach (var elem in list_ao)       // Нераспеределённый сигнал в AO
                 if (elem.Active) a = false;
-            foreach (var elem in list_ui)
+            foreach (var elem in list_ui)       // Нераспеределённый сигнал в UI
                 if (elem.Active) a = false;
 
             if (a) // Сигналы распределены
@@ -270,6 +317,8 @@ namespace Moderon
                 loadPLC_SignalsButton.Show();                       // Кнопка "Далее"
                 loadToExl.Show();                                   // Кнопка экспорта таблицы сигналов в Excel
                 saveSpecToolStripMenuItem.Enabled = true;           // Возможность сохранить спецификацию
+                // Установка изображения, подобрано
+                pic_signalsReady.Image = Properties.Resources.green_check;
             } 
             else // Сигналы не распределены
             {
@@ -278,7 +327,11 @@ namespace Moderon
                 loadPLC_SignalsButton.Hide();                       // Кнопка "Далее"
                 loadToExl.Hide();                                   // Скрытие кнопки экспорта таблицы сигналов в Excel
                 saveSpecToolStripMenuItem.Enabled = false;          // Невозможность сохранить спецификацию
+                // Установка изображения, не подобрано
+                pic_signalsReady.Image = Properties.Resources.red_cross;
             }
+
+            CheckPanelBlocks();                                     // Проверка отображения панели блоков расширения
             return a;
         }
 
@@ -336,7 +389,6 @@ namespace Moderon
             combo_index = comboBox.SelectedIndex;                       // Сохранение индекса выбранного элемента
             CheckSignalsReady();                                        // Проверка распределения сигналов
         }
-
 
         ///<summary>Изменили DO1 comboBox</summary> 
         private void DO1_combo_SelectedIndexChanged(object sender, EventArgs e)
@@ -645,6 +697,8 @@ namespace Moderon
                 SelectComboBox_DO(DO7bl3_combo, code, DO7bl3_lab, DO7bl3combo_text, DO7bl3combo_index);
             else if (DO8bl3_combo.SelectedIndex == 0 && DO8bl3_combo.Enabled) 
                 SelectComboBox_DO(DO8bl3_combo, code, DO8bl3_lab, DO8bl3combo_text, DO8bl3combo_index);
+            
+            CheckSignalsReady();    // Проверка распределения сигналов
         }
 
         ///<summary>Удаление DO из определённого comboBox</summary>

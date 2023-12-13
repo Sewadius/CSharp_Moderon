@@ -113,7 +113,7 @@ namespace Moderon
                 if (!initialComboSignals)                           // Добавление к другим AO
                     AddtoCombosAO(combo_text, comboBox);
             }
-            else
+            else                                                    // Выбор "Не выбрано", удаление сигнала
             {
                 name = string.Concat(comboBox.SelectedItem);
                 ao_find = list_ao.Find(x => x.Name == name);
@@ -200,16 +200,15 @@ namespace Moderon
         ///<summary>Добавление AO в другие слоты для выбора в comboBox</summary>
         private void AddToCombo_AO(string name, ComboBox cm, ref ComboBox comboBox)
         {
-            bool notFound = true;                                               // Элемент в списке не найден изначально
+            bool isFound = false;                                               // Элемент в списке не найден изначально
             if (comboBox != cm)                                                 // Проверка текущего comboBox с проверяемым
             {
                 Ao ao_find = list_ao.Find(x => x.Name == name);
                 if (ao_find != null)                                            // Есть такой AO в списке аналоговых выходов
                 {
-                    foreach (var el in comboBox.Items)                          // Если нет такого названия в списке
-                        if (el.ToString() == name) notFound = false;
-                    if (notFound) comboBox.Items.Add(name);
-                    notFound = true;
+                    if (comboBox.Items.Contains(name)) isFound = true;          // Если такого названия нет в списке
+                    if (!isFound) comboBox.Items.Add(name);
+                    isFound = false;
                 }
             }
         }
@@ -237,16 +236,21 @@ namespace Moderon
                     el.Items.Remove(name);
         }
 
-        ///<summary>Добавление нового DO и его назначение для переданного comboBox</summary>
-        private void SelectComboBox_AO(ComboBox cm, ushort code, Label label, string text, int index)
+        ///<summary>Добавление нового AO и его назначение для переданного comboBox</summary>
+        private void SelectComboBox_AO(ComboBox cm, ushort code, Label label, ref string text, ref int index)
         {
+            Ao find_ao = list_ao.Find(x => x.Code == code);
             string name = list_ao.Find(x => x.Code == code).Name;                   // Поиск есть ли уже такое наименование в элементах comboBox
-            if (!cm.Items.Contains(name)) cm.Items.Add(name);                       // Добавление лишь когда совпадения нет
+            if (find_ao.Active)                                                     // Выход cвободен для распределения
+            {
+                if (!cm.Items.Contains(name)) cm.Items.Add(name);                   // Проверка наличия элемента с таким же именем
+                SubFromCombosAO(name, cm);
+            }
             cm.SelectedIndex = cm.Items.Count - 1;                                  // Выбор последнего элемента
             text = cm.SelectedItem.ToString();                                      // Сохранение названия сигнала
             index = cm.SelectedIndex;                                               // Сохранение выбранного индекса comboBox
-            if (showCode) label.Text = code.ToString();
-            list_ao.Find(x => x.Code == code).Select();
+            if (showCode) label.Text = code.ToString();                             // Отображение числового кода для сигнала
+            list_ao.Find(x => x.Code == code).Select();                             // Распределение выбранного сигнала
         }
 
         ///<summary>Добавление нового AO и его назначение под выход, автораспределение</summary>
@@ -257,27 +261,29 @@ namespace Moderon
             AddThirdBlockAO_M72E12RB();         // Проверка необходимости добавить 3-й блок расширения M72E12RB
 
             // ПЛК
-            if (AO1_combo.SelectedIndex == 0) 
-                SelectComboBox_AO(AO1_combo, code, AO1_lab, AO1combo_text, AO1combo_index);
+            if (AO1_combo.SelectedIndex == 0)
+                SelectComboBox_AO(AO1_combo, code, AO1_lab, ref AO1combo_text, ref AO1combo_index);
             else if (AO2_combo.SelectedIndex == 0) 
-                SelectComboBox_AO(AO2_combo, code, AO2_lab, AO2combo_text, AO2combo_index);
+                SelectComboBox_AO(AO2_combo, code, AO2_lab, ref AO2combo_text, ref AO2combo_index);
             else if (AO3_combo.SelectedIndex == 0 && AO3_combo.Enabled) 
-                SelectComboBox_AO(AO3_combo, code, AO3_lab, AO3combo_text, AO3combo_index);
+                SelectComboBox_AO(AO3_combo, code, AO3_lab, ref AO3combo_text, ref AO3combo_index);
             // Блок расширения 1
             else if (AO1bl1_combo.SelectedIndex == 0 && block1_AOpanel.Enabled) 
-                SelectComboBox_AO(AO1bl1_combo, code, AO1bl1_lab, AO1bl1combo_text, AO1bl1combo_index);
+                SelectComboBox_AO(AO1bl1_combo, code, AO1bl1_lab, ref AO1bl1combo_text, ref AO1bl1combo_index);
             else if (AO2bl1_combo.SelectedIndex == 0 && block1_AOpanel.Enabled) 
-                SelectComboBox_AO(AO2bl1_combo, code, AO2bl1_lab, AO2bl1combo_text, AO2bl1combo_index);
+                SelectComboBox_AO(AO2bl1_combo, code, AO2bl1_lab, ref AO2bl1combo_text, ref AO2bl1combo_index);
             // Блок расширения 2
             else if (AO1bl2_combo.SelectedIndex == 0 && block2_AOpanel.Enabled) 
-                SelectComboBox_AO(AO1bl2_combo, code, AO1bl2_lab, AO1bl2combo_text, AO1bl2combo_index);
+                SelectComboBox_AO(AO1bl2_combo, code, AO1bl2_lab, ref AO1bl2combo_text, ref AO1bl2combo_index);
             else if (AO2bl2_combo.SelectedIndex == 0 && block2_AOpanel.Enabled) 
-                SelectComboBox_AO(AO2bl2_combo, code, AO2bl2_lab, AO2bl2combo_text, AO2bl2combo_index);
+                SelectComboBox_AO(AO2bl2_combo, code, AO2bl2_lab, ref AO2bl2combo_text, ref AO2bl2combo_index);
             // Блок расширения 3
             else if (AO1bl3_combo.SelectedIndex == 0 && block3_AOpanel.Enabled) 
-                SelectComboBox_AO(AO1bl3_combo, code, AO1bl3_lab, AO1bl3combo_text, AO1bl3combo_index);
+                SelectComboBox_AO(AO1bl3_combo, code, AO1bl3_lab, ref AO1bl3combo_text, ref AO1bl3combo_index);
             else if (AO2bl3_combo.SelectedIndex == 0 && block3_AOpanel.Enabled) 
-                SelectComboBox_AO(AO2bl3_combo, code, AO2bl3_lab, AO2bl3combo_text, AO2bl3combo_index);
+                SelectComboBox_AO(AO2bl3_combo, code, AO2bl3_lab, ref AO2bl3combo_text, ref AO2bl3combo_index);
+
+            CheckSignalsReady();                // Проверка распределения сигналов
         }
 
         ///<summary>Удаление AO из определённого comboBox</summary>
