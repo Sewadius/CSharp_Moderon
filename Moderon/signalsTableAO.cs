@@ -256,6 +256,8 @@ namespace Moderon
         ///<summary>Добавление нового AO и его назначение под выход, автораспределение</summary>
         private void AddNewAO(ushort code)
         {
+            CalcExpBlocks_typeNums();
+
             AddFirstBlockAO_M72E12RB();         // Проверка необходимости добавить 1-й блок расширения M72E12RB
             AddSecondBlockAO_M72E12RB();        // Проверка необходимости добавить 2-й блок расширения M72E12RB
             AddThirdBlockAO_M72E12RB();         // Проверка необходимости добавить 3-й блок расширения M72E12RB
@@ -363,24 +365,6 @@ namespace Moderon
 
         /*** ВЫБОР ЭЛЕМЕНТОВ ***/
 
-        ///<summary>Выбрали ПЧ приточного вентилятора</summary>
-        private void PrFanFC_check_signalsAOCheckedChanged(object sender, EventArgs e)
-        {
-            if (prFanFC_check.Checked)                                          // Выбран ПЧ
-            { 
-                if (prFanControlCombo.SelectedIndex == 0)                       // Внешние сигналы
-                    prFanSpeedCheck.Enabled = true;                             // Разблокировка выбора скорости
-                else if (prFanControlCombo.SelectedIndex == 1)                  // Управление Modbus
-                {
-                    if (prFanSpeedCheck.Checked)                                // Отмена выбора скорости
-                        prFanSpeedCheck.Checked = false;
-                    prFanSpeedCheck.Enabled = false;                            // Блокировка выбора опции
-                }
-            }
-            else                                                                // Отмена выбора ПЧ
-                prFanSpeedCheck.Enabled = true;                                 // Разблокировка выбора опции
-        }
-
         ///<summary>Изменили тип управления ПЧ приточного вентилятора</summary>
         private void PrFanControlCombo_signalsAOSelectedIndexChanged(object sender, EventArgs e)
         {
@@ -411,26 +395,6 @@ namespace Moderon
                 AddToListAO("Скорость приточного вентилятора 2", code_1);
             else                                                                // Отмена выбора резервного вентилятора
                 SubFromCombosAO(code_1);                                        // Удаление AO из comboBox выходов
-        }
-
-        ///<summary>Выбрали ПЧ вытяжного вентилятора</summary>
-        private void OutFanFC_check_signalsAOCheckedChanged(object sender, EventArgs e)
-        {
-            if (outFanFC_check.Checked && comboSysType.SelectedIndex == 1)      // Выбран ПЧ, ПВ-система
-            { 
-                if (outFanControlCombo.SelectedIndex == 0)                      // Внешние контакты
-                {
-                    outFanSpeedCheck.Enabled = true;                            // Разблокировка выбора скорости
-                }
-                else if (outFanControlCombo.SelectedIndex == 1)                 // Управление Modbus
-                {
-                    if (outFanSpeedCheck.Checked)                               // Отмена выбора опции
-                        outFanSpeedCheck.Checked = false;
-                    outFanSpeedCheck.Enabled = false;                           // Блокировка опции
-                }
-            }
-            else // Отмена выбора ПЧ
-                outFanSpeedCheck.Enabled = true;                                // Разблокировка выбора скорости
         }
 
         ///<summary>Изменили тип управления ПЧ вытяжного вентилятора</summary>

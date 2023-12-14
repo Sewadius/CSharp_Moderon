@@ -53,6 +53,22 @@ namespace Moderon
             UiCombosBlock_3_Reset();                // Блок расширения 3
         }
 
+        /// <summary>Расчёт типов и количества блоков по сигналам</summary>
+        private Dictionary<ExpBlock, int> CalcExpBlocks_typeNums()
+        {  
+            Dictionary<ExpBlock, int> blocks = new Dictionary<ExpBlock, int>();
+            ushort UI = 7, AO = 2, DO = 4;
+
+            if (plkChangeIndexLast == 1) { UI = 11; AO = 3; DO = 6; }               // ПЛК Optimized
+
+            // Проверка для добавления блоков расширения AO
+            if (list_ao.Count > AO) blocks.Add(M72E12RB, 1);                        // Проверка для добавления 1-го блока расширения AO M72E12RB
+            if (list_ao.Count > AO + M72E12RB.AO) blocks[M72E12RB] = 2;             // Проверка для добавления 2-го блока расширения AO M72E12RB
+            if (list_ao.Count > AO + M72E12RB.AO * 2) blocks[M72E12RB] = 3;         // Проверка для добавления 3-го блока расширения AO M72E12RB
+
+            return blocks;
+        }
+
         ///<summary>Алгоритм перераспределения сигналов DO, UI и AO при смене типа контроллера</summary>
         private void RellocateSignals_DO_UI_AO_signals(short type, ComboBox cm)
         {
@@ -346,7 +362,7 @@ namespace Moderon
             var do_combos = new List<ComboBox>() { DO1bl3_combo, DO2bl3_combo, DO3bl3_combo, DO4bl3_combo };    // DO сигналы
             var do_labels = new List<Label>() { DO1_bl3Label, DO2_bl3Label, DO3_bl3Label, DO4_bl3Label };       // Подписи DO сигналов
 
-            DO_panelBlock_M72E12RB_add(block2_DOpanel);                             // Изменения для панели DO блока расширения 3
+            DO_panelBlock_M72E12RB_add(block3_DOpanel);                             // Изменения для панели DO блока расширения 3
             DO_showEnable_combos_labels(do_combos, do_labels);                      // Отображение и разблокировка элементов
         }
 

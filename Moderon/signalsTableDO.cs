@@ -256,45 +256,19 @@ namespace Moderon
         }
 
         ///<summary>Проверка и содерижимое для панели блоков расширения</summary>
-        private void CheckPanelBlocks()
+        private void CheckPanelBlocks(Dictionary<ExpBlock, int> blocks)
         {
-            var M72E08RA_count = expansion_blocks.Where(x => x == M72E08RA).Count();        // Количество блоков расширения M72E08RA
-            var M72E12RA_count = expansion_blocks.Where(x => x == M72E12RA).Count();        // Количество блоков расширения M72E12RA
-            var M72E12RB_count = expansion_blocks.Where(x => x == M72E12RB).Count();        // Количество блоков расширения M72E12RB
-            var M72E16NA_count = expansion_blocks.Where(x => x == M72E16NA).Count();        // Количество блоков расширения M72E16NA
-
-            if (expansion_blocks.Count > 0 && panelElements.Visible) panelBlocks.Show();    // Отображение панели блоков расширения
-
-            if (expansion_blocks.Count == 1)                                                // Один блок расширения
+            if (blocks.Count == 0) Hide_panelBlocks_elements();                                     // Скрытие панели блоков расширения и подписей
+            if (blocks.Count > 0 && panelElements.Visible) panelBlocks.Show();                      // Отображение панели блоков расширения
+            if (blocks.Count == 1)                                                                  // Один тип блока расширения
             {
-                if (M72E12RB_count == 1)                                                    // Для блока M72E12RB
+                if (blocks.ContainsKey(M72E12RB))                                                   // Содержит блок расширения M72E12RB
                 {
-                    M72E12RB_label.Text = "M72E12RB - 1 шт."; M72E12RB_label.Show();
+                    M72E12RB_label.Text = "M72E12RB - " + blocks[M72E12RB].ToString() + " шт.";
+                    M72E12RB_label.Show();
                     M72E12RB_label.Location = new Point(13, 40);
                     M72E08RA_label.Hide(); M72E12RA_label.Hide(); M72E16NA_label.Hide();
                 }
-            }
-            else if (expansion_blocks.Count == 2)                                           // Два блока расширения
-            {
-                if (M72E12RB_count == 2)                                                    // Два блока M72E12RB
-                {
-                    M72E12RB_label.Text = "M72E12RB - 2 шт."; M72E12RB_label.Show();
-                    M72E12RB_label.Location = new Point(13, 40);
-                    M72E08RA_label.Hide(); M72E12RA_label.Hide(); M72E16NA_label.Hide();
-                }
-            }
-            else if (expansion_blocks.Count == 3)                                           // Три блока расширения
-            {
-                if (M72E12RB_count == 3)                                                    // Три блока M72E12RB
-                {
-                    M72E12RB_label.Text = "M72E12RB - 3 шт."; M72E12RB_label.Show();
-                    M72E12RB_label.Location = new Point(13, 40);
-                    M72E08RA_label.Hide(); M72E12RA_label.Hide(); M72E16NA_label.Hide();
-                }
-            }
-            else                                                                            // Нет блоков расширения
-            {
-                Hide_panelBlocks_elements();                                                // Скрытие панели блоков расширения и подписей
             }
         }
 
@@ -331,7 +305,7 @@ namespace Moderon
                 pic_signalsReady.Image = Properties.Resources.red_cross;
             }
 
-            CheckPanelBlocks();                                     // Проверка отображения панели блоков расширения
+            CheckPanelBlocks(CalcExpBlocks_typeNums());             // Проверка отображения панели блоков расширения
             return a;
         }
 
@@ -1460,21 +1434,6 @@ namespace Moderon
             }
         }
 
-        ///<summary>Выбрали ПЧ приточного вентилятора, сигналы DO</summary>>
-        private void PrFanFC_check_signalsDOCheckedChanged(object sender, EventArgs e)
-        {
-            if (prFanFC_check.Checked)                                                                  // Выбран ПЧ
-            {
-                if (prFanControlCombo.SelectedIndex == 1 && prFanStStopCheck.Checked)                   // Управление по Modbus, был выбран сигнал "Пуск/Стоп"
-                    prFanStStopCheck.Checked = false; 
-            }
-            else                                                                                        // Отмена выбора ПЧ
-            {
-                if (!prFanStStopCheck.Checked) // Выбор сигнала "Пуск/Стоп"
-                    prFanStStopCheck.Checked = true;
-            }
-        }
-
         ///<summary>Изменили тип управления приточного ПЧ</summary>
         private void PrFanControlCombo_signalsDOSelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1499,21 +1458,6 @@ namespace Moderon
             else                                                                                        // Отмена выбора сигнала открытия заслонки
             {
                 SubFromCombosDO(code);
-            }
-        }
-
-        ///<summary>Выбрали ПЧ вытяжного вентилятора</summary>
-        private void OutFanFC_check_signalsDOCheckedChanged(object sender, EventArgs e)
-        {
-            if (comboSysType.SelectedIndex == 1 && outFanFC_check.Checked)                              // Выбран ПЧ и ПВ-система
-            {
-                if (outFanControlCombo.SelectedIndex == 1 && outFanStStopCheck.Checked)                 // Управление по Modbus, был выбран сигнал "Пуск/Стоп" 
-                    outFanStStopCheck.Checked = false;
-            }
-            else if (comboSysType.SelectedIndex == 1 && !outFanFC_check.Checked)                        // Отмена выбора ПЧ
-            {
-                if (!outFanStStopCheck.Checked)                                                         // Выбор сигнала "Пуск/Стоп"
-                    outFanStStopCheck.Checked = true;
             }
         }
 

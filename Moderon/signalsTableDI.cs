@@ -93,33 +93,6 @@ namespace Moderon
             }
         }
 
-        ///<summary>Выбрали ПЧ приточного вентилятора</summary>
-        private void PrFanFC_check_signalsDICheckedChanged(object sender, EventArgs e)
-        {
-            if (prFanFC_check.Checked)                                                                  // Выбран ПЧ
-            { 
-                if (prFanControlCombo.SelectedIndex == 0)                                               // Внешние контакты
-                {
-                    prFanAlarmCheck.Enabled = true;                                                     // Разблокировка выбора аварии
-                    if (!prFanAlarmCheck.Checked)                                                       // Выбор сигнала аварии
-                        prFanAlarmCheck.Checked = true; 
-                }
-                else if (prFanControlCombo.SelectedIndex == 1)                                          // Управление по Modbus
-                {
-                    if (prFanAlarmCheck.Checked)                                                        // Снятие выбора опций
-                        prFanAlarmCheck.Checked = false; 
-                    // Блокировка опций
-                    prFanAlarmCheck.Enabled = false;
-                }
-            } 
-            else // Отмена выбора ПЧ
-            {
-                prFanAlarmCheck.Enabled = true;                                                         // Разблокировка выбора аварии
-                if (prFanAlarmCheck.Checked) 
-                    prFanAlarmCheck.Checked = false;                                                    // Снятие выбора сигнала аварии
-            }
-        }
-
         ///<summary>Изменили тип управления ПЧ приточного вентилятора</summary>
         private void PrFanControlCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
@@ -227,32 +200,6 @@ namespace Moderon
             else                                                                                    // Отмена выбора термоконтактов
             {
                 SubFromCombosUI(code_1); SubFromCombosUI(code_2);
-            }
-        }
-
-        ///<summary>Выбрали ПЧ вытяжного вентилятора</summary>
-        private void OutFanFC_check_signalsDICheckedChanged(object sender, EventArgs e)
-        {
-            if (comboSysType.SelectedIndex == 1 && outFanFC_check.Checked)                          // Выбран ПЧ 
-            { 
-                if (outFanControlCombo.SelectedIndex == 0)                                          // Внешние контакты
-                {
-                    outFanAlarmCheck.Enabled = true;                                                // Разблокировка выбора аварии
-                    if (!outFanAlarmCheck.Checked) outFanAlarmCheck.Checked = true;                 // Выбор сигнала аварии
-                }
-                else if (outFanControlCombo.SelectedIndex == 1)                                     // Управление Modbus
-                {
-                    // Снятие выбора опций
-                    if (outFanAlarmCheck.Checked) outFanAlarmCheck.Checked = false;
-                    // Блокировка опций
-                    outFanAlarmCheck.Enabled = false;
-                }
-            } 
-            else                                                                                    // Отмена выбора ПЧ
-            {
-                outFanAlarmCheck.Enabled = true;                                                    // Разблокировка выбора аварии
-                if (outFanAlarmCheck.Checked)                                                       // Снятие выбора сигнала аварии
-                    outFanAlarmCheck.Checked = false; 
             }
         }
 

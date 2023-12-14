@@ -329,14 +329,15 @@ namespace Moderon
         ///<summary>Выбрали нагреватель</summary>
         private void HeaterCheck_CheckedChanged(object sender, EventArgs e)
         {
-            if (heaterCheck.Checked)                        // Выбрали нагреватель
+            if (heaterCheck.Checked)                                            // Выбрали нагреватель
             {   
                 if (comboSysType.Enabled) comboSysType.Enabled = false;
                 heatPage.Parent = mainPage;
                 prChanSensCheck.Checked = true;
                 prChanSensCheck.Enabled = false;
+                if (!TF_heaterCheck.Checked) TF_heaterCheck.Checked = true;     // Выбор воздушного термостата по умолчанию
             }
-            else                                            // Отмена выбора нагревателя
+            else                                                                // Отмена выбора нагревателя
             {   
                 heatPage.Parent = null;
                 CheckOptions();
@@ -504,7 +505,7 @@ namespace Moderon
         {
             comboSysType.Enabled = true;                    // Разблокировка выбора типа системы
             comboSysType.SelectedIndex = 0;                 // Выбор приточной системы
-            expansion_blocks.Clear();                       // Очистка списка выбранных блоков расширения
+            expansion_blocks.Clear();                       // Очистка списка задействованных блоков расширения
 
             var mainOptions = new List<CheckBox>()
             {
@@ -572,8 +573,14 @@ namespace Moderon
                 powPrFanBox, powPrResFanBox, powOutFanBox, powOutResFanBox
             };
 
+            var fanOptionsUnenabled = new List<CheckBox>()
+            {
+                prFanAlarmCheck, prFanSpeedCheck, outFanAlarmCheck, outFanSpeedCheck
+            };
+
             foreach (var el in fanPrOutOptions) el.Checked = false;
             foreach (var el in fanTextBox) el.Text = "1,5";
+            foreach (var el in fanOptionsUnenabled) el.Enabled = false;
         }
 
         /// <summary>Сброс настроек для воздушных заслонок</summary>
@@ -986,25 +993,28 @@ namespace Moderon
         ///<summary>Выбрали ПЧ приточного вентилятора</summary>
         private void PrFanFC_check_CheckedChanged(object sender, EventArgs e)
         {
-            if (prFanFC_check.Checked)                             // Выбрали ПЧ приточного вентилятора
+            if (prFanFC_check.Checked)                              // Выбрали ПЧ приточного вентилятора
             {
-                prFanControlCombo.Enabled = true;
-                // Разблокировка опций для ПЧ
-                prFanAlarmCheck.Enabled = true;
-                prFanSpeedCheck.Enabled = true;
+                prFanControlCombo.Enabled = true;                   // Разблокировка типа управления ПЧ
+                if (prFanControlCombo.SelectedIndex == 0)           // Внешние контакты 
+                {
+                    prFanAlarmCheck.Enabled = true;                 // Разблокировка сигнала аварии ПЧ
+                    prFanSpeedCheck.Enabled = true;                 // Разблокировка выбора скорости 0-10 В
+                    // Выбор сигнала аварии ПЧ
+                    if (!prFanAlarmCheck.Checked) prFanAlarmCheck.Checked = true;
+                }
             }  
-            else                                                   // Отмена выбора ПЧ приточного вентилятора
+            else                                                    // Отмена выбора ПЧ приточного вентилятора
             {
-                prFanControlCombo.Enabled = false;
-                // Блокировка выбора опций для ПЧ
-                prFanAlarmCheck.Enabled = false;
-                prFanSpeedCheck.Enabled = false;
+                prFanControlCombo.Enabled = false;                  // Блокировка типа управления ПЧ
+                prFanSpeedCheck.Enabled = false;                    // Блокировка выбора скорости 0-10 В
+                prFanAlarmCheck.Enabled = false;                    // Блокировка выбора сигнала аварии ПЧ
+                // Отмена сигнала скорости 0-10 В
+                if (prFanSpeedCheck.Checked) prFanSpeedCheck.Checked = false;
+                // Отмена выбора сигнала аварии ПЧ
+                if (prFanAlarmCheck.Checked) prFanAlarmCheck.Checked = false;
             }
             PrFanFC_check_cmdCheckedChanged(this, e);              // Командное слово
-            if (ignoreEvents) return;
-            PrFanFC_check_signalsAOCheckedChanged(this, e);        // Сигналы AO ПЛК
-            PrFanFC_check_signalsDICheckedChanged(this, e);        // Сигналы DI ПЛК
-            PrFanFC_check_signalsDOCheckedChanged(this, e);        // Сигналы DO ПЛК
         }
 
         ///<summary>Выбрали воздушную заслонку приточного вентилятора</summary>
@@ -1037,22 +1047,26 @@ namespace Moderon
         {
             if (outFanFC_check.Checked)                         // Выбрали ПЧ вытяжного вентилятора
             {
-                outFanControlCombo.Enabled = true;
-                outFanAlarmCheck.Enabled = true;
-                outFanSpeedCheck.Enabled = true;
+                outFanControlCombo.Enabled = true;              // Разблокировка типа управления ПЧ
+                if (outFanControlCombo.SelectedIndex == 0)      // Внешние контакты
+                {
+                    outFanAlarmCheck.Enabled = true;            // Разблокировка сигнала аварии ПЧ
+                    outFanSpeedCheck.Enabled = true;            // Разблокировка выбора скорости 0-10 В
+                    // Выбор сигнала аварии ПЧ
+                    if (!outFanAlarmCheck.Checked) outFanAlarmCheck.Checked = true;
+                }
             } 
-            else // Отмена выбора ПЧ вытяжного вентилятора
+            else                                                // Отмена выбора ПЧ вытяжного вентилятора
             {
-                outFanControlCombo.Enabled = false;
-                // Блокировка выбора опций для ПЧ
-                outFanAlarmCheck.Enabled = false;
-                outFanSpeedCheck.Enabled = false;
+                outFanControlCombo.Enabled = false;             // Блокировка типа управления ПЧ
+                outFanSpeedCheck.Enabled = false;               // Блокировка выбора скорости 0-10 В
+                outFanAlarmCheck.Enabled = false;               // Блокировка сигнала аварии ПЧ
+                // Отмена сигнала скорости 0-10 В
+                if (outFanSpeedCheck.Checked) outFanSpeedCheck.Checked = false;
+                // Отмена сигнала аварии ПЧ
+                if (outFanAlarmCheck.Checked) outFanAlarmCheck.Checked = false;
             }
             OutFanFC_check_cmdCheckedChanged(this, e);          // Командное слово
-            if (ignoreEvents) return;
-            OutFanFC_check_signalsAOCheckedChanged(this, e);    // Сигналы AO ПЛК
-            OutFanFC_check_signalsDICheckedChanged(this, e);    // Сигналы DI ПЛК
-            OutFanFC_check_signalsDOCheckedChanged(this, e);    // Сигналы DO ПЛК
         }
 
         ///<summary>Выбрали воздушную заслонку вытяжного вентилятора</summary>
