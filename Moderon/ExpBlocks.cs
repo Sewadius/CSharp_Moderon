@@ -59,12 +59,67 @@ namespace Moderon
             Dictionary<ExpBlock, int> blocks = new Dictionary<ExpBlock, int>();
             ushort UI = 7, AO = 2, DO = 4;
 
-            if (plkChangeIndexLast == 1) { UI = 11; AO = 3; DO = 6; }               // ПЛК Optimized
+            if (plkChangeIndexLast == 1) { UI = 11; AO = 3; DO = 6; }                               // ПЛК Optimized
 
-            // Проверка для добавления блоков расширения AO
-            if (list_ao.Count > AO) blocks.Add(M72E12RB, 1);                        // Проверка для добавления 1-го блока расширения AO M72E12RB
-            if (list_ao.Count > AO + M72E12RB.AO) blocks[M72E12RB] = 2;             // Проверка для добавления 2-го блока расширения AO M72E12RB
-            if (list_ao.Count > AO + M72E12RB.AO * 2) blocks[M72E12RB] = 3;         // Проверка для добавления 3-го блока расширения AO M72E12RB
+            // Добавление 1-го блока расширения
+            if (blocks.Count == 0)
+            {
+                if (list_ao.Count > AO) blocks.Add(M72E12RB, 1);                                    // AO M72E12RB
+                else if (list_do.Count > DO && list_ui.Count > UI) blocks.Add(M72E12RA, 1);         // DO + UI M72E12RA
+                else if (list_do.Count > DO) blocks.Add(M72E08RA, 1);                               // DO M72E08RA
+                else if (list_ui.Count > UI) blocks.Add(M72E16NA, 1);                               // UI M72E16NA
+            }
+
+            // Добавление 2-го блока расширения
+            if (blocks.Count == 1)
+            {
+                if (blocks.ContainsKey(M72E12RB))                                                   // 1-й блок AO M72E12RB
+                {
+
+                }
+            }
+
+            // Добавление 3-го блока расширения
+            if (blocks.Count == 2)
+            {
+
+            }
+
+            // Проверка для добавления блоков расширения AO (только блоки AO - M72E12RB)
+            if (list_ao.Count > AO && blocks.Count == 0)                            // Проверка для добавления 1-го блока расширения AO M72E12RB
+                blocks.Add(M72E12RB, 1);
+            if (list_ao.Count > AO + M72E12RB.AO && blocks.Count == 1)              // Проверка для добавления 2-го блока расширения AO M72E12RB
+                blocks[M72E12RB] = 2;
+            if (list_ao.Count > AO + M72E12RB.AO * 2 && blocks.Count == 2)          // Проверка для добавления 3-го блока расширения AO M72E12RB
+                blocks[M72E12RB] = 3;
+
+            // Проверка для добавления блоков расширения DO + UI (только блоки DO + UI - M72E12RA)
+            if (list_do.Count > DO && list_ui.Count > UI && blocks.Count == 0)      // Проверка добавления 1-го блока расширения DO + UI M72E12RA
+                blocks.Add(M72E12RA, 1);
+            // Проверка добавления 2-го блока расширения DO + UI M72E12RA
+            if (list_do.Count > DO + M72E12RA.DO && list_ui.Count > UI + M72E12RA.UI && blocks.Count == 1)
+                blocks[M72E12RA] = 2;
+            // Проверка добавления 3-го блока расширения DO + UI M72E12RA
+            if (list_do.Count > DO + M72E12RA.DO * 2 && list_ui.Count > UI + M72E12RA.UI * 2  && blocks.Count == 2)
+                blocks[M72E12RA] = 3;
+
+            // Проверка для добавления блоков расширения DO (только блоки DO - M72E08RA)
+            if (list_do.Count > DO && blocks.Count == 0)                            // Проверка добавления 1-го блока расширения DO M72E08RA
+                blocks.Add(M72E08RA, 1);
+            if (list_do.Count > DO + M72E08RA.DO && blocks.Count == 1)              // Проверка добавления 2-го блока расширения DO M72E08RA
+                blocks[M72E08RA] = 2;
+            if (list_do.Count > DO + M72E08RA.DO * 2 && blocks.Count == 2)          // Проверка добавления 3-го блока расширения DO M72E08RA
+                blocks[M72E08RA] = 3;
+            else if (list_ui.Count > UI && blocks.Count == 2)                       // Проверка добавления 3-го блока расширения UI M72E16NA
+                blocks.Add(M72E16NA, 1);
+
+            // Проверка для добавления блоков расширения UI (только блоки UI - M72E16NA)
+            if (list_ui.Count > UI && blocks.Count == 0)                            // Проверка добавления 1-го блока расширения UI M72E16NA
+                blocks.Add(M72E16NA, 1);
+            if (list_ui.Count > UI + M72E16NA.UI && blocks.Count == 1)              // Проверка добавления 2-го блока расширения UI M72E16NA
+                blocks[M72E16NA] = 2;
+            if (list_ui.Count > UI + M72E16NA.UI * 2 && blocks.Count == 2)          // Проверка добавления 3-го блока расширения UI M72E16NA
+                blocks[M72E16NA] = 3;
 
             return blocks;
         }
