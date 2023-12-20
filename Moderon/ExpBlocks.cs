@@ -53,6 +53,131 @@ namespace Moderon
             UiCombosBlock_3_Reset();                // Блок расширения 3
         }
 
+        ///<summary>Скрытие элементов для панели блоков расширения</summary>
+        private void Hide_panelBlocks_elements()
+        {
+            List<Label> blocks_labels = new List<Label>()
+            {
+                M72E08RA_label, M72E12RA_label, M72E12RB_label, M72E16NA_label
+            };
+            foreach (var el in blocks_labels) el.Hide();
+            panelBlocks.Hide();
+        }
+        
+        ///<summary>Скрытие подписей элементов для панели блоков расширения</summary>
+        private void Hide_panelBlocks_labels(List<Label> labels)
+        {
+            // Подписи для блоков расширения
+            List<Label> initial_labels = new List<Label> { M72E08RA_label, M72E12RA_label, M72E12RB_label, M72E16NA_label };
+
+            foreach (var el in initial_labels)
+                if (!labels.Contains(el)) el.Hide();
+        }
+
+        ///<summary>Отображение подписи блока для панели блоков расширения</summary>
+        private void LabelShow_panelBlocks(Point point, Label label, ExpBlock expBlock, List<Label> labels_to_hide, Dictionary<ExpBlock, int> blocks)
+        {
+            string[] text = ["M72E12RB - ", "M72E12RA - ", "M72E08RA - ", "M72E16NA - "];
+
+            if (label == M72E12RB_label) label.Text = text[0];
+            if (label == M72E12RA_label) label.Text = text[1];
+            if (label == M72E08RA_label) label.Text = text[2];
+            if (label == M72E16NA_label) label.Text = text[3];
+
+            label.Text += blocks[expBlock].ToString() + " шт.";
+            label.Show();
+            label.Location = point;
+            Hide_panelBlocks_labels(labels_to_hide);                // Скрытие для других блоков расширения
+        }
+
+        ///<summary>Проверка отображения, тип и количество блоков для панели блоков расширения</summary>
+        private void CheckPanelBlocks(Dictionary<ExpBlock, int> blocks)
+        {
+            string pieces = " шт.";
+            Point top = new Point(13, 40);
+            List<Label> labels_to_hide = new List<Label>();
+
+            Hide_panelBlocks_elements();                                                            // Скрытие панели блоков и подписей изначально
+            if (blocks.Count > 0 && panelElements.Visible) panelBlocks.Show();                      // Отображение панели блоков расширения
+            if (blocks.Count == 1)                                                                  // Один тип блока расширения
+            {
+                if (blocks.ContainsKey(M72E12RB))                                                   // Содержит блок расширения AO
+                {
+                    labels_to_hide.Add(M72E12RB_label);
+                    LabelShow_panelBlocks(top, M72E12RB_label, M72E12RB, labels_to_hide, blocks);
+                }
+                else if (blocks.ContainsKey(M72E12RA))                                              // Содержит блок UI + DO
+                {
+                    labels_to_hide.Add(M72E12RA_label);
+                    LabelShow_panelBlocks(top, M72E12RA_label, M72E12RA, labels_to_hide, blocks);
+
+                }
+                else if (blocks.ContainsKey(M72E08RA))                                              // Содержит блок DO
+                {
+                    labels_to_hide.Add(M72E08RA_label);
+                    LabelShow_panelBlocks(top, M72E08RA_label, M72E08RA, labels_to_hide, blocks);
+                }
+                else if (blocks.ContainsKey(M72E16NA))                                              // Содержит блок UI
+                {
+                    labels_to_hide.Add(M72E16NA_label);
+                    LabelShow_panelBlocks(top, M72E16NA_label, M72E16NA, labels_to_hide, blocks);
+                }
+            }
+            else if (blocks.Count == 2)                                                             // Два типа блоков расширения
+            {
+                // Один тип блоков расширения
+                if (blocks.ContainsKey(M72E12RB) && blocks[M72E12RB] == 2)                          // Два блока AO
+                {
+                    labels_to_hide.Add(M72E12RB_label);
+                    LabelShow_panelBlocks(top, M72E12RB_label, M72E12RB, labels_to_hide, blocks);
+                }
+                else if (blocks.ContainsKey(M72E12RA) && blocks[M72E12RA] == 2)                     // Два блока UI + DO
+                {
+                    labels_to_hide.Add(M72E12RA_label);
+                    LabelShow_panelBlocks(top, M72E12RA_label, M72E12RA, labels_to_hide, blocks);
+                }
+                else if (blocks.ContainsKey(M72E08RA) && blocks[M72E08RA] == 2)                     // Два блока DO
+                {
+                    labels_to_hide.Add(M72E08RA_label);
+                    LabelShow_panelBlocks(top, M72E08RA_label, M72E08RA, labels_to_hide, blocks);
+                }
+                else if (blocks.ContainsKey(M72E16NA) && blocks[M72E16NA] == 2)                     // Два блока UI
+                {
+                    labels_to_hide.Add(M72E16NA_label);
+                    LabelShow_panelBlocks(top, M72E16NA_label, M72E16NA, labels_to_hide, blocks);
+                }
+                // Два типа блоков
+                if (blocks.ContainsKey(M72E12RB))                                                   // Первый блок AO
+                {
+
+                }
+            }
+            else if (blocks.Count == 3)                                                             // Три типа блоков расширения
+            {
+                // Один тип блоков расширения
+                if (blocks.ContainsKey(M72E12RB) && blocks[M72E12RB] == 3)                          // Три блока AO
+                {
+                    labels_to_hide.Add(M72E12RB_label);
+                    LabelShow_panelBlocks(top, M72E12RB_label, M72E12RB, labels_to_hide, blocks);
+                }
+                else if (blocks.ContainsKey(M72E12RA) && blocks[M72E12RA] == 3)                     // Два блока UI + DO
+                {
+                    labels_to_hide.Add(M72E12RA_label);
+                    LabelShow_panelBlocks(top, M72E12RA_label, M72E12RA, labels_to_hide, blocks);
+                }
+                else if (blocks.ContainsKey(M72E08RA) && blocks[M72E08RA] == 3)                     // Два блока DO
+                {
+                    labels_to_hide.Add(M72E08RA_label);
+                    LabelShow_panelBlocks(top, M72E08RA_label, M72E08RA, labels_to_hide, blocks);
+                }
+                else if (blocks.ContainsKey(M72E16NA) && blocks[M72E16NA] == 3)                     // Два блока UI
+                {
+                    labels_to_hide.Add(M72E16NA_label);
+                    LabelShow_panelBlocks(top, M72E16NA_label, M72E16NA, labels_to_hide, blocks);
+                }
+            }
+        }
+
         /// <summary>Расчёт типов и количества блоков по сигналам</summary>
         private Dictionary<ExpBlock, int> CalcExpBlocks_typeNums()
         {  

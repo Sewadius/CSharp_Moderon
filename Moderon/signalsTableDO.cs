@@ -255,23 +255,6 @@ namespace Moderon
             }
         }
 
-        ///<summary>Проверка и содерижимое для панели блоков расширения</summary>
-        private void CheckPanelBlocks(Dictionary<ExpBlock, int> blocks)
-        {
-            if (blocks.Count == 0) Hide_panelBlocks_elements();                                     // Скрытие панели блоков расширения и подписей
-            if (blocks.Count > 0 && panelElements.Visible) panelBlocks.Show();                      // Отображение панели блоков расширения
-            if (blocks.Count == 1)                                                                  // Один тип блока расширения
-            {
-                if (blocks.ContainsKey(M72E12RB))                                                   // Содержит блок расширения M72E12RB
-                {
-                    M72E12RB_label.Text = "M72E12RB - " + blocks[M72E12RB].ToString() + " шт.";
-                    M72E12RB_label.Show();
-                    M72E12RB_label.Location = new Point(13, 40);
-                    M72E08RA_label.Hide(); M72E12RA_label.Hide(); M72E16NA_label.Hide();
-                }
-            }
-        }
-
         ///<summary>Проверка распределения сигналов</summary>
         private bool CheckSignalsReady()
         {
@@ -305,7 +288,7 @@ namespace Moderon
                 pic_signalsReady.Image = Properties.Resources.red_cross;
             }
 
-            CheckPanelBlocks(CalcExpBlocks_typeNums());             // Проверка отображения панели блоков расширения
+            CheckPanelBlocks(CalcExpBlocks_typeNums());             // Проверка отображения панели блоков расширения, тип и количество
             return a;
         }
 

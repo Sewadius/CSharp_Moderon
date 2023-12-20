@@ -489,17 +489,6 @@ namespace Moderon
             RecupCheck_signalsAICheckedChanged(this, e);    // Сигналы AI ПЛК
         }
 
-        ///<summary>Скрытие элементов для панели блоков расширения</summary>
-        private void Hide_panelBlocks_elements()
-        {
-            List<Label> blocks_labels = new List<Label>()
-            {
-                M72E08RA_label, M72E12RA_label, M72E12RB_label, M72E16NA_label
-            };
-            foreach (var el in blocks_labels) el.Hide();
-            panelBlocks.Hide();
-        }
-
         ///<summary>Нажали на кнопку "Сброс"</summary>
         private void ResetButton_Click(object sender, EventArgs e)
         {
