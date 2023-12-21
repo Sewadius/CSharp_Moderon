@@ -256,11 +256,11 @@ namespace Moderon
         ///<summary>Добавление нового AO и его назначение под выход, автораспределение</summary>
         private void AddNewAO(ushort code)
         {
-            CalcExpBlocks_typeNums();
+            var blocks = CalcExpBlocks_typeNums();          // Определение типов и количества блоков расширения
 
-            AddFirstBlockAO_M72E12RB();         // Проверка необходимости добавить 1-й блок расширения M72E12RB
-            AddSecondBlockAO_M72E12RB();        // Проверка необходимости добавить 2-й блок расширения M72E12RB
-            AddThirdBlockAO_M72E12RB();         // Проверка необходимости добавить 3-й блок расширения M72E12RB
+            AddFirstBlockAO_M72E12RB(blocks);               // Проверка необходимости добавить 1-й блок расширения M72E12RB
+            AddSecondBlockAO_M72E12RB(blocks);              // Проверка необходимости добавить 2-й блок расширения M72E12RB
+            AddThirdBlockAO_M72E12RB(blocks);               // Проверка необходимости добавить 3-й блок расширения M72E12RB
 
             // ПЛК
             if (AO1_combo.SelectedIndex == 0)

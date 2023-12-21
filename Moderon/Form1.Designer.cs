@@ -50,6 +50,7 @@
             this.sigWorkCheck = new System.Windows.Forms.CheckBox();
             this.label136 = new System.Windows.Forms.Label();
             this.outdoorChanSensCheck = new System.Windows.Forms.CheckBox();
+            this.sensorPicture = new System.Windows.Forms.PictureBox();
             this.outChanSensCheck = new System.Windows.Forms.CheckBox();
             this.roomHumSensCheck = new System.Windows.Forms.CheckBox();
             this.chanHumSensCheck = new System.Windows.Forms.CheckBox();
@@ -63,6 +64,7 @@
             this.outFanSpeedCheck = new System.Windows.Forms.CheckBox();
             this.outFanStStopCheck = new System.Windows.Forms.CheckBox();
             this.outFanAlarmCheck = new System.Windows.Forms.CheckBox();
+            this.fanPicture2 = new System.Windows.Forms.PictureBox();
             this.curDefOutFanCheck = new System.Windows.Forms.CheckBox();
             this.outFanThermoCheck = new System.Windows.Forms.CheckBox();
             this.labelResOutFan_2 = new System.Windows.Forms.Label();
@@ -84,6 +86,7 @@
             this.prDampFanCheck = new System.Windows.Forms.CheckBox();
             this.prFanStStopCheck = new System.Windows.Forms.CheckBox();
             this.prFanAlarmCheck = new System.Windows.Forms.CheckBox();
+            this.fanPicture1 = new System.Windows.Forms.PictureBox();
             this.curDefPrFanCheck = new System.Windows.Forms.CheckBox();
             this.prFanThermoCheck = new System.Windows.Forms.CheckBox();
             this.labelResPrFan_2 = new System.Windows.Forms.Label();
@@ -103,6 +106,7 @@
             this.prFanSpeedCheck = new System.Windows.Forms.CheckBox();
             this.filterPage = new System.Windows.Forms.TabPage();
             this.filterPanel = new System.Windows.Forms.Panel();
+            this.filterPicture = new System.Windows.Forms.PictureBox();
             this.outFilterPanel = new System.Windows.Forms.Panel();
             this.filterOutCombo = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -112,6 +116,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.dampPage = new System.Windows.Forms.TabPage();
             this.dampPanel = new System.Windows.Forms.Panel();
+            this.markPrDampPanel = new System.Windows.Forms.Panel();
             this.prDampTorqLabel = new System.Windows.Forms.Label();
             this.springRetPrDampCheck = new System.Windows.Forms.CheckBox();
             this.prDampSLabel = new System.Windows.Forms.Label();
@@ -121,7 +126,9 @@
             this.b_prDampBox = new System.Windows.Forms.TextBox();
             this.label166 = new System.Windows.Forms.Label();
             this.label158 = new System.Windows.Forms.Label();
+            this.dampPicture = new System.Windows.Forms.PictureBox();
             this.outDampPanel = new System.Windows.Forms.Panel();
+            this.markOutDampPanel = new System.Windows.Forms.Panel();
             this.outDampTorqLabel = new System.Windows.Forms.Label();
             this.outDampSLabel = new System.Windows.Forms.Label();
             this.springRetOutDampCheck = new System.Windows.Forms.CheckBox();
@@ -144,6 +151,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.heatPage = new System.Windows.Forms.TabPage();
             this.heatPanel = new System.Windows.Forms.Panel();
+            this.heatPicture = new System.Windows.Forms.PictureBox();
             this.elHeatPanel = new System.Windows.Forms.Panel();
             this.firstStHeatCombo = new System.Windows.Forms.ComboBox();
             this.label38 = new System.Windows.Forms.Label();
@@ -171,6 +179,7 @@
             this.label17 = new System.Windows.Forms.Label();
             this.coolPage = new System.Windows.Forms.TabPage();
             this.coolPanel = new System.Windows.Forms.Panel();
+            this.coolPicture = new System.Windows.Forms.PictureBox();
             this.watCoolPanel = new System.Windows.Forms.Panel();
             this.analogCoolCheck = new System.Windows.Forms.CheckBox();
             this.powWatCoolCombo = new System.Windows.Forms.ComboBox();
@@ -188,6 +197,7 @@
             this.label25 = new System.Windows.Forms.Label();
             this.humidPage = new System.Windows.Forms.TabPage();
             this.humidPanel = new System.Windows.Forms.Panel();
+            this.humidPicture = new System.Windows.Forms.PictureBox();
             this.cellHumidPanel = new System.Windows.Forms.Panel();
             this.powPumpHumidCheck = new System.Windows.Forms.CheckBox();
             this.label36 = new System.Windows.Forms.Label();
@@ -201,6 +211,7 @@
             this.recircPage = new System.Windows.Forms.TabPage();
             this.recircPanel = new System.Windows.Forms.Panel();
             this.recircPrDampAOCheck = new System.Windows.Forms.CheckBox();
+            this.markRecircPanel = new System.Windows.Forms.Panel();
             this.recircTorqLabel = new System.Windows.Forms.Label();
             this.recircSLabel = new System.Windows.Forms.Label();
             this.label170 = new System.Windows.Forms.Label();
@@ -210,12 +221,14 @@
             this.label172 = new System.Windows.Forms.Label();
             this.label175 = new System.Windows.Forms.Label();
             this.springRetRecircCheck = new System.Windows.Forms.CheckBox();
+            this.recircPicture = new System.Windows.Forms.PictureBox();
             this.recircAOSigCheck = new System.Windows.Forms.CheckBox();
             this.recircPowCombo = new System.Windows.Forms.ComboBox();
             this.label41 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
             this.recupPage = new System.Windows.Forms.TabPage();
             this.recupPanel = new System.Windows.Forms.Panel();
+            this.recupPicture = new System.Windows.Forms.PictureBox();
             this.defRecupSensPanel = new System.Windows.Forms.Panel();
             this.recDefPsCheck = new System.Windows.Forms.CheckBox();
             this.label49 = new System.Windows.Forms.Label();
@@ -242,6 +255,7 @@
             this.label43 = new System.Windows.Forms.Label();
             this.addHeatPage = new System.Windows.Forms.TabPage();
             this.secHeatPanel = new System.Windows.Forms.Panel();
+            this.heatAddPicture = new System.Windows.Forms.PictureBox();
             this.elAddHeatPanel = new System.Windows.Forms.Panel();
             this.firstStAddHeatCombo = new System.Windows.Forms.ComboBox();
             this.label40 = new System.Windows.Forms.Label();
@@ -725,56 +739,53 @@
             this.M72E12RB_label = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
-            this.sensorPicture = new System.Windows.Forms.PictureBox();
-            this.fanPicture2 = new System.Windows.Forms.PictureBox();
-            this.fanPicture1 = new System.Windows.Forms.PictureBox();
-            this.filterPicture = new System.Windows.Forms.PictureBox();
-            this.markPrDampPanel = new System.Windows.Forms.Panel();
-            this.dampPicture = new System.Windows.Forms.PictureBox();
-            this.markOutDampPanel = new System.Windows.Forms.Panel();
-            this.heatPicture = new System.Windows.Forms.PictureBox();
-            this.coolPicture = new System.Windows.Forms.PictureBox();
-            this.humidPicture = new System.Windows.Forms.PictureBox();
-            this.markRecircPanel = new System.Windows.Forms.Panel();
-            this.recircPicture = new System.Windows.Forms.PictureBox();
-            this.recupPicture = new System.Windows.Forms.PictureBox();
-            this.heatAddPicture = new System.Windows.Forms.PictureBox();
             this.pic_signalsReady = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.sensorsPage.SuspendLayout();
             this.sensorsPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sensorPicture)).BeginInit();
             this.fanPage.SuspendLayout();
             this.outFanPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fanPicture2)).BeginInit();
             this.prFanPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fanPicture1)).BeginInit();
             this.filterPage.SuspendLayout();
             this.filterPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.filterPicture)).BeginInit();
             this.outFilterPanel.SuspendLayout();
             this.dampPage.SuspendLayout();
             this.dampPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dampPicture)).BeginInit();
             this.outDampPanel.SuspendLayout();
             this.heatPage.SuspendLayout();
             this.heatPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.heatPicture)).BeginInit();
             this.elHeatPanel.SuspendLayout();
             this.watHeatPanel.SuspendLayout();
             this.coolPage.SuspendLayout();
             this.coolPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.coolPicture)).BeginInit();
             this.watCoolPanel.SuspendLayout();
             this.frCoolPanel.SuspendLayout();
             this.humidPage.SuspendLayout();
             this.humidPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.humidPicture)).BeginInit();
             this.cellHumidPanel.SuspendLayout();
             this.steamHumidPanel.SuspendLayout();
             this.recircPage.SuspendLayout();
             this.recircPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.recircPicture)).BeginInit();
             this.recupPage.SuspendLayout();
             this.recupPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.recupPicture)).BeginInit();
             this.defRecupSensPanel.SuspendLayout();
             this.plastRecupPanel.SuspendLayout();
             this.glikRecupPanel.SuspendLayout();
             this.rotorRecupPanel.SuspendLayout();
             this.addHeatPage.SuspendLayout();
             this.secHeatPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.heatAddPicture)).BeginInit();
             this.elAddHeatPanel.SuspendLayout();
             this.watAddHeatPanel.SuspendLayout();
             this.panelElements.SuspendLayout();
@@ -802,17 +813,6 @@
             this.loadCanPanel.SuspendLayout();
             this.panelBlocks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sensorPicture)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fanPicture2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fanPicture1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.filterPicture)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dampPicture)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.heatPicture)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.coolPicture)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.humidPicture)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.recircPicture)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.recupPicture)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.heatAddPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_signalsReady)).BeginInit();
             this.SuspendLayout();
             // 
@@ -900,7 +900,7 @@
             this.mainPage.Location = new System.Drawing.Point(15, 75);
             this.mainPage.Name = "mainPage";
             this.mainPage.SelectedIndex = 0;
-            this.mainPage.Size = new System.Drawing.Size(750, 518);
+            this.mainPage.Size = new System.Drawing.Size(750, 40);
             this.mainPage.TabIndex = 1;
             // 
             // sensorsPage
@@ -909,7 +909,7 @@
             this.sensorsPage.Controls.Add(this.sensorsPanel);
             this.sensorsPage.Location = new System.Drawing.Point(4, 22);
             this.sensorsPage.Name = "sensorsPage";
-            this.sensorsPage.Size = new System.Drawing.Size(742, 492);
+            this.sensorsPage.Size = new System.Drawing.Size(742, 14);
             this.sensorsPage.TabIndex = 9;
             this.sensorsPage.Text = "ДАТЧИКИ/СИГНАЛЫ";
             // 
@@ -1062,6 +1062,16 @@
             this.outdoorChanSensCheck.Text = "Датчик температуры наружного воздуха";
             this.outdoorChanSensCheck.UseVisualStyleBackColor = true;
             this.outdoorChanSensCheck.CheckedChanged += new System.EventHandler(this.OutdoorChanSensCheck_cmdCheckedChanged);
+            // 
+            // sensorPicture
+            // 
+            this.sensorPicture.Image = global::Moderon.Properties.Resources.sensorTemp;
+            this.sensorPicture.Location = new System.Drawing.Point(584, 3);
+            this.sensorPicture.Name = "sensorPicture";
+            this.sensorPicture.Size = new System.Drawing.Size(130, 172);
+            this.sensorPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.sensorPicture.TabIndex = 52;
+            this.sensorPicture.TabStop = false;
             // 
             // outChanSensCheck
             // 
@@ -1246,6 +1256,16 @@
             this.outFanAlarmCheck.Text = "Выход аварии с ПЧ";
             this.outFanAlarmCheck.UseVisualStyleBackColor = true;
             this.outFanAlarmCheck.CheckedChanged += new System.EventHandler(this.OutFanAlarmCheck_cmdCheckedChanged);
+            // 
+            // fanPicture2
+            // 
+            this.fanPicture2.Image = global::Moderon.Properties.Resources.fan_2;
+            this.fanPicture2.Location = new System.Drawing.Point(558, 3);
+            this.fanPicture2.Name = "fanPicture2";
+            this.fanPicture2.Size = new System.Drawing.Size(156, 242);
+            this.fanPicture2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.fanPicture2.TabIndex = 0;
+            this.fanPicture2.TabStop = false;
             // 
             // curDefOutFanCheck
             // 
@@ -1524,6 +1544,17 @@
             this.prFanAlarmCheck.UseVisualStyleBackColor = true;
             this.prFanAlarmCheck.CheckedChanged += new System.EventHandler(this.PrFanAlarmCheck_cmdCheckedChanged);
             // 
+            // fanPicture1
+            // 
+            this.fanPicture1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.fanPicture1.Image = global::Moderon.Properties.Resources.fan;
+            this.fanPicture1.Location = new System.Drawing.Point(537, 3);
+            this.fanPicture1.Name = "fanPicture1";
+            this.fanPicture1.Size = new System.Drawing.Size(177, 200);
+            this.fanPicture1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.fanPicture1.TabIndex = 0;
+            this.fanPicture1.TabStop = false;
+            // 
             // curDefPrFanCheck
             // 
             this.curDefPrFanCheck.AutoSize = true;
@@ -1752,6 +1783,16 @@
             this.filterPanel.Size = new System.Drawing.Size(717, 342);
             this.filterPanel.TabIndex = 2;
             // 
+            // filterPicture
+            // 
+            this.filterPicture.Image = global::Moderon.Properties.Resources.filter;
+            this.filterPicture.Location = new System.Drawing.Point(586, 3);
+            this.filterPicture.Name = "filterPicture";
+            this.filterPicture.Size = new System.Drawing.Size(128, 218);
+            this.filterPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.filterPicture.TabIndex = 0;
+            this.filterPicture.TabStop = false;
+            // 
             // outFilterPanel
             // 
             this.outFilterPanel.Controls.Add(this.filterOutCombo);
@@ -1877,6 +1918,16 @@
             this.dampPanel.Size = new System.Drawing.Size(717, 441);
             this.dampPanel.TabIndex = 3;
             // 
+            // markPrDampPanel
+            // 
+            this.markPrDampPanel.BackgroundImage = global::Moderon.Properties.Resources.green_check;
+            this.markPrDampPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.markPrDampPanel.Location = new System.Drawing.Point(497, 166);
+            this.markPrDampPanel.Name = "markPrDampPanel";
+            this.markPrDampPanel.Size = new System.Drawing.Size(30, 30);
+            this.markPrDampPanel.TabIndex = 36;
+            this.markPrDampPanel.Visible = false;
+            // 
             // prDampTorqLabel
             // 
             this.prDampTorqLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -1977,6 +2028,16 @@
             this.label158.TabIndex = 27;
             this.label158.Text = "Ширина, b";
             // 
+            // dampPicture
+            // 
+            this.dampPicture.Image = global::Moderon.Properties.Resources.damp;
+            this.dampPicture.Location = new System.Drawing.Point(574, 3);
+            this.dampPicture.Name = "dampPicture";
+            this.dampPicture.Size = new System.Drawing.Size(140, 237);
+            this.dampPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.dampPicture.TabIndex = 0;
+            this.dampPicture.TabStop = false;
+            // 
             // outDampPanel
             // 
             this.outDampPanel.Controls.Add(this.markOutDampPanel);
@@ -2000,6 +2061,16 @@
             this.outDampPanel.Size = new System.Drawing.Size(524, 242);
             this.outDampPanel.TabIndex = 26;
             this.outDampPanel.Visible = false;
+            // 
+            // markOutDampPanel
+            // 
+            this.markOutDampPanel.BackgroundImage = global::Moderon.Properties.Resources.green_check;
+            this.markOutDampPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.markOutDampPanel.Location = new System.Drawing.Point(493, 166);
+            this.markOutDampPanel.Name = "markOutDampPanel";
+            this.markOutDampPanel.Size = new System.Drawing.Size(30, 30);
+            this.markOutDampPanel.TabIndex = 37;
+            this.markOutDampPanel.Visible = false;
             // 
             // outDampTorqLabel
             // 
@@ -2270,6 +2341,16 @@
             this.heatPanel.Name = "heatPanel";
             this.heatPanel.Size = new System.Drawing.Size(717, 604);
             this.heatPanel.TabIndex = 2;
+            // 
+            // heatPicture
+            // 
+            this.heatPicture.Image = global::Moderon.Properties.Resources.waterHeater;
+            this.heatPicture.Location = new System.Drawing.Point(579, 3);
+            this.heatPicture.Name = "heatPicture";
+            this.heatPicture.Size = new System.Drawing.Size(129, 222);
+            this.heatPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.heatPicture.TabIndex = 0;
+            this.heatPicture.TabStop = false;
             // 
             // elHeatPanel
             // 
@@ -2632,6 +2713,16 @@
             this.coolPanel.Size = new System.Drawing.Size(717, 470);
             this.coolPanel.TabIndex = 3;
             // 
+            // coolPicture
+            // 
+            this.coolPicture.Image = global::Moderon.Properties.Resources.freonCooler;
+            this.coolPicture.Location = new System.Drawing.Point(579, 3);
+            this.coolPicture.Name = "coolPicture";
+            this.coolPicture.Size = new System.Drawing.Size(138, 218);
+            this.coolPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.coolPicture.TabIndex = 0;
+            this.coolPicture.TabStop = false;
+            // 
             // watCoolPanel
             // 
             this.watCoolPanel.Controls.Add(this.analogCoolCheck);
@@ -2850,6 +2941,16 @@
             this.humidPanel.Size = new System.Drawing.Size(717, 378);
             this.humidPanel.TabIndex = 2;
             // 
+            // humidPicture
+            // 
+            this.humidPicture.Image = global::Moderon.Properties.Resources.humid;
+            this.humidPicture.Location = new System.Drawing.Point(546, 3);
+            this.humidPicture.Name = "humidPicture";
+            this.humidPicture.Size = new System.Drawing.Size(165, 216);
+            this.humidPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.humidPicture.TabIndex = 0;
+            this.humidPicture.TabStop = false;
+            // 
             // cellHumidPanel
             // 
             this.cellHumidPanel.Controls.Add(this.powPumpHumidCheck);
@@ -3023,6 +3124,16 @@
             this.recircPrDampAOCheck.UseVisualStyleBackColor = true;
             this.recircPrDampAOCheck.CheckedChanged += new System.EventHandler(this.RecircPrDampAOCheck_CheckedChanged);
             // 
+            // markRecircPanel
+            // 
+            this.markRecircPanel.BackgroundImage = global::Moderon.Properties.Resources.green_check;
+            this.markRecircPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.markRecircPanel.Location = new System.Drawing.Point(497, 166);
+            this.markRecircPanel.Name = "markRecircPanel";
+            this.markRecircPanel.Size = new System.Drawing.Size(30, 30);
+            this.markRecircPanel.TabIndex = 48;
+            this.markRecircPanel.Visible = false;
+            // 
             // recircTorqLabel
             // 
             this.recircTorqLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -3123,6 +3234,16 @@
             this.springRetRecircCheck.UseVisualStyleBackColor = true;
             this.springRetRecircCheck.CheckedChanged += new System.EventHandler(this.SpringRetRecircCheck_CheckedChanged);
             // 
+            // recircPicture
+            // 
+            this.recircPicture.Image = global::Moderon.Properties.Resources.damp;
+            this.recircPicture.Location = new System.Drawing.Point(577, 3);
+            this.recircPicture.Name = "recircPicture";
+            this.recircPicture.Size = new System.Drawing.Size(140, 237);
+            this.recircPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.recircPicture.TabIndex = 0;
+            this.recircPicture.TabStop = false;
+            // 
             // recircAOSigCheck
             // 
             this.recircAOSigCheck.AutoSize = true;
@@ -3199,6 +3320,16 @@
             this.recupPanel.Name = "recupPanel";
             this.recupPanel.Size = new System.Drawing.Size(717, 413);
             this.recupPanel.TabIndex = 4;
+            // 
+            // recupPicture
+            // 
+            this.recupPicture.Image = global::Moderon.Properties.Resources.rotorRecup;
+            this.recupPicture.Location = new System.Drawing.Point(597, 3);
+            this.recupPicture.Name = "recupPicture";
+            this.recupPicture.Size = new System.Drawing.Size(117, 221);
+            this.recupPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.recupPicture.TabIndex = 0;
+            this.recupPicture.TabStop = false;
             // 
             // defRecupSensPanel
             // 
@@ -3525,6 +3656,16 @@
             this.secHeatPanel.Name = "secHeatPanel";
             this.secHeatPanel.Size = new System.Drawing.Size(717, 657);
             this.secHeatPanel.TabIndex = 3;
+            // 
+            // heatAddPicture
+            // 
+            this.heatAddPicture.Image = global::Moderon.Properties.Resources.waterHeater;
+            this.heatAddPicture.Location = new System.Drawing.Point(579, 3);
+            this.heatAddPicture.Name = "heatAddPicture";
+            this.heatAddPicture.Size = new System.Drawing.Size(129, 222);
+            this.heatAddPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.heatAddPicture.TabIndex = 0;
+            this.heatAddPicture.TabStop = false;
             // 
             // elAddHeatPanel
             // 
@@ -4304,9 +4445,9 @@
             this.signalsPanel.Controls.Add(this.signalsReadyLabel);
             this.signalsPanel.Controls.Add(this.tabControlSignals);
             this.signalsPanel.Controls.Add(this.backSignalsButton);
-            this.signalsPanel.Location = new System.Drawing.Point(5, 635);
+            this.signalsPanel.Location = new System.Drawing.Point(11, 158);
             this.signalsPanel.Name = "signalsPanel";
-            this.signalsPanel.Size = new System.Drawing.Size(750, 51);
+            this.signalsPanel.Size = new System.Drawing.Size(750, 750);
             this.signalsPanel.TabIndex = 16;
             this.signalsPanel.Visible = false;
             // 
@@ -4317,7 +4458,7 @@
             this.loadToExl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loadToExl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadToExl.ForeColor = System.Drawing.Color.White;
-            this.loadToExl.Location = new System.Drawing.Point(561, 19);
+            this.loadToExl.Location = new System.Drawing.Point(561, 718);
             this.loadToExl.Name = "loadToExl";
             this.loadToExl.Size = new System.Drawing.Size(173, 27);
             this.loadToExl.TabIndex = 61;
@@ -4333,7 +4474,7 @@
             this.loadPLC_SignalsButton.Enabled = false;
             this.loadPLC_SignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadPLC_SignalsButton.ForeColor = System.Drawing.Color.White;
-            this.loadPLC_SignalsButton.Location = new System.Drawing.Point(408, 19);
+            this.loadPLC_SignalsButton.Location = new System.Drawing.Point(408, 718);
             this.loadPLC_SignalsButton.Name = "loadPLC_SignalsButton";
             this.loadPLC_SignalsButton.Size = new System.Drawing.Size(147, 27);
             this.loadPLC_SignalsButton.TabIndex = 60;
@@ -4347,7 +4488,7 @@
             this.signalsReadyLabel.AutoSize = true;
             this.signalsReadyLabel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.signalsReadyLabel.ForeColor = System.Drawing.Color.Green;
-            this.signalsReadyLabel.Location = new System.Drawing.Point(123, 25);
+            this.signalsReadyLabel.Location = new System.Drawing.Point(123, 724);
             this.signalsReadyLabel.Name = "signalsReadyLabel";
             this.signalsReadyLabel.Size = new System.Drawing.Size(272, 14);
             this.signalsReadyLabel.TabIndex = 23;
@@ -4447,6 +4588,7 @@
             this.block3_UIpanel.Controls.Add(this.UIblock3_header);
             this.block3_UIpanel.Controls.Add(this.UI1bl3_typeCombo);
             this.block3_UIpanel.Controls.Add(this.UI1bl3_lab);
+            this.block3_UIpanel.Enabled = false;
             this.block3_UIpanel.Location = new System.Drawing.Point(6, 1470);
             this.block3_UIpanel.Name = "block3_UIpanel";
             this.block3_UIpanel.Size = new System.Drawing.Size(637, 537);
@@ -5394,6 +5536,7 @@
             this.block2_UIpanel.Controls.Add(this.UIblock2_header);
             this.block2_UIpanel.Controls.Add(this.UI1bl2_typeCombo);
             this.block2_UIpanel.Controls.Add(this.UI1bl2_lab);
+            this.block2_UIpanel.Enabled = false;
             this.block2_UIpanel.Location = new System.Drawing.Point(6, 932);
             this.block2_UIpanel.Name = "block2_UIpanel";
             this.block2_UIpanel.Size = new System.Drawing.Size(637, 537);
@@ -6341,6 +6484,7 @@
             this.block1_UIpanel.Controls.Add(this.UIblock1_header);
             this.block1_UIpanel.Controls.Add(this.UI1bl1_typeCombo);
             this.block1_UIpanel.Controls.Add(this.UI1bl1_lab);
+            this.block1_UIpanel.Enabled = false;
             this.block1_UIpanel.Location = new System.Drawing.Point(6, 394);
             this.block1_UIpanel.Name = "block1_UIpanel";
             this.block1_UIpanel.Size = new System.Drawing.Size(637, 537);
@@ -9420,7 +9564,7 @@
             this.backSignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.backSignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.backSignalsButton.ForeColor = System.Drawing.Color.White;
-            this.backSignalsButton.Location = new System.Drawing.Point(10, 19);
+            this.backSignalsButton.Location = new System.Drawing.Point(10, 718);
             this.backSignalsButton.Name = "backSignalsButton";
             this.backSignalsButton.Size = new System.Drawing.Size(94, 27);
             this.backSignalsButton.TabIndex = 58;
@@ -9532,7 +9676,7 @@
             this.loadCanPanel.Controls.Add(this.canSelectBox);
             this.loadCanPanel.Controls.Add(this.label173);
             this.loadCanPanel.Controls.Add(this.netOptionLabel);
-            this.loadCanPanel.Location = new System.Drawing.Point(6, 599);
+            this.loadCanPanel.Location = new System.Drawing.Point(12, 121);
             this.loadCanPanel.Name = "loadCanPanel";
             this.loadCanPanel.Size = new System.Drawing.Size(749, 30);
             this.loadCanPanel.TabIndex = 45;
@@ -9843,147 +9987,6 @@
             this.pictureBoxLogo.TabIndex = 2;
             this.pictureBoxLogo.TabStop = false;
             // 
-            // sensorPicture
-            // 
-            this.sensorPicture.Image = global::Moderon.Properties.Resources.sensorTemp;
-            this.sensorPicture.Location = new System.Drawing.Point(584, 3);
-            this.sensorPicture.Name = "sensorPicture";
-            this.sensorPicture.Size = new System.Drawing.Size(130, 172);
-            this.sensorPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.sensorPicture.TabIndex = 52;
-            this.sensorPicture.TabStop = false;
-            // 
-            // fanPicture2
-            // 
-            this.fanPicture2.Image = global::Moderon.Properties.Resources.fan_2;
-            this.fanPicture2.Location = new System.Drawing.Point(558, 3);
-            this.fanPicture2.Name = "fanPicture2";
-            this.fanPicture2.Size = new System.Drawing.Size(156, 242);
-            this.fanPicture2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.fanPicture2.TabIndex = 0;
-            this.fanPicture2.TabStop = false;
-            // 
-            // fanPicture1
-            // 
-            this.fanPicture1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.fanPicture1.Image = global::Moderon.Properties.Resources.fan;
-            this.fanPicture1.Location = new System.Drawing.Point(537, 3);
-            this.fanPicture1.Name = "fanPicture1";
-            this.fanPicture1.Size = new System.Drawing.Size(177, 200);
-            this.fanPicture1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.fanPicture1.TabIndex = 0;
-            this.fanPicture1.TabStop = false;
-            // 
-            // filterPicture
-            // 
-            this.filterPicture.Image = global::Moderon.Properties.Resources.filter;
-            this.filterPicture.Location = new System.Drawing.Point(586, 3);
-            this.filterPicture.Name = "filterPicture";
-            this.filterPicture.Size = new System.Drawing.Size(128, 218);
-            this.filterPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.filterPicture.TabIndex = 0;
-            this.filterPicture.TabStop = false;
-            // 
-            // markPrDampPanel
-            // 
-            this.markPrDampPanel.BackgroundImage = global::Moderon.Properties.Resources.green_check;
-            this.markPrDampPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.markPrDampPanel.Location = new System.Drawing.Point(497, 166);
-            this.markPrDampPanel.Name = "markPrDampPanel";
-            this.markPrDampPanel.Size = new System.Drawing.Size(30, 30);
-            this.markPrDampPanel.TabIndex = 36;
-            this.markPrDampPanel.Visible = false;
-            // 
-            // dampPicture
-            // 
-            this.dampPicture.Image = global::Moderon.Properties.Resources.damp;
-            this.dampPicture.Location = new System.Drawing.Point(574, 3);
-            this.dampPicture.Name = "dampPicture";
-            this.dampPicture.Size = new System.Drawing.Size(140, 237);
-            this.dampPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.dampPicture.TabIndex = 0;
-            this.dampPicture.TabStop = false;
-            // 
-            // markOutDampPanel
-            // 
-            this.markOutDampPanel.BackgroundImage = global::Moderon.Properties.Resources.green_check;
-            this.markOutDampPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.markOutDampPanel.Location = new System.Drawing.Point(493, 166);
-            this.markOutDampPanel.Name = "markOutDampPanel";
-            this.markOutDampPanel.Size = new System.Drawing.Size(30, 30);
-            this.markOutDampPanel.TabIndex = 37;
-            this.markOutDampPanel.Visible = false;
-            // 
-            // heatPicture
-            // 
-            this.heatPicture.Image = global::Moderon.Properties.Resources.waterHeater;
-            this.heatPicture.Location = new System.Drawing.Point(579, 3);
-            this.heatPicture.Name = "heatPicture";
-            this.heatPicture.Size = new System.Drawing.Size(129, 222);
-            this.heatPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.heatPicture.TabIndex = 0;
-            this.heatPicture.TabStop = false;
-            // 
-            // coolPicture
-            // 
-            this.coolPicture.Image = global::Moderon.Properties.Resources.freonCooler;
-            this.coolPicture.Location = new System.Drawing.Point(579, 3);
-            this.coolPicture.Name = "coolPicture";
-            this.coolPicture.Size = new System.Drawing.Size(138, 218);
-            this.coolPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.coolPicture.TabIndex = 0;
-            this.coolPicture.TabStop = false;
-            // 
-            // humidPicture
-            // 
-            this.humidPicture.Image = global::Moderon.Properties.Resources.humid;
-            this.humidPicture.Location = new System.Drawing.Point(546, 3);
-            this.humidPicture.Name = "humidPicture";
-            this.humidPicture.Size = new System.Drawing.Size(165, 216);
-            this.humidPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.humidPicture.TabIndex = 0;
-            this.humidPicture.TabStop = false;
-            // 
-            // markRecircPanel
-            // 
-            this.markRecircPanel.BackgroundImage = global::Moderon.Properties.Resources.green_check;
-            this.markRecircPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.markRecircPanel.Location = new System.Drawing.Point(497, 166);
-            this.markRecircPanel.Name = "markRecircPanel";
-            this.markRecircPanel.Size = new System.Drawing.Size(30, 30);
-            this.markRecircPanel.TabIndex = 48;
-            this.markRecircPanel.Visible = false;
-            // 
-            // recircPicture
-            // 
-            this.recircPicture.Image = global::Moderon.Properties.Resources.damp;
-            this.recircPicture.Location = new System.Drawing.Point(577, 3);
-            this.recircPicture.Name = "recircPicture";
-            this.recircPicture.Size = new System.Drawing.Size(140, 237);
-            this.recircPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.recircPicture.TabIndex = 0;
-            this.recircPicture.TabStop = false;
-            // 
-            // recupPicture
-            // 
-            this.recupPicture.Image = global::Moderon.Properties.Resources.rotorRecup;
-            this.recupPicture.Location = new System.Drawing.Point(597, 3);
-            this.recupPicture.Name = "recupPicture";
-            this.recupPicture.Size = new System.Drawing.Size(117, 221);
-            this.recupPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.recupPicture.TabIndex = 0;
-            this.recupPicture.TabStop = false;
-            // 
-            // heatAddPicture
-            // 
-            this.heatAddPicture.Image = global::Moderon.Properties.Resources.waterHeater;
-            this.heatAddPicture.Location = new System.Drawing.Point(579, 3);
-            this.heatAddPicture.Name = "heatAddPicture";
-            this.heatAddPicture.Size = new System.Drawing.Size(129, 222);
-            this.heatAddPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.heatAddPicture.TabIndex = 0;
-            this.heatAddPicture.TabStop = false;
-            // 
             // pic_signalsReady
             // 
             this.pic_signalsReady.Image = global::Moderon.Properties.Resources.green_check;
@@ -10026,24 +10029,30 @@
             this.sensorsPage.ResumeLayout(false);
             this.sensorsPanel.ResumeLayout(false);
             this.sensorsPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sensorPicture)).EndInit();
             this.fanPage.ResumeLayout(false);
             this.outFanPanel.ResumeLayout(false);
             this.outFanPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fanPicture2)).EndInit();
             this.prFanPanel.ResumeLayout(false);
             this.prFanPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fanPicture1)).EndInit();
             this.filterPage.ResumeLayout(false);
             this.filterPanel.ResumeLayout(false);
             this.filterPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.filterPicture)).EndInit();
             this.outFilterPanel.ResumeLayout(false);
             this.outFilterPanel.PerformLayout();
             this.dampPage.ResumeLayout(false);
             this.dampPanel.ResumeLayout(false);
             this.dampPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dampPicture)).EndInit();
             this.outDampPanel.ResumeLayout(false);
             this.outDampPanel.PerformLayout();
             this.heatPage.ResumeLayout(false);
             this.heatPanel.ResumeLayout(false);
             this.heatPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.heatPicture)).EndInit();
             this.elHeatPanel.ResumeLayout(false);
             this.elHeatPanel.PerformLayout();
             this.watHeatPanel.ResumeLayout(false);
@@ -10051,6 +10060,7 @@
             this.coolPage.ResumeLayout(false);
             this.coolPanel.ResumeLayout(false);
             this.coolPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.coolPicture)).EndInit();
             this.watCoolPanel.ResumeLayout(false);
             this.watCoolPanel.PerformLayout();
             this.frCoolPanel.ResumeLayout(false);
@@ -10058,6 +10068,7 @@
             this.humidPage.ResumeLayout(false);
             this.humidPanel.ResumeLayout(false);
             this.humidPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.humidPicture)).EndInit();
             this.cellHumidPanel.ResumeLayout(false);
             this.cellHumidPanel.PerformLayout();
             this.steamHumidPanel.ResumeLayout(false);
@@ -10065,9 +10076,11 @@
             this.recircPage.ResumeLayout(false);
             this.recircPanel.ResumeLayout(false);
             this.recircPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.recircPicture)).EndInit();
             this.recupPage.ResumeLayout(false);
             this.recupPanel.ResumeLayout(false);
             this.recupPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.recupPicture)).EndInit();
             this.defRecupSensPanel.ResumeLayout(false);
             this.defRecupSensPanel.PerformLayout();
             this.plastRecupPanel.ResumeLayout(false);
@@ -10079,6 +10092,7 @@
             this.addHeatPage.ResumeLayout(false);
             this.secHeatPanel.ResumeLayout(false);
             this.secHeatPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.heatAddPicture)).EndInit();
             this.elAddHeatPanel.ResumeLayout(false);
             this.elAddHeatPanel.PerformLayout();
             this.watAddHeatPanel.ResumeLayout(false);
@@ -10126,17 +10140,6 @@
             this.panelBlocks.ResumeLayout(false);
             this.panelBlocks.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sensorPicture)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fanPicture2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fanPicture1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.filterPicture)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dampPicture)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.heatPicture)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.coolPicture)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.humidPicture)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.recircPicture)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.recupPicture)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.heatAddPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_signalsReady)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -288,7 +288,7 @@ namespace Moderon
                 pic_signalsReady.Image = Properties.Resources.red_cross;
             }
 
-            CheckPanelBlocks(CalcExpBlocks_typeNums());             // Проверка отображения панели блоков расширения, тип и количество
+            CheckPanelBlocks(CalcExpBlocks_typeNums());             // Проверка отображения панели блоков расширения Form1, тип и количество
             return a;
         }
 

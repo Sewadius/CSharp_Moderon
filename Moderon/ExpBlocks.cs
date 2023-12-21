@@ -75,110 +75,95 @@ namespace Moderon
         }
 
         ///<summary>Отображение подписи блока для панели блоков расширения</summary>
-        private void LabelShow_panelBlocks(Point point, Label label, ExpBlock expBlock, List<Label> labels_to_hide, Dictionary<ExpBlock, int> blocks)
+        private Label LabelShow_panelBlocks(Point point, Label label, ExpBlock expBlock, Dictionary<ExpBlock, int> blocks)
         {
             string[] text = ["M72E12RB - ", "M72E12RA - ", "M72E08RA - ", "M72E16NA - "];
 
-            if (label == M72E12RB_label) label.Text = text[0];
-            if (label == M72E12RA_label) label.Text = text[1];
-            if (label == M72E08RA_label) label.Text = text[2];
-            if (label == M72E16NA_label) label.Text = text[3];
+            if (label == M72E12RB_label) label.Text = text[0];          // M72E12RB
+            if (label == M72E12RA_label) label.Text = text[1];          // M72E12RA
+            if (label == M72E08RA_label) label.Text = text[2];          // M72E08RA
+            if (label == M72E16NA_label) label.Text = text[3];          // M72E16NA
 
-            label.Text += blocks[expBlock].ToString() + " шт.";
-            label.Show();
-            label.Location = point;
-            Hide_panelBlocks_labels(labels_to_hide);                // Скрытие для других блоков расширения
+            label.Text += blocks[expBlock].ToString() + " шт.";         // Формирование подписи
+            label.Show();                                               // Отображение подписи
+            label.Location = point;                                     // Установление положения
+
+            return label;
         }
 
         ///<summary>Проверка отображения, тип и количество блоков для панели блоков расширения</summary>
         private void CheckPanelBlocks(Dictionary<ExpBlock, int> blocks)
         {
-            string pieces = " шт.";
-            Point top = new Point(13, 40);
-            List<Label> labels_to_hide = new List<Label>();
+            int DELTA = 25;                                                                         // Расстояние между подписями для блоков
 
+            // Положение подписей для блоков расширения
+            Point first = new Point(13, 40);                                                        // Положение для первой подписи
+            Point second = new Point(first.X, first.Y + DELTA);                                     // Положение для второй подписи
+            Point third = new Point(second.X, second.Y + DELTA);                                    // Положение для третьей подписи
+
+            List<Label> labels_to_show = new List<Label>();                                         // Подписи для отображения
             Hide_panelBlocks_elements();                                                            // Скрытие панели блоков и подписей изначально
             if (blocks.Count > 0 && panelElements.Visible) panelBlocks.Show();                      // Отображение панели блоков расширения
+
             if (blocks.Count == 1)                                                                  // Один тип блока расширения
             {
-                if (blocks.ContainsKey(M72E12RB))                                                   // Содержит блок расширения AO
-                {
-                    labels_to_hide.Add(M72E12RB_label);
-                    LabelShow_panelBlocks(top, M72E12RB_label, M72E12RB, labels_to_hide, blocks);
-                }
+                if (blocks.ContainsKey(M72E12RB))                                                   // Содержит блок расширения AO                    
+                    labels_to_show.Add(LabelShow_panelBlocks(first, M72E12RB_label, M72E12RB, blocks));
                 else if (blocks.ContainsKey(M72E12RA))                                              // Содержит блок UI + DO
-                {
-                    labels_to_hide.Add(M72E12RA_label);
-                    LabelShow_panelBlocks(top, M72E12RA_label, M72E12RA, labels_to_hide, blocks);
-
-                }
+                    labels_to_show.Add(LabelShow_panelBlocks(first, M72E12RA_label, M72E12RA, blocks));
                 else if (blocks.ContainsKey(M72E08RA))                                              // Содержит блок DO
-                {
-                    labels_to_hide.Add(M72E08RA_label);
-                    LabelShow_panelBlocks(top, M72E08RA_label, M72E08RA, labels_to_hide, blocks);
-                }
+                    labels_to_show.Add(LabelShow_panelBlocks(first, M72E08RA_label, M72E08RA, blocks));
                 else if (blocks.ContainsKey(M72E16NA))                                              // Содержит блок UI
-                {
-                    labels_to_hide.Add(M72E16NA_label);
-                    LabelShow_panelBlocks(top, M72E16NA_label, M72E16NA, labels_to_hide, blocks);
-                }
+                    labels_to_show.Add(LabelShow_panelBlocks(first, M72E16NA_label, M72E16NA, blocks));
             }
             else if (blocks.Count == 2)                                                             // Два типа блоков расширения
             {
-                // Один тип блоков расширения
-                if (blocks.ContainsKey(M72E12RB) && blocks[M72E12RB] == 2)                          // Два блока AO
-                {
-                    labels_to_hide.Add(M72E12RB_label);
-                    LabelShow_panelBlocks(top, M72E12RB_label, M72E12RB, labels_to_hide, blocks);
-                }
-                else if (blocks.ContainsKey(M72E12RA) && blocks[M72E12RA] == 2)                     // Два блока UI + DO
-                {
-                    labels_to_hide.Add(M72E12RA_label);
-                    LabelShow_panelBlocks(top, M72E12RA_label, M72E12RA, labels_to_hide, blocks);
-                }
-                else if (blocks.ContainsKey(M72E08RA) && blocks[M72E08RA] == 2)                     // Два блока DO
-                {
-                    labels_to_hide.Add(M72E08RA_label);
-                    LabelShow_panelBlocks(top, M72E08RA_label, M72E08RA, labels_to_hide, blocks);
-                }
-                else if (blocks.ContainsKey(M72E16NA) && blocks[M72E16NA] == 2)                     // Два блока UI
-                {
-                    labels_to_hide.Add(M72E16NA_label);
-                    LabelShow_panelBlocks(top, M72E16NA_label, M72E16NA, labels_to_hide, blocks);
-                }
-                // Два типа блоков
                 if (blocks.ContainsKey(M72E12RB))                                                   // Первый блок AO
                 {
-
+                    labels_to_show.Add(LabelShow_panelBlocks(first, M72E12RB_label, M72E12RB, blocks));
+                    if (blocks.ContainsKey(M72E12RA))                                               // Второй блок UI + DO
+                        labels_to_show.Add(LabelShow_panelBlocks(second, M72E12RA_label, M72E12RA, blocks));
+                    else if (blocks.ContainsKey(M72E08RA))                                          // Второй блок DO
+                        labels_to_show.Add(LabelShow_panelBlocks(second, M72E08RA_label, M72E08RA, blocks));
+                    else if (blocks.ContainsKey(M72E16NA))                                          // Второй блок UI
+                        labels_to_show.Add(LabelShow_panelBlocks(second, M72E16NA_label, M72E16NA, blocks));
+                }
+                else if (blocks.ContainsKey(M72E12RA))                                              // Первый блок UI + DO
+                {
+                    labels_to_show.Add(LabelShow_panelBlocks(first, M72E12RA_label, M72E12RA, blocks));
+                    if (blocks.ContainsKey(M72E08RA))                                               // Второй блок DO
+                        labels_to_show.Add(LabelShow_panelBlocks(second, M72E08RA_label, M72E08RA, blocks));
+                    else if (blocks.ContainsKey(M72E16NA))                                          // Второй блок UI
+                        labels_to_show.Add(LabelShow_panelBlocks(second, M72E16NA_label, M72E16NA, blocks));
                 }
             }
             else if (blocks.Count == 3)                                                             // Три типа блоков расширения
             {
-                // Один тип блоков расширения
-                if (blocks.ContainsKey(M72E12RB) && blocks[M72E12RB] == 3)                          // Три блока AO
+                if (blocks.ContainsKey(M72E12RB))                                                   // Первый блок AO
                 {
-                    labels_to_hide.Add(M72E12RB_label);
-                    LabelShow_panelBlocks(top, M72E12RB_label, M72E12RB, labels_to_hide, blocks);
+                    labels_to_show.Add(LabelShow_panelBlocks(first, M72E12RB_label, M72E12RB, blocks));
+                    if (blocks.ContainsKey(M72E12RA))                                               // Второй блок UI + DO
+                    {
+                        labels_to_show.Add(LabelShow_panelBlocks(second, M72E12RA_label, M72E12RA, blocks));
+                        if (blocks.ContainsKey(M72E08RA))                                           // Третий блок DO
+                            labels_to_show.Add(LabelShow_panelBlocks(third, M72E08RA_label, M72E08RA, blocks));
+                        else if (blocks.ContainsKey(M72E16NA))                                      // Третий блок UI
+                            labels_to_show.Add(LabelShow_panelBlocks(third, M72E16NA_label, M72E16NA, blocks));
+                    }
                 }
-                else if (blocks.ContainsKey(M72E12RA) && blocks[M72E12RA] == 3)                     // Два блока UI + DO
+                else if (blocks.ContainsKey(M72E12RA))                                              // Первый блок UI + DO
                 {
-                    labels_to_hide.Add(M72E12RA_label);
-                    LabelShow_panelBlocks(top, M72E12RA_label, M72E12RA, labels_to_hide, blocks);
-                }
-                else if (blocks.ContainsKey(M72E08RA) && blocks[M72E08RA] == 3)                     // Два блока DO
-                {
-                    labels_to_hide.Add(M72E08RA_label);
-                    LabelShow_panelBlocks(top, M72E08RA_label, M72E08RA, labels_to_hide, blocks);
-                }
-                else if (blocks.ContainsKey(M72E16NA) && blocks[M72E16NA] == 3)                     // Два блока UI
-                {
-                    labels_to_hide.Add(M72E16NA_label);
-                    LabelShow_panelBlocks(top, M72E16NA_label, M72E16NA, labels_to_hide, blocks);
+                    labels_to_show.Add(LabelShow_panelBlocks(first, M72E12RA_label, M72E12RA, blocks));
+                    if (blocks.ContainsKey(M72E08RA))                                               // Второй блок DO
+                        labels_to_show.Add(LabelShow_panelBlocks(second, M72E08RA_label, M72E08RA, blocks));
+                    if (blocks.ContainsKey(M72E16NA))                                               // Третий блок UI
+                        labels_to_show.Add(LabelShow_panelBlocks(third, M72E16NA_label, M72E16NA, blocks));
                 }
             }
+            Hide_panelBlocks_labels(labels_to_show);                                                // Скрытие для других блоков расширения
         }
 
-        /// <summary>Расчёт типов и количества блоков по сигналам</summary>
+        /// <summary>Расчёт типов и количества блоков по выбранным сигналам</summary>
         private Dictionary<ExpBlock, int> CalcExpBlocks_typeNums()
         {  
             Dictionary<ExpBlock, int> blocks = new Dictionary<ExpBlock, int>();
@@ -391,7 +376,9 @@ namespace Moderon
             var ui_combos_type = new List<ComboBox>() { UI8_typeCombo, UI9_typeCombo, UI10_typeCombo, UI11_typeCombo };     // UI_typeCombo
             var ui_labels = new List<Label>() { UI8_plkLabel, UI9_plkLabel, UI10_plkLabel, UI11_plkLabel };                 // UI подписи сигналов
             var do_combos = new List<ComboBox>() { DO5_combo, DO6_combo };                                                  // DO_combo
-            var do_labels = new List<Label>() { DO5_plkLabel, DO6_plkLabel };                                               // DO подписи сигналов 
+            var do_labels = new List<Label>() { DO5_plkLabel, DO6_plkLabel };                                               // DO подписи сигналов
+
+            var blocks = CalcExpBlocks_typeNums();                                                                          // Количество и тип блоков расширения
 
             if (comboPlkType.SelectedIndex == plkChangeIndexLast) return;           // Выбранный индекс не изменился
 
@@ -414,9 +401,10 @@ namespace Moderon
 
                 ChangeSizeLocationSignalsPanels(true);                              // Изменение размера и положения панелей
                 CheckSignals_plkChange();                                           // Проверка распределённых сигналов на Optimized  
-                AddFirstBlockAO_M72E12RB();                                         // Проверка на добавление 1-го блока расширения AO
-                AddSecondBlockAO_M72E12RB();                                        // Проверка на добавление 2-го блока расширения AO
-                AddThirdBlockAO_M72E12RB();                                         // Проверка на добавление 3-го блока расширения AO
+
+                AddFirstBlockAO_M72E12RB(blocks);                                   // Проверка на добавление 1-го блока расширения AO
+                AddSecondBlockAO_M72E12RB(blocks);                                  // Проверка на добавление 2-го блока расширения AO
+                AddThirdBlockAO_M72E12RB(blocks);                                   // Проверка на добавление 3-го блока расширения AO
             }
             else if (comboPlkType.SelectedIndex == 1)                               // Выбрали контроллер "Optimized"
             {
@@ -446,13 +434,13 @@ namespace Moderon
         ///<summary>Изменение панелей UI при добавлении блока расширения M72E12RB (6 UI)</summary>
         private void UI_panelBlock_M72E12RB_add(Panel panel)
         {
-            if (panel == block1_UIpanel)                                            // Для блока расширения 1
+            if (panel == block1_UIpanel && !block1_UIpanel.Enabled)                 // Для блока расширения 1
             {
                 UIblock1_header.Text = "Блок расширения 1 - M72E12RB";
                 block1_UIpanel.Height = HEIGHT_UI_PANEL_BLOCK - 10 * DELTA;
                 block1_UIpanel.Show(); block1_UIpanel.Enabled = true;
             }
-            else if (panel == block2_UIpanel)                                       // Для блока расширения 2
+            else if (panel == block2_UIpanel && !block2_UIpanel.Enabled)            // Для блока расширения 2
             {
                 UIblock2_header.Text = "Блок расширения 2 - M72E12RB";
                 block2_UIpanel.Height = HEIGHT_UI_PANEL_BLOCK - 10 * DELTA;
@@ -462,7 +450,7 @@ namespace Moderon
                 block2_UIpanel.Location = new Point(block2_UIpanel.Location.X, plk_UIpanel.Height + 
                     block1_UIpanel.Height + BETWEEN_PANELS);
             } 
-            else if (panel == block3_UIpanel)                                       // Для блока расширения 3
+            else if (panel == block3_UIpanel && !block3_UIpanel.Enabled)            // Для блока расширения 3
             {
                 UIblock3_header.Text = "Блок расширения 3 - M72E12RB";
                 block3_UIpanel.Height = HEIGHT_UI_PANEL_BLOCK - 10 * DELTA;
@@ -477,13 +465,13 @@ namespace Moderon
         ///<summary>Изменение панелей DO при добавлении блока расширения M72E12RB (6 UI)</summary>
         private void DO_panelBlock_M72E12RB_add(Panel panel)
         {
-            if (panel == block1_DOpanel)
+            if (panel == block1_DOpanel && !block1_DOpanel.Enabled)                 // Для блока расширения 1
             {
                 DOblock1_header.Text = "Блок расширения 1 - M72E12RB";
                 block1_DOpanel.Height = HEIGHT_DO_PANEL_BLOCK - 4 * DELTA;
                 block1_DOpanel.Show(); block1_DOpanel.Enabled = true;
             }
-            else if (panel == block2_DOpanel)
+            else if (panel == block2_DOpanel && !block2_DOpanel.Enabled)            // Для блока расширения 2
             {
                 DOblock2_header.Text = "Блок расширения 2 - M72E12RB";
                 block2_DOpanel.Height = HEIGHT_DO_PANEL_BLOCK - 4 * DELTA;
@@ -493,7 +481,7 @@ namespace Moderon
                 block2_DOpanel.Location = new Point(block2_DOpanel.Location.X, plk_DOpanel.Height +
                     block1_DOpanel.Height + BETWEEN_PANELS);
             }
-            else if (panel == block3_DOpanel)
+            else if (panel == block3_DOpanel && !block3_DOpanel.Enabled)            // Для блока расширения 3
             {
                 DOblock3_header.Text = "Блок расширения 3 - M72E12RB";
                 block3_DOpanel.Height = HEIGHT_DO_PANEL_BLOCK - 4 * DELTA;
@@ -505,7 +493,7 @@ namespace Moderon
             }   
         }
 
-        ///<summary>Отображение и разблкировка comboBox и Labels UI панелей блоков расширения</summary>
+        ///<summary>Отображение и разблокировка comboBox и Labels UI панелей блоков расширения</summary>
         private void UI_showEnable_combos_labels(List<ComboBox> ui_combos, List<ComboBox> ui_type_combos, List<Label> ui_labels)
         {
             foreach (var el in ui_combos) { el.Show(); el.Enabled = true; }
@@ -513,7 +501,7 @@ namespace Moderon
             foreach (var el in ui_labels) el.Show();
         }
 
-        ///<summary>Отображение и разблкировка comboBox и Labels DO панелей блоков расширения</summary>
+        ///<summary>Отображение и разблокировка comboBox и Labels DO панелей блоков расширения</summary>
         private void DO_showEnable_combos_labels(List<ComboBox> do_combos, List<Label> do_labels)
         {
             foreach (var el in do_combos) { el.Show(); el.Enabled = true; }
@@ -593,13 +581,9 @@ namespace Moderon
         }
 
         ///<summary>Проверка для добавления 1-го блока расширения M72E12RB сигналов AO</summary>
-        private void AddFirstBlockAO_M72E12RB()
+        private void AddFirstBlockAO_M72E12RB(Dictionary<ExpBlock, int> blocks)
         {
-            ushort count_AO_plk = 2;                                                // Количество 2 AO для ПЛК Mini 
-            if (plkChangeIndexLast == 1) count_AO_plk = 3;                          // Количество 3 AO для ПЛК Optimized
-
-            // Добавление блока M72E12RB в качестве 1-го блока расширения
-            if (list_ao.Count > count_AO_plk && !expansion_blocks.Contains(M72E12RB) && expansion_blocks.Count == 0)
+            if (blocks.ContainsKey(M72E12RB))
             {
                 expansion_blocks.Add(M72E12RB);                                     // Добавление блока M72E12RB в список блоков расширения
                 block1_AOpanel.Show(); block1_AOpanel.Enabled = true;               // Отображение и разблокировка панели AO для блока расширения 1
@@ -609,17 +593,9 @@ namespace Moderon
         }
 
         ///<summary>Проверка для добавления 2-го блока расширения M72E12RB сигналов AO</summary>
-        private void AddSecondBlockAO_M72E12RB()
+        private void AddSecondBlockAO_M72E12RB(Dictionary<ExpBlock, int> blocks)
         {
-            if (!expansion_blocks.Contains(M72E12RB)) return;                      // Если нет первого блока расширения с AO
-
-            ushort count_AO = 2;                                                   // Количество 2 AO для ПЛК Mini 
-            if (plkChangeIndexLast == 1) count_AO = 3;                             // Количество 3 AO для ПЛК Optimized
-            
-            count_AO += (ushort)M72E12RB.AO;                                       // Добавление количества AO в первом блоке расширения
-
-            // Добавление блока M72E12RB в качестве 2-го блока расширения
-            if (list_ao.Count > count_AO && expansion_blocks.Contains(M72E12RB) && expansion_blocks.Count == 1)
+            if (blocks.ContainsKey(M72E12RB) && blocks[M72E12RB] == 2)
             {
                 expansion_blocks.Add(M72E12RB);                                    // Добавление блока M72E12RB в список блоков расширения
                 block2_AOpanel.Show(); block2_AOpanel.Enabled = true;              // Отображение и разблокировка панели AO для блока расширения 2
@@ -629,18 +605,9 @@ namespace Moderon
         }
 
         ///<summary>Проверка для добавления 3-го блока расширения M72E12RB сигналов AO</summary>
-        private void AddThirdBlockAO_M72E12RB()
+        private void AddThirdBlockAO_M72E12RB(Dictionary<ExpBlock, int> blocks)
         {
-            var count_M72E12RB = expansion_blocks.Where(x => x == M72E12RB).Count();    // Количество M72E12RB блока расширения в списке блоков
-            if (count_M72E12RB != 2) return;                                            // Меньше двух блоков расширения M72E12RB
-
-            ushort count_AO = 2;                                                        // Количество 2 AO для ПЛК Mini 
-            if (plkChangeIndexLast == 1) count_AO = 3;                                  // Количество 3 AO для ПЛК Optimized
-
-            count_AO += (ushort)(2 * M72E12RB.AO);                                      // Добавление количества AO для 1 и 2 блок расширения
-
-            // Добавление блока M72E12RB в качестве 3-го блока расширения
-            if (list_ao.Count > count_AO && count_M72E12RB == 2 && expansion_blocks.Count == 2) 
+            if (blocks.ContainsKey(M72E12RB) && blocks[M72E12RB] == 3)
             {
                 expansion_blocks.Add(M72E12RB);                                 // Добавление блока M72E12RB в список блоков расширения
                 block3_AOpanel.Show(); block3_AOpanel.Enabled = true;           // Отображение и разблокировка панели AO для блока расширения 3
@@ -661,8 +628,8 @@ namespace Moderon
                 expansion_blocks.Remove(M72E12RB);                                  // Удаление блока из списка блоков
                 CheckSignals_block1_M72E12RB();                                     // Автораспределение ранее выбранных сигналов с блока 1
                 block1_AOpanel.Hide(); block1_AOpanel.Enabled = false;              // Скрытие и блокировка панели
-                block1_DOpanel.Hide();                                              // Скрытие панели DO для блока расширения 1
-                block1_UIpanel.Hide();                                              // Скрытие панели UI для блока расширения 1
+                block1_DOpanel.Hide(); block1_DOpanel.Enabled = false;              // Скрытие и блокировка панели DO для блока расширения 1
+                block1_UIpanel.Hide(); block1_UIpanel.Enabled = false;              // Скрытие и блокировка панели UI для блока расширения 1
                 DoCombosBlock_1_Reset();                                            // Скрытие и блокировка элементов DO блока расширения 1
                 UiCombosBlock_1_Reset();                                            // Скрытие и блокировка элементов UI блока расширения 1
             }
@@ -686,8 +653,8 @@ namespace Moderon
                 expansion_blocks.Remove(M72E12RB);                                  // Удаление блока из списка блоков
                 CheckSignals_block2_M72E12RB();                                     // Автораспределение ранее выбранных сигналов с блока 2
                 block2_AOpanel.Hide(); block2_AOpanel.Enabled = false;              // Скрытие и блокировка панели
-                block2_DOpanel.Hide();                                              // Скрытие панели DO для блока расширения 2
-                block2_UIpanel.Hide();                                              // Скрытие панели UI для блока расширения 2
+                block2_DOpanel.Hide(); block2_DOpanel.Enabled = false;              // Скрытие и блокировка панели DO для блока расширения 2
+                block2_UIpanel.Hide(); block2_UIpanel.Enabled = false;              // Скрытие и блокировка панели UI для блока расширения 2
                 DoCombosBlock_2_Reset();                                            // Скрытие и блокировка элементов DO блока расширения 2
                 UiCombosBlock_2_Reset();                                            // Скрытие и блокировка элементов UI блока расширения 2
             }
@@ -709,8 +676,8 @@ namespace Moderon
                 expansion_blocks.Remove(M72E12RB);                                  // Удаление блока из списка блоков
                 CheckSignals_block3_M72E12RB();                                     // Автораспределение ранее выбранных сигналов с блока 3
                 block3_AOpanel.Hide(); block3_AOpanel.Enabled = false;              // Скрытие и блокировка панели
-                block3_DOpanel.Hide();                                              // Скрытие панели DO для блока расширения 3
-                block3_UIpanel.Hide();                                              // Скрытие панели UI для блока расширения 3
+                block3_DOpanel.Hide(); block3_DOpanel.Enabled = false;              // Скрытие и блокировка панели DO для блока расширения 3
+                block3_UIpanel.Hide(); block3_UIpanel.Enabled = false;              // Скрытие и блокировка панели UI для блока расширения 3
                 DoCombosBlock_3_Reset();                                            // Скрытие и блокировка элементов DO блока расширения 3
                 UiCombosBlock_3_Reset();                                            // Скрытие и блокировка элементов UI блока расширения 3
             }
