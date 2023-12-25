@@ -167,11 +167,11 @@ namespace Moderon
         private Dictionary<ExpBlock, int> CalcExpBlocks_typeNums()
         {  
             Dictionary<ExpBlock, int> blocks = new Dictionary<ExpBlock, int>();
-            ushort UI = 7, AO = 2, DO = 4;
+            ushort UI = 7, AO = 2, DO = 4;                                                                                  // ПЛК Mini
 
             if (plkChangeIndexLast == 1) { UI = 11; AO = 3; DO = 6; }                                                       // ПЛК Optimized
 
-            // Добавление 1-го блока расширения
+            // Нет блоков расширения
             if (blocks.Count == 0)                                                                                          // Словарь пуст
             {
                 if (list_ao.Count > AO) blocks.Add(M72E12RB, 1);                                                            // AO M72E12RB
@@ -180,12 +180,16 @@ namespace Moderon
                 else if (list_ui.Count > UI) blocks.Add(M72E16NA, 1);                                                       // UI M72E16NA
             }
 
-            // Добавление 2-го блока расширения
-            if (blocks.Count == 1)                                                                                          // Есть 1-й блок расширения
+            // Есть блок расширения 1-го типа
+            if (blocks.Count == 1)                                                                                          // Есть 1 тип блоков расширения
             {
                 if (blocks.ContainsKey(M72E12RB))                                                                           // 1-й блок AO M72E12RB
                 {
-                    if (list_ao.Count > AO + M72E12RB.AO) blocks[M72E12RB] = 2;                                             // AO M72E12RB
+                    if (list_ao.Count > AO + M72E12RB.AO)
+                    {
+                        blocks[M72E12RB] = 2;                                                                               // AO M72E12RB, 2-й блок
+                        if (list_ao.Count > AO + M72E12RB.AO * 2) blocks[M72E12RB] = 3;                                     // AO M72E12RB, 3-й блок
+                    }
                     else if (list_do.Count > DO + M72E12RB.DO && list_ui.Count > UI + M72E12RB.UI)                          // DO + UI M72E12RA
                         blocks.Add(M72E12RA, 1);
                     else if (list_do.Count > DO + M72E12RB.DO) blocks.Add(M72E08RA, 1);                                     // DO M72E08RA
@@ -193,38 +197,44 @@ namespace Moderon
                 }
                 else if (blocks.ContainsKey(M72E12RA))                                                                      // 1-й блок DO + UI M72E12RA
                 {
-                    if (list_do.Count > DO + M72E12RA.DO && list_ui.Count > M72E12RA.UI) blocks[M72E12RA] = 2;              // DO + UI M72E12RA
+                    if (list_do.Count > DO + M72E12RA.DO && list_ui.Count > M72E12RA.UI)
+                    {
+                        blocks[M72E12RA] = 2;                                                                               // DO + UI M72E12RA, 2-й блок
+                        if (list_do.Count > DO + M72E12RA.DO * 2 && list_ui.Count > M72E12RA.UI * 2) 
+                            blocks[M72E12RA] = 3;                                                                           // DO + UI M72E12RA, 3-й блок
+                    }
                     else if (list_do.Count > DO + M72E12RA.DO) blocks.Add(M72E08RA, 1);                                     // DO M72E08RA
                     else if (list_ui.Count > UI + M72E12RA.UI) blocks.Add(M72E16NA, 1);                                     // UI M72E16NA
                 }
                 else if (blocks.ContainsKey(M72E08RA))                                                                      // 1-й блок DO M72E08RA
                 {
-                    if (list_do.Count > DO + M72E08RA.DO) blocks[M72E08RA] = 2;                                             // DO M72E08RA
+                    if (list_do.Count > DO + M72E08RA.DO)
+                    {
+                        blocks[M72E08RA] = 2;                                                                               // DO M72E08RA, 2-й блок
+                        if (list_do.Count > DO + M72E12RA.DO * 2) blocks[M72E08RA] = 3;                                     // DO M72E08RA, 3-й блок
+                    }
                     else if (list_ui.Count > UI) blocks.Add(M72E16NA, 1);                                                   // UI M72E16NA
                 }
                 else if (blocks.ContainsKey(M72E16NA))                                                                      // 1-й блок M72E16NA
                 {
-                    if (list_ui.Count > UI + M72E16NA.UI) blocks[M72E16NA] = 2;                                             // UI M72E16NA
+                    if (list_ui.Count > UI + M72E16NA.UI)
+                    {
+                        blocks[M72E16NA] = 2;                                                                               // UI M72E16NA, 2-й блок
+                        if (list_ui.Count > UI + M72E16NA.UI * 2) blocks[M72E16NA] = 3;                                     // UI M72E16NA, 3-й блок
+                    }
                 }
             }
 
-            // Добавление 3-го блока расширения
-            if (blocks.Count == 2)                                                                                          // Есть 2 блока расширения
+            // Есть блоки расширения 2-х типов
+            if (blocks.Count == 2)                                                                                          // Есть 2 типа блоков расширения
             {
                 if (blocks.ContainsKey(M72E12RB))                                                                           // Есть блок AO
                 {
-                    if (blocks[M72E12RB] == 2)                                                                              // 2 блока AO
+                    if (blocks.ContainsKey(M72E12RA) && blocks[M72E12RB] == 1 && blocks[M72E12RA] == 1)                     // 1 блок AO и 1 блок DO + UI
                     {
-                        if (list_ao.Count > AO + M72E12RB.AO * 2) blocks[M72E12RB] = 3;                                     // AO M72E12RB
-                        else if (list_do.Count > DO + M72E12RB.DO * 2 && list_ui.Count > UI + M72E12RB.UI * 2)              // DO + UI M72E12RA
-                            blocks.Add(M72E12RA, 1);
-                        else if (list_do.Count > DO + M72E12RB.DO * 2) blocks.Add(M72E08RA, 1);                             // DO M72E08RA
-                        else if (list_ui.Count > UI + M72E12RB.UI * 2) blocks.Add(M72E16NA, 1);                             // UI M72E16NA
-                    }
-                    else if (blocks.ContainsKey(M72E12RA) && blocks[M72E12RB] == 1 && blocks[M72E12RA] == 1)                // 1 блок AO и 1 блок DO + UI
-                    {
-                        if (list_do.Count > DO + M72E12RB.DO + M72E12RA.DO && list_ui.Count > UI + M72E12RB.UI + M72E12RA.UI)
-                            blocks[M72E12RA] = 2;                                                                           // DO + UI M72E12RA
+                        if (list_do.Count > DO + M72E12RB.DO + M72E12RA.DO && 
+                            list_ui.Count > UI + M72E12RB.UI + M72E12RA.UI) blocks[M72E12RA] = 2;                           // DO + UI M72E12RA
+
                         else if (list_do.Count > DO + M72E12RB.DO + M72E12RA.DO) blocks.Add(M72E08RA, 1);                   // DO M72E08RA
                         else if (list_ui.Count > UI + M72E12RB.UI + M72E12RA.UI) blocks.Add(M72E16NA, 1);                   // UI M72E16NA
                     }
@@ -240,14 +250,7 @@ namespace Moderon
                 }   
                 else if (blocks.ContainsKey(M72E12RA))                                                                      // Есть блок DO + UI
                 {
-                    if (blocks[M72E12RA] == 2)                                                                              // 2 блока DO + UI
-                    {
-                        if (list_do.Count > DO + M72E12RA.DO * 2 && list_ui.Count > UI + M72E12RA.UI * 2)                   // DO + UI M72E12RA
-                            blocks[M72E12RA] = 3;
-                        else if (list_do.Count > DO + M72E12RA.DO * 2) blocks.Add(M72E08RA, 1);                             // DO M72E08RA
-                        else if (list_ui.Count > UI + M72E12RA.UI * 2) blocks.Add(M72E16NA, 1);                             // UI M72E16NA
-                    }
-                    else if (blocks.ContainsKey(M72E08RA) && blocks[M72E12RA] == 1 && blocks[M72E08RA] == 1)                // 1 блок DO + UI, 1 блок DO
+                    if (blocks.ContainsKey(M72E08RA) && blocks[M72E12RA] == 1 && blocks[M72E08RA] == 1)                     // 1 блок DO + UI, 1 блок DO
                     {
                         if (list_do.Count > DO + M72E12RA.DO + M72E08RA.DO) blocks[M72E08RA] = 2;                           // DO M72E08RA
                         else if (list_ui.Count > UI + M72E12RA.UI) blocks.Add(M72E16NA, 1);                                 // UI M72E16NA
@@ -259,21 +262,9 @@ namespace Moderon
                 }
                 else if (blocks.ContainsKey(M72E08RA))                                                                      // Есть блок DO
                 {
-                    if (blocks[M72E08RA] == 2)                                                                              // 2 блока DO
-                    {
-                        if (list_do.Count > DO + M72E08RA.DO * 2) blocks[M72E08RA] = 3;                                     // DO M72E08RA
-                        else if (list_ui.Count > UI) blocks.Add(M72E16NA, 1);                                               // UI M72E16NA
-                    }
-                    else if (blocks.ContainsKey(M72E16NA) && blocks[M72E08RA] == 1 && blocks[M72E16NA] == 1)                // 1 блок DO, 1 блок UI
+                    if (blocks.ContainsKey(M72E16NA) && blocks[M72E08RA] == 1 && blocks[M72E16NA] == 1)                     // 1 блок DO, 1 блок UI
                     {
                         if (list_ui.Count > UI + M72E16NA.UI) blocks[M72E16NA] = 2;                                         // UI M72E16NA
-                    }
-                }
-                else if (blocks.ContainsKey(M72E16NA))                                                                      // Есть блок UI
-                {   
-                    if (blocks[M72E16NA] == 2)                                                                              // 2 блока UI
-                    {
-                        if (list_ui.Count > UI + M72E16NA.UI * 2) blocks[M72E16NA] = 3;                                     // UI M72E16NA
                     }
                 }
             }
