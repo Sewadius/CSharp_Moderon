@@ -596,6 +596,12 @@ namespace Moderon
         ///<summary>Добавление нового DO и его назначение под первый нераспределённый выход</summary>
         private void AddNewDO(ushort code)
         {
+            var blocks = CalcExpBlocks_typeNums();                          // Определение типов и количества блоков расширения
+
+            AddFirstBlockDO_M72E08RA(blocks);                               // Проверка необходимости добавить 1-й блок расширения M72E08RA
+            AddSecondBlockDO_M72E08RA(blocks);                              // Проверка необходимости добавить 2-й блок расширения M72E08RA
+            AddThirdBlockDO_M72E08RA(blocks);                               // Проверка необходимости добавить 3-й блок расширения M72E08RA
+
             // ПЛК
             if (DO1_combo.SelectedIndex == 0) SelectComboBox_DO(DO1_combo, code, DO1_lab, DO1combo_text, DO1combo_index);
             else if (DO2_combo.SelectedIndex == 0) SelectComboBox_DO(DO2_combo, code, DO2_lab, DO2combo_text, DO2combo_index);

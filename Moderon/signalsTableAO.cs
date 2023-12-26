@@ -347,13 +347,15 @@ namespace Moderon
             RemoveAO_FromComboBox(AO1bl3_combo, name, AO1bl3_lab, AO1bl3combo_text, AO1bl3combo_index);
             RemoveAO_FromComboBox(AO2bl3_combo, name, AO2bl3_lab, AO2bl3combo_text, AO2bl3combo_index);
 
-            subAOcondition = false;                 // Сброс признака удаления из AO
-            list_ao.Remove(findAo);                 // Удаление сигнала из списка AO
+            subAOcondition = false;                         // Сброс признака удаления из AO
+            list_ao.Remove(findAo);                         // Удаление сигнала из списка AO
 
-            RemoveThirdBlockAO_M72E12RB();          // Проверка для удаления 3-го блока расширения AO
-            RemoveSecondBlockAO_M72E12RB();         // Проверка для удаления 2-го блока расширения AO
-            RemoveFirstBlockAO_M72E12RB();          // Проверка для удаления 1-го блока расширения AO
-            CheckSignalsReady();                    // Проверка распределения сигналов
+            var blocks = CalcExpBlocks_typeNums();          // Определение типов и количества блоков расширения после удаления
+
+            RemoveThirdBlockAO_M72E12RB(blocks);            // Проверка для удаления 3-го блока расширения AO
+            RemoveSecondBlockAO_M72E12RB(blocks);           // Проверка для удаления 2-го блока расширения AO
+            RemoveFirstBlockAO_M72E12RB(blocks);            // Проверка для удаления 1-го блока расширения AO
+            CheckSignalsReady();                            // Проверка распределения сигналов
         }
 
         ///<summary>Метод для добавления AO к списку сигналов</summary>
