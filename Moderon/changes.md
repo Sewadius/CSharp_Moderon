@@ -458,3 +458,14 @@
 - `DO_panelBlock_M72E08RA()` обработка для трёх панелей
 - добавлены алгоритмы для 2-го и 3-го блока расширения
 - учёт `blocks` при удалении блоков расширения AO  
+
+27.12.23 (среда)
+
+- добавлена проверка на количество элементов `expansion_blocks`
+- создана проверка на добавление блока `AddFirstBlock_DOUI_M72E12RA()`
+- `DO_block1_panelChanged_M72E12RA()` для блока 1 `M72E12RA`, панель
+- `DO_panelBlock_M72E12RA()` изменение панелей для блока `M72E12RA`
+- создан `DO_panelBlock_change()` изменение панелей DO для блоков
+- `UI_panelBlock_change()` для панелей UI блоков расширения
+- добавлен `CheckSignals_block1_M72E08RA()` для блока `M72E08RA` DO
+- `RellocateSignals_fromLists()` проверка списков на `null`

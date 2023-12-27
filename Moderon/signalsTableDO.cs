@@ -598,9 +598,13 @@ namespace Moderon
         {
             var blocks = CalcExpBlocks_typeNums();                          // Определение типов и количества блоков расширения
 
-            AddFirstBlockDO_M72E08RA(blocks);                               // Проверка необходимости добавить 1-й блок расширения M72E08RA
-            AddSecondBlockDO_M72E08RA(blocks);                              // Проверка необходимости добавить 2-й блок расширения M72E08RA
-            AddThirdBlockDO_M72E08RA(blocks);                               // Проверка необходимости добавить 3-й блок расширения M72E08RA
+            AddFirstBlock_DOUI_M72E12RA(blocks);                            // Проверка добавления 1-го блока расширения M72E12RA (DO + UI)
+            AddSecondBlock_DOUI_M72E12RA(blocks);                           // Проверка добавления 2-го блока расширения M72E12RA (DO + UI)
+            AddThirdBlock_DOUI_M72E12RA(blocks);                            // Проверка добавления 3-го блока расширения M72E12RA (DO + UI)
+
+            AddFirstBlockDO_M72E08RA(blocks);                               // Проверка добавления 1-го блока расширения M72E08RA (DO)
+            AddSecondBlockDO_M72E08RA(blocks);                              // Проверка добавления 2-го блока расширения M72E08RA (DO)
+            AddThirdBlockDO_M72E08RA(blocks);                               // Проверка добавления 3-го блока расширения M72E08RA (DO)
 
             // ПЛК
             if (DO1_combo.SelectedIndex == 0) SelectComboBox_DO(DO1_combo, code, DO1_lab, DO1combo_text, DO1combo_index);
@@ -744,9 +748,14 @@ namespace Moderon
             RemoveDO_FromComboBox(DO7bl3_combo, name, DO7bl3_lab, DO7bl3combo_text, DO7bl3combo_index);     // DO7
             RemoveDO_FromComboBox(DO8bl3_combo, name, DO8bl3_lab, DO8bl3combo_text, DO8bl3combo_index);     // DO8
 
-            subDOcondition = false;                // Сброс признака удаление из DO
-            list_do.Remove(find_do);               // Удаление сигнала из списка DO
-            CheckSignalsReady();                   // Проверка распределения сигналов
+            subDOcondition = false;                     // Сброс признака удаление из DO
+            list_do.Remove(find_do);                    // Удаление сигнала из списка DO
+
+            var blocks = CalcExpBlocks_typeNums();      // Определение типов и количества блоков расширения после удаления
+
+            RemoveFirstBlockDO_M72E08RA(blocks);        // Проверка для удаления 1-го блока расширения DO
+
+            CheckSignalsReady();                        // Проверка распределения сигналов
         }
 
         /*** ВСПОМОГАТЕЛЬНЫЕ МЕТОДЫ ***/

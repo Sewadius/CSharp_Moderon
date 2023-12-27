@@ -260,6 +260,12 @@ namespace Moderon
         ///<summary>Добавление нового UI и его назначение под первый нераспределённый выход</summary>
         private void AddNewUI(ushort code, string type)
         {
+            var blocks = CalcExpBlocks_typeNums();                      // Определение типов и количества блоков расширения
+
+            AddFirstBlock_DOUI_M72E12RA(blocks);                        // Проверка добавления 1-го блока расширения M72E12RA (DO + UI)  
+            AddSecondBlock_DOUI_M72E12RA(blocks);                       // Проверка добавления 2-го блока расширения M72E12RA (DO + UI)
+            AddThirdBlock_DOUI_M72E12RA(blocks);                        // Проверка добавления 3-го блока расширения M72E12RA (DO + UI)
+
             // ПЛК
             if (UI1_combo.SelectedIndex == 0) 
                 SelectComboBox_UI(UI1_combo, code, UI1_lab, UI1combo_text, UI1combo_index, type, UI1_typeCombo);        // UI1 ПЛК
