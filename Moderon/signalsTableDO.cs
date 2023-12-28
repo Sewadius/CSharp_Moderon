@@ -753,6 +753,12 @@ namespace Moderon
 
             var blocks = CalcExpBlocks_typeNums();      // Определение типов и количества блоков расширения после удаления
 
+            RemoveThirdBlock_DOUI_M72E12RA(blocks);     // Проверка для удаления 3-го блока расширения DO + UI
+            RemoveSecondBlock_DOUI_M72E12RA(blocks);    // Проверка для удаления 2-го блока расширения DO + UI
+            RemoveFirstBlock_DOUI_M72E12RA(blocks);     // Проверка для удаления 1-го блока расширения DO + UI
+
+            RemoveThirdBlockDO_M72E08RA(blocks);        // Проверка для удаления 3-го блока расширения DO
+            RemoveSecondBlockDO_M72E08RA(blocks);       // Проверка для удаления 2-го блока расширения DO
             RemoveFirstBlockDO_M72E08RA(blocks);        // Проверка для удаления 1-го блока расширения DO
 
             CheckSignalsReady();                        // Проверка распределения сигналов

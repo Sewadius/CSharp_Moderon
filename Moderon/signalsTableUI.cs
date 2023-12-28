@@ -266,6 +266,10 @@ namespace Moderon
             AddSecondBlock_DOUI_M72E12RA(blocks);                       // Проверка добавления 2-го блока расширения M72E12RA (DO + UI)
             AddThirdBlock_DOUI_M72E12RA(blocks);                        // Проверка добавления 3-го блока расширения M72E12RA (DO + UI)
 
+            AddFirstBlockUI_M72E16NA(blocks);                           // Проверка добавления 1-го блока расширения M72E16NA (UI)
+            AddSecondBlockUI_M72E16NA(blocks);                          // Проверка добавления 2-го блока расширения M72E16NA (UI)
+            AddThirdBlockUI_M72E16NA(blocks);                           // Проверка добавления 3-го блока расширения M72E16NA (UI)
+
             // ПЛК
             if (UI1_combo.SelectedIndex == 0) 
                 SelectComboBox_UI(UI1_combo, code, UI1_lab, UI1combo_text, UI1combo_index, type, UI1_typeCombo);        // UI1 ПЛК
@@ -502,6 +506,17 @@ namespace Moderon
 
             subUIcondition = false;         // Сброс признака удаления UI
             list_ui.Remove(find_ui);        // Удаление сигнала из списка UI
+
+            var blocks = CalcExpBlocks_typeNums();      // Определение типов и количества блоков расширения после удаления
+
+            RemoveThirdBlock_DOUI_M72E12RA(blocks);     // Проверка на удаление 3-го блока расширения DO + UI 
+            RemoveSecondBlock_DOUI_M72E12RA(blocks);    // Проверка на удаление 2-го блока расширения DO + UI 
+            RemoveFirstBlock_DOUI_M72E12RA(blocks);     // Проверка на удаление 1-го блока расширения DO + UI 
+
+            RemoveThirdBlockUI_M72E16NA(blocks);        // Проверка на удаление 3-го блока расширения UI
+            RemoveSecondBlockUI_M72E16NA(blocks);       // Проверка на удаление 2-го блока расширения UI
+            RemoveFirstBlockUI_M72E16NA(blocks);        // Проверка на удаление 1-го блока расширения UI
+
             CheckSignalsReady();            // Проверка распределения сигналов
         }
 
