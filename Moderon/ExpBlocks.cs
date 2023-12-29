@@ -483,6 +483,22 @@ namespace Moderon
             RellocateSignals_fromLists(ao_signals, do_signals, ui_signals);
         }
 
+        ///<summary>Изменение подписей для типа контроллера "Mini" или "Optimized"</summary>
+        private void ChangePlk_Headers(bool mini)
+        {
+            string
+                text_mini = "Контроллер Moderon M72 Mini",
+                text_optimized = "Контроллер Moderon M72 Optimized";
+
+            List<Label> headers = new List<Label>()
+            {
+                UIplk_header, DOplk_header, AOplk_header
+            };
+
+            foreach (var el in headers)
+                el.Text = mini ? text_mini : text_optimized;
+        }
+
         ///<summary>Изменение типа контроллера "Mini" или "Optimized"</summary>
         private void ComboPlkType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -499,6 +515,8 @@ namespace Moderon
             if (comboPlkType.SelectedIndex == 0)                                    // Выбрали контроллер "Mini"
             {
                 plkChangeIndexLast = 0;                                             // Сохранение нового значения состояния
+                ChangePlk_Headers(true);                                            // Подписи заголовков для контроллера "Mini"
+
                 foreach (var el in ui_combos)
                 {
                     el.Hide(); el.Enabled = false;                                  // Скрытие и блокировка UI входных сигналов
@@ -535,6 +553,8 @@ namespace Moderon
             else if (comboPlkType.SelectedIndex == 1)                               // Выбрали контроллер "Optimized"
             {
                 plkChangeIndexLast = 1;                                             // Сохранение нового значения состояния
+                ChangePlk_Headers(false);                                           // Подписи заголовков для контроллера "Optimized"
+
                 foreach (var el in ui_combos)
                 {
                     el.Show(); el.Enabled = true;                                   // Отображение и разблокировка UI входных сигналов                            

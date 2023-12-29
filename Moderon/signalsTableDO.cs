@@ -598,6 +598,10 @@ namespace Moderon
         {
             var blocks = CalcExpBlocks_typeNums();                          // Определение типов и количества блоков расширения
 
+            RemoveThirdBlockUI_M72E16NA(blocks);                            // Проверка на удаление 3-го блока расширения UI
+            RemoveSecondBlockUI_M72E16NA(blocks);                           // Проверка на удаление 2-го блока расширения UI
+            RemoveFirstBlockUI_M72E16NA(blocks);                            // Проверка на удаление 1-го блока расширения UI
+
             AddFirstBlock_DOUI_M72E12RA(blocks);                            // Проверка добавления 1-го блока расширения M72E12RA (DO + UI)
             AddSecondBlock_DOUI_M72E12RA(blocks);                           // Проверка добавления 2-го блока расширения M72E12RA (DO + UI)
             AddThirdBlock_DOUI_M72E12RA(blocks);                            // Проверка добавления 3-го блока расширения M72E12RA (DO + UI)

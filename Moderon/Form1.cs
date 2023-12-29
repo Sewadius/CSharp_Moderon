@@ -295,6 +295,8 @@ namespace Moderon
             mainPage.Height = 465; 
             Form1_InitCmdWord(this, e); // Подготовка командных слов
             Form1_InitSignals(this, e); // Подготовка сигналов ПЛК
+            // Изменения для таблицы формирования сигналов
+            signalsPanel.Width = 845;
             // Изменения для панели данных записи 
             LoadNetOnLoad();
 
@@ -1372,6 +1374,12 @@ namespace Moderon
             comboSysType.Show();
             panelElements.Show();
             formSignalsButton.Show();
+        }
+
+        ///<summary>Нажали "Сброс" в панели таблицы сигналов</summary>
+        private void ResetButtonSignals_Click(object sender, EventArgs e)   
+        {
+            ResetButton_Click(sender, e);
         }
 
         ///<summary>Настройка поля для ширины вытяжной заслонки</summary>
