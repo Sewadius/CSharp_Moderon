@@ -495,6 +495,7 @@ namespace Moderon
                 UIplk_header, DOplk_header, AOplk_header
             };
 
+            // Замена названий для заголовков
             foreach (var el in headers)
                 el.Text = mini ? text_mini : text_optimized;
         }
@@ -508,13 +509,16 @@ namespace Moderon
             var do_combos = new List<ComboBox>() { DO5_combo, DO6_combo };                                                  // DO_combo
             var do_labels = new List<Label>() { DO5_plkLabel, DO6_plkLabel };                                               // DO подписи сигналов
 
-            var blocks = CalcExpBlocks_typeNums();                                                                          // Количество и тип блоков расширения
+            // Количество и тип блоков расширения, расчётное значение
+            Dictionary<ExpBlock, int> blocks;                                                                
 
             if (comboPlkType.SelectedIndex == plkChangeIndexLast) return;           // Выбранный индекс не изменился
 
             if (comboPlkType.SelectedIndex == 0)                                    // Выбрали контроллер "Mini"
             {
-                plkChangeIndexLast = 0;                                             // Сохранение нового значения состояния
+                plkChangeIndexLast = 0;                                             // Сохранение нового значения состояния "Mini"
+                blocks = CalcExpBlocks_typeNums();                                  // Расчёт нового количества блоков расширения
+
                 ChangePlk_Headers(true);                                            // Подписи заголовков для контроллера "Mini"
 
                 foreach (var el in ui_combos)
@@ -552,7 +556,9 @@ namespace Moderon
             }
             else if (comboPlkType.SelectedIndex == 1)                               // Выбрали контроллер "Optimized"
             {
-                plkChangeIndexLast = 1;                                             // Сохранение нового значения состояния
+                plkChangeIndexLast = 1;                                             // Сохранение нового значения состояния "Optimized"
+                blocks = CalcExpBlocks_typeNums();                                  // Расчёт нового количества блоков расширения
+
                 ChangePlk_Headers(false);                                           // Подписи заголовков для контроллера "Optimized"
 
                 foreach (var el in ui_combos)
@@ -610,8 +616,8 @@ namespace Moderon
                 block2_UIpanel.Show(); block2_UIpanel.Enabled = true;
 
                 // Положение по высоте для панели UI блока расширения 2
-                block2_UIpanel.Location = new Point(block2_UIpanel.Location.X, plk_UIpanel.Height +
-                    block1_UIpanel.Height + BETWEEN_PANELS);
+                block2_UIpanel.Location = new Point(block2_UIpanel.Location.X, 
+                    block1_UIpanel.Location.Y + block1_UIpanel.Height);
             }
             else if (panel == block3_UIpanel && !block3_UIpanel.Enabled)            // Для блока расширения 3
             {
@@ -620,8 +626,8 @@ namespace Moderon
                 block3_UIpanel.Show(); block3_UIpanel.Enabled = true;
 
                 // Положение по высоте для панели UI блока расширения 3
-                block3_UIpanel.Location = new Point(block3_UIpanel.Location.X, block2_UIpanel.Location.Y +
-                    block2_UIpanel.Height);
+                block3_UIpanel.Location = new Point(block3_UIpanel.Location.X, 
+                    block2_UIpanel.Location.Y + block2_UIpanel.Height);
             }
         }
 

@@ -901,7 +901,7 @@
             this.mainPage.Location = new System.Drawing.Point(15, 75);
             this.mainPage.Name = "mainPage";
             this.mainPage.SelectedIndex = 0;
-            this.mainPage.Size = new System.Drawing.Size(750, 40);
+            this.mainPage.Size = new System.Drawing.Size(750, 479);
             this.mainPage.TabIndex = 1;
             // 
             // sensorsPage
@@ -910,7 +910,7 @@
             this.sensorsPage.Controls.Add(this.sensorsPanel);
             this.sensorsPage.Location = new System.Drawing.Point(4, 22);
             this.sensorsPage.Name = "sensorsPage";
-            this.sensorsPage.Size = new System.Drawing.Size(742, 14);
+            this.sensorsPage.Size = new System.Drawing.Size(742, 453);
             this.sensorsPage.TabIndex = 9;
             this.sensorsPage.Text = "ДАТЧИКИ/СИГНАЛЫ";
             // 
@@ -2327,7 +2327,7 @@
             this.heatPage.Location = new System.Drawing.Point(4, 22);
             this.heatPage.Name = "heatPage";
             this.heatPage.Padding = new System.Windows.Forms.Padding(3);
-            this.heatPage.Size = new System.Drawing.Size(742, 14);
+            this.heatPage.Size = new System.Drawing.Size(742, 453);
             this.heatPage.TabIndex = 1;
             this.heatPage.Text = "НАГРЕВАТЕЛЬ";
             // 
@@ -4447,9 +4447,9 @@
             this.signalsPanel.Controls.Add(this.signalsReadyLabel);
             this.signalsPanel.Controls.Add(this.tabControlSignals);
             this.signalsPanel.Controls.Add(this.backSignalsButton);
-            this.signalsPanel.Location = new System.Drawing.Point(11, 158);
+            this.signalsPanel.Location = new System.Drawing.Point(5, 901);
             this.signalsPanel.Name = "signalsPanel";
-            this.signalsPanel.Size = new System.Drawing.Size(740, 835);
+            this.signalsPanel.Size = new System.Drawing.Size(740, 61);
             this.signalsPanel.TabIndex = 16;
             this.signalsPanel.Visible = false;
             // 
@@ -4460,7 +4460,7 @@
             this.resetButtonSignals.Cursor = System.Windows.Forms.Cursors.Hand;
             this.resetButtonSignals.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.resetButtonSignals.ForeColor = System.Drawing.Color.White;
-            this.resetButtonSignals.Location = new System.Drawing.Point(741, 803);
+            this.resetButtonSignals.Location = new System.Drawing.Point(741, 29);
             this.resetButtonSignals.Name = "resetButtonSignals";
             this.resetButtonSignals.Size = new System.Drawing.Size(97, 27);
             this.resetButtonSignals.TabIndex = 62;
@@ -4475,7 +4475,7 @@
             this.loadToExl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loadToExl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadToExl.ForeColor = System.Drawing.Color.White;
-            this.loadToExl.Location = new System.Drawing.Point(561, 803);
+            this.loadToExl.Location = new System.Drawing.Point(561, 29);
             this.loadToExl.Name = "loadToExl";
             this.loadToExl.Size = new System.Drawing.Size(173, 27);
             this.loadToExl.TabIndex = 61;
@@ -4491,7 +4491,7 @@
             this.loadPLC_SignalsButton.Enabled = false;
             this.loadPLC_SignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadPLC_SignalsButton.ForeColor = System.Drawing.Color.White;
-            this.loadPLC_SignalsButton.Location = new System.Drawing.Point(408, 803);
+            this.loadPLC_SignalsButton.Location = new System.Drawing.Point(408, 29);
             this.loadPLC_SignalsButton.Name = "loadPLC_SignalsButton";
             this.loadPLC_SignalsButton.Size = new System.Drawing.Size(147, 27);
             this.loadPLC_SignalsButton.TabIndex = 60;
@@ -4505,7 +4505,7 @@
             this.signalsReadyLabel.AutoSize = true;
             this.signalsReadyLabel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.signalsReadyLabel.ForeColor = System.Drawing.Color.Green;
-            this.signalsReadyLabel.Location = new System.Drawing.Point(123, 809);
+            this.signalsReadyLabel.Location = new System.Drawing.Point(123, 35);
             this.signalsReadyLabel.Name = "signalsReadyLabel";
             this.signalsReadyLabel.Size = new System.Drawing.Size(272, 14);
             this.signalsReadyLabel.TabIndex = 23;
@@ -7992,7 +7992,7 @@
             this.tabDO.Controls.Add(this.block1_DOpanel);
             this.tabDO.Location = new System.Drawing.Point(4, 22);
             this.tabDO.Name = "tabDO";
-            this.tabDO.Size = new System.Drawing.Size(721, 762);
+            this.tabDO.Size = new System.Drawing.Size(721, 424);
             this.tabDO.TabIndex = 3;
             this.tabDO.Text = "DO сигналы";
             // 
@@ -9157,7 +9157,7 @@
             this.tabAO.Controls.Add(this.block1_AOpanel);
             this.tabAO.Location = new System.Drawing.Point(4, 22);
             this.tabAO.Name = "tabAO";
-            this.tabAO.Size = new System.Drawing.Size(721, 762);
+            this.tabAO.Size = new System.Drawing.Size(721, 424);
             this.tabAO.TabIndex = 2;
             this.tabAO.Text = "AO сигналы";
             // 
@@ -9560,7 +9560,7 @@
             this.tabCmdWord.Controls.Add(this.cmdWordsTextBox);
             this.tabCmdWord.Location = new System.Drawing.Point(4, 22);
             this.tabCmdWord.Name = "tabCmdWord";
-            this.tabCmdWord.Size = new System.Drawing.Size(721, 762);
+            this.tabCmdWord.Size = new System.Drawing.Size(721, 424);
             this.tabCmdWord.TabIndex = 5;
             this.tabCmdWord.Text = "Командные слова";
             // 
@@ -9581,7 +9581,7 @@
             this.backSignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.backSignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.backSignalsButton.ForeColor = System.Drawing.Color.White;
-            this.backSignalsButton.Location = new System.Drawing.Point(10, 803);
+            this.backSignalsButton.Location = new System.Drawing.Point(10, 29);
             this.backSignalsButton.Name = "backSignalsButton";
             this.backSignalsButton.Size = new System.Drawing.Size(94, 27);
             this.backSignalsButton.TabIndex = 58;
@@ -9693,7 +9693,7 @@
             this.loadCanPanel.Controls.Add(this.canSelectBox);
             this.loadCanPanel.Controls.Add(this.label173);
             this.loadCanPanel.Controls.Add(this.netOptionLabel);
-            this.loadCanPanel.Location = new System.Drawing.Point(12, 121);
+            this.loadCanPanel.Location = new System.Drawing.Point(5, 580);
             this.loadCanPanel.Name = "loadCanPanel";
             this.loadCanPanel.Size = new System.Drawing.Size(749, 30);
             this.loadCanPanel.TabIndex = 45;

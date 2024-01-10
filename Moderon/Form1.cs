@@ -17,7 +17,13 @@ namespace Moderon
         private Point MENU_POSITION = new Point(3, 36);                 // Позиция для меню элементов
         private Point PANEL_POSITION = new Point(15, 90);               // Позиция для остальных панелей
         readonly private bool showCode = true;                          // Код сигнала отображается по умолчанию в таблице сигналов
-        private int plkChangeIndexLast = 1;                             // Сохранённое значение последнего выбранного типа контроллера
+        
+        // Ранее сохраненные значения индексов для элементов
+        private int plkChangeIndexLast = 1;                             // Значение для выбранного типа контроллера
+        private int heatTypeComboIndex = 0;                             // Значение для типа основного нагревателя
+        private int coolTypeComboIndex = 0;                             // Значение для типа охладителя
+        private int heatAddTypeComboIndex = 0;                          // Значение для типа дополнительного нагревателя
+        private int humidTypeComboIndex = 0;                            // Значение для типа увлажнителя
         
         private bool 
             hintEnabled = true,                                         // Отображение подсказок выбрано по умолчанию
@@ -752,14 +758,18 @@ namespace Moderon
         ///<summary>Изменили тип нагревателя</summary>
         private void HeatTypeCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (heatTypeCombo.SelectedIndex == heatTypeComboIndex) return;          // Не поменялся выбор типа нагревателя
+
             if (heatTypeCombo.SelectedIndex == 1)                                   // Электрокалорифер
             {
+                heatTypeComboIndex = 1;
                 watHeatPanel.Hide(); elHeatPanel.Show();
                 heatPicture.Image = Properties.Resources.electroHeater;
                 elHeatPanel.Location = MENU_POSITION;
             }
             else // Водяной калорифер
             {
+                heatTypeComboIndex = 0;
                 elHeatPanel.Hide(); watHeatPanel.Show();
                 heatPicture.Image = Properties.Resources.waterHeater;
                 watHeatPanel.Location = MENU_POSITION;
@@ -795,14 +805,18 @@ namespace Moderon
         ///<summary>Изменили тип охладителя</summary>
         private void CoolTypeCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (coolTypeCombo.SelectedIndex == coolTypeComboIndex) return;          // Не поменялся выбор типа охладителя
+
             if (coolTypeCombo.SelectedIndex == 1)                                   // Водяной охладитель
             {
+                coolTypeComboIndex = 1;
                 frCoolPanel.Hide(); watCoolPanel.Show();
                 coolPicture.Image = Properties.Resources.waterCooler;
                 watCoolPanel.Location = MENU_POSITION;
             }
             else                                                                    // Фреоновый охладитель
             {
+                coolTypeComboIndex = 0;
                 watCoolPanel.Hide(); frCoolPanel.Show();
                 coolPicture.Image = Properties.Resources.freonCooler;
                 frCoolPanel.Location = MENU_POSITION;
@@ -818,13 +832,17 @@ namespace Moderon
         ///<summary>Изменили тип увлажнителя</summary>
         private void HumidTypeCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (humidTypeCombo.SelectedIndex == humidTypeComboIndex) return;        // Не изменился тип увлажнителя
+
             if (humidTypeCombo.SelectedIndex == 1)                                  // Сотовый увлажнитель
             {
+                humidTypeComboIndex = 1;
                 steamHumidPanel.Hide(); cellHumidPanel.Show();
                 cellHumidPanel.Location = MENU_POSITION;
             }
             else                                                                    // Паровой увлажнитель
             {
+                humidTypeComboIndex = 0;
                 cellHumidPanel.Hide(); steamHumidPanel.Show();
                 steamHumidPanel.Location = MENU_POSITION;
             }
@@ -919,14 +937,18 @@ namespace Moderon
         ///<summary>Изменили тип догревателя</summary>
         private void HeatAddTypeCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (heatAddTypeCombo.SelectedIndex == heatAddTypeComboIndex) return;    // Не поменялся выбор типа догревателя 
+
             if (heatAddTypeCombo.SelectedIndex == 1)                                // Электрокалорифер
             {
+                heatAddTypeComboIndex = 1;
                 watAddHeatPanel.Hide(); elAddHeatPanel.Show();
                 heatAddPicture.Image = Properties.Resources.electroHeater;
                 elAddHeatPanel.Location = MENU_POSITION;
             }
             else                                                                    // Водный калорифер
             {
+                heatAddTypeComboIndex = 0;
                 elAddHeatPanel.Hide(); watAddHeatPanel.Show();
                 heatAddPicture.Image = Properties.Resources.waterHeater;
                 watAddHeatPanel.Location = MENU_POSITION;
@@ -1377,7 +1399,7 @@ namespace Moderon
         }
 
         ///<summary>Нажали "Сброс" в панели таблицы сигналов</summary>
-        private void ResetButtonSignals_Click(object sender, EventArgs e)   
+        private void ResetButtonSignals_Click(object sender, EventArgs e)     
         {
             ResetButton_Click(sender, e);
         }

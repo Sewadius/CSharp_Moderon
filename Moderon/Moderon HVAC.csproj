@@ -9,7 +9,7 @@
     <RootNamespace>Moderon</RootNamespace>
     <AssemblyName>Moderon HVAC</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-	<LangVersion>12.0</LangVersion>
+    <LangVersion>12.0</LangVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -124,6 +124,7 @@
     <Compile Include="Spec.cs">
       <SubType>Form</SubType>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Resources\red_cross.png" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
