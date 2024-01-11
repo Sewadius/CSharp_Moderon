@@ -24,6 +24,7 @@ namespace Moderon
         private int coolTypeComboIndex = 0;                             // Значение для типа охладителя
         private int heatAddTypeComboIndex = 0;                          // Значение для типа дополнительного нагревателя
         private int humidTypeComboIndex = 0;                            // Значение для типа увлажнителя
+        private int recupTypeComboIndex = 0;                            // Значение для типа рекуператора
         
         private bool 
             hintEnabled = true,                                         // Отображение подсказок выбрано по умолчанию
@@ -858,8 +859,11 @@ namespace Moderon
         {
             const int delta_1 = 398, delta_2 = 507, height = 3;
 
+            if (recupTypeCombo.SelectedIndex == recupTypeComboIndex) return;        // Не изменился тип рекуператора
+
             if (recupTypeCombo.SelectedIndex == 1)                                  // Пластинчатый
             {
+                recupTypeComboIndex = 1;
                 Point p1 = new Point(Size.Width - delta_2, height);
                 rotorRecupPanel.Hide(); glikRecupPanel.Hide(); plastRecupPanel.Show();
                 recupPicture.Image = Properties.Resources.plastRecup;
@@ -869,6 +873,7 @@ namespace Moderon
             }
             else if (recupTypeCombo.SelectedIndex == 0)                             // Роторный
             {
+                recupTypeComboIndex = 0;
                 Point p1 = new Point(Size.Width - delta_1, height);
                 plastRecupPanel.Hide(); glikRecupPanel.Hide(); rotorRecupPanel.Show();
                 recupPicture.Image = Properties.Resources.rotorRecup;
@@ -878,6 +883,7 @@ namespace Moderon
             }
             else if (recupTypeCombo.SelectedIndex == 2)                             // Гликолевый
             {
+                recupTypeComboIndex = 2;
                 Point p1 = new Point(Size.Width - delta_2, height);
                 plastRecupPanel.Hide(); rotorRecupPanel.Hide(); glikRecupPanel.Show();
                 recupPicture.Image = Properties.Resources.plastRecup;

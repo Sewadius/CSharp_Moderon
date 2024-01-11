@@ -269,21 +269,23 @@ namespace Moderon
 
             if (a) // Сигналы распределены
             {
+                comboPlkType.Enabled = true;                                        // Разблокировка смены типа ПЛК
                 signalsReadyLabel.Text = "Карта входов/выходов сформирована";
                 signalsReadyLabel.ForeColor = Color.Green;
-                loadPLC_SignalsButton.Show();                       // Кнопка "Далее"
-                loadToExl.Show();                                   // Кнопка экспорта таблицы сигналов в Excel
-                saveSpecToolStripMenuItem.Enabled = true;           // Возможность сохранить спецификацию
+                loadPLC_SignalsButton.Show();                                       // Кнопка "Далее"
+                loadToExl.Show();                                                   // Кнопка экспорта таблицы сигналов в Excel
+                saveSpecToolStripMenuItem.Enabled = true;                           // Возможность сохранить спецификацию
                 // Установка изображения, подобрано
                 pic_signalsReady.Image = Properties.Resources.green_check;
             } 
             else // Сигналы не распределены
             {
+                comboPlkType.Enabled = false;                                       // Блокировка смены типа ПЛК
                 signalsReadyLabel.Text = "Карта входов/выходов некорректна";
                 signalsReadyLabel.ForeColor = Color.Red;
-                loadPLC_SignalsButton.Hide();                       // Кнопка "Далее"
-                loadToExl.Hide();                                   // Скрытие кнопки экспорта таблицы сигналов в Excel
-                saveSpecToolStripMenuItem.Enabled = false;          // Невозможность сохранить спецификацию
+                loadPLC_SignalsButton.Hide();                                       // Кнопка "Далее"
+                loadToExl.Hide();                                                   // Скрытие кнопки экспорта таблицы сигналов в Excel
+                saveSpecToolStripMenuItem.Enabled = false;                          // Невозможность сохранить спецификацию
                 // Установка изображения, не подобрано
                 pic_signalsReady.Image = Properties.Resources.red_cross;
             }
