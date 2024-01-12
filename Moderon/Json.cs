@@ -56,39 +56,56 @@ namespace Moderon
     class JsonObject
     {
         [JsonProperty("checkBoxState")]
-        public Dictionary<string, bool> checkBoxState { get; set; } // Состояние всех checkBox
+        public Dictionary<string, bool> checkBoxState { get; set; }                 // Состояние всех checkBox
+
         [JsonProperty("comboBoxElemState")]
-        public Dictionary<string, int> comboBoxElemState { get; set; } // Состояние всех comboBox элементов
+        public Dictionary<string, int> comboBoxElemState { get; set; }              // Состояние всех comboBox элементов
+
         [JsonProperty("textBoxElemState")]
-        public Dictionary<string, string> textBoxElemState { get; set; } // Значение для textBox элементов
+        public Dictionary<string, string> textBoxElemState { get; set; }            // Значение для textBox элементов
+
         [JsonProperty("labelSignalsState")]
-        public Dictionary<string, string> labelSignalsState { get; set; } // Значение для label таблицы сигналов
+        public Dictionary<string, string> labelSignalsState { get; set; }           // Значение для label таблицы сигналов
+
         [JsonProperty("comboSignalsItems")]
-        public Dictionary<string, string[]> comboSignalsItems { get; set; } // Элементы для comboBox таблицы сигналов
+        public Dictionary<string, string[]> comboSignalsItems { get; set; }         // Элементы для comboBox таблицы сигналов
+
         [JsonProperty("comboAITypeItems")]
-        public Dictionary<string, string[]> comboAITypeItems { get; set; } // Элементы для comboBox типов AI сигналов
+        public Dictionary<string, string[]> comboAITypeItems { get; set; }          // Элементы для comboBox типов AI сигналов
+
         [JsonProperty("comboSignalsState")]
-        public Dictionary<string, string> comboSignalsState { get; set; } // Значение для comboBox таблицы сигналов
+        public Dictionary<string, string> comboSignalsState { get; set; }           // Значение для comboBox таблицы сигналов
+
         [JsonProperty("comboAITypeState")]
-        public Dictionary<string, string> comboAITypeState { get; set; } // Значение для comboBox типа сигнала AI
-        [JsonProperty("aiCode")]
-        public Dictionary<string, ushort> aiCode { get; set; } // Словарь для кодов сигналов AI
-        [JsonProperty("aiType")]
-        public Dictionary<string, string> aiType { get; set; } // Словарь для типов сигналов AI
-        [JsonProperty("aiActive")]
-        public Dictionary<string, bool> aiActive { get; set; } // Словарь для активности сигналов AI
+        public Dictionary<string, string> comboAITypeState { get; set; }            // Значение для comboBox типа сигнала AI
+
+        [JsonProperty("uiCode")]
+        public Dictionary<string, ushort> uiCode { get; set; }                      // Словарь для кодов сигналов UI
+
+        [JsonProperty("uiType")]
+        public Dictionary<string, string> uiType { get; set; }                      // Словарь для типов сигналов UI
+
+        [JsonProperty("uiActive")]
+        public Dictionary<string, bool> uiActive { get; set; }                      // Словарь для активности сигналов UI
+
         [JsonProperty("aoCode")]
-        public Dictionary<string, ushort> aoCode { get; set; } // Словарь для кодов сигналов AO
+        public Dictionary<string, ushort> aoCode { get; set; }                      // Словарь для кодов сигналов AO
+
         [JsonProperty("aoActive")]
-        public Dictionary<string, bool> aoActive { get; set; } // Словарь для активности сигналов AO
+        public Dictionary<string, bool> aoActive { get; set; }                      // Словарь для активности сигналов AO
+
         [JsonProperty("diCode")]
-        public Dictionary<string, ushort> diCode { get; set; } // Словарь для кодов сигналов DI
+        public Dictionary<string, ushort> diCode { get; set; }                      // Словарь для кодов сигналов DI
+
         [JsonProperty("diActive")]
-        public Dictionary<string, bool> diActive { get; set; } // Словарь для активности сигналов DI
+        public Dictionary<string, bool> diActive { get; set; }                      // Словарь для активности сигналов DI
+
         [JsonProperty("doCode")]
-        public Dictionary<string, ushort> doCode { get; set; } // Словарь для кодов сигналов DO
+        public Dictionary<string, ushort> doCode { get; set; }                      // Словарь для кодов сигналов DO
+
         [JsonProperty("doActive")]
-        public Dictionary<string, bool> doActive { get; set; } // Словарь для активности сигналов DO
+        public Dictionary<string, bool> doActive { get; set; }                      // Словарь для активности сигналов DO
+
         [JsonConstructor]
         public JsonObject(){
             checkBoxState = new Dictionary<string, bool>();
@@ -99,9 +116,9 @@ namespace Moderon
             comboAITypeItems = new Dictionary<string, string[]>();
             comboSignalsState = new Dictionary<string, string>();
             comboAITypeState = new Dictionary<string, string>();
-            aiCode = new Dictionary<string, ushort>();
-            aiType = new Dictionary<string, string>();
-            aiActive = new Dictionary<string, bool>();
+            uiCode = new Dictionary<string, ushort>();
+            uiType = new Dictionary<string, string>();
+            uiActive = new Dictionary<string, bool>();
             aoCode = new Dictionary<string, ushort>();
             aoActive = new Dictionary<string, bool>();
             diCode = new Dictionary<string, ushort>();
@@ -113,33 +130,41 @@ namespace Moderon
 
     public partial class Form1 : Form
     {
-        JsonObject json; // = new JsonObject(); // Объект для сохранения
-        JsonObject json_read; // Объект для загрузки
-        bool ignoreEvents = false; // Игнорирование событий для элементов
+        JsonObject json;                                // Объект для сохранения файла
+        JsonObject json_read;                           // Объект для загрузки файла
+        bool ignoreEvents = false;                      // Игнорирование событий для элементов
 
         ///<summary>Нажали "Сохранить" в главном меню</summary> 
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             json = new JsonObject();
-            BuildCheckBoxAll(); // Сохранение для всех элементов checkBox
-            BuildComboBoxElemAll(); // Сохранение для всех элементов comboBox
-            BuildTextBoxAll(); // Сохранение для всех элементов textBox
-            BuildLabelSignalsAll(); // Сохранение для подписей кодов таблицы сигналов
-            BuildComboItemsSignals(); // Сохранение элементов comboBox таблицы сигналов
-            BuildComboSignalsAll(); // Сохранение выбранного элемента для comboBox таблицы сигналов
-            BuildSignalArrays(); // Сохранение для перечня сигналов, массивы
-            SaveJsonFile(); // Сохранение файла
+            BuildCheckBoxAll();                         // Сохранение для всех элементов checkBox
+            BuildComboBoxElemAll();                     // Сохранение для всех элементов comboBox
+            BuildTextBoxAll();                          // Сохранение для всех элементов textBox
+            BuildLabelSignalsAll();                     // Сохранение для подписей кодов таблицы сигналов
+            BuildComboItemsSignals();                   // Сохранение элементов comboBox таблицы сигналов
+            BuildComboSignalsAll();                     // Сохранение выбранного элемента для comboBox таблицы сигналов
+            BuildSignalArrays();                        // Сохранение для перечня сигналов, массивы
+            SaveJsonFile();                             // Сохранение файла
         }
 
-        ///<summary>Перенос перечня сигналов, массивы</summary>
+        ///<summary>Перенос перечня сигналов, массивы UI, AO, DO</summary>
         private void BuildSignalArrays()
         {
+            // Значения полей для сигналов UI
+            for (int i = 0; i < list_ui.Count; i++)
+            {
+                json.uiCode.Add(list_ui[i].Name, list_ui[i].Code);
+                json.uiActive.Add(list_ui[i].Name, list_ui[i].Active);
+            }
+
             // Значения полей для сигналов AO
             for (int i = 0; i < list_ao.Count; i++)
             {
                 json.aoCode.Add(list_ao[i].Name, list_ao[i].Code);
                 json.aoActive.Add(list_ao[i].Name, list_ao[i].Active);
             }
+
             // Значения полей для сигналов DO
             for (int i = 0; i < list_do.Count; i++)
             {
@@ -154,7 +179,7 @@ namespace Moderon
             var tempPath = Path.GetTempPath() + "/save.json";
             using (StreamWriter file = File.CreateText(tempPath))
             {
-                JsonSerializer serializer = new JsonSerializer();
+                JsonSerializer serializer = new JsonSerializer();  
                 serializer.Serialize(file, json);
                 file.Close();
             }
@@ -164,9 +189,7 @@ namespace Moderon
             dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             dlg.Filter = "Json file (.json)|*.json";
             if (dlg.ShowDialog() == DialogResult.OK)
-            {
                 File.WriteAllBytes(dlg.FileName, File.ReadAllBytes(tempPath));
-            }
         }
 
         ///<summary>Нажали "Загрузить" в главном меню</summary> 
@@ -243,12 +266,20 @@ namespace Moderon
             // Нагреватель
             TF_heaterCheck.Checked = json_read.checkBoxState[TF_heaterCheck.Name];
             confHeatPumpCheck.Checked = json_read.checkBoxState[confHeatPumpCheck.Name];
+            pumpCurProtect.Checked = json_read.checkBoxState[pumpCurProtect.Name];
+            reservPumpHeater.Checked = json_read.checkBoxState[reservPumpHeater.Name];
+            confHeatResPumpCheck.Checked = json_read.checkBoxState[confHeatResPumpCheck.Name];
+            pumpCurResProtect.Checked = json_read.checkBoxState[pumpCurResProtect.Name];
             watSensHeatCheck.Checked = json_read.checkBoxState[watSensHeatCheck.Name];
             // Второй нагреватель
             TF_addHeaterCheck.Checked = json_read.checkBoxState[TF_addHeaterCheck.Name];
-            confAddHeatPumpCheck.Checked = json_read.checkBoxState[confAddHeatPumpCheck.Name];
-            sensWatAddHeatCheck.Checked = json_read.checkBoxState[sensWatAddHeatCheck.Name];
             pumpAddHeatCheck.Checked = json_read.checkBoxState[pumpAddHeatCheck.Name];
+            confAddHeatPumpCheck.Checked = json_read.checkBoxState[confAddHeatPumpCheck.Name];
+            pumpCurAddProtect.Checked = json_read.checkBoxState[pumpCurAddProtect.Name];
+            reservPumpAddHeater.Checked = json_read.checkBoxState[reservPumpAddHeater.Name];
+            confAddHeatResPumpCheck.Checked = json_read.checkBoxState[confAddHeatResPumpCheck.Name];
+            pumpCurResAddProtect.Checked = json_read.checkBoxState[pumpCurResAddProtect.Name];
+            sensWatAddHeatCheck.Checked = json_read.checkBoxState[sensWatAddHeatCheck.Name];
             // Охладитель
             alarmFrCoolCheck.Checked = json_read.checkBoxState[alarmFrCoolCheck.Name];
             thermoCoolerCheck.Checked = json_read.checkBoxState[thermoCoolerCheck.Name];
@@ -257,6 +288,7 @@ namespace Moderon
             // Увлажнитель
             alarmHumidCheck.Checked = json_read.checkBoxState[alarmHumidCheck.Name];
             // Рециркуляция
+            recircPrDampAOCheck.Checked = json_read.checkBoxState[recircPrDampAOCheck.Name];
             springRetRecircCheck.Checked = json_read.checkBoxState[springRetRecircCheck.Name];
             // Рекуператор
             pumpGlicRecCheck.Checked = json_read.checkBoxState[pumpGlicRecCheck.Name];
@@ -273,12 +305,15 @@ namespace Moderon
             sigAlarmCheck.Checked = json_read.checkBoxState[sigAlarmCheck.Name];
             sigFilAlarmCheck.Checked = json_read.checkBoxState[sigFilAlarmCheck.Name];
             stopStartCheck.Checked = json_read.checkBoxState[stopStartCheck.Name];
+            fireCheck.Checked = json_read.checkBoxState[fireCheck.Name];
             // Приточный вентилятор
             prFanPSCheck.Checked = json_read.checkBoxState[prFanPSCheck.Name];
             prFanFC_check.Checked = json_read.checkBoxState[prFanFC_check.Name];
             prFanThermoCheck.Checked = json_read.checkBoxState[prFanThermoCheck.Name];
             curDefPrFanCheck.Checked = json_read.checkBoxState[curDefPrFanCheck.Name];
             checkResPrFan.Checked = json_read.checkBoxState[checkResPrFan.Name];
+            prDampFanCheck.Checked = json_read.checkBoxState[prDampFanCheck.Name];
+            prDampConfirmFanCheck.Checked = json_read.checkBoxState[prDampConfirmFanCheck.Name];
             prFanAlarmCheck.Checked = json_read.checkBoxState[prFanAlarmCheck.Name];
             prFanStStopCheck.Checked = json_read.checkBoxState[prFanStStopCheck.Name];
             prFanSpeedCheck.Checked = json_read.checkBoxState[prFanSpeedCheck.Name];
@@ -288,6 +323,8 @@ namespace Moderon
             outFanThermoCheck.Checked = json_read.checkBoxState[outFanThermoCheck.Name];
             curDefOutFanCheck.Checked = json_read.checkBoxState[curDefOutFanCheck.Name];
             checkResOutFan.Checked = json_read.checkBoxState[checkResOutFan.Name];
+            outDampFanCheck.Checked = json_read.checkBoxState[outDampFanCheck.Name];
+            outDampConfirmFanCheck.Checked = json_read.checkBoxState[outDampConfirmFanCheck.Name];
             outFanAlarmCheck.Checked = json_read.checkBoxState[outFanAlarmCheck.Name];
             outFanStStopCheck.Checked = json_read.checkBoxState[outFanStStopCheck.Name];
             outFanSpeedCheck.Checked = json_read.checkBoxState[outFanSpeedCheck.Name];
@@ -344,6 +381,8 @@ namespace Moderon
             recupTypeCombo.SelectedIndex = json_read.comboBoxElemState[recupTypeCombo.Name];
             rotorPowCombo.SelectedIndex = json_read.comboBoxElemState[rotorPowCombo.Name];
             bypassPlastCombo.SelectedIndex = json_read.comboBoxElemState[bypassPlastCombo.Name];
+            // Датчики
+            fireTypeCombo.SelectedIndex = json_read.comboBoxElemState[fireTypeCombo.Name];
         }
 
         ///<summary>Загрузка для всех textBox</summary>
@@ -758,15 +797,23 @@ namespace Moderon
             json.checkBoxState.Add(confOutDampCheck.Name, confOutDampCheck.Checked);
             json.checkBoxState.Add(heatOutDampCheck.Name, heatOutDampCheck.Checked);
             json.checkBoxState.Add(springRetOutDampCheck.Name, springRetOutDampCheck.Checked);
-            // Нагреватель
+            // Основной нагреватель
             json.checkBoxState.Add(TF_heaterCheck.Name, TF_heaterCheck.Checked);
             json.checkBoxState.Add(confHeatPumpCheck.Name, confHeatPumpCheck.Checked);
+            json.checkBoxState.Add(pumpCurProtect.Name, pumpCurProtect.Checked);
+            json.checkBoxState.Add(reservPumpHeater.Name, reservPumpHeater.Checked);
+            json.checkBoxState.Add(confHeatResPumpCheck.Name, confHeatResPumpCheck.Checked);
+            json.checkBoxState.Add(pumpCurResProtect.Name, pumpCurResProtect.Checked);
             json.checkBoxState.Add(watSensHeatCheck.Name, watSensHeatCheck.Checked);
             // Второй нагреватель
             json.checkBoxState.Add(TF_addHeaterCheck.Name, TF_addHeaterCheck.Checked);
-            json.checkBoxState.Add(confAddHeatPumpCheck.Name, confAddHeatPumpCheck.Checked);
-            json.checkBoxState.Add(sensWatAddHeatCheck.Name, sensWatAddHeatCheck.Checked);
             json.checkBoxState.Add(pumpAddHeatCheck.Name, pumpAddHeatCheck.Checked);
+            json.checkBoxState.Add(confAddHeatPumpCheck.Name, confAddHeatPumpCheck.Checked);
+            json.checkBoxState.Add(pumpCurAddProtect.Name, pumpCurAddProtect.Checked);
+            json.checkBoxState.Add(reservPumpAddHeater.Name, reservPumpAddHeater.Checked);
+            json.checkBoxState.Add(confAddHeatResPumpCheck.Name, confAddHeatResPumpCheck.Checked);
+            json.checkBoxState.Add(pumpCurResAddProtect.Name, pumpCurResAddProtect.Checked);
+            json.checkBoxState.Add(sensWatAddHeatCheck.Name, sensWatAddHeatCheck.Checked);
             // Охладитель
             json.checkBoxState.Add(alarmFrCoolCheck.Name, alarmFrCoolCheck.Checked);
             json.checkBoxState.Add(thermoCoolerCheck.Name, thermoCoolerCheck.Checked);
@@ -775,6 +822,7 @@ namespace Moderon
             // Увлажнитель
             json.checkBoxState.Add(alarmHumidCheck.Name, alarmHumidCheck.Checked);
             // Рециркуляция
+            json.checkBoxState.Add(recircPrDampAOCheck.Name, recircPrDampAOCheck.Checked);
             json.checkBoxState.Add(springRetRecircCheck.Name, springRetRecircCheck.Checked);
             // Рекуператор
             json.checkBoxState.Add(pumpGlicRecCheck.Name, pumpGlicRecCheck.Checked);
@@ -791,6 +839,7 @@ namespace Moderon
             json.checkBoxState.Add(sigAlarmCheck.Name, sigAlarmCheck.Checked);
             json.checkBoxState.Add(sigFilAlarmCheck.Name, sigFilAlarmCheck.Checked);
             json.checkBoxState.Add(stopStartCheck.Name, stopStartCheck.Checked);
+            json.checkBoxState.Add(fireCheck.Name, fireCheck.Checked);
             // Приточный вентилятор
             json.checkBoxState.Add(prFanPSCheck.Name, prFanPSCheck.Checked);
             json.checkBoxState.Add(prFanFC_check.Name, prFanFC_check.Checked);
@@ -800,6 +849,8 @@ namespace Moderon
             json.checkBoxState.Add(prFanAlarmCheck.Name, prFanAlarmCheck.Checked);
             json.checkBoxState.Add(prFanStStopCheck.Name, prFanStStopCheck.Checked);
             json.checkBoxState.Add(prFanSpeedCheck.Name, prFanSpeedCheck.Checked);
+            json.checkBoxState.Add(prDampFanCheck.Name, prDampFanCheck.Checked);
+            json.checkBoxState.Add(prDampConfirmFanCheck.Name, prDampConfirmFanCheck.Checked);
             // Вытяжной вентилятор
             json.checkBoxState.Add(outFanPSCheck.Name, outFanPSCheck.Checked);
             json.checkBoxState.Add(outFanFC_check.Name, outFanFC_check.Checked);
@@ -809,6 +860,8 @@ namespace Moderon
             json.checkBoxState.Add(outFanAlarmCheck.Name, outFanAlarmCheck.Checked);
             json.checkBoxState.Add(outFanStStopCheck.Name, outFanStStopCheck.Checked);
             json.checkBoxState.Add(outFanSpeedCheck.Name, outFanSpeedCheck.Checked);
+            json.checkBoxState.Add(outDampFanCheck.Name, outDampFanCheck.Checked);
+            json.checkBoxState.Add(outDampConfirmFanCheck.Name, outDampConfirmFanCheck.Checked);
         }
 
         ///<summary>Сборка для всех comboBox элементов программы</summary>
@@ -852,6 +905,7 @@ namespace Moderon
             json.comboBoxElemState.Add(recupTypeCombo.Name, recupTypeCombo.SelectedIndex);
             json.comboBoxElemState.Add(rotorPowCombo.Name, rotorPowCombo.SelectedIndex);
             json.comboBoxElemState.Add(bypassPlastCombo.Name, bypassPlastCombo.SelectedIndex);
+            json.comboBoxElemState.Add(fireTypeCombo.Name, fireTypeCombo.SelectedIndex);
         }
 
         ///<summary>Сборка для всех textBox элементов программы</summary>
@@ -882,6 +936,8 @@ namespace Moderon
         ///<summary>Сборка для подписей кодов таблицы сигналов</summary>
         private void BuildLabelSignalsAll()
         {
+            // UI сигналы, ПЛК
+
             // AO сигналы, ПЛК
             json.labelSignalsState.Add(AO1_lab.Name, AO1_lab.Text);
             json.labelSignalsState.Add(AO2_lab.Name, AO2_lab.Text);
@@ -910,6 +966,7 @@ namespace Moderon
             json.labelSignalsState.Add(DO5bl1_lab.Name, DO5bl1_lab.Text);
             json.labelSignalsState.Add(DO6bl1_lab.Name, DO6bl1_lab.Text);
             json.labelSignalsState.Add(DO7bl1_lab.Name, DO7bl1_lab.Text);
+            json.labelSignalsState.Add(DO8bl1_lab.Name, DO8bl1_lab.Text);
             // DO сигналы, блок 2
             json.labelSignalsState.Add(DO1bl2_lab.Name, DO1bl2_lab.Text);
             json.labelSignalsState.Add(DO2bl2_lab.Name, DO2bl2_lab.Text);
@@ -918,6 +975,7 @@ namespace Moderon
             json.labelSignalsState.Add(DO5bl2_lab.Name, DO5bl2_lab.Text);
             json.labelSignalsState.Add(DO6bl2_lab.Name, DO6bl2_lab.Text);
             json.labelSignalsState.Add(DO7bl2_lab.Name, DO7bl2_lab.Text);
+            json.labelSignalsState.Add(DO8bl2_lab.Name, DO8bl2_lab.Text);
             // DO сигналы, блок 3
             json.labelSignalsState.Add(DO1bl3_lab.Name, DO1bl3_lab.Text);
             json.labelSignalsState.Add(DO2bl3_lab.Name, DO2bl3_lab.Text);
@@ -926,6 +984,7 @@ namespace Moderon
             json.labelSignalsState.Add(DO5bl3_lab.Name, DO5bl3_lab.Text);
             json.labelSignalsState.Add(DO6bl3_lab.Name, DO6bl3_lab.Text);
             json.labelSignalsState.Add(DO7bl3_lab.Name, DO7bl3_lab.Text);
+            json.labelSignalsState.Add(DO8bl3_lab.Name, DO8bl3_lab.Text);
         }
 
         ///<summary>Сборка состояний для comboBox таблицы сигналов</summary>

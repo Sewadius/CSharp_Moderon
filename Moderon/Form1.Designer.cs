@@ -901,7 +901,7 @@
             this.mainPage.Location = new System.Drawing.Point(15, 75);
             this.mainPage.Name = "mainPage";
             this.mainPage.SelectedIndex = 0;
-            this.mainPage.Size = new System.Drawing.Size(750, 479);
+            this.mainPage.Size = new System.Drawing.Size(750, 659);
             this.mainPage.TabIndex = 1;
             // 
             // sensorsPage
@@ -910,7 +910,7 @@
             this.sensorsPage.Controls.Add(this.sensorsPanel);
             this.sensorsPage.Location = new System.Drawing.Point(4, 22);
             this.sensorsPage.Name = "sensorsPage";
-            this.sensorsPage.Size = new System.Drawing.Size(742, 453);
+            this.sensorsPage.Size = new System.Drawing.Size(742, 633);
             this.sensorsPage.TabIndex = 9;
             this.sensorsPage.Text = "ДАТЧИКИ/СИГНАЛЫ";
             // 
@@ -1157,7 +1157,7 @@
             this.fanPage.Location = new System.Drawing.Point(4, 22);
             this.fanPage.Name = "fanPage";
             this.fanPage.Padding = new System.Windows.Forms.Padding(3);
-            this.fanPage.Size = new System.Drawing.Size(742, 14);
+            this.fanPage.Size = new System.Drawing.Size(742, 453);
             this.fanPage.TabIndex = 0;
             this.fanPage.Text = "ВЕНТИЛЯТОР";
             // 
@@ -1768,7 +1768,7 @@
             this.filterPage.Controls.Add(this.filterPanel);
             this.filterPage.Location = new System.Drawing.Point(4, 22);
             this.filterPage.Name = "filterPage";
-            this.filterPage.Size = new System.Drawing.Size(742, 14);
+            this.filterPage.Size = new System.Drawing.Size(742, 453);
             this.filterPage.TabIndex = 6;
             this.filterPage.Text = "ФИЛЬТР";
             // 
@@ -1891,7 +1891,7 @@
             this.dampPage.Controls.Add(this.dampPanel);
             this.dampPage.Location = new System.Drawing.Point(4, 22);
             this.dampPage.Name = "dampPage";
-            this.dampPage.Size = new System.Drawing.Size(742, 14);
+            this.dampPage.Size = new System.Drawing.Size(742, 453);
             this.dampPage.TabIndex = 7;
             this.dampPage.Text = "ЗАСЛОНКА";
             // 
@@ -2698,7 +2698,7 @@
             this.coolPage.Location = new System.Drawing.Point(4, 22);
             this.coolPage.Name = "coolPage";
             this.coolPage.Padding = new System.Windows.Forms.Padding(3);
-            this.coolPage.Size = new System.Drawing.Size(742, 14);
+            this.coolPage.Size = new System.Drawing.Size(742, 453);
             this.coolPage.TabIndex = 2;
             this.coolPage.Text = "ОХЛАДИТЕЛЬ";
             // 
@@ -2926,7 +2926,7 @@
             this.humidPage.Location = new System.Drawing.Point(4, 22);
             this.humidPage.Name = "humidPage";
             this.humidPage.Padding = new System.Windows.Forms.Padding(3);
-            this.humidPage.Size = new System.Drawing.Size(742, 14);
+            this.humidPage.Size = new System.Drawing.Size(742, 453);
             this.humidPage.TabIndex = 3;
             this.humidPage.Text = "УВЛАЖНИТЕЛЬ";
             // 
@@ -3086,7 +3086,7 @@
             this.recircPage.Location = new System.Drawing.Point(4, 22);
             this.recircPage.Name = "recircPage";
             this.recircPage.Padding = new System.Windows.Forms.Padding(3);
-            this.recircPage.Size = new System.Drawing.Size(742, 14);
+            this.recircPage.Size = new System.Drawing.Size(742, 453);
             this.recircPage.TabIndex = 4;
             this.recircPage.Text = "РЕЦИРКУЛЯЦИЯ";
             // 
@@ -3304,7 +3304,7 @@
             this.recupPage.Controls.Add(this.recupPanel);
             this.recupPage.Location = new System.Drawing.Point(4, 22);
             this.recupPage.Name = "recupPage";
-            this.recupPage.Size = new System.Drawing.Size(742, 14);
+            this.recupPage.Size = new System.Drawing.Size(742, 453);
             this.recupPage.TabIndex = 5;
             this.recupPage.Text = "РЕКУПЕРАТОР";
             // 
@@ -3642,7 +3642,7 @@
             this.addHeatPage.Controls.Add(this.secHeatPanel);
             this.addHeatPage.Location = new System.Drawing.Point(4, 22);
             this.addHeatPage.Name = "addHeatPage";
-            this.addHeatPage.Size = new System.Drawing.Size(742, 14);
+            this.addHeatPage.Size = new System.Drawing.Size(742, 453);
             this.addHeatPage.TabIndex = 8;
             this.addHeatPage.Text = "ДОП НАГРЕВ";
             // 
@@ -7992,7 +7992,7 @@
             this.tabDO.Controls.Add(this.block1_DOpanel);
             this.tabDO.Location = new System.Drawing.Point(4, 22);
             this.tabDO.Name = "tabDO";
-            this.tabDO.Size = new System.Drawing.Size(721, 424);
+            this.tabDO.Size = new System.Drawing.Size(721, 762);
             this.tabDO.TabIndex = 3;
             this.tabDO.Text = "DO сигналы";
             // 
@@ -9157,7 +9157,7 @@
             this.tabAO.Controls.Add(this.block1_AOpanel);
             this.tabAO.Location = new System.Drawing.Point(4, 22);
             this.tabAO.Name = "tabAO";
-            this.tabAO.Size = new System.Drawing.Size(721, 424);
+            this.tabAO.Size = new System.Drawing.Size(721, 762);
             this.tabAO.TabIndex = 2;
             this.tabAO.Text = "AO сигналы";
             // 
@@ -9560,7 +9560,7 @@
             this.tabCmdWord.Controls.Add(this.cmdWordsTextBox);
             this.tabCmdWord.Location = new System.Drawing.Point(4, 22);
             this.tabCmdWord.Name = "tabCmdWord";
-            this.tabCmdWord.Size = new System.Drawing.Size(721, 424);
+            this.tabCmdWord.Size = new System.Drawing.Size(721, 762);
             this.tabCmdWord.TabIndex = 5;
             this.tabCmdWord.Text = "Командные слова";
             // 
@@ -9693,7 +9693,7 @@
             this.loadCanPanel.Controls.Add(this.canSelectBox);
             this.loadCanPanel.Controls.Add(this.label173);
             this.loadCanPanel.Controls.Add(this.netOptionLabel);
-            this.loadCanPanel.Location = new System.Drawing.Point(5, 580);
+            this.loadCanPanel.Location = new System.Drawing.Point(5, 865);
             this.loadCanPanel.Name = "loadCanPanel";
             this.loadCanPanel.Size = new System.Drawing.Size(749, 30);
             this.loadCanPanel.TabIndex = 45;
