@@ -513,3 +513,16 @@
 - добавлен `fireTypeCombo` для сохранения в файл, метод `BuildComboBoxElemAll()`
 - добавление UI в `BuildSignalArrays()`, перенос перечня сигналов
 - обноления для `LoadCheckBoxAll()` загрузки `checkBox` элементов
+
+15.01.24 (понедельник)
+
+- сохранение `comboBox` UI ПЛК/блоков в `BuildLabelSignalsAll()`, файл `Json.cs`
+- загрузка состояния UI в `LoadLabelSignalsAll()` методе загрузки `Label`
+- добавлены сигналы DO8 блоков расширения в `BuildComboItemsSignals()`
+- создан метод `AddComboSignalsItems()` добавления данных по `comboBox`
+- рефакторинг для `BuildComboItemsSignals()` сохранения данных `comboBox`
+- добавлен `AddComboSignalsState()` для записи выбранного элемента `comboBox`
+- рефакторинг для `BuildComboSignalsAll()` записей выбранного элемента
+- внесён `AddLabelSignalsState()` для сохранения кода сигнала
+- изменения по `BuildLabelSignalsAll()`, рефакторинг
+- добавление UI для `LoadSignalArrays()` по закрузке сигналов

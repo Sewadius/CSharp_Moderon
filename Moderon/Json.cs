@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 // Файл для сохранения/загрузки параметров программы в формате JSON
 
@@ -155,6 +156,7 @@ namespace Moderon
             for (int i = 0; i < list_ui.Count; i++)
             {
                 json.uiCode.Add(list_ui[i].Name, list_ui[i].Code);
+                json.uiType.Add(list_ui[i].Name, list_ui[i].Type);
                 json.uiActive.Add(list_ui[i].Name, list_ui[i].Active);
             }
 
@@ -413,6 +415,69 @@ namespace Moderon
         ///<summary>Загрузка для подписей кодов таблицы сигналов</summary>
         private void LoadLabelSignalsAll()
         {
+            // UI сигналы, ПЛК
+            UI1_lab.Text = json_read.labelSignalsState[UI1_lab.Name];
+            UI2_lab.Text = json_read.labelSignalsState[UI2_lab.Name];
+            UI3_lab.Text = json_read.labelSignalsState[UI3_lab.Name];
+            UI4_lab.Text = json_read.labelSignalsState[UI4_lab.Name];
+            UI5_lab.Text = json_read.labelSignalsState[UI5_lab.Name];
+            UI6_lab.Text = json_read.labelSignalsState[UI6_lab.Name];
+            UI7_lab.Text = json_read.labelSignalsState[UI7_lab.Name];
+            UI8_lab.Text = json_read.labelSignalsState[UI8_lab.Name];
+            UI9_lab.Text = json_read.labelSignalsState[UI9_lab.Name];
+            UI10_lab.Text = json_read.labelSignalsState[UI10_lab.Name];
+            UI11_lab.Text = json_read.labelSignalsState[UI11_lab.Name];
+            // UI сигналы, блок 1
+            UI1bl1_lab.Text = json_read.labelSignalsState[UI1bl1_lab.Name];
+            UI2bl1_lab.Text = json_read.labelSignalsState[UI2bl1_lab.Name];
+            UI3bl1_lab.Text = json_read.labelSignalsState[UI3bl1_lab.Name];
+            UI4bl1_lab.Text = json_read.labelSignalsState[UI4bl1_lab.Name];
+            UI5bl1_lab.Text = json_read.labelSignalsState[UI5bl1_lab.Name];
+            UI6bl1_lab.Text = json_read.labelSignalsState[UI6bl1_lab.Name];
+            UI7bl1_lab.Text = json_read.labelSignalsState[UI7bl1_lab.Name];
+            UI8bl1_lab.Text = json_read.labelSignalsState[UI8bl1_lab.Name];
+            UI9bl1_lab.Text = json_read.labelSignalsState[UI9bl1_lab.Name];
+            UI10bl1_lab.Text = json_read.labelSignalsState[UI10bl1_lab.Name];
+            UI11bl1_lab.Text = json_read.labelSignalsState[UI11bl1_lab.Name];
+            UI12bl1_lab.Text = json_read.labelSignalsState[UI12bl1_lab.Name];
+            UI13bl1_lab.Text = json_read.labelSignalsState[UI13bl1_lab.Name];
+            UI14bl1_lab.Text = json_read.labelSignalsState[UI14bl1_lab.Name];
+            UI15bl1_lab.Text = json_read.labelSignalsState[UI15bl1_lab.Name];
+            UI16bl1_lab.Text = json_read.labelSignalsState[UI16bl1_lab.Name];
+            // UI сигналы, блок 2
+            UI1bl2_lab.Text = json_read.labelSignalsState[UI1bl2_lab.Name];
+            UI2bl2_lab.Text = json_read.labelSignalsState[UI2bl2_lab.Name];
+            UI3bl2_lab.Text = json_read.labelSignalsState[UI3bl2_lab.Name];
+            UI4bl2_lab.Text = json_read.labelSignalsState[UI4bl2_lab.Name];
+            UI5bl2_lab.Text = json_read.labelSignalsState[UI5bl2_lab.Name];
+            UI6bl2_lab.Text = json_read.labelSignalsState[UI6bl2_lab.Name];
+            UI7bl2_lab.Text = json_read.labelSignalsState[UI7bl2_lab.Name];
+            UI8bl2_lab.Text = json_read.labelSignalsState[UI8bl2_lab.Name];
+            UI9bl2_lab.Text = json_read.labelSignalsState[UI9bl2_lab.Name];
+            UI10bl2_lab.Text = json_read.labelSignalsState[UI10bl2_lab.Name];
+            UI11bl2_lab.Text = json_read.labelSignalsState[UI11bl2_lab.Name];
+            UI12bl2_lab.Text = json_read.labelSignalsState[UI12bl2_lab.Name];
+            UI13bl2_lab.Text = json_read.labelSignalsState[UI13bl2_lab.Name];
+            UI14bl2_lab.Text = json_read.labelSignalsState[UI14bl2_lab.Name];
+            UI15bl2_lab.Text = json_read.labelSignalsState[UI15bl2_lab.Name];
+            UI16bl2_lab.Text = json_read.labelSignalsState[UI16bl2_lab.Name];
+            // UI сигналы, блок 3
+            UI1bl3_lab.Text = json_read.labelSignalsState[UI1bl3_lab.Name];
+            UI2bl3_lab.Text = json_read.labelSignalsState[UI2bl3_lab.Name];
+            UI3bl3_lab.Text = json_read.labelSignalsState[UI3bl3_lab.Name];
+            UI4bl3_lab.Text = json_read.labelSignalsState[UI4bl3_lab.Name];
+            UI5bl3_lab.Text = json_read.labelSignalsState[UI5bl3_lab.Name];
+            UI6bl3_lab.Text = json_read.labelSignalsState[UI6bl3_lab.Name];
+            UI7bl3_lab.Text = json_read.labelSignalsState[UI7bl3_lab.Name];
+            UI8bl3_lab.Text = json_read.labelSignalsState[UI8bl3_lab.Name];
+            UI9bl3_lab.Text = json_read.labelSignalsState[UI9bl3_lab.Name];
+            UI10bl3_lab.Text = json_read.labelSignalsState[UI10bl3_lab.Name];
+            UI11bl3_lab.Text = json_read.labelSignalsState[UI11bl3_lab.Name];
+            UI12bl3_lab.Text = json_read.labelSignalsState[UI12bl3_lab.Name];
+            UI13bl3_lab.Text = json_read.labelSignalsState[UI13bl3_lab.Name];
+            UI14bl3_lab.Text = json_read.labelSignalsState[UI14bl3_lab.Name];
+            UI15bl3_lab.Text = json_read.labelSignalsState[UI15bl3_lab.Name];
+            UI16bl3_lab.Text = json_read.labelSignalsState[UI16bl3_lab.Name];
             // AO сигналы, ПЛК
             AO1_lab.Text = json_read.labelSignalsState[AO1_lab.Name];
             AO2_lab.Text = json_read.labelSignalsState[AO2_lab.Name];
@@ -749,31 +814,36 @@ namespace Moderon
         {
             string name;
             ushort code;
+            string type;
             bool active;
-            list_ao.Clear(); // Очистка прежнего списка сигналов AO
-            list_do.Clear(); // Очистка прежнего списка сигналов DO 
-            /*foreach (var elem in json_read.aiCode)
-            {   // Сигналы AI
+
+            list_ui.Clear();                                                    // Очистка прежнего списка сигналов UI
+            list_ao.Clear();                                                    // Очистка прежнего списка сигналов AO
+            list_do.Clear();                                                    // Очистка прежнего списка сигналов DO 
+
+            foreach (var elem in json_read.uiCode)                              // Загрузка по сигналам UI
+            {
                 name = elem.Key;
-                code = json_read.aiCode[name];
-                type = json_read.aiType[name];
-                active = json_read.aiActive[name];
-                list_ai.Add(new Ai(name, code, type, active));
-            }*/
-            foreach (var elem in json_read.aoCode)
-            {   // Сигналы AO
+                code = json_read.uiCode[name];
+                type = json_read.uiType[name];
+                active = json_read.uiActive[name];
+                list_ui.Add(new Ui(name, code, type, active));
+            }
+            foreach (var elem in json_read.aoCode)                              // Загрузка по сигналам AO
+            {   
                 name = elem.Key;
                 code = json_read.aoCode[name];
                 active = json_read.aoActive[name];
                 list_ao.Add(new Ao(name, code, active));
             }
-            foreach (var elem in json_read.doCode)
-            {   // Сигналы DO
+            foreach (var elem in json_read.doCode)                              // Загрузка по сигналам DO
+            {   
                 name = elem.Key;
                 code = json_read.doCode[name];
                 active = json_read.doActive[name];
                 list_do.Add(new Do(name, code, active));
             }
+
             CheckSignalsReady(); // Проверка распределения сигналов после загрузки
         }
 
@@ -933,294 +1003,163 @@ namespace Moderon
             json.textBoxElemState.Add(powRotRecBox.Name, powRotRecBox.Text);
         }
 
+        ///<summary>Добавление подписи кода таблицы сигналов</summary>
+        private void AddLabelSignalsState(Label el)
+        {
+            json.labelSignalsState.Add(el.Name, el.Text);
+        }
+
         ///<summary>Сборка для подписей кодов таблицы сигналов</summary>
         private void BuildLabelSignalsAll()
         {
-            // UI сигналы, ПЛК
+            // UI labels
+            var ui_labels = new List<Label>()
+            {
+                // ПЛК
+                UI1_lab, UI2_lab, UI3_lab, UI4_lab, UI5_lab, UI6_lab, UI7_lab, UI8_lab, UI9_lab, UI10_lab, UI11_lab,
+                // Блок расширения 1
+                UI1bl1_lab, UI2bl1_lab, UI3bl1_lab, UI4bl1_lab, UI5bl1_lab, UI6bl1_lab, UI7bl1_lab, UI8bl1_lab, UI9bl1_lab, UI10bl1_lab,
+                UI11bl1_lab, UI12bl1_lab, UI13bl1_lab, UI14bl1_lab, UI15bl1_lab, UI16bl1_lab,
+                // Блок расширения 2
+                UI1bl2_lab, UI2bl2_lab, UI3bl2_lab, UI4bl2_lab, UI5bl2_lab, UI6bl2_lab, UI7bl2_lab, UI8bl2_lab, UI9bl2_lab, UI10bl2_lab,
+                UI11bl2_lab, UI12bl2_lab, UI13bl2_lab, UI14bl2_lab, UI15bl2_lab, UI16bl2_lab,
+                // Блок расширения 3
+                UI1bl3_lab, UI2bl3_lab, UI3bl3_lab, UI4bl3_lab, UI5bl3_lab, UI6bl3_lab, UI7bl3_lab, UI8bl3_lab, UI9bl3_lab, UI10bl3_lab,
+                UI11bl3_lab, UI12bl3_lab, UI13bl3_lab, UI14bl3_lab, UI15bl3_lab, UI16bl3_lab,
+            };
 
-            // AO сигналы, ПЛК
-            json.labelSignalsState.Add(AO1_lab.Name, AO1_lab.Text);
-            json.labelSignalsState.Add(AO2_lab.Name, AO2_lab.Text);
-            json.labelSignalsState.Add(AO3_lab.Name, AO3_lab.Text);
-            // AO сигналы, блок 1
-            json.labelSignalsState.Add(AO1bl1_lab.Name, AO1bl1_lab.Text);
-            json.labelSignalsState.Add(AO2bl1_lab.Name, AO2bl1_lab.Text);
-            // AO сигналы, блок 2
-            json.labelSignalsState.Add(AO1bl2_lab.Name, AO1bl2_lab.Text);
-            json.labelSignalsState.Add(AO2bl2_lab.Name, AO2bl2_lab.Text);
-            // AO сигналы, блок 3
-            json.labelSignalsState.Add(AO1bl3_lab.Name, AO1bl3_lab.Text);
-            json.labelSignalsState.Add(AO2bl3_lab.Name, AO2bl3_lab.Text);
-            // DO сигналы, ПЛК
-            json.labelSignalsState.Add(DO1_lab.Name, DO1_lab.Text);
-            json.labelSignalsState.Add(DO2_lab.Name, DO2_lab.Text);
-            json.labelSignalsState.Add(DO3_lab.Name, DO3_lab.Text);
-            json.labelSignalsState.Add(DO4_lab.Name, DO4_lab.Text);
-            json.labelSignalsState.Add(DO5_lab.Name, DO5_lab.Text);
-            json.labelSignalsState.Add(DO6_lab.Name, DO6_lab.Text);
-            // DO сигналы, блок 1
-            json.labelSignalsState.Add(DO1bl1_lab.Name, DO1bl1_lab.Text);
-            json.labelSignalsState.Add(DO2bl1_lab.Name, DO2bl1_lab.Text);
-            json.labelSignalsState.Add(DO3bl1_lab.Name, DO3bl1_lab.Text);
-            json.labelSignalsState.Add(DO4bl1_lab.Name, DO4bl1_lab.Text);
-            json.labelSignalsState.Add(DO5bl1_lab.Name, DO5bl1_lab.Text);
-            json.labelSignalsState.Add(DO6bl1_lab.Name, DO6bl1_lab.Text);
-            json.labelSignalsState.Add(DO7bl1_lab.Name, DO7bl1_lab.Text);
-            json.labelSignalsState.Add(DO8bl1_lab.Name, DO8bl1_lab.Text);
-            // DO сигналы, блок 2
-            json.labelSignalsState.Add(DO1bl2_lab.Name, DO1bl2_lab.Text);
-            json.labelSignalsState.Add(DO2bl2_lab.Name, DO2bl2_lab.Text);
-            json.labelSignalsState.Add(DO3bl2_lab.Name, DO3bl2_lab.Text);
-            json.labelSignalsState.Add(DO4bl2_lab.Name, DO4bl2_lab.Text);
-            json.labelSignalsState.Add(DO5bl2_lab.Name, DO5bl2_lab.Text);
-            json.labelSignalsState.Add(DO6bl2_lab.Name, DO6bl2_lab.Text);
-            json.labelSignalsState.Add(DO7bl2_lab.Name, DO7bl2_lab.Text);
-            json.labelSignalsState.Add(DO8bl2_lab.Name, DO8bl2_lab.Text);
-            // DO сигналы, блок 3
-            json.labelSignalsState.Add(DO1bl3_lab.Name, DO1bl3_lab.Text);
-            json.labelSignalsState.Add(DO2bl3_lab.Name, DO2bl3_lab.Text);
-            json.labelSignalsState.Add(DO3bl3_lab.Name, DO3bl3_lab.Text);
-            json.labelSignalsState.Add(DO4bl3_lab.Name, DO4bl3_lab.Text);
-            json.labelSignalsState.Add(DO5bl3_lab.Name, DO5bl3_lab.Text);
-            json.labelSignalsState.Add(DO6bl3_lab.Name, DO6bl3_lab.Text);
-            json.labelSignalsState.Add(DO7bl3_lab.Name, DO7bl3_lab.Text);
-            json.labelSignalsState.Add(DO8bl3_lab.Name, DO8bl3_lab.Text);
+            // AO labels
+            var ao_labels = new List<Label>()
+            {
+                // ПЛК
+                AO1_lab, AO2_lab, AO3_lab,
+                // Блоки расширения 1, 2, 3
+                AO1bl1_lab, AO2bl1_lab, AO1bl2_lab, AO2bl2_lab, AO1bl3_lab, AO2bl3_lab
+            };
+
+            // DO labels
+            var do_labels = new List<Label>()
+            {
+                // ПЛК
+                DO1_lab, DO2_lab, DO3_lab, DO4_lab, DO5_lab, DO6_lab,
+                // Блок расширения 1
+                DO1bl1_lab, DO2bl1_lab, DO3bl1_lab, DO4bl1_lab, DO5bl1_lab, DO6bl1_lab, DO7bl1_lab, DO8bl1_lab,
+                // Блок расширения 2
+                DO1bl2_lab, DO2bl2_lab, DO3bl2_lab, DO4bl2_lab, DO5bl2_lab, DO6bl2_lab, DO7bl2_lab, DO8bl2_lab,
+                // Блок расширения 3
+                DO1bl3_lab, DO2bl3_lab, DO3bl3_lab, DO4bl3_lab, DO5bl3_lab, DO6bl3_lab, DO7bl3_lab, DO8bl3_lab
+            };
+
+            foreach (var el in ui_labels) AddLabelSignalsState(el);
+            foreach (var el in ao_labels) AddLabelSignalsState(el);
+            foreach (var el in do_labels) AddLabelSignalsState(el);
+        }
+
+        ///<summary>Добавление состояния для comboBox по таблице сигналов</summary>
+        private void AddComboSignalsState(ComboBox el)
+        {
+            json.comboSignalsState.Add(el.Name, el.SelectedItem.ToString());
         }
 
         ///<summary>Сборка состояний для comboBox таблицы сигналов</summary>
         private void BuildComboSignalsAll()
         {
-            // AO сигналы, ПЛК
-            json.comboSignalsState.Add(AO1_combo.Name, AO1_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(AO2_combo.Name, AO2_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(AO3_combo.Name, AO3_combo.SelectedItem.ToString());
-            // AO сигналы, блок 1
-            json.comboSignalsState.Add(AO1bl1_combo.Name, AO1bl1_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(AO2bl1_combo.Name, AO2bl1_combo.SelectedItem.ToString());
-            // AO сигналы, блок 2
-            json.comboSignalsState.Add(AO1bl2_combo.Name, AO1bl2_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(AO2bl2_combo.Name, AO2bl2_combo.SelectedItem.ToString());
-            // AO сигналы, блок 3
-            json.comboSignalsState.Add(AO1bl3_combo.Name, AO1bl3_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(AO2bl3_combo.Name, AO2bl3_combo.SelectedItem.ToString());
-            // DO сигналы, ПЛК
-            json.comboSignalsState.Add(DO1_combo.Name, DO1_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(DO2_combo.Name, DO2_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(DO3_combo.Name, DO3_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(DO4_combo.Name, DO4_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(DO5_combo.Name, DO5_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(DO6_combo.Name, DO6_combo.SelectedItem.ToString());
-            // DO сигналы, блок 1
-            json.comboSignalsState.Add(DO1bl1_combo.Name, DO1bl1_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(DO2bl1_combo.Name, DO2bl1_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(DO3bl1_combo.Name, DO3bl1_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(DO4bl1_combo.Name, DO4bl1_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(DO5bl1_combo.Name, DO5bl1_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(DO6bl1_combo.Name, DO6bl1_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(DO7bl1_combo.Name, DO7bl1_combo.SelectedItem.ToString());
-            // DO сигналы, блок 2
-            json.comboSignalsState.Add(DO1bl2_combo.Name, DO1bl2_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(DO2bl2_combo.Name, DO2bl2_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(DO3bl2_combo.Name, DO3bl2_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(DO4bl2_combo.Name, DO4bl2_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(DO5bl2_combo.Name, DO5bl2_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(DO6bl2_combo.Name, DO6bl2_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(DO7bl2_combo.Name, DO7bl2_combo.SelectedItem.ToString());
-            // DO сигналы, блок 3
-            json.comboSignalsState.Add(DO1bl3_combo.Name, DO1bl3_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(DO2bl3_combo.Name, DO2bl3_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(DO3bl3_combo.Name, DO3bl3_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(DO4bl3_combo.Name, DO4bl3_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(DO5bl3_combo.Name, DO5bl3_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(DO6bl3_combo.Name, DO6bl3_combo.SelectedItem.ToString());
-            json.comboSignalsState.Add(DO7bl3_combo.Name, DO7bl3_combo.SelectedItem.ToString());
+            // UI сигналы
+            var ui_combos = new List<ComboBox>()
+            {
+                // ПЛК
+                UI1_combo, UI2_combo, UI3_combo, UI4_combo, UI5_combo, UI6_combo, UI7_combo, UI8_combo, UI9_combo, UI10_combo, UI11_combo,
+                // Блок расширения 1
+                UI1bl1_combo, UI2bl1_combo, UI3bl1_combo, UI4bl1_combo, UI5bl1_combo, UI6bl1_combo, UI7bl1_combo, UI8bl1_combo, UI9bl1_combo,
+                UI10bl1_combo, UI11bl1_combo, UI12bl1_combo, UI13bl1_combo, UI14bl1_combo, UI15bl1_combo, UI16bl1_combo,
+                // Блок расширения 2
+                UI1bl2_combo, UI2bl2_combo, UI3bl2_combo, UI4bl2_combo, UI5bl2_combo, UI6bl2_combo, UI7bl2_combo, UI8bl2_combo, UI9bl2_combo,
+                UI10bl2_combo, UI11bl2_combo, UI12bl2_combo, UI13bl2_combo, UI14bl2_combo, UI15bl2_combo, UI16bl2_combo,
+                // Блок расширения 3
+                UI1bl3_combo, UI2bl3_combo, UI3bl3_combo, UI4bl3_combo, UI5bl3_combo, UI6bl3_combo, UI7bl3_combo, UI8bl3_combo, UI9bl3_combo,
+                UI10bl3_combo, UI11bl3_combo, UI12bl3_combo, UI13bl3_combo, UI14bl3_combo, UI15bl3_combo, UI16bl3_combo
+            };
+
+            // AO сигналы
+            var ao_combos = new List<ComboBox>()
+            {
+                // ПЛК
+                AO1_combo, AO2_combo, AO3_combo,
+                // Блоки расширения 1, 2, 3
+                AO1bl1_combo, AO2bl1_combo, AO1bl2_combo, AO2bl2_combo, AO1bl3_combo, AO2bl3_combo
+            };
+
+            // DO сигналы
+            var do_combos = new List<ComboBox>()
+            {
+                // ПЛК
+                DO1_combo, DO2_combo, DO3_combo, DO4_combo, DO5_combo, DO6_combo,
+                // Блок расширения 1
+                DO1bl1_combo, DO2bl1_combo, DO3bl1_combo, DO4bl1_combo, DO5bl1_combo, DO6bl1_combo, DO7bl1_combo, DO8bl1_combo,
+                // Блок расширения 2
+                DO1bl2_combo, DO2bl2_combo, DO3bl2_combo, DO4bl2_combo, DO5bl2_combo, DO6bl2_combo, DO7bl2_combo, DO8bl2_combo,
+                // Блок расширения 3
+                DO1bl3_combo, DO2bl3_combo, DO3bl3_combo, DO4bl3_combo, DO5bl3_combo, DO6bl3_combo, DO7bl3_combo, DO8bl3_combo
+            };
+
+            foreach (var el in ui_combos) AddComboSignalsState(el);
+            foreach (var el in ao_combos) AddComboSignalsState(el);
+            foreach (var el in do_combos) AddComboSignalsState(el);
+        }
+
+        ///<summary>Добавление данных по comboBox в файл JSON</summary>
+        private void AddComboSignalsItems(ComboBox el)
+        {
+            string[] arr_combo = new string[el.Items.Count];
+            for (int i = 0; i < el.Items.Count; i++)
+                arr_combo[i] = el.GetItemText(el.Items[i]);
+            json.comboSignalsItems.Add(el.Name, arr_combo);
         }
 
         ///<summary>Сборка коллекций элементов для таблицы сигналов</summary>
         private void BuildComboItemsSignals()
         {
+            // UI сигналы
+            var ui_combos = new List<ComboBox>()
+            {
+                // ПЛК
+                UI1_combo, UI2_combo, UI3_combo, UI4_combo, UI5_combo, UI6_combo, UI7_combo, UI8_combo, UI9_combo, UI10_combo, UI11_combo,
+                // Блок расширения 1
+                UI1bl1_combo, UI2bl1_combo, UI3bl1_combo, UI4bl1_combo, UI5bl1_combo, UI6bl1_combo, UI7bl1_combo, UI8bl1_combo, UI9bl1_combo,
+                UI10bl1_combo, UI11bl1_combo, UI12bl1_combo, UI13bl1_combo, UI14bl1_combo, UI15bl1_combo, UI16bl1_combo,
+                // Блок расширения 2
+                UI1bl2_combo, UI2bl2_combo, UI3bl2_combo, UI4bl2_combo, UI5bl2_combo, UI6bl2_combo, UI7bl2_combo, UI8bl2_combo, UI9bl2_combo,
+                UI10bl2_combo, UI11bl2_combo, UI12bl2_combo, UI13bl2_combo, UI14bl2_combo, UI15bl2_combo, UI16bl2_combo,
+                // Блок расширения 3
+                UI1bl3_combo, UI2bl3_combo, UI3bl3_combo, UI4bl3_combo, UI5bl3_combo, UI6bl3_combo, UI7bl3_combo, UI8bl3_combo, UI9bl3_combo,
+                UI10bl3_combo, UI11bl3_combo, UI12bl3_combo, UI13bl3_combo, UI14bl3_combo, UI15bl3_combo, UI16bl3_combo
+            };
+
             // AO сигналы
-            // AO1, ПЛК
-            string[] arr_AO1_combo = new string[AO1_combo.Items.Count];
-            for (int i = 0; i < AO1_combo.Items.Count; i++)
-                arr_AO1_combo[i] = AO1_combo.GetItemText(AO1_combo.Items[i]);
-            json.comboSignalsItems.Add(AO1_combo.Name, arr_AO1_combo);
-            // AO2, ПЛК
-            string[] arr_AO2_combo = new string[AO2_combo.Items.Count];
-            for (int i = 0; i < AO2_combo.Items.Count; i++)
-                arr_AO2_combo[i] = AO2_combo.GetItemText(AO2_combo.Items[i]);
-            json.comboSignalsItems.Add(AO2_combo.Name, arr_AO2_combo);
-            // AO3, ПЛК
-            string[] arr_AO3_combo = new string[AO3_combo.Items.Count];
-            for (int i = 0; i < AO3_combo.Items.Count; i++)
-                arr_AO3_combo[i] = AO3_combo.GetItemText(AO3_combo.Items[i]);
-            json.comboSignalsItems.Add(AO3_combo.Name, arr_AO3_combo);
-            // AO1, блок 1
-            string[] arr_AO1bl1_combo = new string[AO1bl1_combo.Items.Count];
-            for (int i = 0; i < AO1bl1_combo.Items.Count; i++)
-                arr_AO1bl1_combo[i] = AO1bl1_combo.GetItemText(AO1bl1_combo.Items[i]);
-            json.comboSignalsItems.Add(AO1bl1_combo.Name, arr_AO1bl1_combo);
-            // AO2, блок 1
-            string[] arr_AO2bl1_combo = new string[AO2bl1_combo.Items.Count];
-            for (int i = 0; i < AO2bl1_combo.Items.Count; i++)
-                arr_AO2bl1_combo[i] = AO2bl1_combo.GetItemText(AO2bl1_combo.Items[i]);
-            json.comboSignalsItems.Add(AO2bl1_combo.Name, arr_AO2bl1_combo);
-            // AO1, блок 2
-            string[] arr_AO1bl2_combo = new string[AO1bl2_combo.Items.Count];
-            for (int i = 0; i < AO1bl2_combo.Items.Count; i++)
-                arr_AO1bl2_combo[i] = AO1bl2_combo.GetItemText(AO1bl2_combo.Items[i]);
-            json.comboSignalsItems.Add(AO1bl2_combo.Name, arr_AO1bl2_combo);
-            // AO2, блок 2
-            string[] arr_AO2bl2_combo = new string[AO2bl2_combo.Items.Count];
-            for (int i = 0; i < AO2bl2_combo.Items.Count; i++)
-                arr_AO2bl2_combo[i] = AO2bl2_combo.GetItemText(AO2bl2_combo.Items[i]);
-            json.comboSignalsItems.Add(AO2bl2_combo.Name, arr_AO2bl2_combo);
-            // AO1, блок 3
-            string[] arr_AO1bl3_combo = new string[AO1bl3_combo.Items.Count];
-            for (int i = 0; i < AO1bl3_combo.Items.Count; i++)
-                arr_AO1bl3_combo[i] = AO1bl3_combo.GetItemText(AO1bl3_combo.Items[i]);
-            json.comboSignalsItems.Add(AO1bl3_combo.Name, arr_AO1bl3_combo);
-            // AO2, блок 3
-            string[] arr_AO2bl3_combo = new string[AO2bl3_combo.Items.Count];
-            for (int i = 0; i < AO2bl3_combo.Items.Count; i++)
-                arr_AO2bl3_combo[i] = AO2bl3_combo.GetItemText(AO2bl3_combo.Items[i]);
-            json.comboSignalsItems.Add(AO2bl3_combo.Name, arr_AO2bl3_combo);
+            var ao_combos = new List<ComboBox>()
+            {
+                // ПЛК
+                AO1_combo, AO2_combo, AO3_combo,
+                // Блоки расширения 1, 2, 3
+                AO1bl1_combo, AO2bl1_combo, AO1bl2_combo, AO2bl2_combo, AO1bl3_combo, AO2bl3_combo
+            };
+
             // DO сигналы
-            // DO1, ПЛК
-            string[] arr_DO1_combo = new string[DO1_combo.Items.Count];
-            for (int i = 0; i < DO1_combo.Items.Count; i++)
-                arr_DO1_combo[i] = DO1_combo.GetItemText(DO1_combo.Items[i]);
-            json.comboSignalsItems.Add(DO1_combo.Name, arr_DO1_combo);
-            // DO2, ПЛК
-            string[] arr_DO2_combo = new string[DO2_combo.Items.Count];
-            for (int i = 0; i < DO2_combo.Items.Count; i++)
-                arr_DO2_combo[i] = DO2_combo.GetItemText(DO2_combo.Items[i]);
-            json.comboSignalsItems.Add(DO2_combo.Name, arr_DO2_combo);
-            // DO3, ПЛК
-            string[] arr_DO3_combo = new string[DO3_combo.Items.Count];
-            for (int i = 0; i < DO3_combo.Items.Count; i++)
-                arr_DO3_combo[i] = DO3_combo.GetItemText(DO3_combo.Items[i]);
-            json.comboSignalsItems.Add(DO3_combo.Name, arr_DO3_combo);
-            // DO4, ПЛК
-            string[] arr_DO4_combo = new string[DO4_combo.Items.Count];
-            for (int i = 0; i < DO4_combo.Items.Count; i++)
-                arr_DO4_combo[i] = DO4_combo.GetItemText(DO4_combo.Items[i]);
-            json.comboSignalsItems.Add(DO4_combo.Name, arr_DO4_combo);
-            // DO5, ПЛК
-            string[] arr_DO5_combo = new string[DO5_combo.Items.Count];
-            for (int i = 0; i < DO5_combo.Items.Count; i++)
-                arr_DO5_combo[i] = DO5_combo.GetItemText(DO5_combo.Items[i]);
-            json.comboSignalsItems.Add(DO5_combo.Name, arr_DO5_combo);
-            // DO6, ПЛК
-            string[] arr_DO6_combo = new string[DO6_combo.Items.Count];
-            for (int i = 0; i < DO6_combo.Items.Count; i++)
-                arr_DO6_combo[i] = DO6_combo.GetItemText(DO6_combo.Items[i]);
-            json.comboSignalsItems.Add(DO6_combo.Name, arr_DO6_combo);
-            // DO1, блок 1
-            string[] arr_DO1bl1_combo = new string[DO1bl1_combo.Items.Count];
-            for (int i = 0; i < DO1bl1_combo.Items.Count; i++)
-                arr_DO1bl1_combo[i] = DO1bl1_combo.GetItemText(DO1bl1_combo.Items[i]);
-            json.comboSignalsItems.Add(DO1bl1_combo.Name, arr_DO1bl1_combo);
-            // DO2, блок 1
-            string[] arr_DO2bl1_combo = new string[DO2bl1_combo.Items.Count];
-            for (int i = 0; i < DO2bl1_combo.Items.Count; i++)
-                arr_DO2bl1_combo[i] = DO2bl1_combo.GetItemText(DO2bl1_combo.Items[i]);
-            json.comboSignalsItems.Add(DO2bl1_combo.Name, arr_DO2bl1_combo);
-            // DO3, блок 1
-            string[] arr_DO3bl1_combo = new string[DO3bl1_combo.Items.Count];
-            for (int i = 0; i < DO3bl1_combo.Items.Count; i++)
-                arr_DO3bl1_combo[i] = DO3bl1_combo.GetItemText(DO3bl1_combo.Items[i]);
-            json.comboSignalsItems.Add(DO3bl1_combo.Name, arr_DO3bl1_combo);
-            // DO4, блок 1
-            string[] arr_DO4bl1_combo = new string[DO4bl1_combo.Items.Count];
-            for (int i = 0; i < DO4bl1_combo.Items.Count; i++)
-                arr_DO4bl1_combo[i] = DO4bl1_combo.GetItemText(DO4bl1_combo.Items[i]);
-            json.comboSignalsItems.Add(DO4bl1_combo.Name, arr_DO4bl1_combo);
-            // DO5, блок 1
-            string[] arr_DO5bl1_combo = new string[DO5bl1_combo.Items.Count];
-            for (int i = 0; i < DO5bl1_combo.Items.Count; i++)
-                arr_DO5bl1_combo[i] = DO5bl1_combo.GetItemText(DO5bl1_combo.Items[i]);
-            json.comboSignalsItems.Add(DO5bl1_combo.Name, arr_DO5bl1_combo);
-            // DO6, блок 1
-            string[] arr_DO6bl1_combo = new string[DO6bl1_combo.Items.Count];
-            for (int i = 0; i < DO6bl1_combo.Items.Count; i++)
-                arr_DO6bl1_combo[i] = DO6bl1_combo.GetItemText(DO6bl1_combo.Items[i]);
-            json.comboSignalsItems.Add(DO6bl1_combo.Name, arr_DO6bl1_combo);
-            // DO7, блок 1
-            string[] arr_DO7bl1_combo = new string[DO7bl1_combo.Items.Count];
-            for (int i = 0; i < DO7bl1_combo.Items.Count; i++)
-                arr_DO7bl1_combo[i] = DO7bl1_combo.GetItemText(DO7bl1_combo.Items[i]);
-            json.comboSignalsItems.Add(DO7bl1_combo.Name, arr_DO7bl1_combo);
-            // DO1, блок 2
-            string[] arr_DO1bl2_combo = new string[DO1bl2_combo.Items.Count];
-            for (int i = 0; i < DO1bl2_combo.Items.Count; i++)
-                arr_DO1bl2_combo[i] = DO1bl2_combo.GetItemText(DO1bl2_combo.Items[i]);
-            json.comboSignalsItems.Add(DO1bl2_combo.Name, arr_DO1bl2_combo);
-            // DO2, блок 2
-            string[] arr_DO2bl2_combo = new string[DO2bl2_combo.Items.Count];
-            for (int i = 0; i < DO2bl2_combo.Items.Count; i++)
-                arr_DO2bl2_combo[i] = DO2bl2_combo.GetItemText(DO2bl2_combo.Items[i]);
-            json.comboSignalsItems.Add(DO2bl2_combo.Name, arr_DO2bl2_combo);
-            // DO3, блок 2
-            string[] arr_DO3bl2_combo = new string[DO3bl2_combo.Items.Count];
-            for (int i = 0; i < DO3bl2_combo.Items.Count; i++)
-                arr_DO3bl2_combo[i] = DO3bl2_combo.GetItemText(DO3bl2_combo.Items[i]);
-            json.comboSignalsItems.Add(DO3bl2_combo.Name, arr_DO3bl2_combo);
-            // DO4, блок 2
-            string[] arr_DO4bl2_combo = new string[DO4bl2_combo.Items.Count];
-            for (int i = 0; i < DO4bl2_combo.Items.Count; i++)
-                arr_DO4bl2_combo[i] = DO4bl2_combo.GetItemText(DO4bl2_combo.Items[i]);
-            json.comboSignalsItems.Add(DO4bl2_combo.Name, arr_DO4bl2_combo);
-            // DO5, блок 2
-            string[] arr_DO5bl2_combo = new string[DO5bl2_combo.Items.Count];
-            for (int i = 0; i < DO5bl2_combo.Items.Count; i++)
-                arr_DO5bl2_combo[i] = DO5bl2_combo.GetItemText(DO5bl2_combo.Items[i]);
-            json.comboSignalsItems.Add(DO5bl2_combo.Name, arr_DO5bl2_combo);
-            // DO6, блок 2
-            string[] arr_DO6bl2_combo = new string[DO6bl2_combo.Items.Count];
-            for (int i = 0; i < DO6bl2_combo.Items.Count; i++)
-                arr_DO6bl2_combo[i] = DO6bl2_combo.GetItemText(DO6bl2_combo.Items[i]);
-            json.comboSignalsItems.Add(DO6bl2_combo.Name, arr_DO6bl2_combo);
-            // DO7, блок 2
-            string[] arr_DO7bl2_combo = new string[DO7bl2_combo.Items.Count];
-            for (int i = 0; i < DO7bl2_combo.Items.Count; i++)
-                arr_DO7bl2_combo[i] = DO7bl2_combo.GetItemText(DO7bl2_combo.Items[i]);
-            json.comboSignalsItems.Add(DO7bl2_combo.Name, arr_DO7bl2_combo);
-            // DO1, блок 3
-            string[] arr_DO1bl3_combo = new string[DO1bl3_combo.Items.Count];
-            for (int i = 0; i < DO1bl3_combo.Items.Count; i++)
-                arr_DO1bl3_combo[i] = DO1bl3_combo.GetItemText(DO1bl3_combo.Items[i]);
-            json.comboSignalsItems.Add(DO1bl3_combo.Name, arr_DO1bl3_combo);
-            // DO2, блок 3
-            string[] arr_DO2bl3_combo = new string[DO2bl3_combo.Items.Count];
-            for (int i = 0; i < DO2bl3_combo.Items.Count; i++)
-                arr_DO2bl3_combo[i] = DO2bl3_combo.GetItemText(DO2bl3_combo.Items[i]);
-            json.comboSignalsItems.Add(DO2bl3_combo.Name, arr_DO2bl3_combo);
-            // DO3, блок 3
-            string[] arr_DO3bl3_combo = new string[DO3bl3_combo.Items.Count];
-            for (int i = 0; i < DO3bl3_combo.Items.Count; i++)
-                arr_DO3bl3_combo[i] = DO3bl3_combo.GetItemText(DO3bl3_combo.Items[i]);
-            json.comboSignalsItems.Add(DO3bl3_combo.Name, arr_DO3bl3_combo);
-            // DO4, блок 3
-            string[] arr_DO4bl3_combo = new string[DO4bl3_combo.Items.Count];
-            for (int i = 0; i < DO4bl3_combo.Items.Count; i++)
-                arr_DO4bl3_combo[i] = DO4bl3_combo.GetItemText(DO4bl3_combo.Items[i]);
-            json.comboSignalsItems.Add(DO4bl3_combo.Name, arr_DO4bl3_combo);
-            // DO5, блок 3
-            string[] arr_DO5bl3_combo = new string[DO5bl3_combo.Items.Count];
-            for (int i = 0; i < DO5bl3_combo.Items.Count; i++)
-                arr_DO5bl3_combo[i] = DO5bl3_combo.GetItemText(DO5bl3_combo.Items[i]);
-            json.comboSignalsItems.Add(DO5bl3_combo.Name, arr_DO5bl3_combo);
-            // DO6, блок 3
-            string[] arr_DO6bl3_combo = new string[DO6bl3_combo.Items.Count];
-            for (int i = 0; i < DO6bl3_combo.Items.Count; i++)
-                arr_DO6bl3_combo[i] = DO6bl3_combo.GetItemText(DO6bl3_combo.Items[i]);
-            json.comboSignalsItems.Add(DO6bl3_combo.Name, arr_DO6bl3_combo);
-            // DO7, блок 3
-            string[] arr_DO7bl3_combo = new string[DO7bl3_combo.Items.Count];
-            for (int i = 0; i < DO7bl3_combo.Items.Count; i++)
-                arr_DO7bl3_combo[i] = DO7bl3_combo.GetItemText(DO7bl3_combo.Items[i]);
-            json.comboSignalsItems.Add(DO7bl3_combo.Name, arr_DO7bl3_combo);
+            var do_combos = new List<ComboBox>()
+            {
+                // ПЛК
+                DO1_combo, DO2_combo, DO3_combo, DO4_combo, DO5_combo, DO6_combo,
+                // Блок расширения 1
+                DO1bl1_combo, DO2bl1_combo, DO3bl1_combo, DO4bl1_combo, DO5bl1_combo, DO6bl1_combo, DO7bl1_combo, DO8bl1_combo,
+                // Блок расширения 2
+                DO1bl2_combo, DO2bl2_combo, DO3bl2_combo, DO4bl2_combo, DO5bl2_combo, DO6bl2_combo, DO7bl2_combo, DO8bl2_combo,
+                // Блок расширения 3
+                DO1bl3_combo, DO2bl3_combo, DO3bl3_combo, DO4bl3_combo, DO5bl3_combo, DO6bl3_combo, DO7bl3_combo, DO8bl3_combo
+            };
+
+            foreach (var el in ui_combos) AddComboSignalsItems(el);
+            foreach (var el in ao_combos) AddComboSignalsItems(el);
+            foreach (var el in do_combos) AddComboSignalsItems(el);
         }
     }
 }
