@@ -3,7 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Newtonsoft.Json;
-using System.Diagnostics;
+using static System.Net.WebRequestMethods;
 
 // Файл для сохранения/загрузки параметров программы в формате JSON
 
@@ -415,118 +415,39 @@ namespace Moderon
         ///<summary>Загрузка для подписей кодов таблицы сигналов</summary>
         private void LoadLabelSignalsAll()
         {
-            // UI сигналы, ПЛК
-            UI1_lab.Text = json_read.labelSignalsState[UI1_lab.Name];
-            UI2_lab.Text = json_read.labelSignalsState[UI2_lab.Name];
-            UI3_lab.Text = json_read.labelSignalsState[UI3_lab.Name];
-            UI4_lab.Text = json_read.labelSignalsState[UI4_lab.Name];
-            UI5_lab.Text = json_read.labelSignalsState[UI5_lab.Name];
-            UI6_lab.Text = json_read.labelSignalsState[UI6_lab.Name];
-            UI7_lab.Text = json_read.labelSignalsState[UI7_lab.Name];
-            UI8_lab.Text = json_read.labelSignalsState[UI8_lab.Name];
-            UI9_lab.Text = json_read.labelSignalsState[UI9_lab.Name];
-            UI10_lab.Text = json_read.labelSignalsState[UI10_lab.Name];
-            UI11_lab.Text = json_read.labelSignalsState[UI11_lab.Name];
-            // UI сигналы, блок 1
-            UI1bl1_lab.Text = json_read.labelSignalsState[UI1bl1_lab.Name];
-            UI2bl1_lab.Text = json_read.labelSignalsState[UI2bl1_lab.Name];
-            UI3bl1_lab.Text = json_read.labelSignalsState[UI3bl1_lab.Name];
-            UI4bl1_lab.Text = json_read.labelSignalsState[UI4bl1_lab.Name];
-            UI5bl1_lab.Text = json_read.labelSignalsState[UI5bl1_lab.Name];
-            UI6bl1_lab.Text = json_read.labelSignalsState[UI6bl1_lab.Name];
-            UI7bl1_lab.Text = json_read.labelSignalsState[UI7bl1_lab.Name];
-            UI8bl1_lab.Text = json_read.labelSignalsState[UI8bl1_lab.Name];
-            UI9bl1_lab.Text = json_read.labelSignalsState[UI9bl1_lab.Name];
-            UI10bl1_lab.Text = json_read.labelSignalsState[UI10bl1_lab.Name];
-            UI11bl1_lab.Text = json_read.labelSignalsState[UI11bl1_lab.Name];
-            UI12bl1_lab.Text = json_read.labelSignalsState[UI12bl1_lab.Name];
-            UI13bl1_lab.Text = json_read.labelSignalsState[UI13bl1_lab.Name];
-            UI14bl1_lab.Text = json_read.labelSignalsState[UI14bl1_lab.Name];
-            UI15bl1_lab.Text = json_read.labelSignalsState[UI15bl1_lab.Name];
-            UI16bl1_lab.Text = json_read.labelSignalsState[UI16bl1_lab.Name];
-            // UI сигналы, блок 2
-            UI1bl2_lab.Text = json_read.labelSignalsState[UI1bl2_lab.Name];
-            UI2bl2_lab.Text = json_read.labelSignalsState[UI2bl2_lab.Name];
-            UI3bl2_lab.Text = json_read.labelSignalsState[UI3bl2_lab.Name];
-            UI4bl2_lab.Text = json_read.labelSignalsState[UI4bl2_lab.Name];
-            UI5bl2_lab.Text = json_read.labelSignalsState[UI5bl2_lab.Name];
-            UI6bl2_lab.Text = json_read.labelSignalsState[UI6bl2_lab.Name];
-            UI7bl2_lab.Text = json_read.labelSignalsState[UI7bl2_lab.Name];
-            UI8bl2_lab.Text = json_read.labelSignalsState[UI8bl2_lab.Name];
-            UI9bl2_lab.Text = json_read.labelSignalsState[UI9bl2_lab.Name];
-            UI10bl2_lab.Text = json_read.labelSignalsState[UI10bl2_lab.Name];
-            UI11bl2_lab.Text = json_read.labelSignalsState[UI11bl2_lab.Name];
-            UI12bl2_lab.Text = json_read.labelSignalsState[UI12bl2_lab.Name];
-            UI13bl2_lab.Text = json_read.labelSignalsState[UI13bl2_lab.Name];
-            UI14bl2_lab.Text = json_read.labelSignalsState[UI14bl2_lab.Name];
-            UI15bl2_lab.Text = json_read.labelSignalsState[UI15bl2_lab.Name];
-            UI16bl2_lab.Text = json_read.labelSignalsState[UI16bl2_lab.Name];
-            // UI сигналы, блок 3
-            UI1bl3_lab.Text = json_read.labelSignalsState[UI1bl3_lab.Name];
-            UI2bl3_lab.Text = json_read.labelSignalsState[UI2bl3_lab.Name];
-            UI3bl3_lab.Text = json_read.labelSignalsState[UI3bl3_lab.Name];
-            UI4bl3_lab.Text = json_read.labelSignalsState[UI4bl3_lab.Name];
-            UI5bl3_lab.Text = json_read.labelSignalsState[UI5bl3_lab.Name];
-            UI6bl3_lab.Text = json_read.labelSignalsState[UI6bl3_lab.Name];
-            UI7bl3_lab.Text = json_read.labelSignalsState[UI7bl3_lab.Name];
-            UI8bl3_lab.Text = json_read.labelSignalsState[UI8bl3_lab.Name];
-            UI9bl3_lab.Text = json_read.labelSignalsState[UI9bl3_lab.Name];
-            UI10bl3_lab.Text = json_read.labelSignalsState[UI10bl3_lab.Name];
-            UI11bl3_lab.Text = json_read.labelSignalsState[UI11bl3_lab.Name];
-            UI12bl3_lab.Text = json_read.labelSignalsState[UI12bl3_lab.Name];
-            UI13bl3_lab.Text = json_read.labelSignalsState[UI13bl3_lab.Name];
-            UI14bl3_lab.Text = json_read.labelSignalsState[UI14bl3_lab.Name];
-            UI15bl3_lab.Text = json_read.labelSignalsState[UI15bl3_lab.Name];
-            UI16bl3_lab.Text = json_read.labelSignalsState[UI16bl3_lab.Name];
-            // AO сигналы, ПЛК
-            AO1_lab.Text = json_read.labelSignalsState[AO1_lab.Name];
-            AO2_lab.Text = json_read.labelSignalsState[AO2_lab.Name];
-            AO3_lab.Text = json_read.labelSignalsState[AO3_lab.Name];
-            // AO сигналы, блок 1
-            AO1bl1_lab.Text = json_read.labelSignalsState[AO1bl1_lab.Name];
-            AO2bl1_lab.Text = json_read.labelSignalsState[AO2bl1_lab.Name];
-            // AO сигналы, блок 2
-            AO1bl2_lab.Text = json_read.labelSignalsState[AO1bl2_lab.Name];
-            AO2bl2_lab.Text = json_read.labelSignalsState[AO2bl2_lab.Name];
-            // AO сигналы, блок 3
-            AO1bl3_lab.Text = json_read.labelSignalsState[AO1bl3_lab.Name];
-            AO2bl3_lab.Text = json_read.labelSignalsState[AO2bl3_lab.Name];
-            // DO сигналы, ПЛК
-            DO1_lab.Text = json_read.labelSignalsState[DO1_lab.Name];
-            DO2_lab.Text = json_read.labelSignalsState[DO2_lab.Name];
-            DO3_lab.Text = json_read.labelSignalsState[DO3_lab.Name];
-            DO4_lab.Text = json_read.labelSignalsState[DO4_lab.Name];
-            DO5_lab.Text = json_read.labelSignalsState[DO5_lab.Name];
-            DO6_lab.Text = json_read.labelSignalsState[DO6_lab.Name];
-            // DO сигналы, блок 1
-            DO1bl1_lab.Text = json_read.labelSignalsState[DO1bl1_lab.Name];
-            DO2bl1_lab.Text = json_read.labelSignalsState[DO2bl1_lab.Name];
-            DO3bl1_lab.Text = json_read.labelSignalsState[DO3bl1_lab.Name];
-            DO4bl1_lab.Text = json_read.labelSignalsState[DO4bl1_lab.Name];
-            DO5bl1_lab.Text = json_read.labelSignalsState[DO5bl1_lab.Name];
-            DO6bl1_lab.Text = json_read.labelSignalsState[DO6bl1_lab.Name];
-            DO7bl1_lab.Text = json_read.labelSignalsState[DO7bl1_lab.Name];
-            // DO сигналы, блок 2
-            DO1bl2_lab.Text = json_read.labelSignalsState[DO1bl2_lab.Name];
-            DO2bl2_lab.Text = json_read.labelSignalsState[DO2bl2_lab.Name];
-            DO3bl2_lab.Text = json_read.labelSignalsState[DO3bl2_lab.Name];
-            DO4bl2_lab.Text = json_read.labelSignalsState[DO4bl2_lab.Name];
-            DO5bl2_lab.Text = json_read.labelSignalsState[DO5bl2_lab.Name];
-            DO6bl2_lab.Text = json_read.labelSignalsState[DO6bl2_lab.Name];
-            DO7bl2_lab.Text = json_read.labelSignalsState[DO7bl2_lab.Name];
-            // DO сигналы, блок 3
-            DO1bl3_lab.Text = json_read.labelSignalsState[DO1bl3_lab.Name];
-            DO2bl3_lab.Text = json_read.labelSignalsState[DO2bl3_lab.Name];
-            DO3bl3_lab.Text = json_read.labelSignalsState[DO3bl3_lab.Name];
-            DO4bl3_lab.Text = json_read.labelSignalsState[DO4bl3_lab.Name];
-            DO5bl3_lab.Text = json_read.labelSignalsState[DO5bl3_lab.Name];
-            DO6bl3_lab.Text = json_read.labelSignalsState[DO6bl3_lab.Name];
-            DO7bl3_lab.Text = json_read.labelSignalsState[DO7bl3_lab.Name];
+            var labels = new List<Label>()
+            {
+                // UI сигналы ПЛК
+                UI1_lab, UI2_lab, UI3_lab, UI4_lab, UI5_lab, UI6_lab, UI7_lab, UI8_lab, UI9_lab, UI10_lab, UI11_lab,
+                // UI сигналы, блок 1
+                UI1bl1_lab, UI2bl1_lab, UI3bl1_lab, UI4bl1_lab, UI5bl1_lab, UI6bl1_lab, UI7bl1_lab, UI8bl1_lab,
+                UI9bl1_lab, UI10bl1_lab, UI11bl1_lab, UI12bl1_lab, UI13bl1_lab, UI14bl1_lab, UI15bl1_lab, UI16bl1_lab,
+                // UI сигналы, блок 2
+                UI1bl2_lab, UI2bl2_lab, UI3bl2_lab, UI4bl2_lab, UI5bl2_lab, UI6bl2_lab, UI7bl2_lab, UI8bl2_lab,
+                UI9bl2_lab, UI10bl2_lab, UI11bl2_lab, UI12bl2_lab, UI13bl2_lab, UI14bl2_lab, UI15bl2_lab, UI16bl2_lab,
+                // UI сигналы, блок 3
+                UI1bl3_lab, UI2bl3_lab, UI3bl3_lab, UI4bl3_lab, UI5bl3_lab, UI6bl3_lab, UI7bl3_lab, UI8bl3_lab,
+                UI9bl3_lab, UI10bl3_lab, UI11bl3_lab, UI12bl3_lab, UI13bl3_lab, UI14bl3_lab, UI15bl3_lab, UI16bl3_lab,
+                // AO сигналы, ПЛК и блоки расширения
+                AO1_lab, AO2_lab, AO3_lab, AO1bl1_lab, AO2bl1_lab, AO1bl2_lab, AO2bl2_lab, AO1bl3_lab, AO2bl3_lab,
+                // DO сигналы ПЛК
+                DO1_lab, DO2_lab, DO3_lab, DO4_lab, DO5_lab, DO6_lab,
+                // DO сигналы, блок 1
+                DO1bl1_lab, DO2bl1_lab, DO3bl1_lab, DO4bl1_lab, DO5bl1_lab, DO6bl1_lab, DO7bl1_lab, DO8bl1_lab,
+                // DO сигналы, блок 2
+                DO1bl2_lab, DO2bl2_lab, DO3bl2_lab, DO4bl2_lab, DO5bl2_lab, DO6bl2_lab, DO7bl2_lab, DO8bl2_lab,
+                // DO сигналы, блок 3
+                DO1bl3_lab, DO2bl3_lab, DO3bl3_lab, DO4bl3_lab, DO5bl3_lab, DO6bl3_lab, DO7bl3_lab, DO8bl3_lab
+            };
+
+            foreach (var el in labels) el.Text = json_read.labelSignalsState[el.Name];
         }
 
         ///<summary>Загрузка списка элементов коллекции для comboBox таблицы сигналов</summary>
         private void LoadComboItemsSignals()
         {
+              
+
             // AO сигналы, ПЛК
             AO1_combo.Items.Clear(); AO2_combo.Items.Clear(); AO3_combo.Items.Clear();
             // AO1, ПЛК
@@ -850,164 +771,76 @@ namespace Moderon
         ///<summary>Сборка для всех checkBox программы</summary>
         private void BuildCheckBoxAll()
         {
-            // Выбор элементов (боковая панель)
-            json.checkBoxState.Add(filterCheck.Name, filterCheck.Checked);
-            json.checkBoxState.Add(dampCheck.Name, dampCheck.Checked);
-            json.checkBoxState.Add(heaterCheck.Name, heaterCheck.Checked);
-            json.checkBoxState.Add(addHeatCheck.Name, addHeatCheck.Checked);
-            json.checkBoxState.Add(coolerCheck.Name, coolerCheck.Checked);
-            json.checkBoxState.Add(humidCheck.Name, humidCheck.Checked);
-            json.checkBoxState.Add(recircCheck.Name, recircCheck.Checked);
-            json.checkBoxState.Add(recupCheck.Name, recupCheck.Checked);
-            // Заслонки
-            json.checkBoxState.Add(confPrDampCheck.Name, confPrDampCheck.Checked);
-            json.checkBoxState.Add(heatPrDampCheck.Name, heatPrDampCheck.Checked);
-            json.checkBoxState.Add(springRetPrDampCheck.Name, springRetPrDampCheck.Checked);
-            json.checkBoxState.Add(outDampCheck.Name, outDampCheck.Checked);
-            json.checkBoxState.Add(confOutDampCheck.Name, confOutDampCheck.Checked);
-            json.checkBoxState.Add(heatOutDampCheck.Name, heatOutDampCheck.Checked);
-            json.checkBoxState.Add(springRetOutDampCheck.Name, springRetOutDampCheck.Checked);
-            // Основной нагреватель
-            json.checkBoxState.Add(TF_heaterCheck.Name, TF_heaterCheck.Checked);
-            json.checkBoxState.Add(confHeatPumpCheck.Name, confHeatPumpCheck.Checked);
-            json.checkBoxState.Add(pumpCurProtect.Name, pumpCurProtect.Checked);
-            json.checkBoxState.Add(reservPumpHeater.Name, reservPumpHeater.Checked);
-            json.checkBoxState.Add(confHeatResPumpCheck.Name, confHeatResPumpCheck.Checked);
-            json.checkBoxState.Add(pumpCurResProtect.Name, pumpCurResProtect.Checked);
-            json.checkBoxState.Add(watSensHeatCheck.Name, watSensHeatCheck.Checked);
-            // Второй нагреватель
-            json.checkBoxState.Add(TF_addHeaterCheck.Name, TF_addHeaterCheck.Checked);
-            json.checkBoxState.Add(pumpAddHeatCheck.Name, pumpAddHeatCheck.Checked);
-            json.checkBoxState.Add(confAddHeatPumpCheck.Name, confAddHeatPumpCheck.Checked);
-            json.checkBoxState.Add(pumpCurAddProtect.Name, pumpCurAddProtect.Checked);
-            json.checkBoxState.Add(reservPumpAddHeater.Name, reservPumpAddHeater.Checked);
-            json.checkBoxState.Add(confAddHeatResPumpCheck.Name, confAddHeatResPumpCheck.Checked);
-            json.checkBoxState.Add(pumpCurResAddProtect.Name, pumpCurResAddProtect.Checked);
-            json.checkBoxState.Add(sensWatAddHeatCheck.Name, sensWatAddHeatCheck.Checked);
-            // Охладитель
-            json.checkBoxState.Add(alarmFrCoolCheck.Name, alarmFrCoolCheck.Checked);
-            json.checkBoxState.Add(thermoCoolerCheck.Name, thermoCoolerCheck.Checked);
-            json.checkBoxState.Add(analogFreonCheck.Name, analogFreonCheck.Checked);
-            json.checkBoxState.Add(dehumModeCheck.Name, dehumModeCheck.Checked);
-            // Увлажнитель
-            json.checkBoxState.Add(alarmHumidCheck.Name, alarmHumidCheck.Checked);
-            // Рециркуляция
-            json.checkBoxState.Add(recircPrDampAOCheck.Name, recircPrDampAOCheck.Checked);
-            json.checkBoxState.Add(springRetRecircCheck.Name, springRetRecircCheck.Checked);
-            // Рекуператор
-            json.checkBoxState.Add(pumpGlicRecCheck.Name, pumpGlicRecCheck.Checked);
-            json.checkBoxState.Add(recDefTempCheck.Name, recDefTempCheck.Checked);
-            json.checkBoxState.Add(recDefPsCheck.Name, recDefPsCheck.Checked);
-            // Датчики/сигналы
-            json.checkBoxState.Add(prChanSensCheck.Name, prChanSensCheck.Checked);
-            json.checkBoxState.Add(roomTempSensCheck.Name, roomTempSensCheck.Checked);
-            json.checkBoxState.Add(chanHumSensCheck.Name, chanHumSensCheck.Checked);
-            json.checkBoxState.Add(roomHumSensCheck.Name, roomHumSensCheck.Checked);
-            json.checkBoxState.Add(outdoorChanSensCheck.Name, outdoorChanSensCheck.Checked);
-            json.checkBoxState.Add(outChanSensCheck.Name, outChanSensCheck.Checked);
-            json.checkBoxState.Add(sigWorkCheck.Name, sigWorkCheck.Checked);
-            json.checkBoxState.Add(sigAlarmCheck.Name, sigAlarmCheck.Checked);
-            json.checkBoxState.Add(sigFilAlarmCheck.Name, sigFilAlarmCheck.Checked);
-            json.checkBoxState.Add(stopStartCheck.Name, stopStartCheck.Checked);
-            json.checkBoxState.Add(fireCheck.Name, fireCheck.Checked);
-            // Приточный вентилятор
-            json.checkBoxState.Add(prFanPSCheck.Name, prFanPSCheck.Checked);
-            json.checkBoxState.Add(prFanFC_check.Name, prFanFC_check.Checked);
-            json.checkBoxState.Add(prFanThermoCheck.Name, prFanThermoCheck.Checked);
-            json.checkBoxState.Add(curDefPrFanCheck.Name, curDefPrFanCheck.Checked);
-            json.checkBoxState.Add(checkResPrFan.Name, checkResPrFan.Checked);
-            json.checkBoxState.Add(prFanAlarmCheck.Name, prFanAlarmCheck.Checked);
-            json.checkBoxState.Add(prFanStStopCheck.Name, prFanStStopCheck.Checked);
-            json.checkBoxState.Add(prFanSpeedCheck.Name, prFanSpeedCheck.Checked);
-            json.checkBoxState.Add(prDampFanCheck.Name, prDampFanCheck.Checked);
-            json.checkBoxState.Add(prDampConfirmFanCheck.Name, prDampConfirmFanCheck.Checked);
-            // Вытяжной вентилятор
-            json.checkBoxState.Add(outFanPSCheck.Name, outFanPSCheck.Checked);
-            json.checkBoxState.Add(outFanFC_check.Name, outFanFC_check.Checked);
-            json.checkBoxState.Add(outFanThermoCheck.Name, outFanThermoCheck.Checked);
-            json.checkBoxState.Add(curDefOutFanCheck.Name, curDefOutFanCheck.Checked);
-            json.checkBoxState.Add(checkResOutFan.Name, checkResOutFan.Checked);
-            json.checkBoxState.Add(outFanAlarmCheck.Name, outFanAlarmCheck.Checked);
-            json.checkBoxState.Add(outFanStStopCheck.Name, outFanStStopCheck.Checked);
-            json.checkBoxState.Add(outFanSpeedCheck.Name, outFanSpeedCheck.Checked);
-            json.checkBoxState.Add(outDampFanCheck.Name, outDampFanCheck.Checked);
-            json.checkBoxState.Add(outDampConfirmFanCheck.Name, outDampConfirmFanCheck.Checked);
+            var check_boxes = new List<CheckBox>()
+            {
+                // Выбор элементов (боковая панель)
+                filterCheck, dampCheck, heaterCheck, addHeatCheck, coolerCheck, humidCheck, recircCheck, recupCheck,
+                // Заслонки
+                confPrDampCheck, heatPrDampCheck, springRetPrDampCheck, outDampCheck, confOutDampCheck, heatOutDampCheck, springRetOutDampCheck,
+                // Основной нагреватель
+                TF_heaterCheck, confHeatPumpCheck, pumpCurProtect, reservPumpHeater, confHeatResPumpCheck, pumpCurResProtect, watSensHeatCheck,
+                // Второй нагреватель
+                TF_addHeaterCheck, pumpAddHeatCheck, confAddHeatPumpCheck, reservPumpAddHeater, confAddHeatResPumpCheck, pumpCurResAddProtect, 
+                sensWatAddHeatCheck,
+                // Охладитель и увлажнитель
+                alarmFrCoolCheck, thermoCoolerCheck, analogFreonCheck, dehumModeCheck, alarmHumidCheck,
+                // Рециркуляция и рекуператор
+                recircPrDampAOCheck, springRetRecircCheck, pumpGlicRecCheck, recDefTempCheck, recDefPsCheck,
+                // Датчики и сигналы
+                recDefPsCheck, roomTempSensCheck, chanHumSensCheck, roomHumSensCheck, outdoorChanSensCheck, outChanSensCheck, sigWorkCheck,
+                sigAlarmCheck, sigFilAlarmCheck, stopStartCheck, fireCheck,
+                // Приточный вентилятор
+                prFanPSCheck, prFanFC_check, prFanThermoCheck, curDefPrFanCheck, checkResPrFan, prFanAlarmCheck, prFanStStopCheck,
+                prFanSpeedCheck, prDampFanCheck, prDampConfirmFanCheck,
+                // Вытяжной вентилятор
+                outFanPSCheck, outFanFC_check, outFanThermoCheck, curDefOutFanCheck, checkResOutFan, outFanAlarmCheck, outFanStStopCheck,
+                outFanSpeedCheck, outDampFanCheck, outDampConfirmFanCheck
+            };
+
+            foreach (var el in check_boxes) json.checkBoxState.Add(el.Name, el.Checked);
         }
 
         ///<summary>Сборка для всех comboBox элементов программы</summary>
         private void BuildComboBoxElemAll()
         {
-            // Выбор типа системы (П/ПВ)
-            json.comboBoxElemState.Add(comboSysType.Name, comboSysType.SelectedIndex);
-            // Приточный вентилятор
-            json.comboBoxElemState.Add(prFanPowCombo.Name, prFanPowCombo.SelectedIndex);
-            json.comboBoxElemState.Add(prFanControlCombo.Name, prFanControlCombo.SelectedIndex);
-            // Вытяжной вентилятор
-            json.comboBoxElemState.Add(outFanPowCombo.Name, outFanPowCombo.SelectedIndex);
-            json.comboBoxElemState.Add(outFanControlCombo.Name, outFanControlCombo.SelectedIndex);
-            // Воздушные фильтры
-            json.comboBoxElemState.Add(filterPrCombo.Name, filterPrCombo.SelectedIndex);
-            json.comboBoxElemState.Add(filterOutCombo.Name, filterOutCombo.SelectedIndex);
-            // Заслонки
-            json.comboBoxElemState.Add(prDampPowCombo.Name, prDampPowCombo.SelectedIndex);
-            json.comboBoxElemState.Add(outDampPowCombo.Name, outDampPowCombo.SelectedIndex);
-            // Нагреватель
-            json.comboBoxElemState.Add(heatTypeCombo.Name, heatTypeCombo.SelectedIndex);
-            json.comboBoxElemState.Add(powPumpCombo.Name, powPumpCombo.SelectedIndex);
-            json.comboBoxElemState.Add(elHeatStagesCombo.Name, elHeatStagesCombo.SelectedIndex);
-            json.comboBoxElemState.Add(firstStHeatCombo.Name, firstStHeatCombo.SelectedIndex);
-            json.comboBoxElemState.Add(thermSwitchCombo.Name, thermSwitchCombo.SelectedIndex);
-            // Второй нагреватель
-            json.comboBoxElemState.Add(heatAddTypeCombo.Name, heatAddTypeCombo.SelectedIndex);
-            json.comboBoxElemState.Add(powPumpAddCombo.Name, powPumpAddCombo.SelectedIndex);
-            json.comboBoxElemState.Add(elHeatAddStagesCombo.Name, elHeatAddStagesCombo.SelectedIndex);
-            json.comboBoxElemState.Add(firstStAddHeatCombo.Name, firstStAddHeatCombo.SelectedIndex);
-            json.comboBoxElemState.Add(thermAddSwitchCombo.Name, thermAddSwitchCombo.SelectedIndex);
-            // Охладитель
-            json.comboBoxElemState.Add(coolTypeCombo.Name, coolTypeCombo.SelectedIndex);
-            json.comboBoxElemState.Add(frCoolStagesCombo.Name, frCoolStagesCombo.SelectedIndex);
-            json.comboBoxElemState.Add(powWatCoolCombo.Name, powWatCoolCombo.SelectedIndex);
-            // Увлажнитель
-            json.comboBoxElemState.Add(humidTypeCombo.Name, humidTypeCombo.SelectedIndex);
-            // Рециркуляция
-            json.comboBoxElemState.Add(recircPowCombo.Name, recircPowCombo.SelectedIndex);
-            // Рекуператор
-            json.comboBoxElemState.Add(recupTypeCombo.Name, recupTypeCombo.SelectedIndex);
-            json.comboBoxElemState.Add(rotorPowCombo.Name, rotorPowCombo.SelectedIndex);
-            json.comboBoxElemState.Add(bypassPlastCombo.Name, bypassPlastCombo.SelectedIndex);
-            json.comboBoxElemState.Add(fireTypeCombo.Name, fireTypeCombo.SelectedIndex);
+            var combo_boxes = new List<ComboBox>()
+            {
+                // Тип системы, приточный и вытяжной вентиляторы
+                comboSysType, prFanPowCombo, prFanControlCombo, outFanPowCombo, outFanControlCombo,
+                // Воздушные фильтры и заслонки
+                filterPrCombo, filterOutCombo, prDampPowCombo, outDampPowCombo,
+                // Нагреватель
+                heatTypeCombo, powPumpCombo, elHeatStagesCombo, firstStHeatCombo, thermSwitchCombo,
+                // Второй нагреватель
+                heatAddTypeCombo, powPumpAddCombo, elHeatAddStagesCombo, firstStAddHeatCombo, thermAddSwitchCombo,
+                // Охладитель и увлажнитель
+                coolTypeCombo, frCoolStagesCombo, powWatCoolCombo, humidTypeCombo,
+                // Рециркуляция и рекуператор
+                recircPowCombo, recupTypeCombo, rotorPowCombo, bypassPlastCombo, fireTypeCombo
+            };
+
+            foreach (var el in combo_boxes) json.comboBoxElemState.Add(el.Name, el.SelectedIndex);
         }
 
         ///<summary>Сборка для всех textBox элементов программы</summary>
         private void BuildTextBoxAll()
         {
-            // Приточный вентилятор
-            json.textBoxElemState.Add(powPrFanBox.Name, powPrFanBox.Text);
-            json.textBoxElemState.Add(powPrResFanBox.Name, powPrResFanBox.Text);
-            // Вытяжной вентилятор
-            json.textBoxElemState.Add(powOutFanBox.Name, powOutFanBox.Text);
-            json.textBoxElemState.Add(powOutResFanBox.Name, powOutResFanBox.Text);
-            // Воздушные заслонки
-            json.textBoxElemState.Add(b_prDampBox.Name, b_prDampBox.Text);
-            json.textBoxElemState.Add(h_prDampBox.Name, h_prDampBox.Text);
-            json.textBoxElemState.Add(b_outDampBox.Name, b_outDampBox.Text);
-            json.textBoxElemState.Add(h_outDampBox.Name, h_outDampBox.Text);
-            // Нагреватель
-            json.textBoxElemState.Add(elHeatPowBox.Name, elHeatPowBox.Text);
-            // Второй нагреватель
-            json.textBoxElemState.Add(elAddHeatPowBox.Name, elAddHeatPowBox.Text);
-            // Рециркуляция
-            json.textBoxElemState.Add(b_recircBox.Name, b_recircBox.Text);
-            json.textBoxElemState.Add(h_recircBox.Name, h_recircBox.Text);
-            // Рекуператор
-            json.textBoxElemState.Add(powRotRecBox.Name, powRotRecBox.Text);
+            var text_boxes = new List<TextBox>()
+            {
+                // Приточный и вытяжной вентилятор
+                powPrFanBox, powPrResFanBox, powOutFanBox, powOutResFanBox,
+                // Воздушные заслонки
+                b_prDampBox, h_prDampBox, b_outDampBox, h_outDampBox,
+                // Нагреватель, второй нагреватель, рециркуляция и рекуператор
+                elHeatPowBox, elAddHeatPowBox, b_recircBox, h_recircBox, powRotRecBox
+            };
+
+            foreach (var el in text_boxes) json.textBoxElemState.Add(el.Name, el.Text);
         }
 
         ///<summary>Добавление подписи кода таблицы сигналов</summary>
-        private void AddLabelSignalsState(Label el)
-        {
-            json.labelSignalsState.Add(el.Name, el.Text);
-        }
+        private void AddLabelSignalsState(Label el) =>
+            json.labelSignalsState.Add(el.Name, el.Text);       
 
         ///<summary>Сборка для подписей кодов таблицы сигналов</summary>
         private void BuildLabelSignalsAll()
@@ -1056,11 +889,9 @@ namespace Moderon
         }
 
         ///<summary>Добавление состояния для comboBox по таблице сигналов</summary>
-        private void AddComboSignalsState(ComboBox el)
-        {
+        private void AddComboSignalsState(ComboBox el) =>
             json.comboSignalsState.Add(el.Name, el.SelectedItem.ToString());
-        }
-
+        
         ///<summary>Сборка состояний для comboBox таблицы сигналов</summary>
         private void BuildComboSignalsAll()
         {

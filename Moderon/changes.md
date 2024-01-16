@@ -525,4 +525,11 @@
 - рефакторинг для `BuildComboSignalsAll()` записей выбранного элемента
 - внесён `AddLabelSignalsState()` для сохранения кода сигнала
 - изменения по `BuildLabelSignalsAll()`, рефакторинг
-- добавление UI для `LoadSignalArrays()` по закрузке сигналов
+- добавление UI для `LoadSignalArrays()` по закрузке сигналов  
+
+16.01.24 (вторник)
+
+- рефакторинг для `BuildTextBoxAll()` сохранения полей `textBox`  
+- изменения для `BuildComboBoxElemAll()` сохренения состояний `comboBox`
+- рефакторинг `BuildCheckBoxAll()` сохранения статуса `checkBox`
+- изменения для `LoadLabelSignalsAll()` по загрузке состояния `Label`
