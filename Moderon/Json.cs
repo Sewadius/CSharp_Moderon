@@ -3,7 +3,6 @@ using System.IO;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Newtonsoft.Json;
-using static System.Net.WebRequestMethods;
 
 // Файл для сохранения/загрузки параметров программы в формате JSON
 
@@ -179,7 +178,7 @@ namespace Moderon
         private void SaveJsonFile()
         {
             var tempPath = Path.GetTempPath() + "/save.json";
-            using (StreamWriter file = File.CreateText(tempPath))
+            using (StreamWriter file = System.IO.File.CreateText(tempPath))
             {
                 JsonSerializer serializer = new JsonSerializer();  
                 serializer.Serialize(file, json);
@@ -191,7 +190,7 @@ namespace Moderon
             dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             dlg.Filter = "Json file (.json)|*.json";
             if (dlg.ShowDialog() == DialogResult.OK)
-                File.WriteAllBytes(dlg.FileName, File.ReadAllBytes(tempPath));
+                System.IO.File.WriteAllBytes(dlg.FileName, System.IO.File.ReadAllBytes(tempPath));
         }
 
         ///<summary>Нажали "Загрузить" в главном меню</summary> 
@@ -226,7 +225,7 @@ namespace Moderon
                     {
                         try
                         {
-                            json_read = JsonConvert.DeserializeObject<JsonObject>(File.ReadAllText(filePath));
+                            json_read = JsonConvert.DeserializeObject<JsonObject>(System.IO.File.ReadAllText(filePath));
                             message = "Файл успешно загружен!";
                             caption = "Загрузка файла";
                             result = MessageBox.Show(message, caption, buttons);
@@ -248,168 +247,90 @@ namespace Moderon
         ///<summary>Загрузка для всех checkBox</summary>
         private void LoadCheckBoxAll()
         {
-            // Выбор элементов (боковая панель)
-            filterCheck.Checked = json_read.checkBoxState[filterCheck.Name];
-            dampCheck.Checked = json_read.checkBoxState[dampCheck.Name];
-            heaterCheck.Checked = json_read.checkBoxState[heaterCheck.Name];
-            addHeatCheck.Checked = json_read.checkBoxState[addHeatCheck.Name];
-            coolerCheck.Checked = json_read.checkBoxState[coolerCheck.Name];
-            humidCheck.Checked = json_read.checkBoxState[humidCheck.Name];
-            recircCheck.Checked = json_read.checkBoxState[recircCheck.Name];
-            recupCheck.Checked = json_read.checkBoxState[recupCheck.Name];
-            // Заслонки
-            confPrDampCheck.Checked = json_read.checkBoxState[confPrDampCheck.Name];
-            heatPrDampCheck.Checked = json_read.checkBoxState[heatPrDampCheck.Name];
-            springRetPrDampCheck.Checked = json_read.checkBoxState[springRetPrDampCheck.Name];
-            outDampCheck.Checked = json_read.checkBoxState[outDampCheck.Name];
-            confOutDampCheck.Checked = json_read.checkBoxState[confOutDampCheck.Name];
-            heatOutDampCheck.Checked = json_read.checkBoxState[heatOutDampCheck.Name];
-            springRetOutDampCheck.Checked = json_read.checkBoxState[springRetOutDampCheck.Name];
-            // Нагреватель
-            TF_heaterCheck.Checked = json_read.checkBoxState[TF_heaterCheck.Name];
-            confHeatPumpCheck.Checked = json_read.checkBoxState[confHeatPumpCheck.Name];
-            pumpCurProtect.Checked = json_read.checkBoxState[pumpCurProtect.Name];
-            reservPumpHeater.Checked = json_read.checkBoxState[reservPumpHeater.Name];
-            confHeatResPumpCheck.Checked = json_read.checkBoxState[confHeatResPumpCheck.Name];
-            pumpCurResProtect.Checked = json_read.checkBoxState[pumpCurResProtect.Name];
-            watSensHeatCheck.Checked = json_read.checkBoxState[watSensHeatCheck.Name];
-            // Второй нагреватель
-            TF_addHeaterCheck.Checked = json_read.checkBoxState[TF_addHeaterCheck.Name];
-            pumpAddHeatCheck.Checked = json_read.checkBoxState[pumpAddHeatCheck.Name];
-            confAddHeatPumpCheck.Checked = json_read.checkBoxState[confAddHeatPumpCheck.Name];
-            pumpCurAddProtect.Checked = json_read.checkBoxState[pumpCurAddProtect.Name];
-            reservPumpAddHeater.Checked = json_read.checkBoxState[reservPumpAddHeater.Name];
-            confAddHeatResPumpCheck.Checked = json_read.checkBoxState[confAddHeatResPumpCheck.Name];
-            pumpCurResAddProtect.Checked = json_read.checkBoxState[pumpCurResAddProtect.Name];
-            sensWatAddHeatCheck.Checked = json_read.checkBoxState[sensWatAddHeatCheck.Name];
-            // Охладитель
-            alarmFrCoolCheck.Checked = json_read.checkBoxState[alarmFrCoolCheck.Name];
-            thermoCoolerCheck.Checked = json_read.checkBoxState[thermoCoolerCheck.Name];
-            analogFreonCheck.Checked = json_read.checkBoxState[analogFreonCheck.Name];
-            dehumModeCheck.Checked = json_read.checkBoxState[dehumModeCheck.Name];
-            // Увлажнитель
-            alarmHumidCheck.Checked = json_read.checkBoxState[alarmHumidCheck.Name];
-            // Рециркуляция
-            recircPrDampAOCheck.Checked = json_read.checkBoxState[recircPrDampAOCheck.Name];
-            springRetRecircCheck.Checked = json_read.checkBoxState[springRetRecircCheck.Name];
-            // Рекуператор
-            pumpGlicRecCheck.Checked = json_read.checkBoxState[pumpGlicRecCheck.Name];
-            recDefTempCheck.Checked = json_read.checkBoxState[recDefTempCheck.Name];
-            recDefPsCheck.Checked = json_read.checkBoxState[recDefPsCheck.Name];
-            // Датчики/сигналы
-            prChanSensCheck.Checked = json_read.checkBoxState[prChanSensCheck.Name];
-            roomTempSensCheck.Checked = json_read.checkBoxState[roomTempSensCheck.Name];
-            chanHumSensCheck.Checked = json_read.checkBoxState[chanHumSensCheck.Name];
-            roomHumSensCheck.Checked = json_read.checkBoxState[roomHumSensCheck.Name];
-            outdoorChanSensCheck.Checked = json_read.checkBoxState[outdoorChanSensCheck.Name];
-            outChanSensCheck.Checked = json_read.checkBoxState[outChanSensCheck.Name];
-            sigWorkCheck.Checked = json_read.checkBoxState[sigWorkCheck.Name];
-            sigAlarmCheck.Checked = json_read.checkBoxState[sigAlarmCheck.Name];
-            sigFilAlarmCheck.Checked = json_read.checkBoxState[sigFilAlarmCheck.Name];
-            stopStartCheck.Checked = json_read.checkBoxState[stopStartCheck.Name];
-            fireCheck.Checked = json_read.checkBoxState[fireCheck.Name];
-            // Приточный вентилятор
-            prFanPSCheck.Checked = json_read.checkBoxState[prFanPSCheck.Name];
-            prFanFC_check.Checked = json_read.checkBoxState[prFanFC_check.Name];
-            prFanThermoCheck.Checked = json_read.checkBoxState[prFanThermoCheck.Name];
-            curDefPrFanCheck.Checked = json_read.checkBoxState[curDefPrFanCheck.Name];
-            checkResPrFan.Checked = json_read.checkBoxState[checkResPrFan.Name];
-            prDampFanCheck.Checked = json_read.checkBoxState[prDampFanCheck.Name];
-            prDampConfirmFanCheck.Checked = json_read.checkBoxState[prDampConfirmFanCheck.Name];
-            prFanAlarmCheck.Checked = json_read.checkBoxState[prFanAlarmCheck.Name];
-            prFanStStopCheck.Checked = json_read.checkBoxState[prFanStStopCheck.Name];
-            prFanSpeedCheck.Checked = json_read.checkBoxState[prFanSpeedCheck.Name];
-            // Вытяжной вентилятор
-            outFanPSCheck.Checked = json_read.checkBoxState[outFanPSCheck.Name];
-            outFanFC_check.Checked = json_read.checkBoxState[outFanFC_check.Name];
-            outFanThermoCheck.Checked = json_read.checkBoxState[outFanThermoCheck.Name];
-            curDefOutFanCheck.Checked = json_read.checkBoxState[curDefOutFanCheck.Name];
-            checkResOutFan.Checked = json_read.checkBoxState[checkResOutFan.Name];
-            outDampFanCheck.Checked = json_read.checkBoxState[outDampFanCheck.Name];
-            outDampConfirmFanCheck.Checked = json_read.checkBoxState[outDampConfirmFanCheck.Name];
-            outFanAlarmCheck.Checked = json_read.checkBoxState[outFanAlarmCheck.Name];
-            outFanStStopCheck.Checked = json_read.checkBoxState[outFanStStopCheck.Name];
-            outFanSpeedCheck.Checked = json_read.checkBoxState[outFanSpeedCheck.Name];
+            var comboBoxes = new List<CheckBox>()
+            {
+                // Выбор элементов (боковая панель)
+                filterCheck, dampCheck, heaterCheck, addHeatCheck, coolerCheck, humidCheck, recircCheck, recupCheck,
+                // Заслонки
+                confPrDampCheck, heatPrDampCheck, springRetPrDampCheck, outDampCheck, confOutDampCheck, heatOutDampCheck,
+                springRetOutDampCheck,
+                // Нагреватель
+                TF_heaterCheck, confHeatPumpCheck, pumpCurProtect, reservPumpHeater, confHeatResPumpCheck,
+                pumpCurResProtect, watSensHeatCheck,
+                // Второй нагреватель
+                TF_addHeaterCheck, pumpAddHeatCheck, confAddHeatPumpCheck, pumpCurAddProtect, reservPumpAddHeater,
+                confAddHeatResPumpCheck, pumpCurResAddProtect, sensWatAddHeatCheck,
+                // Охладитель
+                alarmFrCoolCheck, thermoCoolerCheck, thermoCoolerCheck, dehumModeCheck,
+                // Увлажнитель, рециркуляция и рекуператор
+                alarmHumidCheck, recircPrDampAOCheck, springRetRecircCheck, pumpGlicRecCheck, recDefTempCheck, recDefPsCheck,
+                // Датчики и сигналы
+                prChanSensCheck, roomTempSensCheck, chanHumSensCheck, roomHumSensCheck, outdoorChanSensCheck, outChanSensCheck,
+                sigWorkCheck, sigAlarmCheck, sigFilAlarmCheck, stopStartCheck, fireCheck,
+                // Приточный вентилятор
+                prFanPSCheck, prFanFC_check, prFanThermoCheck, curDefPrFanCheck, checkResPrFan, prDampFanCheck,
+                prDampConfirmFanCheck, prFanAlarmCheck, prFanStStopCheck, prFanSpeedCheck,
+                // Вытяжной вентилятор
+                outFanPSCheck, outFanFC_check, outFanThermoCheck, curDefOutFanCheck, checkResOutFan, outDampFanCheck,
+                outDampConfirmFanCheck, outFanAlarmCheck, outFanStStopCheck, outFanSpeedCheck
+            };
+
+            foreach (var el in comboBoxes) el.Checked = json_read.checkBoxState[el.Name];
         }
 
         ///<summary>Загрузка для всех comboBox элементов</summary>
         private void LoadComboBoxElemAll()
         {
-            // Выбор типа системы (П/ПВ)
-            comboSysType.SelectedIndex = json_read.comboBoxElemState[comboSysType.Name];
-            // Приточный вентилятор
-            prFanPowCombo.SelectedIndex = json_read.comboBoxElemState[prFanPowCombo.Name];
-            prFanControlCombo.SelectedIndex = json_read.comboBoxElemState[prFanControlCombo.Name];
-            if (prFanControlCombo.SelectedIndex == 1) // Блокировка опций для Modbus
+            var comboBoxes = new List<ComboBox>()
             {
-                prFanAlarmCheck.Enabled = false; // Сигнал аварии
-                prFanSpeedCheck.Enabled = false; // Скорость 0-10 В
-            }
-            // Вытяжной вентилятор
-            outFanPowCombo.SelectedIndex = json_read.comboBoxElemState[outFanPowCombo.Name];
-            outFanControlCombo.SelectedIndex = json_read.comboBoxElemState[outFanControlCombo.Name];
-            if (outFanControlCombo.SelectedIndex == 1) // Блокировка опций для Modbus
+                // Выбор типа системы
+                comboSysType,
+                // Приточный и вытяжной вентилятор
+                prFanPowCombo, prFanControlCombo, outFanPowCombo, outFanControlCombo,
+                // Воздушные фильтры и заслонки
+                filterPrCombo, filterOutCombo, prDampPowCombo, outDampPowCombo,
+                // Нагреватель
+                heatTypeCombo, powPumpCombo, elHeatStagesCombo, firstStHeatCombo, thermSwitchCombo,
+                // Второй нагреватель
+                heatAddTypeCombo, powPumpAddCombo, elHeatAddStagesCombo, firstStAddHeatCombo, thermAddSwitchCombo,
+                // Охладитель и увлажнитель
+                coolTypeCombo, frCoolStagesCombo, powWatCoolCombo, humidTypeCombo,
+                // Рециркуляция, рекуператор и датчики
+                recircPowCombo, recircPowCombo, rotorPowCombo, bypassPlastCombo, fireTypeCombo
+            };
+
+            foreach (var el in comboBoxes) el.SelectedIndex = json_read.comboBoxElemState[el.Name];
+
+            // Блокировка опций для Modbus П и В вентилятора
+            if (prFanControlCombo.SelectedIndex == 1)   // Приточный вентилятор
             {
-                outFanAlarmCheck.Enabled = false; // Сигнал аварии
-                outFanSpeedCheck.Enabled = false; // Скорость 0-10 В
+                prFanAlarmCheck.Enabled = false;        // Сигнал аварии
+                prFanSpeedCheck.Enabled = false;        // Скорость 0-10 В
             }
-            // Воздушные фильтры
-            filterPrCombo.SelectedIndex = json_read.comboBoxElemState[filterPrCombo.Name];
-            filterOutCombo.SelectedIndex = json_read.comboBoxElemState[filterOutCombo.Name];
-            // Заслонки
-            prDampPowCombo.SelectedIndex = json_read.comboBoxElemState[prDampPowCombo.Name];
-            outDampPowCombo.SelectedIndex = json_read.comboBoxElemState[outDampPowCombo.Name];
-            // Нагреватель
-            heatTypeCombo.SelectedIndex = json_read.comboBoxElemState[heatTypeCombo.Name];
-            powPumpCombo.SelectedIndex = json_read.comboBoxElemState[powPumpCombo.Name];
-            elHeatStagesCombo.SelectedIndex = json_read.comboBoxElemState[elHeatStagesCombo.Name];
-            firstStHeatCombo.SelectedIndex = json_read.comboBoxElemState[firstStHeatCombo.Name];
-            thermSwitchCombo.SelectedIndex = json_read.comboBoxElemState[thermSwitchCombo.Name];
-            // Второй нагреватель
-            heatAddTypeCombo.SelectedIndex = json_read.comboBoxElemState[heatAddTypeCombo.Name];
-            powPumpAddCombo.SelectedIndex = json_read.comboBoxElemState[powPumpAddCombo.Name];
-            elHeatAddStagesCombo.SelectedIndex = json_read.comboBoxElemState[elHeatAddStagesCombo.Name];
-            firstStAddHeatCombo.SelectedIndex = json_read.comboBoxElemState[firstStAddHeatCombo.Name];
-            thermAddSwitchCombo.SelectedIndex = json_read.comboBoxElemState[thermAddSwitchCombo.Name];
-            // Охладитель
-            coolTypeCombo.SelectedIndex = json_read.comboBoxElemState[coolTypeCombo.Name];
-            frCoolStagesCombo.SelectedIndex = json_read.comboBoxElemState[frCoolStagesCombo.Name];
-            powWatCoolCombo.SelectedIndex = json_read.comboBoxElemState[powWatCoolCombo.Name];
-            // Увлажнитель
-            humidTypeCombo.SelectedIndex = json_read.comboBoxElemState[humidTypeCombo.Name];
-            // Рециркуляция
-            recircPowCombo.SelectedIndex = json_read.comboBoxElemState[recircPowCombo.Name];
-            // Рекуператор
-            recupTypeCombo.SelectedIndex = json_read.comboBoxElemState[recupTypeCombo.Name];
-            rotorPowCombo.SelectedIndex = json_read.comboBoxElemState[rotorPowCombo.Name];
-            bypassPlastCombo.SelectedIndex = json_read.comboBoxElemState[bypassPlastCombo.Name];
-            // Датчики
-            fireTypeCombo.SelectedIndex = json_read.comboBoxElemState[fireTypeCombo.Name];
+
+            if (outFanControlCombo.SelectedIndex == 1)  // Вытяжной вентилятор
+            {
+                outFanAlarmCheck.Enabled = false;       // Сигнал аварии
+                outFanSpeedCheck.Enabled = false;       // Скорость 0-10 В
+            }
         }
 
         ///<summary>Загрузка для всех textBox</summary>
         private void LoadTextBoxAll()
         {
-            // Приточный вентилятор
-            powPrFanBox.Text = json_read.textBoxElemState[powPrFanBox.Name];
-            powPrResFanBox.Text = json_read.textBoxElemState[powPrResFanBox.Name];
-            // Вытяжной вентилятор
-            powOutFanBox.Text = json_read.textBoxElemState[powOutFanBox.Name];
-            powOutResFanBox.Text = json_read.textBoxElemState[powOutResFanBox.Name];
-            // Воздушные заслонки
-            b_prDampBox.Text = json_read.textBoxElemState[b_prDampBox.Name];
-            h_prDampBox.Text = json_read.textBoxElemState[h_prDampBox.Name];
-            b_outDampBox.Text = json_read.textBoxElemState[b_outDampBox.Name];
-            h_outDampBox.Text = json_read.textBoxElemState[h_outDampBox.Name];
-            // Нагреватель
-            elHeatPowBox.Text = json_read.textBoxElemState[elHeatPowBox.Name];
-            // Второй нагреватель
-            elAddHeatPowBox.Text = json_read.textBoxElemState[elAddHeatPowBox.Name];
-            // Рециркуляция
-            b_recircBox.Text = json_read.textBoxElemState[b_recircBox.Name];
-            h_recircBox.Text = json_read.textBoxElemState[h_recircBox.Name];
-            // Рекуператор
-            powRotRecBox.Text = json_read.textBoxElemState[powRotRecBox.Name];
+            var textBoxes = new List<TextBox>()
+            {
+                // Приточный и вытяжной вентилятор
+                powPrFanBox, powPrResFanBox, powOutFanBox, powOutResFanBox,
+                // Воздушные заслонки
+                b_prDampBox, h_prDampBox, b_outDampBox, h_outDampBox,
+                // Нагреватель и второй нагреватель
+                elHeatPowBox, elAddHeatPowBox,
+                // Рециркуляция и рекуператор
+                b_recircBox, h_recircBox, powRotRecBox
+            };
+
+            foreach (var el in textBoxes) el.Text = json_read.textBoxElemState[el.Name];
         }
 
         ///<summary>Загрузка для подписей кодов таблицы сигналов</summary>
@@ -443,291 +364,186 @@ namespace Moderon
             foreach (var el in labels) el.Text = json_read.labelSignalsState[el.Name];
         }
 
-        ///<summary>Загрузка списка элементов коллекции для comboBox таблицы сигналов</summary>
-        private void LoadComboItemsSignals()
+        ///<summary>Сброс сигналов перед загрузкой сигналов</summary>
+        private void ResetSignalsBeforeLoad()
         {
-              
-
-            // AO сигналы, ПЛК
+            // AO сигналы, ПЛК и блоки расширения
             AO1_combo.Items.Clear(); AO2_combo.Items.Clear(); AO3_combo.Items.Clear();
-            // AO1, ПЛК
-            for (int i = 0; i < json_read.comboSignalsItems[AO1_combo.Name].Length; i++)
-                AO1_combo.Items.Add(json_read.comboSignalsItems[AO1_combo.Name][i]);
-            // AO2, ПЛК
-            for (int i = 0; i < json_read.comboSignalsItems[AO2_combo.Name].Length; i++)
-                AO2_combo.Items.Add(json_read.comboSignalsItems[AO2_combo.Name][i]);
-            // AO3, ПЛК
-            for (int i = 0; i < json_read.comboSignalsItems[AO3_combo.Name].Length; i++)
-                AO3_combo.Items.Add(json_read.comboSignalsItems[AO3_combo.Name][i]);
-            // AO сигналы, блок 1
-            AO1bl1_combo.Items.Clear(); AO2bl1_combo.Items.Clear();
-            // AO1, блок 1
-            for (int i = 0; i < json_read.comboSignalsItems[AO1bl1_combo.Name].Length; i++)
-                AO1bl1_combo.Items.Add(json_read.comboSignalsItems[AO1bl1_combo.Name][i]);
-            // AO1, блок 2
-            for (int i = 0; i < json_read.comboSignalsItems[AO2bl1_combo.Name].Length; i++)
-                AO2bl1_combo.Items.Add(json_read.comboSignalsItems[AO2bl1_combo.Name][i]);
-            // AO сигналы, блок 2
+            AO1bl1_combo.Items.Clear(); AO2bl1_combo.Items.Clear(); 
             AO1bl2_combo.Items.Clear(); AO2bl2_combo.Items.Clear();
-            // AO1, блок 2
-            for (int i = 0; i < json_read.comboSignalsItems[AO1bl2_combo.Name].Length; i++)
-                AO1bl2_combo.Items.Add(json_read.comboSignalsItems[AO1bl2_combo.Name][i]);
-            // AO2, блок 2
-            for (int i = 0; i < json_read.comboSignalsItems[AO2bl2_combo.Name].Length; i++)
-                AO2bl2_combo.Items.Add(json_read.comboSignalsItems[AO2bl2_combo.Name][i]);
-            // AO сигналы, блок 3
             AO1bl3_combo.Items.Clear(); AO2bl3_combo.Items.Clear();
-            // AO1, блок 3
-            for (int i = 0; i < json_read.comboSignalsItems[AO1bl3_combo.Name].Length; i++)
-                AO1bl3_combo.Items.Add(json_read.comboSignalsItems[AO1bl3_combo.Name][i]);
-            // AO2, блок 3
-            for (int i = 0; i < json_read.comboSignalsItems[AO2bl3_combo.Name].Length; i++)
-                AO2bl3_combo.Items.Add(json_read.comboSignalsItems[AO2bl3_combo.Name][i]);
             // DO сигналы, ПЛК
             DO1_combo.Items.Clear(); DO2_combo.Items.Clear(); DO3_combo.Items.Clear();
             DO4_combo.Items.Clear(); DO5_combo.Items.Clear(); DO6_combo.Items.Clear();
-            // DO1, ПЛК
-            for (int i = 0; i < json_read.comboSignalsItems[DO1_combo.Name].Length; i++)
-                DO1_combo.Items.Add(json_read.comboSignalsItems[DO1_combo.Name][i]);
-            // DO2, ПЛК
-            for (int i = 0; i < json_read.comboSignalsItems[DO2_combo.Name].Length; i++)
-                DO2_combo.Items.Add(json_read.comboSignalsItems[DO2_combo.Name][i]);
-            // DO3, ПЛК
-            for (int i = 0; i < json_read.comboSignalsItems[DO3_combo.Name].Length; i++)
-                DO3_combo.Items.Add(json_read.comboSignalsItems[DO3_combo.Name][i]);
-            // DO4, ПЛК
-            for (int i = 0; i < json_read.comboSignalsItems[DO4_combo.Name].Length; i++)
-                DO4_combo.Items.Add(json_read.comboSignalsItems[DO4_combo.Name][i]);
-            // DO5, ПЛК
-            for (int i = 0; i < json_read.comboSignalsItems[DO5_combo.Name].Length; i++)
-                DO5_combo.Items.Add(json_read.comboSignalsItems[DO5_combo.Name][i]);
-            // DO6, ПЛК
-            for (int i = 0; i < json_read.comboSignalsItems[DO6_combo.Name].Length; i++)
-                DO6_combo.Items.Add(json_read.comboSignalsItems[DO6_combo.Name][i]);
-            //  DO сигналы, блок 1
-            DO1bl1_combo.Items.Clear(); DO2bl1_combo.Items.Clear(); DO3bl1_combo.Items.Clear();
-            DO4bl1_combo.Items.Clear(); DO5bl1_combo.Items.Clear(); DO6bl1_combo.Items.Clear();
-            DO7bl1_combo.Items.Clear();
-            // DO1, блок 1
-            for (int i = 0; i < json_read.comboSignalsItems[DO1bl1_combo.Name].Length; i++)
-                DO1bl1_combo.Items.Add(json_read.comboSignalsItems[DO1bl1_combo.Name][i]);
-            // DO2, блок 1
-            for (int i = 0; i < json_read.comboSignalsItems[DO2bl1_combo.Name].Length; i++)
-                DO2bl1_combo.Items.Add(json_read.comboSignalsItems[DO2bl1_combo.Name][i]);
-            // DO3, блок 1
-            for (int i = 0; i < json_read.comboSignalsItems[DO3bl1_combo.Name].Length; i++)
-                DO3bl1_combo.Items.Add(json_read.comboSignalsItems[DO3bl1_combo.Name][i]);
-            // DO4, блок 1
-            for (int i = 0; i < json_read.comboSignalsItems[DO4bl1_combo.Name].Length; i++)
-                DO4bl1_combo.Items.Add(json_read.comboSignalsItems[DO4bl1_combo.Name][i]);
-            // DO5, блок 1
-            for (int i = 0; i < json_read.comboSignalsItems[DO5bl1_combo.Name].Length; i++)
-                DO5bl1_combo.Items.Add(json_read.comboSignalsItems[DO5bl1_combo.Name][i]);
-            // DO6, блок 1
-            for (int i = 0; i < json_read.comboSignalsItems[DO6bl1_combo.Name].Length; i++)
-                DO6bl1_combo.Items.Add(json_read.comboSignalsItems[DO6bl1_combo.Name][i]);
-            // DO7, блок 1
-            for (int i = 0; i < json_read.comboSignalsItems[DO7bl1_combo.Name].Length; i++)
-                DO7bl1_combo.Items.Add(json_read.comboSignalsItems[DO7bl1_combo.Name][i]);
-            // DO сигналы, блок 2
-            DO1bl2_combo.Items.Clear(); DO2bl2_combo.Items.Clear(); DO3bl2_combo.Items.Clear();
-            DO4bl2_combo.Items.Clear(); DO5bl2_combo.Items.Clear(); DO6bl2_combo.Items.Clear();
-            DO7bl2_combo.Items.Clear();
-            // DO1, блок 2
-            for (int i = 0; i < json_read.comboSignalsItems[DO1bl2_combo.Name].Length; i++)
-                DO1bl2_combo.Items.Add(json_read.comboSignalsItems[DO1bl2_combo.Name][i]);
-            // DO2, блок 2
-            for (int i = 0; i < json_read.comboSignalsItems[DO2bl2_combo.Name].Length; i++)
-                DO2bl2_combo.Items.Add(json_read.comboSignalsItems[DO2bl2_combo.Name][i]);
-            // DO3, блок 2
-            for (int i = 0; i < json_read.comboSignalsItems[DO3bl2_combo.Name].Length; i++)
-                DO3bl2_combo.Items.Add(json_read.comboSignalsItems[DO3bl2_combo.Name][i]);
-            // DO4, блок 2
-            for (int i = 0; i < json_read.comboSignalsItems[DO4bl2_combo.Name].Length; i++)
-                DO4bl2_combo.Items.Add(json_read.comboSignalsItems[DO4bl2_combo.Name][i]);
-            // DO5, блок 2
-            for (int i = 0; i < json_read.comboSignalsItems[DO5bl2_combo.Name].Length; i++)
-                DO5bl2_combo.Items.Add(json_read.comboSignalsItems[DO5bl2_combo.Name][i]);
-            // DO6, блок 2
-            for (int i = 0; i < json_read.comboSignalsItems[DO6bl2_combo.Name].Length; i++)
-                DO6bl2_combo.Items.Add(json_read.comboSignalsItems[DO6bl2_combo.Name][i]);
-            // DO7, блок 2
-            for (int i = 0; i < json_read.comboSignalsItems[DO7bl2_combo.Name].Length; i++)
-                DO7bl2_combo.Items.Add(json_read.comboSignalsItems[DO7bl2_combo.Name][i]);
-            // DO сигналы, блок 3
-            DO1bl3_combo.Items.Clear(); DO2bl3_combo.Items.Clear(); DO3bl3_combo.Items.Clear();
-            DO4bl3_combo.Items.Clear(); DO5bl3_combo.Items.Clear(); DO6bl3_combo.Items.Clear();
-            DO7bl3_combo.Items.Clear();
-            // DO1, блок 3
-            for (int i = 0; i < json_read.comboSignalsItems[DO1bl3_combo.Name].Length; i++)
-                DO1bl3_combo.Items.Add(json_read.comboSignalsItems[DO1bl3_combo.Name][i]);
-            // DO2, блок 3
-            for (int i = 0; i < json_read.comboSignalsItems[DO2bl3_combo.Name].Length; i++)
-                DO2bl3_combo.Items.Add(json_read.comboSignalsItems[DO2bl3_combo.Name][i]);
-            // DO3, блок 3
-            for (int i = 0; i < json_read.comboSignalsItems[DO3bl3_combo.Name].Length; i++)
-                DO3bl3_combo.Items.Add(json_read.comboSignalsItems[DO3bl3_combo.Name][i]);
-            // DO4, блок 3
-            for (int i = 0; i < json_read.comboSignalsItems[DO4bl3_combo.Name].Length; i++)
-                DO4bl3_combo.Items.Add(json_read.comboSignalsItems[DO4bl3_combo.Name][i]);
-            // DO5, блок 3
-            for (int i = 0; i < json_read.comboSignalsItems[DO5bl3_combo.Name].Length; i++)
-                DO5bl3_combo.Items.Add(json_read.comboSignalsItems[DO5bl3_combo.Name][i]);
-            // DO6, блок 3
-            for (int i = 0; i < json_read.comboSignalsItems[DO6bl3_combo.Name].Length; i++)
-                DO6bl3_combo.Items.Add(json_read.comboSignalsItems[DO6bl3_combo.Name][i]);
-            // DO7, блок 3
-            for (int i = 0; i < json_read.comboSignalsItems[DO7bl3_combo.Name].Length; i++)
-                DO7bl3_combo.Items.Add(json_read.comboSignalsItems[DO7bl3_combo.Name][i]);
+            // DO сигналы, блок расширения 1
+            DO1bl1_combo.Items.Clear(); DO2bl1_combo.Items.Clear(); DO3bl1_combo.Items.Clear(); DO4bl1_combo.Items.Clear();
+            DO5bl1_combo.Items.Clear(); DO6bl1_combo.Items.Clear(); DO7bl1_combo.Items.Clear(); DO8bl1_combo.Items.Clear();
+            // DO сигналы, блок расширения 2
+            DO1bl2_combo.Items.Clear(); DO2bl2_combo.Items.Clear(); DO3bl2_combo.Items.Clear(); DO4bl2_combo.Items.Clear();
+            DO5bl2_combo.Items.Clear(); DO6bl2_combo.Items.Clear(); DO7bl2_combo.Items.Clear(); DO8bl2_combo.Items.Clear();
+            // DO сигналы, блок расширения 3
+            DO1bl3_combo.Items.Clear(); DO2bl3_combo.Items.Clear(); DO3bl3_combo.Items.Clear(); DO4bl3_combo.Items.Clear();
+            DO5bl3_combo.Items.Clear(); DO6bl3_combo.Items.Clear(); DO7bl3_combo.Items.Clear(); DO8bl3_combo.Items.Clear();
+            // UI сигналы, ПЛК
+            UI1_combo.Items.Clear(); UI2_combo.Items.Clear(); UI3_combo.Items.Clear(); UI4_combo.Items.Clear();
+            UI5_combo.Items.Clear(); UI6_combo.Items.Clear(); UI7_combo.Items.Clear(); UI8_combo.Items.Clear();
+            UI9_combo.Items.Clear(); UI10_combo.Items.Clear(); UI11_combo.Items.Clear();
+            // UI сигналы, блок расширения 1
+            UI1bl1_combo.Items.Clear(); UI2bl1_combo.Items.Clear(); UI3bl1_combo.Items.Clear(); UI4bl1_combo.Items.Clear();
+            UI5bl1_combo.Items.Clear(); UI6bl1_combo.Items.Clear(); UI7bl1_combo.Items.Clear(); UI8bl1_combo.Items.Clear();
+            UI9bl1_combo.Items.Clear(); UI10bl1_combo.Items.Clear(); UI11bl1_combo.Items.Clear(); UI12bl1_combo.Items.Clear();
+            UI13bl1_combo.Items.Clear(); UI14bl1_combo.Items.Clear(); UI15bl1_combo.Items.Clear(); UI16bl1_combo.Items.Clear();
+            // UI сигналы, блок расширения 2
+            UI1bl2_combo.Items.Clear(); UI2bl2_combo.Items.Clear(); UI3bl2_combo.Items.Clear(); UI4bl2_combo.Items.Clear();
+            UI5bl2_combo.Items.Clear(); UI6bl2_combo.Items.Clear(); UI7bl2_combo.Items.Clear(); UI8bl2_combo.Items.Clear();
+            UI9bl2_combo.Items.Clear(); UI10bl2_combo.Items.Clear(); UI11bl2_combo.Items.Clear(); UI12bl2_combo.Items.Clear();
+            UI13bl2_combo.Items.Clear(); UI14bl2_combo.Items.Clear(); UI15bl2_combo.Items.Clear(); UI16bl2_combo.Items.Clear();
+            // UI сигналы, блок расширения 3
+            UI1bl3_combo.Items.Clear(); UI2bl3_combo.Items.Clear(); UI3bl3_combo.Items.Clear(); UI4bl3_combo.Items.Clear();
+            UI5bl3_combo.Items.Clear(); UI6bl3_combo.Items.Clear(); UI7bl3_combo.Items.Clear(); UI8bl3_combo.Items.Clear();
+            UI9bl3_combo.Items.Clear(); UI10bl3_combo.Items.Clear(); UI11bl3_combo.Items.Clear(); UI12bl3_combo.Items.Clear();
+            UI13bl3_combo.Items.Clear(); UI14bl3_combo.Items.Clear(); UI15bl3_combo.Items.Clear(); UI16bl3_combo.Items.Clear();
+        }
+
+        ///<summary>Загрузка списка элементов коллекции для comboBox таблицы сигналов</summary>
+        private void LoadComboItemsSignals()
+        {
+            ResetSignalsBeforeLoad();       // Сброс изначально выбранных сигналов
+
+            var comboBoxes = new List<ComboBox>()
+            {
+                // AO сигналы, ПЛК и блоки расширения
+                AO1_combo, AO2_combo, AO3_combo, AO1bl1_combo, AO2bl1_combo, AO1bl2_combo, AO2bl2_combo,
+                AO1bl3_combo, AO2bl3_combo,
+                // DO сигналы, ПЛК и блоки расширения
+                DO1_combo, DO2_combo, DO3_combo, DO4_combo, DO5_combo, DO6_combo,
+                DO1bl1_combo, DO2bl1_combo, DO3bl1_combo, DO4bl1_combo, DO5bl1_combo, DO6bl1_combo, DO7bl1_combo, DO8bl1_combo,
+                DO1bl2_combo, DO2bl2_combo, DO3bl2_combo, DO4bl2_combo, DO5bl2_combo, DO6bl2_combo, DO7bl2_combo, DO8bl2_combo,
+                DO1bl3_combo, DO2bl3_combo, DO3bl3_combo, DO4bl3_combo, DO5bl3_combo, DO6bl3_combo, DO7bl3_combo, DO8bl3_combo,
+                // UI сигналы, ПЛК
+                UI1_combo, UI2_combo, UI3_combo, UI4_combo, UI5_combo, UI6_combo, UI7_combo, UI8_combo, UI9_combo, UI10_combo, UI11_combo,
+                // UI сигналы, блок расширения 1
+                UI1bl1_combo, UI2bl1_combo, UI3bl1_combo, UI4bl1_combo, UI5bl1_combo, UI6bl1_combo, UI7bl1_combo, UI8bl1_combo,
+                UI9bl1_combo, UI10bl1_combo, UI11bl1_combo, UI12bl1_combo, UI13bl1_combo, UI14bl1_combo, UI15bl1_combo, UI16bl1_combo,
+                // UI сигналы, блок расширения 2
+                UI1bl2_combo, UI2bl2_combo, UI3bl2_combo, UI4bl2_combo, UI5bl2_combo, UI6bl2_combo, UI7bl2_combo, UI8bl2_combo,
+                UI9bl2_combo, UI10bl2_combo, UI11bl2_combo, UI12bl2_combo, UI13bl2_combo, UI14bl2_combo, UI15bl2_combo, UI16bl2_combo,
+                // UI сигналы, блок расширения 3
+                UI1bl3_combo, UI2bl3_combo, UI3bl3_combo, UI4bl3_combo, UI5bl3_combo, UI6bl3_combo, UI7bl3_combo, UI8bl3_combo,
+                UI9bl3_combo, UI10bl3_combo, UI11bl3_combo, UI12bl3_combo, UI13bl3_combo, UI14bl3_combo, UI15bl3_combo, UI16bl3_combo
+            };
+
+            foreach (var el in comboBoxes)
+                for (int i = 0; i < json_read.comboSignalsItems[el.Name].Length; i++)
+                    el.Items.Add(json_read.comboSignalsItems[el.Name][i]);
         }
 
         ///<summary>Загрузка состояний для comboBox таблицы сигналов</summary>
         private void LoadComboSignalsAll()
         {
-            // AO1, ПЛК
-            AO1_combo.SelectedItem = json_read.comboSignalsState[AO1_combo.Name];
-            AO1combo_index = AO1_combo.SelectedIndex;
-            AO1combo_text = AO1_combo.SelectedItem.ToString();
-            // AO2, ПЛК
-            AO2_combo.SelectedItem = json_read.comboSignalsState[AO2_combo.Name];
-            AO2combo_index = AO2_combo.SelectedIndex;
-            AO2combo_text = AO2_combo.SelectedItem.ToString();
-            // AO3, ПЛК
-            AO3_combo.SelectedItem = json_read.comboSignalsState[AO3_combo.Name];
-            AO3combo_index = AO3_combo.SelectedIndex;
-            AO3combo_text = AO3_combo.SelectedItem.ToString();
-            // AO1, блок 1
-            AO1bl1_combo.SelectedItem = json_read.comboSignalsState[AO1bl1_combo.Name];
-            AO1bl1combo_index = AO1bl1_combo.SelectedIndex;
-            AO1bl1combo_text = AO1bl1_combo.SelectedItem.ToString();
-            // AO2, блок 1
-            AO2bl1_combo.SelectedItem = json_read.comboSignalsState[AO2bl1_combo.Name];
-            AO2bl1combo_index = AO2bl1_combo.SelectedIndex;
-            AO2bl1combo_text = AO2bl1_combo.SelectedItem.ToString();
-            // AO1, блок 2
-            AO1bl2_combo.SelectedItem = json_read.comboSignalsState[AO1bl2_combo.Name];
-            AO1bl2combo_index = AO1bl2_combo.SelectedIndex;
-            AO1bl2combo_text = AO1bl2_combo.SelectedItem.ToString();
-            // AO2, блок 2
-            AO2bl2_combo.SelectedItem = json_read.comboSignalsState[AO2bl2_combo.Name];
-            AO2bl2combo_index = AO2bl2_combo.SelectedIndex;
-            AO2bl2combo_text = AO2bl2_combo.SelectedItem.ToString();
-            // AO1, блок 3
-            AO1bl3_combo.SelectedItem = json_read.comboSignalsState[AO1bl3_combo.Name];
-            AO1bl3combo_index = AO1bl3_combo.SelectedIndex;
-            AO1bl3combo_text = AO1bl3_combo.SelectedItem.ToString();
-            // AO2, блок 3
-            AO2bl3_combo.SelectedItem = json_read.comboSignalsState[AO2bl3_combo.Name];
-            AO2bl3combo_index = AO2bl3_combo.SelectedIndex;
-            AO2bl3combo_text = AO2bl3_combo.SelectedItem.ToString();
-            // DO1, ПЛК
-            DO1_combo.SelectedItem = json_read.comboSignalsState[DO1_combo.Name];
-            DO1combo_index = DO1_combo.SelectedIndex;
-            DO1combo_text = DO1_combo.SelectedItem.ToString();
-            // DO2, ПЛК
-            DO2_combo.SelectedItem = json_read.comboSignalsState[DO2_combo.Name];
-            DO2combo_index = DO2_combo.SelectedIndex;
-            DO2combo_text = DO2_combo.SelectedItem.ToString();
-            // DO3, ПЛК
-            DO3_combo.SelectedItem = json_read.comboSignalsState[DO3_combo.Name];
-            DO3combo_index = DO3_combo.SelectedIndex;
-            DO3combo_text = DO3_combo.SelectedItem.ToString();
-            // DO4, ПЛК
-            DO4_combo.SelectedItem = json_read.comboSignalsState[DO4_combo.Name];
-            DO4combo_index = DO4_combo.SelectedIndex;
-            DO4combo_text = DO4_combo.SelectedItem.ToString();
-            // DO5, ПЛК
-            DO5_combo.SelectedItem = json_read.comboSignalsState[DO5_combo.Name];
-            DO5combo_index = DO5_combo.SelectedIndex;
-            DO5combo_text = DO5_combo.SelectedItem.ToString();
-            // DO6, ПЛК
-            DO6_combo.SelectedItem = json_read.comboSignalsState[DO6_combo.Name];
-            DO6combo_index = DO6_combo.SelectedIndex;
-            DO6combo_text = DO6_combo.SelectedItem.ToString();
-            // DO1, блок 1
-            DO1bl1_combo.SelectedItem = json_read.comboSignalsState[DO1bl1_combo.Name];
-            DO1bl1combo_index = DO1bl1_combo.SelectedIndex;
-            DO1bl1combo_text = DO1bl1_combo.SelectedItem.ToString();
-            // DO2, блок 1
-            DO2bl1_combo.SelectedItem = json_read.comboSignalsState[DO2bl1_combo.Name];
-            DO2bl1combo_index = DO2bl1_combo.SelectedIndex;
-            DO2bl1combo_text = DO2bl1_combo.SelectedItem.ToString();
-            // DO3, блок 1
-            DO3bl1_combo.SelectedItem = json_read.comboSignalsState[DO3bl1_combo.Name];
-            DO3bl1combo_index = DO3bl1_combo.SelectedIndex;
-            DO3bl1combo_text = DO3bl1_combo.SelectedItem.ToString();
-            // DO4, блок 1
-            DO4bl1_combo.SelectedItem = json_read.comboSignalsState[DO4bl1_combo.Name];
-            DO4bl1combo_index = DO4bl1_combo.SelectedIndex;
-            DO4bl1combo_text = DO4bl1_combo.SelectedItem.ToString();
-            // DO5, блок 1
-            DO5bl1_combo.SelectedItem = json_read.comboSignalsState[DO5bl1_combo.Name];
-            DO5bl1combo_index = DO5bl1_combo.SelectedIndex;
-            DO5bl1combo_text = DO5bl1_combo.SelectedItem.ToString();
-            // DO6, блок 1
-            DO6bl1_combo.SelectedItem = json_read.comboSignalsState[DO6bl1_combo.Name];
-            DO6bl1combo_index = DO6bl1_combo.SelectedIndex;
-            DO6bl1combo_text = DO6bl1_combo.SelectedItem.ToString();
-            // DO7, блок 1
-            DO7bl1_combo.SelectedItem = json_read.comboSignalsState[DO7bl1_combo.Name];
-            DO7bl1combo_index = DO7bl1_combo.SelectedIndex;
-            DO7bl1combo_text = DO7bl1_combo.SelectedItem.ToString();
-            // DO1, блок 2
-            DO1bl2_combo.SelectedItem = json_read.comboSignalsState[DO1bl2_combo.Name];
-            DO1bl2combo_index = DO1bl2_combo.SelectedIndex;
-            DO1bl2combo_text = DO1bl2_combo.SelectedItem.ToString();
-            // DO2, блок 2
-            DO2bl2_combo.SelectedItem = json_read.comboSignalsState[DO2bl2_combo.Name];
-            DO2bl2combo_index = DO2bl2_combo.SelectedIndex;
-            DO2bl2combo_text = DO2bl2_combo.SelectedItem.ToString();
-            // DO3, блок 2
-            DO3bl2_combo.SelectedItem = json_read.comboSignalsState[DO3bl2_combo.Name];
-            DO3bl2combo_index = DO3bl2_combo.SelectedIndex;
-            DO3bl2combo_text = DO3bl2_combo.SelectedItem.ToString();
-            // DO4, блок 2
-            DO4bl2_combo.SelectedItem = json_read.comboSignalsState[DO4bl2_combo.Name];
-            DO4bl2combo_index = DO4bl2_combo.SelectedIndex;
-            DO4bl2combo_text = DO4bl2_combo.SelectedItem.ToString();
-            // DO5, блок 2
-            DO5bl2_combo.SelectedItem = json_read.comboSignalsState[DO5bl2_combo.Name];
-            DO5bl2combo_index = DO5bl2_combo.SelectedIndex;
-            DO5bl2combo_text = DO5bl2_combo.SelectedItem.ToString();
-            // DO6, блок 2
-            DO6bl2_combo.SelectedItem = json_read.comboSignalsState[DO6bl2_combo.Name];
-            DO6bl2combo_index = DO6bl2_combo.SelectedIndex;
-            DO6bl2combo_text = DO6bl2_combo.SelectedItem.ToString();
-            // DO7, блок 2
-            DO7bl2_combo.SelectedItem = json_read.comboSignalsState[DO7bl2_combo.Name];
-            DO7bl2combo_index = DO7bl2_combo.SelectedIndex;
-            DO7bl2combo_text = DO7bl2_combo.SelectedItem.ToString();
-            // DO1, блок 3
-            DO1bl3_combo.SelectedItem = json_read.comboSignalsState[DO1bl3_combo.Name];
-            DO1bl3combo_index = DO1bl3_combo.SelectedIndex;
-            DO1bl3combo_text = DO1bl3_combo.SelectedItem.ToString();
-            // DO2, блок 3
-            DO2bl3_combo.SelectedItem = json_read.comboSignalsState[DO2bl3_combo.Name];
-            DO2bl3combo_index = DO2bl3_combo.SelectedIndex;
-            DO2bl3combo_text = DO2bl3_combo.SelectedItem.ToString();
-            // DO3, блок 3
-            DO3bl3_combo.SelectedItem = json_read.comboSignalsState[DO3bl3_combo.Name];
-            DO3bl3combo_index = DO3bl3_combo.SelectedIndex;
-            DO3bl3combo_text = DO3bl3_combo.SelectedItem.ToString();
-            // DO4, блок 3
-            DO4bl3_combo.SelectedItem = json_read.comboSignalsState[DO4bl3_combo.Name];
-            DO4bl3combo_index = DO4bl3_combo.SelectedIndex;
-            DO4bl3combo_text = DO4bl3_combo.SelectedItem.ToString();
-            // DO5, блок 3
-            DO5bl3_combo.SelectedItem = json_read.comboSignalsState[DO5bl3_combo.Name];
-            DO5bl3combo_index = DO5bl3_combo.SelectedIndex;
-            DO5bl3combo_text = DO5bl3_combo.SelectedItem.ToString();
-            // DO6, блок 3
-            DO6bl3_combo.SelectedItem = json_read.comboSignalsState[DO6bl3_combo.Name];
-            DO6bl3combo_index = DO6bl3_combo.SelectedIndex;
-            DO6bl3combo_text = DO6bl3_combo.SelectedItem.ToString();
-            // DO7, блок 3
-            DO7bl3_combo.SelectedItem = json_read.comboSignalsState[DO7bl3_combo.Name];
-            DO7bl3combo_index = DO7bl3_combo.SelectedIndex;
-            DO7bl3combo_text = DO7bl3_combo.SelectedItem.ToString();
+            var comboBoxes = new List<ComboBox>()
+            {
+                // AO сигналы, ПЛК и блоки расширения
+                AO1_combo, AO2_combo, AO3_combo, AO1bl1_combo, AO2bl1_combo, AO1bl2_combo, AO2bl2_combo,
+                AO1bl3_combo, AO2bl3_combo,
+                // DO сигналы, ПЛК и блоки расширения
+                DO1_combo, DO2_combo, DO3_combo, DO4_combo, DO5_combo, DO6_combo,
+                DO1bl1_combo, DO2bl1_combo, DO3bl1_combo, DO4bl1_combo, DO5bl1_combo, DO6bl1_combo, DO7bl1_combo, DO8bl1_combo,
+                DO1bl2_combo, DO2bl2_combo, DO3bl2_combo, DO4bl2_combo, DO5bl2_combo, DO6bl2_combo, DO7bl2_combo, DO8bl2_combo,
+                DO1bl3_combo, DO2bl3_combo, DO3bl3_combo, DO4bl3_combo, DO5bl3_combo, DO6bl3_combo, DO7bl3_combo, DO8bl3_combo,
+                // UI сигналы, ПЛК
+                UI1_combo, UI2_combo, UI3_combo, UI4_combo, UI5_combo, UI6_combo, UI7_combo, UI8_combo, UI9_combo, UI10_combo, UI11_combo,
+                // UI сигналы, блок расширения 1
+                UI1bl1_combo, UI2bl1_combo, UI3bl1_combo, UI4bl1_combo, UI5bl1_combo, UI6bl1_combo, UI7bl1_combo, UI8bl1_combo,
+                UI9bl1_combo, UI10bl1_combo, UI11bl1_combo, UI12bl1_combo, UI13bl1_combo, UI14bl1_combo, UI15bl1_combo, UI16bl1_combo,
+                // UI сигналы, блок расширения 2
+                UI1bl2_combo, UI2bl2_combo, UI3bl2_combo, UI4bl2_combo, UI5bl2_combo, UI6bl2_combo, UI7bl2_combo, UI8bl2_combo,
+                UI9bl2_combo, UI10bl2_combo, UI11bl2_combo, UI12bl2_combo, UI13bl2_combo, UI14bl2_combo, UI15bl2_combo, UI16bl2_combo,
+                // UI сигналы, блок расширения 3
+                UI1bl3_combo, UI2bl3_combo, UI3bl3_combo, UI4bl3_combo, UI5bl3_combo, UI6bl3_combo, UI7bl3_combo, UI8bl3_combo,
+                UI9bl3_combo, UI10bl3_combo, UI11bl3_combo, UI12bl3_combo, UI13bl3_combo, UI14bl3_combo, UI15bl3_combo, UI16bl3_combo
+            };
+
+            var indexes = new List<int>()
+            {
+                // AO сигналы, ПЛК и блоки расширения
+                AO1combo_index, AO2combo_index, AO3combo_index,
+                AO1bl1combo_index, AO2bl1combo_index, AO1bl2combo_index, AO2bl2combo_index,
+                AO1bl3combo_index, AO2bl3combo_index,
+                // DO сигналы, ПЛК
+                DO1combo_index, DO2combo_index, DO3combo_index, DO4combo_index, DO5combo_index, DO6combo_index,
+                // DO сигналы, блок расширения 1
+                DO1bl1combo_index, DO2bl1combo_index, DO3bl1combo_index, DO4bl1combo_index, DO5bl1combo_index,
+                DO6bl1combo_index, DO7bl1combo_index, DO8bl1combo_index,
+                // DO сигналы, блок расширения 2
+                DO1bl2combo_index, DO2bl2combo_index, DO3bl2combo_index, DO4bl2combo_index, DO5bl2combo_index,
+                DO6bl2combo_index, DO7bl2combo_index, DO8bl2combo_index,
+                // DO сигналы, блок расширения 3
+                DO1bl3combo_index, DO2bl3combo_index, DO3bl3combo_index, DO4bl3combo_index, DO5bl3combo_index,
+                DO6bl3combo_index, DO7bl3combo_index, DO8bl3combo_index,
+                // UI сигналы, ПЛК
+                UI1combo_index, UI2combo_index, UI3combo_index, UI4combo_index, UI5combo_index, UI6combo_index,
+                UI7combo_index, UI8combo_index, UI9combo_index, UI10combo_index, UI11combo_index,
+                // UI сигналы, блок расширения 1
+                UI1bl1combo_index, UI2bl1combo_index, UI3bl1combo_index, UI4bl1combo_index, UI5bl1combo_index,
+                UI6bl1combo_index, UI7bl1combo_index, UI8bl1combo_index, UI9bl1combo_index, UI10bl1combo_index,
+                UI11bl1combo_index, UI12bl1combo_index, UI13bl1combo_index, UI14bl1combo_index, UI15bl1combo_index,
+                UI16bl1combo_index,
+                // UI сигналы, блок расширения 2
+                UI1bl2combo_index, UI2bl2combo_index, UI3bl2combo_index, UI4bl2combo_index, UI5bl2combo_index,
+                UI6bl2combo_index, UI7bl2combo_index, UI8bl2combo_index, UI9bl2combo_index, UI10bl2combo_index,
+                UI11bl2combo_index, UI12bl2combo_index, UI13bl2combo_index, UI14bl2combo_index, UI15bl2combo_index,
+                UI16bl2combo_index,
+                // UI сигналы, блок расширения 3
+                UI1bl3combo_index, UI2bl3combo_index, UI3bl3combo_index, UI4bl3combo_index, UI5bl3combo_index,
+                UI6bl3combo_index, UI7bl3combo_index, UI8bl3combo_index, UI9bl3combo_index, UI10bl3combo_index,
+                UI11bl3combo_index, UI12bl3combo_index, UI13bl3combo_index, UI14bl3combo_index, UI15bl3combo_index,
+                UI16bl3combo_index
+            };
+
+            var texts = new List<string>()
+            {
+                // AO сигналы, ПЛК и блоки расширения
+                AO1combo_text, AO2combo_text, AO3combo_text,
+                AO1bl1combo_text, AO2bl1combo_text, AO1bl2combo_text, AO2bl2combo_text,
+                AO1bl3combo_text, AO2bl3combo_text,
+                // DO сигналы, ПЛК
+                DO1combo_text, DO2combo_text, DO3combo_text, DO4combo_text, DO5combo_text, DO6combo_text,
+                // DO сигналы, блок расширения 1
+                DO1bl1combo_text, DO2bl1combo_text, DO3bl1combo_text, DO4bl1combo_text, DO5bl1combo_text,
+                DO6bl1combo_text, DO7bl1combo_text, DO8bl1combo_text,
+                // DO сигналы, блок расширения 2
+                DO1bl2combo_text, DO2bl2combo_text, DO3bl2combo_text, DO4bl2combo_text, DO5bl2combo_text,
+                DO6bl2combo_text, DO7bl2combo_text, DO8bl2combo_text,
+                // DO сигналы, блок расширения 3
+                DO1bl3combo_text, DO2bl3combo_text, DO3bl3combo_text, DO4bl3combo_text, DO5bl3combo_text,
+                DO6bl3combo_text, DO7bl3combo_text, DO8bl3combo_text,
+                // UI сигналы, ПЛК
+                UI1combo_text, UI2combo_text, UI3combo_text, UI4combo_text, UI5combo_text, UI6combo_text,
+                UI7combo_text, UI8combo_text, UI9bl1combo_text, UI10bl1combo_text, UI11bl1combo_text,
+                // UI сигналы, блок расширения 1
+                UI1bl1combo_text, UI2bl1combo_text, UI3bl1combo_text, UI4bl1combo_text, UI5bl1combo_text,
+                UI6bl1combo_text, UI7bl1combo_text, UI8bl1combo_text, UI9bl1combo_text, UI10bl1combo_text,
+                UI11bl1combo_text, UI12bl1combo_text, UI13bl1combo_text, UI14bl1combo_text, UI15bl1combo_text,
+                UI16bl1combo_text,
+                // UI сигналы, блок расширения 2
+                UI1bl2combo_text, UI2bl2combo_text, UI3bl2combo_text, UI4bl2combo_text, UI5bl2combo_text,
+                UI6bl2combo_text, UI7bl2combo_text, UI8bl2combo_text, UI9bl2combo_text, UI10bl2combo_text,
+                UI11bl2combo_text, UI12bl2combo_text, UI13bl2combo_text, UI14bl2combo_text, UI15bl2combo_text,
+                UI16bl2combo_text,
+                // UI сигналы, блок расширения 3
+                UI1bl3combo_text, UI2bl3combo_text, UI3bl3combo_text, UI4bl3combo_text, UI5bl3combo_text,
+                UI6bl3combo_text, UI7bl3combo_text, UI8bl3combo_text, UI9bl3combo_text, UI10bl3combo_text,
+                UI11bl3combo_text, UI12bl3combo_text, UI13bl3combo_text, UI14bl3combo_text, UI15bl3combo_text,
+                UI16bl3combo_text,
+            };
+
+            for (var i = 0; i < comboBoxes.Count; i++)
+            {
+                comboBoxes[i].SelectedItem = json_read.comboSignalsState[comboBoxes[i].Name];
+                indexes[i] = comboBoxes[i].SelectedIndex;
+                texts[i] = comboBoxes[i].SelectedItem.ToString();
+            }
         }
 
         ///<summary>Загрузка для массивов сигналов</summary>

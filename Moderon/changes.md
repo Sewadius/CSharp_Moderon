@@ -532,4 +532,12 @@
 - рефакторинг для `BuildTextBoxAll()` сохранения полей `textBox`  
 - изменения для `BuildComboBoxElemAll()` сохренения состояний `comboBox`
 - рефакторинг `BuildCheckBoxAll()` сохранения статуса `checkBox`
-- изменения для `LoadLabelSignalsAll()` по загрузке состояния `Label`
+- изменения для `LoadLabelSignalsAll()` по загрузке состояния `Label`  
+
+22.01.24 (понедельник)
+
+- рефакторинг для `LoadCheckBoxAll()` загрузка элементов `checkBox`
+- изменения для `LoadTextBoxAll()` загрузка элементов `textBox`
+- `LoadComboBoxElemAll()` рефакторинг, загрузка элементов `comboBox`
+- `LoadComboItemsSignals()` изменения, загрузка элементов таблицы сигналов
+- `LoadComboSignalsAll()` изменения для загрузки индекса/текста таблицы
