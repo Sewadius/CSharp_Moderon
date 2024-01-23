@@ -934,6 +934,12 @@ namespace Moderon
             DO_showEnable_combos_labels(do_combos, do_labels);                      // Отображение и разблокировка элементов
         }
 
+        ///<summary>Отображение панели AO блока расширения 1 под M72E12RB (2 AO)</summary>
+        private void AO_block1_panelChanged_M72E12RB()
+        {
+            block1_AOpanel.Show(); block1_AOpanel.Enabled = true;                   // Отображение и разблокировка панели AO для блока расширения 1
+        }
+
         ///<summary>Изменение панели DO блока расширения 1 под M72E12RB (4 DO)</summary>
         private void DO_block1_panelChanged_M72E12RB()
         {
@@ -944,6 +950,12 @@ namespace Moderon
             DO_showEnable_combos_labels(do_combos, do_labels);                      // Отображение и разблокировка элементов
         }
 
+        ///<summary>Отображение панели AO блока расширения 2 под M72E12RB (2 AO)</summary>
+        private void AO_block2_panelChanged_M72E12RB()
+        {
+            block2_AOpanel.Show(); block2_AOpanel.Enabled = true;                   // Отображение и разблокировка панели AO для блока расширения 2
+        }
+
         ///<summary>Изменение панели DO блока расширения 2 под M72E12RB (4 DO)</summary>
         private void DO_block2_panelChanged_M72E12RB()
         {
@@ -952,6 +964,12 @@ namespace Moderon
 
             DO_panelBlock_change(block2_DOpanel, M72E12RB);                         // Изменения для панели DO блока расширения 2
             DO_showEnable_combos_labels(do_combos, do_labels);                      // Отображение и разблокировка элементов
+        }
+
+        ///<summary>Отображение панели AO блока расширения 3 под M72E12RB (2 AO)</summary>
+        private void AO_block3_panelChanged_M72E12RB()
+        {
+            block3_AOpanel.Show(); block3_AOpanel.Enabled = true;                   // Отображение и разблокировка панели AO для блока расширения 3
         }
 
         ///<summary>Изменение панели DO блока расширения 3 под M72E12RB (4 DO)</summary>
@@ -1013,7 +1031,7 @@ namespace Moderon
             if (blocks.ContainsKey(M72E16NA) && blocks[M72E16NA] == 2)
             {
                 if (expansion_blocks.Count == 1) expansion_blocks.Add(M72E16NA);    // Добавление 2-го блока M72E16NA в список блоков расширения
-                UI_block1_panelChanged_M72E16NA();                                  // Изменение панели блока расширения 1 для сигналов UI
+                UI_block2_panelChanged_M72E16NA();                                  // Изменение панели блока расширения 2 для сигналов UI
             }
         }
 
@@ -1023,7 +1041,7 @@ namespace Moderon
             if (blocks.ContainsKey(M72E16NA) && blocks[M72E16NA] == 3)
             {
                 if (expansion_blocks.Count == 2) expansion_blocks.Add(M72E16NA);    // Добавление 1-го блока M72E16NA в список блоков расширения
-                UI_block1_panelChanged_M72E16NA();                                  // Изменение панели блока расширения 1 для сигналов UI
+                UI_block3_panelChanged_M72E16NA();                                  // Изменение панели блока расширения 3 для сигналов UI
             }
         }
 
@@ -1063,7 +1081,7 @@ namespace Moderon
             if (blocks.ContainsKey(M72E12RB) && blocks[M72E12RB] == 1)
             {
                 if (expansion_blocks.Count == 0) expansion_blocks.Add(M72E12RB);    // Добавление 1-го блока M72E12RB в список блоков расширения
-                block1_AOpanel.Show(); block1_AOpanel.Enabled = true;               // Отображение и разблокировка панели AO для блока расширения 1
+                AO_block1_panelChanged_M72E12RB();                                  // Отображение и разблокировка панели AO для блока расширения 1
                 DO_block1_panelChanged_M72E12RB();                                  // Изменение панели блока расширения 1 для сигналов DO
                 UI_block1_panelChanged_M72E12RB();                                  // Изменение панели блока расширения 1 для сигналов UI
             }
@@ -1075,7 +1093,7 @@ namespace Moderon
             if (blocks.ContainsKey(M72E12RB) && blocks[M72E12RB] == 2)
             {
                 if (expansion_blocks.Count == 1) expansion_blocks.Add(M72E12RB);   // Добавление 2-го блока M72E12RB в список блоков расширения
-                block2_AOpanel.Show(); block2_AOpanel.Enabled = true;              // Отображение и разблокировка панели AO для блока расширения 2
+                AO_block2_panelChanged_M72E12RB();                                 // Отображение и разблокировка панели AO для блока расширения 2
                 DO_block2_panelChanged_M72E12RB();                                 // Изменение панели блока расширения 2 для сигналов DO
                 UI_block2_panelChanged_M72E12RB();                                 // Изменение панели блока расширения 2 для сигналов UI
             }
@@ -1087,7 +1105,7 @@ namespace Moderon
             if (blocks.ContainsKey(M72E12RB) && blocks[M72E12RB] == 3)
             {
                 if (expansion_blocks.Count == 2) expansion_blocks.Add(M72E12RB);    // Добавление 3-го блока M72E12RB в список блоков расширения
-                block3_AOpanel.Show(); block3_AOpanel.Enabled = true;               // Отображение и разблокировка панели AO для блока расширения 3
+                AO_block3_panelChanged_M72E12RB();                                  // Отображение и разблокировка панели AO для блока расширения 3
                 DO_block3_panelChanged_M72E12RB();                                  // Изменение панели блока расширения 3 для сигналов DO
                 UI_block3_panelChanged_M72E12RB();                                  // Изменение панели блока расширения 3 для сигналов UI
             }

@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using System.Runtime.InteropServices;
 
 // Файл для сохранения/загрузки параметров программы в формате JSON
 
@@ -106,6 +107,9 @@ namespace Moderon
         [JsonProperty("doActive")]
         public Dictionary<string, bool> doActive { get; set; }                      // Словарь для активности сигналов DO
 
+        [JsonProperty("expBlocks")]                                                 
+        public Dictionary<string, int> expBlocks { get; set; }                      // Словарь для сохранения количества блоков расширения
+
         [JsonConstructor]
         public JsonObject(){
             checkBoxState = new Dictionary<string, bool>();
@@ -125,6 +129,7 @@ namespace Moderon
             diActive = new Dictionary<string, bool>();
             doCode = new Dictionary<string, ushort>();
             doActive = new Dictionary<string, bool>();
+            expBlocks = new Dictionary<string, int>();
         }
     }
 
@@ -145,7 +150,23 @@ namespace Moderon
             BuildComboItemsSignals();                   // Сохранение элементов comboBox таблицы сигналов
             BuildComboSignalsAll();                     // Сохранение выбранного элемента для comboBox таблицы сигналов
             BuildSignalArrays();                        // Сохранение для перечня сигналов, массивы
-            SaveJsonFile();                             // Сохранение файла
+            BuildExpBlocks();                           // Сохранение количества и типов блоков расширения
+            SaveJsonFile();                             // Сохранение файла JSON  
+        }
+
+        ///<summary>Сохранение количетва и типов блоков расширения</summary>
+        private void BuildExpBlocks()
+        {
+            Dictionary<ExpBlock, int> currentBlocks = CalcExpBlocks_typeNums();
+
+            var exp_blocks = new List<ExpBlock>()
+            {
+                M72E12RB, M72E12RA, M72E08RA, M72E16NA
+            };
+
+            foreach (var el in exp_blocks)
+                if (currentBlocks.ContainsKey(el))
+                    json.expBlocks.Add(el.Name, currentBlocks[el]);
         }
 
         ///<summary>Перенос перечня сигналов, массивы UI, AO, DO</summary>
@@ -205,7 +226,26 @@ namespace Moderon
             LoadComboItemsSignals();        // Загрузка элементов для comboBox таблицы сигналов
             LoadComboSignalsAll();          // Загрузка состояний для comboBox таблицы сигналов
             LoadSignalArrays();             // Загрузка для массива сигналов
+            LoadExpBlocks();                // Загрузка количества и типов блоков расширения
             ignoreEvents = false;           // Возврат активации событий
+        }
+
+        ///<summary>Загрузка количества и типов блоков расширения</summary>
+        private void LoadExpBlocks()
+        {
+            Dictionary<string, int> exp_blocks = json_read.expBlocks;
+
+            if (exp_blocks.ContainsKey("M72E12RB"))                         // Для блока расширения AO
+            {
+                AO_block1_panelChanged_M72E12RB();                          // AO панель блок 1
+                UI_block1_panelChanged_M72E12RB();                          // UI панель блок 1
+                DO_block1_panelChanged_M72E12RB();                          // DO панель блок 1
+                
+                if (exp_blocks["M72E12RB"] == 2)                            // Два блока расширения AO
+                {
+
+                }
+            }
         }
 
         ///<summary>Загрузка Json файла в программу</summary>
@@ -596,15 +636,15 @@ namespace Moderon
                 // Основной нагреватель
                 TF_heaterCheck, confHeatPumpCheck, pumpCurProtect, reservPumpHeater, confHeatResPumpCheck, pumpCurResProtect, watSensHeatCheck,
                 // Второй нагреватель
-                TF_addHeaterCheck, pumpAddHeatCheck, confAddHeatPumpCheck, reservPumpAddHeater, confAddHeatResPumpCheck, pumpCurResAddProtect, 
-                sensWatAddHeatCheck,
+                TF_addHeaterCheck, pumpAddHeatCheck, confAddHeatPumpCheck, pumpCurAddProtect, reservPumpAddHeater, 
+                confAddHeatResPumpCheck, pumpCurResAddProtect, sensWatAddHeatCheck,
                 // Охладитель и увлажнитель
                 alarmFrCoolCheck, thermoCoolerCheck, analogFreonCheck, dehumModeCheck, alarmHumidCheck,
                 // Рециркуляция и рекуператор
                 recircPrDampAOCheck, springRetRecircCheck, pumpGlicRecCheck, recDefTempCheck, recDefPsCheck,
                 // Датчики и сигналы
-                recDefPsCheck, roomTempSensCheck, chanHumSensCheck, roomHumSensCheck, outdoorChanSensCheck, outChanSensCheck, sigWorkCheck,
-                sigAlarmCheck, sigFilAlarmCheck, stopStartCheck, fireCheck,
+                prChanSensCheck, roomTempSensCheck, chanHumSensCheck, roomHumSensCheck, outdoorChanSensCheck, 
+                outChanSensCheck, sigWorkCheck, sigAlarmCheck, sigFilAlarmCheck, stopStartCheck, fireCheck,
                 // Приточный вентилятор
                 prFanPSCheck, prFanFC_check, prFanThermoCheck, curDefPrFanCheck, checkResPrFan, prFanAlarmCheck, prFanStStopCheck,
                 prFanSpeedCheck, prDampFanCheck, prDampConfirmFanCheck,
