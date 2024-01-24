@@ -3,7 +3,6 @@ using System.IO;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Newtonsoft.Json;
-using System.Runtime.InteropServices;
 
 // Файл для сохранения/загрузки параметров программы в формате JSON
 
@@ -217,6 +216,7 @@ namespace Moderon
         ///<summary>Нажали "Загрузить" в главном меню</summary> 
         private void LoadToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ResetButton_Click(sender, e);   // Первоначальный сброс перед загрузкой файла
             LoadJsonFile();                 // Загрузка файла JSON в программу
             ignoreEvents = true;            // Временное отключение событий
             LoadCheckBoxAll();              // Загрузка для всех сheckBox
@@ -235,15 +235,88 @@ namespace Moderon
         {
             Dictionary<string, int> exp_blocks = json_read.expBlocks;
 
-            if (exp_blocks.ContainsKey("M72E12RB"))                         // Для блока расширения AO
+            // Для блока расширения AO
+            if (exp_blocks.ContainsKey("M72E12RB"))                         
             {
                 AO_block1_panelChanged_M72E12RB();                          // AO панель блок 1
                 UI_block1_panelChanged_M72E12RB();                          // UI панель блок 1
                 DO_block1_panelChanged_M72E12RB();                          // DO панель блок 1
-                
-                if (exp_blocks["M72E12RB"] == 2)                            // Два блока расширения AO
-                {
+                expansion_blocks.Add(M72E12RB);
 
+                if (exp_blocks["M72E12RB"] > 1)                             // Два блока расширения AO
+                {
+                    AO_block2_panelChanged_M72E12RB();                      // AO панель блок 2
+                    UI_block2_panelChanged_M72E12RB();                      // UI панель блок 2
+                    DO_block2_panelChanged_M72E12RB();                      // DO панель блок 2
+                    expansion_blocks.Add(M72E12RB);
+
+                    if (exp_blocks["M72E12RB"] > 2)                         // Три блока расширения AO
+                    {
+                        AO_block3_panelChanged_M72E12RB();                  // AO панель блок 3
+                        UI_block3_panelChanged_M72E12RB();                  // UI панель блок 3
+                        DO_block3_panelChanged_M72E12RB();                  // DO панель блок 3
+                        expansion_blocks.Add(M72E12RB);
+                    }
+                }
+            }
+
+            // Для блока расширения UI + DO
+            if (exp_blocks.ContainsKey("M72E12RA"))                         
+            {
+                DO_block1_panelChanged_M72E12RA();                          // DO панель блок 1
+                UI_block1_panelChanged_M72E12RA();                          // UI панель блок 1
+                expansion_blocks.Add(M72E12RA);
+
+                if (exp_blocks["M72E12RA"] > 1)                             // Два блока расширения UI + DO
+                {
+                    DO_block2_panelChanged_M72E12RA();                      // DO панель блок 2
+                    UI_block2_panelChanged_M72E12RA();                      // UI панель блок 2
+                    expansion_blocks.Add(M72E12RA);
+
+                    if (exp_blocks["M72E12RA"] > 2)
+                    {
+                        DO_block3_panelChanged_M72E12RA();                  // DO панель блок 3
+                        UI_block3_panelChanged_M72E12RA();                  // UI панель блок 3
+                        expansion_blocks.Add(M72E12RA);
+                    }
+                }
+            }
+
+            // Для блока расширения DO
+            if (exp_blocks.ContainsKey("M72E08RA"))                         
+            {
+                DO_block1_panelChanged_M72E08RA();                          // DO панель блок 1
+                expansion_blocks.Add(M72E08RA);
+
+                if (exp_blocks["M72E08RA"] > 1)                     
+                {
+                    DO_block2_panelChanged_M72E08RA();                      // DO панель блок 2
+                    expansion_blocks.Add(M72E08RA);
+
+                    if (exp_blocks["M72E08RA"] > 2)
+                    {
+                        DO_block3_panelChanged_M72E08RA();                  // DO панель блок 3
+                        expansion_blocks.Add(M72E08RA);
+                    }
+                }
+            }
+
+            // Для блока расширения UI
+            if (exp_blocks.ContainsKey("M72E16NA"))                         
+            {
+                UI_block1_panelChanged_M72E16NA();                          // UI панель блок 1
+                expansion_blocks.Add(M72E16NA);
+
+                if (exp_blocks["M72E16NA"] > 1)
+                {
+                    UI_block2_panelChanged_M72E16NA();                      // UI панель блок 2
+                    expansion_blocks.Add(M72E16NA);
+
+                    if (exp_blocks["M72E16NA"] > 2)
+                    {
+                        UI_block3_panelChanged_M72E16NA();                  // UI панель блок 3
+                        expansion_blocks.Add(M72E16NA);
+                    }
                 }
             }
         }
