@@ -1400,7 +1400,7 @@ namespace Moderon
                 UI10_bl1Label, UI11_bl1Label, UI12_bl1Label, UI13_bl1Label, UI14_bl1Label, UI15_bl1Label, UI16_bl1Label
             };
 
-            UIblock1_header.Text = "";  // Очистка заголовка для панели UI блока расширения 1
+            //UIblock1_header.Text = "";  // Очистка заголовка для панели UI блока расширения 1
 
             foreach (var el in ui_combos) { el.SelectedIndex = 0; el.Hide(); el.Enabled = false; }
             foreach (var el in ui_type_combos) { el.SelectedIndex = 0; el.Hide(); el.Enabled = false; }
@@ -1427,7 +1427,7 @@ namespace Moderon
                 UI10_bl2Label, UI11_bl2Label, UI12_bl2Label, UI13_bl2Label, UI14_bl2Label, UI15_bl2Label, UI16_bl2Label
             };
 
-            UIblock2_header.Text = "";  // Очистка заголовка для панели UI блока расширения 2
+            //UIblock2_header.Text = "";  // Очистка заголовка для панели UI блока расширения 2
 
             foreach (var el in ui_combos) { el.SelectedIndex = 0; el.Hide(); el.Enabled = false; }
             foreach (var el in ui_type_combos) { el.SelectedIndex = 0; el.Hide(); el.Enabled = false; }

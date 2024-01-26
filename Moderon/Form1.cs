@@ -60,16 +60,21 @@ namespace Moderon
             SizePanels();                   // Изменение размера панелей
             ClearIO_codes();                // Очистка наименования кодов для входов/выходов
 
-            // Начальная установка для входов и выходов
-            Set_UIComboTextIndex();         // Входные сигналы, UI
-            Set_AOComboTextIndex();         // Аналоговый выходы, AO
-            Set_DOComboTextIndex();         // Дискретные выходы, DO
-
+            InitialSet_ComboTextIndex();    // Начальная установка для входов и выходов
+          
             // Подготовка для блоков расширения
             DoCombosBlocks_Reset();         // Скрытие и блокировка comboBox DO блоков расширение, скрытие Label подписей
             UiCombosBlocks_Reset();         // Скрытие и блокировка comboBox UI блоков расширение, скрытие Label подписей
 
             Size = new Size(995, 680);      // Размер для основной формы
+        }
+
+        ///<summary>Начальная установка для входов и выходов</summary>
+        private void InitialSet_ComboTextIndex()
+        {
+            Set_UIComboTextIndex();         // Входные сигналы, UI
+            Set_AOComboTextIndex();         // Аналоговый выходы, AO
+            Set_DOComboTextIndex();         // Дискретные выходы, DO
         }
 
         ///<summary>Изменение размера формы</summary>
@@ -505,6 +510,8 @@ namespace Moderon
             comboSysType.SelectedIndex = 0;                 // Выбор приточной системы
             expansion_blocks.Clear();                       // Очистка списка задействованных блоков расширения
 
+            
+
             var mainOptions = new List<CheckBox>()
             {
                 filterCheck, dampCheck, heaterCheck, addHeatCheck, showWriteBoxCheck,
@@ -538,6 +545,8 @@ namespace Moderon
             DoCombosBlocks_Reset();                         // Блок и скрытие элементов для DO панелей блоков расширения
             UiCombosBlocks_Reset();                         // Блок и скрытие элементов для UI панелей блоков расширения
             Hide_panelBlocks_elements();                    // Скрытие элементов для панели блоков расширения
+            InitialSet_ComboTextIndex();                    // Изначальная установка для подписей/индексов comboBox
+
             Form1_InitSignals(this, e);                     // Начальная расстановка сигналов
         }
 

@@ -270,6 +270,7 @@ namespace Moderon
             if (a) // Сигналы распределены
             {
                 comboPlkType.Enabled = true;                                        // Разблокировка смены типа ПЛК
+                saveToolStripMenuItem.Enabled = true;                               // Разблокировка сохранения файла
                 signalsReadyLabel.Text = "Карта входов/выходов сформирована";
                 signalsReadyLabel.ForeColor = Color.Green;
                 loadPLC_SignalsButton.Show();                                       // Кнопка "Далее"
@@ -281,6 +282,7 @@ namespace Moderon
             else // Сигналы не распределены
             {
                 comboPlkType.Enabled = false;                                       // Блокировка смены типа ПЛК
+                saveToolStripMenuItem.Enabled = false;                              // Блокировка сохранения файла
                 signalsReadyLabel.Text = "Карта входов/выходов некорректна";
                 signalsReadyLabel.ForeColor = Color.Red;
                 loadPLC_SignalsButton.Hide();                                       // Кнопка "Далее"

@@ -70,14 +70,8 @@ namespace Moderon
         [JsonProperty("comboSignalsItems")]
         public Dictionary<string, string[]> comboSignalsItems { get; set; }         // Элементы для comboBox таблицы сигналов
 
-        [JsonProperty("comboAITypeItems")]
-        public Dictionary<string, string[]> comboAITypeItems { get; set; }          // Элементы для comboBox типов AI сигналов
-
         [JsonProperty("comboSignalsState")]
         public Dictionary<string, string> comboSignalsState { get; set; }           // Значение для comboBox таблицы сигналов
-
-        [JsonProperty("comboAITypeState")]
-        public Dictionary<string, string> comboAITypeState { get; set; }            // Значение для comboBox типа сигнала AI
 
         [JsonProperty("uiCode")]
         public Dictionary<string, ushort> uiCode { get; set; }                      // Словарь для кодов сигналов UI
@@ -94,17 +88,17 @@ namespace Moderon
         [JsonProperty("aoActive")]
         public Dictionary<string, bool> aoActive { get; set; }                      // Словарь для активности сигналов AO
 
-        [JsonProperty("diCode")]
-        public Dictionary<string, ushort> diCode { get; set; }                      // Словарь для кодов сигналов DI
-
-        [JsonProperty("diActive")]
-        public Dictionary<string, bool> diActive { get; set; }                      // Словарь для активности сигналов DI
-
         [JsonProperty("doCode")]
         public Dictionary<string, ushort> doCode { get; set; }                      // Словарь для кодов сигналов DO
 
         [JsonProperty("doActive")]
         public Dictionary<string, bool> doActive { get; set; }                      // Словарь для активности сигналов DO
+
+        [JsonProperty("comboIndex")]
+        public Dictionary<string, int> comboIndex { get; set; }                     // Словарь для сохранения выбранного ранее индекса comboBox
+
+        [JsonProperty("comboText")]
+        public Dictionary<string, string> comboText { get; set; }                   // Словарь для сохранения текста выбранного сигнала comboBox
 
         [JsonProperty("expBlocks")]                                                 
         public Dictionary<string, int> expBlocks { get; set; }                      // Словарь для сохранения количества блоков расширения
@@ -116,18 +110,16 @@ namespace Moderon
             textBoxElemState = new Dictionary<string, string>();
             labelSignalsState = new Dictionary<string, string>();
             comboSignalsItems = new Dictionary<string, string[]>();
-            comboAITypeItems = new Dictionary<string, string[]>();
             comboSignalsState = new Dictionary<string, string>();
-            comboAITypeState = new Dictionary<string, string>();
             uiCode = new Dictionary<string, ushort>();
             uiType = new Dictionary<string, string>();
             uiActive = new Dictionary<string, bool>();
             aoCode = new Dictionary<string, ushort>();
             aoActive = new Dictionary<string, bool>();
-            diCode = new Dictionary<string, ushort>();
-            diActive = new Dictionary<string, bool>();
             doCode = new Dictionary<string, ushort>();
             doActive = new Dictionary<string, bool>();
+            comboIndex = new Dictionary<string, int>();
+            comboText = new Dictionary<string, string>();
             expBlocks = new Dictionary<string, int>();
         }
     }
@@ -141,7 +133,7 @@ namespace Moderon
         ///<summary>Нажали "Сохранить" в главном меню</summary> 
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            json = new JsonObject();
+            json = new JsonObject();                    // Создание файла для сохранения
             BuildCheckBoxAll();                         // Сохранение для всех элементов checkBox
             BuildComboBoxElemAll();                     // Сохранение для всех элементов comboBox
             BuildTextBoxAll();                          // Сохранение для всех элементов textBox
@@ -149,11 +141,253 @@ namespace Moderon
             BuildComboItemsSignals();                   // Сохранение элементов comboBox таблицы сигналов
             BuildComboSignalsAll();                     // Сохранение выбранного элемента для comboBox таблицы сигналов
             BuildSignalArrays();                        // Сохранение для перечня сигналов, массивы
+            BuildComboIndex();                          // Сохранение ранее выбранного индекса для comboBox таблицы сигналов
+            BuildComboText();                           // Сохранение ранее выбранного текста comboBox таблицы сигналов
             BuildExpBlocks();                           // Сохранение количества и типов блоков расширения
             SaveJsonFile();                             // Сохранение файла JSON  
         }
 
-        ///<summary>Сохранение количетва и типов блоков расширения</summary>
+        ///<summary>Сохранение ранее выбранного текста сигнала comboBox таблицы сигналов</summary>
+        private void BuildComboText()
+        {
+            var texts = new Dictionary<string, string>()
+            {
+                // AO сигналы ПЛК
+                {"AO1combo_text", AO1combo_text }, 
+                {"AO2combo_text", AO2combo_text },
+                {"AO3combo_text", AO3combo_text },
+                // AO сигналы блок расширения 1
+                { "AO1bl1combo_text", AO1bl1combo_text },
+                { "AO2bl1combo_text", AO2bl1combo_text },
+                // AO сигналы блок расширения 2
+                { "AO1bl2combo_text", AO1bl2combo_text },
+                { "AO2bl2combo_text", AO2bl2combo_text },
+                // AO сигналы блок расширения 3
+                { "AO1bl3combo_text", AO1bl3combo_text },
+                { "AO2bl3combo_text", AO2bl3combo_text },
+                // DO сигналы ПЛК
+                { "DO1combo_text", DO1combo_text },
+                { "DO2combo_text", DO2combo_text },
+                { "DO3combo_text", DO3combo_text },
+                { "DO4combo_text", DO4combo_text },
+                { "DO5combo_text", DO5combo_text },
+                { "DO6combo_text", DO6combo_text },
+                // DO сигналы блок расширения 1
+                { "DO1bl1combo_text", DO1bl1combo_text },
+                { "DO2bl1combo_text", DO2bl1combo_text },
+                { "DO3bl1combo_text", DO3bl1combo_text },
+                { "DO4bl1combo_text", DO4bl1combo_text },
+                { "DO5bl1combo_text", DO5bl1combo_text },
+                { "DO6bl1combo_text", DO6bl1combo_text },
+                { "DO7bl1combo_text", DO7bl1combo_text },
+                { "DO8bl1combo_text", DO8bl1combo_text },
+                // DO сигналы блок расширения 2
+                { "DO1bl2combo_text", DO1bl2combo_text },
+                { "DO2bl2combo_text", DO2bl2combo_text },
+                { "DO3bl2combo_text", DO3bl2combo_text },
+                { "DO4bl2combo_text", DO4bl2combo_text },
+                { "DO5bl2combo_text", DO5bl2combo_text },
+                { "DO6bl2combo_text", DO6bl2combo_text },
+                { "DO7bl2combo_text", DO7bl2combo_text },
+                { "DO8bl2combo_text", DO8bl2combo_text },
+                // DO сигналы блок расширения 3
+                { "DO1bl3combo_text", DO1bl3combo_text },
+                { "DO2bl3combo_text", DO2bl3combo_text },
+                { "DO3bl3combo_text", DO3bl3combo_text },
+                { "DO4bl3combo_text", DO4bl3combo_text },
+                { "DO5bl3combo_text", DO5bl3combo_text },
+                { "DO6bl3combo_text", DO6bl3combo_text },
+                { "DO7bl3combo_text", DO7bl3combo_text },
+                { "DO8bl3combo_text", DO8bl3combo_text },
+                // UI сигналы ПЛК
+                { "UI1combo_text", UI1combo_text },
+                { "UI2combo_text", UI2combo_text },
+                { "UI3combo_text", UI3combo_text },
+                { "UI4combo_text", UI4combo_text },
+                { "UI5combo_text", UI5combo_text },
+                { "UI6combo_text", UI6combo_text },
+                { "UI7combo_text", UI7combo_text },
+                { "UI8combo_text", UI8combo_text },
+                { "UI9combo_text", UI9combo_text },
+                { "UI10combo_text", UI10combo_text },
+                { "UI11combo_text", UI11combo_text },
+                // UI сигналы блок расширения 1
+                { "UI1bl1combo_text", UI1bl1combo_text },
+                { "UI2bl1combo_text", UI2bl1combo_text },
+                { "UI3bl1combo_text", UI3bl1combo_text },
+                { "UI4bl1combo_text", UI4bl1combo_text },
+                { "UI5bl1combo_text", UI5bl1combo_text },
+                { "UI6bl1combo_text", UI6bl1combo_text },
+                { "UI7bl1combo_text", UI7bl1combo_text },
+                { "UI8bl1combo_text", UI8bl1combo_text },
+                { "UI9bl1combo_text", UI9bl1combo_text },
+                { "UI10bl1combo_text", UI10bl1combo_text },
+                { "UI11bl1combo_text", UI11bl1combo_text },
+                { "UI12bl1combo_text", UI12bl1combo_text },
+                { "UI13bl1combo_text", UI13bl1combo_text },
+                { "UI14bl1combo_text", UI14bl1combo_text },
+                { "UI15bl1combo_text", UI15bl1combo_text },
+                { "UI16bl1combo_text", UI16bl1combo_text },
+                // UI сигналы блок расширения 2
+                { "UI1bl2combo_text", UI1bl2combo_text },
+                { "UI2bl2combo_text", UI2bl2combo_text },
+                { "UI3bl2combo_text", UI3bl2combo_text },
+                { "UI4bl2combo_text", UI4bl2combo_text },
+                { "UI5bl2combo_text", UI5bl2combo_text },
+                { "UI6bl2combo_text", UI6bl2combo_text },
+                { "UI7bl2combo_text", UI7bl2combo_text },
+                { "UI8bl2combo_text", UI8bl2combo_text },
+                { "UI9bl2combo_text", UI9bl2combo_text },
+                { "UI10bl2combo_text", UI10bl2combo_text },
+                { "UI11bl2combo_text", UI11bl2combo_text },
+                { "UI12bl2combo_text", UI12bl2combo_text },
+                { "UI13bl2combo_text", UI13bl2combo_text },
+                { "UI14bl2combo_text", UI14bl2combo_text },
+                { "UI15bl2combo_text", UI15bl2combo_text },
+                { "UI16bl2combo_text", UI16bl2combo_text },
+                // UI сигналы блок расширения 1
+                { "UI1bl3combo_text", UI1bl3combo_text },
+                { "UI2bl3combo_text", UI2bl3combo_text },
+                { "UI3bl3combo_text", UI3bl3combo_text },
+                { "UI4bl3combo_text", UI4bl3combo_text },
+                { "UI5bl3combo_text", UI5bl3combo_text },
+                { "UI6bl3combo_text", UI6bl3combo_text },
+                { "UI7bl3combo_text", UI7bl3combo_text },
+                { "UI8bl3combo_text", UI8bl3combo_text },
+                { "UI9bl3combo_text", UI9bl3combo_text },
+                { "UI10bl3combo_text", UI10bl3combo_text },
+                { "UI11bl3combo_text", UI11bl3combo_text },
+                { "UI12bl3combo_text", UI12bl3combo_text },
+                { "UI13bl3combo_text", UI13bl3combo_text },
+                { "UI14bl3combo_text", UI14bl3combo_text },
+                { "UI15bl3combo_text", UI15bl3combo_text },
+                { "UI16bl3combo_text", UI16bl3combo_text }
+            };
+
+            foreach (var el in texts) json.comboText.Add(el.Key, el.Value);
+        }
+
+        ///<summary>Сохранение ранее выбранного индекса comboBox таблицы сигналов</summary>
+        private void BuildComboIndex()
+        {
+            var indexes = new Dictionary<string, int>()
+            {
+                // AO сигналы ПЛК
+                { "AO1combo_index", AO1combo_index }, 
+                { "AO2combo_index", AO2combo_index },
+                { "AO3combo_index", AO3combo_index },
+                // AO сигналы блок расширения 1
+                { "AO1bl1combo_index",  AO1bl1combo_index },
+                { "AO2bl1combo_index",  AO2bl1combo_index },
+                // AO сигналы блок расширения 2
+                { "AO1bl2combo_index",  AO1bl2combo_index },
+                { "AO2bl2combo_index",  AO2bl2combo_index },
+                // AO сигналы блок расширения 3
+                { "AO1bl3combo_index",  AO1bl3combo_index },
+                { "AO2bl3combo_index",  AO2bl3combo_index },
+                // DO сигналы ПЛК
+                { "DO1combo_index", DO1combo_index },
+                { "DO2combo_index", DO2combo_index },
+                { "DO3combo_index", DO3combo_index },
+                { "DO4combo_index", DO4combo_index },
+                { "DO5combo_index", DO5combo_index },
+                { "DO6combo_index", DO6combo_index },
+                // DO сигналы блок расширения 1
+                { "DO1bl1combo_index", DO1bl1combo_index },
+                { "DO2bl1combo_index", DO2bl1combo_index },
+                { "DO3bl1combo_index", DO3bl1combo_index },
+                { "DO4bl1combo_index", DO4bl1combo_index },
+                { "DO5bl1combo_index", DO5bl1combo_index },
+                { "DO6bl1combo_index", DO6bl1combo_index },
+                { "DO7bl1combo_index", DO7bl1combo_index },
+                { "DO8bl1combo_index", DO8bl1combo_index },
+                // DO сигналы блок расширения 2
+                { "DO1bl2combo_index", DO1bl2combo_index },
+                { "DO2bl2combo_index", DO2bl2combo_index },
+                { "DO3bl2combo_index", DO3bl2combo_index },
+                { "DO4bl2combo_index", DO4bl2combo_index },
+                { "DO5bl2combo_index", DO5bl2combo_index },
+                { "DO6bl2combo_index", DO6bl2combo_index },
+                { "DO7bl2combo_index", DO7bl2combo_index },
+                { "DO8bl2combo_index", DO8bl2combo_index },
+                // DO сигналы блок расширения 3
+                { "DO1bl3combo_index", DO1bl3combo_index },
+                { "DO2bl3combo_index", DO2bl3combo_index },
+                { "DO3bl3combo_index", DO3bl3combo_index },
+                { "DO4bl3combo_index", DO4bl3combo_index },
+                { "DO5bl3combo_index", DO5bl3combo_index },
+                { "DO6bl3combo_index", DO6bl3combo_index },
+                { "DO7bl3combo_index", DO7bl3combo_index },
+                { "DO8bl3combo_index", DO8bl3combo_index },
+                // UI сигналы ПЛК
+                { "UI1combo_index", UI1combo_index },
+                { "UI2combo_index", UI2combo_index },
+                { "UI3combo_index", UI3combo_index },
+                { "UI4combo_index", UI4combo_index },
+                { "UI5combo_index", UI5combo_index },
+                { "UI6combo_index", UI6combo_index },
+                { "UI7combo_index", UI7combo_index },
+                { "UI8combo_index", UI8combo_index },
+                { "UI9combo_index", UI9combo_index },
+                { "UI10combo_index", UI10combo_index },
+                { "UI11combo_index", UI11combo_index },
+                // UI сигналы блок расширения 1
+                { "UI1bl1combo_index", UI1bl1combo_index },
+                { "UI2bl1combo_index", UI2bl1combo_index },
+                { "UI3bl1combo_index", UI3bl1combo_index },
+                { "UI4bl1combo_index", UI4bl1combo_index },
+                { "UI5bl1combo_index", UI5bl1combo_index },
+                { "UI6bl1combo_index", UI6bl1combo_index },
+                { "UI7bl1combo_index", UI7bl1combo_index },
+                { "UI8bl1combo_index", UI8bl1combo_index },
+                { "UI9bl1combo_index", UI9bl1combo_index },
+                { "UI10bl1combo_index", UI10bl1combo_index },
+                { "UI11bl1combo_index", UI11bl1combo_index },
+                { "UI12bl1combo_index", UI12bl1combo_index },
+                { "UI13bl1combo_index", UI13bl1combo_index },
+                { "UI14bl1combo_index", UI14bl1combo_index },
+                { "UI15bl1combo_index", UI15bl1combo_index },
+                { "UI16bl1combo_index", UI16bl1combo_index },
+                // UI сигналы блок расширения 2
+                { "UI1bl2combo_index", UI1bl2combo_index },
+                { "UI2bl2combo_index", UI2bl2combo_index },
+                { "UI3bl2combo_index", UI3bl2combo_index },
+                { "UI4bl2combo_index", UI4bl2combo_index },
+                { "UI5bl2combo_index", UI5bl2combo_index },
+                { "UI6bl2combo_index", UI6bl2combo_index },
+                { "UI7bl2combo_index", UI7bl2combo_index },
+                { "UI8bl2combo_index", UI8bl2combo_index },
+                { "UI9bl2combo_index", UI9bl2combo_index },
+                { "UI10bl2combo_index", UI10bl2combo_index },
+                { "UI11bl2combo_index", UI11bl2combo_index },
+                { "UI12bl2combo_index", UI12bl2combo_index },
+                { "UI13bl2combo_index", UI13bl2combo_index },
+                { "UI14bl2combo_index", UI14bl2combo_index },
+                { "UI15bl2combo_index", UI15bl2combo_index },
+                { "UI16bl2combo_index", UI16bl2combo_index },
+                // UI сигналы блок расширения 3
+                { "UI1bl3combo_index", UI1bl3combo_index },
+                { "UI2bl3combo_index", UI2bl3combo_index },
+                { "UI3bl3combo_index", UI3bl3combo_index },
+                { "UI4bl3combo_index", UI4bl3combo_index },
+                { "UI5bl3combo_index", UI5bl3combo_index },
+                { "UI6bl3combo_index", UI6bl3combo_index },
+                { "UI7bl3combo_index", UI7bl3combo_index },
+                { "UI8bl3combo_index", UI8bl3combo_index },
+                { "UI9bl3combo_index", UI9bl3combo_index },
+                { "UI10bl3combo_index", UI10bl3combo_index },
+                { "UI11bl3combo_index", UI11bl3combo_index },
+                { "UI12bl3combo_index", UI12bl3combo_index },
+                { "UI13bl3combo_index", UI13bl3combo_index },
+                { "UI14bl3combo_index", UI14bl3combo_index },
+                { "UI15bl3combo_index", UI15bl3combo_index },
+                { "UI16bl3combo_index", UI16bl3combo_index }
+            };
+
+            foreach (var el in indexes) json.comboIndex.Add(el.Key, el.Value);
+        }
+
+        ///<summary>Сохранение количеcтва и типов блоков расширения</summary>
         private void BuildExpBlocks()
         {
             Dictionary<ExpBlock, int> currentBlocks = CalcExpBlocks_typeNums();
@@ -216,6 +450,15 @@ namespace Moderon
         ///<summary>Нажали "Загрузить" в главном меню</summary> 
         private void LoadToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            const string
+                MESSAGE = "Загрузка сбросит текущую конфигурацию. Вы уверены?",
+                CAPTION = "Загрузка файла";
+
+            var result = MessageBox.Show(MESSAGE, CAPTION, MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result == DialogResult.No) return;
+
             ResetButton_Click(sender, e);   // Первоначальный сброс перед загрузкой файла
             LoadJsonFile();                 // Загрузка файла JSON в программу
             ignoreEvents = true;            // Временное отключение событий
@@ -227,7 +470,239 @@ namespace Moderon
             LoadComboSignalsAll();          // Загрузка состояний для comboBox таблицы сигналов
             LoadSignalArrays();             // Загрузка для массива сигналов
             LoadExpBlocks();                // Загрузка количества и типов блоков расширения
+            LoadComboIndex();               // Загрузка выбранного ранее индекса для comboBox сигналов
+            LoadComboText();                // Загрузка выбранного ранее названия для comboBox сигналов
             ignoreEvents = false;           // Возврат активации событий
+        }
+
+        ///<summary>Загрузка выбранного ранее индекса для comboBox сигналов</summary>
+        private void LoadComboIndex()
+        {
+            // AO сигналы ПЛК
+            AO1combo_index = json_read.comboIndex["AO1combo_index"]; 
+            AO2combo_index = json_read.comboIndex["AO2combo_index"];
+            AO3combo_index = json_read.comboIndex["AO3combo_index"]; 
+            // AO сигналы блок расширения 1
+            AO1bl1combo_index = json_read.comboIndex["AO1bl1combo_index"];
+            AO2bl1combo_index = json_read.comboIndex["AO2bl1combo_index"];
+            // AO сигналы блок расширения 2
+            AO1bl2combo_index = json_read.comboIndex["AO1bl2combo_index"];
+            AO2bl2combo_index = json_read.comboIndex["AO2bl2combo_index"];
+            // AO сигналы блок расширения 3
+            AO1bl3combo_index = json_read.comboIndex["AO1bl3combo_index"];
+            AO2bl3combo_index = json_read.comboIndex["AO2bl3combo_index"];
+            // DO сигналы ПЛК
+            DO1combo_index = json_read.comboIndex["DO1combo_index"];
+            DO2combo_index = json_read.comboIndex["DO1combo_index"];
+            DO3combo_index = json_read.comboIndex["DO1combo_index"];
+            DO4combo_index = json_read.comboIndex["DO1combo_index"];
+            DO5combo_index = json_read.comboIndex["DO1combo_index"];
+            DO6combo_index = json_read.comboIndex["DO1combo_index"];
+            // DO сигналы блок расширения 1
+            DO1bl1combo_index = json_read.comboIndex["DO1bl1combo_index"];
+            DO2bl1combo_index = json_read.comboIndex["DO2bl1combo_index"];
+            DO3bl1combo_index = json_read.comboIndex["DO3bl1combo_index"];
+            DO4bl1combo_index = json_read.comboIndex["DO4bl1combo_index"];
+            DO5bl1combo_index = json_read.comboIndex["DO5bl1combo_index"];
+            DO6bl1combo_index = json_read.comboIndex["DO6bl1combo_index"];
+            DO7bl1combo_index = json_read.comboIndex["DO7bl1combo_index"];
+            DO8bl1combo_index = json_read.comboIndex["DO8bl1combo_index"];
+            // DO сигналы блок расширения 2
+            DO1bl2combo_index = json_read.comboIndex["DO1bl2combo_index"];
+            DO2bl2combo_index = json_read.comboIndex["DO2bl2combo_index"];
+            DO3bl2combo_index = json_read.comboIndex["DO3bl2combo_index"];
+            DO4bl2combo_index = json_read.comboIndex["DO4bl2combo_index"];
+            DO5bl2combo_index = json_read.comboIndex["DO5bl2combo_index"];
+            DO6bl2combo_index = json_read.comboIndex["DO6bl2combo_index"];
+            DO7bl2combo_index = json_read.comboIndex["DO7bl2combo_index"];
+            DO8bl2combo_index = json_read.comboIndex["DO8bl2combo_index"];
+            // DO сигналы блок расширения 3
+            DO1bl3combo_index = json_read.comboIndex["DO1bl3combo_index"];
+            DO2bl3combo_index = json_read.comboIndex["DO2bl3combo_index"];
+            DO3bl3combo_index = json_read.comboIndex["DO3bl3combo_index"];
+            DO4bl3combo_index = json_read.comboIndex["DO4bl3combo_index"];
+            DO5bl3combo_index = json_read.comboIndex["DO5bl3combo_index"];
+            DO6bl3combo_index = json_read.comboIndex["DO6bl3combo_index"];
+            DO7bl3combo_index = json_read.comboIndex["DO7bl3combo_index"];
+            DO8bl3combo_index = json_read.comboIndex["DO8bl3combo_index"];
+            // UI сигналы ПЛК
+            UI1combo_index = json_read.comboIndex["UI1combo_index"];
+            UI2combo_index = json_read.comboIndex["UI2combo_index"];
+            UI3combo_index = json_read.comboIndex["UI3combo_index"];
+            UI4combo_index = json_read.comboIndex["UI4combo_index"];
+            UI5combo_index = json_read.comboIndex["UI5combo_index"];
+            UI6combo_index = json_read.comboIndex["UI6combo_index"];
+            UI7combo_index = json_read.comboIndex["UI7combo_index"];
+            UI8combo_index = json_read.comboIndex["UI8combo_index"];
+            UI9combo_index = json_read.comboIndex["UI9combo_index"];
+            UI10combo_index = json_read.comboIndex["UI10combo_index"];
+            UI11combo_index = json_read.comboIndex["UI11combo_index"];
+            // UI сигналы блок расширения 1
+            UI1bl1combo_index = json_read.comboIndex["UI1bl1combo_index"];
+            UI2bl1combo_index = json_read.comboIndex["UI2bl1combo_index"];
+            UI3bl1combo_index = json_read.comboIndex["UI3bl1combo_index"];
+            UI4bl1combo_index = json_read.comboIndex["UI4bl1combo_index"];
+            UI5bl1combo_index = json_read.comboIndex["UI5bl1combo_index"];
+            UI6bl1combo_index = json_read.comboIndex["UI6bl1combo_index"];
+            UI7bl1combo_index = json_read.comboIndex["UI7bl1combo_index"];
+            UI8bl1combo_index = json_read.comboIndex["UI8bl1combo_index"];
+            UI9bl1combo_index = json_read.comboIndex["UI9bl1combo_index"];
+            UI10bl1combo_index = json_read.comboIndex["UI10bl1combo_index"];
+            UI11bl1combo_index = json_read.comboIndex["UI11bl1combo_index"];
+            UI12bl1combo_index = json_read.comboIndex["UI12bl1combo_index"];
+            UI13bl1combo_index = json_read.comboIndex["UI13bl1combo_index"];
+            UI14bl1combo_index = json_read.comboIndex["UI14bl1combo_index"];
+            UI15bl1combo_index = json_read.comboIndex["UI15bl1combo_index"];
+            UI16bl1combo_index = json_read.comboIndex["UI16bl1combo_index"];
+            // UI сигналы блок расширения 2
+            UI1bl2combo_index = json_read.comboIndex["UI1bl2combo_index"];
+            UI2bl2combo_index = json_read.comboIndex["UI2bl2combo_index"];
+            UI3bl2combo_index = json_read.comboIndex["UI3bl2combo_index"];
+            UI4bl2combo_index = json_read.comboIndex["UI4bl2combo_index"];
+            UI5bl2combo_index = json_read.comboIndex["UI5bl2combo_index"];
+            UI6bl2combo_index = json_read.comboIndex["UI6bl2combo_index"];
+            UI7bl2combo_index = json_read.comboIndex["UI7bl2combo_index"];
+            UI8bl2combo_index = json_read.comboIndex["UI8bl2combo_index"];
+            UI9bl2combo_index = json_read.comboIndex["UI9bl2combo_index"];
+            UI10bl2combo_index = json_read.comboIndex["UI10bl2combo_index"];
+            UI11bl2combo_index = json_read.comboIndex["UI11bl2combo_index"];
+            UI12bl2combo_index = json_read.comboIndex["UI12bl2combo_index"];
+            UI13bl2combo_index = json_read.comboIndex["UI13bl2combo_index"];
+            UI14bl2combo_index = json_read.comboIndex["UI14bl2combo_index"];
+            UI15bl2combo_index = json_read.comboIndex["UI15bl2combo_index"];
+            UI16bl2combo_index = json_read.comboIndex["UI16bl2combo_index"];
+            // UI сигналы блок расширения 3
+            UI1bl3combo_index = json_read.comboIndex["UI1bl3combo_index"];
+            UI2bl3combo_index = json_read.comboIndex["UI2bl3combo_index"];
+            UI3bl3combo_index = json_read.comboIndex["UI3bl3combo_index"];
+            UI4bl3combo_index = json_read.comboIndex["UI4bl3combo_index"];
+            UI5bl3combo_index = json_read.comboIndex["UI5bl3combo_index"];
+            UI6bl3combo_index = json_read.comboIndex["UI6bl3combo_index"];
+            UI7bl3combo_index = json_read.comboIndex["UI7bl3combo_index"];
+            UI8bl3combo_index = json_read.comboIndex["UI8bl3combo_index"];
+            UI9bl3combo_index = json_read.comboIndex["UI9bl3combo_index"];
+            UI10bl3combo_index = json_read.comboIndex["UI10bl3combo_index"];
+            UI11bl3combo_index = json_read.comboIndex["UI11bl3combo_index"];
+            UI12bl3combo_index = json_read.comboIndex["UI12bl3combo_index"];
+            UI13bl3combo_index = json_read.comboIndex["UI13bl3combo_index"];
+            UI14bl3combo_index = json_read.comboIndex["UI14bl3combo_index"];
+            UI15bl3combo_index = json_read.comboIndex["UI15bl3combo_index"];
+            UI16bl3combo_index = json_read.comboIndex["UI16bl3combo_index"];
+        }
+
+        ///<summary>Загрузка выбранного ранее названия для comboBox сигналов</summary>
+        private void LoadComboText()
+        {   
+            // AO сигналы ПЛК
+            AO1combo_text = json_read.comboText["AO1combo_text"];
+            AO2combo_text = json_read.comboText["AO2combo_text"];
+            AO3combo_text = json_read.comboText["AO3combo_text"];
+            // AO сигналы блок расширения 1
+            AO1bl1combo_text = json_read.comboText["AO1bl1combo_text"];
+            AO2bl1combo_text = json_read.comboText["AO2bl1combo_text"];
+            // AO сигналы блок расширения 2
+            AO1bl2combo_text = json_read.comboText["AO1bl2combo_text"];
+            AO2bl2combo_text = json_read.comboText["AO2bl2combo_text"];
+            // AO сигналы блок расширения 3
+            AO1bl3combo_text = json_read.comboText["AO1bl3combo_text"];
+            AO2bl3combo_text = json_read.comboText["AO2bl3combo_text"];
+            // DO сигналы ПЛК
+            DO1combo_text = json_read.comboText["DO1combo_text"];
+            DO2combo_text = json_read.comboText["DO2combo_text"];
+            DO3combo_text = json_read.comboText["DO3combo_text"];
+            DO4combo_text = json_read.comboText["DO4combo_text"];
+            DO5combo_text = json_read.comboText["DO5combo_text"];
+            DO6combo_text = json_read.comboText["DO6combo_text"];
+            // DO сигналы блок расширения 1
+            DO1bl1combo_text = json_read.comboText["DO1bl1combo_text"];
+            DO2bl1combo_text = json_read.comboText["DO2bl1combo_text"];
+            DO3bl1combo_text = json_read.comboText["DO3bl1combo_text"];
+            DO4bl1combo_text = json_read.comboText["DO4bl1combo_text"];
+            DO5bl1combo_text = json_read.comboText["DO5bl1combo_text"];
+            DO6bl1combo_text = json_read.comboText["DO6bl1combo_text"];
+            DO7bl1combo_text = json_read.comboText["DO7bl1combo_text"];
+            DO8bl1combo_text = json_read.comboText["DO8bl1combo_text"];
+            // DO сигналы блок расширения 2
+            DO1bl2combo_text = json_read.comboText["DO1bl2combo_text"];
+            DO2bl2combo_text = json_read.comboText["DO2bl2combo_text"];
+            DO3bl2combo_text = json_read.comboText["DO3bl2combo_text"];
+            DO4bl2combo_text = json_read.comboText["DO4bl2combo_text"];
+            DO5bl2combo_text = json_read.comboText["DO5bl2combo_text"];
+            DO6bl2combo_text = json_read.comboText["DO6bl2combo_text"];
+            DO7bl2combo_text = json_read.comboText["DO7bl2combo_text"];
+            DO8bl2combo_text = json_read.comboText["DO8bl2combo_text"];
+            // DO сигналы блок расширения 3
+            DO1bl3combo_text = json_read.comboText["DO1bl3combo_text"];
+            DO2bl3combo_text = json_read.comboText["DO2bl3combo_text"];
+            DO3bl3combo_text = json_read.comboText["DO3bl3combo_text"];
+            DO4bl3combo_text = json_read.comboText["DO4bl3combo_text"];
+            DO5bl3combo_text = json_read.comboText["DO5bl3combo_text"];
+            DO6bl3combo_text = json_read.comboText["DO6bl3combo_text"];
+            DO7bl3combo_text = json_read.comboText["DO7bl3combo_text"];
+            DO8bl3combo_text = json_read.comboText["DO8bl3combo_text"];
+            // UI сигналы ПЛК
+            UI1combo_text = json_read.comboText["UI1combo_text"];
+            UI2combo_text = json_read.comboText["UI2combo_text"];
+            UI3combo_text = json_read.comboText["UI3combo_text"];
+            UI4combo_text = json_read.comboText["UI4combo_text"];
+            UI5combo_text = json_read.comboText["UI5combo_text"];
+            UI6combo_text = json_read.comboText["UI6combo_text"];
+            UI7combo_text = json_read.comboText["UI7combo_text"];
+            UI8combo_text = json_read.comboText["UI8combo_text"];
+            UI9combo_text = json_read.comboText["UI9combo_text"];
+            UI10combo_text = json_read.comboText["UI10combo_text"];
+            UI11combo_text = json_read.comboText["UI11combo_text"];
+            // UI сигналы блок расширения 1
+            UI1bl1combo_text = json_read.comboText["UI1bl1combo_text"];
+            UI2bl1combo_text = json_read.comboText["UI2bl1combo_text"];
+            UI3bl1combo_text = json_read.comboText["UI3bl1combo_text"];
+            UI4bl1combo_text = json_read.comboText["UI4bl1combo_text"];
+            UI5bl1combo_text = json_read.comboText["UI5bl1combo_text"];
+            UI6bl1combo_text = json_read.comboText["UI6bl1combo_text"];
+            UI7bl1combo_text = json_read.comboText["UI7bl1combo_text"];
+            UI8bl1combo_text = json_read.comboText["UI8bl1combo_text"];
+            UI9bl1combo_text = json_read.comboText["UI9bl1combo_text"];
+            UI10bl1combo_text = json_read.comboText["UI10bl1combo_text"];
+            UI11bl1combo_text = json_read.comboText["UI11bl1combo_text"];
+            UI12bl1combo_text = json_read.comboText["UI12bl1combo_text"];
+            UI13bl1combo_text = json_read.comboText["UI13bl1combo_text"];
+            UI14bl1combo_text = json_read.comboText["UI14bl1combo_text"];
+            UI15bl1combo_text = json_read.comboText["UI15bl1combo_text"];
+            UI16bl1combo_text = json_read.comboText["UI16bl1combo_text"];
+            // UI сигналы блок расширения 2
+            UI1bl2combo_text = json_read.comboText["UI1bl2combo_text"];
+            UI2bl2combo_text = json_read.comboText["UI2bl2combo_text"];
+            UI3bl2combo_text = json_read.comboText["UI3bl2combo_text"];
+            UI4bl2combo_text = json_read.comboText["UI4bl2combo_text"];
+            UI5bl2combo_text = json_read.comboText["UI5bl2combo_text"];
+            UI6bl2combo_text = json_read.comboText["UI6bl2combo_text"];
+            UI7bl2combo_text = json_read.comboText["UI7bl2combo_text"];
+            UI8bl2combo_text = json_read.comboText["UI8bl2combo_text"];
+            UI9bl2combo_text = json_read.comboText["UI9bl2combo_text"];
+            UI10bl2combo_text = json_read.comboText["UI10bl2combo_text"];
+            UI11bl2combo_text = json_read.comboText["UI11bl2combo_text"];
+            UI12bl2combo_text = json_read.comboText["UI12bl2combo_text"];
+            UI13bl2combo_text = json_read.comboText["UI13bl2combo_text"];
+            UI14bl2combo_text = json_read.comboText["UI14bl2combo_text"];
+            UI15bl2combo_text = json_read.comboText["UI15bl2combo_text"];
+            UI16bl2combo_text = json_read.comboText["UI16bl2combo_text"];
+            // UI сигналы блок расширения 3
+            UI1bl3combo_text = json_read.comboText["UI1bl3combo_text"];
+            UI2bl3combo_text = json_read.comboText["UI2bl3combo_text"];
+            UI3bl3combo_text = json_read.comboText["UI3bl3combo_text"];
+            UI4bl3combo_text = json_read.comboText["UI4bl3combo_text"];
+            UI5bl3combo_text = json_read.comboText["UI5bl3combo_text"];
+            UI6bl3combo_text = json_read.comboText["UI6bl3combo_text"];
+            UI7bl3combo_text = json_read.comboText["UI7bl3combo_text"];
+            UI8bl3combo_text = json_read.comboText["UI8bl3combo_text"];
+            UI9bl3combo_text = json_read.comboText["UI9bl3combo_text"];
+            UI10bl3combo_text = json_read.comboText["UI10bl3combo_text"];
+            UI11bl3combo_text = json_read.comboText["UI11bl3combo_text"];
+            UI12bl3combo_text = json_read.comboText["UI12bl3combo_text"];
+            UI13bl3combo_text = json_read.comboText["UI13bl3combo_text"];
+            UI14bl3combo_text = json_read.comboText["UI14bl3combo_text"];
+            UI15bl3combo_text = json_read.comboText["UI15bl3combo_text"];
+            UI16bl3combo_text = json_read.comboText["UI16bl3combo_text"];
         }
 
         ///<summary>Загрузка количества и типов блоков расширения</summary>
@@ -577,85 +1052,11 @@ namespace Moderon
                 UI9bl3_combo, UI10bl3_combo, UI11bl3_combo, UI12bl3_combo, UI13bl3_combo, UI14bl3_combo, UI15bl3_combo, UI16bl3_combo
             };
 
-            var indexes = new List<int>()
-            {
-                // AO сигналы, ПЛК и блоки расширения
-                AO1combo_index, AO2combo_index, AO3combo_index,
-                AO1bl1combo_index, AO2bl1combo_index, AO1bl2combo_index, AO2bl2combo_index,
-                AO1bl3combo_index, AO2bl3combo_index,
-                // DO сигналы, ПЛК
-                DO1combo_index, DO2combo_index, DO3combo_index, DO4combo_index, DO5combo_index, DO6combo_index,
-                // DO сигналы, блок расширения 1
-                DO1bl1combo_index, DO2bl1combo_index, DO3bl1combo_index, DO4bl1combo_index, DO5bl1combo_index,
-                DO6bl1combo_index, DO7bl1combo_index, DO8bl1combo_index,
-                // DO сигналы, блок расширения 2
-                DO1bl2combo_index, DO2bl2combo_index, DO3bl2combo_index, DO4bl2combo_index, DO5bl2combo_index,
-                DO6bl2combo_index, DO7bl2combo_index, DO8bl2combo_index,
-                // DO сигналы, блок расширения 3
-                DO1bl3combo_index, DO2bl3combo_index, DO3bl3combo_index, DO4bl3combo_index, DO5bl3combo_index,
-                DO6bl3combo_index, DO7bl3combo_index, DO8bl3combo_index,
-                // UI сигналы, ПЛК
-                UI1combo_index, UI2combo_index, UI3combo_index, UI4combo_index, UI5combo_index, UI6combo_index,
-                UI7combo_index, UI8combo_index, UI9combo_index, UI10combo_index, UI11combo_index,
-                // UI сигналы, блок расширения 1
-                UI1bl1combo_index, UI2bl1combo_index, UI3bl1combo_index, UI4bl1combo_index, UI5bl1combo_index,
-                UI6bl1combo_index, UI7bl1combo_index, UI8bl1combo_index, UI9bl1combo_index, UI10bl1combo_index,
-                UI11bl1combo_index, UI12bl1combo_index, UI13bl1combo_index, UI14bl1combo_index, UI15bl1combo_index,
-                UI16bl1combo_index,
-                // UI сигналы, блок расширения 2
-                UI1bl2combo_index, UI2bl2combo_index, UI3bl2combo_index, UI4bl2combo_index, UI5bl2combo_index,
-                UI6bl2combo_index, UI7bl2combo_index, UI8bl2combo_index, UI9bl2combo_index, UI10bl2combo_index,
-                UI11bl2combo_index, UI12bl2combo_index, UI13bl2combo_index, UI14bl2combo_index, UI15bl2combo_index,
-                UI16bl2combo_index,
-                // UI сигналы, блок расширения 3
-                UI1bl3combo_index, UI2bl3combo_index, UI3bl3combo_index, UI4bl3combo_index, UI5bl3combo_index,
-                UI6bl3combo_index, UI7bl3combo_index, UI8bl3combo_index, UI9bl3combo_index, UI10bl3combo_index,
-                UI11bl3combo_index, UI12bl3combo_index, UI13bl3combo_index, UI14bl3combo_index, UI15bl3combo_index,
-                UI16bl3combo_index
-            };
-
-            var texts = new List<string>()
-            {
-                // AO сигналы, ПЛК и блоки расширения
-                AO1combo_text, AO2combo_text, AO3combo_text,
-                AO1bl1combo_text, AO2bl1combo_text, AO1bl2combo_text, AO2bl2combo_text,
-                AO1bl3combo_text, AO2bl3combo_text,
-                // DO сигналы, ПЛК
-                DO1combo_text, DO2combo_text, DO3combo_text, DO4combo_text, DO5combo_text, DO6combo_text,
-                // DO сигналы, блок расширения 1
-                DO1bl1combo_text, DO2bl1combo_text, DO3bl1combo_text, DO4bl1combo_text, DO5bl1combo_text,
-                DO6bl1combo_text, DO7bl1combo_text, DO8bl1combo_text,
-                // DO сигналы, блок расширения 2
-                DO1bl2combo_text, DO2bl2combo_text, DO3bl2combo_text, DO4bl2combo_text, DO5bl2combo_text,
-                DO6bl2combo_text, DO7bl2combo_text, DO8bl2combo_text,
-                // DO сигналы, блок расширения 3
-                DO1bl3combo_text, DO2bl3combo_text, DO3bl3combo_text, DO4bl3combo_text, DO5bl3combo_text,
-                DO6bl3combo_text, DO7bl3combo_text, DO8bl3combo_text,
-                // UI сигналы, ПЛК
-                UI1combo_text, UI2combo_text, UI3combo_text, UI4combo_text, UI5combo_text, UI6combo_text,
-                UI7combo_text, UI8combo_text, UI9bl1combo_text, UI10bl1combo_text, UI11bl1combo_text,
-                // UI сигналы, блок расширения 1
-                UI1bl1combo_text, UI2bl1combo_text, UI3bl1combo_text, UI4bl1combo_text, UI5bl1combo_text,
-                UI6bl1combo_text, UI7bl1combo_text, UI8bl1combo_text, UI9bl1combo_text, UI10bl1combo_text,
-                UI11bl1combo_text, UI12bl1combo_text, UI13bl1combo_text, UI14bl1combo_text, UI15bl1combo_text,
-                UI16bl1combo_text,
-                // UI сигналы, блок расширения 2
-                UI1bl2combo_text, UI2bl2combo_text, UI3bl2combo_text, UI4bl2combo_text, UI5bl2combo_text,
-                UI6bl2combo_text, UI7bl2combo_text, UI8bl2combo_text, UI9bl2combo_text, UI10bl2combo_text,
-                UI11bl2combo_text, UI12bl2combo_text, UI13bl2combo_text, UI14bl2combo_text, UI15bl2combo_text,
-                UI16bl2combo_text,
-                // UI сигналы, блок расширения 3
-                UI1bl3combo_text, UI2bl3combo_text, UI3bl3combo_text, UI4bl3combo_text, UI5bl3combo_text,
-                UI6bl3combo_text, UI7bl3combo_text, UI8bl3combo_text, UI9bl3combo_text, UI10bl3combo_text,
-                UI11bl3combo_text, UI12bl3combo_text, UI13bl3combo_text, UI14bl3combo_text, UI15bl3combo_text,
-                UI16bl3combo_text,
-            };
-
             for (var i = 0; i < comboBoxes.Count; i++)
             {
                 comboBoxes[i].SelectedItem = json_read.comboSignalsState[comboBoxes[i].Name];
-                indexes[i] = comboBoxes[i].SelectedIndex;
-                texts[i] = comboBoxes[i].SelectedItem.ToString();
+                //indexes[i] = comboBoxes[i].SelectedIndex;
+                //texts[i] = comboBoxes[i].SelectedItem.ToString();
             }
         }
 
