@@ -53,6 +53,19 @@ namespace Moderon
             UICombosBlock_3_Reset();                // Блок расширения 3
         }
 
+        ///<summary>Скрытие панелей для блоков расширения</summary>
+        private void HidePanelBlocks()
+        {
+            List<Panel> panels = new List<Panel>()
+            {
+                block1_UIpanel, block2_UIpanel, block3_UIpanel,
+                block1_AOpanel, block2_AOpanel, block3_AOpanel,
+                block1_DOpanel, block2_DOpanel, block3_DOpanel
+            };
+
+            foreach (var el in panels) el.Hide();
+        }
+
         ///<summary>Скрытие элементов для панели блоков расширения</summary>
         private void Hide_panelBlocks_elements()
         {
@@ -536,6 +549,8 @@ namespace Moderon
                 AO3_plkLabel.Hide(); AO3_combo.Hide(); AO3_combo.Enabled = false;   // Скрытие и блокировка AO3 выходного сигнала
 
                 ChangeSizeLocationSignalsPanels(true);                              // Изменение размера и положения панелей
+
+                if (ignoreEvents) return;
                 CheckSignals_plkChange();                                           // Проверка распределённых сигналов на Optimized  
 
                 AddFirstBlockAO_M72E12RB(blocks);                                   // Проверка на добавление 1-го блока расширения AO
@@ -577,6 +592,8 @@ namespace Moderon
                 AO3_plkLabel.Show(); AO3_combo.Show(); AO3_combo.Enabled = true;
 
                 ChangeSizeLocationSignalsPanels(false);                             // Изменение размера и положения панелей
+
+                if (ignoreEvents) return;
 
                 RemoveThirdBlockUI_M72E16NA(blocks);                                // Проверка на удаление 3-го блока расширения UI
                 RemoveSecondBlockUI_M72E16NA(blocks);                               // Проверка на удаление 2-го блока расширения UI

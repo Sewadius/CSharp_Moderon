@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace Moderon
 {
-
+    /*
     ///<summary>Состояние для всех checkBox программы</summary> 
     class CheckBoxState
     {
@@ -51,7 +51,7 @@ namespace Moderon
         {
             this.name = name; this.items = items;
         }
-    }
+    } */
 
     class JsonObject
     {
@@ -94,6 +94,9 @@ namespace Moderon
         [JsonProperty("doActive")]
         public Dictionary<string, bool> doActive { get; set; }                      // Словарь для активности сигналов DO
 
+        [JsonProperty("uiTypeEnable")]
+        public Dictionary<string, bool> uiTypeEnable { get; set; }                  // Словарь для доступности типа UI сигналов
+
         [JsonProperty("comboIndex")]
         public Dictionary<string, int> comboIndex { get; set; }                     // Словарь для сохранения выбранного ранее индекса comboBox
 
@@ -102,6 +105,9 @@ namespace Moderon
 
         [JsonProperty("expBlocks")]                                                 
         public Dictionary<string, int> expBlocks { get; set; }                      // Словарь для сохранения количества блоков расширения
+
+        [JsonProperty("plkType")]                                                   // Опция для сохранения типа выбранного ПЛК
+        public Dictionary<string, int> plkType { get; set; }
 
         [JsonConstructor]
         public JsonObject(){
@@ -116,11 +122,13 @@ namespace Moderon
             uiActive = new Dictionary<string, bool>();
             aoCode = new Dictionary<string, ushort>();
             aoActive = new Dictionary<string, bool>();
+            uiTypeEnable = new Dictionary<string, bool>();
             doCode = new Dictionary<string, ushort>();
             doActive = new Dictionary<string, bool>();
             comboIndex = new Dictionary<string, int>();
             comboText = new Dictionary<string, string>();
             expBlocks = new Dictionary<string, int>();
+            plkType = new Dictionary<string, int>();
         }
     }
 
@@ -144,7 +152,36 @@ namespace Moderon
             BuildComboIndex();                          // Сохранение ранее выбранного индекса для comboBox таблицы сигналов
             BuildComboText();                           // Сохранение ранее выбранного текста comboBox таблицы сигналов
             BuildExpBlocks();                           // Сохранение количества и типов блоков расширения
+            Build_UITypeEnable();                       // Сохранение доступности типов UI сигналов
+            BuildPlkType();                             // Сохранение типа выбранного контроллера
             SaveJsonFile();                             // Сохранение файла JSON  
+        }
+
+        ///<summary>Сохранение состояния доступности для UI типов сигналов</summary>
+        private void Build_UITypeEnable()
+        {
+            // UI сигналы, тип сигнала
+            var ui_combos_type = new List<ComboBox>()
+            {
+                // ПЛК
+                UI1_typeCombo, UI2_typeCombo, UI3_typeCombo, UI4_typeCombo, UI5_typeCombo, UI6_typeCombo, UI7_typeCombo, UI8_typeCombo,
+                UI9_typeCombo, UI10_typeCombo, UI11_typeCombo,
+                // Блок расширения 1
+                UI1bl1_typeCombo, UI2bl1_typeCombo, UI3bl1_typeCombo, UI4bl1_typeCombo, UI5bl1_typeCombo, UI6bl1_typeCombo, UI7bl1_typeCombo,
+                UI8bl1_typeCombo, UI9bl1_typeCombo, UI10bl1_typeCombo, UI11bl1_typeCombo, UI12bl1_typeCombo, UI13bl1_typeCombo, UI14bl1_typeCombo,
+                UI15bl1_typeCombo, UI16bl1_typeCombo,
+                // Блок расширения 2
+                UI1bl2_typeCombo, UI2bl2_typeCombo, UI3bl2_typeCombo, UI4bl2_typeCombo, UI5bl2_typeCombo, UI6bl2_typeCombo, UI7bl2_typeCombo,
+                UI8bl2_typeCombo, UI9bl2_typeCombo, UI10bl2_typeCombo, UI11bl2_typeCombo, UI12bl2_typeCombo, UI13bl2_typeCombo, UI14bl2_typeCombo,
+                UI15bl2_typeCombo, UI16bl2_typeCombo,
+                // Блок расширения 3
+                UI1bl3_typeCombo, UI2bl3_typeCombo, UI3bl3_typeCombo, UI4bl3_typeCombo, UI5bl3_typeCombo, UI6bl3_typeCombo, UI7bl3_typeCombo,
+                UI8bl3_typeCombo, UI9bl3_typeCombo, UI10bl3_typeCombo, UI11bl3_typeCombo, UI12bl3_typeCombo, UI13bl3_typeCombo, UI14bl3_typeCombo,
+                UI15bl3_typeCombo, UI16bl3_typeCombo,
+            };
+
+            foreach (var el in ui_combos_type)
+                json.uiTypeEnable.Add(el.Name, el.Enabled);
         }
 
         ///<summary>Сохранение ранее выбранного текста сигнала comboBox таблицы сигналов</summary>
@@ -245,7 +282,7 @@ namespace Moderon
                 { "UI14bl2combo_text", UI14bl2combo_text },
                 { "UI15bl2combo_text", UI15bl2combo_text },
                 { "UI16bl2combo_text", UI16bl2combo_text },
-                // UI сигналы блок расширения 1
+                // UI сигналы блок расширения 3
                 { "UI1bl3combo_text", UI1bl3combo_text },
                 { "UI2bl3combo_text", UI2bl3combo_text },
                 { "UI3bl3combo_text", UI3bl3combo_text },
@@ -387,6 +424,12 @@ namespace Moderon
             foreach (var el in indexes) json.comboIndex.Add(el.Key, el.Value);
         }
 
+        ///<summary>Сохранение выбранного типа ПЛК</summary>
+        private void BuildPlkType()
+        {
+            json.plkType.Add("comboPlkType", comboPlkType.SelectedIndex);
+        }
+
         ///<summary>Сохранение количеcтва и типов блоков расширения</summary>
         private void BuildExpBlocks()
         {
@@ -459,20 +502,56 @@ namespace Moderon
 
             if (result == DialogResult.No) return;
 
-            ResetButton_Click(sender, e);   // Первоначальный сброс перед загрузкой файла
-            LoadJsonFile();                 // Загрузка файла JSON в программу
-            ignoreEvents = true;            // Временное отключение событий
-            LoadCheckBoxAll();              // Загрузка для всех сheckBox
-            LoadComboBoxElemAll();          // Загрузка для всех comboBox элементов
-            LoadTextBoxAll();               // Загрузка для всех textBox элементов
-            LoadLabelSignalsAll();          // Загрузка для подписей кодов таблицы сигналов
-            LoadComboItemsSignals();        // Загрузка элементов для comboBox таблицы сигналов
-            LoadComboSignalsAll();          // Загрузка состояний для comboBox таблицы сигналов
-            LoadSignalArrays();             // Загрузка для массива сигналов
-            LoadExpBlocks();                // Загрузка количества и типов блоков расширения
-            LoadComboIndex();               // Загрузка выбранного ранее индекса для comboBox сигналов
-            LoadComboText();                // Загрузка выбранного ранее названия для comboBox сигналов
-            ignoreEvents = false;           // Возврат активации событий
+            ResetButton_Click(sender, e);                           // Первоначальный сброс перед загрузкой файла
+            LoadJsonFile();                                         // Загрузка файла JSON в программу
+            ignoreEvents = true;                                    // Временное отключение событий
+            LoadCheckBoxAll();                                      // Загрузка для всех сheckBox
+            LoadComboBoxElemAll();                                  // Загрузка для всех comboBox элементов
+            LoadTextBoxAll();                                       // Загрузка для всех textBox элементов
+            LoadLabelSignalsAll();                                  // Загрузка для подписей кодов таблицы сигналов
+            LoadComboItemsSignals();                                // Загрузка элементов для comboBox таблицы сигналов
+            LoadComboSignalsAll();                                  // Загрузка состояний для comboBox таблицы сигналов
+            LoadSignalArrays();                                     // Загрузка для массива сигналов
+            LoadExpBlocks();                                        // Загрузка количества и типов блоков расширения
+            LoadComboIndex();                                       // Загрузка выбранного ранее индекса для comboBox сигналов
+            LoadComboText();                                        // Загрузка выбранного ранее названия для comboBox сигналов
+            Load_UITypeEnable();                                    // Загрузка типов для UI сигналов
+            LoadPlkType();                                          // Загрузка ранее выбранного типа контроллера
+            CheckPanelBlocks(CalcExpBlocks_typeNums());             // Проверка отображения панели блоков расширения Form1, тип и количество
+            ignoreEvents = false;                                   // Возврат активации событий
+        }
+
+        ///<summary>Загрузка доступности типов UI сигналов</summary>
+        private void Load_UITypeEnable()
+        {
+            // UI сигналы, тип сигнала
+            var ui_combos_type = new List<ComboBox>()
+            {
+                // ПЛК
+                UI1_typeCombo, UI2_typeCombo, UI3_typeCombo, UI4_typeCombo, UI5_typeCombo, UI6_typeCombo, UI7_typeCombo, UI8_typeCombo,
+                UI9_typeCombo, UI10_typeCombo, UI11_typeCombo,
+                // Блок расширения 1
+                UI1bl1_typeCombo, UI2bl1_typeCombo, UI3bl1_typeCombo, UI4bl1_typeCombo, UI5bl1_typeCombo, UI6bl1_typeCombo, UI7bl1_typeCombo,
+                UI8bl1_typeCombo, UI9bl1_typeCombo, UI10bl1_typeCombo, UI11bl1_typeCombo, UI12bl1_typeCombo, UI13bl1_typeCombo, UI14bl1_typeCombo,
+                UI15bl1_typeCombo, UI16bl1_typeCombo,
+                // Блок расширения 2
+                UI1bl2_typeCombo, UI2bl2_typeCombo, UI3bl2_typeCombo, UI4bl2_typeCombo, UI5bl2_typeCombo, UI6bl2_typeCombo, UI7bl2_typeCombo,
+                UI8bl2_typeCombo, UI9bl2_typeCombo, UI10bl2_typeCombo, UI11bl2_typeCombo, UI12bl2_typeCombo, UI13bl2_typeCombo, UI14bl2_typeCombo,
+                UI15bl2_typeCombo, UI16bl2_typeCombo,
+                // Блок расширения 3
+                UI1bl3_typeCombo, UI2bl3_typeCombo, UI3bl3_typeCombo, UI4bl3_typeCombo, UI5bl3_typeCombo, UI6bl3_typeCombo, UI7bl3_typeCombo,
+                UI8bl3_typeCombo, UI9bl3_typeCombo, UI10bl3_typeCombo, UI11bl3_typeCombo, UI12bl3_typeCombo, UI13bl3_typeCombo, UI14bl3_typeCombo,
+                UI15bl3_typeCombo, UI16bl3_typeCombo,
+            };
+
+            for (int i = 0; i < ui_combos_type.Count; i++)
+                ui_combos_type[i].Enabled = json_read.uiTypeEnable[ui_combos_type[i].Name];
+        }
+
+        ///<summary>Загрузка выбранного ранее типа контроллера</summary>
+        private void LoadPlkType()
+        {
+            comboPlkType.SelectedIndex = json_read.plkType["comboPlkType"];
         }
 
         ///<summary>Загрузка выбранного ранее индекса для comboBox сигналов</summary>
@@ -1049,15 +1128,26 @@ namespace Moderon
                 UI9bl2_combo, UI10bl2_combo, UI11bl2_combo, UI12bl2_combo, UI13bl2_combo, UI14bl2_combo, UI15bl2_combo, UI16bl2_combo,
                 // UI сигналы, блок расширения 3
                 UI1bl3_combo, UI2bl3_combo, UI3bl3_combo, UI4bl3_combo, UI5bl3_combo, UI6bl3_combo, UI7bl3_combo, UI8bl3_combo,
-                UI9bl3_combo, UI10bl3_combo, UI11bl3_combo, UI12bl3_combo, UI13bl3_combo, UI14bl3_combo, UI15bl3_combo, UI16bl3_combo
+                UI9bl3_combo, UI10bl3_combo, UI11bl3_combo, UI12bl3_combo, UI13bl3_combo, UI14bl3_combo, UI15bl3_combo, UI16bl3_combo,
+                // UI сигналы, тип сигнала, ПЛК
+                UI1_typeCombo, UI2_typeCombo, UI3_typeCombo, UI4_typeCombo, UI5_typeCombo, UI6_typeCombo, UI7_typeCombo, UI8_typeCombo,
+                UI9_typeCombo, UI10_typeCombo, UI11_typeCombo,
+                // UI сигналы, тип сигнала, блок расширения 1
+                UI1bl1_typeCombo, UI2bl1_typeCombo, UI3bl1_typeCombo, UI4bl1_typeCombo, UI5bl1_typeCombo, UI6bl1_typeCombo, UI7bl1_typeCombo,
+                UI8bl1_typeCombo, UI9bl1_typeCombo, UI10bl1_typeCombo, UI11bl1_typeCombo, UI12bl1_typeCombo, UI13bl1_typeCombo, UI14bl1_typeCombo,
+                UI15bl1_typeCombo, UI16bl1_typeCombo,
+                // UI сигналы, тип сигнала, блок расширения 2
+                UI1bl2_typeCombo, UI2bl2_typeCombo, UI3bl2_typeCombo, UI4bl2_typeCombo, UI5bl2_typeCombo, UI6bl2_typeCombo, UI7bl2_typeCombo,
+                UI8bl2_typeCombo, UI9bl2_typeCombo, UI10bl2_typeCombo, UI11bl2_typeCombo, UI12bl2_typeCombo, UI13bl2_typeCombo, UI14bl2_typeCombo,
+                UI15bl2_typeCombo, UI16bl2_typeCombo,
+                // UI сигналы, тип сигнала, блок расширения 3
+                UI1bl3_typeCombo, UI2bl3_typeCombo, UI3bl3_typeCombo, UI4bl3_typeCombo, UI5bl3_typeCombo, UI6bl3_typeCombo, UI7bl3_typeCombo,
+                UI8bl3_typeCombo, UI9bl3_typeCombo, UI10bl3_typeCombo, UI11bl3_typeCombo, UI12bl3_typeCombo, UI13bl3_typeCombo, UI14bl3_typeCombo,
+                UI15bl3_typeCombo, UI16bl3_typeCombo
             };
 
             for (var i = 0; i < comboBoxes.Count; i++)
-            {
                 comboBoxes[i].SelectedItem = json_read.comboSignalsState[comboBoxes[i].Name];
-                //indexes[i] = comboBoxes[i].SelectedIndex;
-                //texts[i] = comboBoxes[i].SelectedItem.ToString();
-            }
         }
 
         ///<summary>Загрузка для массивов сигналов</summary>
@@ -1241,6 +1331,26 @@ namespace Moderon
                 UI10bl3_combo, UI11bl3_combo, UI12bl3_combo, UI13bl3_combo, UI14bl3_combo, UI15bl3_combo, UI16bl3_combo
             };
 
+            // UI сигналы, тип сигнала
+            var ui_combos_type = new List<ComboBox>()
+            {
+                // ПЛК
+                UI1_typeCombo, UI2_typeCombo, UI3_typeCombo, UI4_typeCombo, UI5_typeCombo, UI6_typeCombo, UI7_typeCombo, UI8_typeCombo, 
+                UI9_typeCombo, UI10_typeCombo, UI11_typeCombo,
+                // Блок расширения 1
+                UI1bl1_typeCombo, UI2bl1_typeCombo, UI3bl1_typeCombo, UI4bl1_typeCombo, UI5bl1_typeCombo, UI6bl1_typeCombo, UI7bl1_typeCombo,
+                UI8bl1_typeCombo, UI9bl1_typeCombo, UI10bl1_typeCombo, UI11bl1_typeCombo, UI12bl1_typeCombo, UI13bl1_typeCombo, UI14bl1_typeCombo,
+                UI15bl1_typeCombo, UI16bl1_typeCombo,
+                // Блок расширения 2
+                UI1bl2_typeCombo, UI2bl2_typeCombo, UI3bl2_typeCombo, UI4bl2_typeCombo, UI5bl2_typeCombo, UI6bl2_typeCombo, UI7bl2_typeCombo,
+                UI8bl2_typeCombo, UI9bl2_typeCombo, UI10bl2_typeCombo, UI11bl2_typeCombo, UI12bl2_typeCombo, UI13bl2_typeCombo, UI14bl2_typeCombo,
+                UI15bl2_typeCombo, UI16bl2_typeCombo,
+                // Блок расширения 3
+                UI1bl3_typeCombo, UI2bl3_typeCombo, UI3bl3_typeCombo, UI4bl3_typeCombo, UI5bl3_typeCombo, UI6bl3_typeCombo, UI7bl3_typeCombo,
+                UI8bl3_typeCombo, UI9bl3_typeCombo, UI10bl3_typeCombo, UI11bl3_typeCombo, UI12bl3_typeCombo, UI13bl3_typeCombo, UI14bl3_typeCombo,
+                UI15bl3_typeCombo, UI16bl3_typeCombo,
+            };
+
             // AO сигналы
             var ao_combos = new List<ComboBox>()
             {
@@ -1263,7 +1373,9 @@ namespace Moderon
                 DO1bl3_combo, DO2bl3_combo, DO3bl3_combo, DO4bl3_combo, DO5bl3_combo, DO6bl3_combo, DO7bl3_combo, DO8bl3_combo
             };
 
+            // Сохранение состояния выбранного элемента
             foreach (var el in ui_combos) AddComboSignalsState(el);
+            foreach (var el in ui_combos_type) AddComboSignalsState(el);
             foreach (var el in ao_combos) AddComboSignalsState(el);
             foreach (var el in do_combos) AddComboSignalsState(el);
         }

@@ -510,8 +510,6 @@ namespace Moderon
             comboSysType.SelectedIndex = 0;                 // Выбор приточной системы
             expansion_blocks.Clear();                       // Очистка списка задействованных блоков расширения
 
-            
-
             var mainOptions = new List<CheckBox>()
             {
                 filterCheck, dampCheck, heaterCheck, addHeatCheck, showWriteBoxCheck,
@@ -544,9 +542,9 @@ namespace Moderon
             // Очистка панелей для блоков расширения
             DoCombosBlocks_Reset();                         // Блок и скрытие элементов для DO панелей блоков расширения
             UiCombosBlocks_Reset();                         // Блок и скрытие элементов для UI панелей блоков расширения
+            HidePanelBlocks();                              // Скрытие отображения для блоков расширения
             Hide_panelBlocks_elements();                    // Скрытие элементов для панели блоков расширения
             InitialSet_ComboTextIndex();                    // Изначальная установка для подписей/индексов comboBox
-
             Form1_InitSignals(this, e);                     // Начальная расстановка сигналов
         }
 
