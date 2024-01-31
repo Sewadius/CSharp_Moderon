@@ -1,0 +1,1383 @@
+﻿using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Windows.Forms;
+using Newtonsoft.Json;
+using GemBox.Spreadsheet;
+
+// Файл для сохранения/загрузки параметров программы в формате JSON
+
+namespace Moderon
+{
+    class JsonObject
+    {
+        [JsonProperty("checkBoxState")]
+        public Dictionary<string, bool> checkBoxState { get; set; }                 // Состояние всех checkBox
+
+        [JsonProperty("comboBoxElemState")]
+        public Dictionary<string, int> comboBoxElemState { get; set; }              // Состояние всех comboBox элементов
+
+        [JsonProperty("textBoxElemState")]
+        public Dictionary<string, string> textBoxElemState { get; set; }            // Значение для textBox элементов
+
+        [JsonProperty("labelSignalsState")]
+        public Dictionary<string, string> labelSignalsState { get; set; }           // Значение для label таблицы сигналов
+
+        [JsonProperty("comboSignalsItems")]
+        public Dictionary<string, string[]> comboSignalsItems { get; set; }         // Элементы для comboBox таблицы сигналов
+
+        [JsonProperty("comboSignalsState")]
+        public Dictionary<string, string> comboSignalsState { get; set; }           // Значение для comboBox таблицы сигналов
+
+        [JsonProperty("uiCode")]
+        public Dictionary<string, ushort> uiCode { get; set; }                      // Словарь для кодов сигналов UI
+
+        [JsonProperty("uiType")]
+        public Dictionary<string, string> uiType { get; set; }                      // Словарь для типов сигналов UI
+
+        [JsonProperty("uiActive")]
+        public Dictionary<string, bool> uiActive { get; set; }                      // Словарь для активности сигналов UI
+
+        [JsonProperty("aoCode")]
+        public Dictionary<string, ushort> aoCode { get; set; }                      // Словарь для кодов сигналов AO
+
+        [JsonProperty("aoActive")]
+        public Dictionary<string, bool> aoActive { get; set; }                      // Словарь для активности сигналов AO
+
+        [JsonProperty("doCode")]
+        public Dictionary<string, ushort> doCode { get; set; }                      // Словарь для кодов сигналов DO
+
+        [JsonProperty("doActive")]
+        public Dictionary<string, bool> doActive { get; set; }                      // Словарь для активности сигналов DO
+
+        [JsonProperty("uiTypeEnable")]
+        public Dictionary<string, bool> uiTypeEnable { get; set; }                  // Словарь для доступности типа UI сигналов
+
+        [JsonProperty("comboIndex")]
+        public Dictionary<string, int> comboIndex { get; set; }                     // Словарь для сохранения выбранного ранее индекса comboBox
+
+        [JsonProperty("comboText")]
+        public Dictionary<string, string> comboText { get; set; }                   // Словарь для сохранения текста выбранного сигнала comboBox
+
+        [JsonProperty("expBlocks")]                                                 
+        public Dictionary<string, int> expBlocks { get; set; }                      // Словарь для сохранения количества блоков расширения
+
+        [JsonProperty("plkType")]                                                   // Опция для сохранения типа выбранного ПЛК
+        public Dictionary<string, int> plkType { get; set; }
+
+        [JsonConstructor]
+        public JsonObject(){
+            checkBoxState = new Dictionary<string, bool>();
+            comboBoxElemState = new Dictionary<string, int>();
+            textBoxElemState = new Dictionary<string, string>();
+            labelSignalsState = new Dictionary<string, string>();
+            comboSignalsItems = new Dictionary<string, string[]>();
+            comboSignalsState = new Dictionary<string, string>();
+            uiCode = new Dictionary<string, ushort>();
+            uiType = new Dictionary<string, string>();
+            uiActive = new Dictionary<string, bool>();
+            aoCode = new Dictionary<string, ushort>();
+            aoActive = new Dictionary<string, bool>();
+            uiTypeEnable = new Dictionary<string, bool>();
+            doCode = new Dictionary<string, ushort>();
+            doActive = new Dictionary<string, bool>();
+            comboIndex = new Dictionary<string, int>();
+            comboText = new Dictionary<string, string>();
+            expBlocks = new Dictionary<string, int>();
+            plkType = new Dictionary<string, int>();
+        }
+    }
+
+    public partial class Form1 : Form
+    {
+        JsonObject json;                                // Объект для сохранения файла
+
+        ///<summary>Нажали "Сохранить" в главном меню</summary> 
+        private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            json = new JsonObject();                    // Создание файла для сохранения
+            BuildCheckBoxAll();                         // Сохранение для всех элементов checkBox
+            BuildComboBoxElemAll();                     // Сохранение для всех элементов comboBox
+            BuildTextBoxAll();                          // Сохранение для всех элементов textBox
+            BuildLabelSignalsAll();                     // Сохранение для подписей кодов таблицы сигналов
+            BuildComboItemsSignals();                   // Сохранение элементов comboBox таблицы сигналов
+            BuildComboSignalsAll();                     // Сохранение выбранного элемента для comboBox таблицы сигналов
+            BuildSignalArrays();                        // Сохранение для перечня сигналов, массивы
+            BuildComboIndex();                          // Сохранение ранее выбранного индекса для comboBox таблицы сигналов
+            BuildComboText();                           // Сохранение ранее выбранного текста comboBox таблицы сигналов
+            BuildExpBlocks();                           // Сохранение количества и типов блоков расширения
+            Build_UITypeEnable();                       // Сохранение доступности типов UI сигналов
+            BuildPlkType();                             // Сохранение типа выбранного контроллера
+            SaveJsonFile();                             // Сохранение файла JSON  
+        }
+
+        ///<summary>Сохранение состояния доступности для UI типов сигналов</summary>
+        private void Build_UITypeEnable()
+        {
+            // UI сигналы, тип сигнала
+            var ui_combos_type = new List<ComboBox>()
+            {
+                // ПЛК
+                UI1_typeCombo, UI2_typeCombo, UI3_typeCombo, UI4_typeCombo, UI5_typeCombo, UI6_typeCombo, UI7_typeCombo, UI8_typeCombo,
+                UI9_typeCombo, UI10_typeCombo, UI11_typeCombo,
+                // Блок расширения 1
+                UI1bl1_typeCombo, UI2bl1_typeCombo, UI3bl1_typeCombo, UI4bl1_typeCombo, UI5bl1_typeCombo, UI6bl1_typeCombo, UI7bl1_typeCombo,
+                UI8bl1_typeCombo, UI9bl1_typeCombo, UI10bl1_typeCombo, UI11bl1_typeCombo, UI12bl1_typeCombo, UI13bl1_typeCombo, UI14bl1_typeCombo,
+                UI15bl1_typeCombo, UI16bl1_typeCombo,
+                // Блок расширения 2
+                UI1bl2_typeCombo, UI2bl2_typeCombo, UI3bl2_typeCombo, UI4bl2_typeCombo, UI5bl2_typeCombo, UI6bl2_typeCombo, UI7bl2_typeCombo,
+                UI8bl2_typeCombo, UI9bl2_typeCombo, UI10bl2_typeCombo, UI11bl2_typeCombo, UI12bl2_typeCombo, UI13bl2_typeCombo, UI14bl2_typeCombo,
+                UI15bl2_typeCombo, UI16bl2_typeCombo,
+                // Блок расширения 3
+                UI1bl3_typeCombo, UI2bl3_typeCombo, UI3bl3_typeCombo, UI4bl3_typeCombo, UI5bl3_typeCombo, UI6bl3_typeCombo, UI7bl3_typeCombo,
+                UI8bl3_typeCombo, UI9bl3_typeCombo, UI10bl3_typeCombo, UI11bl3_typeCombo, UI12bl3_typeCombo, UI13bl3_typeCombo, UI14bl3_typeCombo,
+                UI15bl3_typeCombo, UI16bl3_typeCombo,
+            };
+
+            foreach (var el in ui_combos_type)
+                json.uiTypeEnable.Add(el.Name, el.Enabled);
+        }
+
+        ///<summary>Сохранение ранее выбранного текста сигнала comboBox таблицы сигналов</summary>
+        private void BuildComboText()
+        {
+            var texts = new Dictionary<string, string>()
+            {
+                // AO сигналы ПЛК
+                {"AO1combo_text", AO1combo_text }, 
+                {"AO2combo_text", AO2combo_text },
+                {"AO3combo_text", AO3combo_text },
+                // AO сигналы блок расширения 1
+                { "AO1bl1combo_text", AO1bl1combo_text },
+                { "AO2bl1combo_text", AO2bl1combo_text },
+                // AO сигналы блок расширения 2
+                { "AO1bl2combo_text", AO1bl2combo_text },
+                { "AO2bl2combo_text", AO2bl2combo_text },
+                // AO сигналы блок расширения 3
+                { "AO1bl3combo_text", AO1bl3combo_text },
+                { "AO2bl3combo_text", AO2bl3combo_text },
+                // DO сигналы ПЛК
+                { "DO1combo_text", DO1combo_text },
+                { "DO2combo_text", DO2combo_text },
+                { "DO3combo_text", DO3combo_text },
+                { "DO4combo_text", DO4combo_text },
+                { "DO5combo_text", DO5combo_text },
+                { "DO6combo_text", DO6combo_text },
+                // DO сигналы блок расширения 1
+                { "DO1bl1combo_text", DO1bl1combo_text },
+                { "DO2bl1combo_text", DO2bl1combo_text },
+                { "DO3bl1combo_text", DO3bl1combo_text },
+                { "DO4bl1combo_text", DO4bl1combo_text },
+                { "DO5bl1combo_text", DO5bl1combo_text },
+                { "DO6bl1combo_text", DO6bl1combo_text },
+                { "DO7bl1combo_text", DO7bl1combo_text },
+                { "DO8bl1combo_text", DO8bl1combo_text },
+                // DO сигналы блок расширения 2
+                { "DO1bl2combo_text", DO1bl2combo_text },
+                { "DO2bl2combo_text", DO2bl2combo_text },
+                { "DO3bl2combo_text", DO3bl2combo_text },
+                { "DO4bl2combo_text", DO4bl2combo_text },
+                { "DO5bl2combo_text", DO5bl2combo_text },
+                { "DO6bl2combo_text", DO6bl2combo_text },
+                { "DO7bl2combo_text", DO7bl2combo_text },
+                { "DO8bl2combo_text", DO8bl2combo_text },
+                // DO сигналы блок расширения 3
+                { "DO1bl3combo_text", DO1bl3combo_text },
+                { "DO2bl3combo_text", DO2bl3combo_text },
+                { "DO3bl3combo_text", DO3bl3combo_text },
+                { "DO4bl3combo_text", DO4bl3combo_text },
+                { "DO5bl3combo_text", DO5bl3combo_text },
+                { "DO6bl3combo_text", DO6bl3combo_text },
+                { "DO7bl3combo_text", DO7bl3combo_text },
+                { "DO8bl3combo_text", DO8bl3combo_text },
+                // UI сигналы ПЛК
+                { "UI1combo_text", UI1combo_text },
+                { "UI2combo_text", UI2combo_text },
+                { "UI3combo_text", UI3combo_text },
+                { "UI4combo_text", UI4combo_text },
+                { "UI5combo_text", UI5combo_text },
+                { "UI6combo_text", UI6combo_text },
+                { "UI7combo_text", UI7combo_text },
+                { "UI8combo_text", UI8combo_text },
+                { "UI9combo_text", UI9combo_text },
+                { "UI10combo_text", UI10combo_text },
+                { "UI11combo_text", UI11combo_text },
+                // UI сигналы блок расширения 1
+                { "UI1bl1combo_text", UI1bl1combo_text },
+                { "UI2bl1combo_text", UI2bl1combo_text },
+                { "UI3bl1combo_text", UI3bl1combo_text },
+                { "UI4bl1combo_text", UI4bl1combo_text },
+                { "UI5bl1combo_text", UI5bl1combo_text },
+                { "UI6bl1combo_text", UI6bl1combo_text },
+                { "UI7bl1combo_text", UI7bl1combo_text },
+                { "UI8bl1combo_text", UI8bl1combo_text },
+                { "UI9bl1combo_text", UI9bl1combo_text },
+                { "UI10bl1combo_text", UI10bl1combo_text },
+                { "UI11bl1combo_text", UI11bl1combo_text },
+                { "UI12bl1combo_text", UI12bl1combo_text },
+                { "UI13bl1combo_text", UI13bl1combo_text },
+                { "UI14bl1combo_text", UI14bl1combo_text },
+                { "UI15bl1combo_text", UI15bl1combo_text },
+                { "UI16bl1combo_text", UI16bl1combo_text },
+                // UI сигналы блок расширения 2
+                { "UI1bl2combo_text", UI1bl2combo_text },
+                { "UI2bl2combo_text", UI2bl2combo_text },
+                { "UI3bl2combo_text", UI3bl2combo_text },
+                { "UI4bl2combo_text", UI4bl2combo_text },
+                { "UI5bl2combo_text", UI5bl2combo_text },
+                { "UI6bl2combo_text", UI6bl2combo_text },
+                { "UI7bl2combo_text", UI7bl2combo_text },
+                { "UI8bl2combo_text", UI8bl2combo_text },
+                { "UI9bl2combo_text", UI9bl2combo_text },
+                { "UI10bl2combo_text", UI10bl2combo_text },
+                { "UI11bl2combo_text", UI11bl2combo_text },
+                { "UI12bl2combo_text", UI12bl2combo_text },
+                { "UI13bl2combo_text", UI13bl2combo_text },
+                { "UI14bl2combo_text", UI14bl2combo_text },
+                { "UI15bl2combo_text", UI15bl2combo_text },
+                { "UI16bl2combo_text", UI16bl2combo_text },
+                // UI сигналы блок расширения 3
+                { "UI1bl3combo_text", UI1bl3combo_text },
+                { "UI2bl3combo_text", UI2bl3combo_text },
+                { "UI3bl3combo_text", UI3bl3combo_text },
+                { "UI4bl3combo_text", UI4bl3combo_text },
+                { "UI5bl3combo_text", UI5bl3combo_text },
+                { "UI6bl3combo_text", UI6bl3combo_text },
+                { "UI7bl3combo_text", UI7bl3combo_text },
+                { "UI8bl3combo_text", UI8bl3combo_text },
+                { "UI9bl3combo_text", UI9bl3combo_text },
+                { "UI10bl3combo_text", UI10bl3combo_text },
+                { "UI11bl3combo_text", UI11bl3combo_text },
+                { "UI12bl3combo_text", UI12bl3combo_text },
+                { "UI13bl3combo_text", UI13bl3combo_text },
+                { "UI14bl3combo_text", UI14bl3combo_text },
+                { "UI15bl3combo_text", UI15bl3combo_text },
+                { "UI16bl3combo_text", UI16bl3combo_text }
+            };
+
+            foreach (var el in texts) json.comboText.Add(el.Key, el.Value);
+        }
+
+        ///<summary>Сохранение ранее выбранного индекса comboBox таблицы сигналов</summary>
+        private void BuildComboIndex()
+        {
+            var indexes = new Dictionary<string, int>()
+            {
+                // AO сигналы ПЛК
+                { "AO1combo_index", AO1combo_index }, 
+                { "AO2combo_index", AO2combo_index },
+                { "AO3combo_index", AO3combo_index },
+                // AO сигналы блок расширения 1
+                { "AO1bl1combo_index",  AO1bl1combo_index },
+                { "AO2bl1combo_index",  AO2bl1combo_index },
+                // AO сигналы блок расширения 2
+                { "AO1bl2combo_index",  AO1bl2combo_index },
+                { "AO2bl2combo_index",  AO2bl2combo_index },
+                // AO сигналы блок расширения 3
+                { "AO1bl3combo_index",  AO1bl3combo_index },
+                { "AO2bl3combo_index",  AO2bl3combo_index },
+                // DO сигналы ПЛК
+                { "DO1combo_index", DO1combo_index },
+                { "DO2combo_index", DO2combo_index },
+                { "DO3combo_index", DO3combo_index },
+                { "DO4combo_index", DO4combo_index },
+                { "DO5combo_index", DO5combo_index },
+                { "DO6combo_index", DO6combo_index },
+                // DO сигналы блок расширения 1
+                { "DO1bl1combo_index", DO1bl1combo_index },
+                { "DO2bl1combo_index", DO2bl1combo_index },
+                { "DO3bl1combo_index", DO3bl1combo_index },
+                { "DO4bl1combo_index", DO4bl1combo_index },
+                { "DO5bl1combo_index", DO5bl1combo_index },
+                { "DO6bl1combo_index", DO6bl1combo_index },
+                { "DO7bl1combo_index", DO7bl1combo_index },
+                { "DO8bl1combo_index", DO8bl1combo_index },
+                // DO сигналы блок расширения 2
+                { "DO1bl2combo_index", DO1bl2combo_index },
+                { "DO2bl2combo_index", DO2bl2combo_index },
+                { "DO3bl2combo_index", DO3bl2combo_index },
+                { "DO4bl2combo_index", DO4bl2combo_index },
+                { "DO5bl2combo_index", DO5bl2combo_index },
+                { "DO6bl2combo_index", DO6bl2combo_index },
+                { "DO7bl2combo_index", DO7bl2combo_index },
+                { "DO8bl2combo_index", DO8bl2combo_index },
+                // DO сигналы блок расширения 3
+                { "DO1bl3combo_index", DO1bl3combo_index },
+                { "DO2bl3combo_index", DO2bl3combo_index },
+                { "DO3bl3combo_index", DO3bl3combo_index },
+                { "DO4bl3combo_index", DO4bl3combo_index },
+                { "DO5bl3combo_index", DO5bl3combo_index },
+                { "DO6bl3combo_index", DO6bl3combo_index },
+                { "DO7bl3combo_index", DO7bl3combo_index },
+                { "DO8bl3combo_index", DO8bl3combo_index },
+                // UI сигналы ПЛК
+                { "UI1combo_index", UI1combo_index },
+                { "UI2combo_index", UI2combo_index },
+                { "UI3combo_index", UI3combo_index },
+                { "UI4combo_index", UI4combo_index },
+                { "UI5combo_index", UI5combo_index },
+                { "UI6combo_index", UI6combo_index },
+                { "UI7combo_index", UI7combo_index },
+                { "UI8combo_index", UI8combo_index },
+                { "UI9combo_index", UI9combo_index },
+                { "UI10combo_index", UI10combo_index },
+                { "UI11combo_index", UI11combo_index },
+                // UI сигналы блок расширения 1
+                { "UI1bl1combo_index", UI1bl1combo_index },
+                { "UI2bl1combo_index", UI2bl1combo_index },
+                { "UI3bl1combo_index", UI3bl1combo_index },
+                { "UI4bl1combo_index", UI4bl1combo_index },
+                { "UI5bl1combo_index", UI5bl1combo_index },
+                { "UI6bl1combo_index", UI6bl1combo_index },
+                { "UI7bl1combo_index", UI7bl1combo_index },
+                { "UI8bl1combo_index", UI8bl1combo_index },
+                { "UI9bl1combo_index", UI9bl1combo_index },
+                { "UI10bl1combo_index", UI10bl1combo_index },
+                { "UI11bl1combo_index", UI11bl1combo_index },
+                { "UI12bl1combo_index", UI12bl1combo_index },
+                { "UI13bl1combo_index", UI13bl1combo_index },
+                { "UI14bl1combo_index", UI14bl1combo_index },
+                { "UI15bl1combo_index", UI15bl1combo_index },
+                { "UI16bl1combo_index", UI16bl1combo_index },
+                // UI сигналы блок расширения 2
+                { "UI1bl2combo_index", UI1bl2combo_index },
+                { "UI2bl2combo_index", UI2bl2combo_index },
+                { "UI3bl2combo_index", UI3bl2combo_index },
+                { "UI4bl2combo_index", UI4bl2combo_index },
+                { "UI5bl2combo_index", UI5bl2combo_index },
+                { "UI6bl2combo_index", UI6bl2combo_index },
+                { "UI7bl2combo_index", UI7bl2combo_index },
+                { "UI8bl2combo_index", UI8bl2combo_index },
+                { "UI9bl2combo_index", UI9bl2combo_index },
+                { "UI10bl2combo_index", UI10bl2combo_index },
+                { "UI11bl2combo_index", UI11bl2combo_index },
+                { "UI12bl2combo_index", UI12bl2combo_index },
+                { "UI13bl2combo_index", UI13bl2combo_index },
+                { "UI14bl2combo_index", UI14bl2combo_index },
+                { "UI15bl2combo_index", UI15bl2combo_index },
+                { "UI16bl2combo_index", UI16bl2combo_index },
+                // UI сигналы блок расширения 3
+                { "UI1bl3combo_index", UI1bl3combo_index },
+                { "UI2bl3combo_index", UI2bl3combo_index },
+                { "UI3bl3combo_index", UI3bl3combo_index },
+                { "UI4bl3combo_index", UI4bl3combo_index },
+                { "UI5bl3combo_index", UI5bl3combo_index },
+                { "UI6bl3combo_index", UI6bl3combo_index },
+                { "UI7bl3combo_index", UI7bl3combo_index },
+                { "UI8bl3combo_index", UI8bl3combo_index },
+                { "UI9bl3combo_index", UI9bl3combo_index },
+                { "UI10bl3combo_index", UI10bl3combo_index },
+                { "UI11bl3combo_index", UI11bl3combo_index },
+                { "UI12bl3combo_index", UI12bl3combo_index },
+                { "UI13bl3combo_index", UI13bl3combo_index },
+                { "UI14bl3combo_index", UI14bl3combo_index },
+                { "UI15bl3combo_index", UI15bl3combo_index },
+                { "UI16bl3combo_index", UI16bl3combo_index }
+            };
+
+            foreach (var el in indexes) json.comboIndex.Add(el.Key, el.Value);
+        }
+
+        ///<summary>Сохранение выбранного типа ПЛК</summary>
+        private void BuildPlkType()
+        {
+            json.plkType.Add("comboPlkType", comboPlkType.SelectedIndex);
+        }
+
+        ///<summary>Сохранение количеcтва и типов блоков расширения</summary>
+        private void BuildExpBlocks()
+        {
+            Dictionary<ExpBlock, int> currentBlocks = CalcExpBlocks_typeNums();
+
+            var exp_blocks = new List<ExpBlock>()
+            {
+                M72E12RB, M72E12RA, M72E08RA, M72E16NA
+            };
+
+            foreach (var el in exp_blocks)
+                if (currentBlocks.ContainsKey(el))
+                    json.expBlocks.Add(el.Name, currentBlocks[el]);
+        }
+
+        ///<summary>Перенос перечня сигналов, массивы UI, AO, DO</summary>
+        private void BuildSignalArrays()
+        {
+            // Значения полей для сигналов UI
+            for (int i = 0; i < list_ui.Count; i++)
+            {
+                json.uiCode.Add(list_ui[i].Name, list_ui[i].Code);
+                json.uiType.Add(list_ui[i].Name, list_ui[i].Type);
+                json.uiActive.Add(list_ui[i].Name, list_ui[i].Active);
+            }
+
+            // Значения полей для сигналов AO
+            for (int i = 0; i < list_ao.Count; i++)
+            {
+                json.aoCode.Add(list_ao[i].Name, list_ao[i].Code);
+                json.aoActive.Add(list_ao[i].Name, list_ao[i].Active);
+            }
+
+            // Значения полей для сигналов DO
+            for (int i = 0; i < list_do.Count; i++)
+            {
+                json.doCode.Add(list_do[i].Name, list_do[i].Code);
+                json.doActive.Add(list_do[i].Name, list_do[i].Active);
+            }
+        }
+
+        ///<summary>Создание и сохранение файла для сохранения пользователем</summary>
+        private void SaveJsonFile()
+        {
+            var tempPath = Path.GetTempPath() + "/save.json";
+            using (StreamWriter file = System.IO.File.CreateText(tempPath))
+            {
+                JsonSerializer serializer = new JsonSerializer();  
+                serializer.Serialize(file, json);
+                file.Close();
+            }
+            SaveFileDialog dlg = new SaveFileDialog(); // Окно для сохранения файла
+            dlg.FileName = "save";
+            dlg.DefaultExt = ".json";
+            dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            dlg.Filter = "Json file (.json)|*.json";
+            if (dlg.ShowDialog() == DialogResult.OK)
+                try
+                {
+                    System.IO.File.WriteAllBytes(dlg.FileName, System.IO.File.ReadAllBytes(tempPath));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+        }
+
+        
+
+        ///<summary>Загрузка Json файла в программу</summary>
+        private void LoadJsonFile()
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                openFileDialog.Filter = "Json file (.json)|*.json";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    MessageBoxButtons buttons = MessageBoxButtons.OK;
+                    DialogResult result;
+                    string message, caption;
+                    var filePath = openFileDialog.FileName;
+                    using (Stream fileStream = openFileDialog.OpenFile())
+                    {
+                        try
+                        {
+                            json_read = JsonConvert.DeserializeObject<JsonObject>(System.IO.File.ReadAllText(filePath));
+                            message = "Файл успешно загружен!";
+                            caption = "Загрузка файла";
+                            result = MessageBox.Show(message, caption, buttons);
+                            if (result == DialogResult.OK) return;
+                        }
+                        catch
+                        {
+                            message = "Файл поврежден!";
+                            caption = "Ошибка загрузки файла";
+                            result = MessageBox.Show(message, caption, buttons);
+                            if (result == DialogResult.OK) return;
+                        }
+                        fileStream.Close(); fileStream.Dispose();
+                    }
+                }
+            }
+        }
+
+        
+
+        ///<summary>Сохранение для всех checkBox программы</summary>
+        private void BuildCheckBoxAll()
+        {
+            var check_boxes = new List<CheckBox>()
+            {
+                // Выбор элементов (боковая панель)
+                filterCheck, dampCheck, heaterCheck, addHeatCheck, coolerCheck, humidCheck, recircCheck, recupCheck,
+                // Заслонки
+                confPrDampCheck, heatPrDampCheck, springRetPrDampCheck, outDampCheck, confOutDampCheck, heatOutDampCheck, springRetOutDampCheck,
+                // Основной нагреватель
+                TF_heaterCheck, confHeatPumpCheck, pumpCurProtect, reservPumpHeater, confHeatResPumpCheck, pumpCurResProtect, watSensHeatCheck,
+                // Второй нагреватель
+                TF_addHeaterCheck, pumpAddHeatCheck, confAddHeatPumpCheck, pumpCurAddProtect, reservPumpAddHeater, 
+                confAddHeatResPumpCheck, pumpCurResAddProtect, sensWatAddHeatCheck,
+                // Охладитель и увлажнитель
+                alarmFrCoolCheck, thermoCoolerCheck, analogFreonCheck, dehumModeCheck, alarmHumidCheck,
+                // Рециркуляция и рекуператор
+                recircPrDampAOCheck, springRetRecircCheck, pumpGlicRecCheck, recDefTempCheck, recDefPsCheck,
+                // Датчики и сигналы
+                prChanSensCheck, roomTempSensCheck, chanHumSensCheck, roomHumSensCheck, outdoorChanSensCheck, 
+                outChanSensCheck, sigWorkCheck, sigAlarmCheck, sigFilAlarmCheck, stopStartCheck, fireCheck,
+                // Приточный вентилятор
+                prFanPSCheck, prFanFC_check, prFanThermoCheck, curDefPrFanCheck, checkResPrFan, prFanAlarmCheck, prFanStStopCheck,
+                prFanSpeedCheck, prDampFanCheck, prDampConfirmFanCheck,
+                // Вытяжной вентилятор
+                outFanPSCheck, outFanFC_check, outFanThermoCheck, curDefOutFanCheck, checkResOutFan, outFanAlarmCheck, outFanStStopCheck,
+                outFanSpeedCheck, outDampFanCheck, outDampConfirmFanCheck
+            };
+
+            foreach (var el in check_boxes) json.checkBoxState.Add(el.Name, el.Checked);
+        }
+
+        ///<summary>Сохранение для всех comboBox элементов программы</summary>
+        private void BuildComboBoxElemAll()
+        {
+            var combo_boxes = new List<ComboBox>()
+            {
+                // Тип системы, приточный и вытяжной вентиляторы
+                comboSysType, prFanPowCombo, prFanControlCombo, outFanPowCombo, outFanControlCombo,
+                // Воздушные фильтры и заслонки
+                filterPrCombo, filterOutCombo, prDampPowCombo, outDampPowCombo,
+                // Нагреватель
+                heatTypeCombo, powPumpCombo, elHeatStagesCombo, firstStHeatCombo, thermSwitchCombo,
+                // Второй нагреватель
+                heatAddTypeCombo, powPumpAddCombo, elHeatAddStagesCombo, firstStAddHeatCombo, thermAddSwitchCombo,
+                // Охладитель и увлажнитель
+                coolTypeCombo, frCoolStagesCombo, powWatCoolCombo, humidTypeCombo,
+                // Рециркуляция и рекуператор
+                recircPowCombo, recupTypeCombo, rotorPowCombo, bypassPlastCombo, fireTypeCombo
+            };
+
+            foreach (var el in combo_boxes) json.comboBoxElemState.Add(el.Name, el.SelectedIndex);
+        }
+
+        ///<summary>Сохранение для всех textBox элементов программы</summary>
+        private void BuildTextBoxAll()
+        {
+            var text_boxes = new List<TextBox>()
+            {
+                // Приточный и вытяжной вентилятор
+                powPrFanBox, powPrResFanBox, powOutFanBox, powOutResFanBox,
+                // Воздушные заслонки
+                b_prDampBox, h_prDampBox, b_outDampBox, h_outDampBox,
+                // Нагреватель, второй нагреватель, рециркуляция и рекуператор
+                elHeatPowBox, elAddHeatPowBox, b_recircBox, h_recircBox, powRotRecBox
+            };
+
+            foreach (var el in text_boxes) json.textBoxElemState.Add(el.Name, el.Text);
+        }
+
+        ///<summary>Добавление подписи кода таблицы сигналов</summary>
+        private void AddLabelSignalsState(Label el) =>
+            json.labelSignalsState.Add(el.Name, el.Text);       
+
+        ///<summary>Сохранение для подписей кодов таблицы сигналов</summary>
+        private void BuildLabelSignalsAll()
+        {
+            // UI labels
+            var ui_labels = new List<Label>()
+            {
+                // ПЛК
+                UI1_lab, UI2_lab, UI3_lab, UI4_lab, UI5_lab, UI6_lab, UI7_lab, UI8_lab, UI9_lab, UI10_lab, UI11_lab,
+                // Блок расширения 1
+                UI1bl1_lab, UI2bl1_lab, UI3bl1_lab, UI4bl1_lab, UI5bl1_lab, UI6bl1_lab, UI7bl1_lab, UI8bl1_lab, UI9bl1_lab, UI10bl1_lab,
+                UI11bl1_lab, UI12bl1_lab, UI13bl1_lab, UI14bl1_lab, UI15bl1_lab, UI16bl1_lab,
+                // Блок расширения 2
+                UI1bl2_lab, UI2bl2_lab, UI3bl2_lab, UI4bl2_lab, UI5bl2_lab, UI6bl2_lab, UI7bl2_lab, UI8bl2_lab, UI9bl2_lab, UI10bl2_lab,
+                UI11bl2_lab, UI12bl2_lab, UI13bl2_lab, UI14bl2_lab, UI15bl2_lab, UI16bl2_lab,
+                // Блок расширения 3
+                UI1bl3_lab, UI2bl3_lab, UI3bl3_lab, UI4bl3_lab, UI5bl3_lab, UI6bl3_lab, UI7bl3_lab, UI8bl3_lab, UI9bl3_lab, UI10bl3_lab,
+                UI11bl3_lab, UI12bl3_lab, UI13bl3_lab, UI14bl3_lab, UI15bl3_lab, UI16bl3_lab,
+            };
+
+            // AO labels
+            var ao_labels = new List<Label>()
+            {
+                // ПЛК
+                AO1_lab, AO2_lab, AO3_lab,
+                // Блоки расширения 1, 2, 3
+                AO1bl1_lab, AO2bl1_lab, AO1bl2_lab, AO2bl2_lab, AO1bl3_lab, AO2bl3_lab
+            };
+
+            // DO labels
+            var do_labels = new List<Label>()
+            {
+                // ПЛК
+                DO1_lab, DO2_lab, DO3_lab, DO4_lab, DO5_lab, DO6_lab,
+                // Блок расширения 1
+                DO1bl1_lab, DO2bl1_lab, DO3bl1_lab, DO4bl1_lab, DO5bl1_lab, DO6bl1_lab, DO7bl1_lab, DO8bl1_lab,
+                // Блок расширения 2
+                DO1bl2_lab, DO2bl2_lab, DO3bl2_lab, DO4bl2_lab, DO5bl2_lab, DO6bl2_lab, DO7bl2_lab, DO8bl2_lab,
+                // Блок расширения 3
+                DO1bl3_lab, DO2bl3_lab, DO3bl3_lab, DO4bl3_lab, DO5bl3_lab, DO6bl3_lab, DO7bl3_lab, DO8bl3_lab
+            };
+
+            foreach (var el in ui_labels) AddLabelSignalsState(el);
+            foreach (var el in ao_labels) AddLabelSignalsState(el);
+            foreach (var el in do_labels) AddLabelSignalsState(el);
+        }
+
+        ///<summary>Добавление состояния для comboBox по таблице сигналов</summary>
+        private void AddComboSignalsState(ComboBox el) =>
+            json.comboSignalsState.Add(el.Name, el.SelectedItem.ToString());
+        
+        ///<summary>Сохранение состояний для comboBox таблицы сигналов</summary>
+        private void BuildComboSignalsAll()
+        {
+            // UI сигналы
+            var ui_combos = new List<ComboBox>()
+            {
+                // ПЛК
+                UI1_combo, UI2_combo, UI3_combo, UI4_combo, UI5_combo, UI6_combo, UI7_combo, UI8_combo, UI9_combo, UI10_combo, UI11_combo,
+                // Блок расширения 1
+                UI1bl1_combo, UI2bl1_combo, UI3bl1_combo, UI4bl1_combo, UI5bl1_combo, UI6bl1_combo, UI7bl1_combo, UI8bl1_combo, UI9bl1_combo,
+                UI10bl1_combo, UI11bl1_combo, UI12bl1_combo, UI13bl1_combo, UI14bl1_combo, UI15bl1_combo, UI16bl1_combo,
+                // Блок расширения 2
+                UI1bl2_combo, UI2bl2_combo, UI3bl2_combo, UI4bl2_combo, UI5bl2_combo, UI6bl2_combo, UI7bl2_combo, UI8bl2_combo, UI9bl2_combo,
+                UI10bl2_combo, UI11bl2_combo, UI12bl2_combo, UI13bl2_combo, UI14bl2_combo, UI15bl2_combo, UI16bl2_combo,
+                // Блок расширения 3
+                UI1bl3_combo, UI2bl3_combo, UI3bl3_combo, UI4bl3_combo, UI5bl3_combo, UI6bl3_combo, UI7bl3_combo, UI8bl3_combo, UI9bl3_combo,
+                UI10bl3_combo, UI11bl3_combo, UI12bl3_combo, UI13bl3_combo, UI14bl3_combo, UI15bl3_combo, UI16bl3_combo
+            };
+
+            // UI сигналы, тип сигнала
+            var ui_combos_type = new List<ComboBox>()
+            {
+                // ПЛК
+                UI1_typeCombo, UI2_typeCombo, UI3_typeCombo, UI4_typeCombo, UI5_typeCombo, UI6_typeCombo, UI7_typeCombo, UI8_typeCombo, 
+                UI9_typeCombo, UI10_typeCombo, UI11_typeCombo,
+                // Блок расширения 1
+                UI1bl1_typeCombo, UI2bl1_typeCombo, UI3bl1_typeCombo, UI4bl1_typeCombo, UI5bl1_typeCombo, UI6bl1_typeCombo, UI7bl1_typeCombo,
+                UI8bl1_typeCombo, UI9bl1_typeCombo, UI10bl1_typeCombo, UI11bl1_typeCombo, UI12bl1_typeCombo, UI13bl1_typeCombo, UI14bl1_typeCombo,
+                UI15bl1_typeCombo, UI16bl1_typeCombo,
+                // Блок расширения 2
+                UI1bl2_typeCombo, UI2bl2_typeCombo, UI3bl2_typeCombo, UI4bl2_typeCombo, UI5bl2_typeCombo, UI6bl2_typeCombo, UI7bl2_typeCombo,
+                UI8bl2_typeCombo, UI9bl2_typeCombo, UI10bl2_typeCombo, UI11bl2_typeCombo, UI12bl2_typeCombo, UI13bl2_typeCombo, UI14bl2_typeCombo,
+                UI15bl2_typeCombo, UI16bl2_typeCombo,
+                // Блок расширения 3
+                UI1bl3_typeCombo, UI2bl3_typeCombo, UI3bl3_typeCombo, UI4bl3_typeCombo, UI5bl3_typeCombo, UI6bl3_typeCombo, UI7bl3_typeCombo,
+                UI8bl3_typeCombo, UI9bl3_typeCombo, UI10bl3_typeCombo, UI11bl3_typeCombo, UI12bl3_typeCombo, UI13bl3_typeCombo, UI14bl3_typeCombo,
+                UI15bl3_typeCombo, UI16bl3_typeCombo,
+            };
+
+            // AO сигналы
+            var ao_combos = new List<ComboBox>()
+            {
+                // ПЛК
+                AO1_combo, AO2_combo, AO3_combo,
+                // Блоки расширения 1, 2, 3
+                AO1bl1_combo, AO2bl1_combo, AO1bl2_combo, AO2bl2_combo, AO1bl3_combo, AO2bl3_combo
+            };
+
+            // DO сигналы
+            var do_combos = new List<ComboBox>()
+            {
+                // ПЛК
+                DO1_combo, DO2_combo, DO3_combo, DO4_combo, DO5_combo, DO6_combo,
+                // Блок расширения 1
+                DO1bl1_combo, DO2bl1_combo, DO3bl1_combo, DO4bl1_combo, DO5bl1_combo, DO6bl1_combo, DO7bl1_combo, DO8bl1_combo,
+                // Блок расширения 2
+                DO1bl2_combo, DO2bl2_combo, DO3bl2_combo, DO4bl2_combo, DO5bl2_combo, DO6bl2_combo, DO7bl2_combo, DO8bl2_combo,
+                // Блок расширения 3
+                DO1bl3_combo, DO2bl3_combo, DO3bl3_combo, DO4bl3_combo, DO5bl3_combo, DO6bl3_combo, DO7bl3_combo, DO8bl3_combo
+            };
+
+            // Сохранение состояния выбранного элемента
+            foreach (var el in ui_combos) AddComboSignalsState(el);
+            foreach (var el in ui_combos_type) AddComboSignalsState(el);
+            foreach (var el in ao_combos) AddComboSignalsState(el);
+            foreach (var el in do_combos) AddComboSignalsState(el);
+        }
+
+        ///<summary>Добавление данных по comboBox в файл JSON</summary>
+        private void AddComboSignalsItems(ComboBox el)
+        {
+            string[] arr_combo = new string[el.Items.Count];
+            for (int i = 0; i < el.Items.Count; i++)
+                arr_combo[i] = el.GetItemText(el.Items[i]);
+            json.comboSignalsItems.Add(el.Name, arr_combo);
+        }
+
+        ///<summary>Сохранение коллекций элементов для таблицы сигналов</summary>
+        private void BuildComboItemsSignals()
+        {
+            // UI сигналы
+            var ui_combos = new List<ComboBox>()
+            {
+                // ПЛК
+                UI1_combo, UI2_combo, UI3_combo, UI4_combo, UI5_combo, UI6_combo, UI7_combo, UI8_combo, UI9_combo, UI10_combo, UI11_combo,
+                // Блок расширения 1
+                UI1bl1_combo, UI2bl1_combo, UI3bl1_combo, UI4bl1_combo, UI5bl1_combo, UI6bl1_combo, UI7bl1_combo, UI8bl1_combo, UI9bl1_combo,
+                UI10bl1_combo, UI11bl1_combo, UI12bl1_combo, UI13bl1_combo, UI14bl1_combo, UI15bl1_combo, UI16bl1_combo,
+                // Блок расширения 2
+                UI1bl2_combo, UI2bl2_combo, UI3bl2_combo, UI4bl2_combo, UI5bl2_combo, UI6bl2_combo, UI7bl2_combo, UI8bl2_combo, UI9bl2_combo,
+                UI10bl2_combo, UI11bl2_combo, UI12bl2_combo, UI13bl2_combo, UI14bl2_combo, UI15bl2_combo, UI16bl2_combo,
+                // Блок расширения 3
+                UI1bl3_combo, UI2bl3_combo, UI3bl3_combo, UI4bl3_combo, UI5bl3_combo, UI6bl3_combo, UI7bl3_combo, UI8bl3_combo, UI9bl3_combo,
+                UI10bl3_combo, UI11bl3_combo, UI12bl3_combo, UI13bl3_combo, UI14bl3_combo, UI15bl3_combo, UI16bl3_combo
+            };
+
+            // AO сигналы
+            var ao_combos = new List<ComboBox>()
+            {
+                // ПЛК
+                AO1_combo, AO2_combo, AO3_combo,
+                // Блоки расширения 1, 2, 3
+                AO1bl1_combo, AO2bl1_combo, AO1bl2_combo, AO2bl2_combo, AO1bl3_combo, AO2bl3_combo
+            };
+
+            // DO сигналы
+            var do_combos = new List<ComboBox>()
+            {
+                // ПЛК
+                DO1_combo, DO2_combo, DO3_combo, DO4_combo, DO5_combo, DO6_combo,
+                // Блок расширения 1
+                DO1bl1_combo, DO2bl1_combo, DO3bl1_combo, DO4bl1_combo, DO5bl1_combo, DO6bl1_combo, DO7bl1_combo, DO8bl1_combo,
+                // Блок расширения 2
+                DO1bl2_combo, DO2bl2_combo, DO3bl2_combo, DO4bl2_combo, DO5bl2_combo, DO6bl2_combo, DO7bl2_combo, DO8bl2_combo,
+                // Блок расширения 3
+                DO1bl3_combo, DO2bl3_combo, DO3bl3_combo, DO4bl3_combo, DO5bl3_combo, DO6bl3_combo, DO7bl3_combo, DO8bl3_combo
+            };
+
+            foreach (var el in ui_combos) AddComboSignalsItems(el);
+            foreach (var el in ao_combos) AddComboSignalsItems(el);
+            foreach (var el in do_combos) AddComboSignalsItems(el);
+        }
+
+        ///<summary>Нажали на кнопку "Выгрузить в Excel"</summary>
+		private void LoadToExl_Click(object sender, EventArgs e)
+        {
+            var filePath = Directory.GetCurrentDirectory();             // Для шаблона
+            var savePath = Path.GetTempPath() + "/Signals.xlsx";        // Во временную папку
+            SaveFileDialog dlg = new SaveFileDialog();                  // Окно для сохранения файла
+            SpreadsheetInfo.SetLicense("FREE-LIMITED-KEY");
+            var workbook = ExcelFile.Load(filePath + "/Template.xls");
+            var worksheet = workbook.Worksheets[0];
+            LoadtoExl_PLC_name_blocks(worksheet);                       // Сохранение модели ПЛК и блоков расширения
+            LoadtoExl_PLC(worksheet);                                   // Формирование для ПЛК
+            LoadtoExl_Ex1(worksheet);                                   // Формирование для блока расширения 1
+            LoadtoExl_Ex2(worksheet);                                   // Формирование для блока расширения 2
+            LoadtoExl_Ex3(worksheet);                                   // Формирование для блока расширения 3
+            dlg.FileName = "Сигналы";
+            dlg.DefaultExt = ".xlsx";
+
+            // Сохранение в папку "Документы"
+            dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            dlg.Filter = "Excel table (.xlsx)|*.xlsx";
+            workbook.Save(savePath);                                    // Сохранение во временную папку
+            if (dlg.ShowDialog() == DialogResult.OK)
+                try
+                {
+                    File.WriteAllBytes(dlg.FileName, File.ReadAllBytes(savePath));
+                }
+                catch (Exception ex)                                    // Нет доступа к файлу или другая ошибка
+                {
+                    MessageBox.Show(ex.Message);
+                }  
+        }
+
+        ///<summary>Сохранение модели и типов блоков расширения</summary>
+        private void LoadtoExl_PLC_name_blocks(ExcelWorksheet wh)
+        {
+            if (plkChangeIndexLast == 0)                            // Выбран контроллер Mini
+                wh.Cells["B3"].Value = "Программируемый контроллер - M72OD13R";
+            else                                                    // Выбран контроллер Optimized
+                wh.Cells["B3"].Value = "Программируемый контроллер - M72OD20R";
+
+            if (expansion_blocks.Count == 0) {                      // Нет блоков расширения
+                wh.Cells["B26"].Value = "(нет модуля расширения)";  // 1-й блок расширения
+                wh.Cells["B55"].Value = "(нет модуля расширения)";  // 2-й блок расширения
+                wh.Cells["B84"].Value = "(нет модуля расширения)";  // 3-й блок расширения
+            }
+            else if (expansion_blocks.Count == 1)                   // Один блок расширения
+            {
+                wh.Cells["B26"].Value = "Модуль расширения 1 - " + expansion_blocks[0].Name;
+                wh.Cells["B55"].Value = "(нет модуля расширения)";  // 2-й блок расширения
+                wh.Cells["B84"].Value = "(нет модуля расширения)";  // 3-й блок расширения
+            } 
+            else if (expansion_blocks.Count == 2)                   // Два блока расширения
+            {
+                
+            }
+            else if (expansion_blocks.Count == 3)                   // Три блока расширения
+            {
+
+            }
+        }
+
+        ///<summary>Формирование сигналов для ПЛК</summary>
+        private void LoadtoExl_PLC(ExcelWorksheet wh)
+        {
+            // UI сигналы для ПЛК
+            if (UI1_combo.SelectedItem.ToString() != NOT_SELECTED)              // UI1
+            {
+                wh.Cells["D4"].Value = UI1_combo.SelectedItem.ToString();
+                wh.Cells["E4"].Value = int.Parse(UI1_lab.Text);
+                wh.Cells["F4"].Value = UI1_typeCombo.SelectedItem.ToString();
+            }
+            if (UI2_combo.SelectedItem.ToString() != NOT_SELECTED)              // UI2
+            {
+                wh.Cells["D5"].Value = UI2_combo.SelectedItem.ToString();
+                wh.Cells["E5"].Value = int.Parse(UI2_lab.Text);
+                wh.Cells["F5"].Value = UI2_typeCombo.SelectedItem.ToString();
+            }
+            if (UI3_combo.SelectedItem.ToString() != NOT_SELECTED)              // UI3
+            {
+                wh.Cells["D6"].Value = UI3_combo.SelectedItem.ToString();
+                wh.Cells["E6"].Value = int.Parse(UI3_lab.Text);
+                wh.Cells["F6"].Value = UI3_typeCombo.SelectedItem.ToString();
+            }
+            if (UI4_combo.SelectedItem.ToString() != NOT_SELECTED)              // UI4
+            {
+                wh.Cells["D7"].Value = UI4_combo.SelectedItem.ToString();
+                wh.Cells["E7"].Value = int.Parse(UI4_lab.Text);
+                wh.Cells["F7"].Value = UI4_typeCombo.SelectedItem.ToString();
+            }
+            if (UI5_combo.SelectedItem.ToString() != NOT_SELECTED)              // UI5
+            {
+                wh.Cells["D8"].Value = UI5_combo.SelectedItem.ToString();
+                wh.Cells["E8"].Value = int.Parse(UI5_lab.Text);
+                wh.Cells["F8"].Value = UI5_typeCombo.SelectedItem.ToString();
+            }
+            if (UI6_combo.SelectedItem.ToString() != NOT_SELECTED)              // UI6
+            {
+                wh.Cells["D9"].Value = UI6_combo.SelectedItem.ToString();
+                wh.Cells["E9"].Value = int.Parse(UI6_lab.Text);
+                wh.Cells["F9"].Value = UI6_typeCombo.SelectedItem.ToString();
+            }
+            if (UI7_combo.SelectedItem.ToString() != NOT_SELECTED)              // UI7
+            {
+                wh.Cells["D10"].Value = UI7_combo.SelectedItem.ToString();
+                wh.Cells["E10"].Value = int.Parse(UI7_lab.Text);
+                wh.Cells["F10"].Value = UI7_typeCombo.SelectedItem.ToString();
+            }
+            if (UI8_combo.SelectedItem.ToString() != NOT_SELECTED)              // UI8
+            {
+                wh.Cells["D11"].Value = UI8_combo.SelectedItem.ToString();
+                wh.Cells["E11"].Value = int.Parse(UI8_lab.Text);
+                wh.Cells["F11"].Value = UI8_typeCombo.SelectedItem.ToString();
+            }
+            if (UI9_combo.SelectedItem.ToString() != NOT_SELECTED)              // UI9
+            {
+                wh.Cells["D12"].Value = UI9_combo.SelectedItem.ToString();
+                wh.Cells["E12"].Value = int.Parse(UI9_lab.Text);
+                wh.Cells["F12"].Value = UI9_typeCombo.SelectedItem.ToString();
+            }
+            if (UI10_combo.SelectedItem.ToString() != NOT_SELECTED)              // UI10
+            {
+                wh.Cells["D13"].Value = UI10_combo.SelectedItem.ToString();
+                wh.Cells["E13"].Value = int.Parse(UI10_lab.Text);
+                wh.Cells["F13"].Value = UI10_typeCombo.SelectedItem.ToString();
+            }
+            if (UI11_combo.SelectedItem.ToString() != NOT_SELECTED)              // UI11
+            {
+                wh.Cells["D14"].Value = UI11_combo.SelectedItem.ToString();
+                wh.Cells["E14"].Value = int.Parse(UI11_lab.Text);
+                wh.Cells["F14"].Value = UI11_typeCombo.SelectedItem.ToString();
+            }
+            // AO сигналы для ПЛК
+            if (AO1_combo.SelectedItem.ToString() != NOT_SELECTED)              // AO1
+            {
+                wh.Cells["D16"].Value = AO1_combo.SelectedItem.ToString();
+                wh.Cells["E16"].Value = int.Parse(AO1_lab.Text);
+            }
+            if (AO2_combo.SelectedItem.ToString() != NOT_SELECTED)              // AO2
+            {
+                wh.Cells["D17"].Value = AO2_combo.SelectedItem.ToString();
+                wh.Cells["E17"].Value = int.Parse(AO2_lab.Text);
+            }
+            if (AO3_combo.SelectedItem.ToString() != NOT_SELECTED)              // AO3
+            {
+                wh.Cells["D18"].Value = AO3_combo.SelectedItem.ToString();
+                wh.Cells["E18"].Value = int.Parse(AO3_lab.Text);
+            }
+            // DO сигналы для ПЛК
+            if (DO1_combo.SelectedItem.ToString() != NOT_SELECTED)              // DO1
+            {
+                wh.Cells["D20"].Value = DO1_combo.SelectedItem.ToString();
+                wh.Cells["E20"].Value = int.Parse(DO1_lab.Text);
+            }
+            if (DO2_combo.SelectedItem.ToString() != NOT_SELECTED)              // DO2
+            {
+                wh.Cells["D21"].Value = DO2_combo.SelectedItem.ToString();
+                wh.Cells["E21"].Value = int.Parse(DO2_lab.Text);
+            }
+            if (DO3_combo.SelectedItem.ToString() != NOT_SELECTED)              // DO3
+            {
+                wh.Cells["D22"].Value = DO3_combo.SelectedItem.ToString();
+                wh.Cells["E22"].Value = int.Parse(DO3_lab.Text);
+            }
+            if (DO4_combo.SelectedItem.ToString() != NOT_SELECTED)              // DO4
+            {
+                wh.Cells["D23"].Value = DO4_combo.SelectedItem.ToString();
+                wh.Cells["E23"].Value = int.Parse(DO4_lab.Text);
+            }
+            if (DO5_combo.SelectedItem.ToString() != NOT_SELECTED)              // DO5
+            {
+                wh.Cells["D24"].Value = DO5_combo.SelectedItem.ToString();
+                wh.Cells["E24"].Value = int.Parse(DO5_lab.Text);
+            }
+            if (DO6_combo.SelectedItem.ToString() != NOT_SELECTED)              // DO6
+            {
+                wh.Cells["D25"].Value = DO6_combo.SelectedItem.ToString();
+                wh.Cells["E25"].Value = int.Parse(DO6_lab.Text);
+            }
+        }
+
+        ///<summary>Формирование для блока расширения 1</summary>
+        private void LoadtoExl_Ex1(ExcelWorksheet wh)
+        {
+            // UI сигналы для блока расширения 1
+            if (UI1bl1_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI1
+            {
+                wh.Cells["D27"].Value = UI1bl1_combo.SelectedItem.ToString();
+                wh.Cells["E27"].Value = int.Parse(UI1bl1_lab.Text);
+                wh.Cells["F27"].Value = UI1bl1_typeCombo.SelectedItem.ToString();
+            }
+            if (UI2bl1_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI2
+            {
+                wh.Cells["D28"].Value = UI2bl1_combo.SelectedItem.ToString();
+                wh.Cells["E28"].Value = int.Parse(UI2bl1_lab.Text);
+                wh.Cells["F28"].Value = UI2bl1_typeCombo.SelectedItem.ToString();
+            }
+            if (UI3bl1_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI3
+            {
+                wh.Cells["D29"].Value = UI3bl1_combo.SelectedItem.ToString();
+                wh.Cells["E29"].Value = int.Parse(UI3bl1_lab.Text);
+                wh.Cells["F29"].Value = UI3bl1_typeCombo.SelectedItem.ToString();
+            }
+            if (UI4bl1_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI4
+            {
+                wh.Cells["D30"].Value = UI4bl1_combo.SelectedItem.ToString();
+                wh.Cells["E30"].Value = int.Parse(UI4bl1_lab.Text);
+                wh.Cells["F30"].Value = UI4bl1_typeCombo.SelectedItem.ToString();
+            }
+            if (UI5bl1_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI5
+            {
+                wh.Cells["D31"].Value = UI5bl1_combo.SelectedItem.ToString();
+                wh.Cells["E31"].Value = int.Parse(UI5bl1_lab.Text);
+                wh.Cells["F31"].Value = UI5bl1_typeCombo.SelectedItem.ToString();
+            }
+            if (UI6bl1_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI6
+            {
+                wh.Cells["D32"].Value = UI6bl1_combo.SelectedItem.ToString();
+                wh.Cells["E32"].Value = int.Parse(UI6bl1_lab.Text);
+                wh.Cells["F32"].Value = UI6bl1_typeCombo.SelectedItem.ToString();
+            }
+            if (UI7bl1_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI7
+            {
+                wh.Cells["D33"].Value = UI7bl1_combo.SelectedItem.ToString();
+                wh.Cells["E33"].Value = int.Parse(UI7bl1_lab.Text);
+                wh.Cells["F33"].Value = UI7bl1_typeCombo.SelectedItem.ToString();
+            }
+            if (UI8bl1_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI8
+            {
+                wh.Cells["D34"].Value = UI8bl1_combo.SelectedItem.ToString();
+                wh.Cells["E34"].Value = int.Parse(UI8bl1_lab.Text);
+                wh.Cells["F34"].Value = UI8bl1_typeCombo.SelectedItem.ToString();
+            }
+            if (UI9bl1_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI9
+            {
+                wh.Cells["D35"].Value = UI9bl1_combo.SelectedItem.ToString();
+                wh.Cells["E35"].Value = int.Parse(UI9bl1_lab.Text);
+                wh.Cells["F35"].Value = UI9bl1_typeCombo.SelectedItem.ToString();
+            }
+            if (UI10bl1_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI10
+            {
+                wh.Cells["D36"].Value = UI10bl1_combo.SelectedItem.ToString();
+                wh.Cells["E36"].Value = int.Parse(UI10bl1_lab.Text);
+                wh.Cells["F36"].Value = UI10bl1_typeCombo.SelectedItem.ToString();
+            }
+            if (UI11bl1_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI11
+            {
+                wh.Cells["D37"].Value = UI11bl1_combo.SelectedItem.ToString();
+                wh.Cells["E37"].Value = int.Parse(UI11bl1_lab.Text);
+                wh.Cells["F37"].Value = UI11bl1_typeCombo.SelectedItem.ToString();
+            }
+            if (UI12bl1_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI12
+            {
+                wh.Cells["D38"].Value = UI12bl1_combo.SelectedItem.ToString();
+                wh.Cells["E38"].Value = int.Parse(UI12bl1_lab.Text);
+                wh.Cells["F38"].Value = UI12bl1_typeCombo.SelectedItem.ToString();
+            }
+            if (UI13bl1_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI13
+            {
+                wh.Cells["D39"].Value = UI13bl1_combo.SelectedItem.ToString();
+                wh.Cells["E39"].Value = int.Parse(UI13bl1_lab.Text);
+                wh.Cells["F39"].Value = UI13bl1_typeCombo.SelectedItem.ToString();
+            }
+            if (UI14bl1_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI14
+            {
+                wh.Cells["D40"].Value = UI14bl1_combo.SelectedItem.ToString();
+                wh.Cells["E40"].Value = int.Parse(UI14bl1_lab.Text);
+                wh.Cells["F40"].Value = UI14bl1_typeCombo.SelectedItem.ToString();
+            }
+            if (UI15bl1_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI15
+            {
+                wh.Cells["D41"].Value = UI15bl1_combo.SelectedItem.ToString();
+                wh.Cells["E41"].Value = int.Parse(UI15bl1_lab.Text);
+                wh.Cells["F41"].Value = UI15bl1_typeCombo.SelectedItem.ToString();
+            }
+            if (UI16bl1_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI16
+            {
+                wh.Cells["D42"].Value = UI16bl1_combo.SelectedItem.ToString();
+                wh.Cells["E42"].Value = int.Parse(UI16bl1_lab.Text);
+                wh.Cells["F42"].Value = UI16bl1_typeCombo.SelectedItem.ToString();
+            }
+            // AO сигналы для блока расширения 1
+            if (AO1bl1_combo.SelectedItem.ToString() != NOT_SELECTED)           // AO1
+            {
+                wh.Cells["D44"].Value = AO1bl1_combo.SelectedItem.ToString();
+                wh.Cells["E44"].Value = int.Parse (AO1bl1_lab.Text);
+            }
+            if (AO2bl1_combo.SelectedItem.ToString() != NOT_SELECTED)           // AO2
+            {
+                wh.Cells["D45"].Value = AO2bl1_combo.SelectedItem.ToString();
+                wh.Cells["E45"].Value = int.Parse(AO2bl1_lab.Text);
+            }
+            // DO сигналы для блока расширения 1
+            if (DO1bl1_combo.SelectedItem.ToString() != NOT_SELECTED)           // DO1
+            {
+                wh.Cells["D47"].Value = DO1bl1_combo.SelectedItem.ToString();
+                wh.Cells["E47"].Value = int.Parse(DO1bl1_lab.Text);
+            }
+            if (DO2bl1_combo.SelectedItem.ToString() != NOT_SELECTED)           // DO2
+            {
+                wh.Cells["D48"].Value = DO2bl1_combo.SelectedItem.ToString();
+                wh.Cells["E48"].Value = int.Parse(DO2bl1_lab.Text);
+            }
+            if (DO3bl1_combo.SelectedItem.ToString() != NOT_SELECTED)           // DO3
+            {
+                wh.Cells["D49"].Value = DO3bl1_combo.SelectedItem.ToString();
+                wh.Cells["E49"].Value = int.Parse(DO3bl1_lab.Text);
+            }
+            if (DO4bl1_combo.SelectedItem.ToString() != NOT_SELECTED)           // DO4
+            {
+                wh.Cells["D50"].Value = DO4bl1_combo.SelectedItem.ToString();
+                wh.Cells["E50"].Value = int.Parse(DO4bl1_lab.Text);
+            }
+            if (DO5bl1_combo.SelectedItem.ToString() != NOT_SELECTED)           // DO5
+            {
+                wh.Cells["D51"].Value = DO5bl1_combo.SelectedItem.ToString();
+                wh.Cells["E51"].Value = int.Parse(DO5bl1_lab.Text);
+            }
+            if (DO6bl1_combo.SelectedItem.ToString() != NOT_SELECTED)           // DO6
+            {
+                wh.Cells["D52"].Value = DO6bl1_combo.SelectedItem.ToString();
+                wh.Cells["E52"].Value = int.Parse(DO6bl1_lab.Text);
+            }
+            if (DO7bl1_combo.SelectedItem.ToString() != NOT_SELECTED)           // DO7
+            {
+                wh.Cells["D53"].Value = DO7bl1_combo.SelectedItem.ToString();
+                wh.Cells["E53"].Value = int.Parse(DO7bl1_lab.Text);
+            }
+            if (DO8bl1_combo.SelectedItem.ToString() != NOT_SELECTED)           // DO8
+            {
+                wh.Cells["D54"].Value = DO8bl1_combo.SelectedItem.ToString();
+                wh.Cells["E54"].Value = int.Parse(DO8bl1_lab.Text);
+            }
+        }
+
+        ///<summary>Формирование для блока расширения 2</summary>
+        private void LoadtoExl_Ex2(ExcelWorksheet wh)
+        {
+            // UI сигналы для блока расширения 2
+            if (UI1bl2_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI1
+            {
+                wh.Cells["D56"].Value = UI1bl2_combo.SelectedItem.ToString();
+                wh.Cells["E56"].Value = int.Parse(UI1bl2_lab.Text);
+                wh.Cells["F56"].Value = UI1bl2_typeCombo.SelectedItem.ToString();
+            }
+            if (UI2bl2_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI2
+            {
+                wh.Cells["D57"].Value = UI2bl2_combo.SelectedItem.ToString();
+                wh.Cells["E57"].Value = int.Parse(UI2bl2_lab.Text);
+                wh.Cells["F57"].Value = UI2bl2_typeCombo.SelectedItem.ToString();
+            }
+            if (UI3bl2_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI3
+            {
+                wh.Cells["D58"].Value = UI3bl2_combo.SelectedItem.ToString();
+                wh.Cells["E58"].Value = int.Parse(UI3bl2_lab.Text);
+                wh.Cells["F58"].Value = UI3bl2_typeCombo.SelectedItem.ToString();
+            }
+            if (UI4bl2_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI4
+            {
+                wh.Cells["D59"].Value = UI4bl2_combo.SelectedItem.ToString();
+                wh.Cells["E59"].Value = int.Parse(UI4bl2_lab.Text);
+                wh.Cells["F59"].Value = UI4bl2_typeCombo.SelectedItem.ToString();
+            }
+            if (UI5bl2_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI5
+            {
+                wh.Cells["D60"].Value = UI5bl2_combo.SelectedItem.ToString();
+                wh.Cells["E60"].Value = int.Parse(UI5bl2_lab.Text);
+                wh.Cells["F60"].Value = UI5bl2_typeCombo.SelectedItem.ToString();
+            }
+            if (UI6bl2_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI6
+            {
+                wh.Cells["D61"].Value = UI6bl2_combo.SelectedItem.ToString();
+                wh.Cells["E61"].Value = int.Parse(UI6bl2_lab.Text);
+                wh.Cells["F61"].Value = UI6bl2_typeCombo.SelectedItem.ToString();
+            }
+            if (UI7bl2_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI7
+            {
+                wh.Cells["D62"].Value = UI7bl2_combo.SelectedItem.ToString();
+                wh.Cells["E62"].Value = int.Parse(UI7bl2_lab.Text);
+                wh.Cells["F62"].Value = UI7bl2_typeCombo.SelectedItem.ToString();
+            }
+            if (UI8bl2_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI8
+            {
+                wh.Cells["D63"].Value = UI8bl2_combo.SelectedItem.ToString();
+                wh.Cells["E63"].Value = int.Parse(UI8bl2_lab.Text);
+                wh.Cells["F63"].Value = UI8bl2_typeCombo.SelectedItem.ToString();
+            }
+            if (UI9bl2_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI9
+            {
+                wh.Cells["D64"].Value = UI9bl2_combo.SelectedItem.ToString();
+                wh.Cells["E64"].Value = int.Parse(UI9bl2_lab.Text);
+                wh.Cells["F64"].Value = UI9bl2_typeCombo.SelectedItem.ToString();
+            }
+            if (UI10bl2_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI10
+            {
+                wh.Cells["D65"].Value = UI10bl2_combo.SelectedItem.ToString();
+                wh.Cells["E65"].Value = int.Parse(UI10bl2_lab.Text);
+                wh.Cells["F65"].Value = UI10bl2_typeCombo.SelectedItem.ToString();
+            }
+            if (UI11bl2_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI11
+            {
+                wh.Cells["D66"].Value = UI11bl2_combo.SelectedItem.ToString();
+                wh.Cells["E66"].Value = int.Parse(UI11bl2_lab.Text);
+                wh.Cells["F66"].Value = UI11bl2_typeCombo.SelectedItem.ToString();
+            }
+            if (UI12bl2_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI12
+            {
+                wh.Cells["D67"].Value = UI12bl2_combo.SelectedItem.ToString();
+                wh.Cells["E67"].Value = int.Parse(UI12bl2_lab.Text);
+                wh.Cells["F67"].Value = UI12bl2_typeCombo.SelectedItem.ToString();
+            }
+            if (UI13bl2_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI13
+            {
+                wh.Cells["D68"].Value = UI13bl2_combo.SelectedItem.ToString();
+                wh.Cells["E68"].Value = int.Parse(UI13bl2_lab.Text);
+                wh.Cells["F68"].Value = UI13bl2_typeCombo.SelectedItem.ToString();
+            }
+            if (UI14bl2_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI14
+            {
+                wh.Cells["D69"].Value = UI14bl2_combo.SelectedItem.ToString();
+                wh.Cells["E69"].Value = int.Parse(UI14bl2_lab.Text);
+                wh.Cells["F69"].Value = UI14bl2_typeCombo.SelectedItem.ToString();
+            }
+            if (UI15bl2_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI15
+            {
+                wh.Cells["D70"].Value = UI15bl2_combo.SelectedItem.ToString();
+                wh.Cells["E70"].Value = int.Parse(UI15bl2_lab.Text);
+                wh.Cells["F70"].Value = UI15bl2_typeCombo.SelectedItem.ToString();
+            }
+            if (UI16bl2_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI16
+            {
+                wh.Cells["D71"].Value = UI16bl2_combo.SelectedItem.ToString();
+                wh.Cells["E71"].Value = int.Parse(UI16bl2_lab.Text);
+                wh.Cells["F71"].Value = UI16bl2_typeCombo.SelectedItem.ToString();
+            }
+            // AO сигналы для блока расширения 1
+            if (AO1bl2_combo.SelectedItem.ToString() != NOT_SELECTED)           // AO1
+            {
+                wh.Cells["D73"].Value = AO1bl2_combo.SelectedItem.ToString();
+                wh.Cells["E73"].Value = int.Parse(AO1bl2_lab.Text);
+            }
+            if (AO2bl2_combo.SelectedItem.ToString() != NOT_SELECTED)           // AO2
+            {
+                wh.Cells["D74"].Value = AO2bl2_combo.SelectedItem.ToString();
+                wh.Cells["E74"].Value = int.Parse(AO2bl2_lab.Text);
+            }
+            // DO сигналы для блока расширения 1
+            if (DO1bl2_combo.SelectedItem.ToString() != NOT_SELECTED)           // DO1
+            {
+                wh.Cells["D76"].Value = DO1bl2_combo.SelectedItem.ToString();
+                wh.Cells["E76"].Value = int.Parse(DO1bl2_lab.Text);
+            }
+            if (DO2bl2_combo.SelectedItem.ToString() != NOT_SELECTED)           // DO2
+            {
+                wh.Cells["D77"].Value = DO2bl2_combo.SelectedItem.ToString();
+                wh.Cells["E77"].Value = int.Parse(DO2bl2_lab.Text);
+            }
+            if (DO3bl2_combo.SelectedItem.ToString() != NOT_SELECTED)           // DO3
+            {
+                wh.Cells["D78"].Value = DO3bl2_combo.SelectedItem.ToString();
+                wh.Cells["E78"].Value = int.Parse(DO3bl2_lab.Text);
+            }
+            if (DO4bl2_combo.SelectedItem.ToString() != NOT_SELECTED)           // DO4
+            {
+                wh.Cells["D79"].Value = DO4bl2_combo.SelectedItem.ToString();
+                wh.Cells["E79"].Value = int.Parse(DO4bl2_lab.Text);
+            }
+            if (DO5bl2_combo.SelectedItem.ToString() != NOT_SELECTED)           // DO5
+            {
+                wh.Cells["D80"].Value = DO5bl2_combo.SelectedItem.ToString();
+                wh.Cells["E80"].Value = int.Parse(DO5bl2_lab.Text);
+            }
+            if (DO6bl2_combo.SelectedItem.ToString() != NOT_SELECTED)           // DO6
+            {
+                wh.Cells["D81"].Value = DO6bl2_combo.SelectedItem.ToString();
+                wh.Cells["E81"].Value = int.Parse(DO6bl2_lab.Text);
+            }
+            if (DO7bl2_combo.SelectedItem.ToString() != NOT_SELECTED)           // DO7
+            {
+                wh.Cells["D82"].Value = DO7bl2_combo.SelectedItem.ToString();
+                wh.Cells["E82"].Value = int.Parse(DO7bl2_lab.Text);
+            }
+            if (DO8bl2_combo.SelectedItem.ToString() != NOT_SELECTED)           // DO8
+            {
+                wh.Cells["D83"].Value = DO8bl2_combo.SelectedItem.ToString();
+                wh.Cells["E83"].Value = int.Parse(DO8bl2_lab.Text);
+            }
+        }
+
+        ///<summary>Формирование для блока расширения 3</summary>
+        private void LoadtoExl_Ex3(ExcelWorksheet wh)
+        {
+            // UI сигналы для блока расширения 2
+            if (UI1bl3_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI1
+            {
+                wh.Cells["D85"].Value = UI1bl3_combo.SelectedItem.ToString();
+                wh.Cells["E85"].Value = int.Parse(UI1bl3_lab.Text);
+                wh.Cells["F85"].Value = UI1bl3_typeCombo.SelectedItem.ToString();
+            }
+            if (UI2bl3_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI2
+            {
+                wh.Cells["D86"].Value = UI2bl3_combo.SelectedItem.ToString();
+                wh.Cells["E86"].Value = int.Parse(UI2bl3_lab.Text);
+                wh.Cells["F86"].Value = UI2bl3_typeCombo.SelectedItem.ToString();
+            }
+            if (UI3bl3_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI3
+            {
+                wh.Cells["D87"].Value = UI3bl3_combo.SelectedItem.ToString();
+                wh.Cells["E87"].Value = int.Parse(UI3bl3_lab.Text);
+                wh.Cells["F87"].Value = UI3bl3_typeCombo.SelectedItem.ToString();
+            }
+            if (UI4bl3_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI4
+            {
+                wh.Cells["D88"].Value = UI4bl3_combo.SelectedItem.ToString();
+                wh.Cells["E88"].Value = int.Parse(UI4bl3_lab.Text);
+                wh.Cells["F88"].Value = UI4bl3_typeCombo.SelectedItem.ToString();
+            }
+            if (UI5bl3_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI5
+            {
+                wh.Cells["D89"].Value = UI5bl3_combo.SelectedItem.ToString();
+                wh.Cells["E89"].Value = int.Parse(UI5bl3_lab.Text);
+                wh.Cells["F89"].Value = UI5bl3_typeCombo.SelectedItem.ToString();
+            }
+            if (UI6bl3_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI6
+            {
+                wh.Cells["D90"].Value = UI6bl3_combo.SelectedItem.ToString();
+                wh.Cells["E90"].Value = int.Parse(UI6bl3_lab.Text);
+                wh.Cells["F90"].Value = UI6bl3_typeCombo.SelectedItem.ToString();
+            }
+            if (UI7bl3_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI7
+            {
+                wh.Cells["D91"].Value = UI7bl3_combo.SelectedItem.ToString();
+                wh.Cells["E91"].Value = int.Parse(UI7bl3_lab.Text);
+                wh.Cells["F91"].Value = UI7bl3_typeCombo.SelectedItem.ToString();
+            }
+            if (UI8bl3_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI8
+            {
+                wh.Cells["D92"].Value = UI8bl3_combo.SelectedItem.ToString();
+                wh.Cells["E92"].Value = int.Parse(UI8bl3_lab.Text);
+                wh.Cells["F92"].Value = UI8bl3_typeCombo.SelectedItem.ToString();
+            }
+            if (UI9bl3_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI9
+            {
+                wh.Cells["D93"].Value = UI9bl3_combo.SelectedItem.ToString();
+                wh.Cells["E93"].Value = int.Parse(UI9bl3_lab.Text);
+                wh.Cells["F93"].Value = UI9bl3_typeCombo.SelectedItem.ToString();
+            }
+            if (UI10bl3_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI10
+            {
+                wh.Cells["D94"].Value = UI10bl3_combo.SelectedItem.ToString();
+                wh.Cells["E94"].Value = int.Parse(UI10bl3_lab.Text);
+                wh.Cells["F94"].Value = UI10bl3_typeCombo.SelectedItem.ToString();
+            }
+            if (UI11bl3_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI11
+            {
+                wh.Cells["D95"].Value = UI11bl3_combo.SelectedItem.ToString();
+                wh.Cells["E95"].Value = int.Parse(UI11bl3_lab.Text);
+                wh.Cells["F95"].Value = UI11bl3_typeCombo.SelectedItem.ToString();
+            }
+            if (UI12bl3_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI12
+            {
+                wh.Cells["D96"].Value = UI12bl3_combo.SelectedItem.ToString();
+                wh.Cells["E96"].Value = int.Parse(UI12bl3_lab.Text);
+                wh.Cells["F96"].Value = UI12bl3_typeCombo.SelectedItem.ToString();
+            }
+            if (UI13bl3_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI13
+            {
+                wh.Cells["D97"].Value = UI13bl3_combo.SelectedItem.ToString();
+                wh.Cells["E97"].Value = int.Parse(UI13bl3_lab.Text);
+                wh.Cells["F97"].Value = UI13bl3_typeCombo.SelectedItem.ToString();
+            }
+            if (UI14bl3_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI14
+            {
+                wh.Cells["D98"].Value = UI14bl3_combo.SelectedItem.ToString();
+                wh.Cells["E98"].Value = int.Parse(UI14bl3_lab.Text);
+                wh.Cells["F98"].Value = UI14bl3_typeCombo.SelectedItem.ToString();
+            }
+            if (UI15bl3_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI15
+            {
+                wh.Cells["D99"].Value = UI15bl3_combo.SelectedItem.ToString();
+                wh.Cells["E99"].Value = int.Parse(UI15bl3_lab.Text);
+                wh.Cells["F99"].Value = UI15bl3_typeCombo.SelectedItem.ToString();
+            }
+            if (UI16bl3_combo.SelectedItem.ToString() != NOT_SELECTED)           // UI16
+            {
+                wh.Cells["D100"].Value = UI16bl3_combo.SelectedItem.ToString();
+                wh.Cells["E100"].Value = int.Parse(UI16bl3_lab.Text);
+                wh.Cells["F100"].Value = UI16bl3_typeCombo.SelectedItem.ToString();
+            }
+            // AO сигналы для блока расширения 1
+            if (AO1bl3_combo.SelectedItem.ToString() != NOT_SELECTED)           // AO1
+            {
+                wh.Cells["D102"].Value = AO1bl3_combo.SelectedItem.ToString();
+                wh.Cells["E102"].Value = int.Parse(AO1bl3_lab.Text);
+            }
+            if (AO2bl3_combo.SelectedItem.ToString() != NOT_SELECTED)           // AO2
+            {
+                wh.Cells["D103"].Value = AO2bl3_combo.SelectedItem.ToString();
+                wh.Cells["E103"].Value = int.Parse(AO2bl3_lab.Text);
+            }
+            // DO сигналы для блока расширения 1
+            if (DO1bl3_combo.SelectedItem.ToString() != NOT_SELECTED)           // DO1
+            {
+                wh.Cells["D105"].Value = DO1bl3_combo.SelectedItem.ToString();
+                wh.Cells["E105"].Value = int.Parse(DO1bl3_lab.Text);
+            }
+            if (DO2bl3_combo.SelectedItem.ToString() != NOT_SELECTED)           // DO2
+            {
+                wh.Cells["D106"].Value = DO2bl3_combo.SelectedItem.ToString();
+                wh.Cells["E106"].Value = int.Parse(DO2bl3_lab.Text);
+            }
+            if (DO3bl3_combo.SelectedItem.ToString() != NOT_SELECTED)           // DO3
+            {
+                wh.Cells["D107"].Value = DO3bl3_combo.SelectedItem.ToString();
+                wh.Cells["E107"].Value = int.Parse(DO3bl3_lab.Text);
+            }
+            if (DO4bl3_combo.SelectedItem.ToString() != NOT_SELECTED)           // DO4
+            {
+                wh.Cells["D108"].Value = DO4bl3_combo.SelectedItem.ToString();
+                wh.Cells["E108"].Value = int.Parse(DO4bl3_lab.Text);
+            }
+            if (DO5bl3_combo.SelectedItem.ToString() != NOT_SELECTED)           // DO5
+            {
+                wh.Cells["D109"].Value = DO5bl3_combo.SelectedItem.ToString();
+                wh.Cells["E109"].Value = int.Parse(DO5bl3_lab.Text);
+            }
+            if (DO6bl3_combo.SelectedItem.ToString() != NOT_SELECTED)           // DO6
+            {
+                wh.Cells["D110"].Value = DO6bl3_combo.SelectedItem.ToString();
+                wh.Cells["E110"].Value = int.Parse(DO6bl3_lab.Text);
+            }
+            if (DO7bl3_combo.SelectedItem.ToString() != NOT_SELECTED)           // DO7
+            {
+                wh.Cells["D111"].Value = DO7bl3_combo.SelectedItem.ToString();
+                wh.Cells["E111"].Value = int.Parse(DO7bl3_lab.Text);
+            }
+            if (DO8bl3_combo.SelectedItem.ToString() != NOT_SELECTED)           // DO8
+            {
+                wh.Cells["D112"].Value = DO8bl3_combo.SelectedItem.ToString();
+                wh.Cells["E112"].Value = int.Parse(DO8bl3_lab.Text);
+            }
+        }
+    }
+}

@@ -100,7 +100,10 @@
     <Compile Include="FormInfo.Designer.cs">
       <DependentUpon>FormInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Json.cs" />
+    <Compile Include="JsonRead.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JsonSave.cs" />
     <Compile Include="LoadNet.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,7 +124,7 @@
     </Compile>
     <Compile Include="SignalsTableDO.cs" />
     <Compile Include="SignalsTableUI.cs" />
-    <Compile Include="Spec.cs">
+    <Compile Include="Specification.cs">
       <SubType>Form</SubType>
     </Compile>
     <None Include="ClassDiagram1.cd" />

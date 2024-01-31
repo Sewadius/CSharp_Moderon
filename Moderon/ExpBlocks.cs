@@ -63,7 +63,7 @@ namespace Moderon
                 block1_DOpanel, block2_DOpanel, block3_DOpanel
             };
 
-            foreach (var el in panels) el.Hide();
+            foreach (var el in panels) { el.Hide(); el.Enabled = false; }
         }
 
         ///<summary>Скрытие элементов для панели блоков расширения</summary>
