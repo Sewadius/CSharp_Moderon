@@ -2,8 +2,6 @@
 using System.Net;
 using System.Windows.Forms;
 using System.Drawing;
-using GemBox.Spreadsheet;
-using System.IO;
 
 // Файл для соединения, чтения, подготовки и загрузки параметров в ПЛК
 

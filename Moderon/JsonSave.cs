@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using GemBox.Spreadsheet;
+using System.Linq;
 
 // Файл для сохранения/загрузки параметров программы в формате JSON
 
@@ -772,30 +773,167 @@ namespace Moderon
 
         ///<summary>Сохранение модели и типов блоков расширения</summary>
         private void LoadtoExl_PLC_name_blocks(ExcelWorksheet wh)
-        {
-            if (plkChangeIndexLast == 0)                            // Выбран контроллер Mini
+        {   // Запись для модели ПЛК
+            if (plkChangeIndexLast == 0)                                                // Выбран контроллер Mini
                 wh.Cells["B3"].Value = "Программируемый контроллер - M72OD13R";
-            else                                                    // Выбран контроллер Optimized
+            else                                                                        // Выбран контроллер Optimized
                 wh.Cells["B3"].Value = "Программируемый контроллер - M72OD20R";
 
-            if (expansion_blocks.Count == 0) {                      // Нет блоков расширения
-                wh.Cells["B26"].Value = "(нет модуля расширения)";  // 1-й блок расширения
-                wh.Cells["B55"].Value = "(нет модуля расширения)";  // 2-й блок расширения
-                wh.Cells["B84"].Value = "(нет модуля расширения)";  // 3-й блок расширения
+            // Запись по блокам расширения
+            var count_M72E12RB = expansion_blocks.Where(x => x == M72E12RB).Count();    // Блок AO
+            var count_M72E12RA = expansion_blocks.Where(x => x == M72E12RA).Count();    // Блок DO + UI
+            var count_M72E08RA = expansion_blocks.Where(x => x == M72E08RA).Count();    // Блок DO
+            var count_M72E16NA = expansion_blocks.Where(x => x == M72E16NA).Count();    // Блок UI
+
+            if (expansion_blocks.Count == 0) {                                          // Нет блоков расширения
+                wh.Cells["B26"].Value = "(нет модуля расширения)";                      // 1-й блок расширения
+                wh.Cells["B55"].Value = "(нет модуля расширения)";                      // 2-й блок расширения
+                wh.Cells["B84"].Value = "(нет модуля расширения)";                      // 3-й блок расширения
             }
-            else if (expansion_blocks.Count == 1)                   // Один блок расширения
+            else if (expansion_blocks.Count == 1)                                       // Один блок расширения
             {
                 wh.Cells["B26"].Value = "Модуль расширения 1 - " + expansion_blocks[0].Name;
-                wh.Cells["B55"].Value = "(нет модуля расширения)";  // 2-й блок расширения
-                wh.Cells["B84"].Value = "(нет модуля расширения)";  // 3-й блок расширения
+                wh.Cells["B55"].Value = "(нет модуля расширения)";                      // 2-й блок расширения
+                wh.Cells["B84"].Value = "(нет модуля расширения)";                      // 3-й блок расширения
             } 
-            else if (expansion_blocks.Count == 2)                   // Два блока расширения
+            else if (expansion_blocks.Count == 2)                                       // Два блока расширения
             {
-                
+                if (expansion_blocks.Contains(M72E12RB))                                // Есть блок расширения с AO
+                {
+                    wh.Cells["B26"].Value = "Модуль расширения 1 - " + M72E12RB.Name;
+                    if (count_M72E12RB == 2)
+                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E12RB.Name;
+                    else if (count_M72E12RA == 1)
+                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E12RA.Name;
+                    else if (count_M72E08RA == 1)
+                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E08RA.Name;
+                    else if (count_M72E16NA == 1)
+                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E16NA.Name;
+                }
+                else if (expansion_blocks.Contains(M72E12RA))                           // Есть блок расширения DO + UI
+                {
+                    wh.Cells["B26"].Value = "Модуль расширения 1 - " + M72E12RA.Name;
+                    if (count_M72E12RA == 2)
+                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E12RA.Name;
+                    else if (count_M72E08RA == 1)
+                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E08RA.Name;
+                    else if (count_M72E16NA == 1)
+                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E16NA.Name;
+                }
+                else if (expansion_blocks.Contains(M72E08RA))                           // Есть блок расширения DO
+                {
+                    wh.Cells["B26"].Value = "Модуль расширения 1 - " + M72E08RA.Name;
+                    if (count_M72E08RA == 2)
+                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E08RA.Name;
+                    else if (count_M72E16NA == 1)
+                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E16NA.Name;
+                }
+                else if (expansion_blocks.Contains(M72E16NA))
+                {
+                    wh.Cells["B26"].Value = "Модуль расширения 1 - " + M72E16NA.Name;
+                    if (count_M72E16NA == 2)
+                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E16NA.Name;
+                }
+                wh.Cells["B84"].Value = "(нет модуля расширения)";                      // 3-й блок расширения
             }
-            else if (expansion_blocks.Count == 3)                   // Три блока расширения
+            else if (expansion_blocks.Count == 3)                                       // Три блока расширения
             {
-
+                if (expansion_blocks.Contains(M72E12RB))                                // Есть блок расширения с AO
+                {
+                    wh.Cells["B26"].Value = "Модуль расширения 1 - " + M72E12RB.Name;
+                    if (count_M72E12RB > 1)                                             // Два блока AO
+                    {
+                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E12RB.Name;
+                        if (count_M72E12RB == 3)                                        
+                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E12RB.Name;
+                        else if (count_M72E12RA == 1)
+                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E12RA.Name;
+                        else if (count_M72E08RA == 1)
+                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E08RA.Name;
+                        else if (count_M72E16NA == 1)
+                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E16NA.Name;
+                    }
+                    else if (count_M72E12RA > 0)                                        // Первый блок AO, второй DO + UI
+                    {
+                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E12RA.Name;
+                        if (count_M72E12RA > 1)
+                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E12RA.Name;
+                        else if (count_M72E08RA == 1)
+                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E08RA.Name;
+                        else if (count_M72E16NA == 1)
+                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E16NA.Name;
+                    }
+                    else if (count_M72E08RA > 0)                                        // Первый блок AO, второй DO 
+                    {
+                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E08RA.Name;
+                        if (count_M72E08RA > 1)
+                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E08RA.Name;
+                        else if (count_M72E16NA == 1)
+                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E16NA.Name;
+                    }
+                    else if (count_M72E16NA > 0)                                        // Первый блок AO, второй UI
+                    {
+                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E16NA.Name;
+                        if (count_M72E16NA > 1)
+                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E16NA.Name;
+                    }
+                }
+                else if (expansion_blocks.Contains(M72E12RA))                           // Есть блок расширения DO + UI
+                {
+                    wh.Cells["B26"].Value = "Модуль расширения 1 - " + M72E12RA.Name;
+                    if (count_M72E12RA > 1)                                             // Два блока DO + UI
+                    {
+                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E12RA.Name;
+                        if (count_M72E12RA == 3)
+                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E12RA.Name;
+                        else if (count_M72E08RA == 1)
+                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E08RA.Name;
+                        else if (count_M72E16NA == 1)
+                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E16NA.Name;
+                    }
+                    else if (count_M72E08RA > 0)                                        // Первый блок DO + UI, второй DO
+                    {
+                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E08RA.Name;
+                        if (count_M72E08RA > 1)
+                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E08RA.Name;
+                        else if (count_M72E16NA == 1)
+                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E16NA.Name;
+                    }
+                    else if (count_M72E16NA > 0)                                        // Первый блок DO + UI, второй UI
+                    {
+                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E16NA.Name;
+                        if (count_M72E16NA > 1)
+                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E16NA.Name;
+                    }
+                }
+                else if (expansion_blocks.Contains(M72E08RA))                           // Есть блок расширения DO
+                {
+                    wh.Cells["B26"].Value = "Модуль расширения 1 - " + M72E08RA.Name;
+                    if (count_M72E08RA > 1)                                             // Два блока DO
+                    {
+                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E08RA.Name;
+                        if (count_M72E08RA == 3)
+                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E08RA.Name;
+                        else if (count_M72E16NA == 1)
+                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E16NA.Name;
+                    }
+                    else if (count_M72E16NA > 0)
+                    {
+                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E16NA.Name;
+                        if (count_M72E16NA > 1)
+                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E16NA.Name;
+                    }
+                }
+                else if (expansion_blocks.Contains(M72E16NA))                           // Есть блок расширения UI
+                {
+                    wh.Cells["B26"].Value = "Модуль расширения 1 - " + M72E16NA.Name;
+                    if (count_M72E16NA > 1)
+                    {
+                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E16NA.Name;
+                        if (count_M72E16NA == 3)
+                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E16NA.Name;
+                    }
+                }
             }
         }
 
