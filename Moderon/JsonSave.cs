@@ -771,13 +771,151 @@ namespace Moderon
                 }  
         }
 
+        ///<summary>Заполнение серым цветом неиспользуемых входов/выходов ПЛК Mini</summary>
+        private void MiniPLC_fillGray(ExcelWorksheet wh)
+        {
+            var cells = new List<string>()
+            {
+                // UI сигналы
+                "D11", "E11", "F11", "D12", "E12", "F12", "D13", "E13", "F13", "D14", "E14", "F14",
+                // AO и DO сигналы
+                "D18", "E18", "D24", "E24", "D25", "E25" 
+            };
+
+            foreach (var cell in cells)
+            {
+                wh.Cells[cell].Style.FillPattern.PatternStyle = FillPatternStyle.Solid;
+                wh.Cells[cell].Style.FillPattern.PatternForegroundColor = System.Drawing.Color.Gray;
+            }
+        }
+
+        ///<summary>Заполнение серым цветом неиспользуемых сигналов 1-го блока M72E12RB (AO)</summary>
+        private void M72E12RB_first_fillGray(ExcelWorksheet wh)
+        {
+            var cells = new List<string>()
+            {
+                // UI сигналы
+                "D33", "E33", "F33", "D34", "E34", "F34", "D35", "E35", "F35", "D36", "E36", "F36", "D37", "E37", "F37",
+                "D38", "E38", "F38", "D39", "E39", "F39", "D40", "E40", "F40", "D41", "E41", "F41", "D42", "E42", "F42",
+                // DO сигналы
+                "D51", "E51", "D52", "E52", "D53", "E53", "D54", "E54"
+            };
+
+            foreach (var cell in cells)
+            {
+                wh.Cells[cell].Style.FillPattern.PatternStyle = FillPatternStyle.Solid;
+                wh.Cells[cell].Style.FillPattern.PatternForegroundColor = System.Drawing.Color.Gray;
+            }
+        }
+
+        ///<summary>Заполнение серым цветом неиспользуемых сигналов 2-го блока M72E12RB (AO)</summary>
+        private void M72E12RB_second_fillGray(ExcelWorksheet wh)
+        {
+            var cells = new List<string>()
+            {
+                // UI сигналы
+                "D62", "E62", "F62", "D63", "E63", "F63", "D64", "E64", "F64", "D65", "E65", "F65", "D66", "E66", "F66",
+                "D67", "E67", "F67", "D68", "E68", "F68", "D69", "E69", "F69", "D70", "E70", "F70", "D71", "E71", "F71",
+                // DO сигналы
+                "D80", "E80", "D81", "E81", "D82", "E82", "D83", "E83"
+            };
+
+            foreach (var cell in cells)
+            {
+                wh.Cells[cell].Style.FillPattern.PatternStyle = FillPatternStyle.Solid;
+                wh.Cells[cell].Style.FillPattern.PatternForegroundColor = System.Drawing.Color.Gray;
+            }
+        }
+
+        ///<summary>Заполнение серым цветом неиспользуемых сигналов 3 -го блока M72E12RB (AO)</summary>
+        private void M72E12RB_third_fillGray(ExcelWorksheet wh)
+        {
+            var cells = new List<string>()
+            {
+                // UI сигналы
+                "D62", "E62", "F62", "D63", "E63", "F63", "D64", "E64", "F64", "D65", "E65", "F65", "D66", "E66", "F66",
+                "D67", "E67", "F67", "D68", "E68", "F68", "D69", "E69", "F69", "D70", "E70", "F70", "D71", "E71", "F71",
+                // DO сигналы
+                "D80", "E80", "D81", "E81", "D82", "E82", "D83", "E83"
+            };
+
+            foreach (var cell in cells)
+            {
+                wh.Cells[cell].Style.FillPattern.PatternStyle = FillPatternStyle.Solid;
+                wh.Cells[cell].Style.FillPattern.PatternForegroundColor = System.Drawing.Color.Gray;
+            }
+        }
+
+        ///<summary>Заполнение серым цветом неиспользуемых сигналов 1-го блока M72E12RA (DO + UI)</summary>
+        private void M72E12RA_first_fillGray(ExcelWorksheet wh)
+        {
+            var cells = new List<string>()
+            {
+                // UI сигналы
+                "D33", "E33", "F33", "D34", "E34", "F34", "D35", "E35", "F35", "D36", "E36", "F36", "D37", "E37", "F37",
+                "D38", "E38", "F38", "D39", "E39", "F39", "D40", "E40", "F40", "D41", "E41", "F41", "D42", "E42", "F42",
+                // AO сигналы
+                "D44", "E44", "D45", "E45",
+                // DO сигналы
+                "D53", "E53", "D54", "E54"
+            };
+
+            foreach (var cell in cells)
+            {
+                wh.Cells[cell].Style.FillPattern.PatternStyle = FillPatternStyle.Solid;
+                wh.Cells[cell].Style.FillPattern.PatternForegroundColor = System.Drawing.Color.Gray;
+            }
+        }
+
+        ///<summary>Заполнение серым цветом неиспользуемых сигналов 1-го блока M72E08RA (DO)</summary>
+        private void M72E08RA_first_fillGray(ExcelWorksheet wh)
+        {
+            var cells = new List<string>()
+            {
+                // UI сигналы
+                "D27", "E27", "F27", "D28", "E28", "F28", "D29", "E29", "F29", "D30", "E30", "F30", "D31", "E31", "F31",
+                "D32", "E32", "F32", "D33", "E33", "F33", "D34", "E34", "F34", "D35", "E35", "F35", "D36", "E36", "F36",
+                "D37", "E37", "F37", "D38", "E38", "F38", "D39", "E39", "F39", "D40", "E40", "F40", "D41", "E41", "F41",
+                "D42", "E42", "F42",
+                // AO сигналы
+                "D44", "E44", "D45", "E45"
+            };
+
+            foreach (var cell in cells)
+            {
+                wh.Cells[cell].Style.FillPattern.PatternStyle = FillPatternStyle.Solid;
+                wh.Cells[cell].Style.FillPattern.PatternForegroundColor = System.Drawing.Color.Gray;
+            }
+        }
+
+        ///<summary>Заполнение серым цветом неиспользуемых сигналов 1-го блока M72E16NA (UI)</summary>
+        private void M72E16NA_first_fillGray(ExcelWorksheet wh)
+        {
+            var cells = new List<string>()
+            {
+                // AO сигналы
+                "D44", "E44", "D45", "E45",
+                // DO сигналы
+                "D47", "E47", "D48", "E48", "D49", "E49", "D50", "E50", "D51", "E51", "D52", "E52", "D53", "E53", "D54", "E54"
+            };
+
+            foreach (var cell in cells)
+            {
+                wh.Cells[cell].Style.FillPattern.PatternStyle = FillPatternStyle.Solid;
+                wh.Cells[cell].Style.FillPattern.PatternForegroundColor = System.Drawing.Color.Gray;
+            }
+        }
+
         ///<summary>Сохранение модели и типов блоков расширения</summary>
         private void LoadtoExl_PLC_name_blocks(ExcelWorksheet wh)
         {   // Запись для модели ПЛК
             if (plkChangeIndexLast == 0)                                                // Выбран контроллер Mini
-                wh.Cells["B3"].Value = "Программируемый контроллер - M72OD13R";
+            {
+                wh.Cells["B3"].Value = "Программируемый контроллер - M72OD13R (Mini)";
+                MiniPLC_fillGray(wh);                                                   // Заливка серым цветом неиспользуемых ячеек
+            }
             else                                                                        // Выбран контроллер Optimized
-                wh.Cells["B3"].Value = "Программируемый контроллер - M72OD20R";
+                wh.Cells["B3"].Value = "Программируемый контроллер - M72OD20R (Optimized)";
 
             // Запись по блокам расширения
             var count_M72E12RB = expansion_blocks.Where(x => x == M72E12RB).Count();    // Блок AO
@@ -795,6 +933,11 @@ namespace Moderon
                 wh.Cells["B26"].Value = "Модуль расширения 1 - " + expansion_blocks[0].Name;
                 wh.Cells["B55"].Value = "(нет модуля расширения)";                      // 2-й блок расширения
                 wh.Cells["B84"].Value = "(нет модуля расширения)";                      // 3-й блок расширения
+
+                if (expansion_blocks[0] == M72E12RB) M72E12RB_first_fillGray(wh);       // Заливка серым цветом, AO блок
+                if (expansion_blocks[0] == M72E12RA) M72E12RA_first_fillGray(wh);       // Заливка серым цветом, DO + UI блок
+                if (expansion_blocks[0] == M72E08RA) M72E08RA_first_fillGray(wh);       // Заливка серым цветом, DO блок
+                if (expansion_blocks[0] == M72E16NA) M72E16NA_first_fillGray(wh);       // Заливка серым цветом, UI блок
             } 
             else if (expansion_blocks.Count == 2)                                       // Два блока расширения
             {

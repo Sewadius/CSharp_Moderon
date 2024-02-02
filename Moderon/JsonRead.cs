@@ -12,6 +12,7 @@ namespace Moderon
         ///<summary>Нажали "Загрузить" в главном меню</summary> 
         private void LoadToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            /*
             const string
                 MESSAGE = "Загрузка сбросит текущую конфигурацию. Вы уверены?",
                 CAPTION = "Загрузка файла";
@@ -20,6 +21,7 @@ namespace Moderon
                 MessageBoxIcon.Question);
 
             if (result == DialogResult.No) return;
+            */
 
             ResetButton_Click(sender, e);                               // Первоначальный сброс перед загрузкой файла
             LoadJsonFile();                                             // Загрузка файла JSON в программу
