@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using GemBox.Spreadsheet;
 using System.Linq;
+using System.Xml.Linq;
 
 // Файл для сохранения/загрузки параметров программы в формате JSON
 
@@ -790,8 +791,10 @@ namespace Moderon
         }
 
         ///<summary>Заполнение серым цветом неиспользуемых сигналов 1-го блока M72E12RB (AO)</summary>
-        private void M72E12RB_first_fillGray(ExcelWorksheet wh)
+        private void M72E12RB_first_fillGray(ExcelWorksheet wh, string name)
         {
+            wh.Cells["B26"].Value = "Модуль расширения 1 - " + name;
+
             var cells = new List<string>()
             {
                 // UI сигналы
@@ -809,8 +812,10 @@ namespace Moderon
         }
 
         ///<summary>Заполнение серым цветом неиспользуемых сигналов 2-го блока M72E12RB (AO)</summary>
-        private void M72E12RB_second_fillGray(ExcelWorksheet wh)
+        private void M72E12RB_second_fillGray(ExcelWorksheet wh, string name)
         {
+            wh.Cells["B55"].Value = "Модуль расширения 2 - " + name;
+
             var cells = new List<string>()
             {
                 // UI сигналы
@@ -828,15 +833,17 @@ namespace Moderon
         }
 
         ///<summary>Заполнение серым цветом неиспользуемых сигналов 3 -го блока M72E12RB (AO)</summary>
-        private void M72E12RB_third_fillGray(ExcelWorksheet wh)
+        private void M72E12RB_third_fillGray(ExcelWorksheet wh, string name)
         {
+            wh.Cells["B84"].Value = "Модуль расширения 3 - " + name;
+
             var cells = new List<string>()
             {
                 // UI сигналы
-                "D62", "E62", "F62", "D63", "E63", "F63", "D64", "E64", "F64", "D65", "E65", "F65", "D66", "E66", "F66",
-                "D67", "E67", "F67", "D68", "E68", "F68", "D69", "E69", "F69", "D70", "E70", "F70", "D71", "E71", "F71",
+                "D91", "E91", "F91", "D92", "E92", "F92", "D93", "E93", "F93", "D94", "E94", "F94", "D95", "E95", "F95",
+                "D96", "E96", "F96", "D97", "E97", "F97", "D98", "E98", "F98", "D99", "E99", "F99", "D100", "E100", "F100",
                 // DO сигналы
-                "D80", "E80", "D81", "E81", "D82", "E82", "D83", "E83"
+                "D109", "E109", "D110", "E110", "D111", "E111", "D112", "E112"
             };
 
             foreach (var cell in cells)
@@ -847,8 +854,10 @@ namespace Moderon
         }
 
         ///<summary>Заполнение серым цветом неиспользуемых сигналов 1-го блока M72E12RA (DO + UI)</summary>
-        private void M72E12RA_first_fillGray(ExcelWorksheet wh)
+        private void M72E12RA_first_fillGray(ExcelWorksheet wh, string name)
         {
+            wh.Cells["B26"].Value = "Модуль расширения 1 - " + name;
+
             var cells = new List<string>()
             {
                 // UI сигналы
@@ -867,9 +876,57 @@ namespace Moderon
             }
         }
 
-        ///<summary>Заполнение серым цветом неиспользуемых сигналов 1-го блока M72E08RA (DO)</summary>
-        private void M72E08RA_first_fillGray(ExcelWorksheet wh)
+        ///<summary>Заполнение серым цветом неиспользуемых сигналов 2-го блока M72E12RA (DO + UI)</summary>
+        private void M72E12RA_second_fillGray(ExcelWorksheet wh, string name)
         {
+            wh.Cells["B55"].Value = "Модуль расширения 2 - " + name;
+
+            var cells = new List<string>()
+            {
+                // UI сигналы
+                "D62", "E62", "F62", "D63", "E63", "F63", "D64", "E64", "F64", "D65", "E65", "F65", "D66", "E66", "F66",
+                "D67", "E67", "F67", "D68", "E68", "F68", "D69", "E69", "F69", "D70", "E70", "F70", "D71", "E71", "F71",
+                // AO сигналы
+                "D73", "E73", "D74", "E74",
+                // DO сигналы
+                "D82", "E82", "D83", "E83"
+            };
+
+            foreach (var cell in cells)
+            {
+                wh.Cells[cell].Style.FillPattern.PatternStyle = FillPatternStyle.Solid;
+                wh.Cells[cell].Style.FillPattern.PatternForegroundColor = System.Drawing.Color.Gray;
+            }
+        }
+
+        ///<summary>Заполнение серым цветом неиспользуемых сигналов 3-го блока M72E12RA (DO + UI)</summary>
+        private void M72E12RA_third_fillGray(ExcelWorksheet wh, string name)
+        {
+            wh.Cells["B84"].Value = "Модуль расширения 3 - " + name;
+
+            var cells = new List<string>()
+            {
+                // UI сигналы
+                "D91", "E91", "F91", "D92", "E92", "F92", "D93", "E93", "F93", "D94", "E94", "F94", "D95", "E95", "F95",
+                "D96", "E96", "F96", "D97", "E97", "F97", "D98", "E98", "F98", "D99", "E99", "F99", "D100", "E100", "F100",
+                // AO сигналы
+                "D102", "E102", "D103", "E103",
+                // DO сигналы
+                "D111", "E111", "D112", "E112"
+            };
+
+            foreach (var cell in cells)
+            {
+                wh.Cells[cell].Style.FillPattern.PatternStyle = FillPatternStyle.Solid;
+                wh.Cells[cell].Style.FillPattern.PatternForegroundColor = System.Drawing.Color.Gray;
+            }
+        }
+
+        ///<summary>Заполнение серым цветом неиспользуемых сигналов 1-го блока M72E08RA (DO)</summary>
+        private void M72E08RA_first_fillGray(ExcelWorksheet wh, string name)
+        {
+            wh.Cells["B26"].Value = "Модуль расширения 1 - " + name;
+
             var cells = new List<string>()
             {
                 // UI сигналы
@@ -888,9 +945,57 @@ namespace Moderon
             }
         }
 
-        ///<summary>Заполнение серым цветом неиспользуемых сигналов 1-го блока M72E16NA (UI)</summary>
-        private void M72E16NA_first_fillGray(ExcelWorksheet wh)
+        ///<summary>Заполнение серым цветом неиспользуемых сигналов 2-го блока M72E08RA (DO)</summary>
+        private void M72E08RA_second_fillGray(ExcelWorksheet wh, string name)
         {
+            wh.Cells["B55"].Value = "Модуль расширения 2 - " + name;
+
+            var cells = new List<string>()
+            {
+                // UI сигналы
+                "D56", "E56", "F56", "D57", "E57", "F57", "D58", "E58", "F58", "D59", "E59", "F59", "D60", "E60", "F60",
+                "D61", "E61", "F61", "D62", "E62", "F62", "D63", "E63", "F63", "D64", "E64", "F64", "D65", "E65", "F65", 
+                "D66", "E66", "F66", "D67", "E67", "F67", "D68", "E68", "F68", "D69", "E69", "F69", "D70", "E70", "F70", 
+                "D71", "E71", "F71",
+                // AO сигналы
+                "D73", "E73", "D74", "E74"
+            };
+
+            foreach (var cell in cells)
+            {
+                wh.Cells[cell].Style.FillPattern.PatternStyle = FillPatternStyle.Solid;
+                wh.Cells[cell].Style.FillPattern.PatternForegroundColor = System.Drawing.Color.Gray;
+            }
+        }
+
+        ///<summary>Заполнение серым цветом неиспользуемых сигналов 3-го блока M72E08RA (DO)</summary>
+        private void M72E08RA_third_fillGray(ExcelWorksheet wh, string name)
+        {
+            wh.Cells["B84"].Value = "Модуль расширения 3 - " + name;
+
+            var cells = new List<string>()
+            {
+                // UI сигналы
+                "D85", "E85", "F85", "D86", "E86", "F86", "D87", "E87", "F87", "D88", "E88", "F88", "D89", "E89", "F89",
+                "D90", "E90", "F90", "D91", "E91", "F91", "D92", "E92", "F92", "D93", "E93", "F93", "D94", "E94", "F94", 
+                "D95", "E95", "F95", "D96", "E96", "F96", "D97", "E97", "F97", "D98", "E98", "F98", "D99", "E99", "F99", 
+                "D100", "E100", "F100",
+                // AO сигналы
+                "D102", "E102", "D103", "E103"
+            };
+
+            foreach (var cell in cells)
+            {
+                wh.Cells[cell].Style.FillPattern.PatternStyle = FillPatternStyle.Solid;
+                wh.Cells[cell].Style.FillPattern.PatternForegroundColor = System.Drawing.Color.Gray;
+            }
+        }
+
+        ///<summary>Заполнение серым цветом неиспользуемых сигналов 1-го блока M72E16NA (UI)</summary>
+        private void M72E16NA_first_fillGray(ExcelWorksheet wh, string name)
+        {
+            wh.Cells["B26"].Value = "Модуль расширения 1 - " + name;
+
             var cells = new List<string>()
             {
                 // AO сигналы
@@ -906,16 +1011,134 @@ namespace Moderon
             }
         }
 
+        ///<summary>Заполнение серым цветом неиспользуемых сигналов 2-го блока M72E16NA (UI)</summary>
+        private void M72E16NA_second_fillGray(ExcelWorksheet wh, string name)
+        {
+            wh.Cells["B55"].Value = "Модуль расширения 2 - " + name;
+
+            var cells = new List<string>()
+            {
+                // AO сигналы
+                "D73", "E73", "D74", "E74",
+                // DO сигналы
+                "D76", "E76", "D77", "E77", "D78", "E78", "D79", "E79", "D80", "E80", "D81", "E81", "D82", "E82", "D83", "E83"
+            };
+
+            foreach (var cell in cells)
+            {
+                wh.Cells[cell].Style.FillPattern.PatternStyle = FillPatternStyle.Solid;
+                wh.Cells[cell].Style.FillPattern.PatternForegroundColor = System.Drawing.Color.Gray;
+            }
+        }
+
+        ///<summary>Заполнение серым цветом неиспользуемых сигналов 3-го блока M72E16NA (UI)</summary>
+        private void M72E16NA_third_fillGray(ExcelWorksheet wh, string name)
+        {
+            wh.Cells["B84"].Value = "Модуль расширения 3 - " + name;
+
+            var cells = new List<string>()
+            {
+                // AO сигналы
+                "D102", "E102", "D103", "E103",
+                // DO сигналы
+                "D105", "E105", "D106", "E106", "D107", "E107", "D108", "E108", "D109", "E109", 
+                "D110", "E110", "D111", "E111", "D112", "E112"
+            };
+
+            foreach (var cell in cells)
+            {
+                wh.Cells[cell].Style.FillPattern.PatternStyle = FillPatternStyle.Solid;
+                wh.Cells[cell].Style.FillPattern.PatternForegroundColor = System.Drawing.Color.Gray;
+            }
+        }
+
+        ///<summary>Заполнение серым цветом неиспользуемых сигналов 1-го блока расширения</summary>
+        private void First_EmptyBlock_fillGray(ExcelWorksheet wh)
+        {
+            wh.Cells["B26"].Value = "(нет модуля расширения)";
+
+            var cells = new List<string>()
+            {
+                // UI сигналы, блок 1
+                "D27", "E27", "F27", "D28", "E28", "F28", "D29", "E29", "F29", "D30", "E30", "F30", "D31", "E31", "F31",
+                "D32", "E32", "F32", "D33", "E33", "F33", "D34", "E34", "F34", "D35", "E35", "F35", "D36", "E36", "F36",
+                "D37", "E37", "F37", "D38", "E38", "F38", "D39", "E39", "F39", "D40", "E40", "F40", "D41", "E41", "F41",
+                "D42", "E42", "F42",
+                // AO сигналы, блок 1
+                "D44", "E44", "D45", "E45",
+                // DO сигналы, блок 1
+                "D47", "E47", "D48", "E48", "D49", "E49", "D50", "E50", "D51", "E51", "D52", "E52", "D53", "E53", "D54", "E54"
+            };
+
+            foreach (var cell in cells)
+            {
+                wh.Cells[cell].Style.FillPattern.PatternStyle = FillPatternStyle.Solid;
+                wh.Cells[cell].Style.FillPattern.PatternForegroundColor = System.Drawing.Color.Gray;
+            }
+        }
+
+        ///<summary>Заполнение серым цветом неиспользуемых сигналов 2-го блока расширения</summary>
+        private void Second_EmptyBlock_fillGray(ExcelWorksheet wh)
+        {
+            wh.Cells["B55"].Value = "(нет модуля расширения)";
+
+            var cells = new List<string>()
+            {
+                // UI сигналы, блок 2
+                "D56", "E56", "F56", "D57", "E57", "F57", "D58", "E58", "F58", "D59", "E59", "F59", "D60", "E60", "F60",
+                "D61", "E61", "F61", "D62", "E62", "F62", "D63", "E63", "F63", "D64", "E64", "F64", "D65", "E65", "F65",
+                "D66", "E66", "F66", "D67", "E67", "F67", "D68", "E68", "F68", "D69", "E69", "F69", "D70", "E70", "F70",
+                "D71", "E71", "F71",
+                // AO сигналы, блок 2
+                "D73", "E73", "D74", "E74",
+                // DO сигналы, блок 2
+                "D76", "E76", "D77", "E77", "D78", "E78", "D79", "E79", "D80", "E80", "D81", "E81", "D82", "E82", "D83", "E83"
+            };
+
+            foreach (var cell in cells)
+            {
+                wh.Cells[cell].Style.FillPattern.PatternStyle = FillPatternStyle.Solid;
+                wh.Cells[cell].Style.FillPattern.PatternForegroundColor = System.Drawing.Color.Gray;
+            }
+        }
+
+        ///<summary>Заполнение серым цветом неиспользуемых сигналов 3-го блока расширения</summary>
+        private void Third_EmptyBlock_fillGray(ExcelWorksheet wh)
+        {
+            wh.Cells["B84"].Value = "(нет модуля расширения)";
+
+            var cells = new List<string>()
+            {
+                // UI сигналы, блок 3
+                "D85", "E85", "F85", "D86", "E86", "F86", "D87", "E87", "F87", "D88", "E88", "F88", "D89", "E89", "F89",
+                "D90", "E90", "F90", "D91", "E91", "F91", "D92", "E92", "F92", "D93", "E93", "F93", "D94", "E94", "F94",
+                "D95", "E95", "F95", "D96", "E96", "F96", "D97", "E97", "F97", "D98", "E98", "F98", "D99", "E99", "F99",
+                "D100", "E100", "F100",
+                // AO сигналы, блок 3
+                "D102", "E102", "D103", "E103",
+                // DO сигналы, блок 3
+                "D105", "E105", "D106", "E106", "D107", "E107", "D108", "E108", "D109", "E109",
+                "D110", "E110", "D111", "E111", "D112", "E112"
+            };
+
+            foreach (var cell in cells)
+            {
+                wh.Cells[cell].Style.FillPattern.PatternStyle = FillPatternStyle.Solid;
+                wh.Cells[cell].Style.FillPattern.PatternForegroundColor = System.Drawing.Color.Gray;
+            }
+        }
+
         ///<summary>Сохранение модели и типов блоков расширения</summary>
         private void LoadtoExl_PLC_name_blocks(ExcelWorksheet wh)
         {   // Запись для модели ПЛК
             if (plkChangeIndexLast == 0)                                                // Выбран контроллер Mini
             {
                 wh.Cells["B3"].Value = "Программируемый контроллер - M72OD13R (Mini)";
-                MiniPLC_fillGray(wh);                                                   // Заливка серым цветом неиспользуемых ячеек
+                MiniPLC_fillGray(wh);                                                   // Заливка серым цветом неиспользуемых ячеек ПЛК Mini
             }
-            else                                                                        // Выбран контроллер Optimized
-                wh.Cells["B3"].Value = "Программируемый контроллер - M72OD20R (Optimized)";
+            else if (plkChangeIndexLast == 1)                                           // Выбран контроллер Optimized
+                wh.Cells["B3"].Value = 
+                    "Программируемый контроллер - M72OD20R (Optimized)";
 
             // Запись по блокам расширения
             var count_M72E12RB = expansion_blocks.Where(x => x == M72E12RB).Count();    // Блок AO
@@ -924,157 +1147,178 @@ namespace Moderon
             var count_M72E16NA = expansion_blocks.Where(x => x == M72E16NA).Count();    // Блок UI
 
             if (expansion_blocks.Count == 0) {                                          // Нет блоков расширения
-                wh.Cells["B26"].Value = "(нет модуля расширения)";                      // 1-й блок расширения
-                wh.Cells["B55"].Value = "(нет модуля расширения)";                      // 2-й блок расширения
-                wh.Cells["B84"].Value = "(нет модуля расширения)";                      // 3-й блок расширения
+                First_EmptyBlock_fillGray(wh);                                          // 1-й блок расширения
+                Second_EmptyBlock_fillGray(wh);                                         // 2-й блок расширения
+                Third_EmptyBlock_fillGray(wh);                                          // 3-й блок расширения
             }
             else if (expansion_blocks.Count == 1)                                       // Один блок расширения
             {
-                wh.Cells["B26"].Value = "Модуль расширения 1 - " + expansion_blocks[0].Name;
-                wh.Cells["B55"].Value = "(нет модуля расширения)";                      // 2-й блок расширения
-                wh.Cells["B84"].Value = "(нет модуля расширения)";                      // 3-й блок расширения
+                string name = expansion_blocks[0].Name;                                 // Название блока расширения 1
+                Second_EmptyBlock_fillGray(wh);                                         // 2-й блок расширения
+                Third_EmptyBlock_fillGray(wh);                                          // 3-й блок расширения
 
-                if (expansion_blocks[0] == M72E12RB) M72E12RB_first_fillGray(wh);       // Заливка серым цветом, AO блок
-                if (expansion_blocks[0] == M72E12RA) M72E12RA_first_fillGray(wh);       // Заливка серым цветом, DO + UI блок
-                if (expansion_blocks[0] == M72E08RA) M72E08RA_first_fillGray(wh);       // Заливка серым цветом, DO блок
-                if (expansion_blocks[0] == M72E16NA) M72E16NA_first_fillGray(wh);       // Заливка серым цветом, UI блок
+                if (expansion_blocks[0] == M72E12RB)                                    // Заливка серым цветом, AO блок
+                    M72E12RB_first_fillGray(wh, name);       
+                if (expansion_blocks[0] == M72E12RA)                                    // Заливка серым цветом, DO + UI блок
+                    M72E12RA_first_fillGray(wh, name);       
+                if (expansion_blocks[0] == M72E08RA)                                    // Заливка серым цветом, DO блок
+                    M72E08RA_first_fillGray(wh, name);       
+                if (expansion_blocks[0] == M72E16NA)                                    // Заливка серым цветом, UI блок
+                    M72E16NA_first_fillGray(wh, name);       
             } 
             else if (expansion_blocks.Count == 2)                                       // Два блока расширения
             {
                 if (expansion_blocks.Contains(M72E12RB))                                // Есть блок расширения с AO
-                {
-                    wh.Cells["B26"].Value = "Модуль расширения 1 - " + M72E12RB.Name;
-                    if (count_M72E12RB == 2)
-                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E12RB.Name;
-                    else if (count_M72E12RA == 1)
-                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E12RA.Name;
-                    else if (count_M72E08RA == 1)
-                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E08RA.Name;
-                    else if (count_M72E16NA == 1)
-                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E16NA.Name;
+                {  
+                    M72E12RB_first_fillGray(wh, M72E12RB.Name);                         // Заливка серым цветом, AO блок 1
+
+                    if (count_M72E12RB == 2)                                            // Второй блок AO
+                        M72E12RB_second_fillGray(wh, M72E12RB.Name);
+                    else if (count_M72E12RA == 1)                                       // Второй блок DO + UI
+                        M72E12RA_second_fillGray(wh, M72E12RA.Name);
+                    else if (count_M72E08RA == 1)                                       // Второй блок DO
+                        M72E08RA_second_fillGray(wh, M72E08RA.Name);
+                    else if (count_M72E16NA == 1)                                       // Второй блок UI
+                        M72E16NA_second_fillGray(wh, M72E16NA.Name);
                 }
                 else if (expansion_blocks.Contains(M72E12RA))                           // Есть блок расширения DO + UI
                 {
-                    wh.Cells["B26"].Value = "Модуль расширения 1 - " + M72E12RA.Name;
-                    if (count_M72E12RA == 2)
-                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E12RA.Name;
-                    else if (count_M72E08RA == 1)
-                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E08RA.Name;
-                    else if (count_M72E16NA == 1)
-                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E16NA.Name;
+                    M72E12RA_first_fillGray(wh, M72E12RA.Name);                         // Заливка серым цветом, DO + UI блок 1
+
+                    if (count_M72E12RA == 2)                                            // Второй блок DO + UI
+                        M72E12RA_second_fillGray(wh, M72E12RA.Name);
+                    else if (count_M72E08RA == 1)                                       // Второй блок DO
+                        M72E08RA_second_fillGray(wh, M72E08RA.Name);
+                    else if (count_M72E16NA == 1)                                       // Второй блок UI
+                        M72E16NA_second_fillGray(wh, M72E16NA.Name);
                 }
                 else if (expansion_blocks.Contains(M72E08RA))                           // Есть блок расширения DO
                 {
-                    wh.Cells["B26"].Value = "Модуль расширения 1 - " + M72E08RA.Name;
-                    if (count_M72E08RA == 2)
-                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E08RA.Name;
-                    else if (count_M72E16NA == 1)
-                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E16NA.Name;
+                    M72E08RA_first_fillGray(wh, M72E08RA.Name);                         // Заливка серым цветом, DO блок 1
+
+                    if (count_M72E08RA == 2)                                            // Второй блок DO
+                        M72E08RA_second_fillGray(wh, M72E08RA.Name);
+                    else if (count_M72E16NA == 1)                                       // Второй блок UI
+                        M72E16NA_second_fillGray(wh, M72E16NA.Name);        
                 }
                 else if (expansion_blocks.Contains(M72E16NA))
                 {
-                    wh.Cells["B26"].Value = "Модуль расширения 1 - " + M72E16NA.Name;
-                    if (count_M72E16NA == 2)
-                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E16NA.Name;
+                    M72E16NA_first_fillGray(wh, M72E16NA.Name);                         // Заливка серым цветом, UI блок 1
+
+                    if (count_M72E16NA == 2)                                            // Второй блок UI
+                        M72E16NA_second_fillGray(wh, M72E16NA.Name);
                 }
-                wh.Cells["B84"].Value = "(нет модуля расширения)";                      // 3-й блок расширения
+
+                Third_EmptyBlock_fillGray(wh);                                          // 3-й блок расширения
             }
             else if (expansion_blocks.Count == 3)                                       // Три блока расширения
             {
                 if (expansion_blocks.Contains(M72E12RB))                                // Есть блок расширения с AO
                 {
-                    wh.Cells["B26"].Value = "Модуль расширения 1 - " + M72E12RB.Name;
+                    M72E12RB_first_fillGray(wh, M72E12RB.Name);                         // Заливка серым цветом, AO блок 1
+
                     if (count_M72E12RB > 1)                                             // Два блока AO
                     {
-                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E12RB.Name;
-                        if (count_M72E12RB == 3)                                        
-                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E12RB.Name;
+                        M72E12RB_second_fillGray(wh, M72E12RB.Name);                    // Второй блок AO
+
+                        if (count_M72E12RB == 3)
+                            M72E12RB_third_fillGray(wh, M72E12RB.Name);                 // Третий блок AO
                         else if (count_M72E12RA == 1)
-                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E12RA.Name;
+                            M72E12RA_third_fillGray(wh, M72E12RA.Name);                 // Третий блок DO + UI
                         else if (count_M72E08RA == 1)
-                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E08RA.Name;
+                            M72E08RA_third_fillGray(wh, M72E08RA.Name);                 // Третий блок DO
                         else if (count_M72E16NA == 1)
-                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E16NA.Name;
+                            M72E16NA_third_fillGray(wh, M72E16NA.Name);                 // Третий блок UI
                     }
                     else if (count_M72E12RA > 0)                                        // Первый блок AO, второй DO + UI
                     {
-                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E12RA.Name;
+                        M72E12RA_second_fillGray(wh, M72E12RA.Name);                    // Второй блок DO + UI
+
                         if (count_M72E12RA > 1)
-                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E12RA.Name;
+                            M72E12RA_third_fillGray(wh, M72E12RA.Name);                 // Третий блок DO + UI
                         else if (count_M72E08RA == 1)
-                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E08RA.Name;
+                            M72E08RA_third_fillGray(wh, M72E08RA.Name);                 // Третий блок DO
                         else if (count_M72E16NA == 1)
-                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E16NA.Name;
+                            M72E16NA_third_fillGray(wh, M72E16NA.Name);                 // Третий блок UI
                     }
                     else if (count_M72E08RA > 0)                                        // Первый блок AO, второй DO 
                     {
-                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E08RA.Name;
+                        M72E08RA_second_fillGray(wh, M72E08RA.Name);                    // Второй блок DO
+
                         if (count_M72E08RA > 1)
-                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E08RA.Name;
+                            M72E08RA_third_fillGray(wh, M72E08RA.Name);                 // Третий блок DO
                         else if (count_M72E16NA == 1)
-                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E16NA.Name;
+                            M72E16NA_third_fillGray(wh, M72E16NA.Name);                 // Третий блок UI
                     }
                     else if (count_M72E16NA > 0)                                        // Первый блок AO, второй UI
                     {
-                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E16NA.Name;
+                        M72E16NA_second_fillGray(wh, M72E16NA.Name);                    // Второй блок UI
+
                         if (count_M72E16NA > 1)
-                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E16NA.Name;
+                            M72E16NA_third_fillGray(wh, M72E16NA.Name);                 // Третий блок UI
                     }
                 }
                 else if (expansion_blocks.Contains(M72E12RA))                           // Есть блок расширения DO + UI
                 {
-                    wh.Cells["B26"].Value = "Модуль расширения 1 - " + M72E12RA.Name;
+                    M72E12RA_first_fillGray(wh, M72E12RA.Name);                         // Заливка серым цветом, DO + UI блок 1
+                    
                     if (count_M72E12RA > 1)                                             // Два блока DO + UI
                     {
-                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E12RA.Name;
+                        M72E12RA_second_fillGray(wh, M72E12RA.Name);                    // Второй блок DO + UI
                         if (count_M72E12RA == 3)
-                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E12RA.Name;
+                            M72E12RA_third_fillGray(wh, M72E12RA.Name);                 // Третий блок DO + UI
                         else if (count_M72E08RA == 1)
-                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E08RA.Name;
+                            M72E08RA_third_fillGray(wh, M72E08RA.Name);                 // Третий блок DO
                         else if (count_M72E16NA == 1)
-                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E16NA.Name;
+                            M72E16NA_third_fillGray(wh, M72E16NA.Name);                 // Третией блок UI
                     }
                     else if (count_M72E08RA > 0)                                        // Первый блок DO + UI, второй DO
                     {
-                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E08RA.Name;
+                        M72E08RA_second_fillGray(wh, M72E08RA.Name);                    // Второй блок DO
+
                         if (count_M72E08RA > 1)
-                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E08RA.Name;
+                            M72E08RA_third_fillGray(wh, M72E08RA.Name);                 // Третий блок DO
                         else if (count_M72E16NA == 1)
-                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E16NA.Name;
+                            M72E16NA_third_fillGray(wh, M72E16NA.Name);                 // Третий блок UI
                     }
                     else if (count_M72E16NA > 0)                                        // Первый блок DO + UI, второй UI
-                    {
-                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E16NA.Name;
+                    {   
+                        M72E16NA_second_fillGray(wh, M72E16NA.Name);                    // Второй блок UI
+
                         if (count_M72E16NA > 1)
-                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E16NA.Name;
+                            M72E16NA_third_fillGray(wh, M72E16NA.Name);                 // Третий блок UI
                     }
                 }
                 else if (expansion_blocks.Contains(M72E08RA))                           // Есть блок расширения DO
                 {
-                    wh.Cells["B26"].Value = "Модуль расширения 1 - " + M72E08RA.Name;
+                    M72E08RA_first_fillGray(wh, M72E08RA.Name);                         // Заливка серым цветом, DO блок 1
+
                     if (count_M72E08RA > 1)                                             // Два блока DO
                     {
-                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E08RA.Name;
+                        M72E08RA_second_fillGray(wh, M72E08RA.Name);                    // Второй блок DO
+
                         if (count_M72E08RA == 3)
-                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E08RA.Name;
+                            M72E08RA_third_fillGray(wh, M72E08RA.Name);                 // Третий блок DO
                         else if (count_M72E16NA == 1)
-                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E16NA.Name;
+                            M72E16NA_third_fillGray(wh, M72E16NA.Name);                 // Третий блок UI
                     }
                     else if (count_M72E16NA > 0)
                     {
-                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E16NA.Name;
+                        M72E16NA_second_fillGray(wh, M72E16NA.Name);                    // Второй блок UI
+
                         if (count_M72E16NA > 1)
-                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E16NA.Name;
+                            M72E16NA_third_fillGray(wh, M72E16NA.Name);                 // Третий блок UI
                     }
                 }
                 else if (expansion_blocks.Contains(M72E16NA))                           // Есть блок расширения UI
                 {
-                    wh.Cells["B26"].Value = "Модуль расширения 1 - " + M72E16NA.Name;
+                    M72E16NA_first_fillGray(wh, M72E16NA.Name);                         // Первый блок UI
+
                     if (count_M72E16NA > 1)
                     {
-                        wh.Cells["B55"].Value = "Модуль расширения 2 - " + M72E16NA.Name;
+                        M72E16NA_second_fillGray(wh, M72E16NA.Name);                    // Второй блок UI
                         if (count_M72E16NA == 3)
-                            wh.Cells["B84"].Value = "Модуль расширения 3 - " + M72E16NA.Name;
+                            M72E16NA_third_fillGray(wh, M72E16NA.Name);                 // Третий блок UI
                     }
                 }
             }
