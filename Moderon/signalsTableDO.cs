@@ -126,47 +126,51 @@ namespace Moderon
         private void Form1_InitSignals(object sender, EventArgs e)
         {
             SetComboInitial_signals(); // Начальная установка для comboBox
+
+            ushort start_signal_code = 1;       // UI сигнал пуск/стоп
+            ushort fanPr_1_start_code = 8;      // DO сигнал пуск/стоп приточного вентилятора 1
+
             // Добавление начальных DI
-            // list_di.Add(new Di("Переключатель \"Стоп/Пуск\"", 3));
-            list_ui.Add(new Ui("Переключатель \"Стоп/Пуск\"", 3, DI));
+            list_ui.Add(new Ui("Переключатель \"Стоп/Пуск\"", start_signal_code, DI));
             // Добавление начальных DO
-            list_do.Add(new Do("Сигнал \"Пуск/Стоп\" приточного вентилятора 1", 8));
+            list_do.Add(new Do("Сигнал \"Пуск/Стоп\" приточного вентилятора 1", fanPr_1_start_code));
             //list_do.Add(new Do("Сигнал \"Работа\"", 1));
             //list_do.Add(new Do("Сигнал \"Авария\"", 3));
             // Выбор сигналов "Работа" и "Авария" по умолчанию после сброса
             ignoreEvents = true;
             //sigWorkCheck.Checked = true;
             //sigAlarmCheck.Checked = true;
+
             // Выбор сигналов "Пуск/Стоп" для вентиляторов по умолчанию после сброса
             prFanStStopCheck.Checked = true;
             outFanStStopCheck.Checked = true;
             ignoreEvents = false;
-            // Добавление к выбору начальных сигналов
             
-            /*// DI сигналы
-            DI1_combo.Items.Add(list_di.Find(x => x.Code == 3).Name);       // Пуск/Старт
-            list_di.Find(x => x.Code == 3).Select();
-            DI1_combo.SelectedIndex = 1; // Выбор сигнала
-            if (showCode) DI1_lab.Text = 3.ToString(); */
+            // Добавление к выбору начальных сигналов
+            // UI сигналы, сигнал переключатель пуск/стоп
+            
+            Ui start_stop = list_ui.Find(x => x.Code == start_signal_code);
+            string start_stop_name = start_stop.Name; 
 
-
-            // UI сигналы
-            UI1_combo.Items.Add(list_ui.Find(x => x.Code == 3).Name);       // Пуск/Старт
-            list_ui.Find(x => x.Code == 3).Select();
-            UI1_combo.SelectedIndex = 1;                                    // Выбор сигнала
-            if (showCode) UI1_lab.Text = (1000 + 3).ToString();
+            UI1_combo.Items.Add(start_stop_name);                                   // Пуск/Старт
+            start_stop.Select();
+            UI1_combo.SelectedIndex = 1;                                            // Выбор сигнала
+            if (showCode) UI1_lab.Text = (1000 + start_signal_code).ToString();
 
             // DO сигналы
-            DO1_combo.Items.Add(list_do.Find(x => x.Code == 8).Name);       // Сигнал "Пуск/Стоп" приточного вентилятора 1
-            list_do.Find(x => x.Code == 8).Select();
-            DO1_combo.SelectedIndex = 1; // Выбор сигнала
-            if (showCode) DO1_lab.Text = 8.ToString();
+            Do start_fan = list_do.Find(x => x.Code == fanPr_1_start_code);
+            string start_fan_name = start_fan.Name;
 
-            /*DO2_combo.Items.Add(list_do.Find(x => x.Code == 1).Name);     // Сигнал "Работа"
+            DO1_combo.Items.Add(start_fan_name);                                    // Сигнал "Пуск/Стоп" приточного вентилятора 1
+            start_fan.Select();
+            DO1_combo.SelectedIndex = 1; // Выбор сигнала
+            if (showCode) DO1_lab.Text = fanPr_1_start_code.ToString();
+
+            /*DO2_combo.Items.Add(list_do.Find(x => x.Code == 1).Name);             // Сигнал "Работа"
             DO2_combo.SelectedIndex = 1;
             if (showCode) DO2_lab.Text = 1.ToString();
             list_do.Find(x => x.Code == 1).Select();
-            DO3_combo.Items.Add(list_do.Find(x => x.Code == 3).Name);       // Сигнал "Авария"
+            DO3_combo.Items.Add(list_do.Find(x => x.Code == 3).Name);               // Сигнал "Авария"
             DO3_combo.SelectedIndex = 1;
             if (showCode) DO3_lab.Text = 3.ToString();
             list_do.Find(x => x.Code == 3).Select(); */
@@ -1353,7 +1357,7 @@ namespace Moderon
         }
 
         ///<summary>Выбрали насос гликолевого рекуператора</summary>
-        private void PumpGlicRecCheck_signalsCheckedChanged(object sender, EventArgs e)
+        private void PumpGlicRecCheck_signalsDOCheckedChanged(object sender, EventArgs e)
         {
             if (ignoreEvents) return;
             

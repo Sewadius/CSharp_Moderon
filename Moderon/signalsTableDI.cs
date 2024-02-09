@@ -805,10 +805,44 @@ namespace Moderon
             }
         }
 
+        ///<summary>Выбрали подтверждение работы насоса гликолевого рекуператора</summary>
+        private void PumpGlikConfCheck_signalsDICheckedChanged(object sender, EventArgs e)
+        {
+            ushort code_1 = 95;
+
+            if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)                              // ПВ-система, выбран рекуператор
+            {
+                if (recupTypeCombo.SelectedIndex == 2)                                              // Гликолевый рекуператор
+                {
+                    if (pumpGlikConfCheck.Checked)
+                        CheckAddUIToList("KPI насоса гликолевого рекуператора", code_1, DI);
+                    else 
+                        SubFromCombosUI(code_1);
+                }
+            }
+        }
+
+        ///<summary>Выбрали защиту по току насоса гликолевого рекуператора</summary>
+        private void PumpGlikCurProtect_signalsDICheckedChanged(object sender, EventArgs e)
+        {
+            ushort code_1 = 94;
+
+            if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)                              // ПВ-система, выбран рекуператор
+            {
+                if (recupTypeCombo.SelectedIndex == 2)                                              // Гликолевый рекуператор
+                {
+                    if (pumpGlikCurProtect.Checked)
+                        CheckAddUIToList("Защита по току насоса гликолевого рекуператора", code_1, DI);
+                    else 
+                        SubFromCombosUI(code_1);
+                }
+            }
+        }
+
         ///<summary>Выбрали сигнал переключателя "Стоп/Пуск"</summary>
         private void StopStartCheck_CheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 3;                                                                      // Переключатель "Стоп/Пуск"
+            ushort code_1 = 1;                                                                      // Переключатель "Стоп/Пуск"
 
             if (stopStartCheck.Checked)                                                             // Выбрали сигнал для переключателя
                 CheckAddUIToList("Переключатель \"Стоп/Пуск\"", code_1, DI);

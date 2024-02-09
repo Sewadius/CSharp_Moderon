@@ -176,6 +176,7 @@ namespace Moderon
             var elements = new List<ComboBox>()
             {
                 comboSysType, comboPlkType, filterPrCombo, filterOutCombo, prFanPowCombo, prFanControlCombo,
+                prFanFcTypeCombo, outFanFcTypeCombo,
                 outFanPowCombo, outFanControlCombo, prDampPowCombo, outDampPowCombo, heatTypeCombo,
                 powPumpCombo, elHeatStagesCombo, thermSwitchCombo, coolTypeCombo, frCoolStagesCombo,
                 powWatCoolCombo, humidTypeCombo, recircPowCombo, recupTypeCombo, rotorPowCombo,
@@ -503,6 +504,29 @@ namespace Moderon
             RecupCheck_signalsAICheckedChanged(this, e);    // Сигналы AI ПЛК
         }
 
+        ///<summary>Выбрали насос гликолевого рекуператора</summary>
+        private void PumpGlicRecCheck_checkedChanged(object sender, EventArgs e)
+        {
+            if (recupCheck.Checked && recupTypeCombo.SelectedIndex == 2)        // Выбран гликолевый рекуператор
+            {
+                if (pumpGlicRecCheck.Checked)                                   // Выбран насос гликолевого рекуператора
+                {
+                    pumpGlikConfCheck.Enabled = true;                           // Разблокировка элементов
+                    pumpGlikCurProtect.Enabled = true;
+                } 
+                else                                                            // Отмена выбора насоса гликолевого рекуператора
+                {
+                    pumpGlikConfCheck.Checked = false;                          // Блокировка и снятие выбора элементов
+                    pumpGlikCurProtect.Checked = false;
+                    pumpGlikConfCheck.Enabled = false;
+                    pumpGlikCurProtect.Enabled = false;
+                }
+            }
+
+            if (ignoreEvents) return;
+            PumpGlicRecCheck_signalsDOCheckedChanged(this, e);                  // Сигналы DO ПЛК
+        }
+
         ///<summary>Нажали на кнопку "Сброс"</summary>
         private void ResetButton_Click(object sender, EventArgs e)
         {
@@ -670,10 +694,17 @@ namespace Moderon
         /// <summary>Сброс настроек для рекуператора</summary>
         private void ResetRecupOpitons()
         {
+            // Защита рекуператора
             recDefTempCheck.Checked = false;
             recDefPsCheck.Checked = false;
+            // Роторный рекуператор
             powRotRecBox.Text = "0,18";
+            // Гликолевый рекуператор
             pumpGlicRecCheck.Checked = false;
+            pumpGlikConfCheck.Checked = false;
+            pumpGlikCurProtect.Checked = false;
+            pumpGlikConfCheck.Enabled = false;
+            pumpGlikCurProtect.Enabled = false;
         }
 
         /// <summary>Сброс настроек для датчиков</summary>
@@ -818,6 +849,7 @@ namespace Moderon
             if (coolTypeCombo.SelectedIndex == 1)                                   // Водяной охладитель
             {
                 coolTypeComboIndex = 1;
+                //frCoolStagesCombo.SelectedIndex = 0;                                // Выбор 1 ступени фреонового охладителя до смены типа
                 frCoolPanel.Hide(); watCoolPanel.Show();
                 coolPicture.Image = Properties.Resources.waterCooler;
                 watCoolPanel.Location = MENU_POSITION;
@@ -1000,7 +1032,7 @@ namespace Moderon
             // Выбран доп.нагрев + фреон + осушение ИЛИ увлажнитель
             bool
                 is_addHeat = addHeatCheck.Checked,                                              // Дополнительный нагрев
-                is_FreonCooler = coolerCheck.Checked && coolTypeCombo.SelectedIndex == 0,       // Фреоновых охладитель
+                is_FreonCooler = coolerCheck.Checked && coolTypeCombo.SelectedIndex == 0,       // Фреоновый охладитель
                 is_dehumidMode = dehumModeCheck.Checked,                                        // Режим осушения
                 is_humid = humidCheck.Checked;                                                  // Увлажнитель
 
@@ -1022,6 +1054,7 @@ namespace Moderon
             if (prFanFC_check.Checked)                              // Выбрали ПЧ приточного вентилятора
             {
                 prFanControlCombo.Enabled = true;                   // Разблокировка типа управления ПЧ
+
                 if (prFanControlCombo.SelectedIndex == 0)           // Внешние контакты 
                 {
                     prFanAlarmCheck.Enabled = true;                 // Разблокировка сигнала аварии ПЧ
@@ -1029,12 +1062,17 @@ namespace Moderon
                     // Выбор сигнала аварии ПЧ
                     if (!prFanAlarmCheck.Checked) prFanAlarmCheck.Checked = true;
                 }
+                else if (prFanControlCombo.SelectedIndex == 1)      // Modbus
+                {
+                    prFanFcTypeCombo.Enabled = true;                // Разблокировка выбора типа ПЧ
+                }
             }  
             else                                                    // Отмена выбора ПЧ приточного вентилятора
             {
                 prFanControlCombo.Enabled = false;                  // Блокировка типа управления ПЧ
                 prFanSpeedCheck.Enabled = false;                    // Блокировка выбора скорости 0-10 В
                 prFanAlarmCheck.Enabled = false;                    // Блокировка выбора сигнала аварии ПЧ
+                prFanFcTypeCombo.Enabled = false;                   // Блокировка выбора типа ПЧ
                 // Отмена сигнала скорости 0-10 В
                 if (prFanSpeedCheck.Checked) prFanSpeedCheck.Checked = false;
                 // Отмена выбора сигнала аварии ПЧ
@@ -1081,12 +1119,17 @@ namespace Moderon
                     // Выбор сигнала аварии ПЧ
                     if (!outFanAlarmCheck.Checked) outFanAlarmCheck.Checked = true;
                 }
+                else if (outFanControlCombo.SelectedIndex == 1) // Modbus
+                {
+                    outFanFcTypeCombo.Enabled = true;           // Разблокировка выбора типа ПЧ
+                }
             } 
             else                                                // Отмена выбора ПЧ вытяжного вентилятора
             {
                 outFanControlCombo.Enabled = false;             // Блокировка типа управления ПЧ
                 outFanSpeedCheck.Enabled = false;               // Блокировка выбора скорости 0-10 В
                 outFanAlarmCheck.Enabled = false;               // Блокировка сигнала аварии ПЧ
+                outFanFcTypeCombo.Enabled = false;              // Блокировка выбора типа ПЧ
                 // Отмена сигнала скорости 0-10 В
                 if (outFanSpeedCheck.Checked) outFanSpeedCheck.Checked = false;
                 // Отмена сигнала аварии ПЧ

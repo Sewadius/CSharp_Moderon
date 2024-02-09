@@ -59,6 +59,8 @@
             this.label42 = new System.Windows.Forms.Label();
             this.fanPage = new System.Windows.Forms.TabPage();
             this.outFanPanel = new System.Windows.Forms.Panel();
+            this.outFanFcTypeCombo = new System.Windows.Forms.ComboBox();
+            this.label63 = new System.Windows.Forms.Label();
             this.outDampConfirmFanCheck = new System.Windows.Forms.CheckBox();
             this.outDampFanCheck = new System.Windows.Forms.CheckBox();
             this.outFanSpeedCheck = new System.Windows.Forms.CheckBox();
@@ -82,6 +84,8 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.prFanPanel = new System.Windows.Forms.Panel();
+            this.prFanFcTypeCombo = new System.Windows.Forms.ComboBox();
+            this.label62 = new System.Windows.Forms.Label();
             this.prDampConfirmFanCheck = new System.Windows.Forms.CheckBox();
             this.prDampFanCheck = new System.Windows.Forms.CheckBox();
             this.prFanStStopCheck = new System.Windows.Forms.CheckBox();
@@ -238,6 +242,8 @@
             this.label48 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.glikRecupPanel = new System.Windows.Forms.Panel();
+            this.pumpGlikCurProtect = new System.Windows.Forms.CheckBox();
+            this.pumpGlikConfCheck = new System.Windows.Forms.CheckBox();
             this.pumpGlicRecCheck = new System.Windows.Forms.CheckBox();
             this.analogGlikRecCheck = new System.Windows.Forms.CheckBox();
             this.label50 = new System.Windows.Forms.Label();
@@ -902,7 +908,7 @@
             this.mainPage.Location = new System.Drawing.Point(15, 75);
             this.mainPage.Name = "mainPage";
             this.mainPage.SelectedIndex = 0;
-            this.mainPage.Size = new System.Drawing.Size(750, 67);
+            this.mainPage.Size = new System.Drawing.Size(750, 723);
             this.mainPage.TabIndex = 1;
             // 
             // sensorsPage
@@ -911,7 +917,7 @@
             this.sensorsPage.Controls.Add(this.sensorsPanel);
             this.sensorsPage.Location = new System.Drawing.Point(4, 22);
             this.sensorsPage.Name = "sensorsPage";
-            this.sensorsPage.Size = new System.Drawing.Size(742, 41);
+            this.sensorsPage.Size = new System.Drawing.Size(742, 697);
             this.sensorsPage.TabIndex = 9;
             this.sensorsPage.Text = "ДАТЧИКИ/СИГНАЛЫ";
             // 
@@ -1158,12 +1164,14 @@
             this.fanPage.Location = new System.Drawing.Point(4, 22);
             this.fanPage.Name = "fanPage";
             this.fanPage.Padding = new System.Windows.Forms.Padding(3);
-            this.fanPage.Size = new System.Drawing.Size(742, 41);
+            this.fanPage.Size = new System.Drawing.Size(742, 697);
             this.fanPage.TabIndex = 0;
             this.fanPage.Text = "ВЕНТИЛЯТОР";
             // 
             // outFanPanel
             // 
+            this.outFanPanel.Controls.Add(this.outFanFcTypeCombo);
+            this.outFanPanel.Controls.Add(this.label63);
             this.outFanPanel.Controls.Add(this.outDampConfirmFanCheck);
             this.outFanPanel.Controls.Add(this.outDampFanCheck);
             this.outFanPanel.Controls.Add(this.outFanSpeedCheck);
@@ -1191,6 +1199,35 @@
             this.outFanPanel.Size = new System.Drawing.Size(717, 486);
             this.outFanPanel.TabIndex = 15;
             this.outFanPanel.Visible = false;
+            // 
+            // outFanFcTypeCombo
+            // 
+            this.outFanFcTypeCombo.BackColor = System.Drawing.Color.DarkGreen;
+            this.outFanFcTypeCombo.DisplayMember = "Внешние контакты";
+            this.outFanFcTypeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.outFanFcTypeCombo.Enabled = false;
+            this.outFanFcTypeCombo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.outFanFcTypeCombo.ForeColor = System.Drawing.Color.White;
+            this.outFanFcTypeCombo.FormattingEnabled = true;
+            this.outFanFcTypeCombo.Items.AddRange(new object[] {
+            "Veda VF-51 / VF-101",
+            "Systeme Electric STV600"});
+            this.outFanFcTypeCombo.Location = new System.Drawing.Point(109, 330);
+            this.outFanFcTypeCombo.Name = "outFanFcTypeCombo";
+            this.outFanFcTypeCombo.Size = new System.Drawing.Size(212, 21);
+            this.outFanFcTypeCombo.TabIndex = 54;
+            this.outFanFcTypeCombo.SelectedIndexChanged += new System.EventHandler(this.OutFanFcTypeCombo_cmdSelectedIndexChanged);
+            // 
+            // label63
+            // 
+            this.label63.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label63.AutoSize = true;
+            this.label63.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label63.Location = new System.Drawing.Point(15, 334);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(80, 16);
+            this.label63.TabIndex = 53;
+            this.label63.Text = "Модель ПЧ";
             // 
             // outDampConfirmFanCheck
             // 
@@ -1223,7 +1260,7 @@
             this.outFanSpeedCheck.AutoSize = true;
             this.outFanSpeedCheck.Enabled = false;
             this.outFanSpeedCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.outFanSpeedCheck.Location = new System.Drawing.Point(15, 414);
+            this.outFanSpeedCheck.Location = new System.Drawing.Point(15, 454);
             this.outFanSpeedCheck.Name = "outFanSpeedCheck";
             this.outFanSpeedCheck.Size = new System.Drawing.Size(131, 18);
             this.outFanSpeedCheck.TabIndex = 50;
@@ -1238,7 +1275,7 @@
             this.outFanStStopCheck.CheckState = System.Windows.Forms.CheckState.Checked;
             this.outFanStStopCheck.Enabled = false;
             this.outFanStStopCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.outFanStStopCheck.Location = new System.Drawing.Point(15, 334);
+            this.outFanStStopCheck.Location = new System.Drawing.Point(15, 374);
             this.outFanStStopCheck.Name = "outFanStStopCheck";
             this.outFanStStopCheck.Size = new System.Drawing.Size(154, 18);
             this.outFanStStopCheck.TabIndex = 49;
@@ -1251,7 +1288,7 @@
             this.outFanAlarmCheck.AutoSize = true;
             this.outFanAlarmCheck.Enabled = false;
             this.outFanAlarmCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.outFanAlarmCheck.Location = new System.Drawing.Point(15, 374);
+            this.outFanAlarmCheck.Location = new System.Drawing.Point(15, 414);
             this.outFanAlarmCheck.Name = "outFanAlarmCheck";
             this.outFanAlarmCheck.Size = new System.Drawing.Size(149, 18);
             this.outFanAlarmCheck.TabIndex = 48;
@@ -1465,6 +1502,8 @@
             // 
             // prFanPanel
             // 
+            this.prFanPanel.Controls.Add(this.prFanFcTypeCombo);
+            this.prFanPanel.Controls.Add(this.label62);
             this.prFanPanel.Controls.Add(this.prDampConfirmFanCheck);
             this.prFanPanel.Controls.Add(this.prDampFanCheck);
             this.prFanPanel.Controls.Add(this.prFanStStopCheck);
@@ -1491,6 +1530,35 @@
             this.prFanPanel.Name = "prFanPanel";
             this.prFanPanel.Size = new System.Drawing.Size(717, 486);
             this.prFanPanel.TabIndex = 1;
+            // 
+            // prFanFcTypeCombo
+            // 
+            this.prFanFcTypeCombo.BackColor = System.Drawing.Color.DarkGreen;
+            this.prFanFcTypeCombo.DisplayMember = "Внешние контакты";
+            this.prFanFcTypeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.prFanFcTypeCombo.Enabled = false;
+            this.prFanFcTypeCombo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.prFanFcTypeCombo.ForeColor = System.Drawing.Color.White;
+            this.prFanFcTypeCombo.FormattingEnabled = true;
+            this.prFanFcTypeCombo.Items.AddRange(new object[] {
+            "Veda VF-51 / VF-101",
+            "Systeme Electric STV600"});
+            this.prFanFcTypeCombo.Location = new System.Drawing.Point(109, 330);
+            this.prFanFcTypeCombo.Name = "prFanFcTypeCombo";
+            this.prFanFcTypeCombo.Size = new System.Drawing.Size(212, 21);
+            this.prFanFcTypeCombo.TabIndex = 52;
+            this.prFanFcTypeCombo.SelectedIndexChanged += new System.EventHandler(this.PrFanFcTypeCombo_cmdSelectedIndexChanged);
+            // 
+            // label62
+            // 
+            this.label62.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label62.AutoSize = true;
+            this.label62.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label62.Location = new System.Drawing.Point(15, 334);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(80, 16);
+            this.label62.TabIndex = 51;
+            this.label62.Text = "Модель ПЧ";
             // 
             // prDampConfirmFanCheck
             // 
@@ -1525,7 +1593,7 @@
             this.prFanStStopCheck.CheckState = System.Windows.Forms.CheckState.Checked;
             this.prFanStStopCheck.Enabled = false;
             this.prFanStStopCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.prFanStStopCheck.Location = new System.Drawing.Point(15, 334);
+            this.prFanStStopCheck.Location = new System.Drawing.Point(15, 374);
             this.prFanStStopCheck.Name = "prFanStStopCheck";
             this.prFanStStopCheck.Size = new System.Drawing.Size(154, 18);
             this.prFanStStopCheck.TabIndex = 47;
@@ -1538,7 +1606,7 @@
             this.prFanAlarmCheck.AutoSize = true;
             this.prFanAlarmCheck.Enabled = false;
             this.prFanAlarmCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.prFanAlarmCheck.Location = new System.Drawing.Point(15, 374);
+            this.prFanAlarmCheck.Location = new System.Drawing.Point(15, 414);
             this.prFanAlarmCheck.Name = "prFanAlarmCheck";
             this.prFanAlarmCheck.Size = new System.Drawing.Size(149, 18);
             this.prFanAlarmCheck.TabIndex = 46;
@@ -1756,7 +1824,7 @@
             this.prFanSpeedCheck.AutoSize = true;
             this.prFanSpeedCheck.Enabled = false;
             this.prFanSpeedCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.prFanSpeedCheck.Location = new System.Drawing.Point(15, 414);
+            this.prFanSpeedCheck.Location = new System.Drawing.Point(15, 454);
             this.prFanSpeedCheck.Name = "prFanSpeedCheck";
             this.prFanSpeedCheck.Size = new System.Drawing.Size(131, 18);
             this.prFanSpeedCheck.TabIndex = 48;
@@ -1769,7 +1837,7 @@
             this.filterPage.Controls.Add(this.filterPanel);
             this.filterPage.Location = new System.Drawing.Point(4, 22);
             this.filterPage.Name = "filterPage";
-            this.filterPage.Size = new System.Drawing.Size(742, 41);
+            this.filterPage.Size = new System.Drawing.Size(742, 697);
             this.filterPage.TabIndex = 6;
             this.filterPage.Text = "ФИЛЬТР";
             // 
@@ -1892,7 +1960,7 @@
             this.dampPage.Controls.Add(this.dampPanel);
             this.dampPage.Location = new System.Drawing.Point(4, 22);
             this.dampPage.Name = "dampPage";
-            this.dampPage.Size = new System.Drawing.Size(742, 41);
+            this.dampPage.Size = new System.Drawing.Size(742, 697);
             this.dampPage.TabIndex = 7;
             this.dampPage.Text = "ЗАСЛОНКА";
             // 
@@ -2328,7 +2396,7 @@
             this.heatPage.Location = new System.Drawing.Point(4, 22);
             this.heatPage.Name = "heatPage";
             this.heatPage.Padding = new System.Windows.Forms.Padding(3);
-            this.heatPage.Size = new System.Drawing.Size(742, 41);
+            this.heatPage.Size = new System.Drawing.Size(742, 697);
             this.heatPage.TabIndex = 1;
             this.heatPage.Text = "НАГРЕВАТЕЛЬ";
             // 
@@ -2699,7 +2767,7 @@
             this.coolPage.Location = new System.Drawing.Point(4, 22);
             this.coolPage.Name = "coolPage";
             this.coolPage.Padding = new System.Windows.Forms.Padding(3);
-            this.coolPage.Size = new System.Drawing.Size(742, 41);
+            this.coolPage.Size = new System.Drawing.Size(742, 697);
             this.coolPage.TabIndex = 2;
             this.coolPage.Text = "ОХЛАДИТЕЛЬ";
             // 
@@ -2927,7 +2995,7 @@
             this.humidPage.Location = new System.Drawing.Point(4, 22);
             this.humidPage.Name = "humidPage";
             this.humidPage.Padding = new System.Windows.Forms.Padding(3);
-            this.humidPage.Size = new System.Drawing.Size(742, 41);
+            this.humidPage.Size = new System.Drawing.Size(742, 697);
             this.humidPage.TabIndex = 3;
             this.humidPage.Text = "УВЛАЖНИТЕЛЬ";
             // 
@@ -3087,7 +3155,7 @@
             this.recircPage.Location = new System.Drawing.Point(4, 22);
             this.recircPage.Name = "recircPage";
             this.recircPage.Padding = new System.Windows.Forms.Padding(3);
-            this.recircPage.Size = new System.Drawing.Size(742, 41);
+            this.recircPage.Size = new System.Drawing.Size(742, 697);
             this.recircPage.TabIndex = 4;
             this.recircPage.Text = "РЕЦИРКУЛЯЦИЯ";
             // 
@@ -3305,7 +3373,7 @@
             this.recupPage.Controls.Add(this.recupPanel);
             this.recupPage.Location = new System.Drawing.Point(4, 22);
             this.recupPage.Name = "recupPage";
-            this.recupPage.Size = new System.Drawing.Size(742, 41);
+            this.recupPage.Size = new System.Drawing.Size(742, 697);
             this.recupPage.TabIndex = 5;
             this.recupPage.Text = "РЕКУПЕРАТОР";
             // 
@@ -3320,7 +3388,7 @@
             this.recupPanel.Controls.Add(this.label43);
             this.recupPanel.Location = new System.Drawing.Point(3, 3);
             this.recupPanel.Name = "recupPanel";
-            this.recupPanel.Size = new System.Drawing.Size(717, 413);
+            this.recupPanel.Size = new System.Drawing.Size(717, 536);
             this.recupPanel.TabIndex = 4;
             // 
             // recupPicture
@@ -3338,7 +3406,7 @@
             this.defRecupSensPanel.Controls.Add(this.recDefPsCheck);
             this.defRecupSensPanel.Controls.Add(this.label49);
             this.defRecupSensPanel.Controls.Add(this.recDefTempCheck);
-            this.defRecupSensPanel.Location = new System.Drawing.Point(0, 285);
+            this.defRecupSensPanel.Location = new System.Drawing.Point(3, 365);
             this.defRecupSensPanel.Name = "defRecupSensPanel";
             this.defRecupSensPanel.Size = new System.Drawing.Size(325, 128);
             this.defRecupSensPanel.TabIndex = 51;
@@ -3384,7 +3452,7 @@
             this.plastRecupPanel.Controls.Add(this.bypassPlastCombo);
             this.plastRecupPanel.Controls.Add(this.label48);
             this.plastRecupPanel.Controls.Add(this.label37);
-            this.plastRecupPanel.Location = new System.Drawing.Point(332, 290);
+            this.plastRecupPanel.Location = new System.Drawing.Point(330, 386);
             this.plastRecupPanel.Name = "plastRecupPanel";
             this.plastRecupPanel.Size = new System.Drawing.Size(365, 106);
             this.plastRecupPanel.TabIndex = 33;
@@ -3431,13 +3499,42 @@
             // 
             // glikRecupPanel
             // 
+            this.glikRecupPanel.Controls.Add(this.pumpGlikCurProtect);
+            this.glikRecupPanel.Controls.Add(this.pumpGlikConfCheck);
             this.glikRecupPanel.Controls.Add(this.pumpGlicRecCheck);
             this.glikRecupPanel.Controls.Add(this.analogGlikRecCheck);
             this.glikRecupPanel.Controls.Add(this.label50);
-            this.glikRecupPanel.Location = new System.Drawing.Point(3, 149);
+            this.glikRecupPanel.Location = new System.Drawing.Point(3, 165);
             this.glikRecupPanel.Name = "glikRecupPanel";
-            this.glikRecupPanel.Size = new System.Drawing.Size(322, 130);
+            this.glikRecupPanel.Size = new System.Drawing.Size(322, 198);
             this.glikRecupPanel.TabIndex = 45;
+            this.glikRecupPanel.Visible = false;
+            // 
+            // pumpGlikCurProtect
+            // 
+            this.pumpGlikCurProtect.AutoSize = true;
+            this.pumpGlikCurProtect.Enabled = false;
+            this.pumpGlikCurProtect.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.pumpGlikCurProtect.Location = new System.Drawing.Point(15, 174);
+            this.pumpGlikCurProtect.Name = "pumpGlikCurProtect";
+            this.pumpGlikCurProtect.Size = new System.Drawing.Size(177, 18);
+            this.pumpGlikCurProtect.TabIndex = 47;
+            this.pumpGlikCurProtect.Text = "Защита насоса по току";
+            this.pumpGlikCurProtect.UseVisualStyleBackColor = true;
+            this.pumpGlikCurProtect.CheckedChanged += new System.EventHandler(this.PumpGlikCurProtect_cmdCheckedChanged);
+            // 
+            // pumpGlikConfCheck
+            // 
+            this.pumpGlikConfCheck.AutoSize = true;
+            this.pumpGlikConfCheck.Enabled = false;
+            this.pumpGlikConfCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.pumpGlikConfCheck.Location = new System.Drawing.Point(15, 134);
+            this.pumpGlikConfCheck.Name = "pumpGlikConfCheck";
+            this.pumpGlikConfCheck.Size = new System.Drawing.Size(232, 18);
+            this.pumpGlikConfCheck.TabIndex = 46;
+            this.pumpGlikConfCheck.Text = "Подтверждение работы насоса";
+            this.pumpGlikConfCheck.UseVisualStyleBackColor = true;
+            this.pumpGlikConfCheck.CheckedChanged += new System.EventHandler(this.PumpGlikConfCheck_cmdCheckedChanged);
             // 
             // pumpGlicRecCheck
             // 
@@ -3449,7 +3546,7 @@
             this.pumpGlicRecCheck.TabIndex = 45;
             this.pumpGlicRecCheck.Text = "Циркуляционный насос";
             this.pumpGlicRecCheck.UseVisualStyleBackColor = true;
-            this.pumpGlicRecCheck.CheckedChanged += new System.EventHandler(this.PumpGlicRecCheck_signalsCheckedChanged);
+            this.pumpGlicRecCheck.CheckedChanged += new System.EventHandler(this.PumpGlicRecCheck_checkedChanged);
             // 
             // analogGlikRecCheck
             // 
@@ -3488,7 +3585,7 @@
             this.rotorRecupPanel.Controls.Add(this.rotorPowCombo);
             this.rotorRecupPanel.Controls.Add(this.label45);
             this.rotorRecupPanel.Controls.Add(this.label44);
-            this.rotorRecupPanel.Location = new System.Drawing.Point(0, 31);
+            this.rotorRecupPanel.Location = new System.Drawing.Point(6, 40);
             this.rotorRecupPanel.Name = "rotorRecupPanel";
             this.rotorRecupPanel.Size = new System.Drawing.Size(322, 119);
             this.rotorRecupPanel.TabIndex = 32;
@@ -3631,7 +3728,7 @@
             this.label43.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label43.AutoSize = true;
             this.label43.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label43.Location = new System.Drawing.Point(7, 12);
+            this.label43.Location = new System.Drawing.Point(6, 13);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(132, 16);
             this.label43.TabIndex = 30;
@@ -3643,7 +3740,7 @@
             this.addHeatPage.Controls.Add(this.secHeatPanel);
             this.addHeatPage.Location = new System.Drawing.Point(4, 22);
             this.addHeatPage.Name = "addHeatPage";
-            this.addHeatPage.Size = new System.Drawing.Size(742, 41);
+            this.addHeatPage.Size = new System.Drawing.Size(742, 697);
             this.addHeatPage.TabIndex = 8;
             this.addHeatPage.Text = "ДОП НАГРЕВ";
             // 
@@ -4448,9 +4545,9 @@
             this.signalsPanel.Controls.Add(this.signalsReadyLabel);
             this.signalsPanel.Controls.Add(this.tabControlSignals);
             this.signalsPanel.Controls.Add(this.backSignalsButton);
-            this.signalsPanel.Location = new System.Drawing.Point(19, 144);
+            this.signalsPanel.Location = new System.Drawing.Point(3, 868);
             this.signalsPanel.Name = "signalsPanel";
-            this.signalsPanel.Size = new System.Drawing.Size(740, 695);
+            this.signalsPanel.Size = new System.Drawing.Size(740, 55);
             this.signalsPanel.TabIndex = 16;
             this.signalsPanel.Visible = false;
             // 
@@ -4461,7 +4558,7 @@
             this.resetButtonSignals.Cursor = System.Windows.Forms.Cursors.Hand;
             this.resetButtonSignals.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.resetButtonSignals.ForeColor = System.Drawing.Color.White;
-            this.resetButtonSignals.Location = new System.Drawing.Point(741, 663);
+            this.resetButtonSignals.Location = new System.Drawing.Point(741, 23);
             this.resetButtonSignals.Name = "resetButtonSignals";
             this.resetButtonSignals.Size = new System.Drawing.Size(97, 27);
             this.resetButtonSignals.TabIndex = 62;
@@ -4476,7 +4573,7 @@
             this.loadToExl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loadToExl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadToExl.ForeColor = System.Drawing.Color.White;
-            this.loadToExl.Location = new System.Drawing.Point(561, 663);
+            this.loadToExl.Location = new System.Drawing.Point(561, 23);
             this.loadToExl.Name = "loadToExl";
             this.loadToExl.Size = new System.Drawing.Size(173, 27);
             this.loadToExl.TabIndex = 61;
@@ -4492,7 +4589,7 @@
             this.loadPLC_SignalsButton.Enabled = false;
             this.loadPLC_SignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadPLC_SignalsButton.ForeColor = System.Drawing.Color.White;
-            this.loadPLC_SignalsButton.Location = new System.Drawing.Point(408, 663);
+            this.loadPLC_SignalsButton.Location = new System.Drawing.Point(408, 23);
             this.loadPLC_SignalsButton.Name = "loadPLC_SignalsButton";
             this.loadPLC_SignalsButton.Size = new System.Drawing.Size(147, 27);
             this.loadPLC_SignalsButton.TabIndex = 60;
@@ -4506,7 +4603,7 @@
             this.signalsReadyLabel.AutoSize = true;
             this.signalsReadyLabel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.signalsReadyLabel.ForeColor = System.Drawing.Color.Green;
-            this.signalsReadyLabel.Location = new System.Drawing.Point(123, 669);
+            this.signalsReadyLabel.Location = new System.Drawing.Point(123, 29);
             this.signalsReadyLabel.Name = "signalsReadyLabel";
             this.signalsReadyLabel.Size = new System.Drawing.Size(272, 14);
             this.signalsReadyLabel.TabIndex = 23;
@@ -9582,7 +9679,7 @@
             this.backSignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.backSignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.backSignalsButton.ForeColor = System.Drawing.Color.White;
-            this.backSignalsButton.Location = new System.Drawing.Point(10, 663);
+            this.backSignalsButton.Location = new System.Drawing.Point(10, 23);
             this.backSignalsButton.Name = "backSignalsButton";
             this.backSignalsButton.Size = new System.Drawing.Size(94, 27);
             this.backSignalsButton.TabIndex = 58;
@@ -9694,7 +9791,7 @@
             this.loadCanPanel.Controls.Add(this.canSelectBox);
             this.loadCanPanel.Controls.Add(this.label173);
             this.loadCanPanel.Controls.Add(this.netOptionLabel);
-            this.loadCanPanel.Location = new System.Drawing.Point(5, 865);
+            this.loadCanPanel.Location = new System.Drawing.Point(3, 929);
             this.loadCanPanel.Name = "loadCanPanel";
             this.loadCanPanel.Size = new System.Drawing.Size(749, 30);
             this.loadCanPanel.TabIndex = 45;
@@ -10878,6 +10975,12 @@
         private System.Windows.Forms.Label M72E16NA_label;
         private System.Windows.Forms.PictureBox pic_signalsReady;
         private System.Windows.Forms.Button resetButtonSignals;
+        private System.Windows.Forms.CheckBox pumpGlikConfCheck;
+        private System.Windows.Forms.CheckBox pumpGlikCurProtect;
+        private System.Windows.Forms.ComboBox prFanFcTypeCombo;
+        private System.Windows.Forms.Label label62;
+        private System.Windows.Forms.ComboBox outFanFcTypeCombo;
+        private System.Windows.Forms.Label label63;
     }
 }
 

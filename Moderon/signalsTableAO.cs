@@ -376,12 +376,14 @@ namespace Moderon
                 if (prFanControlCombo.SelectedIndex == 0)                       // Внешние контакты
                 {
                     prFanSpeedCheck.Enabled = true;                             // Разблокировка выбора опции скорости
+                    prFanFcTypeCombo.Enabled = false;                           // Блокировка выбора типа ПЧ
                 }
                 else if (prFanControlCombo.SelectedIndex == 1)                  // Modbus
                 {
                     if (prFanSpeedCheck.Checked)                                // Снятие выбора опции
                         prFanSpeedCheck.Checked = false;
                     prFanSpeedCheck.Enabled = false;                            // Блокировка выбора опции скорости
+                    prFanFcTypeCombo.Enabled = true;                            // Разблокировка выбора типа ПЧ
                 }
             }
             PrFanControlCombo_signalsDISelectedIndexChanged(this, e);           // Проверка для сигналов DI
@@ -408,12 +410,14 @@ namespace Moderon
                 if (outFanControlCombo.SelectedIndex == 0)                      // Внешние контакты
                 {
                     outFanSpeedCheck.Enabled = true;                            // Разблокировка выбора скорости
+                    outFanFcTypeCombo.Enabled = false;                          // Блокировка выбора типа ПЧ
                 }
                 else if (outFanControlCombo.SelectedIndex == 1)                 // Modbus
                 {
                     if (outFanSpeedCheck.Checked)                               // Отмена выбора опции скорости
                         outFanSpeedCheck.Checked = false;
                     outFanSpeedCheck.Enabled = false;                           // Блокировка выбора скорости
+                    outFanFcTypeCombo.Enabled = true;                           // Разблокировка выбора типа ПЧ
                 }
             }
             OutFanControlCombo_signalsDISelectedIndexChanged(this, e);          // Проверка для сигналов DI

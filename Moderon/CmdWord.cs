@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.Windows.Forms;
 
 // Файл для формирования и вывода готовых командных слов под запись
@@ -183,11 +184,11 @@ namespace Moderon
         ///<summary>Инициализация командных слов</summary>
         private void Form1_InitCmdWord(object sender, EventArgs e)
         {
-            CommandWord_1();            // Основной блок запуска
-            CommandWord_2();            // Основная приточная заслонка
-            CommandWord_3();            // Основная вытяжная заслонка
-            CommandWord_4();            // Приточные фильтры
-            CommandWord_5();            // Вытяжные фильтры
+            CommandWord_1();            // Основной блок запуска (тип управления системой)
+            CommandWord_2();            // Основная приточная заслонка (либо общая приточная воздушная заслонка)
+            CommandWord_3();            // Основная вытяжная заслонка (либо общая вытяжная воздушная заслонка)
+            CommandWord_4();            // Приточные и вытяжные фильтры
+            CommandWord_5();            // (удалено!)
             CommandWord_6();            // Датчики
             CommandWord_7();            // Рекуперация, второе слово
             CommandWord_8();            // Рециркуляция
@@ -259,26 +260,21 @@ namespace Moderon
         ///<summary>Формирование командного слова приточных фильтров</summary>
         private void CommandWord_4()
         {
-            bool bit0, bit1, bit2;
+            bool bit0, bit1, bit2, bit3, bit4, bit5;
 
-            bit0 = filterCheck.Checked;                                         // Воздушный фильтр 1
-            bit1 = filterCheck.Checked && filterPrCombo.SelectedIndex > 0;      // Воздушный фильтр 2
-            bit2 = filterCheck.Checked && filterPrCombo.SelectedIndex > 1;      // Воздушный фильтр 3
+            bit0 = filterCheck.Checked;                                         // Воздушный фильтр 1, приток
+            bit1 = filterCheck.Checked && filterPrCombo.SelectedIndex > 0;      // Воздушный фильтр 2, приток
+            bit2 = filterCheck.Checked && filterPrCombo.SelectedIndex > 1;      // Воздушный фильтр 3, приток
+            bit3 = filterCheck.Checked && filterOutCombo.SelectedIndex > 0;
+            bit4 = filterCheck.Checked && filterOutCombo.SelectedIndex > 1;
+            bit5 = filterCheck.Checked && filterOutCombo.SelectedIndex > 2;
 
-            cmdW4 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2));
+            cmdW4 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2) +
+                8 * Convert.ToUInt16(bit3) + 16 * Convert.ToUInt16(bit4) + 32 * Convert.ToUInt16(bit5));
         }
 
-        /// <summary>Формирование командного слова вытяжных фильтров</summary>
-        private void CommandWord_5()
-        {
-            bool bit0, bit1, bit2;
-
-            bit0 = filterCheck.Checked && filterOutCombo.SelectedIndex > 0;     // Воздушный фильтр 1
-            bit1 = filterCheck.Checked && filterOutCombo.SelectedIndex > 1;     // Воздушный фильтр 2
-            bit2 = filterCheck.Checked && filterOutCombo.SelectedIndex > 2;     // Воздушный фильтр 3
-
-            cmdW5 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2));
-        }
+        /// <summary>Формирование командного слова вытяжных фильтров (удалено!)</summary>
+        private void CommandWord_5() => cmdW5 = 0;
 
         /// <summary>Формирование командного слова датчиков</summary>
         private void CommandWord_6()
@@ -306,12 +302,23 @@ namespace Moderon
         /// <summary>Командное слово рекуперация, второе слово</summary>
         private void CommandWord_7()
         {
-            bool bit0, bit1;
+            bool bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8;
 
-            bit0 = false;                                                       // Резервный насос гликолевого
-            bit1 = false;                                                       // Наличие KPI резервного насоса
+            bit0 = false;                                                           // (нет)
+            bit1 = false;                                                           // Наличие KPI резервного насоса гликоля
+            bit2 = recupCheck.Checked &&
+                recupTypeCombo.SelectedIndex == 2 && pumpGlikConfCheck.Checked;     // Наличие KPI основного насоса
+            bit3 = false;                                                           // Наличие резервного насоса
+            bit4 = false;                                                           // Наличие KPI резервного насоса
+            bit5 = false;                                                           // (нет)
+            bit6 = false;                                                           // (нет)
+            bit7 = recupCheck.Checked &&
+                recupTypeCombo.SelectedIndex == 2 && pumpGlikCurProtect.Checked;    // Реле тока основного насоса
+            bit8 = false;                                                           // Реле тока резервного насоса
 
-            cmdW7 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1));
+            cmdW7 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2) +
+                8 * Convert.ToUInt16(bit3) + 16 * Convert.ToUInt16(bit4) + 32 * Convert.ToUInt16(bit5) +
+                64 * Convert.ToUInt16(bit6) + 128 * Convert.ToUInt16(bit7) + 256 * Convert.ToUInt16(bit8));
         }
 
         /// <summary>Командное слово рециркуляция</summary>
@@ -541,7 +548,9 @@ namespace Moderon
         /// <summary>Командное слово основного приточного вентилятора</summary>
         private void CommandWord_19()
         {
-            bool bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8, bit9, bit10, bit11, bit12, bit13;
+            bool bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8, bit9, bit10, bit11, bit12, bit13, bit14, bit15;
+
+            bool modbus_selected = prFanFC_check.Checked && prFanControlCombo.SelectedIndex == 1;
 
             bit0 = true;                                // Наличие вентилятора
             bit1 = prFanPSCheck.Checked;                // Подтверждение работы вентилятора
@@ -550,25 +559,34 @@ namespace Moderon
             bit4 = curDefPrFanCheck.Checked;            // Защита по току
             bit5 = prDampFanCheck.Checked;              // Наличие заслонки вентилятора
             bit6 = prDampConfirmFanCheck.Checked;       // Наличие подтверждения заслонки вентилятора
-            bit7 = prFanStStopCheck.Checked;            // Наличие сухого контакта - запуск ПЧ 
+            bit7 = prFanStStopCheck.Checked ||          // Наличие сухого контакта - запуск ПЧ (либо Modbus)
+                modbus_selected;             
             bit8 = false;                               // Наличие контактора, сигнал подачи питания
-            bit9 = false;                               // Наличие ATV12 или ATV310
+            bit9 = modbus_selected &&                   // Наличие Modbus и ПЧ STV600
+                prFanFcTypeCombo.SelectedIndex == 1;                               
             bit10 = false;                              // Наличие ATV212
-            bit11 = prFanSpeedCheck.Checked;            // Управление 0-10 В
+            bit11 = prFanSpeedCheck.Checked ||          // Управление 0-10 В (либо Modbus)
+                modbus_selected;            
             bit12 = false;                              // Позисторные термоконтакты
             bit13 = false;                              // Поддержание давления по аналоговому датчику
+            bit14 = false;
+            bit15 = modbus_selected &&                  // Наличие Modbus и ПЧ Veda
+                prFanFcTypeCombo.SelectedIndex == 0;
 
             cmdW19 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2) +
                 8 * Convert.ToUInt16(bit3) + 16 * Convert.ToUInt16(bit4) + 32 * Convert.ToUInt16(bit5) +
                 64 * Convert.ToUInt16(bit6) + 128 * Convert.ToUInt16(bit7) + 256 * Convert.ToUInt16(bit8) +
                 512 * Convert.ToUInt16(bit9) + 1024 * Convert.ToUInt16(bit10) + 2048 * Convert.ToUInt16(bit11) +
-                4096 * Convert.ToUInt16(bit12) + 8192 * Convert.ToUInt16(bit13));
+                4096 * Convert.ToUInt16(bit12) + 8192 * Convert.ToUInt16(bit13) + 16384 * Convert.ToUInt16(bit14) +
+                32768 * Convert.ToUInt16(bit15));
         }
 
         /// <summary>Командное слово резервного приточного вентилятора</summary>
         private void CommandWord_20()
         {
-            bool bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8, bit9, bit10, bit11, bit12, bit13;
+            bool bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8, bit9, bit10, bit11, bit12, bit13, bit14, bit15;
+
+            bool modbus_selected = prFanFC_check.Checked && prFanControlCombo.SelectedIndex == 1;
 
             if (checkResPrFan.Checked)                          // Выбран резервный двигатель
             { 
@@ -579,29 +597,38 @@ namespace Moderon
                 bit4 = curDefPrFanCheck.Checked;                // Защита по току
                 bit5 = prDampFanCheck.Checked;                  // Наличие заслонки
                 bit6 = prDampConfirmFanCheck.Checked;           // Наличие подтверждения заслонки
-                bit7 = prFanStStopCheck.Checked;                // Наличие сухого контакта - запуск ПЧ                   
+                bit7 = prFanStStopCheck.Checked ||              // Наличие сухого контакта - запуск ПЧ (либо Modbus)
+                    modbus_selected;                                  
                 bit8 = false;                                   // Наличие контактора, сигнал подачи питания
-                bit9 = false;                                   // Наличие ATV12 или ATV310
+                bit9 = modbus_selected &&                       // Наличие Modbus и ПЧ STV600
+                    prFanFcTypeCombo.SelectedIndex == 1;        
                 bit10 = false;                                  // Наличие ATV212
-                bit11 = prFanSpeedCheck.Checked;                // Управление 0-10 В
+                bit11 = prFanSpeedCheck.Checked ||              // Управление 0-10 В (либо Modbus)
+                    modbus_selected;                
                 bit12 = false;                                  // Позисторные термоконтакты
                 bit13 = false;                                  // Поддержание давления по аналоговому датчику
+                bit14 = false;
+                bit15 = modbus_selected &&                      // Наличие Modbus и ПЧ Veda
+                    prFanFcTypeCombo.SelectedIndex == 0;
             }
             else                                                // Не выбран резервный двигатель
                 bit0 = bit1 = bit2 = bit3 = bit4 = bit5 = bit6 = bit7 = bit8 = bit9 = bit10 =
-                    bit11 = bit12 = bit13 = false;
+                    bit11 = bit12 = bit13 = bit14 = bit15 = false;
 
             cmdW20 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2) +
                 8 * Convert.ToUInt16(bit3) + 16 * Convert.ToUInt16(bit4) + 32 * Convert.ToUInt16(bit5) +
                 64 * Convert.ToUInt16(bit6) + 128 * Convert.ToUInt16(bit7) + 256 * Convert.ToUInt16(bit8) +
                 512 * Convert.ToUInt16(bit9) + 1024 * Convert.ToUInt16(bit10) + 2048 * Convert.ToUInt16(bit11) +
-                4096 * Convert.ToUInt16(bit12) + 8192 * Convert.ToUInt16(bit13));
+                4096 * Convert.ToUInt16(bit12) + 8192 * Convert.ToUInt16(bit13) + 16384 * Convert.ToUInt16(bit14) +
+                32768 * Convert.ToUInt16(bit15));
         }
 
         /// <summary>Командное слово основного вытяжного вентилятора</summary>
         private void CommandWord_21()
         {
-            bool bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8, bit9, bit10, bit11, bit12, bit13;
+            bool bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8, bit9, bit10, bit11, bit12, bit13, bit14, bit15;
+
+            bool modbus_selected = outFanFC_check.Checked && outFanControlCombo.SelectedIndex == 1;
 
             if (comboSysType.SelectedIndex == 1)                // Выбрана ПВ-система
             { 
@@ -612,29 +639,38 @@ namespace Moderon
                 bit4 = curDefOutFanCheck.Checked;               // Защита по току
                 bit5 = outDampFanCheck.Checked;                 // Наличие заслонки вентилятора
                 bit6 = outDampConfirmFanCheck.Checked;          // Наличие подтверждения заслонки вентилятора
-                bit7 = outFanStStopCheck.Checked;               // Наличие сухого контакта - запуск ПЧ                    
+                bit7 = outFanStStopCheck.Checked ||             // Наличие сухого контакта - запуск ПЧ (либо Modbus)
+                    modbus_selected;                                  
                 bit8 = false;                                   // Наличие контактора, сигнал подачи питания
-                bit9 = false;                                   // Наличие ATV12 или ATV310
+                bit9 = modbus_selected &&                       // Наличие Modbus и ПЧ STV600
+                    outFanFcTypeCombo.SelectedIndex == 1;                                   
                 bit10 = false;                                  // Наличие ATV212
-                bit11 = outFanSpeedCheck.Checked;               // Управление 0-10 В
+                bit11 = outFanSpeedCheck.Checked ||             // Управление 0-10 В (либо Modbus)
+                    modbus_selected;               
                 bit12 = false;                                  // Позисторные термоконтакты
                 bit13 = false;                                  // Поддержание давления по аналоговому датчику
+                bit14 = false;
+                bit15 = modbus_selected &&                      // Наличие Modbus и ПЧ Veda
+                    outFanFcTypeCombo.SelectedIndex == 0;
             }
             else                                                // Не выбрана ПВ-система
                 bit0 = bit1 = bit2 = bit3 = bit4 = bit5 = bit6 = bit7 = bit8 = bit9 = bit10 =
-                    bit11 = bit12 = bit13 = false;
+                    bit11 = bit12 = bit13 = bit14 = bit15 = false;
 
             cmdW21 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2) +
                 8 * Convert.ToUInt16(bit3) + 16 * Convert.ToUInt16(bit4) + 32 * Convert.ToUInt16(bit5) +
                 64 * Convert.ToUInt16(bit6) + 128 * Convert.ToUInt16(bit7) + 256 * Convert.ToUInt16(bit8) +
                 512 * Convert.ToUInt16(bit9) + 1024 * Convert.ToUInt16(bit10) + 2048 * Convert.ToUInt16(bit11) +
-                4096 * Convert.ToUInt16(bit12) + 8192 * Convert.ToUInt16(bit13));
+                4096 * Convert.ToUInt16(bit12) + 8192 * Convert.ToUInt16(bit13) + 16384 * Convert.ToUInt16(bit14) +
+                32768 * Convert.ToUInt16(bit15));
         }
 
         /// <summary>Командное слово резервного вытяжного вентилятора</summary>
         private void CommandWord_22()
         {
-            bool bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8, bit9, bit10, bit11, bit12, bit13;
+            bool bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8, bit9, bit10, bit11, bit12, bit13, bit14, bit15;
+
+            bool modbus_selected = outFanFC_check.Checked && outFanControlCombo.SelectedIndex == 1;
 
             if (comboSysType.SelectedIndex == 1 && checkResOutFan.Checked)      // Выбрана ПВ-система и резерв вытяжного вентилятора
             { 
@@ -645,22 +681,30 @@ namespace Moderon
                 bit4 = curDefOutFanCheck.Checked;                               // Защита по току
                 bit5 = outDampFanCheck.Checked;                                 // Наличие заслонки вентилятора
                 bit6 = outDampConfirmFanCheck.Checked;                          // Наличие подтверждения заслонки вентилятора
-                bit7 = outFanStStopCheck.Checked;                               // Наличие сухого контакта - запуск ПЧ                    
+                bit7 = outFanStStopCheck.Checked ||                             // Наличие сухого контакта - запуск ПЧ (либо Modbus)
+                    modbus_selected;                                                   
                 bit8 = false;                                                   // Наличие контактора, сигнал подачи питания
-                bit9 = false;                                                   // Наличие ATV12 или ATV310
+                bit9 = modbus_selected &&                                       // Наличие Modbus и ПЧ STV600
+                     outFanFcTypeCombo.SelectedIndex == 1;
                 bit10 = false;                                                  // Наличие ATV212
-                bit11 = outFanSpeedCheck.Checked;                               // Управление 0-10 В
+                bit11 = outFanSpeedCheck.Checked ||                             // Управление 0-10 В (либо Modbus)
+                    modbus_selected;                               
                 bit12 = false;                                                  // Позисторные термоконтакты
                 bit13 = false;                                                  // Поддержание давления по аналоговому датчику
+                bit14 = false;
+                bit15 = modbus_selected &&                                      // Наличие Modbus и ПЧ Veda
+                    outFanFcTypeCombo.SelectedIndex == 0;
+
             } else                                                              // Не выбрана ПВ-система или резерв вытяжного вентилятора
                 bit0 = bit1 = bit2 = bit3 = bit4 = bit5 = bit6 = bit7 = bit8 = bit9 = bit10 =
-                    bit11 = bit12 = bit13 = false;
+                    bit11 = bit12 = bit13 = bit14 = bit15 = false;
 
             cmdW22 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2) +
                 8 * Convert.ToUInt16(bit3) + 16 * Convert.ToUInt16(bit4) + 32 * Convert.ToUInt16(bit5) +
                 64 * Convert.ToUInt16(bit6) + 128 * Convert.ToUInt16(bit7) + 256 * Convert.ToUInt16(bit8) +
                 512 * Convert.ToUInt16(bit9) + 1024 * Convert.ToUInt16(bit10) + 2048 * Convert.ToUInt16(bit11) +
-                4096 * Convert.ToUInt16(bit12) + 8192 * Convert.ToUInt16(bit13));
+                4096 * Convert.ToUInt16(bit12) + 8192 * Convert.ToUInt16(bit13) + 16384 * Convert.ToUInt16(bit14) +
+                32768 * Convert.ToUInt16(bit15));
         }
 
         /// <summary>Командное слово водяного преднагревателя</summary>
@@ -742,7 +786,7 @@ namespace Moderon
         ///<summary>Выбрали фильтр</summary>
         private void FilterCheck_cmdCheckedChanged(object sender, EventArgs e)
         {
-            CommandWord_4(); CommandWord_5();
+            CommandWord_4();
         }
 
         ///<summary>Изменили количество приточных фильтров</summary>
@@ -756,7 +800,7 @@ namespace Moderon
         ///<summary>Изменили количество вытяжных фильтров</summary>
         private void FilterOutCombo_cmdSelectedIndexChanged(object sender, EventArgs e)
         {
-            CommandWord_5();
+            CommandWord_4();
             if (ignoreEvents) return;
             FilterOutCombo_signalsDISelectedIndexChanged(this, e);                              // Сигналы DI
         }
@@ -813,6 +857,22 @@ namespace Moderon
             CommandWord_6(); CommandWord_9();
             if (ignoreEvents) return;
             RecDefTempCheck_signalsAICheckedChanged(this, e);                                   // Сигналы AI
+        }
+
+        ///<summary>Выбрали подтверждение работы насоса гликолевого рекуператора</summary>
+        private void PumpGlikConfCheck_cmdCheckedChanged(object sender, EventArgs e)
+        {
+            CommandWord_7();
+            if (ignoreEvents) return;
+            PumpGlikConfCheck_signalsDICheckedChanged(this, e);                                 // Сигналы DI
+        }
+
+        ///<summary>Выбрали защиту по току насоса гликолевого рекуператора</summary>
+        private void PumpGlikCurProtect_cmdCheckedChanged(object sender, EventArgs e)
+        {
+            CommandWord_7();
+            if (ignoreEvents) return;
+            PumpGlikCurProtect_signalsDICheckedChanged(this, e);                                // Сигналы DI
         }
 
         ///<summary>Выбрали канальный датчик влажности</summary>
@@ -1154,6 +1214,12 @@ namespace Moderon
             CommandWord_19(); CommandWord_20();
         }
 
+        ///<summary>Изменили тип ПЧ приточного вентилятора</summary>
+        private void PrFanFcTypeCombo_cmdSelectedIndexChanged(object sender, EventArgs e)
+        {
+            CommandWord_19(); CommandWord_20();
+        }
+
         ///<summary>Выбрали управление скоростью для приточного вентилятора</summary>
         private void PrFanSpeedCheck_cmdCheckedChanged(object sender, EventArgs e)
         {
@@ -1218,6 +1284,12 @@ namespace Moderon
 
         ///<summary>Выбрали ПЧ для вытяжного вентилятора</summary>
         private void OutFanFC_check_cmdCheckedChanged(object sender, EventArgs e)
+        {
+            CommandWord_21(); CommandWord_22();
+        }
+
+        ///<summary>Выбрали ПЧ для вытяжного вентилятора</summary>
+        private void OutFanFcTypeCombo_cmdSelectedIndexChanged(object sender, EventArgs e)
         {
             CommandWord_21(); CommandWord_22();
         }
