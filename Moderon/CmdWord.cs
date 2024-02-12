@@ -304,17 +304,22 @@ namespace Moderon
         {
             bool bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8;
 
+            // ПВ-система и выбран гликолевый рекуператор
+            bool glikRecup = comboSysType.SelectedIndex == 1 && recupCheck.Checked && recupTypeCombo.SelectedIndex == 2;
+
             bit0 = false;                                                           // (нет)
-            bit1 = false;                                                           // Наличие KPI резервного насоса гликоля
-            bit2 = recupCheck.Checked &&
-                recupTypeCombo.SelectedIndex == 2 && pumpGlikConfCheck.Checked;     // Наличие KPI основного насоса
-            bit3 = false;                                                           // Наличие резервного насоса
-            bit4 = false;                                                           // Наличие KPI резервного насоса
+            bit1 = glikRecup && pumpGlicRecCheck.Checked;                           // Наличие основного насоса гликолевого                                                      
+            bit2 = glikRecup && pumpGlicRecCheck.Checked &&
+                pumpGlikConfCheck.Checked;                                          // Наличие KPI основного насоса гликолевого
+            bit3 = glikRecup && reservPumpGlik.Checked;                             // Наличие резервного насоса гликолевого
+            bit4 = glikRecup && reservPumpGlik.Checked &&                           // Наличие KPI резервного насоса гликолевого
+                confGlikResPumpCheck.Checked;
             bit5 = false;                                                           // (нет)
             bit6 = false;                                                           // (нет)
-            bit7 = recupCheck.Checked &&
-                recupTypeCombo.SelectedIndex == 2 && pumpGlikCurProtect.Checked;    // Реле тока основного насоса
-            bit8 = false;                                                           // Реле тока резервного насоса
+            bit7 = glikRecup && pumpGlicRecCheck.Checked &&                         // Реле тока основного насоса гликолевого
+                pumpGlikCurProtect.Checked;                                         
+            bit8 = glikRecup && reservPumpGlik.Checked &&                           // Реле тока резервного насоса гликолевого 
+                pumpGlikResCurProtect.Checked;
 
             cmdW7 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2) +
                 8 * Convert.ToUInt16(bit3) + 16 * Convert.ToUInt16(bit4) + 32 * Convert.ToUInt16(bit5) +
@@ -859,6 +864,22 @@ namespace Moderon
             RecDefTempCheck_signalsAICheckedChanged(this, e);                                   // Сигналы AI
         }
 
+        ///<summary>Выбрали наличие насоса гликолевого рекуператора</summary>
+        private void PumpGlicRecCheck_cmdCheckedChanged(object sender, EventArgs e)
+        {
+            CommandWord_7();
+            if (ignoreEvents) return;
+            PumpGlicRecCheck_signalsDOCheckedChanged(this, e);                                  // Сигналы DO ПЛК
+        }
+
+        ///<summary>Выбрали наличие резервного насоса гликолевого рекуператора</summary>
+        private void ReservPumpGlik_cmdCheckedChanged(object sender, EventArgs e)
+        {
+            CommandWord_7();
+            if (ignoreEvents) return;
+            ReservPumpGlik_signalsDOCheckedChanged(this, e);                                    // Сигналы DO ПЛК
+        }
+
         ///<summary>Выбрали подтверждение работы насоса гликолевого рекуператора</summary>
         private void PumpGlikConfCheck_cmdCheckedChanged(object sender, EventArgs e)
         {
@@ -867,12 +888,28 @@ namespace Moderon
             PumpGlikConfCheck_signalsDICheckedChanged(this, e);                                 // Сигналы DI
         }
 
+        ///<summary>Выбрали подтверждение работы резервного насоса гликолевого рекуператора</summary>
+        private void ConfGlikResPumpCheck_cmdCheckedChanged(object sender, EventArgs e)
+        {
+            CommandWord_7();
+            if (ignoreEvents) return;
+            ConfGlikResPumpCheck_signalsCheckedChanged(this, e);                                // Сигналы DI
+        }
+
         ///<summary>Выбрали защиту по току насоса гликолевого рекуператора</summary>
         private void PumpGlikCurProtect_cmdCheckedChanged(object sender, EventArgs e)
         {
             CommandWord_7();
             if (ignoreEvents) return;
             PumpGlikCurProtect_signalsDICheckedChanged(this, e);                                // Сигналы DI
+        }
+
+        ///<summary>Выбрали защиту по току резервного насоса гликолевого рекуператора</summary>
+        private void PumpGlikResCurProtect_cmdCheckedChanged(object sender, EventArgs e)
+        {
+            CommandWord_7();
+            if (ignoreEvents) return;
+            PumpGlikResCurProtect_signalsDICheckedChanged(this, e);                             // Сигналы DI
         }
 
         ///<summary>Выбрали канальный датчик влажности</summary>

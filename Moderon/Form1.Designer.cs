@@ -242,6 +242,9 @@
             this.label48 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.glikRecupPanel = new System.Windows.Forms.Panel();
+            this.pumpGlikResCurProtect = new System.Windows.Forms.CheckBox();
+            this.confGlikResPumpCheck = new System.Windows.Forms.CheckBox();
+            this.reservPumpGlik = new System.Windows.Forms.CheckBox();
             this.pumpGlikCurProtect = new System.Windows.Forms.CheckBox();
             this.pumpGlikConfCheck = new System.Windows.Forms.CheckBox();
             this.pumpGlicRecCheck = new System.Windows.Forms.CheckBox();
@@ -3406,7 +3409,7 @@
             this.defRecupSensPanel.Controls.Add(this.recDefPsCheck);
             this.defRecupSensPanel.Controls.Add(this.label49);
             this.defRecupSensPanel.Controls.Add(this.recDefTempCheck);
-            this.defRecupSensPanel.Location = new System.Drawing.Point(3, 365);
+            this.defRecupSensPanel.Location = new System.Drawing.Point(370, 246);
             this.defRecupSensPanel.Name = "defRecupSensPanel";
             this.defRecupSensPanel.Size = new System.Drawing.Size(325, 128);
             this.defRecupSensPanel.TabIndex = 51;
@@ -3499,6 +3502,9 @@
             // 
             // glikRecupPanel
             // 
+            this.glikRecupPanel.Controls.Add(this.pumpGlikResCurProtect);
+            this.glikRecupPanel.Controls.Add(this.confGlikResPumpCheck);
+            this.glikRecupPanel.Controls.Add(this.reservPumpGlik);
             this.glikRecupPanel.Controls.Add(this.pumpGlikCurProtect);
             this.glikRecupPanel.Controls.Add(this.pumpGlikConfCheck);
             this.glikRecupPanel.Controls.Add(this.pumpGlicRecCheck);
@@ -3506,9 +3512,47 @@
             this.glikRecupPanel.Controls.Add(this.label50);
             this.glikRecupPanel.Location = new System.Drawing.Point(3, 165);
             this.glikRecupPanel.Name = "glikRecupPanel";
-            this.glikRecupPanel.Size = new System.Drawing.Size(322, 198);
+            this.glikRecupPanel.Size = new System.Drawing.Size(322, 368);
             this.glikRecupPanel.TabIndex = 45;
             this.glikRecupPanel.Visible = false;
+            // 
+            // pumpGlikResCurProtect
+            // 
+            this.pumpGlikResCurProtect.AutoSize = true;
+            this.pumpGlikResCurProtect.Enabled = false;
+            this.pumpGlikResCurProtect.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.pumpGlikResCurProtect.Location = new System.Drawing.Point(15, 294);
+            this.pumpGlikResCurProtect.Name = "pumpGlikResCurProtect";
+            this.pumpGlikResCurProtect.Size = new System.Drawing.Size(256, 18);
+            this.pumpGlikResCurProtect.TabIndex = 50;
+            this.pumpGlikResCurProtect.Text = "Защита резервного насоса по току";
+            this.pumpGlikResCurProtect.UseVisualStyleBackColor = true;
+            this.pumpGlikResCurProtect.CheckedChanged += new System.EventHandler(this.PumpGlikResCurProtect_cmdCheckedChanged);
+            // 
+            // confGlikResPumpCheck
+            // 
+            this.confGlikResPumpCheck.AutoSize = true;
+            this.confGlikResPumpCheck.Enabled = false;
+            this.confGlikResPumpCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.confGlikResPumpCheck.Location = new System.Drawing.Point(15, 254);
+            this.confGlikResPumpCheck.Name = "confGlikResPumpCheck";
+            this.confGlikResPumpCheck.Size = new System.Drawing.Size(232, 18);
+            this.confGlikResPumpCheck.TabIndex = 49;
+            this.confGlikResPumpCheck.Text = "Подтверждение работы насоса";
+            this.confGlikResPumpCheck.UseVisualStyleBackColor = true;
+            this.confGlikResPumpCheck.CheckedChanged += new System.EventHandler(this.ConfGlikResPumpCheck_cmdCheckedChanged);
+            // 
+            // reservPumpGlik
+            // 
+            this.reservPumpGlik.AutoSize = true;
+            this.reservPumpGlik.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.reservPumpGlik.Location = new System.Drawing.Point(15, 214);
+            this.reservPumpGlik.Name = "reservPumpGlik";
+            this.reservPumpGlik.Size = new System.Drawing.Size(136, 18);
+            this.reservPumpGlik.TabIndex = 48;
+            this.reservPumpGlik.Text = "Резервный насос";
+            this.reservPumpGlik.UseVisualStyleBackColor = true;
+            this.reservPumpGlik.CheckedChanged += new System.EventHandler(this.ReservPumpGlik_CheckedChanged);
             // 
             // pumpGlikCurProtect
             // 
@@ -10981,6 +11025,9 @@
         private System.Windows.Forms.Label label62;
         private System.Windows.Forms.ComboBox outFanFcTypeCombo;
         private System.Windows.Forms.Label label63;
+        private System.Windows.Forms.CheckBox pumpGlikResCurProtect;
+        private System.Windows.Forms.CheckBox confGlikResPumpCheck;
+        private System.Windows.Forms.CheckBox reservPumpGlik;
     }
 }
 

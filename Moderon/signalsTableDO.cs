@@ -1372,6 +1372,22 @@ namespace Moderon
             }
         }
 
+        ///<summary>Выбрали резервный насос гликолевого рекуператора</summary>
+        private void ReservPumpGlik_signalsDOCheckedChanged(object sender, EventArgs e)
+        {
+            if (ignoreEvents) return;
+
+            ushort code_1 = 58;
+
+            if (recupCheck.Checked && comboSysType.SelectedIndex == 1 && recupTypeCombo.SelectedIndex == 2)     // ПВ-система и гликолевый рекуператор
+            {
+                if (reservPumpGlik.Checked)
+                    AddToListDo("Запуск резервного насоса гликолевого рекуператора", code_1);
+                else
+                    SubFromCombosDO(code_1);
+            }
+        }
+
         ///<summary>Выбрали внешний сигнал "Работа"</summary>
         private void SigWorkCheck_signalsDOCheckedChanged(object sender, EventArgs e)
         {

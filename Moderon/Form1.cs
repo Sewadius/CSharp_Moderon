@@ -107,6 +107,9 @@ namespace Moderon
                 panelElements.Height + BETWEEN_PANELS);
             pic_signalsReady.Location = new Point(panelElements.Location.X, panelElements.Location.Y - BETWEEN_PANELS * 4);
 
+            // Положение для блока защиты рекуператора
+            defRecupSensPanel.Location = new Point(3, 365);
+
             PicturesMove(Size.Width);                       // Перемещение изображений
             PDF_ReSize(Size.Width, Size.Height);            // Область для отображения PDF
             SignalsTableReSize(Size.Width, Size.Height);    // Таблица сигналов
@@ -507,7 +510,8 @@ namespace Moderon
         ///<summary>Выбрали насос гликолевого рекуператора</summary>
         private void PumpGlicRecCheck_checkedChanged(object sender, EventArgs e)
         {
-            if (recupCheck.Checked && recupTypeCombo.SelectedIndex == 2)        // Выбран гликолевый рекуператор
+            // Выбран гликолевый рекуператор, ПВ-система
+            if (comboSysType.SelectedIndex == 1 && recupCheck.Checked && recupTypeCombo.SelectedIndex == 2)        
             {
                 if (pumpGlicRecCheck.Checked)                                   // Выбран насос гликолевого рекуператора
                 {
@@ -522,9 +526,29 @@ namespace Moderon
                     pumpGlikCurProtect.Enabled = false;
                 }
             }
+            PumpGlicRecCheck_cmdCheckedChanged(this, e);                        // Командное слово
+        }
 
-            if (ignoreEvents) return;
-            PumpGlicRecCheck_signalsDOCheckedChanged(this, e);                  // Сигналы DO ПЛК
+        ///<summary>Выбрали резервный насос гликолевого рекуператора</summary>
+        private void ReservPumpGlik_CheckedChanged(object sender, EventArgs e)
+        {
+            // Выбран гликолевый рекуператор, ПВ-система
+            if (comboSysType.SelectedIndex == 1 && recupCheck.Checked && recupTypeCombo.SelectedIndex == 2)
+            {
+                if (reservPumpGlik.Checked)                                     // Выбран резервный насос гликолевого рекуператора
+                {
+                    confGlikResPumpCheck.Enabled = true;                        // Разблокировка элементов
+                    pumpGlikResCurProtect.Enabled = true;
+                }
+                else                                                            // Отмена выбора резервного насоса гликолевого рекуператора
+                {
+                    confGlikResPumpCheck.Checked = false;                       // Блокировка и снятие выбора элементов
+                    pumpGlikResCurProtect.Checked = false;
+                    confGlikResPumpCheck.Enabled = false;
+                    pumpGlikResCurProtect.Enabled = false;
+                }
+            }
+            ReservPumpGlik_cmdCheckedChanged(this, e);                          // Командное слово
         }
 
         ///<summary>Нажали на кнопку "Сброс"</summary>

@@ -822,6 +822,23 @@ namespace Moderon
             }
         }
 
+        ///<summary>Выбрали подтверждение работы резервного насоса гликолевого рекуператора</summary>
+        private void ConfGlikResPumpCheck_signalsCheckedChanged(object sender, EventArgs e)
+        {
+            ushort code_1 = 96;
+
+            if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)                              // ПВ-система, выбран рекуператор 
+            {
+                if (recupTypeCombo.SelectedIndex == 2)                                              // Гликолевый рекуператор
+                {
+                    if (confGlikResPumpCheck.Checked)
+                        CheckAddUIToList("KPI резервного насоса гликолевого рекуператора", code_1, DI);
+                    else
+                        SubFromCombosUI(code_1);
+                }
+            }
+        }
+
         ///<summary>Выбрали защиту по току насоса гликолевого рекуператора</summary>
         private void PumpGlikCurProtect_signalsDICheckedChanged(object sender, EventArgs e)
         {
@@ -833,6 +850,23 @@ namespace Moderon
                 {
                     if (pumpGlikCurProtect.Checked)
                         CheckAddUIToList("Защита по току насоса гликолевого рекуператора", code_1, DI);
+                    else 
+                        SubFromCombosUI(code_1);
+                }
+            }
+        }
+
+        ///<summary>Выбрали защиту по току резервного насоса гликолевого рекуператора</summary>
+        private void PumpGlikResCurProtect_signalsDICheckedChanged(object sender, EventArgs e)
+        {
+            ushort code_1 = 97;
+
+            if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)                              // ПВ-система, выбран рекуператор  
+            {
+                if (recupTypeCombo.SelectedIndex == 2)                                              // Гликолевый рекуператор
+                {
+                    if (pumpGlikResCurProtect.Checked)
+                        CheckAddUIToList("Защита по току резервного насоса рекуператора", code_1, DI);
                     else 
                         SubFromCombosUI(code_1);
                 }
