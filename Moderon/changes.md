@@ -647,3 +647,13 @@
 - `ReservPumpGlik_CheckedChanged()` выбор резервного насоса гликолевого
 - `ConfGlikResPumpCheck_cmdCheckedChanged()` добавлено KPI резервного
 - `PumpGlikResCurProtect_signalsDICheckedChanged()` защита по току резерв
+
+13.02.24 (вторник)
+
+- `ResetRecupOpitons()` обновлены операции по сбросу настроек  
+- `TabControlSignals_Selected()` добавлена смена индекса поля командных слов
+- `FormSignalsButton_Click()` добавлен алгоритм пересчета командных слов
+- `CoolTypeCombo_signalsDOSelectedIndexChanged()` изменен порядок кодов ступеней
+- `HeatTypeCombo_signalsDOSelectedIndexChanged()` изменен порядок ступеней
+- `HeatAddTypeCombo_signalsDOSelectedIndexChanged` изменен порядок ступеней  
+- `HeatAddTypeCombo_signalsDOSelectedIndexChanged` ошибка кол-ва ступеней

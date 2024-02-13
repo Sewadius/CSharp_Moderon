@@ -91,6 +91,14 @@ namespace Moderon
             var p1 = new Point(15, 90);                     // Позиция для панели таблицы сигналов
             var p2 = new Point(200, 46);                    // Позиция для comboBox выбора типа контроллера
 
+            // Инициация пересчета командных слов
+            var index = tabControlSignals.SelectedIndex;
+            if (index == 3)                                 // Была выбрана вкладка с командными словами
+            {
+                tabControlSignals.SelectedIndex = 0;
+                tabControlSignals.SelectedIndex = index;
+            }
+
             mainPage.Hide(); loadModbusPanel.Hide();
             label_comboSysType.Text = "ТАБЛИЦА СИГНАЛОВ";
             comboSysType.Hide(); 
@@ -894,9 +902,13 @@ namespace Moderon
             {
                 if (heatTypeCombo.SelectedIndex == 0)                                   // Водяной калорифер
                 {
-                    SubFromCombosDO(code_1); SubFromCombosDO(code_2); SubFromCombosDO(code_3);
-                    SubFromCombosDO(code_4); SubFromCombosDO(code_5); SubFromCombosDO(code_6);
-                    SubFromCombosDO(code_7); SubFromCombosDO(code_8);
+                    var do_list = new List<ushort>()
+                    {
+                        code_8, code_7, code_6, code_5, code_4, code_3, code_2, code_1
+                    };
+
+                    foreach (var el in do_list) SubFromCombosDO(el);
+
                     AddToListDo("Запуск насоса водяного калорифера", code_0);
                 }
                 else if (heatTypeCombo.SelectedIndex == 1) // Электрокалорифер
@@ -1029,7 +1041,7 @@ namespace Moderon
             {
                 var codes = new List<ushort>()
                 {
-                    code_0, code_1, code_2, code_3, code_4, code_5, code_6, code_7, code_8
+                    code_8, code_7, code_6, code_5, code_4, code_3, code_2, code_1, code_0
                 };
 
                 foreach (var el in codes) SubFromCombosDO(el);
@@ -1047,27 +1059,31 @@ namespace Moderon
             {
                 if (heatAddTypeCombo.SelectedIndex == 0)            // Водяной догреватель
                 {
-                    SubFromCombosDO(code_1); SubFromCombosDO(code_2); SubFromCombosDO(code_3); SubFromCombosDO(code_4);
-                    SubFromCombosDO(code_5); SubFromCombosDO(code_6); SubFromCombosDO(code_7); SubFromCombosDO(code_8);
+                    var do_codes = new List<ushort>()
+                    {
+                        code_8, code_7, code_6, code_5, code_4, code_3, code_2, code_1
+                    };
+
+                    foreach (var el in do_codes) SubFromCombosDO(el);
                     AddToListDo("Запуск насоса водяного догревателя", code_0);
                 }
                 else if (heatAddTypeCombo.SelectedIndex == 1)       // Электрический догреватель
                 {
                     SubFromCombosDO(code_0);                        // Удаление запуска насоса
                     AddToListDo("1 ступень электрического догревателя", code_1);
-                    if (heatAddTypeCombo.SelectedIndex > 0)                             // Две ступени
+                    if (elHeatAddStagesCombo.SelectedIndex > 0)                             // Две ступени
                         AddToListDo("2 ступень электрического догревателя", code_2);
-                    if (heatAddTypeCombo.SelectedIndex > 1)                             // Три ступени
+                    if (elHeatAddStagesCombo.SelectedIndex > 1)                             // Три ступени
                         AddToListDo("3 ступень электрического догревателя", code_3);
-                    if (heatAddTypeCombo.SelectedIndex > 2)                             // Четыре ступени
+                    if (elHeatAddStagesCombo.SelectedIndex > 2)                             // Четыре ступени
                         AddToListDo("4 ступень электрического догревателя", code_4);
-                    if (heatAddTypeCombo.SelectedIndex > 3)                             // Пять ступеней
+                    if (elHeatAddStagesCombo.SelectedIndex > 3)                             // Пять ступеней
                         AddToListDo("5 ступень электрического догревателя", code_5);
-                    if (heatAddTypeCombo.SelectedIndex > 4)                             // Шесть ступеней
+                    if (elHeatAddStagesCombo.SelectedIndex > 4)                             // Шесть ступеней
                         AddToListDo("6 ступень электрического догревателя", code_6);
-                    if (heatAddTypeCombo.SelectedIndex > 5)                             // Семь ступеней
+                    if (elHeatAddStagesCombo.SelectedIndex > 5)                             // Семь ступеней
                         AddToListDo("7 ступень электрического догревателя", code_7);
-                    if (heatAddTypeCombo.SelectedIndex > 6)                             // Восемь ступеней
+                    if (elHeatAddStagesCombo.SelectedIndex > 6)                             // Восемь ступеней
                         AddToListDo("8 ступень электрического догревателя", code_8);
                 }
             }
@@ -1192,7 +1208,7 @@ namespace Moderon
                 }
                 else if (coolTypeCombo.SelectedIndex == 1)                                      // Водяной охладитель
                 {
-                    var codes = new List<ushort>() { code_1, code_2, code_3, code_4 };
+                    var codes = new List<ushort>() { code_4, code_3, code_2, code_1 };
                     foreach (var el in codes) SubFromCombosDO(el);
                 }
             }

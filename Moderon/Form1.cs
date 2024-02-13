@@ -723,12 +723,18 @@ namespace Moderon
             recDefPsCheck.Checked = false;
             // Роторный рекуператор
             powRotRecBox.Text = "0,18";
-            // Гликолевый рекуператор
+            // Гликолевый рекуператор, основной насос
             pumpGlicRecCheck.Checked = false;
             pumpGlikConfCheck.Checked = false;
             pumpGlikCurProtect.Checked = false;
             pumpGlikConfCheck.Enabled = false;
             pumpGlikCurProtect.Enabled = false;
+            // Гликолевый рекуператор, резервный насос
+            reservPumpGlik.Checked = false;
+            confGlikResPumpCheck.Checked = false;
+            pumpGlikResCurProtect.Checked = false;
+            confGlikResPumpCheck.Enabled = false;
+            pumpGlikResCurProtect.Enabled = false;
         }
 
         /// <summary>Сброс настроек для датчиков</summary>
@@ -1438,19 +1444,12 @@ namespace Moderon
                 e.Handled = true;
         }
 
-        ///<summary>Фокус для вкладки "Командные слова"</summary>
-        private void CmdWordsTextBox_Enter(object sender, EventArgs e)
-        {
-            if (CheckSignalsReady()) FormNetButton_Click(this, e);
-            else cmdWordsTextBox.Text = "";
-        }
-
         // Нажали на пункт "О программе"
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Отображение информационного окна
-            FormInfo fi = new FormInfo();
-            fi.Show(this);
+            FormInfo formInfo = new FormInfo();
+            formInfo.Show(this);
         }
 
         ///<summary>Настройка поля для ширины приточной заслонки</summary>
@@ -1482,6 +1481,13 @@ namespace Moderon
         private void ResetButtonSignals_Click(object sender, EventArgs e)     
         {
             ResetButton_Click(sender, e);
+        }
+
+        ///<summary>Обработка клика при переходе по вкладке "Командные слова"</summary>
+        private void TabControlSignals_Selected(object sender, TabControlEventArgs e)
+        {
+            if (CheckSignalsReady()) FormNetButton_Click(this, e);
+            else cmdWordsTextBox.Text = "";
         }
 
         ///<summary>Настройка поля для ширины вытяжной заслонки</summary>
