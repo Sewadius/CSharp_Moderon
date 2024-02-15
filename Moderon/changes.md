@@ -656,4 +656,9 @@
 - `CoolTypeCombo_signalsDOSelectedIndexChanged()` изменен порядок кодов ступеней
 - `HeatTypeCombo_signalsDOSelectedIndexChanged()` изменен порядок ступеней
 - `HeatAddTypeCombo_signalsDOSelectedIndexChanged` изменен порядок ступеней  
-- `HeatAddTypeCombo_signalsDOSelectedIndexChanged` ошибка кол-ва ступеней
+- `HeatAddTypeCombo_signalsDOSelectedIndexChanged` ошибка кол-ва ступеней  
+
+15.02.24 (четверг)
+
+- изменение условий для добавления/удаления блоков расширения - `ExpBlocks.cs`
+- расчет непосредственного количества блоков через `Values` для `blocks`

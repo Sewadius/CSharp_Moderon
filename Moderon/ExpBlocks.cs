@@ -202,11 +202,15 @@ namespace Moderon
                     {
                         blocks[M72E12RB] = 2;                                                                               // AO M72E12RB, 2-й блок
                         if (list_ao.Count > AO + M72E12RB.AO * 2) blocks[M72E12RB] = 3;                                     // AO M72E12RB, 3-й блок
+                        else if (list_do.Count > DO + M72E12RB.DO * 2 && list_ui.Count > UI + M72E12RB.UI * 2)
+                            blocks.Add(M72E12RA, 1);                                                                        // 3-й блок DO + UI M72E12RA
+                        else if (list_do.Count > DO + M72E12RB.DO * 2) blocks.Add(M72E08RA, 1);                             // 3-й блок DO M72E08RA
+                        else if (list_ui.Count > UI + M72E12RB.UI * 2) blocks.Add(M72E16NA, 1);                             // 3-й блок UI M72E16NA
                     }
-                    else if (list_do.Count > DO + M72E12RB.DO && list_ui.Count > UI + M72E12RB.UI)                          // DO + UI M72E12RA
+                    else if (list_do.Count > DO + M72E12RB.DO && list_ui.Count > UI + M72E12RB.UI)                          // 2-й блок DO + UI M72E12RA
                         blocks.Add(M72E12RA, 1);
-                    else if (list_do.Count > DO + M72E12RB.DO) blocks.Add(M72E08RA, 1);                                     // DO M72E08RA
-                    else if (list_ui.Count > UI + M72E12RB.UI) blocks.Add(M72E16NA, 1);                                     // UI M72E16NA
+                    else if (list_do.Count > DO + M72E12RB.DO) blocks.Add(M72E08RA, 1);                                     // 2-й блок DO M72E08RA
+                    else if (list_ui.Count > UI + M72E12RB.UI) blocks.Add(M72E16NA, 1);                                     // 2-й блок UI M72E16NA
                 }
                 else if (blocks.ContainsKey(M72E12RA))                                                                      // 1-й блок DO + UI M72E12RA
                 {
@@ -1002,9 +1006,12 @@ namespace Moderon
         ///<summary>Проверка для добавления 1-го блока расширения M72E12RA сигналов DO + UI</summary>
         private void AddFirstBlock_DOUI_M72E12RA(Dictionary<ExpBlock, int> blocks)
         {
-            if (blocks.ContainsKey(M72E12RA))
+            int count = 0;
+            foreach (var el in blocks.Values) count++;
+
+            if (blocks.ContainsKey(M72E12RA) && count == 1 && expansion_blocks.Count == 0)
             {
-                if (expansion_blocks.Count == 0) expansion_blocks.Add(M72E12RA);    // Добавление 1-го блока M72E12RA в список блоков расширения
+                expansion_blocks.Add(M72E12RA);                                     // Добавление 1-го блока M72E12RA в список блоков расширения
                 DO_block1_panelChanged_M72E12RA();                                  // Изменение панели блока расширения 1 для сигналов DO
                 UI_block1_panelChanged_M72E12RA();                                  // Изменение панели блока расширения 1 для сигналов UI
             }
@@ -1013,9 +1020,12 @@ namespace Moderon
         ///<summary>Проверка для добавления 2-го блока расширения M72E12RA сигналов DO + UI</summary>
         private void AddSecondBlock_DOUI_M72E12RA(Dictionary<ExpBlock, int> blocks)
         {
-            if (blocks.ContainsKey(M72E12RA))
+            int count = 0;
+            foreach (var el in blocks.Values) count++;
+
+            if (blocks.ContainsKey(M72E12RA) && count == 2 && expansion_blocks.Count == 1)
             {
-                if (expansion_blocks.Count == 1) expansion_blocks.Add(M72E12RA);    // Добавление 2-го блока M72E12RA в список блоков расширения
+                expansion_blocks.Add(M72E12RA);                                     // Добавление 2-го блока M72E12RA в список блоков расширения
                 DO_block2_panelChanged_M72E12RA();                                  // Изменение панели блока расширения 2 для сигналов DO
                 UI_block2_panelChanged_M72E12RA();                                  // Изменение панели блока расширения 2 для сигналов UI
             }
@@ -1024,9 +1034,12 @@ namespace Moderon
         ///<summary>Проверка для добавления 3-го блока расширения M72E12RA сигналов DO + UI</summary>
         private void AddThirdBlock_DOUI_M72E12RA(Dictionary<ExpBlock, int> blocks)
         {
-            if (blocks.ContainsKey(M72E12RA))
+            int count = 0;
+            foreach (var el in blocks.Values) count++;
+
+            if (blocks.ContainsKey(M72E12RA) && count == 3 && expansion_blocks.Count == 2)
             {
-                if (expansion_blocks.Count == 2) expansion_blocks.Add(M72E12RA);    // Добавление 3-го блока M72E12RA в список блоков расширения
+                expansion_blocks.Add(M72E12RA);                                     // Добавление 3-го блока M72E12RA в список блоков расширения
                 DO_block3_panelChanged_M72E12RA();                                  // Изменение панели блока расширения 3 для сигналов DO
                 UI_block3_panelChanged_M72E12RA();                                  // Изменение панели блока расширения 3 для сигналов UI
             }
@@ -1035,9 +1048,12 @@ namespace Moderon
         ///<summary>Проверка для добавления 1-го блока расширения M72E16NA сигналов UI</summary>
         private void AddFirstBlockUI_M72E16NA(Dictionary<ExpBlock, int> blocks)
         {
-            if (blocks.ContainsKey(M72E16NA))
+            int count = 0;
+            foreach (var el in blocks.Values) count++;
+
+            if (blocks.ContainsKey(M72E16NA) && count == 1 && expansion_blocks.Count == 0)
             {
-                if (expansion_blocks.Count == 0) expansion_blocks.Add(M72E16NA);    // Добавление 1-го блока M72E16NA в список блоков расширения
+                expansion_blocks.Add(M72E16NA);                                     // Добавление 1-го блока M72E16NA в список блоков расширения
                 UI_block1_panelChanged_M72E16NA();                                  // Изменение панели блока расширения 1 для сигналов UI
             }
         }
@@ -1045,9 +1061,12 @@ namespace Moderon
         ///<summary>Проверка для добавления 2-го блока расширения M72E16NA сигналов UI</summary>
         private void AddSecondBlockUI_M72E16NA(Dictionary<ExpBlock, int> blocks)
         {
-            if (blocks.ContainsKey(M72E16NA) && blocks[M72E16NA] == 2)
+            int count = 0;
+            foreach (var el in blocks.Values) count++;
+
+            if (blocks.ContainsKey(M72E16NA) && count == 2 && expansion_blocks.Count == 1)
             {
-                if (expansion_blocks.Count == 1) expansion_blocks.Add(M72E16NA);    // Добавление 2-го блока M72E16NA в список блоков расширения
+                expansion_blocks.Add(M72E16NA);                                     // Добавление 2-го блока M72E16NA в список блоков расширения
                 UI_block2_panelChanged_M72E16NA();                                  // Изменение панели блока расширения 2 для сигналов UI
             }
         }
@@ -1055,9 +1074,12 @@ namespace Moderon
         ///<summary>Проверка для добавления 3-го блока расширения M72E16NA сигналов UI</summary>
         private void AddThirdBlockUI_M72E16NA(Dictionary<ExpBlock, int> blocks)
         {
-            if (blocks.ContainsKey(M72E16NA) && blocks[M72E16NA] == 3)
+            int count = 0;                                                          // Общее количество задействованных блоков
+            foreach (var el in blocks.Values) count += el;
+
+            if (blocks.ContainsKey(M72E16NA) && count == 3 && expansion_blocks.Count == 2)
             {
-                if (expansion_blocks.Count == 2) expansion_blocks.Add(M72E16NA);    // Добавление 1-го блока M72E16NA в список блоков расширения
+                expansion_blocks.Add(M72E16NA);                                     // Добавление 1-го блока M72E16NA в список блоков расширения
                 UI_block3_panelChanged_M72E16NA();                                  // Изменение панели блока расширения 3 для сигналов UI
             }
         }
@@ -1065,9 +1087,12 @@ namespace Moderon
         ///<summary>Проверка для добавления 1-го блока расширения M72E08RA сигналов DO</summary>
         private void AddFirstBlockDO_M72E08RA(Dictionary<ExpBlock, int> blocks)
         {
-            if (blocks.ContainsKey(M72E08RA))
+            int count = 0;                                                          // Общее количество задействованных блоков
+            foreach (var el in blocks.Values) count += el;
+
+            if (blocks.ContainsKey(M72E08RA) && count == 1 && expansion_blocks.Count == 0)
             {
-                if (expansion_blocks.Count == 0) expansion_blocks.Add(M72E08RA);    // Добавление 1-го блока M72E08RA в список блоков расширения
+                expansion_blocks.Add(M72E08RA);                                     // Добавление 1-го блока M72E08RA в список блоков расширения
                 DO_block1_panelChanged_M72E08RA();                                  // Изменение панели блока расширения 1 для сигналов DO
             }
         }
@@ -1075,9 +1100,12 @@ namespace Moderon
         ///<summary>Проверка для добавления 2-го блока расширения M72E08RA сигналов DO</summary>
         private void AddSecondBlockDO_M72E08RA(Dictionary<ExpBlock, int> blocks)
         {
-            if (blocks.ContainsKey(M72E08RA) && blocks[M72E08RA] == 2)
+            int count = 0;                                                          // Общее количество задействованных блоков
+            foreach (var el in blocks.Values) count += el;
+
+            if (blocks.ContainsKey(M72E08RA) && count == 2 && expansion_blocks.Count == 1)
             {
-                if (expansion_blocks.Count == 1) expansion_blocks.Add(M72E08RA);    // Добавление 2-го блока M72E08RA в список блоков расширения                   
+                expansion_blocks.Add(M72E08RA);                                     // Добавление 2-го блока M72E08RA в список блоков расширения                   
                 DO_block2_panelChanged_M72E08RA();                                  // Изменение панели блока расширения 2 для сигналов DO
             }
         }
@@ -1085,9 +1113,12 @@ namespace Moderon
         ///<summary>Проверка для добавления 3-го блока расширения M72E08RA сигналов DO</summary>
         private void AddThirdBlockDO_M72E08RA(Dictionary<ExpBlock, int> blocks)
         {
-            if (blocks.ContainsKey(M72E08RA) && blocks[M72E08RA] == 3)
+            int count = 0;                                                          // Общее количество задействованных блоков
+            foreach (var el in blocks.Values) count += el;
+
+            if (blocks.ContainsKey(M72E08RA) && count == 3 && expansion_blocks.Count == 2)
             {
-                if (expansion_blocks.Count == 2) expansion_blocks.Add(M72E08RA);    // Добавление 3-го блока M72E08RA в список блоков расширения
+                expansion_blocks.Add(M72E08RA);                                     // Добавление 3-го блока M72E08RA в список блоков расширения
                 DO_block3_panelChanged_M72E08RA();                                  // Изменение панели блока расширения 3 для сигналов DO
             }
         }
@@ -1095,9 +1126,9 @@ namespace Moderon
         ///<summary>Проверка для добавления 1-го блока расширения M72E12RB сигналов AO</summary>
         private void AddFirstBlockAO_M72E12RB(Dictionary<ExpBlock, int> blocks)
         {
-            if (blocks.ContainsKey(M72E12RB) && blocks[M72E12RB] == 1)
+            if (blocks.ContainsKey(M72E12RB) && blocks[M72E12RB] == 1 && expansion_blocks.Count == 0)
             {
-                if (expansion_blocks.Count == 0) expansion_blocks.Add(M72E12RB);    // Добавление 1-го блока M72E12RB в список блоков расширения
+                expansion_blocks.Add(M72E12RB);                                     // Добавление 1-го блока M72E12RB в список блоков расширения
                 AO_block1_panelChanged_M72E12RB();                                  // Отображение и разблокировка панели AO для блока расширения 1
                 DO_block1_panelChanged_M72E12RB();                                  // Изменение панели блока расширения 1 для сигналов DO
                 UI_block1_panelChanged_M72E12RB();                                  // Изменение панели блока расширения 1 для сигналов UI
@@ -1107,9 +1138,9 @@ namespace Moderon
         ///<summary>Проверка для добавления 2-го блока расширения M72E12RB сигналов AO</summary>
         private void AddSecondBlockAO_M72E12RB(Dictionary<ExpBlock, int> blocks)
         {
-            if (blocks.ContainsKey(M72E12RB) && blocks[M72E12RB] == 2)
+            if (blocks.ContainsKey(M72E12RB) && blocks[M72E12RB] == 2 && expansion_blocks.Count == 1)
             {
-                if (expansion_blocks.Count == 1) expansion_blocks.Add(M72E12RB);   // Добавление 2-го блока M72E12RB в список блоков расширения
+                expansion_blocks.Add(M72E12RB);                                    // Добавление 2-го блока M72E12RB в список блоков расширения
                 AO_block2_panelChanged_M72E12RB();                                 // Отображение и разблокировка панели AO для блока расширения 2
                 DO_block2_panelChanged_M72E12RB();                                 // Изменение панели блока расширения 2 для сигналов DO
                 UI_block2_panelChanged_M72E12RB();                                 // Изменение панели блока расширения 2 для сигналов UI
@@ -1119,9 +1150,9 @@ namespace Moderon
         ///<summary>Проверка для добавления 3-го блока расширения M72E12RB сигналов AO</summary>
         private void AddThirdBlockAO_M72E12RB(Dictionary<ExpBlock, int> blocks)
         {
-            if (blocks.ContainsKey(M72E12RB) && blocks[M72E12RB] == 3)
+            if (blocks.ContainsKey(M72E12RB) && blocks[M72E12RB] == 3 && expansion_blocks.Count == 2)
             {
-                if (expansion_blocks.Count == 2) expansion_blocks.Add(M72E12RB);    // Добавление 3-го блока M72E12RB в список блоков расширения
+                expansion_blocks.Add(M72E12RB);                                     // Добавление 3-го блока M72E12RB в список блоков расширения
                 AO_block3_panelChanged_M72E12RB();                                  // Отображение и разблокировка панели AO для блока расширения 3
                 DO_block3_panelChanged_M72E12RB();                                  // Изменение панели блока расширения 3 для сигналов DO
                 UI_block3_panelChanged_M72E12RB();                                  // Изменение панели блока расширения 3 для сигналов UI
@@ -1132,7 +1163,10 @@ namespace Moderon
         private void RemoveFirstBlock_DOUI_M72E12RA(Dictionary<ExpBlock, int> blocks)
         {
             // Условия для удаления M72E12RA в качестве 1-го блока расширения
-            if (!blocks.ContainsKey(M72E12RA) && expansion_blocks.Contains(M72E12RA) && expansion_blocks.Count == 1)
+            int count = 0;                                                          // Общее количество задействованных блоков
+            foreach (var el in blocks.Values) count += el;
+
+            if (count == 0 && expansion_blocks.Contains(M72E12RA) && expansion_blocks.Count == 1)
             {
                 expansion_blocks.Remove(M72E12RA);                                  // Удаление блока M72E16NA из списка блоков
                 CheckSignals_block1_M72E12RA();                                     // Автораспределение ранее выбранных сигналов с блока M72E12RA
@@ -1147,8 +1181,10 @@ namespace Moderon
         private void RemoveSecondBlock_DOUI_M72E12RA(Dictionary<ExpBlock, int> blocks)
         {
             // Условия для удаления M72E12RA в качестве 2-го блока расширения
-            if (!(blocks.ContainsKey(M72E12RA) && blocks[M72E12RA] == 2) &&
-                expansion_blocks.Contains(M72E12RA) && expansion_blocks.Count == 2)
+            int count = 0;                                                          // Общее количество задействованных блоков
+            foreach (var el in blocks.Values) count += el;
+
+            if (count == 1 && expansion_blocks.Contains(M72E12RA) && expansion_blocks.Count == 2)
             {
                 expansion_blocks.Remove(M72E12RA);                                  // Удаление блока M72E16NA из списка блоков
                 CheckSignals_block2_M72E12RA();                                     // Автораспределение ранее выбранных сигналов с блока M72E12RA
@@ -1163,8 +1199,10 @@ namespace Moderon
         private void RemoveThirdBlock_DOUI_M72E12RA(Dictionary<ExpBlock, int> blocks)
         {
             // Условия для удаления M72E12RA в качестве 3-го блока расширения
-            if (!(blocks.ContainsKey(M72E12RA) && blocks[M72E12RA] == 3) &&
-                expansion_blocks.Contains(M72E12RA) && expansion_blocks.Count == 3)
+            int count = 0;                                                          // Общее количество задействованных блоков
+            foreach (var el in blocks.Values) count += el;
+
+            if (count == 2 && expansion_blocks.Contains(M72E12RA) && expansion_blocks.Count == 3)
             {
                 expansion_blocks.Remove(M72E12RA);                                  // Удаление блока M72E16NA из списка блоков
                 CheckSignals_block3_M72E12RA();                                     // Автораспределение ранее выбранных сигналов с блока M72E12RA
@@ -1179,7 +1217,10 @@ namespace Moderon
         private void RemoveFirstBlockUI_M72E16NA(Dictionary<ExpBlock, int> blocks)
         {
             // Условия для удаления M72E16NA в качестве 1-го блока расширения
-            if (!blocks.ContainsKey(M72E16NA) && expansion_blocks.Contains(M72E16NA) && expansion_blocks.Count == 1)
+            int count = 0;                                                          // Общее количество задействованных блоков
+            foreach (var el in blocks.Values) count += el;
+
+            if (count == 0 && expansion_blocks.Contains(M72E16NA) && expansion_blocks.Count == 1)
             {
                 expansion_blocks.Remove(M72E16NA);                                  // Удаление блока M72E16NA из списка блоков
                 CheckSignals_block1_M72E16NA();                                     // Автораспределение ранее выбранных сигналов с блока M72E16NA
@@ -1192,8 +1233,10 @@ namespace Moderon
         private void RemoveSecondBlockUI_M72E16NA(Dictionary<ExpBlock, int> blocks)
         {
             // Условия для удаления M72E16NA в качестве 2-го блока расширения
-            if (!(blocks.ContainsKey(M72E16NA) && blocks[M72E16NA] == 2) &&
-                expansion_blocks.Contains(M72E16NA) && expansion_blocks.Count == 2)
+            int count = 0;
+            foreach (var el in blocks.Values) count += el;
+
+            if (count == 1 && expansion_blocks.Contains(M72E16NA) && expansion_blocks.Count == 2)
             {
                 expansion_blocks.Remove(M72E16NA);                                  // Удаление блока M72E16NA из списка блоков
                 CheckSignals_block2_M72E16NA();                                     // Автораспределение ранее выбранных сигналов с блока M72E16NA
@@ -1206,8 +1249,10 @@ namespace Moderon
         private void RemoveThirdBlockUI_M72E16NA(Dictionary<ExpBlock, int> blocks)
         {
             // Условия для удаления M72E16NA в качестве 3-го блока расширения
-            if (!(blocks.ContainsKey(M72E16NA) && blocks[M72E16NA] == 3) &&
-                expansion_blocks.Contains(M72E16NA) && expansion_blocks.Count == 3)
+            int count = 0;
+            foreach (var el in blocks.Values) count += el;
+
+            if (count == 2 && expansion_blocks.Contains(M72E16NA) && expansion_blocks.Count == 3)
             {
                 expansion_blocks.Remove(M72E16NA);                                  // Удаление блока M72E16NA из списка блоков
                 CheckSignals_block3_M72E16NA();                                     // Автораспределение ранее выбранных сигналов с блока M72E16NA
@@ -1220,7 +1265,10 @@ namespace Moderon
         private void RemoveFirstBlockDO_M72E08RA(Dictionary<ExpBlock, int> blocks)
         {
             // Условия для удаления M72E08RA в качестве 1-го блока расширения
-            if (!blocks.ContainsKey(M72E08RA) && expansion_blocks.Contains(M72E08RA) && expansion_blocks.Count == 1)
+            int count = 0;                                                          // Общее количество задействованных блоков
+            foreach (var el in blocks.Values) count += el;
+
+            if (count == 0 && expansion_blocks.Contains(M72E08RA) && expansion_blocks.Count == 1)
             {
                 expansion_blocks.Remove(M72E08RA);                                  // Удаление блока M72E08RA из списка блоков
                 CheckSignals_block1_M72E08RA();                                     // Автораспределение ранее выбранных сигналов с блока M72E08RA
@@ -1233,8 +1281,10 @@ namespace Moderon
         private void RemoveSecondBlockDO_M72E08RA(Dictionary<ExpBlock, int> blocks)
         {
             // Условия для удаления M72E12RB в качестве 2-го блока расширения
-            if (!(blocks.ContainsKey(M72E08RA) && blocks[M72E08RA] == 2) && 
-                expansion_blocks.Contains(M72E08RA) && expansion_blocks.Count == 2)
+            int count = 0;                                                          // Общее количество задействованных блоков
+            foreach (var el in blocks.Values) count += el;
+
+            if (count == 1 && expansion_blocks.Contains(M72E08RA) && expansion_blocks.Count == 2)
             {
                 expansion_blocks.Remove(M72E08RA);                                  // Удаление блока M72E08RA из списка блоков
                 CheckSignals_block2_M72E08RA();                                     // Автораспределение ранее выбранных сигналов с блока M72E08RA
@@ -1247,8 +1297,10 @@ namespace Moderon
         private void RemoveThirdBlockDO_M72E08RA(Dictionary<ExpBlock, int> blocks)
         {
             // Условия для удаления M72E12RB в качестве 3-го блока расширения
-            if (!(blocks.ContainsKey(M72E08RA) && blocks[M72E08RA] == 3) &&
-                expansion_blocks.Contains(M72E08RA) && expansion_blocks.Count == 3)
+            int count = 0;                                                          // Общее количество задействованных блоков
+            foreach (var el in blocks.Values) count += el;
+
+            if (count == 2 && expansion_blocks.Contains(M72E08RA) && expansion_blocks.Count == 3)
             {
                 expansion_blocks.Remove(M72E08RA);                                  // Удаление блока M72E08RA из списка блоков
                 CheckSignals_block3_M72E08RA();                                     // Автораспределение ранее выбранных сигналов с блока M72E08RA
@@ -1261,7 +1313,10 @@ namespace Moderon
         private void RemoveFirstBlockAO_M72E12RB(Dictionary<ExpBlock, int> blocks)
         {
             // Условия для удаления M72E12RB в качестве 1-го блока расширения
-            if (!blocks.ContainsKey(M72E12RB) && expansion_blocks.Contains(M72E12RB) && expansion_blocks.Count == 1)
+            int count = 0;                                                          // Общее количество задействованных блоков
+            foreach (var el in blocks.Values) count += el;
+
+            if (count == 0 && expansion_blocks.Contains(M72E12RB) && expansion_blocks.Count == 1)
             {
                 expansion_blocks.Remove(M72E12RB);                                  // Удаление блока M72E12RB из списка блоков
                 CheckSignals_block1_M72E12RB();                                     // Автораспределение ранее выбранных сигналов с блока 1
@@ -1277,10 +1332,11 @@ namespace Moderon
         private void RemoveSecondBlockAO_M72E12RB(Dictionary<ExpBlock, int> blocks)
         {
             // Условия для удаления M72E12RB в качестве второго блока расширения
-            var count_M72E12RB = expansion_blocks.Where(x => x == M72E12RB).Count();                    
-            
+            int count = 0;                                                          // Общее количество задействованных блоков
+            foreach (var el in blocks.Values) count += el;
+
             // Количество блоков расширения M72E12RB == 2
-            if (blocks.ContainsKey(M72E12RB) && blocks[M72E12RB] == 1 && count_M72E12RB == 2 && expansion_blocks.Count == 2)
+            if (count == 1 && expansion_blocks.Contains(M72E12RB) && expansion_blocks.Count == 2)
             {
                 expansion_blocks.Remove(M72E12RB);                                  // Удаление блока из списка блоков
                 CheckSignals_block2_M72E12RB();                                     // Автораспределение ранее выбранных сигналов с блока 2
@@ -1295,11 +1351,11 @@ namespace Moderon
         ///<summary>Проверка для удаления 3-го блока расширения M72E12RB сигналов AO</summary>
         private void RemoveThirdBlockAO_M72E12RB(Dictionary<ExpBlock, int> blocks)
         {
-            // Добавление количество AO для двух блоков расширения
-            var count_M72E12RB = expansion_blocks.Where(x => x == M72E12RB).Count();
+            int count = 0;                                                          // Общее количество задействованных блоков
+            foreach (var el in blocks.Values) count += el;
 
             // Количество блоков расширения M72E12RB == 3
-            if (blocks.ContainsKey(M72E12RB) && blocks[M72E12RB] == 2 && count_M72E12RB == 3 && expansion_blocks.Count == 3)
+            if (count == 2 && expansion_blocks.Contains(M72E12RB) && expansion_blocks.Count == 3)
             {
                 expansion_blocks.Remove(M72E12RB);                                  // Удаление блока из списка блоков
                 CheckSignals_block3_M72E12RB();                                     // Автораспределение ранее выбранных сигналов с блока 3
