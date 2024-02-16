@@ -258,6 +258,14 @@ namespace Moderon
         {
             var blocks = CalcExpBlocks_typeNums();          // Определение типов и количества блоков расширения
 
+            RemoveThirdBlock_DOUI_M72E12RA(blocks);         // Проверка удаления 3-го блока расширения M72E12RA
+            RemoveSecondBlock_DOUI_M72E12RA(blocks);        // Проверка удаления 2-го блока расширения M72E12RA
+            RemoveFirstBlock_DOUI_M72E12RA(blocks);         // Проверка удаления 1-го блока расширения M72E12RA
+
+            RemoveThirdBlockUI_M72E16NA(blocks);            // Проверка удаления 3-го блока расширения M72E16NA
+            RemoveSecondBlockUI_M72E16NA(blocks);           // Проверка удаления 2-го блока расширения M72E16NA
+            RemoveFirstBlockUI_M72E16NA(blocks);            // Проверка удаления 1-го блока расширения M72E16NA
+
             AddFirstBlockAO_M72E12RB(blocks);               // Проверка необходимости добавить 1-й блок расширения M72E12RB
             AddSecondBlockAO_M72E12RB(blocks);              // Проверка необходимости добавить 2-й блок расширения M72E12RB
             AddThirdBlockAO_M72E12RB(blocks);               // Проверка необходимости добавить 3-й блок расширения M72E12RB
@@ -355,6 +363,15 @@ namespace Moderon
             RemoveThirdBlockAO_M72E12RB(blocks);            // Проверка для удаления 3-го блока расширения AO
             RemoveSecondBlockAO_M72E12RB(blocks);           // Проверка для удаления 2-го блока расширения AO
             RemoveFirstBlockAO_M72E12RB(blocks);            // Проверка для удаления 1-го блока расширения AO
+
+            AddFirstBlock_DOUI_M72E12RA(blocks);            // Проверка для добавления 1-го блока расширения DO + UI
+            AddSecondBlock_DOUI_M72E12RA(blocks);           // Проверка для добавления 2-го блока расширения DO + UI
+            AddThirdBlock_DOUI_M72E12RA(blocks);            // Проверка для добавления 3-го блока расширения DO + UI
+
+            AddFirstBlockUI_M72E16NA(blocks);               // Проверка для добавления 1-го блока расширения UI
+            AddSecondBlockUI_M72E16NA(blocks);              // Проверка для добавления 2-го блока расширения UI
+            AddThirdBlockUI_M72E16NA(blocks);               // Проверка для добавления 3-го блока расширения UI
+
             CheckSignalsReady();                            // Проверка распределения сигналов
         }
 

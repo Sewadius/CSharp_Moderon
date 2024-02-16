@@ -266,6 +266,10 @@ namespace Moderon
             RemoveSecondBlockUI_M72E16NA(blocks);                       // Проверка на удаление 2-го блока расширения UI
             RemoveFirstBlockUI_M72E16NA(blocks);                        // Проверка на удаление 1-го блока расширения UI
 
+            RemoveThirdBlockDO_M72E08RA(blocks);                        // Проверка на удаление 3-го блока расширения DO
+            RemoveSecondBlockDO_M72E08RA(blocks);                       // Проверка на удаление 2-го блока расширения DO
+            RemoveFirstBlockDO_M72E08RA(blocks);                        // Проверка на удаление 1-го блока расширения DO
+
             AddFirstBlock_DOUI_M72E12RA(blocks);                        // Проверка добавления 1-го блока расширения M72E12RA (DO + UI)  
             AddSecondBlock_DOUI_M72E12RA(blocks);                       // Проверка добавления 2-го блока расширения M72E12RA (DO + UI)
             AddThirdBlock_DOUI_M72E12RA(blocks);                        // Проверка добавления 3-го блока расширения M72E12RA (DO + UI)
@@ -521,7 +525,11 @@ namespace Moderon
             RemoveSecondBlockUI_M72E16NA(blocks);       // Проверка на удаление 2-го блока расширения UI
             RemoveFirstBlockUI_M72E16NA(blocks);        // Проверка на удаление 1-го блока расширения UI
 
-            CheckSignalsReady();            // Проверка распределения сигналов
+            AddFirstBlockDO_M72E08RA(blocks);           // Проверка на добавление 1-го блока расширения DO
+            AddSecondBlockDO_M72E08RA(blocks);          // Проверка на добавление 1-го блока расширения DO
+            AddThirdBlockDO_M72E08RA(blocks);           // Проверка на добавление 1-го блока расширения DO
+
+            CheckSignalsReady();                        // Проверка распределения сигналов
         }
 
         ///<summary>Установка числового кода в зависимости от типа UI сигнала</summary>
