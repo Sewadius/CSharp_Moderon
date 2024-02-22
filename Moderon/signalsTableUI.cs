@@ -169,7 +169,7 @@ namespace Moderon
             {
                 Ui ui_find = list_ui.Find(x => x.Name == name);
 
-                if (ui_find != null)
+                if (ui_find != null)                                    // Не пустой сигнал и свободен к распределению
                 {
                     foreach (var el in comboBox.Items)
                         if (el.ToString() == name) notFound = false;
@@ -528,6 +528,10 @@ namespace Moderon
             AddFirstBlockDO_M72E08RA(blocks);           // Проверка на добавление 1-го блока расширения DO
             AddSecondBlockDO_M72E08RA(blocks);          // Проверка на добавление 1-го блока расширения DO
             AddThirdBlockDO_M72E08RA(blocks);           // Проверка на добавление 1-го блока расширения DO
+
+            AddFirstBlockUI_M72E16NA(blocks);           // Проверка на добавление 1-го блока расширения UI
+            AddSecondBlockUI_M72E16NA(blocks);          // Проверка на добавление 2-го блока расширения UI
+            AddThirdBlockUI_M72E16NA(blocks);           // Проверка на добавление 3-го блока расширения UI
 
             CheckSignalsReady();                        // Проверка распределения сигналов
         }

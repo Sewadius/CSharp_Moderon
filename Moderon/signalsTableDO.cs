@@ -283,6 +283,7 @@ namespace Moderon
             {
                 comboPlkType.Enabled = true;                                        // Разблокировка смены типа ПЛК
                 saveToolStripMenuItem.Enabled = true;                               // Разблокировка сохранения файла
+                backSignalsButton.Enabled = true;                                   // Разблокировка кнопки "Назад"
                 signalsReadyLabel.Text = "Карта входов/выходов сформирована";
                 signalsReadyLabel.ForeColor = Color.Green;
                 loadPLC_SignalsButton.Show();                                       // Кнопка "Далее"
@@ -295,6 +296,7 @@ namespace Moderon
             {
                 comboPlkType.Enabled = false;                                       // Блокировка смены типа ПЛК
                 saveToolStripMenuItem.Enabled = false;                              // Блокировка сохранения файла
+                backSignalsButton.Enabled = false;                                  // Блокировка кнопки "Назад"
                 signalsReadyLabel.Text = "Карта входов/выходов некорректна";
                 signalsReadyLabel.ForeColor = Color.Red;
                 loadPLC_SignalsButton.Hide();                                       // Кнопка "Далее"
@@ -781,6 +783,10 @@ namespace Moderon
             RemoveSecondBlockDO_M72E08RA(blocks);       // Проверка для удаления 2-го блока расширения DO
             RemoveFirstBlockDO_M72E08RA(blocks);        // Проверка для удаления 1-го блока расширения DO
 
+            AddFirstBlockUI_M72E16NA(blocks);           // Проверка добавления 1-го блока расширения UI
+            AddSecondBlockUI_M72E16NA(blocks);          // Проверка добавления 2-го блока расширения UI
+            AddThirdBlockUI_M72E16NA(blocks);           // Проверка добавления 3-го блока расширения UI
+
             CheckSignalsReady();                        // Проверка распределения сигналов
         }
 
@@ -1021,19 +1027,19 @@ namespace Moderon
                 else if (heatAddTypeCombo.SelectedIndex == 1)                           // Электрический догреватель
                 {
                     AddToListDo("1 ступень электрического догревателя", code_1);        // Первая ступень электрического догревателя
-                    if (heatAddTypeCombo.SelectedIndex > 0)                             // Две ступени
+                    if (elHeatAddStagesCombo.SelectedIndex > 0)                             // Две ступени
                         AddToListDo("2 ступень электрического догревателя", code_2);
-                    if (heatAddTypeCombo.SelectedIndex > 1)                             // Три ступени
+                    if (elHeatAddStagesCombo.SelectedIndex > 1)                             // Три ступени
                         AddToListDo("3 ступень электрического догревателя", code_3);
-                    if (heatAddTypeCombo.SelectedIndex > 2)                             // Четыре ступени
+                    if (elHeatAddStagesCombo.SelectedIndex > 2)                             // Четыре ступени
                         AddToListDo("4 ступень электрического догревателя", code_4);
-                    if (heatAddTypeCombo.SelectedIndex > 3)                             // Пять ступеней
+                    if (elHeatAddStagesCombo.SelectedIndex > 3)                             // Пять ступеней
                         AddToListDo("5 ступень электрического догревателя", code_5);
-                    if (heatAddTypeCombo.SelectedIndex > 4)                             // Шесть ступеней
+                    if (elHeatAddStagesCombo.SelectedIndex > 4)                             // Шесть ступеней
                         AddToListDo("6 ступень электрического догревателя", code_6);
-                    if (heatAddTypeCombo.SelectedIndex > 5)                             // Семь ступеней
+                    if (elHeatAddStagesCombo.SelectedIndex > 5)                             // Семь ступеней
                         AddToListDo("7 ступень электрического догревателя", code_7);
-                    if (heatAddTypeCombo.SelectedIndex > 6)                             // Восемь ступеней
+                    if (elHeatAddStagesCombo.SelectedIndex > 6)                             // Восемь ступеней
                         AddToListDo("8 ступень электрического догревателя", code_8);
                 }
             }

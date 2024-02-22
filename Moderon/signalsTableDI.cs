@@ -304,7 +304,8 @@ namespace Moderon
         ///<summary>Изменили тип основного нагревателя</summary>
         private void HeatTypeCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 72, code_2 = 73;                                                        // Воздушный термостат и подтверждение работы насоса
+            // Воздушный термостат, подтверждение работы насоса, защита по току
+            ushort code_1 = 72, code_2 = 73, code_3 = 75;                                           
 
             if (heaterCheck.Checked)                                                                // Выбран нагреватель
             { 
@@ -314,10 +315,12 @@ namespace Moderon
                         CheckAddUIToList("Термостат водяного калорифера", code_1, DI);
                     if (confHeatPumpCheck.Checked)                                                  // Подтверждение работы насоса
                         CheckAddUIToList("Подтверждение работы насоса водяного калорифера", code_2, DI);
+                    if (pumpCurProtect.Checked)                                                     // Защита насоса по току
+                        CheckAddUIToList("Защита по току основного насоса калорифера", code_3, DI);
                 }
                 else                                                                                // Электрокалорифер
                 {
-                    SubFromCombosUI(code_1); SubFromCombosUI(code_2);
+                    SubFromCombosUI(code_1); SubFromCombosUI(code_2); SubFromCombosUI(code_3);
                 }
                 ThermSwitchCombo_signalsDISelectedIndexChanged(this, e); // Проверка термовыключателей
             }

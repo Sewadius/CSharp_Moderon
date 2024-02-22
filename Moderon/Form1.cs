@@ -66,7 +66,7 @@ namespace Moderon
             DoCombosBlocks_Reset();         // Скрытие и блокировка comboBox DO блоков расширение, скрытие Label подписей
             UiCombosBlocks_Reset();         // Скрытие и блокировка comboBox UI блоков расширение, скрытие Label подписей
 
-            Size = new Size(995, 680);      // Размер для основной формы
+            Size = new Size(995, 730);      // Размер для основной формы (было 995, 680)
         }
 
         ///<summary>Начальная установка для входов и выходов</summary>
@@ -80,12 +80,13 @@ namespace Moderon
         ///<summary>Изменение размера формы</summary>
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
-            const int 
+            const int
                 deltaW_tabControl = 245,            // Промежуток по ширине, панель с вкладками tabControl1
                 deltaH_tabControl = 155,            // Промежуток по высоте, панель с вкладками tabControl1
                 deltaW_FanPanel = 278,              // Промежуток по ширине, панель приточного вентилятора prFanPanel
                 deltaW_panel = 210,                 // Промежуток по ширине, панель с выбором элементов panel1
-                height_panel1 = 96;                 // Высота для панели panel1
+                height_panel1 = 96,                 // Высота для панели panel1
+                logo_X_delta = 58;                  // Промежуток по X для изображения логотипа Moderon
 
             // Изменение размеров для панелей
             mainPage.Size = new Size(Size.Width - deltaW_tabControl, Size.Height - deltaH_tabControl);
@@ -106,6 +107,7 @@ namespace Moderon
             panelBlocks.Location = new Point(Size.Width - deltaW_panel, height_panel1 + 
                 panelElements.Height + BETWEEN_PANELS);
             pic_signalsReady.Location = new Point(panelElements.Location.X, panelElements.Location.Y - BETWEEN_PANELS * 4);
+            pictureBoxLogo.Location = new Point(panelElements.Location.X + logo_X_delta, pictureBoxLogo.Location.Y);
 
             // Положение для блока защиты рекуператора
             defRecupSensPanel.Location = new Point(3, 365);
@@ -308,7 +310,7 @@ namespace Moderon
             // Изображение для карты входов/выходов
             toolTip.SetToolTip(pic_signalsReady, pic_sig_ready);
             // Изменение размера для tabControl выбора оборудования
-            mainPage.Height = 465; 
+            mainPage.Height = 465; // 465
             Form1_InitCmdWord(this, e); // Подготовка командных слов
             Form1_InitSignals(this, e); // Подготовка сигналов ПЛК
             // Изменения для таблицы формирования сигналов
@@ -1317,6 +1319,9 @@ namespace Moderon
             helpPanel.Width = Width - 50;                                                   // Ширина по границе окна
             helpPanel.Show();
             formSignalsButton.Hide();                                                       // Скрытие кнопки "Сформировать"
+            comboPlkType.Hide();                                                            // Скрытие выбора типа ПЛК
+            panelBlocks.Hide();                                                             // Скрытие панели выбора блоков расширения
+            pic_signalsReady.Hide();                                                        // Скрытие изображения статуса распределения сигналов
             //ToolStripMenuItem_options.Enabled = false; // Блокировка "Настройки"
             PDF_manual.Width = helpPanel.Width;                                             // Ширина по границе панели
             PDF_manual.src = Directory.GetCurrentDirectory() + @"\ManualModeron.pdf";       // В папке приложения
@@ -1351,6 +1356,7 @@ namespace Moderon
             label_comboSysType.Text = "ТИП СИСТЕМЫ";
             comboSysType.Show();
             formSignalsButton.Show();                                                   // Отображение кнопки "Сформировать"
+            pic_signalsReady.Show();                                                    // Отображение статуса распределения сигналов
         }
 
         ///<summary>Нажали кнопку "Назад" в панели параметров</summary>
