@@ -8,7 +8,7 @@ namespace Moderon
         ///<summary>Выбрали блок заслонки</summary>
         private void DampCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 6, code_2 = 39;                                                     // Подтверждение открытия приточной/вытяжной заслонки
+            ushort code_1 = 1006, code_2 = 1039;                                                // Подтверждение открытия приточной/вытяжной заслонки
 
             if (dampCheck.Checked && confPrDampCheck.Checked)                                   // Приточная заслонка и подтверждение открытия
                 CheckAddUIToList("Подтверждение открытия приточной заслонки", code_1, DI);
@@ -23,7 +23,7 @@ namespace Moderon
         ///<summary>Выбрали подтверждение открытия приточной заслонки</summary>
         private void ConfPrDampCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 6;                                                                  // Подтверждение открытия приточной заслонки
+            ushort code_1 = 1006;                                                               // Подтверждение открытия приточной заслонки
 
             if (dampCheck.Checked && confPrDampCheck.Checked)                                   // Выбрана приточная заслонка и подтвреждение открытия
                 CheckAddUIToList("Подтверждение открытия приточной заслонки", code_1, DI);
@@ -34,7 +34,7 @@ namespace Moderon
         ///<summary>Выбрали вытяжную заслонку</summary>
         private void OutDampCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 39;                                                                         // Подтверждение открытия вытяжной заслонки
+            ushort code_1 = 1039;                                                                       // Подтверждение открытия вытяжной заслонки
 
             if (comboSysType.SelectedIndex == 1 && dampCheck.Checked && outDampCheck.Checked)           // ПВ-система, выбрана вытяжная заслонка
             { 
@@ -48,7 +48,7 @@ namespace Moderon
         ///<summary>Выбрали подтверждение открытия вытяжной заслонки</summary>
         private void ConfOutDampCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 39;                                                                         // Подтверждение открытия вытяжной заслонки
+            ushort code_1 = 1039;                                                                       // Подтверждение открытия вытяжной заслонки
 
             if (comboSysType.SelectedIndex == 1 && dampCheck.Checked && outDampCheck.Checked)           // ПВ-система, выбрана вытяжная заслонка
             { 
@@ -62,7 +62,7 @@ namespace Moderon
         ///<summary>Выбрали PS приточного вентилятора</summary>
         private void PrFanPSCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 11, code_2 = 22;                                                            // PS приточного вентилятора 1 и 2
+            ushort code_1 = 1011, code_2 = 1022;                                                        // PS приточного вентилятора 1 и 2
 
             if (prFanPSCheck.Checked)                                                                   // Выбрали PS
             {
@@ -79,7 +79,7 @@ namespace Moderon
         ///<summary>Выбрали термоконтакты приточного вентилятора</summary>
         private void PrFanThermoCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 13, code_2 = 24;                                                            // Термоконтакты приточного вентилятора 1 и 2
+            ushort code_1 = 1013, code_2 = 1024;                                                        // Термоконтакты приточного вентилятора 1 и 2
 
             if (prFanThermoCheck.Checked)                                                               // Выбрали термоконтакты
             {
@@ -117,7 +117,7 @@ namespace Moderon
         ///<summary>Выбрали защиту по току приточного вентилятора</summary>
         private void CurDefPrFanCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 14, code_2 = 25;                                                             // Защита по току приточного вентилятора 1 и 2
+            ushort code_1 = 1014, code_2 = 1025;                                                         // Защита по току приточного вентилятора 1 и 2
 
             if (curDefPrFanCheck.Checked) // Выбрана защита по току
             {
@@ -134,10 +134,10 @@ namespace Moderon
         ///<summary>Выбрали резерв приточного вентилятора</summary>
         private void CheckResPrFan_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 22;                                 // PS приточного вентилятора 2
-            ushort code_2 = 24;                                 // Термоконтакты приточного вентилятора 2
-            ushort code_3 = 23;                                 // Сигнал аварии приточного вентилятора 2
-            ushort code_4 = 25;                                 // Защита по току приточного вентилятора 2
+            ushort code_1 = 1022;                               // PS приточного вентилятора 2
+            ushort code_2 = 1024;                               // Термоконтакты приточного вентилятора 2
+            ushort code_3 = 1023;                               // Сигнал аварии приточного вентилятора 2
+            ushort code_4 = 1025;                               // Защита по току приточного вентилятора 2
 
             if (checkResPrFan.Checked)                                                              // Выбран резерв приточного
             {
@@ -159,7 +159,7 @@ namespace Moderon
         ///<summary>Выбрали подтверждение открытия заслонки приточного вентилятора</summary>
         private void PrDampConfirmFanCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 17;                                                                 // Сигнал подтверждения открытия заслонки приточного вентилятора
+            ushort code_1 = 1017;                                                               // Сигнал подтверждения открытия заслонки приточного вентилятора
 
             if (prDampFanCheck.Checked && prDampConfirmFanCheck.Checked)                        // Выбрали подтверждение открытия
             {
@@ -172,7 +172,7 @@ namespace Moderon
         ///<summary>Выбрали PS вытяжного вентилятора</summary>
         private void OutFanPSCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 44, code_2 = 55;                                                        // Сигнал PS вытяжного вентилятора 1 и 2
+            ushort code_1 = 1044, code_2 = 1055;                                                    // Сигнал PS вытяжного вентилятора 1 и 2
 
             if (comboSysType.SelectedIndex == 1 && outFanPSCheck.Checked)                           // Выбрали PS вытяжного вентилятора
             {
@@ -189,7 +189,7 @@ namespace Moderon
         ///<summary>Выбрали термоконтакты вытяжного вентилятора</summary>
         private void OutFanThermoCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 46, code_2 = 57;                                                        // Термоконтакты вытяжного вентилятора 1 и 2
+            ushort code_1 = 1046, code_2 = 1057;                                                    // Термоконтакты вытяжного вентилятора 1 и 2
             
             if (comboSysType.SelectedIndex == 1 && outFanThermoCheck.Checked)
             {
@@ -228,7 +228,7 @@ namespace Moderon
         ///<summary>Выбрали защиту по току вытяжного вентилятора</summary>
         private void CurDefOutFanCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 47, code_2 = 58;                                                        // Защита по току вытяжного вентилятора 1 и 2
+            ushort code_1 = 1047, code_2 = 1058;                                                    // Защита по току вытяжного вентилятора 1 и 2
 
             if (comboSysType.SelectedIndex == 1 && curDefOutFanCheck.Checked)
             {
@@ -245,10 +245,10 @@ namespace Moderon
         ///<summary>Выбрали резерв вытяжного вентилятора</summary>
         private void CheckResOutFan_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 55;                     // PS вытяжного вентилятра 2
-            ushort code_2 = 57;                     // Термоконтакты вытяжного вентилятора 2
-            ushort code_3 = 56;                     // Сигнал аварии вытяжного вентилятора 2
-            ushort code_4 = 58;                     // Защита по току вытяжного вентилятора 2
+            ushort code_1 = 1055;                     // PS вытяжного вентилятра 2
+            ushort code_2 = 1057;                     // Термоконтакты вытяжного вентилятора 2
+            ushort code_3 = 1056;                     // Сигнал аварии вытяжного вентилятора 2
+            ushort code_4 = 1058;                     // Защита по току вытяжного вентилятора 2
 
             if (comboSysType.SelectedIndex == 1 && checkResOutFan.Checked)                          // Выбран резерв вытяжного
             {
@@ -270,7 +270,7 @@ namespace Moderon
         ///<summary>Выбрали подтверждение открытия заслонки вытяжного вентилятора</summary>
         private void OutDampConfirmFanCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code = 50;                                                                       // Сигнал подтверждения открытия заслонки вытяжного вентилятора
+            ushort code = 1050;                                                                     // Сигнал подтверждения открытия заслонки вытяжного вентилятора
 
             if (outDampFanCheck.Checked && outDampConfirmFanCheck.Checked)                          // Выбрали подтверждение открытия
             {
@@ -285,7 +285,7 @@ namespace Moderon
         ///<summary>Выбрали нагреватель</summary>
         private void HeaterCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 72, code_2 = 73;                                                        // Воздушный термостат и подтверждение работы насоса
+            ushort code_1 = 1072, code_2 = 1073;                                                    // Воздушный термостат и подтверждение работы насоса
 
             if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                            // Выбран водяной нагреватель
             { 
@@ -305,7 +305,7 @@ namespace Moderon
         private void HeatTypeCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
             // Воздушный термостат, подтверждение работы насоса, защита по току
-            ushort code_1 = 72, code_2 = 73, code_3 = 75;                                           
+            ushort code_1 = 1072, code_2 = 1073, code_3 = 1075;                                           
 
             if (heaterCheck.Checked)                                                                // Выбран нагреватель
             { 
@@ -329,7 +329,7 @@ namespace Moderon
         ///<summary>Выбрали термостат защиты от замерзания</summary>
         private void TF_heaterCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 72;                                                                     // Воздушный термостат
+            ushort code_1 = 1072;                                                                   // Воздушный термостат
 
             if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                            // Выбран водяной калорифер
             { 
@@ -343,7 +343,7 @@ namespace Moderon
         ///<summary>Подтверждение работы основного насоса водяного калорифера</summary>
         private void ConfHeatPumpCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 73;                                                                     // Подтверждение работы основного насоса калорифера
+            ushort code_1 = 1073;                                                                   // Подтверждение работы основного насоса калорифера
 
             if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                            // Выбран водяной калорифер
             { 
@@ -357,7 +357,7 @@ namespace Moderon
         ///<summary>Подтверждение работы резервного насоса водяного калорифера</summary>
         private void ConfHeatResPumpCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 74;                                                                         // Подтверждение работы резервного насоса калорифера
+            ushort code_1 = 1074;                                                                       // Подтверждение работы резервного насоса калорифера
 
             if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                                // Выбран водяной калорифер
             {
@@ -371,7 +371,7 @@ namespace Moderon
         ///<summary>Защита по току основного насоса водяного калорифера</summary>
         private void PumpCurProtect_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 75;                                                                     // Защита по току основного насоса
+            ushort code_1 = 1075;                                                                   // Защита по току основного насоса
 
             if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                            // Выбран водяной калорифер
             {
@@ -385,7 +385,7 @@ namespace Moderon
         ///<summary>Защита по току резервного насоса водяного калорифера</summary>
         private void PumpCurResProtect_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 76;                                                                     // Защита по току основного насоса
+            ushort code_1 = 1076;                                                                   // Защита по току основного насоса
 
             if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                            // Выбран водяной калорифер
             {
@@ -399,7 +399,7 @@ namespace Moderon
         ///<summary>Изменили количество термовыключателей основного нагревателя</summary>
         private void ThermSwitchCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 79, code_2 = 78;                                                        // Термовыключатель 1 - пожар, 2 - перегрев
+            ushort code_1 = 1079, code_2 = 1078;                                                    // Термовыключатель 1 - пожар, 2 - перегрев
 
             if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 1)                            // Выбран электрокалорифер
             { 
@@ -428,7 +428,7 @@ namespace Moderon
         ///<summary>Выбрали догреватель</summary>
         private void AddHeatCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 133, code_2 = 134;                                                      // Воздушный термостат и подтверждение работы насоса
+            ushort code_1 = 1133, code_2 = 1134;                                                    // Воздушный термостат и подтверждение работы насоса
 
             if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0)                        // Выбран водяной догреватель
             { 
@@ -447,7 +447,7 @@ namespace Moderon
         ///<summary>Изменили тип догревателя</summary>
         private void HeatAddTypeCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 133, code_2 = 134;                                                      // Воздушный термостат и подтверждение работы насоса
+            ushort code_1 = 1133, code_2 = 1134;                                                    // Воздушный термостат и подтверждение работы насоса
 
             if (addHeatCheck.Checked)                                                               // Выбран догреватель
             {
@@ -469,7 +469,7 @@ namespace Moderon
         ///<summary>Выбрали термостат догревателя</summary>
         private void TF_addHeaterCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 133;                                                                    // Воздушный термостат
+            ushort code_1 = 1133;                                                                   // Воздушный термостат
 
             if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0)                        // Выбран водяной догреватель
             { 
@@ -483,7 +483,7 @@ namespace Moderon
         ///<summary>Выбрали защиту по току основного насоса догревателя</summary>
         private void PumpCurAddProtect_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 136;                                                                    // Защита по току основного насоса догревателя
+            ushort code_1 = 1136;                                                                   // Защита по току основного насоса догревателя
 
             if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0)                        // Выбран водяной догреватель
             {
@@ -497,7 +497,7 @@ namespace Moderon
         ///<summary>Выбрали защиту по току резервного насоса догревателя</summary>
         private void PumpCurResAddProtect_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 137;                                                                    // Защита по току основного насоса догревателя
+            ushort code_1 = 1137;                                                                   // Защита по току основного насоса догревателя
 
             if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0)                        // Выбран водяной догреватель
             {
@@ -511,7 +511,7 @@ namespace Moderon
         ///<summary>Подтверждение работы основного насоса водяного догревателя</summary>
         private void ConfAddHeatPumpCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 134;                                                                    // Подтверждение работы основного насоса догревателя
+            ushort code_1 = 1134;                                                                   // Подтверждение работы основного насоса догревателя
 
             if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0)                        // Выбран водяной догреватель
             { 
@@ -525,7 +525,7 @@ namespace Moderon
         ///<summary>Подтверждение работы резервного насоса водяного догревателя</summary>
         private void ConfAddHeatResPumpCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 135;                                                                                // Подтверждение работы резервного насоса догревателя
+            ushort code_1 = 1135;                                                                               // Подтверждение работы резервного насоса догревателя
 
             if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0)                                    // Выбран водяной догреватель
             {
@@ -539,7 +539,7 @@ namespace Moderon
         ///<summary>Изменили количество термовыключателей догревателя</summary>
         private void ThermAddSwitchCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 129, code_2 = 128;                                                      // Термовыключатель 1 - пожар, 2 - перегрев
+            ushort code_1 = 1129, code_2 = 1128;                                                    // Термовыключатель 1 - пожар, 2 - перегрев
 
             if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 1)                        // Выбран электрический догреватель
             { 
@@ -568,8 +568,8 @@ namespace Moderon
         ///<summary>Выбрали фильтр</summary>
         private void FilterCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 33, code_2 = 34, code_3 = 35;                                           // Фильтр 1, 2, 3 приточные
-            ushort code_4 = 66, code_5 = 67, code_6 = 68;                                           // Фильтр 1, 2, 3 вытяжные
+            ushort code_1 = 1033, code_2 = 1034, code_3 = 1035;                                     // Фильтр 1, 2, 3 приточные
+            ushort code_4 = 1066, code_5 = 1067, code_6 = 1068;                                     // Фильтр 1, 2, 3 вытяжные
 
             if (filterCheck.Checked)                                                                // Выбрали фильтры
             {
@@ -598,7 +598,7 @@ namespace Moderon
         ///<summary>Изменили количество приточных фильтров</summary>
         private void FilterPrCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 34, code_2 = 35;                                                        // Фильтр 2 и 3 приточные
+            ushort code_1 = 1034, code_2 = 1035;                                                    // Фильтр 2 и 3 приточные
 
             if (filterCheck.Checked)                                                                // Выбран фильтр
             {
@@ -622,7 +622,7 @@ namespace Moderon
         ///<summary>Изменили количество вытяжных фильтров</summary>
         private void FilterOutCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 66, code_2 = 67, code_3 = 68;                                           // Фильтр 1, 2, 3 вытяжные
+            ushort code_1 = 1066, code_2 = 1067, code_3 = 1068;                                     // Фильтр 1, 2, 3 вытяжные
 
             if (comboSysType.SelectedIndex == 1 && filterCheck.Checked)                             // Выбрана ПВ-система и фильтр
             { 
@@ -653,7 +653,7 @@ namespace Moderon
         ///<summary>Выбрали охладитель</summary>
         private void CoolerCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 83, code_2 = 84;                                                        // Термостат и авария фреонового охладителя
+            ushort code_1 = 1083, code_2 = 1084;                                                    // Термостат и авария фреонового охладителя
 
             if (coolerCheck.Checked && coolTypeCombo.SelectedIndex == 0)                            // Выбран фреоновый охладитель
             { 
@@ -671,7 +671,7 @@ namespace Moderon
         ///<summary>Изменили тип охладителя</summary>
         private void CoolTypeCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 83, code_2 = 84;                                                        // Термостат и авария фреонового охладителя
+            ushort code_1 = 1083, code_2 = 1084;                                                    // Термостат и авария фреонового охладителя
 
             if (coolerCheck.Checked)                                                                // Когда выбран охладитель
             {
@@ -692,7 +692,7 @@ namespace Moderon
         ///<summary>Выбрали термостат фреонового охладителя</summary>
         private void ThermoCoolerCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 83;                                                                     // Термостат фреонового охладителя
+            ushort code_1 = 1083;                                                                   // Термостат фреонового охладителя
 
             if (coolerCheck.Checked && coolTypeCombo.SelectedIndex == 0)                            // Выбран фреоновый охладитель
             { 
@@ -706,7 +706,7 @@ namespace Moderon
         ///<summary>Выбрали аварийный сигнал фреонового охладителя</summary>
         private void AlarmFrCoolCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 84;
+            ushort code_1 = 1084;                                                                   // Авария фреонового охладителя
 
             if (coolerCheck.Checked && coolTypeCombo.SelectedIndex == 0)                            // Выбран фреоновый охладитель
             { 
@@ -720,7 +720,7 @@ namespace Moderon
         ///<summary>Выбрали увлажнитель</summary>
         private void HumidCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 69;                                                                     // Авария парового увлажнителя
+            ushort code_1 = 1139;                                                                   // Авария парового увлажнителя
 
             if (humidCheck.Checked)                                                                 // Когда выбран увлажнитель
             {
@@ -734,7 +734,7 @@ namespace Moderon
         ///<summary>Изменили тип увлажнителя</summary>
         private void HumidTypeCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 69;                                                                     // Авария парового увлажнителя
+            ushort code_1 = 1139;                                                                   // Авария парового увлажнителя
 
             if (humidCheck.Checked)                                                                 // Когда выбран увлажнитель
             {
@@ -751,7 +751,7 @@ namespace Moderon
         ///<summary>Выбрали сигнал аварии парового увлажнителя</summary>
         private void AlarmHumidCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 69;                                                                     // Авария парового увлажнителя
+            ushort code_1 = 1139;                                                                   // Авария парового увлажнителя
 
             if (humidCheck.Checked && humidTypeCombo.SelectedIndex == 0)                            // Выбран паровой увлажнитель
             { 
@@ -765,7 +765,7 @@ namespace Moderon
         ///<summary>Выбрали рекуператор</summary>
         private void RecupCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 90, code_2 = 91;                                                        // Сигнал PS и аварии ПЧ для роторного рекуператора
+            ushort code_1 = 1090, code_2 = 1091;                                                    // Сигнал PS и аварии ПЧ для роторного рекуператора
 
             if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)                              // Выбрали рекуператор
             {
@@ -783,7 +783,7 @@ namespace Moderon
         ///<summary>Изменили тип рекуператора</summary>
         private void RecupTypeCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 91;                                                                     // Сигнал аварии ПЧ для роторного рекуператора
+            ushort code_1 = 1091;                                                                   // Сигнал аварии ПЧ для роторного рекуператора
 
             if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)                              // Выбран рекуператор
             {
@@ -797,7 +797,7 @@ namespace Moderon
         ///<summary>Выбрали сигнал PS рекуператора</summary>
         private void RecDefPsCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 90;                                                                     // Сигнал PS рекуператора
+            ushort code_1 = 1090;                                                                   // Сигнал PS рекуператора  
 
             if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)                              // Выбран рекуператор
             { 
@@ -811,7 +811,7 @@ namespace Moderon
         ///<summary>Выбрали подтверждение работы насоса гликолевого рекуператора</summary>
         private void PumpGlikConfCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 95;
+            ushort code_1 = 1095;
 
             if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)                              // ПВ-система, выбран рекуператор
             {
@@ -828,7 +828,7 @@ namespace Moderon
         ///<summary>Выбрали подтверждение работы резервного насоса гликолевого рекуператора</summary>
         private void ConfGlikResPumpCheck_signalsCheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 96;
+            ushort code_1 = 1096;
 
             if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)                              // ПВ-система, выбран рекуператор 
             {
@@ -845,7 +845,7 @@ namespace Moderon
         ///<summary>Выбрали защиту по току насоса гликолевого рекуператора</summary>
         private void PumpGlikCurProtect_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 94;
+            ushort code_1 = 1094;
 
             if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)                              // ПВ-система, выбран рекуператор
             {
@@ -862,7 +862,7 @@ namespace Moderon
         ///<summary>Выбрали защиту по току резервного насоса гликолевого рекуператора</summary>
         private void PumpGlikResCurProtect_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 97;
+            ushort code_1 = 1097;
 
             if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)                              // ПВ-система, выбран рекуператор  
             {
@@ -879,7 +879,7 @@ namespace Moderon
         ///<summary>Выбрали сигнал переключателя "Стоп/Пуск"</summary>
         private void StopStartCheck_CheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 1;                                                                      // Переключатель "Стоп/Пуск"
+            ushort code_1 = 1000;                                                                   // Переключатель "Стоп/Пуск"
 
             if (stopStartCheck.Checked)                                                             // Выбрали сигнал для переключателя
                 CheckAddUIToList("Переключатель \"Стоп/Пуск\"", code_1, DI);
@@ -890,7 +890,7 @@ namespace Moderon
         ///<summary>Выбрали сигнал аварии для приточного вентилятора</summary> 
         private void PrFanAlarmCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 12, code_2 = 23;                                                        // Сигнал аварии 1 и 2
+            ushort code_1 = 1012, code_2 = 1023;                                                    // Сигнал аварии 1 и 2
 
             if (prFanAlarmCheck.Checked)                                                            // Выбрали сигнал аварии
             {
@@ -907,7 +907,7 @@ namespace Moderon
         ///<summary>Выбрали сигнал аварии для вытяжного вентилятора</summary>
         private void OutFanAlarmCheck_CheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 45, code_2 = 56;                                                        // Сигнал аварии 1 и 2
+            ushort code_1 = 1045, code_2 = 1056;                                                    // Сигнал аварии 1 и 2
 
             if (outFanAlarmCheck.Checked)                                                           // Выбрали сигнал аварии
             {
@@ -924,7 +924,7 @@ namespace Moderon
         ///<summary>Выбрали сигнал пожарной сигнализации</summary>
         private void FireCheck_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 98;                                                                     // Сигнал пожарной сигнализации
+            ushort code_1 = 1098;                                                                   // Сигнал пожарной сигнализации
 
             if (fireCheck.Checked)                                                                  // Выбран сигнал
                 CheckAddUIToList("Сигнал пожарной сигнализации", code_1, DI);

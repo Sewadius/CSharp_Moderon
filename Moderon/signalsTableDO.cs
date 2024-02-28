@@ -2,7 +2,6 @@
 using System;
 using System.Drawing;
 using System.Collections.Generic;
-using System.Linq;
 
 // Файл для работы с таблицей сигналов ПЛК и блоков расширения
 
@@ -135,11 +134,13 @@ namespace Moderon
         {
             SetComboInitial_signals(); // Начальная установка для comboBox
 
-            ushort start_signal_code = 1;       // UI сигнал пуск/стоп
-            ushort fanPr_1_start_code = 8;      // DO сигнал пуск/стоп приточного вентилятора 1
+            const ushort start_signal_code = 1000;    // UI сигнал пуск/стоп
+            const ushort fire_signal_code = 1098;     // UI сигнал пожарной сигнализации  
+            const ushort fanPr_1_start_code = 8;      // DO сигнал пуск/стоп приточного вентилятора 1
 
             // Добавление начальных DI
             list_ui.Add(new Ui("Переключатель \"Стоп/Пуск\"", start_signal_code, DI));
+            list_ui.Add(new Ui("Сигнал пожарной сигнализации", fire_signal_code, DI));
             // Добавление начальных DO
             list_do.Add(new Do("Сигнал \"Пуск/Стоп\" приточного вентилятора 1", fanPr_1_start_code));
             //list_do.Add(new Do("Сигнал \"Работа\"", 1));
@@ -150,20 +151,29 @@ namespace Moderon
             //sigAlarmCheck.Checked = true;
 
             // Выбор сигналов "Пуск/Стоп" для вентиляторов по умолчанию после сброса
-            prFanStStopCheck.Checked = true;
-            outFanStStopCheck.Checked = true;
+            prFanStStopCheck.Checked = true;        // Приточный вентилятор
+            outFanStStopCheck.Checked = true;       // Вытяжной вентилятор
+            fireCheck.Checked = true;               // Сигнал пожарной сигнализации
             ignoreEvents = false;
             
             // Добавление к выбору начальных сигналов
-            // UI сигналы, сигнал переключатель пуск/стоп
-            
-            Ui start_stop = list_ui.Find(x => x.Code == start_signal_code);
+
+            // UI сигналы
+            Ui start_stop = list_ui.Find(x => x.Code == start_signal_code);         // Дискретный сигнал "Пуск/Старт"
             string start_stop_name = start_stop.Name; 
 
-            UI1_combo.Items.Add(start_stop_name);                                   // Пуск/Старт
+            UI1_combo.Items.Add(start_stop_name);                                  
             start_stop.Select();
             UI1_combo.SelectedIndex = 1;                                            // Выбор сигнала
-            if (showCode) UI1_lab.Text = (1000 + start_signal_code).ToString();
+            if (showCode) UI1_lab.Text = start_signal_code.ToString();
+
+            Ui fire_signal = list_ui.Find(x => x.Code == fire_signal_code);
+            string fire_signal_name = fire_signal.Name;
+
+            UI2_combo.Items.Add(fire_signal_name);
+            fire_signal.Select();
+            UI2_combo.SelectedIndex = 1;
+            if (showCode) UI2_lab.Text = fire_signal_code.ToString();
 
             // DO сигналы
             Do start_fan = list_do.Find(x => x.Code == fanPr_1_start_code);

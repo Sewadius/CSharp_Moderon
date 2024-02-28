@@ -246,7 +246,7 @@ namespace Moderon
             if (showCode)
             {
                 if (type == DI)                                         // Для дискретного входа
-                    label.Text = (code + 1000).ToString();
+                    label.Text = code.ToString();
                 else if (type == NTC)
                     label.Text = code.ToString();                       // Аналоговый вход, тип NTC
                 else if (type == mA_4_20)
@@ -540,7 +540,7 @@ namespace Moderon
         private void SetCodeLabel_UI(Ui ui_find, Label label)
         {
             if (ui_find.Type == DI)                                         // Для дискретного входа, DI
-                label.Text = (ui_find.Code + 1000).ToString();
+                label.Text = ui_find.Code.ToString();
             else if (ui_find.Type == NTC)                                   // Аналоговый вход, тип NTC
                 label.Text = ui_find.Code.ToString();
             else if (ui_find.Type == mA_4_20)                               // Аналоговый вход, тип 4-20 мА
