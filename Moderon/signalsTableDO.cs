@@ -273,7 +273,7 @@ namespace Moderon
 
             foreach (var el in ui_typeCombos)
             {
-                el.SelectedItem = NTC; el.Enabled = false;
+                el.SelectedItem = DI; el.Enabled = false;
             }
         }
 

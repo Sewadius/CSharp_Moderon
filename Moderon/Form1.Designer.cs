@@ -913,7 +913,7 @@ namespace Moderon
             this.mainPage.Location = new System.Drawing.Point(15, 75);
             this.mainPage.Name = "mainPage";
             this.mainPage.SelectedIndex = 0;
-            this.mainPage.Size = new System.Drawing.Size(750, 442);
+            this.mainPage.Size = new System.Drawing.Size(750, 40);
             this.mainPage.TabIndex = 1;
             // 
             // sensorsPage
@@ -922,7 +922,7 @@ namespace Moderon
             this.sensorsPage.Controls.Add(this.sensorsPanel);
             this.sensorsPage.Location = new System.Drawing.Point(4, 22);
             this.sensorsPage.Name = "sensorsPage";
-            this.sensorsPage.Size = new System.Drawing.Size(742, 416);
+            this.sensorsPage.Size = new System.Drawing.Size(742, 14);
             this.sensorsPage.TabIndex = 9;
             this.sensorsPage.Text = "ДАТЧИКИ/СИГНАЛЫ";
             // 
@@ -4591,9 +4591,9 @@ namespace Moderon
             this.signalsPanel.Controls.Add(this.signalsReadyLabel);
             this.signalsPanel.Controls.Add(this.tabControlSignals);
             this.signalsPanel.Controls.Add(this.backSignalsButton);
-            this.signalsPanel.Location = new System.Drawing.Point(14, 523);
+            this.signalsPanel.Location = new System.Drawing.Point(15, 121);
             this.signalsPanel.Name = "signalsPanel";
-            this.signalsPanel.Size = new System.Drawing.Size(740, 44);
+            this.signalsPanel.Size = new System.Drawing.Size(740, 802);
             this.signalsPanel.TabIndex = 16;
             this.signalsPanel.Visible = false;
             // 
@@ -4604,7 +4604,7 @@ namespace Moderon
             this.resetButtonSignals.Cursor = System.Windows.Forms.Cursors.Hand;
             this.resetButtonSignals.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.resetButtonSignals.ForeColor = System.Drawing.Color.White;
-            this.resetButtonSignals.Location = new System.Drawing.Point(741, 12);
+            this.resetButtonSignals.Location = new System.Drawing.Point(741, 770);
             this.resetButtonSignals.Name = "resetButtonSignals";
             this.resetButtonSignals.Size = new System.Drawing.Size(97, 27);
             this.resetButtonSignals.TabIndex = 62;
@@ -4619,7 +4619,7 @@ namespace Moderon
             this.loadToExl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loadToExl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadToExl.ForeColor = System.Drawing.Color.White;
-            this.loadToExl.Location = new System.Drawing.Point(561, 12);
+            this.loadToExl.Location = new System.Drawing.Point(561, 770);
             this.loadToExl.Name = "loadToExl";
             this.loadToExl.Size = new System.Drawing.Size(173, 27);
             this.loadToExl.TabIndex = 61;
@@ -4635,7 +4635,7 @@ namespace Moderon
             this.loadPLC_SignalsButton.Enabled = false;
             this.loadPLC_SignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadPLC_SignalsButton.ForeColor = System.Drawing.Color.White;
-            this.loadPLC_SignalsButton.Location = new System.Drawing.Point(408, 12);
+            this.loadPLC_SignalsButton.Location = new System.Drawing.Point(408, 770);
             this.loadPLC_SignalsButton.Name = "loadPLC_SignalsButton";
             this.loadPLC_SignalsButton.Size = new System.Drawing.Size(147, 27);
             this.loadPLC_SignalsButton.TabIndex = 60;
@@ -4649,7 +4649,7 @@ namespace Moderon
             this.signalsReadyLabel.AutoSize = true;
             this.signalsReadyLabel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.signalsReadyLabel.ForeColor = System.Drawing.Color.Green;
-            this.signalsReadyLabel.Location = new System.Drawing.Point(123, 18);
+            this.signalsReadyLabel.Location = new System.Drawing.Point(123, 776);
             this.signalsReadyLabel.Name = "signalsReadyLabel";
             this.signalsReadyLabel.Size = new System.Drawing.Size(272, 14);
             this.signalsReadyLabel.TabIndex = 23;
@@ -4787,13 +4787,15 @@ namespace Moderon
             // 
             this.UI16bl3_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI16bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI16bl3_typeCombo.Enabled = false;
             this.UI16bl3_typeCombo.FormattingEnabled = true;
             this.UI16bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI16bl3_typeCombo.Location = new System.Drawing.Point(439, 498);
             this.UI16bl3_typeCombo.Name = "UI16bl3_typeCombo";
             this.UI16bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -4841,13 +4843,15 @@ namespace Moderon
             // 
             this.UI15bl3_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI15bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI15bl3_typeCombo.Enabled = false;
             this.UI15bl3_typeCombo.FormattingEnabled = true;
             this.UI15bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI15bl3_typeCombo.Location = new System.Drawing.Point(439, 467);
             this.UI15bl3_typeCombo.Name = "UI15bl3_typeCombo";
             this.UI15bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -4895,13 +4899,15 @@ namespace Moderon
             // 
             this.UI14bl3_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI14bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI14bl3_typeCombo.Enabled = false;
             this.UI14bl3_typeCombo.FormattingEnabled = true;
             this.UI14bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI14bl3_typeCombo.Location = new System.Drawing.Point(439, 436);
             this.UI14bl3_typeCombo.Name = "UI14bl3_typeCombo";
             this.UI14bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -4949,13 +4955,15 @@ namespace Moderon
             // 
             this.UI13bl3_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI13bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI13bl3_typeCombo.Enabled = false;
             this.UI13bl3_typeCombo.FormattingEnabled = true;
             this.UI13bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI13bl3_typeCombo.Location = new System.Drawing.Point(439, 405);
             this.UI13bl3_typeCombo.Name = "UI13bl3_typeCombo";
             this.UI13bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -5003,13 +5011,15 @@ namespace Moderon
             // 
             this.UI12bl3_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI12bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI12bl3_typeCombo.Enabled = false;
             this.UI12bl3_typeCombo.FormattingEnabled = true;
             this.UI12bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI12bl3_typeCombo.Location = new System.Drawing.Point(439, 374);
             this.UI12bl3_typeCombo.Name = "UI12bl3_typeCombo";
             this.UI12bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -5057,13 +5067,15 @@ namespace Moderon
             // 
             this.UI11bl3_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI11bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI11bl3_typeCombo.Enabled = false;
             this.UI11bl3_typeCombo.FormattingEnabled = true;
             this.UI11bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI11bl3_typeCombo.Location = new System.Drawing.Point(439, 343);
             this.UI11bl3_typeCombo.Name = "UI11bl3_typeCombo";
             this.UI11bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -5111,13 +5123,15 @@ namespace Moderon
             // 
             this.UI10bl3_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI10bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI10bl3_typeCombo.Enabled = false;
             this.UI10bl3_typeCombo.FormattingEnabled = true;
             this.UI10bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI10bl3_typeCombo.Location = new System.Drawing.Point(439, 312);
             this.UI10bl3_typeCombo.Name = "UI10bl3_typeCombo";
             this.UI10bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -5165,13 +5179,15 @@ namespace Moderon
             // 
             this.UI9bl3_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI9bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI9bl3_typeCombo.Enabled = false;
             this.UI9bl3_typeCombo.FormattingEnabled = true;
             this.UI9bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI9bl3_typeCombo.Location = new System.Drawing.Point(439, 281);
             this.UI9bl3_typeCombo.Name = "UI9bl3_typeCombo";
             this.UI9bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -5219,13 +5235,15 @@ namespace Moderon
             // 
             this.UI8bl3_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI8bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI8bl3_typeCombo.Enabled = false;
             this.UI8bl3_typeCombo.FormattingEnabled = true;
             this.UI8bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI8bl3_typeCombo.Location = new System.Drawing.Point(439, 250);
             this.UI8bl3_typeCombo.Name = "UI8bl3_typeCombo";
             this.UI8bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -5273,13 +5291,15 @@ namespace Moderon
             // 
             this.UI7bl3_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI7bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI7bl3_typeCombo.Enabled = false;
             this.UI7bl3_typeCombo.FormattingEnabled = true;
             this.UI7bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI7bl3_typeCombo.Location = new System.Drawing.Point(439, 219);
             this.UI7bl3_typeCombo.Name = "UI7bl3_typeCombo";
             this.UI7bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -5327,13 +5347,15 @@ namespace Moderon
             // 
             this.UI6bl3_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI6bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI6bl3_typeCombo.Enabled = false;
             this.UI6bl3_typeCombo.FormattingEnabled = true;
             this.UI6bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI6bl3_typeCombo.Location = new System.Drawing.Point(439, 188);
             this.UI6bl3_typeCombo.Name = "UI6bl3_typeCombo";
             this.UI6bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -5381,13 +5403,15 @@ namespace Moderon
             // 
             this.UI5bl3_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI5bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI5bl3_typeCombo.Enabled = false;
             this.UI5bl3_typeCombo.FormattingEnabled = true;
             this.UI5bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI5bl3_typeCombo.Location = new System.Drawing.Point(439, 157);
             this.UI5bl3_typeCombo.Name = "UI5bl3_typeCombo";
             this.UI5bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -5435,13 +5459,15 @@ namespace Moderon
             // 
             this.UI4bl3_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI4bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI4bl3_typeCombo.Enabled = false;
             this.UI4bl3_typeCombo.FormattingEnabled = true;
             this.UI4bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI4bl3_typeCombo.Location = new System.Drawing.Point(439, 126);
             this.UI4bl3_typeCombo.Name = "UI4bl3_typeCombo";
             this.UI4bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -5489,13 +5515,15 @@ namespace Moderon
             // 
             this.UI3bl3_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI3bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI3bl3_typeCombo.Enabled = false;
             this.UI3bl3_typeCombo.FormattingEnabled = true;
             this.UI3bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI3bl3_typeCombo.Location = new System.Drawing.Point(439, 95);
             this.UI3bl3_typeCombo.Name = "UI3bl3_typeCombo";
             this.UI3bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -5543,13 +5571,15 @@ namespace Moderon
             // 
             this.UI2bl3_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI2bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI2bl3_typeCombo.Enabled = false;
             this.UI2bl3_typeCombo.FormattingEnabled = true;
             this.UI2bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI2bl3_typeCombo.Location = new System.Drawing.Point(439, 64);
             this.UI2bl3_typeCombo.Name = "UI2bl3_typeCombo";
             this.UI2bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -5607,13 +5637,15 @@ namespace Moderon
             // 
             this.UI1bl3_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI1bl3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI1bl3_typeCombo.Enabled = false;
             this.UI1bl3_typeCombo.FormattingEnabled = true;
             this.UI1bl3_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI1bl3_typeCombo.Location = new System.Drawing.Point(439, 33);
             this.UI1bl3_typeCombo.Name = "UI1bl3_typeCombo";
             this.UI1bl3_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -5735,13 +5767,15 @@ namespace Moderon
             // 
             this.UI16bl2_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI16bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI16bl2_typeCombo.Enabled = false;
             this.UI16bl2_typeCombo.FormattingEnabled = true;
             this.UI16bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI16bl2_typeCombo.Location = new System.Drawing.Point(439, 498);
             this.UI16bl2_typeCombo.Name = "UI16bl2_typeCombo";
             this.UI16bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -5789,13 +5823,15 @@ namespace Moderon
             // 
             this.UI15bl2_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI15bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI15bl2_typeCombo.Enabled = false;
             this.UI15bl2_typeCombo.FormattingEnabled = true;
             this.UI15bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI15bl2_typeCombo.Location = new System.Drawing.Point(439, 467);
             this.UI15bl2_typeCombo.Name = "UI15bl2_typeCombo";
             this.UI15bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -5843,13 +5879,15 @@ namespace Moderon
             // 
             this.UI14bl2_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI14bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI14bl2_typeCombo.Enabled = false;
             this.UI14bl2_typeCombo.FormattingEnabled = true;
             this.UI14bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI14bl2_typeCombo.Location = new System.Drawing.Point(439, 436);
             this.UI14bl2_typeCombo.Name = "UI14bl2_typeCombo";
             this.UI14bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -5897,13 +5935,15 @@ namespace Moderon
             // 
             this.UI13bl2_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI13bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI13bl2_typeCombo.Enabled = false;
             this.UI13bl2_typeCombo.FormattingEnabled = true;
             this.UI13bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI13bl2_typeCombo.Location = new System.Drawing.Point(439, 405);
             this.UI13bl2_typeCombo.Name = "UI13bl2_typeCombo";
             this.UI13bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -5951,13 +5991,15 @@ namespace Moderon
             // 
             this.UI12bl2_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI12bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI12bl2_typeCombo.Enabled = false;
             this.UI12bl2_typeCombo.FormattingEnabled = true;
             this.UI12bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI12bl2_typeCombo.Location = new System.Drawing.Point(439, 374);
             this.UI12bl2_typeCombo.Name = "UI12bl2_typeCombo";
             this.UI12bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -6005,13 +6047,15 @@ namespace Moderon
             // 
             this.UI11bl2_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI11bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI11bl2_typeCombo.Enabled = false;
             this.UI11bl2_typeCombo.FormattingEnabled = true;
             this.UI11bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI11bl2_typeCombo.Location = new System.Drawing.Point(439, 343);
             this.UI11bl2_typeCombo.Name = "UI11bl2_typeCombo";
             this.UI11bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -6059,13 +6103,15 @@ namespace Moderon
             // 
             this.UI10bl2_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI10bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI10bl2_typeCombo.Enabled = false;
             this.UI10bl2_typeCombo.FormattingEnabled = true;
             this.UI10bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI10bl2_typeCombo.Location = new System.Drawing.Point(439, 312);
             this.UI10bl2_typeCombo.Name = "UI10bl2_typeCombo";
             this.UI10bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -6113,13 +6159,15 @@ namespace Moderon
             // 
             this.UI9bl2_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI9bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI9bl2_typeCombo.Enabled = false;
             this.UI9bl2_typeCombo.FormattingEnabled = true;
             this.UI9bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI9bl2_typeCombo.Location = new System.Drawing.Point(439, 281);
             this.UI9bl2_typeCombo.Name = "UI9bl2_typeCombo";
             this.UI9bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -6167,13 +6215,15 @@ namespace Moderon
             // 
             this.UI8bl2_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI8bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI8bl2_typeCombo.Enabled = false;
             this.UI8bl2_typeCombo.FormattingEnabled = true;
             this.UI8bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI8bl2_typeCombo.Location = new System.Drawing.Point(439, 250);
             this.UI8bl2_typeCombo.Name = "UI8bl2_typeCombo";
             this.UI8bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -6221,13 +6271,15 @@ namespace Moderon
             // 
             this.UI7bl2_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI7bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI7bl2_typeCombo.Enabled = false;
             this.UI7bl2_typeCombo.FormattingEnabled = true;
             this.UI7bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI7bl2_typeCombo.Location = new System.Drawing.Point(439, 219);
             this.UI7bl2_typeCombo.Name = "UI7bl2_typeCombo";
             this.UI7bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -6275,13 +6327,15 @@ namespace Moderon
             // 
             this.UI6bl2_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI6bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI6bl2_typeCombo.Enabled = false;
             this.UI6bl2_typeCombo.FormattingEnabled = true;
             this.UI6bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI6bl2_typeCombo.Location = new System.Drawing.Point(439, 188);
             this.UI6bl2_typeCombo.Name = "UI6bl2_typeCombo";
             this.UI6bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -6329,13 +6383,15 @@ namespace Moderon
             // 
             this.UI5bl2_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI5bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI5bl2_typeCombo.Enabled = false;
             this.UI5bl2_typeCombo.FormattingEnabled = true;
             this.UI5bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI5bl2_typeCombo.Location = new System.Drawing.Point(439, 157);
             this.UI5bl2_typeCombo.Name = "UI5bl2_typeCombo";
             this.UI5bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -6383,13 +6439,15 @@ namespace Moderon
             // 
             this.UI4bl2_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI4bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI4bl2_typeCombo.Enabled = false;
             this.UI4bl2_typeCombo.FormattingEnabled = true;
             this.UI4bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI4bl2_typeCombo.Location = new System.Drawing.Point(439, 126);
             this.UI4bl2_typeCombo.Name = "UI4bl2_typeCombo";
             this.UI4bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -6437,13 +6495,15 @@ namespace Moderon
             // 
             this.UI3bl2_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI3bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI3bl2_typeCombo.Enabled = false;
             this.UI3bl2_typeCombo.FormattingEnabled = true;
             this.UI3bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI3bl2_typeCombo.Location = new System.Drawing.Point(439, 95);
             this.UI3bl2_typeCombo.Name = "UI3bl2_typeCombo";
             this.UI3bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -6491,13 +6551,15 @@ namespace Moderon
             // 
             this.UI2bl2_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI2bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI2bl2_typeCombo.Enabled = false;
             this.UI2bl2_typeCombo.FormattingEnabled = true;
             this.UI2bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI2bl2_typeCombo.Location = new System.Drawing.Point(439, 64);
             this.UI2bl2_typeCombo.Name = "UI2bl2_typeCombo";
             this.UI2bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -6555,13 +6617,15 @@ namespace Moderon
             // 
             this.UI1bl2_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI1bl2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI1bl2_typeCombo.Enabled = false;
             this.UI1bl2_typeCombo.FormattingEnabled = true;
             this.UI1bl2_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI1bl2_typeCombo.Location = new System.Drawing.Point(439, 33);
             this.UI1bl2_typeCombo.Name = "UI1bl2_typeCombo";
             this.UI1bl2_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -6683,13 +6747,15 @@ namespace Moderon
             // 
             this.UI16bl1_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI16bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI16bl1_typeCombo.Enabled = false;
             this.UI16bl1_typeCombo.FormattingEnabled = true;
             this.UI16bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI16bl1_typeCombo.Location = new System.Drawing.Point(439, 498);
             this.UI16bl1_typeCombo.Name = "UI16bl1_typeCombo";
             this.UI16bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -6737,13 +6803,15 @@ namespace Moderon
             // 
             this.UI15bl1_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI15bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI15bl1_typeCombo.Enabled = false;
             this.UI15bl1_typeCombo.FormattingEnabled = true;
             this.UI15bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI15bl1_typeCombo.Location = new System.Drawing.Point(439, 467);
             this.UI15bl1_typeCombo.Name = "UI15bl1_typeCombo";
             this.UI15bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -6791,13 +6859,15 @@ namespace Moderon
             // 
             this.UI14bl1_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI14bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI14bl1_typeCombo.Enabled = false;
             this.UI14bl1_typeCombo.FormattingEnabled = true;
             this.UI14bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI14bl1_typeCombo.Location = new System.Drawing.Point(439, 436);
             this.UI14bl1_typeCombo.Name = "UI14bl1_typeCombo";
             this.UI14bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -6845,13 +6915,15 @@ namespace Moderon
             // 
             this.UI13bl1_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI13bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI13bl1_typeCombo.Enabled = false;
             this.UI13bl1_typeCombo.FormattingEnabled = true;
             this.UI13bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI13bl1_typeCombo.Location = new System.Drawing.Point(439, 405);
             this.UI13bl1_typeCombo.Name = "UI13bl1_typeCombo";
             this.UI13bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -6899,13 +6971,15 @@ namespace Moderon
             // 
             this.UI12bl1_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI12bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI12bl1_typeCombo.Enabled = false;
             this.UI12bl1_typeCombo.FormattingEnabled = true;
             this.UI12bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI12bl1_typeCombo.Location = new System.Drawing.Point(439, 374);
             this.UI12bl1_typeCombo.Name = "UI12bl1_typeCombo";
             this.UI12bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -6953,13 +7027,15 @@ namespace Moderon
             // 
             this.UI11bl1_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI11bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI11bl1_typeCombo.Enabled = false;
             this.UI11bl1_typeCombo.FormattingEnabled = true;
             this.UI11bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI11bl1_typeCombo.Location = new System.Drawing.Point(439, 343);
             this.UI11bl1_typeCombo.Name = "UI11bl1_typeCombo";
             this.UI11bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -7007,13 +7083,15 @@ namespace Moderon
             // 
             this.UI10bl1_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI10bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI10bl1_typeCombo.Enabled = false;
             this.UI10bl1_typeCombo.FormattingEnabled = true;
             this.UI10bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI10bl1_typeCombo.Location = new System.Drawing.Point(439, 312);
             this.UI10bl1_typeCombo.Name = "UI10bl1_typeCombo";
             this.UI10bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -7061,13 +7139,15 @@ namespace Moderon
             // 
             this.UI9bl1_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI9bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI9bl1_typeCombo.Enabled = false;
             this.UI9bl1_typeCombo.FormattingEnabled = true;
             this.UI9bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI9bl1_typeCombo.Location = new System.Drawing.Point(439, 281);
             this.UI9bl1_typeCombo.Name = "UI9bl1_typeCombo";
             this.UI9bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -7115,13 +7195,15 @@ namespace Moderon
             // 
             this.UI8bl1_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI8bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI8bl1_typeCombo.Enabled = false;
             this.UI8bl1_typeCombo.FormattingEnabled = true;
             this.UI8bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI8bl1_typeCombo.Location = new System.Drawing.Point(439, 250);
             this.UI8bl1_typeCombo.Name = "UI8bl1_typeCombo";
             this.UI8bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -7169,13 +7251,15 @@ namespace Moderon
             // 
             this.UI7bl1_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI7bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI7bl1_typeCombo.Enabled = false;
             this.UI7bl1_typeCombo.FormattingEnabled = true;
             this.UI7bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI7bl1_typeCombo.Location = new System.Drawing.Point(439, 219);
             this.UI7bl1_typeCombo.Name = "UI7bl1_typeCombo";
             this.UI7bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -7223,13 +7307,15 @@ namespace Moderon
             // 
             this.UI6bl1_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI6bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI6bl1_typeCombo.Enabled = false;
             this.UI6bl1_typeCombo.FormattingEnabled = true;
             this.UI6bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI6bl1_typeCombo.Location = new System.Drawing.Point(439, 188);
             this.UI6bl1_typeCombo.Name = "UI6bl1_typeCombo";
             this.UI6bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -7277,13 +7363,15 @@ namespace Moderon
             // 
             this.UI5bl1_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI5bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI5bl1_typeCombo.Enabled = false;
             this.UI5bl1_typeCombo.FormattingEnabled = true;
             this.UI5bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI5bl1_typeCombo.Location = new System.Drawing.Point(439, 157);
             this.UI5bl1_typeCombo.Name = "UI5bl1_typeCombo";
             this.UI5bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -7331,13 +7419,15 @@ namespace Moderon
             // 
             this.UI4bl1_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI4bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI4bl1_typeCombo.Enabled = false;
             this.UI4bl1_typeCombo.FormattingEnabled = true;
             this.UI4bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI4bl1_typeCombo.Location = new System.Drawing.Point(439, 126);
             this.UI4bl1_typeCombo.Name = "UI4bl1_typeCombo";
             this.UI4bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -7385,13 +7475,15 @@ namespace Moderon
             // 
             this.UI3bl1_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI3bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI3bl1_typeCombo.Enabled = false;
             this.UI3bl1_typeCombo.FormattingEnabled = true;
             this.UI3bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI3bl1_typeCombo.Location = new System.Drawing.Point(439, 95);
             this.UI3bl1_typeCombo.Name = "UI3bl1_typeCombo";
             this.UI3bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -7439,13 +7531,15 @@ namespace Moderon
             // 
             this.UI2bl1_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI2bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI2bl1_typeCombo.Enabled = false;
             this.UI2bl1_typeCombo.FormattingEnabled = true;
             this.UI2bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI2bl1_typeCombo.Location = new System.Drawing.Point(439, 64);
             this.UI2bl1_typeCombo.Name = "UI2bl1_typeCombo";
             this.UI2bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -7503,13 +7597,15 @@ namespace Moderon
             // 
             this.UI1bl1_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI1bl1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI1bl1_typeCombo.Enabled = false;
             this.UI1bl1_typeCombo.FormattingEnabled = true;
             this.UI1bl1_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI1bl1_typeCombo.Location = new System.Drawing.Point(439, 33);
             this.UI1bl1_typeCombo.Name = "UI1bl1_typeCombo";
             this.UI1bl1_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -7613,12 +7709,14 @@ namespace Moderon
             // 
             this.UI11_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI11_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI11_typeCombo.FormattingEnabled = true;
             this.UI11_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI11_typeCombo.Location = new System.Drawing.Point(439, 343);
             this.UI11_typeCombo.Name = "UI11_typeCombo";
             this.UI11_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -7655,12 +7753,14 @@ namespace Moderon
             // 
             this.UI1_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI1_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI1_typeCombo.FormattingEnabled = true;
             this.UI1_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI1_typeCombo.Location = new System.Drawing.Point(439, 33);
             this.UI1_typeCombo.Name = "UI1_typeCombo";
             this.UI1_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -7711,12 +7811,14 @@ namespace Moderon
             // 
             this.UI10_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI10_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI10_typeCombo.FormattingEnabled = true;
             this.UI10_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI10_typeCombo.Location = new System.Drawing.Point(439, 312);
             this.UI10_typeCombo.Name = "UI10_typeCombo";
             this.UI10_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -7753,12 +7855,14 @@ namespace Moderon
             // 
             this.UI2_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI2_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI2_typeCombo.FormattingEnabled = true;
             this.UI2_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI2_typeCombo.Location = new System.Drawing.Point(439, 64);
             this.UI2_typeCombo.Name = "UI2_typeCombo";
             this.UI2_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -7809,12 +7913,14 @@ namespace Moderon
             // 
             this.UI9_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI9_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI9_typeCombo.FormattingEnabled = true;
             this.UI9_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI9_typeCombo.Location = new System.Drawing.Point(439, 281);
             this.UI9_typeCombo.Name = "UI9_typeCombo";
             this.UI9_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -7851,12 +7957,14 @@ namespace Moderon
             // 
             this.UI3_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI3_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI3_typeCombo.FormattingEnabled = true;
             this.UI3_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI3_typeCombo.Location = new System.Drawing.Point(439, 95);
             this.UI3_typeCombo.Name = "UI3_typeCombo";
             this.UI3_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -7907,12 +8015,14 @@ namespace Moderon
             // 
             this.UI8_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI8_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI8_typeCombo.FormattingEnabled = true;
             this.UI8_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI8_typeCombo.Location = new System.Drawing.Point(439, 250);
             this.UI8_typeCombo.Name = "UI8_typeCombo";
             this.UI8_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -7949,12 +8059,14 @@ namespace Moderon
             // 
             this.UI4_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI4_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI4_typeCombo.FormattingEnabled = true;
             this.UI4_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI4_typeCombo.Location = new System.Drawing.Point(439, 126);
             this.UI4_typeCombo.Name = "UI4_typeCombo";
             this.UI4_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -8005,12 +8117,14 @@ namespace Moderon
             // 
             this.UI7_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI7_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI7_typeCombo.FormattingEnabled = true;
             this.UI7_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI7_typeCombo.Location = new System.Drawing.Point(439, 219);
             this.UI7_typeCombo.Name = "UI7_typeCombo";
             this.UI7_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -8047,12 +8161,14 @@ namespace Moderon
             // 
             this.UI5_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI5_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI5_typeCombo.FormattingEnabled = true;
             this.UI5_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI5_typeCombo.Location = new System.Drawing.Point(439, 157);
             this.UI5_typeCombo.Name = "UI5_typeCombo";
             this.UI5_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -8103,12 +8219,14 @@ namespace Moderon
             // 
             this.UI6_typeCombo.AutoCompleteCustomSource.AddRange(new string[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI6_typeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI6_typeCombo.FormattingEnabled = true;
             this.UI6_typeCombo.Items.AddRange(new object[] {
             "NTC",
-            "4-20 мА"});
+            "4-20 мА",
+            "DI"});
             this.UI6_typeCombo.Location = new System.Drawing.Point(439, 188);
             this.UI6_typeCombo.Name = "UI6_typeCombo";
             this.UI6_typeCombo.Size = new System.Drawing.Size(123, 21);
@@ -9725,7 +9843,7 @@ namespace Moderon
             this.backSignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.backSignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.backSignalsButton.ForeColor = System.Drawing.Color.White;
-            this.backSignalsButton.Location = new System.Drawing.Point(10, 12);
+            this.backSignalsButton.Location = new System.Drawing.Point(10, 770);
             this.backSignalsButton.Name = "backSignalsButton";
             this.backSignalsButton.Size = new System.Drawing.Size(94, 27);
             this.backSignalsButton.TabIndex = 58;

@@ -33,7 +33,7 @@ namespace Moderon
     public partial class Form1 : Form
     {
         static readonly string
-            DI = "di", NTC = "NTC", mA_4_20 = "4-20 мА";
+            DI = "DI", NTC = "NTC", mA_4_20 = "4-20 мА";
 
         List<Ui> list_ui = new List<Ui>();
 
@@ -253,7 +253,16 @@ namespace Moderon
                     label.Text = (code + 100).ToString();               // Аналоговый вход, тип 4-20 мА
             }
             if (type != DI)
+            {
                 typeCombo.Enabled = true;                               // Разблокировка comboBox для выбора типа сигнала
+                typeCombo.SelectedIndex = 0;
+                if (typeCombo.Items.Contains(DI)) typeCombo.Items.Remove(DI);
+            } 
+            else
+            {
+                typeCombo.Enabled = false;
+                if (!typeCombo.Items.Contains(DI)) typeCombo.Items.Add(DI);
+            }
             list_ui.Find(x => x.Code == code).Select();
         }
 
@@ -413,7 +422,8 @@ namespace Moderon
                 if (cm.Items[i].ToString() == name)                                                 // Есть совпадение по имени в списке
                 {
                     cm.Items.Remove(name);                                                          // Удаление элемента по имени
-                    typeCombo.Enabled = false; typeCombo.SelectedIndex = 0;                         // Блокировка и выбор NTC по умолчанию typeCombo
+                    if (!typeCombo.Items.Contains(DI)) typeCombo.Items.Add(DI);                     // Добавление варианта DI, если был удален ранее
+                    typeCombo.Enabled = false; typeCombo.SelectedIndex = 2;                         // Блокировка и выбор DI по умолчанию typeCombo
                     if (cm.Items.Count > 1)                                                         // Осталось больше одного элемента в списке
                     {
                         cm.SelectedIndex = cm.Items.Count - 1;                                      // Выбор последнего элемента
@@ -561,7 +571,8 @@ namespace Moderon
                 {
                     string nameFind = combo_text;
                     ui_find = list_ui.Find(x => x.Name == nameFind);
-                    typeCombo.Enabled = false; typeCombo.SelectedIndex = 0;         // typeCombo блокировка и выбора типа NTC
+                    if (!typeCombo.Items.Contains(DI)) typeCombo.Items.Add(DI);
+                    typeCombo.Enabled = false; typeCombo.SelectedIndex = 2;         // typeCombo блокировка и выбора типа DI
 
                     list_ui.Remove(ui_find);                                        // Удаление сигнала из списка
                     if (showCode) label.Text = "";
@@ -583,12 +594,14 @@ namespace Moderon
                 {
                     if (ui_find.Type != DI)
                     {
+                        typeCombo.SelectedIndex = 0;
+                        if (typeCombo.Items.Contains(DI)) typeCombo.Items.Remove(DI);
                         ui_find.SetType(NTC);                                       // Установка типа NTC для AI сигнала при выборе
                         typeCombo.Enabled = true;                                   // typeCombo разблокировка
                     }
                     else                                                            // Если тип сигнала DI
                     {
-                        typeCombo.Enabled = false; typeCombo.SelectedIndex = 0;     // typeCombo блок и выбор типа NTC
+                        typeCombo.Enabled = false; typeCombo.SelectedIndex = 2;     // typeCombo блок и выбор типа DI
                     }
                     ui_find.Select();
                     list_ui.Add(ui_find);
@@ -617,6 +630,7 @@ namespace Moderon
         ///<summary>Метод для изменения UI typeCombo типа сигнала AI</summary>
         private void UI_typeCombo_SelectedIndexChanged(ComboBox typeCombo, ComboBox ui_combo, Label label)
         {
+            if (ui_combo.SelectedItem == null) return;
             string name = string.Concat(ui_combo.SelectedItem);
             Ui ui_find = list_ui.Find(x => x.Name == name);             // Поиск сигнала UI по имени в списке
             if (ui_find != null && typeCombo.Enabled)                   // Проверка найденного сигнала и доступности typeCombo
@@ -625,7 +639,10 @@ namespace Moderon
                     ui_find.SetType(NTC);
                 else if (typeCombo.SelectedIndex == 1)                  // Выбран тип 4-20 мА
                     ui_find.SetType(mA_4_20);
-               if (showCode) SetCodeLabel_UI(ui_find, label);           // Отображение нового числового кода
+                else if (typeCombo.SelectedIndex == 2)                  // Выбран тип DI
+                    ui_find.SetType(DI);
+                
+                if (showCode) SetCodeLabel_UI(ui_find, label);           // Отображение нового числового кода
             }
         }
 
