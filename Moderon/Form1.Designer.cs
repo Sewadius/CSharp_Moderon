@@ -19,6 +19,10 @@ namespace Moderon
             {
                 components.Dispose();
             }
+            if (disposing)
+            {
+                serialPort?.Dispose();
+            }
             base.Dispose(disposing);
         }
 
@@ -723,6 +727,9 @@ namespace Moderon
             this.backHelpButton = new System.Windows.Forms.Button();
             this.label_comboSysType = new System.Windows.Forms.Label();
             this.loadCanPanel = new System.Windows.Forms.Panel();
+            this.refreshCanPorts = new System.Windows.Forms.PictureBox();
+            this.canSelectBox = new System.Windows.Forms.ComboBox();
+            this.connectCanLabel = new System.Windows.Forms.Label();
             this.comboCheckDataPlk = new System.Windows.Forms.ComboBox();
             this.label181 = new System.Windows.Forms.Label();
             this.backCanPanelButton = new System.Windows.Forms.Button();
@@ -732,7 +739,6 @@ namespace Moderon
             this.loadDataCanPlkBtn = new System.Windows.Forms.Button();
             this.label179 = new System.Windows.Forms.Label();
             this.connectPlkBtn = new System.Windows.Forms.Button();
-            this.plkStatusCombo = new System.Windows.Forms.TextBox();
             this.parityCanCombo = new System.Windows.Forms.ComboBox();
             this.label178 = new System.Windows.Forms.Label();
             this.label177 = new System.Windows.Forms.Label();
@@ -740,7 +746,6 @@ namespace Moderon
             this.label176 = new System.Windows.Forms.Label();
             this.canAddressBox = new System.Windows.Forms.TextBox();
             this.label174 = new System.Windows.Forms.Label();
-            this.canSelectBox = new System.Windows.Forms.TextBox();
             this.label173 = new System.Windows.Forms.Label();
             this.netOptionLabel = new System.Windows.Forms.Label();
             this.comboPlkType = new System.Windows.Forms.ComboBox();
@@ -750,8 +755,8 @@ namespace Moderon
             this.M72E08RA_label = new System.Windows.Forms.Label();
             this.M72E12RB_label = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
-            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.pic_signalsReady = new System.Windows.Forms.PictureBox();
+            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.sensorsPage.SuspendLayout();
@@ -823,9 +828,10 @@ namespace Moderon
             this.helpPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PDF_manual)).BeginInit();
             this.loadCanPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.refreshCanPorts)).BeginInit();
             this.panelBlocks.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_signalsReady)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -4333,9 +4339,9 @@ namespace Moderon
             this.loadModbusPanel.Controls.Add(this.label59);
             this.loadModbusPanel.Controls.Add(this.label1);
             this.loadModbusPanel.Controls.Add(this.backOptionsButton);
-            this.loadModbusPanel.Location = new System.Drawing.Point(5, 1015);
+            this.loadModbusPanel.Location = new System.Drawing.Point(15, 191);
             this.loadModbusPanel.Name = "loadModbusPanel";
-            this.loadModbusPanel.Size = new System.Drawing.Size(749, 34);
+            this.loadModbusPanel.Size = new System.Drawing.Size(749, 37);
             this.loadModbusPanel.TabIndex = 12;
             this.loadModbusPanel.Visible = false;
             // 
@@ -4593,7 +4599,7 @@ namespace Moderon
             this.signalsPanel.Controls.Add(this.backSignalsButton);
             this.signalsPanel.Location = new System.Drawing.Point(15, 121);
             this.signalsPanel.Name = "signalsPanel";
-            this.signalsPanel.Size = new System.Drawing.Size(740, 802);
+            this.signalsPanel.Size = new System.Drawing.Size(740, 58);
             this.signalsPanel.TabIndex = 16;
             this.signalsPanel.Visible = false;
             // 
@@ -4604,7 +4610,7 @@ namespace Moderon
             this.resetButtonSignals.Cursor = System.Windows.Forms.Cursors.Hand;
             this.resetButtonSignals.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.resetButtonSignals.ForeColor = System.Drawing.Color.White;
-            this.resetButtonSignals.Location = new System.Drawing.Point(741, 770);
+            this.resetButtonSignals.Location = new System.Drawing.Point(741, 26);
             this.resetButtonSignals.Name = "resetButtonSignals";
             this.resetButtonSignals.Size = new System.Drawing.Size(97, 27);
             this.resetButtonSignals.TabIndex = 62;
@@ -4619,7 +4625,7 @@ namespace Moderon
             this.loadToExl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loadToExl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadToExl.ForeColor = System.Drawing.Color.White;
-            this.loadToExl.Location = new System.Drawing.Point(561, 770);
+            this.loadToExl.Location = new System.Drawing.Point(561, 26);
             this.loadToExl.Name = "loadToExl";
             this.loadToExl.Size = new System.Drawing.Size(173, 27);
             this.loadToExl.TabIndex = 61;
@@ -4632,10 +4638,9 @@ namespace Moderon
             this.loadPLC_SignalsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.loadPLC_SignalsButton.BackColor = System.Drawing.Color.DarkGreen;
             this.loadPLC_SignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.loadPLC_SignalsButton.Enabled = false;
             this.loadPLC_SignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadPLC_SignalsButton.ForeColor = System.Drawing.Color.White;
-            this.loadPLC_SignalsButton.Location = new System.Drawing.Point(408, 770);
+            this.loadPLC_SignalsButton.Location = new System.Drawing.Point(408, 26);
             this.loadPLC_SignalsButton.Name = "loadPLC_SignalsButton";
             this.loadPLC_SignalsButton.Size = new System.Drawing.Size(147, 27);
             this.loadPLC_SignalsButton.TabIndex = 60;
@@ -4649,7 +4654,7 @@ namespace Moderon
             this.signalsReadyLabel.AutoSize = true;
             this.signalsReadyLabel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.signalsReadyLabel.ForeColor = System.Drawing.Color.Green;
-            this.signalsReadyLabel.Location = new System.Drawing.Point(123, 776);
+            this.signalsReadyLabel.Location = new System.Drawing.Point(123, 32);
             this.signalsReadyLabel.Name = "signalsReadyLabel";
             this.signalsReadyLabel.Size = new System.Drawing.Size(272, 14);
             this.signalsReadyLabel.TabIndex = 23;
@@ -9843,7 +9848,7 @@ namespace Moderon
             this.backSignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.backSignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.backSignalsButton.ForeColor = System.Drawing.Color.White;
-            this.backSignalsButton.Location = new System.Drawing.Point(10, 770);
+            this.backSignalsButton.Location = new System.Drawing.Point(10, 26);
             this.backSignalsButton.Name = "backSignalsButton";
             this.backSignalsButton.Size = new System.Drawing.Size(94, 27);
             this.backSignalsButton.TabIndex = 58;
@@ -9935,6 +9940,9 @@ namespace Moderon
             // 
             // loadCanPanel
             // 
+            this.loadCanPanel.Controls.Add(this.refreshCanPorts);
+            this.loadCanPanel.Controls.Add(this.canSelectBox);
+            this.loadCanPanel.Controls.Add(this.connectCanLabel);
             this.loadCanPanel.Controls.Add(this.comboCheckDataPlk);
             this.loadCanPanel.Controls.Add(this.label181);
             this.loadCanPanel.Controls.Add(this.backCanPanelButton);
@@ -9944,7 +9952,6 @@ namespace Moderon
             this.loadCanPanel.Controls.Add(this.loadDataCanPlkBtn);
             this.loadCanPanel.Controls.Add(this.label179);
             this.loadCanPanel.Controls.Add(this.connectPlkBtn);
-            this.loadCanPanel.Controls.Add(this.plkStatusCombo);
             this.loadCanPanel.Controls.Add(this.parityCanCombo);
             this.loadCanPanel.Controls.Add(this.label178);
             this.loadCanPanel.Controls.Add(this.label177);
@@ -9952,14 +9959,46 @@ namespace Moderon
             this.loadCanPanel.Controls.Add(this.label176);
             this.loadCanPanel.Controls.Add(this.canAddressBox);
             this.loadCanPanel.Controls.Add(this.label174);
-            this.loadCanPanel.Controls.Add(this.canSelectBox);
             this.loadCanPanel.Controls.Add(this.label173);
             this.loadCanPanel.Controls.Add(this.netOptionLabel);
-            this.loadCanPanel.Location = new System.Drawing.Point(3, 929);
+            this.loadCanPanel.Location = new System.Drawing.Point(12, 239);
             this.loadCanPanel.Name = "loadCanPanel";
-            this.loadCanPanel.Size = new System.Drawing.Size(749, 30);
+            this.loadCanPanel.Size = new System.Drawing.Size(749, 568);
             this.loadCanPanel.TabIndex = 45;
             this.loadCanPanel.Visible = false;
+            // 
+            // refreshCanPorts
+            // 
+            this.refreshCanPorts.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.refreshCanPorts.Image = global::Moderon.Properties.Resources.refresh;
+            this.refreshCanPorts.Location = new System.Drawing.Point(254, 55);
+            this.refreshCanPorts.Name = "refreshCanPorts";
+            this.refreshCanPorts.Size = new System.Drawing.Size(30, 30);
+            this.refreshCanPorts.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.refreshCanPorts.TabIndex = 64;
+            this.refreshCanPorts.TabStop = false;
+            this.refreshCanPorts.Click += new System.EventHandler(this.RefreshCanPorts_Click);
+            // 
+            // canSelectBox
+            // 
+            this.canSelectBox.BackColor = System.Drawing.Color.White;
+            this.canSelectBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.canSelectBox.FormattingEnabled = true;
+            this.canSelectBox.Location = new System.Drawing.Point(120, 60);
+            this.canSelectBox.Name = "canSelectBox";
+            this.canSelectBox.Size = new System.Drawing.Size(121, 21);
+            this.canSelectBox.TabIndex = 73;
+            // 
+            // connectCanLabel
+            // 
+            this.connectCanLabel.AutoSize = true;
+            this.connectCanLabel.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.connectCanLabel.ForeColor = System.Drawing.Color.Red;
+            this.connectCanLabel.Location = new System.Drawing.Point(121, 236);
+            this.connectCanLabel.Name = "connectCanLabel";
+            this.connectCanLabel.Size = new System.Drawing.Size(127, 16);
+            this.connectCanLabel.TabIndex = 65;
+            this.connectCanLabel.Text = "Нет соединения";
             // 
             // comboCheckDataPlk
             // 
@@ -10031,9 +10070,9 @@ namespace Moderon
             this.loadDataCanPlkBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loadDataCanPlkBtn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadDataCanPlkBtn.ForeColor = System.Drawing.Color.White;
-            this.loadDataCanPlkBtn.Location = new System.Drawing.Point(30, 296);
+            this.loadDataCanPlkBtn.Location = new System.Drawing.Point(30, 326);
             this.loadDataCanPlkBtn.Name = "loadDataCanPlkBtn";
-            this.loadDataCanPlkBtn.Size = new System.Drawing.Size(106, 33);
+            this.loadDataCanPlkBtn.Size = new System.Drawing.Size(209, 33);
             this.loadDataCanPlkBtn.TabIndex = 66;
             this.loadDataCanPlkBtn.Text = "ЗАГРУЗИТЬ";
             this.loadDataCanPlkBtn.UseVisualStyleBackColor = false;
@@ -10054,22 +10093,18 @@ namespace Moderon
             this.connectPlkBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.connectPlkBtn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.connectPlkBtn.ForeColor = System.Drawing.Color.White;
-            this.connectPlkBtn.Location = new System.Drawing.Point(30, 246);
+            this.connectPlkBtn.Location = new System.Drawing.Point(30, 276);
             this.connectPlkBtn.Name = "connectPlkBtn";
             this.connectPlkBtn.Size = new System.Drawing.Size(209, 33);
             this.connectPlkBtn.TabIndex = 65;
             this.connectPlkBtn.Text = "ПОКЛЮЧИТЬСЯ К ПЛК";
             this.connectPlkBtn.UseVisualStyleBackColor = false;
-            // 
-            // plkStatusCombo
-            // 
-            this.plkStatusCombo.Location = new System.Drawing.Point(120, 204);
-            this.plkStatusCombo.Name = "plkStatusCombo";
-            this.plkStatusCombo.Size = new System.Drawing.Size(122, 21);
-            this.plkStatusCombo.TabIndex = 56;
+            this.connectPlkBtn.Click += new System.EventHandler(this.ConnectPlkBtn_Click);
             // 
             // parityCanCombo
             // 
+            this.parityCanCombo.BackColor = System.Drawing.Color.White;
+            this.parityCanCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.parityCanCombo.FormattingEnabled = true;
             this.parityCanCombo.Items.AddRange(new object[] {
             "Even",
@@ -10094,14 +10129,16 @@ namespace Moderon
             // 
             this.label177.AutoSize = true;
             this.label177.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label177.Location = new System.Drawing.Point(28, 206);
+            this.label177.Location = new System.Drawing.Point(28, 236);
             this.label177.Name = "label177";
-            this.label177.Size = new System.Drawing.Size(81, 14);
+            this.label177.Size = new System.Drawing.Size(86, 14);
             this.label177.TabIndex = 53;
-            this.label177.Text = "Статус ПЛК";
+            this.label177.Text = "Статус ПЛК:";
             // 
             // speedCanCombo
             // 
+            this.speedCanCombo.BackColor = System.Drawing.Color.White;
+            this.speedCanCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.speedCanCombo.FormattingEnabled = true;
             this.speedCanCombo.Items.AddRange(new object[] {
             "9600",
@@ -10125,9 +10162,13 @@ namespace Moderon
             // canAddressBox
             // 
             this.canAddressBox.Location = new System.Drawing.Point(120, 96);
+            this.canAddressBox.MaxLength = 2;
             this.canAddressBox.Name = "canAddressBox";
             this.canAddressBox.Size = new System.Drawing.Size(122, 21);
             this.canAddressBox.TabIndex = 50;
+            this.canAddressBox.Text = "1";
+            this.canAddressBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.canAddressBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CanAddressBox_KeyPress);
             // 
             // label174
             // 
@@ -10138,13 +10179,6 @@ namespace Moderon
             this.label174.Size = new System.Drawing.Size(45, 14);
             this.label174.TabIndex = 49;
             this.label174.Text = "Адрес";
-            // 
-            // canSelectBox
-            // 
-            this.canSelectBox.Location = new System.Drawing.Point(120, 60);
-            this.canSelectBox.Name = "canSelectBox";
-            this.canSelectBox.Size = new System.Drawing.Size(122, 21);
-            this.canSelectBox.TabIndex = 48;
             // 
             // label173
             // 
@@ -10254,6 +10288,16 @@ namespace Moderon
             this.label61.TabIndex = 15;
             this.label61.Text = "БЛОКИ РАСШИРЕНИЯ";
             // 
+            // pic_signalsReady
+            // 
+            this.pic_signalsReady.Image = global::Moderon.Properties.Resources.green_check;
+            this.pic_signalsReady.Location = new System.Drawing.Point(785, 75);
+            this.pic_signalsReady.Name = "pic_signalsReady";
+            this.pic_signalsReady.Size = new System.Drawing.Size(40, 40);
+            this.pic_signalsReady.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_signalsReady.TabIndex = 63;
+            this.pic_signalsReady.TabStop = false;
+            // 
             // pictureBoxLogo
             // 
             this.pictureBoxLogo.BackColor = System.Drawing.Color.Transparent;
@@ -10265,16 +10309,6 @@ namespace Moderon
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxLogo.TabIndex = 2;
             this.pictureBoxLogo.TabStop = false;
-            // 
-            // pic_signalsReady
-            // 
-            this.pic_signalsReady.Image = global::Moderon.Properties.Resources.green_check;
-            this.pic_signalsReady.Location = new System.Drawing.Point(785, 75);
-            this.pic_signalsReady.Name = "pic_signalsReady";
-            this.pic_signalsReady.Size = new System.Drawing.Size(40, 40);
-            this.pic_signalsReady.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pic_signalsReady.TabIndex = 63;
-            this.pic_signalsReady.TabStop = false;
             // 
             // Form1
             // 
@@ -10417,10 +10451,11 @@ namespace Moderon
             ((System.ComponentModel.ISupportInitialize)(this.PDF_manual)).EndInit();
             this.loadCanPanel.ResumeLayout(false);
             this.loadCanPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.refreshCanPorts)).EndInit();
             this.panelBlocks.ResumeLayout(false);
             this.panelBlocks.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_signalsReady)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -10838,7 +10873,6 @@ namespace Moderon
         private System.Windows.Forms.Panel loadCanPanel;
         private System.Windows.Forms.Label label173;
         private System.Windows.Forms.Label netOptionLabel;
-        private System.Windows.Forms.TextBox canSelectBox;
         private System.Windows.Forms.TextBox canAddressBox;
         private System.Windows.Forms.Label label174;
         private System.Windows.Forms.ComboBox speedCanCombo;
@@ -10846,7 +10880,6 @@ namespace Moderon
         private System.Windows.Forms.CheckBox showHintCheck;
         private System.Windows.Forms.Label label178;
         private System.Windows.Forms.Label label177;
-        private System.Windows.Forms.TextBox plkStatusCombo;
         private System.Windows.Forms.ComboBox parityCanCombo;
         private System.Windows.Forms.Button connectPlkBtn;
         private System.Windows.Forms.Label label179;
@@ -11149,6 +11182,9 @@ namespace Moderon
         private System.Windows.Forms.CheckBox pumpGlikResCurProtect;
         private System.Windows.Forms.CheckBox confGlikResPumpCheck;
         private System.Windows.Forms.CheckBox reservPumpGlik;
+        private Label connectCanLabel;
+        private ComboBox canSelectBox;
+        private PictureBox refreshCanPorts;
     }
 }
 

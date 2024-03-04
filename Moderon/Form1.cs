@@ -269,7 +269,8 @@ namespace Moderon
                 ao_sig = "Добавляет AO сигнал",
                 ps = "Добавляет DI сигнал и датчик давления",
                 drive = "Привод добавлен в спецификацию",
-                pic_sig_ready = "Состояние карты входов/выходов";
+                pic_sig_ready = "Состояние карты входов/выходов",
+                pic_refresh = "Обновить список COM портов";
 
             toolTip.Active = hintEnabled;
 
@@ -309,6 +310,8 @@ namespace Moderon
             driveTip.SetToolTip(markRecircPanel, drive);
             // Изображение для карты входов/выходов
             toolTip.SetToolTip(pic_signalsReady, pic_sig_ready);
+            // Изображение для обновления списка CAN портов
+            toolTip.SetToolTip(refreshCanPorts, pic_refresh);
             // Изменение размера для tabControl выбора оборудования
             mainPage.Height = 465; // 465
             Form1_InitCmdWord(this, e); // Подготовка командных слов
@@ -1277,7 +1280,9 @@ namespace Moderon
             loadCanPanel.Location = PANEL_POSITION;
             loadCanPanel.Height = 550;
             loadCanPanel.Show();
+            InitializeCAN();                                    // Инициализация для загрузки по CAN порту
             formSignalsButton.Hide();                           // Скрытие кнопки "Сформировать"
+            pic_signalsReady.Hide();                            // Скртие изображения сформированной карты сигналов
         }
 
         ///<summary>Нажали на вкладку "Настройка", панель загрузки через Modbus</summary>
@@ -1475,12 +1480,13 @@ namespace Moderon
         ///<summary>Кнопка "Назад" из панели загрузки по CAN порту</summary>
         private void BackCanPanelButton_Click(object sender, EventArgs e)
         {
-            loadCanPanel.Hide();                                   // Скрытие панели загрузки
-            mainPage.Show();                                       // Отображение панели опции элементов 
+            loadCanPanel.Hide();                                    // Скрытие панели загрузки
+            mainPage.Show();                                        // Отображение панели опции элементов 
             label_comboSysType.Text = "ТИП СИСТЕМЫ";
             comboSysType.Show();
             panelElements.Show();
             formSignalsButton.Show();
+            pic_signalsReady.Show();                                // Отображение изображения сфомированной карты сигналов
         }
 
         ///<summary>Нажали "Сброс" в панели таблицы сигналов</summary>
@@ -1494,6 +1500,13 @@ namespace Moderon
         {
             if (CheckSignalsReady()) FormNetButton_Click(this, e);
             else cmdWordsTextBox.Text = "";
+        }
+
+        ///<summary>Изменили адрес устройства</summary>
+        private void CanAddressBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                e.Handled = true;
         }
 
         ///<summary>Настройка поля для ширины вытяжной заслонки</summary>
