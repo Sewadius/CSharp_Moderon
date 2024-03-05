@@ -727,6 +727,7 @@ namespace Moderon
             this.backHelpButton = new System.Windows.Forms.Button();
             this.label_comboSysType = new System.Windows.Forms.Label();
             this.loadCanPanel = new System.Windows.Forms.Panel();
+            this.loadCanButton = new System.Windows.Forms.Button();
             this.refreshCanPorts = new System.Windows.Forms.PictureBox();
             this.canSelectBox = new System.Windows.Forms.ComboBox();
             this.connectCanLabel = new System.Windows.Forms.Label();
@@ -736,7 +737,6 @@ namespace Moderon
             this.writeCanTextBox = new System.Windows.Forms.TextBox();
             this.label180 = new System.Windows.Forms.Label();
             this.dataCanTextBox = new System.Windows.Forms.TextBox();
-            this.loadDataCanPlkBtn = new System.Windows.Forms.Button();
             this.label179 = new System.Windows.Forms.Label();
             this.connectPlkBtn = new System.Windows.Forms.Button();
             this.parityCanCombo = new System.Windows.Forms.ComboBox();
@@ -757,6 +757,7 @@ namespace Moderon
             this.label61 = new System.Windows.Forms.Label();
             this.pic_signalsReady = new System.Windows.Forms.PictureBox();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
+            this.readCanButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.sensorsPage.SuspendLayout();
@@ -9940,6 +9941,8 @@ namespace Moderon
             // 
             // loadCanPanel
             // 
+            this.loadCanPanel.Controls.Add(this.readCanButton);
+            this.loadCanPanel.Controls.Add(this.loadCanButton);
             this.loadCanPanel.Controls.Add(this.refreshCanPorts);
             this.loadCanPanel.Controls.Add(this.canSelectBox);
             this.loadCanPanel.Controls.Add(this.connectCanLabel);
@@ -9949,7 +9952,6 @@ namespace Moderon
             this.loadCanPanel.Controls.Add(this.writeCanTextBox);
             this.loadCanPanel.Controls.Add(this.label180);
             this.loadCanPanel.Controls.Add(this.dataCanTextBox);
-            this.loadCanPanel.Controls.Add(this.loadDataCanPlkBtn);
             this.loadCanPanel.Controls.Add(this.label179);
             this.loadCanPanel.Controls.Add(this.connectPlkBtn);
             this.loadCanPanel.Controls.Add(this.parityCanCombo);
@@ -9966,6 +9968,21 @@ namespace Moderon
             this.loadCanPanel.Size = new System.Drawing.Size(749, 568);
             this.loadCanPanel.TabIndex = 45;
             this.loadCanPanel.Visible = false;
+            // 
+            // loadCanButton
+            // 
+            this.loadCanButton.BackColor = System.Drawing.Color.DarkGreen;
+            this.loadCanButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.loadCanButton.Enabled = false;
+            this.loadCanButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.loadCanButton.ForeColor = System.Drawing.Color.White;
+            this.loadCanButton.Location = new System.Drawing.Point(30, 295);
+            this.loadCanButton.Name = "loadCanButton";
+            this.loadCanButton.Size = new System.Drawing.Size(209, 33);
+            this.loadCanButton.TabIndex = 74;
+            this.loadCanButton.Text = "ЗАГРУЗИТЬ ДАННЫЕ В ПЛК";
+            this.loadCanButton.UseVisualStyleBackColor = false;
+            this.loadCanButton.Click += new System.EventHandler(this.LoadCanButton_Click);
             // 
             // refreshCanPorts
             // 
@@ -9994,7 +10011,7 @@ namespace Moderon
             this.connectCanLabel.AutoSize = true;
             this.connectCanLabel.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.connectCanLabel.ForeColor = System.Drawing.Color.Red;
-            this.connectCanLabel.Location = new System.Drawing.Point(121, 236);
+            this.connectCanLabel.Location = new System.Drawing.Point(121, 259);
             this.connectCanLabel.Name = "connectCanLabel";
             this.connectCanLabel.Size = new System.Drawing.Size(127, 16);
             this.connectCanLabel.TabIndex = 65;
@@ -10064,19 +10081,6 @@ namespace Moderon
             this.dataCanTextBox.Size = new System.Drawing.Size(315, 200);
             this.dataCanTextBox.TabIndex = 67;
             // 
-            // loadDataCanPlkBtn
-            // 
-            this.loadDataCanPlkBtn.BackColor = System.Drawing.Color.DarkGreen;
-            this.loadDataCanPlkBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.loadDataCanPlkBtn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.loadDataCanPlkBtn.ForeColor = System.Drawing.Color.White;
-            this.loadDataCanPlkBtn.Location = new System.Drawing.Point(30, 326);
-            this.loadDataCanPlkBtn.Name = "loadDataCanPlkBtn";
-            this.loadDataCanPlkBtn.Size = new System.Drawing.Size(209, 33);
-            this.loadDataCanPlkBtn.TabIndex = 66;
-            this.loadDataCanPlkBtn.Text = "ЗАГРУЗИТЬ";
-            this.loadDataCanPlkBtn.UseVisualStyleBackColor = false;
-            // 
             // label179
             // 
             this.label179.AutoSize = true;
@@ -10093,11 +10097,11 @@ namespace Moderon
             this.connectPlkBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.connectPlkBtn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.connectPlkBtn.ForeColor = System.Drawing.Color.White;
-            this.connectPlkBtn.Location = new System.Drawing.Point(30, 276);
+            this.connectPlkBtn.Location = new System.Drawing.Point(30, 207);
             this.connectPlkBtn.Name = "connectPlkBtn";
             this.connectPlkBtn.Size = new System.Drawing.Size(209, 33);
             this.connectPlkBtn.TabIndex = 65;
-            this.connectPlkBtn.Text = "ПОКЛЮЧИТЬСЯ К ПЛК";
+            this.connectPlkBtn.Text = "УСТАНОВИТЬ СОЕДИНЕНИЕ";
             this.connectPlkBtn.UseVisualStyleBackColor = false;
             this.connectPlkBtn.Click += new System.EventHandler(this.ConnectPlkBtn_Click);
             // 
@@ -10129,7 +10133,7 @@ namespace Moderon
             // 
             this.label177.AutoSize = true;
             this.label177.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label177.Location = new System.Drawing.Point(28, 236);
+            this.label177.Location = new System.Drawing.Point(28, 259);
             this.label177.Name = "label177";
             this.label177.Size = new System.Drawing.Size(86, 14);
             this.label177.TabIndex = 53;
@@ -10309,6 +10313,20 @@ namespace Moderon
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxLogo.TabIndex = 2;
             this.pictureBoxLogo.TabStop = false;
+            // 
+            // readCanButton
+            // 
+            this.readCanButton.BackColor = System.Drawing.Color.DarkGreen;
+            this.readCanButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.readCanButton.Enabled = false;
+            this.readCanButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.readCanButton.ForeColor = System.Drawing.Color.White;
+            this.readCanButton.Location = new System.Drawing.Point(30, 345);
+            this.readCanButton.Name = "readCanButton";
+            this.readCanButton.Size = new System.Drawing.Size(209, 33);
+            this.readCanButton.TabIndex = 75;
+            this.readCanButton.Text = "ЧИТАТЬ ДАННЫЕ ИЗ ПЛК";
+            this.readCanButton.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
@@ -10883,7 +10901,6 @@ namespace Moderon
         private System.Windows.Forms.ComboBox parityCanCombo;
         private System.Windows.Forms.Button connectPlkBtn;
         private System.Windows.Forms.Label label179;
-        private System.Windows.Forms.Button loadDataCanPlkBtn;
         private System.Windows.Forms.TextBox dataCanTextBox;
         private System.Windows.Forms.Label label180;
         private System.Windows.Forms.Button backCanPanelButton;
@@ -11185,6 +11202,8 @@ namespace Moderon
         private Label connectCanLabel;
         private ComboBox canSelectBox;
         private PictureBox refreshCanPorts;
+        private Button loadCanButton;
+        private Button readCanButton;
     }
 }
 

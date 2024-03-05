@@ -582,7 +582,9 @@ namespace Moderon
             foreach (var el in mainOptions) el.Checked = false;
             foreach (var el in checkElements) el.Enabled = false;
             foreach (var el in comboElements) el.Enabled = false;
-            
+
+            loadCanButton.Enabled = false;                  // Блокировка кнопки загрузки данных в ПЛК
+
             outFanPanel.Hide();                             // Скрытие панели вытяжного вентилятора
             HideExpansionBlocksPanels();                    // Скрытие панелей для блоков расширения в таблице сигналов
             SelectComboBoxesInitial();                      // Возврат к изначальным значения выбора
@@ -1507,6 +1509,11 @@ namespace Moderon
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 e.Handled = true;
+        }
+
+        private void LoadCanButton_Click(object sender, EventArgs e)
+        {
+
         }
 
         ///<summary>Настройка поля для ширины вытяжной заслонки</summary>

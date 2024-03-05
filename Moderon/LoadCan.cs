@@ -11,8 +11,9 @@ namespace Moderon
     public partial class Form1 : Form
     {
         private SerialPort serialPort;
+        private ModbusRTU modbusRTU = new ModbusRTU();
 
-        /// <summary>Инициализация для загрузки по CAN порту</summary>
+        ///<summary>Инициализация для загрузки по CAN порту</summary>
         public void InitializeCAN()
         {
             serialPort = new SerialPort();              // Инициализация объекта SerialPort
@@ -33,11 +34,12 @@ namespace Moderon
             foreach (string port in ports)
                 canSelectBox.Items.Add(port);
 
+            // Выбор последнего доступного CAN порта в списке
             if (canSelectBox.Items.Count > 0)
-                canSelectBox.SelectedIndex = 0;
+                canSelectBox.SelectedIndex = canSelectBox.Items.Count - 1;
         }
 
-        /// <summary>Обновление списка CAN портов</summary>
+        ///<summary>Обновление списка CAN портов</summary>
         private void RefreshCanPorts_Click(object sender, EventArgs e)
         {
             refreshCanPorts.Image = Properties.Resources.refresh_red;
@@ -52,7 +54,7 @@ namespace Moderon
             thread.Start();
         }
 
-        /// <summary>Выбор чётности в зависимости от выбора comboBox</summary>
+        ///<summary>Выбор чётности в зависимости от выбора comboBox</summary>
         private Parity SetParity()
         {
             Parity parity = Parity.None;
@@ -66,49 +68,60 @@ namespace Moderon
             return parity;
         }
 
-        /// <summary>Нажали на кнопку "Подключить/Отключиться"</summary>
+        ///<summary>Нажали на кнопку "Подключить/Отключиться"</summary>
         private void ConnectPlkBtn_Click(object sender, EventArgs e)
         {
             if (canSelectBox.SelectedItem == null) return;
+            
+            modbusRTU.mySp = serialPort;
+            modbusRTU.PortName = canSelectBox.SelectedItem.ToString();
+            modbusRTU.BaudRate = int.Parse(speedCanCombo.SelectedItem.ToString());
+            modbusRTU.Parity = SetParity();
+            modbusRTU.DataBits = 8;
+            modbusRTU.StopBits = StopBits.One;
 
-            string portName = canSelectBox.SelectedItem.ToString();                 // Номер порта
-            int baudRate = int.Parse(speedCanCombo.SelectedItem.ToString());        // Скорость подключения
-            Parity parity = SetParity();                                            // Чётность
-            int dataBits = 8;
-            StopBits stopBits = StopBits.One;
-
-            serialPort.PortName = portName;
-            serialPort.BaudRate = baudRate;
-            serialPort.Parity = parity;
-            serialPort.DataBits = dataBits;
-            serialPort.StopBits = stopBits;
-
-            try
+            if (!modbusRTU.mySp.IsOpen)
             {
-                if (!serialPort.IsOpen) serialPort.Open();
-                else serialPort.Close();
+                modbusRTU.StartSession();
+            }
+            else
+            {
+                modbusRTU.StopSession();
+            }
 
-                if (serialPort.IsOpen)
-                {
-                    connectCanLabel.Text = "Соединение установлено";
-                    connectCanLabel.ForeColor = Color.DarkGreen;
-                    connectPlkBtn.Text = "Отключиться от ПЛК";
-                } 
-                else
-                {
-                    connectCanLabel.Text = "Нет соединения";
-                    connectCanLabel.ForeColor = Color.Red;
-                    connectPlkBtn.Text = "Подключиться к ПЛК";
-                }
-            }
-            catch (Exception ex)
+            LabelButtonChange(modbusRTU.mySp.IsOpen);
+        }
+
+        ///<summary>Изменение текста, цвета и блокировка кнопки загрузки</summary>
+        private void LabelButtonChange(bool portOpen)
+        {
+            string[] PORT_STATUS = ["Порт COM открыт", "Нет соединения"];
+            string[] CONNECT_STATUS = ["ЗАКРЫТЬ СОЕДИНЕНИЕ", "УСТАНОВИТЬ СОЕДИНЕНИЕ"];
+
+            if (portOpen)
             {
-                MessageBox.Show(ex.Message);
+                connectCanLabel.Text = PORT_STATUS[0];
+                connectCanLabel.ForeColor = Color.Blue;
+                connectPlkBtn.Text = CONNECT_STATUS[0];
+                loadCanButton.Enabled = true;
             }
-            finally
+            else
             {
-                if (serialPort.IsOpen) serialPort.Close();
+                connectCanLabel.Text = PORT_STATUS[1];
+                connectCanLabel.ForeColor = Color.Red;
+                connectPlkBtn.Text = CONNECT_STATUS[1];
+                loadCanButton.Enabled = false;
             }
+        }
+
+        ///<summary>Нажали на кнопку "Загрузить данные в ПЛК"</summary>
+        private void LoadCanButton_Click(object sender, EventArgs e)
+        {
+            byte address = byte.Parse(canAddressBox.Text);
+            short[] values = new short[1];
+
+            if (modbusRTU.SendFc3(address, 0, 1, ref values))
+                MessageBox.Show(values[0].ToString());
         }
     }
 }
