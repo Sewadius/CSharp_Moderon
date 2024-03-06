@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.IO.Ports;
+using System.Net;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Moderon
@@ -14,8 +17,9 @@ namespace Moderon
         public int Timeout { get; set; }
         public Parity Parity { get; set; }
         public StopBits StopBits { get; set; }
+        public byte Address { get; set; }
 
-        public ModbusRTU(string port, int baud, int bits, int timeout, Parity parity, StopBits stopBits)
+        public ModbusRTU(string port, int baud, int bits, int timeout, Parity parity, StopBits stopBits, byte address)
         {
             PortName = port;
             BaudRate = baud;
@@ -23,6 +27,7 @@ namespace Moderon
             Timeout = timeout;
             Parity = parity;
             StopBits = stopBits;
+            Address = address;
         }
 
         public ModbusRTU() { }
@@ -50,7 +55,27 @@ namespace Moderon
         ///<summary>Инициализация разрыва соединения по CAN порту</summary>
         public void StopSession()
         {
-            mySp.Close();
+            int timeout = 200; // 200 ms timeout
+
+            try
+            {
+                // Create a CancellationTokenSource with timeout
+                using CancellationTokenSource cts = new(timeout);
+                Task sendTask = Task.Run(() =>
+                    mySp.Close());
+
+                // Wait for the task to complete or timeout to occur
+                if (sendTask.Wait(timeout))
+                {
+                    return;
+                }
+                else
+                {
+                    cts.Cancel();
+                    return;
+                }
+            }
+            catch { return; }
         }
 
         private void GetCRC(byte[] message, ref byte[] CRC)
@@ -96,7 +121,11 @@ namespace Moderon
                 // Send modbus message to Serial Port:
                 try
                 {
+                    mySp.ReadTimeout = 200;  // Set the read timeout to 200 ms
+                    mySp.WriteTimeout = 200; // Set the write timeout to 200 ms
                     mySp.Write(message, 0, message.Length);
+                                  
+                    // Attempt to read the response
                     GetResponse(ref response);
                 }
                 catch

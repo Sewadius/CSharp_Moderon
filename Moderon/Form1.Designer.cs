@@ -21,7 +21,7 @@ namespace Moderon
             }
             if (disposing)
             {
-                serialPort?.Dispose();
+                //serialPort?.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -727,6 +727,7 @@ namespace Moderon
             this.backHelpButton = new System.Windows.Forms.Button();
             this.label_comboSysType = new System.Windows.Forms.Label();
             this.loadCanPanel = new System.Windows.Forms.Panel();
+            this.readCanButton = new System.Windows.Forms.Button();
             this.loadCanButton = new System.Windows.Forms.Button();
             this.refreshCanPorts = new System.Windows.Forms.PictureBox();
             this.canSelectBox = new System.Windows.Forms.ComboBox();
@@ -757,7 +758,6 @@ namespace Moderon
             this.label61 = new System.Windows.Forms.Label();
             this.pic_signalsReady = new System.Windows.Forms.PictureBox();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
-            this.readCanButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.sensorsPage.SuspendLayout();
@@ -9969,6 +9969,21 @@ namespace Moderon
             this.loadCanPanel.TabIndex = 45;
             this.loadCanPanel.Visible = false;
             // 
+            // readCanButton
+            // 
+            this.readCanButton.BackColor = System.Drawing.Color.DarkGreen;
+            this.readCanButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.readCanButton.Enabled = false;
+            this.readCanButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.readCanButton.ForeColor = System.Drawing.Color.White;
+            this.readCanButton.Location = new System.Drawing.Point(30, 345);
+            this.readCanButton.Name = "readCanButton";
+            this.readCanButton.Size = new System.Drawing.Size(209, 33);
+            this.readCanButton.TabIndex = 75;
+            this.readCanButton.Text = "ЧИТАТЬ ДАННЫЕ ИЗ ПЛК";
+            this.readCanButton.UseVisualStyleBackColor = false;
+            this.readCanButton.Click += new System.EventHandler(this.ReadCanButton_Click);
+            // 
             // loadCanButton
             // 
             this.loadCanButton.BackColor = System.Drawing.Color.DarkGreen;
@@ -10023,7 +10038,7 @@ namespace Moderon
             this.comboCheckDataPlk.Items.AddRange(new object[] {
             "данные в ПЛК совпадают",
             "данные в ПЛК не совпадают"});
-            this.comboCheckDataPlk.Location = new System.Drawing.Point(512, 506);
+            this.comboCheckDataPlk.Location = new System.Drawing.Point(512, 530);
             this.comboCheckDataPlk.Name = "comboCheckDataPlk";
             this.comboCheckDataPlk.Size = new System.Drawing.Size(207, 21);
             this.comboCheckDataPlk.TabIndex = 72;
@@ -10032,7 +10047,7 @@ namespace Moderon
             // 
             this.label181.AutoSize = true;
             this.label181.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label181.Location = new System.Drawing.Point(401, 508);
+            this.label181.Location = new System.Drawing.Point(401, 532);
             this.label181.Name = "label181";
             this.label181.Size = new System.Drawing.Size(103, 14);
             this.label181.TabIndex = 71;
@@ -10059,7 +10074,7 @@ namespace Moderon
             this.writeCanTextBox.Name = "writeCanTextBox";
             this.writeCanTextBox.ReadOnly = true;
             this.writeCanTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.writeCanTextBox.Size = new System.Drawing.Size(315, 200);
+            this.writeCanTextBox.Size = new System.Drawing.Size(315, 226);
             this.writeCanTextBox.TabIndex = 69;
             // 
             // label180
@@ -10074,18 +10089,18 @@ namespace Moderon
             // 
             // dataCanTextBox
             // 
-            this.dataCanTextBox.Location = new System.Drawing.Point(404, 55);
+            this.dataCanTextBox.Location = new System.Drawing.Point(404, 28);
             this.dataCanTextBox.Multiline = true;
             this.dataCanTextBox.Name = "dataCanTextBox";
             this.dataCanTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataCanTextBox.Size = new System.Drawing.Size(315, 200);
+            this.dataCanTextBox.Size = new System.Drawing.Size(315, 226);
             this.dataCanTextBox.TabIndex = 67;
             // 
             // label179
             // 
             this.label179.AutoSize = true;
             this.label179.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label179.Location = new System.Drawing.Point(401, 28);
+            this.label179.Location = new System.Drawing.Point(401, 7);
             this.label179.Name = "label179";
             this.label179.Size = new System.Drawing.Size(98, 14);
             this.label179.TabIndex = 65;
@@ -10313,20 +10328,6 @@ namespace Moderon
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxLogo.TabIndex = 2;
             this.pictureBoxLogo.TabStop = false;
-            // 
-            // readCanButton
-            // 
-            this.readCanButton.BackColor = System.Drawing.Color.DarkGreen;
-            this.readCanButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.readCanButton.Enabled = false;
-            this.readCanButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.readCanButton.ForeColor = System.Drawing.Color.White;
-            this.readCanButton.Location = new System.Drawing.Point(30, 345);
-            this.readCanButton.Name = "readCanButton";
-            this.readCanButton.Size = new System.Drawing.Size(209, 33);
-            this.readCanButton.TabIndex = 75;
-            this.readCanButton.Text = "ЧИТАТЬ ДАННЫЕ ИЗ ПЛК";
-            this.readCanButton.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
