@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Specialized;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 // Файл для формирования и вывода готовых командных слов под запись
@@ -8,11 +8,10 @@ namespace Moderon
 {
     public partial class Form1 : Form
     {
-        ushort[] cmdWords = new ushort[30]; // Массив для командных слов
-        ushort[] diSignals = new ushort[20]; // Массив для сигналов DI
-        ushort[] aiSignals = new ushort[24]; // Массив для сигналов AI
-        ushort[] doSignals = new ushort[28]; // Массив для сигналов DO
-        ushort[] aoSignals = new ushort[12]; // Массив для сигналов AO
+        ushort[] uiSignals = new ushort[48];            // Массив для сигналов UI
+        ushort[] doSignals = new ushort[26];            // Массив для сигналов DO
+        ushort[] aoSignals = new ushort[7];             // Массив для сигналов AO
+        ushort[] cmdWords = new ushort[30];             // Массив для командных слов
 
         ushort cmdW1, cmdW2, cmdW3, cmdW4, cmdW5, cmdW6, cmdW7, cmdW8, cmdW9, cmdW10,
             cmdW11, cmdW12, cmdW13, cmdW14, cmdW15, cmdW16, cmdW17, cmdW18, cmdW19, cmdW20,
@@ -22,20 +21,22 @@ namespace Moderon
         ///<summary>Предварительная очистка массивов перед формированием значений</summary>
         private void ResetSignalsAll()
         {
-            for (int i = 0; i < diSignals.Length; i++) diSignals[i] = 0;
-            for (int i = 0; i < aiSignals.Length; i++) aiSignals[i] = 0;
+            for (int i = 0; i < uiSignals.Length; i++) uiSignals[i] = 0;
             for (int i = 0; i < doSignals.Length; i++) doSignals[i] = 0;
             for (int i = 0; i < aoSignals.Length; i++) aoSignals[i] = 0;
         }
 
-        ///<summary>Нажали на кнопку "Собрать"</summary>
+        ///<summary>Нажали на кнопку "Собрать", формирование массивов сигналов</summary>
         private void FormNetButton_Click(object sender, EventArgs e)
         {
             ushort count = 1;                       // Глобальный счетчик учета позиции
+
             ResetSignalsAll();                      // Сброс для массивов сигналов
+            BuildUI_Signals();                      // Сборка массива для сигналов UI
+            BuildDO_Signals();                      // Сборка массива для сигналов DO
+            BuildAO_Signals();                      // Сборка массива для сигналов AO
             BuildCmdWords();                        // Сборка массива командных слов
-            BuildDoSignals();                       // Сборка массива для сигналов DO
-            BuildAoSignals();                       // Сборка массива для сигналов AO
+
             cmdWordsTextBox.Text = "";              // Очистка текстового поля
 
             for (ushort counter = 1; counter <= cmdWords.Length; counter++) 
@@ -91,8 +92,43 @@ namespace Moderon
             cmdWords[28] = cmdW29; cmdWords[29] = cmdW30;
         }
 
+        ///<summary>Сборка массива для сигналов UI</summary>
+        private void BuildUI_Signals()
+        {
+            ushort counter = 0;
+
+            var ui_combos = new List<ComboBox>()
+            {
+                // ПЛК
+                UI1_combo, UI2_combo, UI3_combo, UI4_combo, UI5_combo, UI6_combo, UI7_combo, UI8_combo,
+                UI9_combo, UI10_combo, UI11_combo, null, null, null, null, null,
+                // Блок расширения 1
+                UI1bl1_combo, UI2bl1_combo, UI3bl1_combo, UI4bl1_combo, UI5bl1_combo, UI6bl1_combo, UI7bl1_combo,
+                UI8bl1_combo, UI9bl1_combo, UI10bl1_combo, UI11bl1_combo, UI12bl1_combo, UI13bl1_combo,
+                UI14bl1_combo, UI15bl1_combo, UI16bl1_combo,
+                // Блок расширения 2
+                UI1bl2_combo, UI2bl2_combo, UI3bl2_combo, UI4bl2_combo, UI5bl2_combo, UI6bl2_combo, UI7bl2_combo,
+                UI8bl2_combo, UI9bl2_combo, UI10bl2_combo, UI11bl2_combo, UI12bl2_combo, UI13bl2_combo,
+                UI14bl2_combo, UI15bl2_combo, UI16bl2_combo,
+            };
+
+            foreach (var el in ui_combos)
+            {
+                if (el != null && el.SelectedItem.ToString() != NOT_SELECTED)
+                {
+                    ushort value = Convert.ToUInt16(el.SelectedItem.ToString());
+                    if (value > 100 && value < 150) value -= 100;   // Коды для датчиков
+
+                    uiSignals[counter] = value;
+                }
+                else uiSignals[counter] = 0;
+
+                counter += 1;
+            }
+        }
+
         ///<summary>Сборка массива для сигналов DO</summary>
-        private void BuildDoSignals()
+        private void BuildDO_Signals()
         {
             // ПЛК
             if (DO1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO1
@@ -155,7 +191,7 @@ namespace Moderon
         }
 
         ///<summary>Сборка массива для сигналов AO</summary>
-        private void BuildAoSignals()
+        private void BuildAO_Signals()
         {
             // ПЛК
             if (AO1_combo.SelectedItem.ToString() != NOT_SELECTED)      // AO1

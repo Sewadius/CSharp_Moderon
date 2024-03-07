@@ -1392,7 +1392,7 @@ namespace Moderon
             //ToolStripMenuItem_load_Click(this, e);                                    // Открытие панели настроек
             LoadCanPanel_Open(this, e);                                                 // Открытие панели загрузки в контроллер, CAN порт
             fromSignalsMove = true;                                                     // Переход из панели выбора сигналов
-            // FormNetButton_Click(this, e);                                               // Формирование списка сигналов для записи
+            FormNetButton_Click(this, e);                                               // Формирование списка сигналов для записи
         }
 
         ///<summary>Нажали на ссылку сайта ONI</summary>

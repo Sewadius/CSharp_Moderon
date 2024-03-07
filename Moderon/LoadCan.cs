@@ -359,7 +359,28 @@ namespace Moderon
         ///<summary>Чтение данных по командным словам из регистров ПЛК</summary>
         private void ReadCMD_Values_fromPLC()
         {
+            ushort CMD_PLC_LENGTH = 30;                     // Количество командных слов
+            countNote = 84;                                 // Начальный адрес для считывания командных слов
 
+            short[] values = new short[CMD_PLC_LENGTH];
+
+            modbusRTU.SendFc3(modbusRTU.Address, countNote, CMD_PLC_LENGTH, ref values);
+            WriteCmd_Values_toTextBox(CMD_PLC_LENGTH, values);
+        }
+
+        ///<summary>Запись для группы cmdWords в текстовое поле textBox</summary>
+        private void WriteCmd_Values_toTextBox(ushort length, short[] values)
+        {
+            int border = countNote + length;
+            int value_index = 0;
+
+            for (; countNote < border; countNote++)
+            {
+                dataCanTextBox.Text += $"{countNote}) Word_{value_index + 1}:\t{values[value_index]}";
+                
+                dataCanTextBox.Text += Environment.NewLine;
+                value_index += 1; 
+            }
         }
     }
 }
