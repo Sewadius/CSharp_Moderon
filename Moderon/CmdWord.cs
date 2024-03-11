@@ -37,46 +37,132 @@ namespace Moderon
             BuildAO_Signals();                      // Сборка массива для сигналов AO
             BuildCmdWords();                        // Сборка массива командных слов
 
-            cmdWordsTextBox.Text = "";              // Очистка текстового поля
+            cmdWordsTextBox.Text = "";              // Очистка текстового поля вывода командных слов
 
+            // Формирование командных слов для вывода в таблице сигналов
             for (ushort counter = 1; counter <= cmdWords.Length; counter++) 
             { // Для командных слов
                 cmdWordsTextBox.Text += counter.ToString() + ") " + 
                     cmdWords[counter - 1].ToString();
                 if (counter < cmdWords.Length) cmdWordsTextBox.Text += Environment.NewLine;
                 ++count;
-            } /*
-            for (ushort counter = 1; counter <= diSignals.Length; counter++) // DI
-            { // Для сигналов DI (DI1 - DI20) - по 5 сигналов
-                cmdWordsTextBox.Text += Environment.NewLine;
-                cmdWordsTextBox.Text += (count.ToString() + "_DI_" + counter.ToString() + ") " +
-                    diSignals[counter - 1]).ToString();
-                ++count;
-            }
-            for (ushort counter = 1; counter <= aiSignals.Length; counter++) // AI
-            { // Для сигналов AI (AI1 - AI24) - по 6 сигналов
-                cmdWordsTextBox.Text += Environment.NewLine;
-                cmdWordsTextBox.Text += (count.ToString() + "_AI_" + counter.ToString() + ") " +
-                    aiSignals[counter - 1]).ToString();
-                ++count;
-            }
-            for (ushort counter = 1; counter <= doSignals.Length; counter++) // DO
-            { // Для сигналов DO (DO1 - DO28) - по 7 сигналов
-                cmdWordsTextBox.Text += Environment.NewLine;
-                cmdWordsTextBox.Text += (count.ToString() + "_DO_" + counter.ToString() + ") " +
-                    doSignals[counter - 1]).ToString();
-                ++count;
-            }
-            for (ushort counter = 1; counter <= aoSignals.Length; counter++) // AO
-            { // Для сигналов AO (AO1 - AO12) - по 3 сигнала
-                cmdWordsTextBox.Text += Environment.NewLine;
-                cmdWordsTextBox.Text += (count.ToString() + "_AO_" + counter.ToString() + ") " +
-                    aoSignals[counter - 1]).ToString();
-                ++count;
-            } */
-            // Для сигнала пожарной сигнализации
+            } 
+            
+            // Отображение сигнала пожарной сигнализации
             cmdWordsTextBox.Text += Environment.NewLine;
-            cmdWordsTextBox.Text += (count.ToString() + "_fire" + ") " + cmdW_fire.ToString());
+            cmdWordsTextBox.Text += count.ToString() + "_fire" + ") " + cmdW_fire.ToString();
+
+            // Формирование кодов сигналов и командных слов для записи в ПЛК
+            if (loadCanPanel.Visible) FillWriteCanTextBox();              
+        }
+
+        ///<summary>Заполнение textBox данных для записи в ПЛК</summary>
+        private void FillWriteCanTextBox()
+        {  
+            ushort count = 0;                           // Глобальный счётчик учёта номера позиции
+            ushort value_index = 1;
+
+            writeCanTextBox.Text = "";                  // Очистка textBox перед заполнением
+            
+            // Запись textBox для UI сигналов
+            for (int i = 0; i < uiSignals.Length; i++)
+            {
+                if (value_index == 17) value_index = 1;
+                
+                if (i < 16)                             // ПЛК
+                {
+                    writeCanTextBox.Text += $"{count}) UI{value_index}:\t\t{uiSignals[i]}";
+                }
+
+                else if (i >= 16 && i < 32)             // Первый блок расширения
+                {
+                    writeCanTextBox.Text += $"{count}) EX1_UI{value_index}:\t{uiSignals[i]}";
+                }
+
+                else if (i >= 32 && i < 48)             // Второй блок расширения
+                {
+                    writeCanTextBox.Text += $"{count}) EX2_UI{value_index}:\t{uiSignals[i]}";
+                }
+
+                writeCanTextBox.Text += Environment.NewLine;
+                value_index++;
+                count++;
+            }
+
+            writeCanTextBox.Text += Environment.NewLine;
+            value_index = 1;
+
+            // DO сигналы
+            for (int i = 0; i < doSignals.Length; i++)
+            {
+                if (value_index == 11) value_index = 1;
+
+                if (i < 10)                             // ПЛК
+                {
+                    if (i == 9)
+                        writeCanTextBox.Text += $"{count}) DO{value_index}:\t{doSignals[i]}";
+                    else
+                        writeCanTextBox.Text += $"{count}) DO{value_index}:\t\t{doSignals[i]}";
+                }
+
+                else if (i >= 10 && i < 18)             // Первый блок расширения
+                {
+                    writeCanTextBox.Text += $"{count}) EX1_DO{value_index}:\t{doSignals[i]}";
+                    if (value_index == 8) value_index = 0;
+                }
+
+                else if (i >= 18 && i < 26)             // Второй блок расширения
+                {
+                    writeCanTextBox.Text += $"{count}) EX2_DO{value_index}:\t{doSignals[i]}";
+                }
+
+                writeCanTextBox.Text += Environment.NewLine;
+                value_index++;
+                count++;
+            }
+
+            writeCanTextBox.Text += Environment.NewLine;
+            value_index = 1;
+
+            // AO сигналы
+            for (int i = 0; i < aoSignals.Length; i++)
+            {
+                if (value_index == 4) value_index = 1;
+
+                if (i < 3)                              // ПЛК
+                {
+                    writeCanTextBox.Text += $"{count}) AO{value_index}:\t\t{doSignals[i]}";
+                }
+
+                else if (i >= 3 && i < 5)               // Первый блок расширения
+                {
+                    writeCanTextBox.Text += $"{count}) EX1_AO{value_index}:\t{doSignals[i]}";
+                    if (value_index == 2) value_index = 0;
+                }
+
+                else if (i >= 5 && i < 7)
+                {
+                    writeCanTextBox.Text += $"{count}) EX2_AO{value_index}:\t{doSignals[i]}";
+                }
+
+                writeCanTextBox.Text += Environment.NewLine;
+                value_index++;
+                count++;
+            }
+
+            writeCanTextBox.Text += Environment.NewLine;
+            value_index = 1;
+            count = 84;             // Позиция для начала командных слов
+
+            // Командные слова
+            for (int i = 0; i < cmdWords.Length; i++)
+            {
+                writeCanTextBox.Text += $"{count}) Word_{value_index}:\t{cmdWords[i]}";
+                if (i != cmdWords.Length - 1) writeCanTextBox.Text += Environment.NewLine;
+                value_index++;
+                count++;
+            }
+
         }
 
         ///<summary>Сборка массива командных слов из полученных значений</summary>
@@ -99,14 +185,14 @@ namespace Moderon
 
             var ui_combos = new List<ComboBox>()
             {
-                // ПЛК
+                // ПЛК (для 16 UI)
                 UI1_combo, UI2_combo, UI3_combo, UI4_combo, UI5_combo, UI6_combo, UI7_combo, UI8_combo,
                 UI9_combo, UI10_combo, UI11_combo, null, null, null, null, null,
-                // Блок расширения 1
+                // Блок расширения 1, 16 UI
                 UI1bl1_combo, UI2bl1_combo, UI3bl1_combo, UI4bl1_combo, UI5bl1_combo, UI6bl1_combo, UI7bl1_combo,
                 UI8bl1_combo, UI9bl1_combo, UI10bl1_combo, UI11bl1_combo, UI12bl1_combo, UI13bl1_combo,
                 UI14bl1_combo, UI15bl1_combo, UI16bl1_combo,
-                // Блок расширения 2
+                // Блок расширения 2, 16 UI
                 UI1bl2_combo, UI2bl2_combo, UI3bl2_combo, UI4bl2_combo, UI5bl2_combo, UI6bl2_combo, UI7bl2_combo,
                 UI8bl2_combo, UI9bl2_combo, UI10bl2_combo, UI11bl2_combo, UI12bl2_combo, UI13bl2_combo,
                 UI14bl2_combo, UI15bl2_combo, UI16bl2_combo,
@@ -116,105 +202,80 @@ namespace Moderon
             {
                 if (el != null && el.SelectedItem.ToString() != NOT_SELECTED)
                 {
-                    ushort value = Convert.ToUInt16(el.SelectedItem.ToString());
-                    if (value > 100 && value < 150) value -= 100;   // Коды для датчиков
+                    string name = el.SelectedItem.ToString();
+                    Ui find_ui = list_ui.Find(x => x.Name == name);
+                    ushort value = find_ui.Code;
+
+                    if (value > 100 && value < 150) value -= 100;   // Коды для датчиков, вычитаем 100
 
                     uiSignals[counter] = value;
                 }
                 else uiSignals[counter] = 0;
 
-                counter += 1;
+                counter++;
             }
         }
 
         ///<summary>Сборка массива для сигналов DO</summary>
         private void BuildDO_Signals()
         {
-            // ПЛК
-            if (DO1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO1
-                doSignals[0] = Convert.ToUInt16(DO1_lab.Text);
-            if (DO2_combo.SelectedItem.ToString() != NOT_SELECTED) // DO2
-                doSignals[1] = Convert.ToUInt16(DO2_lab.Text);
-            if (DO3_combo.SelectedItem.ToString() != NOT_SELECTED) // DO3
-                doSignals[2] = Convert.ToUInt16(DO3_lab.Text);
-            if (DO4_combo.SelectedItem.ToString() != NOT_SELECTED) // DO4
-                doSignals[3] = Convert.ToUInt16(DO4_lab.Text);
-            if (DO5_combo.SelectedItem.ToString() != NOT_SELECTED) // DO5
-                doSignals[4] = Convert.ToUInt16(DO5_lab.Text);
-            if (DO6_combo.SelectedItem.ToString() != NOT_SELECTED) // DO6
-                doSignals[5] = Convert.ToUInt16(DO6_lab.Text);
-            // Блок расширения 1
-            if (DO1bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO1
-                doSignals[7] = Convert.ToUInt16(DO1bl1_lab.Text);
-            if (DO2bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO2
-                doSignals[8] = Convert.ToUInt16(DO2bl1_lab.Text);
-            if (DO3bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO3
-                doSignals[9] = Convert.ToUInt16(DO3bl1_lab.Text);
-            if (DO4bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO4
-                doSignals[10] = Convert.ToUInt16(DO4bl1_lab.Text);
-            if (DO5bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO5
-                doSignals[11] = Convert.ToUInt16(DO5bl1_lab.Text);
-            if (DO6bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO6
-                doSignals[12] = Convert.ToUInt16(DO6bl1_lab.Text);
-            if (DO7bl1_combo.SelectedItem.ToString() != NOT_SELECTED) // DO7
-                doSignals[13] = Convert.ToUInt16(DO7bl1_lab.Text);
-            // Блок расширения 2
-            if (DO1bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DO1
-                doSignals[14] = Convert.ToUInt16(DO1bl2_lab.Text);
-            if (DO2bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DO2
-                doSignals[15] = Convert.ToUInt16(DO2bl2_lab.Text);
-            if (DO3bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DO3
-                doSignals[16] = Convert.ToUInt16(DO3bl2_lab.Text);
-            if (DO4bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DO4
-                doSignals[17] = Convert.ToUInt16(DO4bl2_lab.Text);
-            if (DO5bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DO5
-                doSignals[18] = Convert.ToUInt16(DO5bl2_lab.Text);
-            if (DO6bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DO6
-                doSignals[19] = Convert.ToUInt16(DO6bl2_lab.Text);
-            if (DO7bl2_combo.SelectedItem.ToString() != NOT_SELECTED) // DO7
-                doSignals[20] = Convert.ToUInt16(DO7bl2_lab.Text);
-            // Блок расширения 3
-            if (DO1bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DO1
-                doSignals[21] = Convert.ToUInt16(DO1bl3_lab.Text);
-            if (DO2bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DO2
-                doSignals[22] = Convert.ToUInt16(DO2bl3_lab.Text);
-            if (DO3bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DO3
-                doSignals[23] = Convert.ToUInt16(DO3bl3_lab.Text);
-            if (DO4bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DO4
-                doSignals[24] = Convert.ToUInt16(DO4bl3_lab.Text);
-            if (DO5bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DO5
-                doSignals[25] = Convert.ToUInt16(DO5bl3_lab.Text);
-            if (DO6bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DO6
-                doSignals[26] = Convert.ToUInt16(DO6bl3_lab.Text);
-            if (DO7bl3_combo.SelectedItem.ToString() != NOT_SELECTED) // DO7
-                doSignals[27] = Convert.ToUInt16(DO7bl3_lab.Text);
+            ushort counter = 0;
+
+            var do_combos = new List<ComboBox>()
+            {
+                // ПЛК
+                DO1_combo, DO2_combo, DO3_combo, DO4_combo, DO5_combo, DO6_combo, null, null, null, null,
+                // Блок расширения 1, 8 DO
+                DO1bl1_combo, DO2bl1_combo, DO3bl1_combo, DO4bl1_combo, DO5bl1_combo, DO6bl1_combo,
+                DO7bl1_combo, DO8bl1_combo,
+                // Блок расширения 2, 8 DO
+                DO1bl2_combo, DO2bl2_combo, DO3bl2_combo, DO4bl2_combo, DO5bl2_combo, DO6bl2_combo,
+                DO7bl2_combo, DO8bl2_combo,
+            };
+
+            foreach (var el in do_combos)
+            {
+                if (el != null && el.SelectedItem.ToString() != NOT_SELECTED)
+                {
+                    string name = el.SelectedItem.ToString();
+                    Do find_do = list_do.Find(x => x.Name == name);
+                    ushort value = find_do.Code;
+
+                    doSignals[counter] = value;
+                }
+                else doSignals[counter] = 0;
+
+                counter++;
+            }
         }
 
         ///<summary>Сборка массива для сигналов AO</summary>
         private void BuildAO_Signals()
         {
-            // ПЛК
-            if (AO1_combo.SelectedItem.ToString() != NOT_SELECTED)      // AO1
-                aoSignals[0] = Convert.ToUInt16(AO1_lab.Text);
-            if (AO2_combo.SelectedItem.ToString() != NOT_SELECTED)      // AO2
-                aoSignals[1] = Convert.ToUInt16(AO2_lab.Text);
-            if (AO3_combo.SelectedItem.ToString() != NOT_SELECTED)      // AO3
-                aoSignals[2] = Convert.ToUInt16(AO3_lab.Text);
-            // Блок расширения 1
-            if (AO1bl1_combo.SelectedItem.ToString() != NOT_SELECTED)   // AO1
-                aoSignals[3] = Convert.ToUInt16(AO1bl1_lab.Text);
-            if (AO2bl1_combo.SelectedItem.ToString() != NOT_SELECTED)   // AO2
-                aoSignals[4] = Convert.ToUInt16(AO2bl1_lab.Text);
-            // Блок расширения 2
-            if (AO1bl2_combo.SelectedItem.ToString() != NOT_SELECTED)   // AO1
-                aoSignals[6] = Convert.ToUInt16(AO1bl2_lab.Text);
-            if (AO2bl2_combo.SelectedItem.ToString() != NOT_SELECTED)   // AO2
-                aoSignals[7] = Convert.ToUInt16(AO2bl2_lab.Text);
-            // Блок расширения 3
-            if (AO1bl3_combo.SelectedItem.ToString() != NOT_SELECTED)   // AO1
-                aoSignals[9] = Convert.ToUInt16(AO1bl3_lab.Text);
-            if (AO2bl3_combo.SelectedItem.ToString() != NOT_SELECTED)   // AO2
-                aoSignals[10] = Convert.ToUInt16(AO2bl3_lab.Text);
+            ushort counter = 0;
+
+            var ao_combos = new List<ComboBox>()
+            {
+                // ПЛК
+                AO1_combo, AO2_combo, AO3_combo,
+                // Блок расширения 1, 2
+                AO1bl1_combo, AO2bl1_combo, AO1bl2_combo, AO2bl2_combo
+            };
+
+            foreach (var el in ao_combos)
+            {
+                if (el != null && el.SelectedItem.ToString() != NOT_SELECTED)
+                {
+                    string name = el.SelectedItem.ToString();
+                    Ao find_ao = list_ao.Find(x => x.Name == name);
+                    ushort value = find_ao.Code;
+
+                    aoSignals[counter] = value;
+                } 
+                else aoSignals[counter] = 0;
+
+                counter++;
+            }
         }
 
         ///<summary>Инициализация командных слов</summary>

@@ -4,6 +4,7 @@ using System.IO.Ports;
 using System.Threading;
 using System.Drawing;
 using System.Threading.Tasks;
+using System.Runtime.Remoting.Contexts;
 
 // Файл для соединения, подготовки и загрузки файла в ПЛК через CAN-порт
 
@@ -378,8 +379,11 @@ namespace Moderon
             {
                 dataCanTextBox.Text += $"{countNote}) Word_{value_index + 1}:\t{values[value_index]}";
                 
-                dataCanTextBox.Text += Environment.NewLine;
-                value_index += 1; 
+                if (countNote != border - 1)                        // Не добавляет пустую строку для последнего элемента
+                {
+                    dataCanTextBox.Text += Environment.NewLine;
+                    value_index += 1;
+                }
             }
         }
     }

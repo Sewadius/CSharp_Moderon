@@ -732,7 +732,6 @@ namespace Moderon
             this.refreshCanPorts = new System.Windows.Forms.PictureBox();
             this.canSelectBox = new System.Windows.Forms.ComboBox();
             this.connectCanLabel = new System.Windows.Forms.Label();
-            this.comboCheckDataPlk = new System.Windows.Forms.ComboBox();
             this.label181 = new System.Windows.Forms.Label();
             this.backCanPanelButton = new System.Windows.Forms.Button();
             this.writeCanTextBox = new System.Windows.Forms.TextBox();
@@ -758,6 +757,7 @@ namespace Moderon
             this.label61 = new System.Windows.Forms.Label();
             this.pic_signalsReady = new System.Windows.Forms.PictureBox();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
+            this.dataMatchPLC_label = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.sensorsPage.SuspendLayout();
@@ -9913,7 +9913,7 @@ namespace Moderon
             this.linkModeronWeb.TabIndex = 63;
             this.linkModeronWeb.TabStop = true;
             this.linkModeronWeb.Text = "Сайт компании Moderon";
-            this.linkModeronWeb.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkOniWeb_LinkClicked);
+            this.linkModeronWeb.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkModeronWeb_LinkClicked);
             // 
             // backHelpButton
             // 
@@ -9941,12 +9941,12 @@ namespace Moderon
             // 
             // loadCanPanel
             // 
+            this.loadCanPanel.Controls.Add(this.dataMatchPLC_label);
             this.loadCanPanel.Controls.Add(this.readCanButton);
             this.loadCanPanel.Controls.Add(this.loadCanButton);
             this.loadCanPanel.Controls.Add(this.refreshCanPorts);
             this.loadCanPanel.Controls.Add(this.canSelectBox);
             this.loadCanPanel.Controls.Add(this.connectCanLabel);
-            this.loadCanPanel.Controls.Add(this.comboCheckDataPlk);
             this.loadCanPanel.Controls.Add(this.label181);
             this.loadCanPanel.Controls.Add(this.backCanPanelButton);
             this.loadCanPanel.Controls.Add(this.writeCanTextBox);
@@ -10032,26 +10032,15 @@ namespace Moderon
             this.connectCanLabel.TabIndex = 65;
             this.connectCanLabel.Text = "Нет соединения";
             // 
-            // comboCheckDataPlk
-            // 
-            this.comboCheckDataPlk.FormattingEnabled = true;
-            this.comboCheckDataPlk.Items.AddRange(new object[] {
-            "данные в ПЛК совпадают",
-            "данные в ПЛК не совпадают"});
-            this.comboCheckDataPlk.Location = new System.Drawing.Point(512, 530);
-            this.comboCheckDataPlk.Name = "comboCheckDataPlk";
-            this.comboCheckDataPlk.Size = new System.Drawing.Size(207, 21);
-            this.comboCheckDataPlk.TabIndex = 72;
-            // 
             // label181
             // 
             this.label181.AutoSize = true;
             this.label181.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label181.Location = new System.Drawing.Point(401, 532);
+            this.label181.Location = new System.Drawing.Point(400, 528);
             this.label181.Name = "label181";
-            this.label181.Size = new System.Drawing.Size(103, 14);
+            this.label181.Size = new System.Drawing.Size(108, 14);
             this.label181.TabIndex = 71;
-            this.label181.Text = "Статус данных";
+            this.label181.Text = "Статус данных:";
             // 
             // backCanPanelButton
             // 
@@ -10328,6 +10317,17 @@ namespace Moderon
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxLogo.TabIndex = 2;
             this.pictureBoxLogo.TabStop = false;
+            // 
+            // dataMatchPLC_label
+            // 
+            this.dataMatchPLC_label.AutoSize = true;
+            this.dataMatchPLC_label.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dataMatchPLC_label.ForeColor = System.Drawing.Color.Red;
+            this.dataMatchPLC_label.Location = new System.Drawing.Point(510, 528);
+            this.dataMatchPLC_label.Name = "dataMatchPLC_label";
+            this.dataMatchPLC_label.Size = new System.Drawing.Size(204, 14);
+            this.dataMatchPLC_label.TabIndex = 76;
+            this.dataMatchPLC_label.Text = "Данные в ПЛК не совпадают";
             // 
             // Form1
             // 
@@ -10906,7 +10906,6 @@ namespace Moderon
         private System.Windows.Forms.Label label180;
         private System.Windows.Forms.Button backCanPanelButton;
         private System.Windows.Forms.TextBox writeCanTextBox;
-        private System.Windows.Forms.ComboBox comboCheckDataPlk;
         private System.Windows.Forms.Label label181;
         private System.Windows.Forms.CheckBox recircPrDampAOCheck;
         private System.Windows.Forms.CheckBox prDampFanCheck;
@@ -11205,6 +11204,7 @@ namespace Moderon
         private PictureBox refreshCanPorts;
         private Button loadCanButton;
         private Button readCanButton;
+        private Label dataMatchPLC_label;
     }
 }
 
