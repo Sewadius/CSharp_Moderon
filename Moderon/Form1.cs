@@ -1393,6 +1393,9 @@ namespace Moderon
             LoadCanPanel_Open(this, e);                                                 // Открытие панели загрузки в контроллер, CAN порт
             fromSignalsMove = true;                                                     // Переход из панели выбора сигналов
             FormNetButton_Click(this, e);                                               // Формирование списка сигналов и командных слов для записи
+
+            dataMatchPLC_label.Text = "(неизвестно)";
+            dataMatchPLC_label.ForeColor = Color.Black;
         }
 
         ///<summary>Нажали на ссылку сайта Moderon</summary>
@@ -1483,13 +1486,21 @@ namespace Moderon
         ///<summary>Кнопка "Назад" из панели загрузки по CAN порту</summary>
         private void BackCanPanelButton_Click(object sender, EventArgs e)
         {
-            loadCanPanel.Hide();                                    // Скрытие панели загрузки
-            mainPage.Show();                                        // Отображение панели опции элементов 
-            label_comboSysType.Text = "ТИП СИСТЕМЫ";
-            comboSysType.Show();
-            panelElements.Show();
-            formSignalsButton.Show();
-            pic_signalsReady.Show();                                // Отображение изображения сфомированной карты сигналов
+            var p1 = new Point(15, 90);                     // Позиция для панели таблицы сигналов
+            var p2 = new Point(200, 46);                    // Позиция для comboBox выбора типа контроллера
+
+            loadCanPanel.Hide();                            // Скрытие панели загрузки
+            label_comboSysType.Text = "ТАБЛИЦА СИГНАЛОВ";
+            // Положение и размер таблицы сигналов
+            signalsPanel.Location = p1;
+            signalsPanel.Show();
+            signalsPanel.Height = 845;
+            // Отображение выбора типа контроллера
+            comboPlkType.Location = p2;
+            comboPlkType.Show();
+            formSignalsButton.Hide();
+            pic_signalsReady.Show();                        // Отображение изображения сфомированной карты сигналов
+            SignalsTableReSize(Size.Width, Size.Height);    // Таблица сигналов, пересчёт размеров
         }
 
         ///<summary>Нажали "Сброс" в панели таблицы сигналов</summary>

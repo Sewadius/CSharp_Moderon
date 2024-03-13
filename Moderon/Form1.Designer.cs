@@ -727,6 +727,9 @@ namespace Moderon
             this.backHelpButton = new System.Windows.Forms.Button();
             this.label_comboSysType = new System.Windows.Forms.Label();
             this.loadCanPanel = new System.Windows.Forms.Panel();
+            this.processWriteLabel = new System.Windows.Forms.Label();
+            this.progressBarWrite = new System.Windows.Forms.ProgressBar();
+            this.dataMatchPLC_label = new System.Windows.Forms.Label();
             this.readCanButton = new System.Windows.Forms.Button();
             this.loadCanButton = new System.Windows.Forms.Button();
             this.refreshCanPorts = new System.Windows.Forms.PictureBox();
@@ -757,7 +760,7 @@ namespace Moderon
             this.label61 = new System.Windows.Forms.Label();
             this.pic_signalsReady = new System.Windows.Forms.PictureBox();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
-            this.dataMatchPLC_label = new System.Windows.Forms.Label();
+            this.backConnectLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.sensorsPage.SuspendLayout();
@@ -9941,6 +9944,9 @@ namespace Moderon
             // 
             // loadCanPanel
             // 
+            this.loadCanPanel.Controls.Add(this.backConnectLabel);
+            this.loadCanPanel.Controls.Add(this.processWriteLabel);
+            this.loadCanPanel.Controls.Add(this.progressBarWrite);
             this.loadCanPanel.Controls.Add(this.dataMatchPLC_label);
             this.loadCanPanel.Controls.Add(this.readCanButton);
             this.loadCanPanel.Controls.Add(this.loadCanButton);
@@ -9969,6 +9975,37 @@ namespace Moderon
             this.loadCanPanel.TabIndex = 45;
             this.loadCanPanel.Visible = false;
             // 
+            // processWriteLabel
+            // 
+            this.processWriteLabel.AutoSize = true;
+            this.processWriteLabel.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.processWriteLabel.Location = new System.Drawing.Point(28, 391);
+            this.processWriteLabel.Name = "processWriteLabel";
+            this.processWriteLabel.Size = new System.Drawing.Size(202, 16);
+            this.processWriteLabel.TabIndex = 78;
+            this.processWriteLabel.Text = "Идёт запись в контроллер...";
+            this.processWriteLabel.Visible = false;
+            // 
+            // progressBarWrite
+            // 
+            this.progressBarWrite.ForeColor = System.Drawing.Color.DarkGreen;
+            this.progressBarWrite.Location = new System.Drawing.Point(30, 416);
+            this.progressBarWrite.Name = "progressBarWrite";
+            this.progressBarWrite.Size = new System.Drawing.Size(254, 23);
+            this.progressBarWrite.TabIndex = 77;
+            this.progressBarWrite.Visible = false;
+            // 
+            // dataMatchPLC_label
+            // 
+            this.dataMatchPLC_label.AutoSize = true;
+            this.dataMatchPLC_label.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dataMatchPLC_label.ForeColor = System.Drawing.Color.Red;
+            this.dataMatchPLC_label.Location = new System.Drawing.Point(510, 528);
+            this.dataMatchPLC_label.Name = "dataMatchPLC_label";
+            this.dataMatchPLC_label.Size = new System.Drawing.Size(204, 14);
+            this.dataMatchPLC_label.TabIndex = 76;
+            this.dataMatchPLC_label.Text = "Данные в ПЛК не совпадают";
+            // 
             // readCanButton
             // 
             this.readCanButton.BackColor = System.Drawing.Color.DarkGreen;
@@ -9976,7 +10013,7 @@ namespace Moderon
             this.readCanButton.Enabled = false;
             this.readCanButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.readCanButton.ForeColor = System.Drawing.Color.White;
-            this.readCanButton.Location = new System.Drawing.Point(30, 345);
+            this.readCanButton.Location = new System.Drawing.Point(30, 335);
             this.readCanButton.Name = "readCanButton";
             this.readCanButton.Size = new System.Drawing.Size(209, 33);
             this.readCanButton.TabIndex = 75;
@@ -10318,16 +10355,17 @@ namespace Moderon
             this.pictureBoxLogo.TabIndex = 2;
             this.pictureBoxLogo.TabStop = false;
             // 
-            // dataMatchPLC_label
+            // backConnectLabel
             // 
-            this.dataMatchPLC_label.AutoSize = true;
-            this.dataMatchPLC_label.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dataMatchPLC_label.ForeColor = System.Drawing.Color.Red;
-            this.dataMatchPLC_label.Location = new System.Drawing.Point(510, 528);
-            this.dataMatchPLC_label.Name = "dataMatchPLC_label";
-            this.dataMatchPLC_label.Size = new System.Drawing.Size(204, 14);
-            this.dataMatchPLC_label.TabIndex = 76;
-            this.dataMatchPLC_label.Text = "Данные в ПЛК не совпадают";
+            this.backConnectLabel.AutoSize = true;
+            this.backConnectLabel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.backConnectLabel.ForeColor = System.Drawing.Color.DarkGreen;
+            this.backConnectLabel.Location = new System.Drawing.Point(28, 478);
+            this.backConnectLabel.Name = "backConnectLabel";
+            this.backConnectLabel.Size = new System.Drawing.Size(356, 13);
+            this.backConnectLabel.TabIndex = 79;
+            this.backConnectLabel.Text = "Требуется закрыть соединение для возврата назад";
+            this.backConnectLabel.Visible = false;
             // 
             // Form1
             // 
@@ -11205,6 +11243,9 @@ namespace Moderon
         private Button loadCanButton;
         private Button readCanButton;
         private Label dataMatchPLC_label;
+        private ProgressBar progressBarWrite;
+        private Label processWriteLabel;
+        private Label backConnectLabel;
     }
 }
 

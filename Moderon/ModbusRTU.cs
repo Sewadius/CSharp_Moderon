@@ -213,8 +213,8 @@ namespace Moderon
         }
 
         // Function write single register
-        public bool WriteFc6(byte address, ushort start, ushort registers, ref short[] values) // адрес устр-ва, адрес переменной, значение переменной !
-
+        public bool WriteFc6(byte address, ushort start, ushort registers, ref short[] values)
+        // адрес устр-ва, адрес переменной, значение переменной !
         {
             // Ensure port is open:
             if (mySp.IsOpen)
@@ -229,11 +229,11 @@ namespace Moderon
                     mySp.DiscardOutBuffer();
                     mySp.DiscardInBuffer();
                     // Build outgoing modbus message:
-                    BuildMessage(address, (byte)6, start, registers, ref message);
+                    BuildMessage(address, 6, start, registers, ref message);
                     // Send modbus message to Serial Port:
 
                     mySp.Write(message, 0, message.Length);
-                    Thread.Sleep(100);
+                    Thread.Sleep(150);   // Was 100 ms
                     GetResponse(ref response);
                 }
                 catch
@@ -248,7 +248,12 @@ namespace Moderon
                     for (int i = 0; i < (response.Length - 6); i++)
                     {
                         values[i] = response[i + 4];
+
                     }
+                    /*for (int i = 0; i < (response.Length - 4); i += 2)
+                    {
+                        values[i / 2] = BitConverter.ToInt16(response, i + 4);
+                    } */
                     // return "Read successful";
                     return true;
                 }
@@ -263,8 +268,8 @@ namespace Moderon
                 // return "Serial port not open";
                 return false;
             }
-
         }
+
         private void BuildMessage(byte address, byte type, ushort start, ushort registers, ref byte[] message)
         {
             // Array to receive CRC bytes:
@@ -297,7 +302,7 @@ namespace Moderon
             for (int i = 0; i < response.Length; i++)
             {
 
-                response[i] = (byte)(mySp.ReadByte());
+                response[i] = (byte)mySp.ReadByte();
                 // MessageBox.Show(response[i].ToString());
             }
         }

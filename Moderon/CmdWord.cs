@@ -131,18 +131,18 @@ namespace Moderon
 
                 if (i < 3)                              // ПЛК
                 {
-                    writeCanTextBox.Text += $"{count}) AO{value_index}:\t\t{doSignals[i]}";
+                    writeCanTextBox.Text += $"{count}) AO{value_index}:\t\t{aoSignals[i]}";
                 }
 
                 else if (i >= 3 && i < 5)               // Первый блок расширения
                 {
-                    writeCanTextBox.Text += $"{count}) EX1_AO{value_index}:\t{doSignals[i]}";
+                    writeCanTextBox.Text += $"{count}) EX1_AO{value_index}:\t{aoSignals[i]}";
                     if (value_index == 2) value_index = 0;
                 }
 
                 else if (i >= 5 && i < 7)
                 {
-                    writeCanTextBox.Text += $"{count}) EX2_AO{value_index}:\t{doSignals[i]}";
+                    writeCanTextBox.Text += $"{count}) EX2_AO{value_index}:\t{aoSignals[i]}";
                 }
 
                 writeCanTextBox.Text += Environment.NewLine;
@@ -162,7 +162,6 @@ namespace Moderon
                 value_index++;
                 count++;
             }
-
         }
 
         ///<summary>Сборка массива командных слов из полученных значений</summary>

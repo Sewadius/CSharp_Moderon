@@ -4,7 +4,6 @@ using System.IO.Ports;
 using System.Threading;
 using System.Drawing;
 using System.Threading.Tasks;
-using System.Runtime.Remoting.Contexts;
 
 // Файл для соединения, подготовки и загрузки файла в ПЛК через CAN-порт
 
@@ -86,15 +85,16 @@ namespace Moderon
         {
             if (canSelectBox.SelectedItem == null) return;
 
-            modbusRTU = new();
-            
-            modbusRTU.mySp = serialPort;
-            modbusRTU.PortName = canSelectBox.SelectedItem.ToString();
-            modbusRTU.BaudRate = int.Parse(speedCanCombo.SelectedItem.ToString());
-            modbusRTU.Parity = SetParity();
-            modbusRTU.DataBits = 8;
-            modbusRTU.StopBits = StopBits.One;
-            modbusRTU.Address = byte.Parse(canAddressBox.Text);
+            modbusRTU = new()
+            {
+                mySp = serialPort,
+                PortName = canSelectBox.SelectedItem.ToString(),
+                BaudRate = int.Parse(speedCanCombo.SelectedItem.ToString()),
+                Parity = SetParity(),
+                DataBits = 8,
+                StopBits = StopBits.One,
+                Address = byte.Parse(canAddressBox.Text)
+            };
 
             if (!modbusRTU.mySp.IsOpen)  // Изначально порт COM закрыт, открытие соединия
             {
@@ -152,6 +152,14 @@ namespace Moderon
                     refreshCanPorts.Invoke((MethodInvoker)(() =>
                         refreshCanPorts.Enabled = !isConnected
                     ));
+
+                    backCanPanelButton.Invoke((MethodInvoker)(() =>
+                        backCanPanelButton.Enabled = !isConnected
+                    ));
+
+                    backConnectLabel.Invoke((MethodInvoker)(() =>
+                        backConnectLabel.Visible = isConnected
+                    ));
                 });
 
                 thread.Start();
@@ -163,7 +171,7 @@ namespace Moderon
                 dataCanTextBox.Text = "";               // Очистка текстового поля с прочтёнными данными
             }
 
-            Thread.Sleep(MS_200);                           // Задержка 200 ms
+            Thread.Sleep(MS_200);                        // Задержка 200 ms
             LabelButtonChange(modbusRTU.mySp.IsOpen);    // Изменение текста, цвета и проверка соединения
         }
 
@@ -197,6 +205,8 @@ namespace Moderon
             speedCanCombo.Enabled = enable;
             parityCanCombo.Enabled = enable;
             refreshCanPorts.Enabled = enable;
+            backCanPanelButton.Enabled = enable;
+            backConnectLabel.Visible = !enable;
         }
 
         ///<summary>Проверка соединения с ПЛК через проверку чтения (функция 3)</summary>
@@ -228,17 +238,75 @@ namespace Moderon
         ///<summary>Нажали на кнопку "Загрузить данные в ПЛК"</summary>
         private void LoadCanButton_Click(object sender, EventArgs e)
         {
-            short[] values = new short[1];
+            ushort startAddress = 0;                // Начальный адрес для записи
+            short[] values = new short[2];          // Формирование ответа
 
-            if (modbusRTU.SendFc3(modbusRTU.Address, 0, 1, ref values))
-                MessageBox.Show(values[0].ToString());
+            processWriteLabel.Show();
+            progressBarWrite.Show();
+
+            progressBarWrite.Minimum = 0;
+            progressBarWrite.Maximum = 105;
+            progressBarWrite.Value = 0;
+            progressBarWrite.Step = 1;
+
+            // Блокировка для кнопок во время загрузки
+            connectPlkBtn.Enabled = false;
+            loadCanButton.Enabled = false;
+            readCanButton.Enabled = false;
+
+            // Запись для UI сигналов
+            for (ushort i = 0; i < uiSignals.Length; i++)
+            {
+                modbusRTU.WriteFc6(modbusRTU.Address, startAddress, uiSignals[i], ref values);
+                startAddress++;
+                progressBarWrite.PerformStep();
+            }
+
+            // Запись для DO сигналов
+            for (ushort i = 0; i < doSignals.Length; i++)
+            {
+                modbusRTU.WriteFc6(modbusRTU.Address, startAddress, doSignals[i], ref values);
+                startAddress++;
+                progressBarWrite.PerformStep();
+            }
+
+            // Запись для AO сигналов
+            for (ushort i = 0; i < aoSignals.Length; i++)
+            {
+                modbusRTU.WriteFc6(modbusRTU.Address, startAddress, aoSignals[i], ref values);
+                startAddress++;
+                progressBarWrite.PerformStep();
+            }
+
+            startAddress = 84;  // Начальный адрес для записи командных слов
+
+            // Запись для командных слов
+            for (ushort i = 0; i < cmdWords.Length; i++)
+            {
+                modbusRTU.WriteFc6(modbusRTU.Address, startAddress, cmdWords[i], ref values);
+                startAddress++;
+                progressBarWrite.PerformStep();
+            }
+
+            // Разблокирока кнопок после загрузки
+            connectPlkBtn.Enabled = true;
+            loadCanButton.Enabled = true;
+            readCanButton.Enabled = true;
+
+            // Сообщение об успешной записи и повторное чтение данных из ПЛК
+            MessageBox.Show("Запись в ПЛК успешно завершена!");
+
+            processWriteLabel.Hide();
+            progressBarWrite.Hide();
+
+            ReadCanButton_Click(this, e);
         }
 
         ///<summary>Нажали на кнопку "Читать данные из ПЛК"</summary>
         private void ReadCanButton_Click(object sender, EventArgs e)
         {
             dataCanTextBox.Text = "";               // Очистка текстового поля для прочтённых данных
-            countNote = 0;                          // Обнуление счётчика по адресам
+            countNote = 0;                          // Обнуление счётчика по адресам ПЛК
 
             // Чтение UI сигналов из ПЛК
             ReadUI_Values_fromPLC(); dataCanTextBox.Text += Environment.NewLine;
@@ -251,6 +319,18 @@ namespace Moderon
 
             // Чтение командных слов из ПЛК
             ReadCMD_Values_fromPLC();
+
+            // Проверка совпадения данных в окнах для чтения / записи
+            if (dataCanTextBox.Text == writeCanTextBox.Text)                    // Данные совпадают
+            {
+                dataMatchPLC_label.Text = "Данные в ПЛК совпадают";
+                dataMatchPLC_label.ForeColor = Color.DarkGreen;
+            }
+            else                                                                // Данные не совпадают
+            {
+                dataMatchPLC_label.Text = "Данные в ПЛК не совпадают";
+                dataMatchPLC_label.ForeColor = Color.Red;
+            }
         }
 
         ///<summary>Чтение данных по UI входам из регистров ПЛК</summary>
