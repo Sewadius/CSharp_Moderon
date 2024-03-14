@@ -269,6 +269,8 @@ namespace Moderon
         ///<summary>Добавление нового UI и его назначение под первый нераспределённый выход</summary>
         private void AddNewUI(ushort code, string type)
         {
+            initialConfigure = false;                                   // Сброс признака начальной расстановки
+            
             var blocks = CalcExpBlocks_typeNums();                      // Определение типов и количества блоков расширения
 
             RemoveThirdBlockUI_M72E16NA(blocks);                        // Проверка на удаление 3-го блока расширения UI
@@ -423,7 +425,8 @@ namespace Moderon
                 {
                     cm.Items.Remove(name);                                                          // Удаление элемента по имени
                     if (!typeCombo.Items.Contains(DI)) typeCombo.Items.Add(DI);                     // Добавление варианта DI, если был удален ранее
-                    typeCombo.Enabled = false; typeCombo.SelectedIndex = 2;                         // Блокировка и выбор DI по умолчанию typeCombo
+                    typeCombo.SelectedItem = DI; typeCombo.Enabled = false;                         // Блокировка и выбор DI по умолчанию typeCombo
+
                     if (cm.Items.Count > 1)                                                         // Осталось больше одного элемента в списке
                     {
                         cm.SelectedIndex = cm.Items.Count - 1;                                      // Выбор последнего элемента
@@ -631,8 +634,10 @@ namespace Moderon
         private void UI_typeCombo_SelectedIndexChanged(ComboBox typeCombo, ComboBox ui_combo, Label label)
         {
             if (ui_combo.SelectedItem == null) return;
+
             string name = string.Concat(ui_combo.SelectedItem);
             Ui ui_find = list_ui.Find(x => x.Name == name);             // Поиск сигнала UI по имени в списке
+
             if (ui_find != null && typeCombo.Enabled)                   // Проверка найденного сигнала и доступности typeCombo
             {
                 if (typeCombo.SelectedIndex == 0)                       // Выбран тип NTC

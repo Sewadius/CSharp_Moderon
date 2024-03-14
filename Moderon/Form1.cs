@@ -18,6 +18,8 @@ namespace Moderon
         private Point PANEL_POSITION = new Point(15, 90);               // Позиция для остальных панелей
         readonly private bool showCode = true;                          // Код сигнала отображается по умолчанию в таблице сигналов
         
+        private bool initialConfigure = true;                           // Признак начальной конфигурации (при загрузке и после сброса)
+        
         // Ранее сохраненные значения индексов для элементов
         private int plkChangeIndexLast = 1;                             // Значение для выбранного типа контроллера
         private int heatTypeComboIndex = 0;                             // Значение для типа основного нагревателя
@@ -562,6 +564,7 @@ namespace Moderon
             comboSysType.Enabled = true;                    // Разблокировка выбора типа системы
             comboSysType.SelectedIndex = 0;                 // Выбор приточной системы
             expansion_blocks.Clear();                       // Очистка списка задействованных блоков расширения
+            initialConfigure = true;                        // Возврат признака начальной расстановки системы
 
             var mainOptions = new List<CheckBox>()
             {

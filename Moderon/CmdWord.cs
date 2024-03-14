@@ -927,7 +927,7 @@ namespace Moderon
         {
             CommandWord_6();
             if (ignoreEvents) return;
-            PrChanSensCheck_signalsAICheckedChanged(this, e);                                   // Сигналы AI
+              PrChanSensCheck_signalsAICheckedChanged(this, e);                                   // Сигналы AI
         }
 
         ///<summary>Выбрали датчик температуры наружного воздуха</summary>

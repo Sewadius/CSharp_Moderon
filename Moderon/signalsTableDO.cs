@@ -134,7 +134,7 @@ namespace Moderon
         {
             SetComboInitial_signals(); // Начальная установка для comboBox
 
-            const ushort start_signal_code = 1000;    // UI сигнал пуск/стоп
+            const ushort start_signal_code = 1001;    // UI сигнал пуск/стоп
             const ushort fire_signal_code = 1098;     // UI сигнал пожарной сигнализации  
             const ushort fanPr_1_start_code = 8;      // DO сигнал пуск/стоп приточного вентилятора 1
 
@@ -624,6 +624,8 @@ namespace Moderon
         ///<summary>Добавление нового DO и его назначение под первый нераспределённый выход</summary>
         private void AddNewDO(ushort code)
         {
+            initialConfigure = false;                                       // Сброс признака начальной расстановки
+
             var blocks = CalcExpBlocks_typeNums();                          // Определение типов и количества блоков расширения
 
             RemoveThirdBlockUI_M72E16NA(blocks);                            // Проверка на удаление 3-го блока расширения UI

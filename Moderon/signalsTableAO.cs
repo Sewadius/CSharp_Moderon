@@ -256,6 +256,8 @@ namespace Moderon
         ///<summary>Добавление нового AO и его назначение под выход, автораспределение</summary>
         private void AddNewAO(ushort code)
         {
+            initialConfigure = false;                       // Сброс признака начальной расстановки
+
             var blocks = CalcExpBlocks_typeNums();          // Определение типов и количества блоков расширения
 
             RemoveThirdBlock_DOUI_M72E12RA(blocks);         // Проверка удаления 3-го блока расширения M72E12RA

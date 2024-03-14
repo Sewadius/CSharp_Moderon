@@ -17,13 +17,15 @@ namespace Moderon
         private readonly int MS_200 = 200;      // Задержка 200 мс
         private readonly int MS_500 = 500;      // Задержка 500 мс
         private readonly int MS_1000 = 1000;    // Задержка 1000 мс
+        
+        private readonly byte WRITE_TRY = 10;   // Количество попыток записи для одного регистра
 
         private ushort countNote = 0;           // Счётчик записи для отображения адреса значения
 
         // Массивы для записи текста в textBox с прочитанными данными
-        private readonly string[] UI_TEXT = { "UI", "EX1_UI", "EX2_UI", "EX3_UI" };
-        private readonly string[] DO_TEXT = { "DO", "EX1_DO", "EX2_DO", "EX3_DO" };
-        private readonly string[] AO_TEXT = { "AO", "EX1_AO", "EX2_AO", "EX3_AO" };
+        private readonly string[] UI_TEXT = ["UI", "EX1_UI", "EX2_UI", "EX3_UI"];
+        private readonly string[] DO_TEXT = ["DO", "EX1_DO", "EX2_DO", "EX3_DO"];
+        private readonly string[] AO_TEXT = ["AO", "EX1_AO", "EX2_AO", "EX3_AO"];
 
         ///<summary>Инициализация для загрузки по CAN порту</summary>
         public void InitializeCAN()
@@ -61,8 +63,8 @@ namespace Moderon
             {
                 Thread.Sleep(MS_1000);
                 refreshCanPorts.Image = Properties.Resources.refresh;
-
             });
+
             thread.Start();
         }
 
@@ -238,11 +240,15 @@ namespace Moderon
         ///<summary>Нажали на кнопку "Загрузить данные в ПЛК"</summary>
         private void LoadCanButton_Click(object sender, EventArgs e)
         {
-            ushort startAddress = 0;                // Начальный адрес для записи
-            short[] values = new short[2];          // Формирование ответа
+            if (PLC_connectionError(sender, e)) return;     // Выход при потери связи с ПЛК
 
-            processWriteLabel.Show();
-            progressBarWrite.Show();
+            ushort startAddress = 0;                        // Начальный адрес для записи
+            short[] values = new short[2];                  // Формирование ответа
+            bool writeSuccess = true;                       // Признак успешной записи в ПЛК 
+            byte tryWrite_counter = WRITE_TRY;              // Счётчик количества попыток записи
+            byte codeAnswer;                                // Код ответа при попытке записи
+
+            progressWritePanel.Visible = true;  
 
             progressBarWrite.Minimum = 0;
             progressBarWrite.Maximum = 105;
@@ -257,7 +263,15 @@ namespace Moderon
             // Запись для UI сигналов
             for (ushort i = 0; i < uiSignals.Length; i++)
             {
-                modbusRTU.WriteFc6(modbusRTU.Address, startAddress, uiSignals[i], ref values);
+                do  // Проверка кода при попытке записи
+                {
+                    codeAnswer = modbusRTU.WriteFc6(modbusRTU.Address, startAddress, uiSignals[i], ref values);
+                    if (tryWrite_counter > 0) tryWrite_counter--;
+                    else break;
+                } while (codeAnswer != 0);
+
+                if (tryWrite_counter == 0) break;
+                tryWrite_counter = WRITE_TRY;
                 startAddress++;
                 progressBarWrite.PerformStep();
             }
@@ -265,7 +279,15 @@ namespace Moderon
             // Запись для DO сигналов
             for (ushort i = 0; i < doSignals.Length; i++)
             {
-                modbusRTU.WriteFc6(modbusRTU.Address, startAddress, doSignals[i], ref values);
+                do  // Проверка кода при попытке записи
+                {
+                    codeAnswer = modbusRTU.WriteFc6(modbusRTU.Address, startAddress, doSignals[i], ref values);
+                    if (tryWrite_counter > 0) tryWrite_counter--;
+                    else break;
+                } while (codeAnswer != 0);
+
+                if (tryWrite_counter == 0) break;
+                tryWrite_counter = WRITE_TRY;
                 startAddress++;
                 progressBarWrite.PerformStep();
             }
@@ -273,7 +295,15 @@ namespace Moderon
             // Запись для AO сигналов
             for (ushort i = 0; i < aoSignals.Length; i++)
             {
-                modbusRTU.WriteFc6(modbusRTU.Address, startAddress, aoSignals[i], ref values);
+                do  // Проверка кода при попытке записи
+                {
+                    codeAnswer = modbusRTU.WriteFc6(modbusRTU.Address, startAddress, aoSignals[i], ref values);
+                    if (tryWrite_counter > 0) tryWrite_counter--;
+                    else break;
+                } while (codeAnswer != 0);
+
+                if (tryWrite_counter == 0) break;
+                tryWrite_counter = WRITE_TRY;
                 startAddress++;
                 progressBarWrite.PerformStep();
             }
@@ -283,30 +313,81 @@ namespace Moderon
             // Запись для командных слов
             for (ushort i = 0; i < cmdWords.Length; i++)
             {
-                modbusRTU.WriteFc6(modbusRTU.Address, startAddress, cmdWords[i], ref values);
+                do  // Проверка кода при попытке записи
+                {
+                    codeAnswer = modbusRTU.WriteFc6(modbusRTU.Address, startAddress, cmdWords[i], ref values);
+                    if (tryWrite_counter > 0) tryWrite_counter--;
+                    else break;
+                } while (codeAnswer != 0);
+
+                if (tryWrite_counter == 0) break;
+                tryWrite_counter = WRITE_TRY;
                 startAddress++;
                 progressBarWrite.PerformStep();
             }
 
+            // Неуспешная запись, сообщение об ошибке
+            if (progressBarWrite.Value != progressBarWrite.Maximum)
+            {
+                writeSuccess = false;
+                MessageBox.Show("Ошибка записи данных в контроллер!", "Ошибка записи",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                dataMatchPLC_label.Text = "(неизвестно)";           // Новое сообщение о статусе данных
+                dataMatchPLC_label.ForeColor = Color.Black;         // Изменение цвета для сообщения
+
+                ConnectPlkBtn_Click(this, e);                       // Закрытие соединения с ПЛК
+                RefreshCanPorts_Click(this, e);                     // Обновление сведений о COM портах
+            }
+                
             // Разблокирока кнопок после загрузки
             connectPlkBtn.Enabled = true;
-            loadCanButton.Enabled = true;
-            readCanButton.Enabled = true;
+
+            if (writeSuccess)
+            {
+                loadCanButton.Enabled = true;       // Запись данных ПЛК
+                readCanButton.Enabled = true;       // Чтение данных ПЛК
+            }
 
             // Сообщение об успешной записи и повторное чтение данных из ПЛК
-            MessageBox.Show("Запись в ПЛК успешно завершена!");
+            if (writeSuccess) MessageBox.Show("Запись в ПЛК успешно завершена!", 
+                "Операция выполнена", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            processWriteLabel.Hide();
-            progressBarWrite.Hide();
+            progressWritePanel.Visible = false;         // Скрытие панели прогресса загрузки
 
-            ReadCanButton_Click(this, e);
+            if (writeSuccess)                           // При успешной записи данных
+            {
+                ReadCanButton_Click(this, e);           // Повторное чтение для проверки загрузки
+            }
+        }
+
+        ///<summary>Потеря связи с контроллером для чтения/записи</summary>
+        private bool PLC_connectionError(object sender, EventArgs e)
+        {
+            if (!CheckPLC_connection())     // Если нет связи с контроллером 
+            {
+                MessageBox.Show("Потеря связи с контроллером!", "Ошибка соединения",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                dataMatchPLC_label.Text = "(неизвестно)";           // Новое сообщение о статусе данных
+                dataMatchPLC_label.ForeColor = Color.Black;         // Изменение цвета для сообщения
+
+                ConnectPlkBtn_Click(this, e);                       // Закрытие соединения с ПЛК
+                RefreshCanPorts_Click(this, e);                     // Обновление сведений о COM портах
+
+                return true;
+            }
+
+            return false;
         }
 
         ///<summary>Нажали на кнопку "Читать данные из ПЛК"</summary>
         private void ReadCanButton_Click(object sender, EventArgs e)
         {
-            dataCanTextBox.Text = "";               // Очистка текстового поля для прочтённых данных
-            countNote = 0;                          // Обнуление счётчика по адресам ПЛК
+            if (PLC_connectionError(sender, e)) return;     // Выход при потери связи с ПЛК
+
+            dataCanTextBox.Text = "";                       // Очистка текстового поля для прочтённых данных
+            countNote = 0;                                  // Обнуление счётчика по адресам ПЛК
 
             // Чтение UI сигналов из ПЛК
             ReadUI_Values_fromPLC(); dataCanTextBox.Text += Environment.NewLine;

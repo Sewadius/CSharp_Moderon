@@ -13,16 +13,17 @@ namespace Moderon
         private void LoadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //
-
-            const string
+            if (!initialConfigure)      // Если не начальная расстановка
+            {
+                const string
                 MESSAGE = "Загрузка сбросит текущую конфигурацию. Вы уверены?",
                 CAPTION = "Загрузка файла";
 
-            var result = MessageBox.Show(MESSAGE, CAPTION, MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
+                var result = MessageBox.Show(MESSAGE, CAPTION, MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
 
-            if (result == DialogResult.No) return;
-            
+                if (result == DialogResult.No) return;
+            }
             //
 
             ResetButton_Click(sender, e);                               // Первоначальный сброс перед загрузкой файла
