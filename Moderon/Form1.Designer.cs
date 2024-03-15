@@ -727,9 +727,9 @@ namespace Moderon
             this.backHelpButton = new System.Windows.Forms.Button();
             this.label_comboSysType = new System.Windows.Forms.Label();
             this.loadCanPanel = new System.Windows.Forms.Panel();
-            this.backConnectLabel = new System.Windows.Forms.Label();
             this.processWriteLabel = new System.Windows.Forms.Label();
             this.progressBarWrite = new System.Windows.Forms.ProgressBar();
+            this.backConnectLabel = new System.Windows.Forms.Label();
             this.dataMatchPLC_label = new System.Windows.Forms.Label();
             this.readCanButton = new System.Windows.Forms.Button();
             this.loadCanButton = new System.Windows.Forms.Button();
@@ -761,7 +761,6 @@ namespace Moderon
             this.label61 = new System.Windows.Forms.Label();
             this.pic_signalsReady = new System.Windows.Forms.PictureBox();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
-            this.progressWritePanel = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.sensorsPage.SuspendLayout();
@@ -837,7 +836,6 @@ namespace Moderon
             this.panelBlocks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_signalsReady)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
-            this.progressWritePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -9946,7 +9944,8 @@ namespace Moderon
             // 
             // loadCanPanel
             // 
-            this.loadCanPanel.Controls.Add(this.progressWritePanel);
+            this.loadCanPanel.Controls.Add(this.progressBarWrite);
+            this.loadCanPanel.Controls.Add(this.processWriteLabel);
             this.loadCanPanel.Controls.Add(this.backConnectLabel);
             this.loadCanPanel.Controls.Add(this.dataMatchPLC_label);
             this.loadCanPanel.Controls.Add(this.readCanButton);
@@ -9976,6 +9975,26 @@ namespace Moderon
             this.loadCanPanel.TabIndex = 45;
             this.loadCanPanel.Visible = false;
             // 
+            // processWriteLabel
+            // 
+            this.processWriteLabel.AutoSize = true;
+            this.processWriteLabel.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.processWriteLabel.Location = new System.Drawing.Point(33, 384);
+            this.processWriteLabel.Name = "processWriteLabel";
+            this.processWriteLabel.Size = new System.Drawing.Size(202, 16);
+            this.processWriteLabel.TabIndex = 78;
+            this.processWriteLabel.Text = "Идёт запись в контроллер...";
+            this.processWriteLabel.Visible = false;
+            // 
+            // progressBarWrite
+            // 
+            this.progressBarWrite.ForeColor = System.Drawing.Color.DarkGreen;
+            this.progressBarWrite.Location = new System.Drawing.Point(31, 409);
+            this.progressBarWrite.Name = "progressBarWrite";
+            this.progressBarWrite.Size = new System.Drawing.Size(254, 23);
+            this.progressBarWrite.TabIndex = 77;
+            this.progressBarWrite.Visible = false;
+            // 
             // backConnectLabel
             // 
             this.backConnectLabel.AutoSize = true;
@@ -9987,24 +10006,6 @@ namespace Moderon
             this.backConnectLabel.TabIndex = 79;
             this.backConnectLabel.Text = "Требуется закрыть соединение для возврата";
             this.backConnectLabel.Visible = false;
-            // 
-            // processWriteLabel
-            // 
-            this.processWriteLabel.AutoSize = true;
-            this.processWriteLabel.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.processWriteLabel.Location = new System.Drawing.Point(3, 7);
-            this.processWriteLabel.Name = "processWriteLabel";
-            this.processWriteLabel.Size = new System.Drawing.Size(202, 16);
-            this.processWriteLabel.TabIndex = 78;
-            this.processWriteLabel.Text = "Идёт запись в контроллер...";
-            // 
-            // progressBarWrite
-            // 
-            this.progressBarWrite.ForeColor = System.Drawing.Color.DarkGreen;
-            this.progressBarWrite.Location = new System.Drawing.Point(5, 32);
-            this.progressBarWrite.Name = "progressBarWrite";
-            this.progressBarWrite.Size = new System.Drawing.Size(254, 23);
-            this.progressBarWrite.TabIndex = 77;
             // 
             // dataMatchPLC_label
             // 
@@ -10366,16 +10367,6 @@ namespace Moderon
             this.pictureBoxLogo.TabIndex = 2;
             this.pictureBoxLogo.TabStop = false;
             // 
-            // progressWritePanel
-            // 
-            this.progressWritePanel.Controls.Add(this.processWriteLabel);
-            this.progressWritePanel.Controls.Add(this.progressBarWrite);
-            this.progressWritePanel.Location = new System.Drawing.Point(31, 379);
-            this.progressWritePanel.Name = "progressWritePanel";
-            this.progressWritePanel.Size = new System.Drawing.Size(263, 73);
-            this.progressWritePanel.TabIndex = 80;
-            this.progressWritePanel.Visible = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -10522,8 +10513,6 @@ namespace Moderon
             this.panelBlocks.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_signalsReady)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
-            this.progressWritePanel.ResumeLayout(false);
-            this.progressWritePanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -11257,7 +11246,6 @@ namespace Moderon
         private ProgressBar progressBarWrite;
         private Label processWriteLabel;
         private Label backConnectLabel;
-        private Panel progressWritePanel;
     }
 }
 

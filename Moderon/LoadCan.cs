@@ -248,7 +248,9 @@ namespace Moderon
             byte tryWrite_counter = WRITE_TRY;              // Счётчик количества попыток записи
             byte codeAnswer;                                // Код ответа при попытке записи
 
-            progressWritePanel.Visible = true;  
+            processWriteLabel.Visible = true;               // Отображение подписи для полосы загрузки
+            progressBarWrite.Visible = true;                // Отображение полосы загрузки
+            Refresh();                                      // Обновление формы для отображения элементов
 
             progressBarWrite.Minimum = 0;
             progressBarWrite.Maximum = 105;
@@ -353,7 +355,8 @@ namespace Moderon
             if (writeSuccess) MessageBox.Show("Запись в ПЛК успешно завершена!", 
                 "Операция выполнена", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            progressWritePanel.Visible = false;         // Скрытие панели прогресса загрузки
+            processWriteLabel.Visible = false;          // Скрытие панели прогресса загрузки
+            progressBarWrite.Visible = false;           // Скрытие прогресса записи после загрузки
 
             if (writeSuccess)                           // При успешной записи данных
             {
