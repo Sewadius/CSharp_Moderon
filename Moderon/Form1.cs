@@ -19,6 +19,7 @@ namespace Moderon
         readonly private bool showCode = true;                          // Код сигнала отображается по умолчанию в таблице сигналов
         
         private bool initialConfigure = true;                           // Признак начальной конфигурации (при загрузке и после сброса)
+        private bool optimizeOnly = true;                               // Признак 8 датчиков температуры (для отключения разблокировки типа ПЛК)
         
         // Ранее сохраненные значения индексов для элементов
         private int plkChangeIndexLast = 1;                             // Значение для выбранного типа контроллера
@@ -565,6 +566,7 @@ namespace Moderon
             comboSysType.SelectedIndex = 0;                 // Выбор приточной системы
             expansion_blocks.Clear();                       // Очистка списка задействованных блоков расширения
             initialConfigure = true;                        // Возврат признака начальной расстановки системы
+            optimizeOnly = false;                           // Сброс признака блокировка выбора ПЛК Optimize
 
             var mainOptions = new List<CheckBox>()
             {

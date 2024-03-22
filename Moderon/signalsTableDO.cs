@@ -291,7 +291,7 @@ namespace Moderon
 
             if (a) // Сигналы распределены
             {
-                comboPlkType.Enabled = true;                                        // Разблокировка смены типа ПЛК
+                if (!optimizeOnly) comboPlkType.Enabled = true;                     // Разблокировка смены типа ПЛК (если нет блокировки Optimize)
                 saveToolStripMenuItem.Enabled = true;                               // Разблокировка сохранения файла
                 backSignalsButton.Enabled = true;                                   // Разблокировка кнопки "Назад"
                 signalsReadyLabel.Text = "Карта входов/выходов сформирована";
