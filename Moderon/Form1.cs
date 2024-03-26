@@ -120,13 +120,13 @@ namespace Moderon
             SignalsTableReSize(Size.Width, Size.Height);    // Таблица сигналов
         }
 
-        /// <summary>Переменещение изображений элементов </summary>
+        /// <summary>Переменещение изображений элементов при изменении размера основной формы</summary>
         private void PicturesMove(int width)
         {
             const int 
-                fan_height = 3, fan1_delta = 458, fan2_delta = 437, filter_delta = 409,
-                sensors_delta = 411, damp_delta = 421, heat_delta = 416, humid_delta = 449,
-                recirc_delta = 418, recup_delta = 398, secHeat_delta = 416, recup_2_delta = 507;
+                fan_height = 3, fan1_delta = 458, fan2_delta = 437, filter_delta = 435,
+                sensors_delta = 422, damp_delta = 395, heat_delta = 430, humid_delta = 420,
+                recirc_delta = 415, recup_delta = 398, secHeat_delta = 416, recup_2_delta = 507;
 
             // Положения для элементов
             fanPicture1.Location = new Point(width - fan1_delta, fan_height);
@@ -892,7 +892,7 @@ namespace Moderon
             if (coolTypeCombo.SelectedIndex == 1)                                   // Водяной охладитель
             {
                 coolTypeComboIndex = 1;
-                //frCoolStagesCombo.SelectedIndex = 0;                                // Выбор 1 ступени фреонового охладителя до смены типа
+                //frCoolStagesCombo.SelectedIndex = 0;                              // Выбор 1 ступени фреонового охладителя до смены типа
                 frCoolPanel.Hide(); watCoolPanel.Show();
                 coolPicture.Image = Properties.Resources.waterCooler;
                 watCoolPanel.Location = MENU_POSITION;

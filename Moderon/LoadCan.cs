@@ -59,7 +59,7 @@ namespace Moderon
             refreshCanPorts.Image = Properties.Resources.refresh_red;
             GetSerialPorts();                           // Формирование comboBox с актуальными CAN портами
 
-            Thread thread = new Thread(() =>
+            Thread thread = new(() =>
             {
                 Thread.Sleep(MS_1000);
                 refreshCanPorts.Image = Properties.Resources.refresh;
