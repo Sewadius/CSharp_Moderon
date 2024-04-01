@@ -83,9 +83,9 @@ namespace Moderon.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap fan {
+        internal static System.Drawing.Bitmap fan220 {
             get {
-                object obj = ResourceManager.GetObject("fan", resourceCulture);
+                object obj = ResourceManager.GetObject("fan220", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace Moderon.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap fan_2 {
+        internal static System.Drawing.Bitmap fan380 {
             get {
-                object obj = ResourceManager.GetObject("fan_2", resourceCulture);
+                object obj = ResourceManager.GetObject("fan380", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -116,6 +116,16 @@ namespace Moderon.Properties {
         internal static System.Drawing.Bitmap freonCooler {
             get {
                 object obj = ResourceManager.GetObject("freonCooler", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap glikRecup {
+            get {
+                object obj = ResourceManager.GetObject("glikRecup", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -166,6 +176,16 @@ namespace Moderon.Properties {
         internal static System.Drawing.Bitmap plastRecup {
             get {
                 object obj = ResourceManager.GetObject("plastRecup", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap plastRecupBypass {
+            get {
+                object obj = ResourceManager.GetObject("plastRecupBypass", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

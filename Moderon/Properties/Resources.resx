@@ -154,14 +154,8 @@
   <data name="refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="fan_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\fan_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="red_cross" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\red_cross.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="fan" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\fan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="waterCooler" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\waterCooler.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -171,5 +165,17 @@
   </data>
   <data name="refresh_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\refresh_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fan220" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fan220.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fan380" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fan380.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="glikRecup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\glikRecup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plastRecupBypass" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plastRecupBypass.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

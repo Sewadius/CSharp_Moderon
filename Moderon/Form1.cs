@@ -14,6 +14,7 @@ namespace Moderon
 
         private const int HEIGHT = 280;                                 // Высота для панелей настройки элементов
         private const int DELTA = 31;                                   // Расстояние между comboBox в таблице сигналов
+        private const int HEIGHT_RECUP = 221, HEIGHT_GLICK = 398;       // Высота изображения для обычного рекуператора / гликолевый
         private Point MENU_POSITION = new Point(3, 36);                 // Позиция для меню элементов
         private Point PANEL_POSITION = new Point(15, 90);               // Позиция для остальных панелей
         readonly private bool showCode = true;                          // Код сигнала отображается по умолчанию в таблице сигналов
@@ -123,10 +124,10 @@ namespace Moderon
         /// <summary>Переменещение изображений элементов при изменении размера основной формы</summary>
         private void PicturesMove(int width)
         {
-            const int 
-                fan_height = 3, fan1_delta = 458, fan2_delta = 437, filter_delta = 435,
-                sensors_delta = 422, damp_delta = 395, heat_delta = 430, humid_delta = 420,
-                recirc_delta = 415, recup_delta = 398, secHeat_delta = 416, recup_2_delta = 507;
+            const int
+                fan_height = 3, fan1_delta = 499, fan2_delta = 499, filter_delta = 435,
+                sensors_delta = 422, damp_delta = 395, heat_delta = 427, humid_delta = 420,
+                recirc_delta = 415, recup_delta = 483, secHeat_delta = 433;
 
             // Положения для элементов
             fanPicture1.Location = new Point(width - fan1_delta, fan_height);
@@ -139,10 +140,10 @@ namespace Moderon
             humidPicture.Location = new Point(width - humid_delta, fan_height);
             recircPicture.Location = new Point(width - recirc_delta, fan_height);
             heatAddPicture.Location = new Point(width - secHeat_delta, fan_height);
+            recupPicture.Location = new Point(width - recup_delta, fan_height);
 
-            // Два варианта для рекуператора
-            recupPicture.Location = recupTypeCombo.SelectedIndex == 0 ? 
-                new Point(width - recup_delta, fan_height) : new Point(width - recup_2_delta, fan_height);
+            /*recupPicture.Location = recupTypeCombo.SelectedIndex == 0 ? 
+                new Point(width - recup_delta, fan_height) : new Point(width - recup_2_delta, fan_height); */
         }
 
         ///<summary>Скрытие и блокировка панелей блоков расширения</summary>
@@ -590,6 +591,9 @@ namespace Moderon
 
             loadCanButton.Enabled = false;                  // Блокировка кнопки загрузки данных в ПЛК
             readCanButton.Enabled = false;                  // Блокировка кнопки чтения данных из ПЛК
+            
+            // Установка размера изображения для рекуператора по умолчанию
+            recupPicture.Size = new Size(recupPicture.Width, HEIGHT_RECUP);
 
             outFanPanel.Hide();                             // Скрытие панели вытяжного вентилятора
             HideExpansionBlocksPanels();                    // Скрытие панелей для блоков расширения в таблице сигналов
@@ -939,39 +943,36 @@ namespace Moderon
         ///<summary>Изменили тип рекуператора</summary>
         private void RecupTypeCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            const int delta_1 = 398, delta_2 = 507, height = 3;
-
             if (recupTypeCombo.SelectedIndex == recupTypeComboIndex) return;        // Не изменился тип рекуператора
 
             if (recupTypeCombo.SelectedIndex == 1)                                  // Пластинчатый
             {
                 recupTypeComboIndex = 1;
-                Point p1 = new Point(Size.Width - delta_2, height);
                 rotorRecupPanel.Hide(); glikRecupPanel.Hide(); plastRecupPanel.Show();
-                recupPicture.Image = Properties.Resources.plastRecup;
-                recupPicture.Size = new Size(226, 215);
-                recupPicture.Location =  p1;
+                if (bypassPlastCombo.SelectedIndex == 0)                            // Нет выбранного байпасса
+                    recupPicture.Image = Properties.Resources.plastRecup;
+                else                                                                // Есть выбранный байпасс
+                    recupPicture.Image = Properties.Resources.plastRecupBypass;
                 plastRecupPanel.Location = MENU_POSITION;
+                recupPicture.Size = new Size(recupPicture.Width, HEIGHT_RECUP);     // Размер для изображения рекуператора
             }
             else if (recupTypeCombo.SelectedIndex == 0)                             // Роторный
             {
                 recupTypeComboIndex = 0;
-                Point p1 = new Point(Size.Width - delta_1, height);
                 plastRecupPanel.Hide(); glikRecupPanel.Hide(); rotorRecupPanel.Show();
                 recupPicture.Image = Properties.Resources.rotorRecup;
-                recupPicture.Size = new Size(117, 221);
-                recupPicture.Location = p1;
                 rotorRecupPanel.Location = MENU_POSITION;
+                recupPicture.Size = new Size(recupPicture.Width, HEIGHT_RECUP);     // Размер для изображения рекуператора
             }
             else if (recupTypeCombo.SelectedIndex == 2)                             // Гликолевый
             {
                 recupTypeComboIndex = 2;
-                Point p1 = new Point(Size.Width - delta_2, height);
+                //Point p1 = new Point(Size.Width - delta_2, height);
                 plastRecupPanel.Hide(); rotorRecupPanel.Hide(); glikRecupPanel.Show();
-                recupPicture.Image = Properties.Resources.plastRecup;
-                recupPicture.Size = new Size(226, 215);
-                recupPicture.Location = p1;
+                recupPicture.Image = Properties.Resources.glikRecup;
+                recupPicture.Size = new Size(recupPicture.Width, recupPicture.Height + 100);
                 glikRecupPanel.Location = MENU_POSITION;
+                recupPicture.Size = new Size(recupPicture.Width, HEIGHT_GLICK);     // Размер для изображения рекуператора
             }
             RecupTypeCombo_cmdSelectedIndexChanged(this, e);                        // Командное слово
             if (ignoreEvents) return;
@@ -1526,6 +1527,24 @@ namespace Moderon
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 e.Handled = true;
+        }
+
+        ///<summary>Изменили питание приточного вентилятора</summary>
+        private void PrFanPowCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (prFanPowCombo.SelectedIndex == 0)
+                fanPicture1.Image = Properties.Resources.fan380;
+            else
+                fanPicture1.Image = Properties.Resources.fan220;
+        }
+
+        ///<summary>Изменили питание вытяжного вентилятора</summary>
+        private void OutFanPowCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (outFanPowCombo.SelectedIndex == 0)
+                fanPicture2.Image = Properties.Resources.fan380;
+            else
+                fanPicture2.Image = Properties.Resources.fan220;
         }
 
         ///<summary>Настройка поля для ширины вытяжной заслонки</summary>

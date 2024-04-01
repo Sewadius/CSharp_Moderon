@@ -25,7 +25,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>2</ApplicationRevision>
-    <ApplicationVersion>1.1.1.%2a</ApplicationVersion>
+    <ApplicationVersion>1.1.2.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -148,6 +148,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="changes.md" />
     <Content Include="ManualModeron.pdf">
@@ -165,6 +166,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Resources\refresh.png" />
+    <None Include="Resources\fan220.png" />
+    <None Include="Resources\fan380.png" />
+    <None Include="Resources\plastRecupBypass.png" />
+    <None Include="Resources\glikRecup.png" />
     <Content Include="Resources\refresh_red.png" />
     <Content Include="Template.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

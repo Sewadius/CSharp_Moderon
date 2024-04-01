@@ -1063,6 +1063,12 @@ namespace Moderon
         ///<summary>Изменили тип управления пластинчатого рекуператора</summary>
         private void BypassPlastCombo_cmdSelectedIndexChanged(object sender, EventArgs e)
         {
+            // Изменение изображения при выборе байпасса пластинчатого рекуператора
+            if (recupTypeCombo.SelectedIndex == 1 && bypassPlastCombo.SelectedIndex == 0)
+                recupPicture.Image = Properties.Resources.plastRecup;
+            else if (recupTypeCombo.SelectedIndex == 1)
+                recupPicture.Image = Properties.Resources.plastRecupBypass;
+
             CommandWord_9();
             if (ignoreEvents) return;
             BypassPlastCombo_signalsAOSelectedIndexChanged(this, e);                            // Сигналы AO ПЛК
