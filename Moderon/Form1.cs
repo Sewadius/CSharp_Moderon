@@ -4,6 +4,8 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
+using System.Runtime.CompilerServices;
+using System.Diagnostics.Eventing.Reader;
 
 namespace Moderon
 {
@@ -15,15 +17,15 @@ namespace Moderon
         private const int HEIGHT = 280;                                 // Высота для панелей настройки элементов
         private const int DELTA = 31;                                   // Расстояние между comboBox в таблице сигналов
         private const int HEIGHT_RECUP = 221, HEIGHT_GLICK = 398;       // Высота изображения для обычного рекуператора / гликолевый
-        private Point MENU_POSITION = new Point(3, 36);                 // Позиция для меню элементов
-        private Point PANEL_POSITION = new Point(15, 90);               // Позиция для остальных панелей
+        private Point MENU_POSITION = new(3, 36);                       // Позиция для меню элементов
+        private Point PANEL_POSITION = new(15, 90);                     // Позиция для остальных панелей
         readonly private bool showCode = true;                          // Код сигнала отображается по умолчанию в таблице сигналов
         
         private bool initialConfigure = true;                           // Признак начальной конфигурации (при загрузке и после сброса)
-        private bool optimizeOnly = true;                               // Признак 8 датчиков температуры (для отключения разблокировки типа ПЛК)
+        private bool optimizeOnly = false;                              // Признак 8 датчиков температуры (для отключения разблокировки типа ПЛК)
         
         // Ранее сохраненные значения индексов для элементов
-        private int plkChangeIndexLast = 1;                             // Значение для выбранного типа контроллера
+        private int plkChangeIndexLast = 1;                             // Значение для выбранного типа контроллера (по умолчанию Optimized для сброса)
         private int heatTypeComboIndex = 0;                             // Значение для типа основного нагревателя
         private int coolTypeComboIndex = 0;                             // Значение для типа охладителя
         private int heatAddTypeComboIndex = 0;                          // Значение для типа дополнительного нагревателя
@@ -263,47 +265,78 @@ namespace Moderon
             if (result == DialogResult.Yes) Close(); // Выход из приложения
         }
 
-        /// <summary>Назначение подсказок при загрузке Form1</summary>
-        private void Form1_Load(object sender, EventArgs e)
+        /// <summary>Назначение всплывающих подсказок</summary>
+        private void LoadHints()
         {
             string
-                ai_sig = "Добавляет AI сигнал",
-                di_sig = "Добавляет DI сигнал",
-                do_sig = "Добавляет DO сигнал",
-                ao_sig = "Добавляет AO сигнал",
-                ps = "Добавляет DI сигнал и датчик давления",
+                ai_sig_temp = "Добавляет UI сигнал температурного датчика",
+                ai_sig_hum = "Добавляет UI сигнал датчика влажности",
+                di_sig = "Добавляет UI сигнал дискретного входа",
+                do_sig = "Добавляет DO сигнал дискретного выхода",
+                ao_sig = "Добавляет AO сигнал аналогового выхода",
+
                 drive = "Привод добавлен в спецификацию",
                 pic_sig_ready = "Состояние карты входов/выходов",
                 pic_refresh = "Обновить список COM портов";
 
-            toolTip.Active = hintEnabled;
+            toolTip.Active = hintEnabled;   // Признак активации отображения подсказок
 
-            // Датчики
-            toolTip.SetToolTip(prChanSensCheck, ai_sig);
-            toolTip.SetToolTip(roomTempSensCheck, ai_sig);
-            toolTip.SetToolTip(chanHumSensCheck, ai_sig);
-            toolTip.SetToolTip(roomHumSensCheck, ai_sig);
-            toolTip.SetToolTip(outChanSensCheck, ai_sig);
-            // Вентилятор
-            toolTip.SetToolTip(prFanPSCheck, ps);
-            toolTip.SetToolTip(outFanPSCheck, ps);
-            // Заслонка
+            // Датчики температуры и внешние сигналы
+            toolTip.SetToolTip(prChanSensCheck, ai_sig_temp);
+            toolTip.SetToolTip(roomTempSensCheck, ai_sig_temp);
+            toolTip.SetToolTip(outdoorChanSensCheck, ai_sig_temp);
+            toolTip.SetToolTip(outChanSensCheck, ai_sig_temp);
+            toolTip.SetToolTip(stopStartCheck, di_sig);
+            toolTip.SetToolTip(fireCheck, di_sig);
+            toolTip.SetToolTip(sigWorkCheck, do_sig);
+            toolTip.SetToolTip(sigAlarmCheck, do_sig);
+            toolTip.SetToolTip(sigFilAlarmCheck, do_sig);
+            // Датчики влажности
+            toolTip.SetToolTip(chanHumSensCheck, ai_sig_hum);
+            toolTip.SetToolTip(roomHumSensCheck, ai_sig_hum);
+            // Вентилятор приточный
+            toolTip.SetToolTip(prFanPSCheck, di_sig);
+            toolTip.SetToolTip(prFanThermoCheck, di_sig);
+            toolTip.SetToolTip(curDefPrFanCheck, di_sig);
+            toolTip.SetToolTip(prDampConfirmFanCheck, di_sig);
+            toolTip.SetToolTip(prFanAlarmCheck, di_sig);
+            toolTip.SetToolTip(prDampFanCheck, do_sig);
+            toolTip.SetToolTip(prFanSpeedCheck, ao_sig);
+            // Вентилятор вытяжной
+            toolTip.SetToolTip(outFanPSCheck, di_sig);
+            toolTip.SetToolTip(outFanThermoCheck, di_sig);
+            toolTip.SetToolTip(curDefOutFanCheck, di_sig);
+            toolTip.SetToolTip(outDampConfirmFanCheck, di_sig);
+            toolTip.SetToolTip(outFanAlarmCheck, di_sig);
+            toolTip.SetToolTip(outDampFanCheck, do_sig);
+            toolTip.SetToolTip(outFanSpeedCheck, ao_sig);
+            // Воздушные заслонки
             toolTip.SetToolTip(confPrDampCheck, di_sig);
             toolTip.SetToolTip(confOutDampCheck, di_sig);
             toolTip.SetToolTip(heatPrDampCheck, do_sig);
             toolTip.SetToolTip(heatOutDampCheck, do_sig);
-            // Нагреватель
+            // Основной водяной нагреватель
             toolTip.SetToolTip(TF_heaterCheck, di_sig);
-            // Охладитель
-            toolTip.SetToolTip(alarmFrCoolCheck, di_sig);
-            // Второй нагреватель
+            toolTip.SetToolTip(confHeatPumpCheck, di_sig);
+            toolTip.SetToolTip(pumpCurProtect, di_sig);
+            toolTip.SetToolTip(confHeatResPumpCheck, di_sig);
+            toolTip.SetToolTip(pumpCurResProtect, di_sig);
+            // Дополнительный водяной нагреватель
             toolTip.SetToolTip(TF_addHeaterCheck, di_sig);
+            toolTip.SetToolTip(confAddHeatPumpCheck, di_sig);
+            toolTip.SetToolTip(pumpCurAddProtect, di_sig);
+            toolTip.SetToolTip(confAddHeatResPumpCheck, di_sig);
+            toolTip.SetToolTip(pumpCurResAddProtect, di_sig);
+            toolTip.SetToolTip(pumpAddHeatCheck, do_sig);
+            // Фреоновый охладитель
+            toolTip.SetToolTip(alarmFrCoolCheck, di_sig);
+
             // Увлажнитель
             toolTip.SetToolTip(alarmHumidCheck, di_sig);
             // Рециркуляция
             toolTip.SetToolTip(recircAOSigCheck, ao_sig);
             // Рекуператор
-            toolTip.SetToolTip(recDefTempCheck, ai_sig);
+            toolTip.SetToolTip(recDefTempCheck, ai_sig_temp);
             toolTip.SetToolTip(recDefPsCheck, di_sig);
             toolTip.SetToolTip(pumpGlicRecCheck, do_sig);
             toolTip.SetToolTip(outSigAlarmRotRecCheck, di_sig);
@@ -316,17 +349,23 @@ namespace Moderon
             toolTip.SetToolTip(pic_signalsReady, pic_sig_ready);
             // Изображение для обновления списка CAN портов
             toolTip.SetToolTip(refreshCanPorts, pic_refresh);
-            // Изменение размера для tabControl выбора оборудования
-            mainPage.Height = 465; // 465
-            Form1_InitCmdWord(this, e); // Подготовка командных слов
-            Form1_InitSignals(this, e); // Подготовка сигналов ПЛК
-            // Изменения для таблицы формирования сигналов
-            signalsPanel.Width = 845;
-            // Изменения для панели данных записи 
-            LoadNetOnLoad();
+        }
+
+        /// <summary>Действия при загрузке Form1</summary>
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            LoadHints();                                    // Обработка для всплывающих подсказок
+
+            mainPage.Height = 465;                          // Изменение размера для tabControl выбора оборудования, 465px
+            Form1_InitCmdWord(this, e);                     // Подготовка командных слов
+            Form1_InitSignals(this, e);                     // Подготовка сигналов ПЛК
+            
+            signalsPanel.Width = 845;                       // Изменения для таблицы формирования сигналов, 845px
+            LoadNetOnLoad();                                // Изменения для панели данных записи 
 
             Form1_SizeChanged(this, e);                     // Изменение размеров для формы
             ComboPlkType_SelectedIndexChanged(this, e);     // Блокировка изначально входов/выходов для контроллера "Mini"
+            MouseWheelCheck_CheckedChanged(this, e);        // Обработка блокировки прокрутки колёсиком мыши элементов comboBox
         }
 
         /// <summary>Скрытие всех вкладок элементов</summary>
@@ -567,7 +606,11 @@ namespace Moderon
             comboSysType.SelectedIndex = 0;                 // Выбор приточной системы
             expansion_blocks.Clear();                       // Очистка списка задействованных блоков расширения
             initialConfigure = true;                        // Возврат признака начальной расстановки системы
-            optimizeOnly = false;                           // Сброс признака блокировка выбора ПЛК Optimize
+            optimizeOnly = false;                           // Сброс признака блокировки выбора ПЛК Optimize
+
+            // Возврат checkBox панели настроек в состояние по умолчанию
+            tooltipsCheck.Checked = true;
+            mouseWheelCheck.Checked = true;
 
             var mainOptions = new List<CheckBox>()
             {
@@ -1294,7 +1337,7 @@ namespace Moderon
             pic_signalsReady.Hide();                            // Скртие изображения сформированной карты сигналов
         }
 
-        ///<summary>Нажали на вкладку "Настройка", панель загрузки через Modbus</summary>
+        ///<summary>Нажали на вкладку "Загрузка", панель загрузки через Modbus</summary>
         private void ToolStripMenuItem_load_Click(object sender, EventArgs e)
         {
             mainPage.Hide();                                    // Скрытие панели опций элементов
@@ -1309,16 +1352,22 @@ namespace Moderon
             //ToolStripMenuItem_help.Enabled = false;
         }
 
-        ///<summary>Нажали на вкладку "Параметры"</summary>
-        private void ToolStripMenuItem_parameter_Click(object sender, EventArgs e)
+        ///<summary>Нажали на вкладку "Настройки" в строке меню</summary>
+        private void ToolStripMenuItem_options_Click(object sender, EventArgs e)
         {
             mainPage.Hide();                                    // Скрытие панели опций элементов
             signalsPanel.Hide();                                // Скрытие панели распределения сигналов
             helpPanel.Hide();                                   // Скрытие панели отображения помощи
-            loadModbusPanel.Hide();                             // Скрытие панели настроек
-            label_comboSysType.Text = "ПАРАМЕТРЫ ПРОГРАММЫ";
+            loadCanPanel.Hide();                                // Скрытие панели загрузки через CAN-порт
+            label_comboSysType.Text = "СПИСОК ПАРАМЕТРОВ";
             comboSysType.Hide(); panelElements.Hide();
+            optionsPanel.Location = PANEL_POSITION;
+            optionsPanel.Height = 468;
+            optionsPanel.Show();
             formSignalsButton.Hide();                           // Скрытие кнопки "Сформировать"
+            comboPlkType.Hide();                                // Скрытие выбора типа ПЛК
+            panelBlocks.Hide();                                 // Скрытие панели выбора блоков расширения
+            pic_signalsReady.Hide();                            // Скрытие изображения статуса распределения сигналов
         }
 
         ///<summary>Нажали вкладку "Помощь" в главном меню</summary>
@@ -1326,7 +1375,7 @@ namespace Moderon
         {
             mainPage.Hide();                                                                // Скрытие панели опций элементов
             signalsPanel.Hide();                                                            // Скрытие панели распределения сигналов
-            label_comboSysType.Text = "ПОМОЩЬ И РУВОДСТВО";
+            label_comboSysType.Text = "ПОМОЩЬ И РУКОВОДСТВО";
             comboSysType.Hide(); panelElements.Hide();
             helpPanel.Location = PANEL_POSITION;
             helpPanel.Height = 485;
@@ -1343,8 +1392,8 @@ namespace Moderon
             //ToolStripMenuItem_help.Enabled = false;                                       // Блокировка повторного выбора "Помощь"
         }
 
-        // Нажали кнопку "Назад" в панели настроек
-        private void BackOptionsButton_Click(object sender, EventArgs e)
+        // Нажали кнопку "Назад" в панели загрузки Modbus
+        private void BackModbusButton_Click(object sender, EventArgs e)
         {
             if (!fromSignalsMove)                                                       // Переход был не из панели выбора сигналов
             {
@@ -1361,36 +1410,203 @@ namespace Moderon
             }
         }
 
-        ///<summary>Нажали кнопку "Назад" в панели помощи</summary>
-        private void BackHelpButton_Click(object sender, EventArgs e)
+        ///<summary>Нажали кнопку "Назад" в панели настроек</summary>
+        private void BackOptionsButton_Click_1(object sender, EventArgs e)
         {
-            helpPanel.Hide();                                                           // Скрытие панели помощи
-            loadModbusPanel.Hide();                                                     // Скрытие панели настроек
+            optionsPanel.Hide();                                                        // Скрытие панели настроек
             mainPage.Show(); panelElements.Show();
             label_comboSysType.Text = "ТИП СИСТЕМЫ";
             comboSysType.Show();
             formSignalsButton.Show();                                                   // Отображение кнопки "Сформировать"
             pic_signalsReady.Show();                                                    // Отображение статуса распределения сигналов
+            if (expansion_blocks.Count > 0) panelBlocks.Show();                         // Отображение панели блоков расширения при наличии
         }
 
-        ///<summary>Нажали кнопку "Назад" в панели параметров</summary>
-        private void BackParameterButton_Click(object sender, EventArgs e)
+        ///<summary>Нажали кнопку "Назад" в панели помощи</summary>
+        private void BackHelpButton_Click(object sender, EventArgs e)
         {
+            helpPanel.Hide();                                                           // Скрытие панели помощи
+            loadModbusPanel.Hide();                                                     // Скрытие панели загрузки Modbus
             mainPage.Show(); panelElements.Show();
             label_comboSysType.Text = "ТИП СИСТЕМЫ";
             comboSysType.Show();
             formSignalsButton.Show();                                                   // Отображение кнопки "Сформировать"
+            pic_signalsReady.Show();                                                    // Отображение статуса распределения сигналов
+            if (expansion_blocks.Count > 0) panelBlocks.Show();                         // Отображение панели блоков расширения при наличии
         }
 
-        // Опция для включения всплывающих подсказок
-        private void ShowHintCheck_CheckedChanged(object sender, EventArgs e)
+        /// <summary>Опция для включения всплывающих подсказок</summary>
+        private void TooltipsCheck_CheckedChanged(object sender, EventArgs e)   
         {
-            if (showHintCheck.Checked)                                                  // Всплывающие подсказки включены
-                hintEnabled = true;
-            else                                                                        // Всплывающие подсказки отключены
-                hintEnabled = false;
-            Form1_Load(this, e);                                                        // Обработка всплывающих подсказок
+            if (tooltipsCheck.Checked) hintEnabled = true;      // Подсказки включены
+            else hintEnabled = false;                           // Подсказки выключены
+            LoadHints();                                        // Повторная инициализация подсказок
         }
+
+        ///<summary>Блокировка события прокрутки для отдельного comboBox</summary>
+        private void MouseWheel_comboBox(ComboBox comboBox, bool disable)
+        {
+            if (disable) comboBox.MouseWheel += ComboBox_MouseWheel;
+            else comboBox.MouseWheel -= ComboBox_MouseWheel;
+        }
+
+        ///<summary>Активация прокрутки колёсиком мыши элементов comboBox</summary>
+        private void MouseWheelCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            bool disable = !mouseWheelCheck.Checked;                // Признак блокировки прокрутки
+
+            MouseWheelEvent_mainElements(disable);                  // Основные элементы формы, панели
+            MouseWheelEvent_tableSignals(disable);                  // Элементы для таблицы сигналов
+        }
+
+        ///<summary>Блокировка прокрутки колёсиком мыши основных элементов формы</summary>
+        private void MouseWheelEvent_mainElements(bool disable)
+        {
+            // Основная форма
+            foreach (ComboBox comboBox in Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Датчики и сигналы
+            foreach (ComboBox comboBox in sensorsPanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Приточный вентилятор
+            foreach (ComboBox comboBox in prFanPanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Вытяжной вентилятор
+            foreach (ComboBox comboBox in outFanPanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Приточные фильтры
+            foreach (ComboBox comboBox in filterPanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Вытяжные фильтры
+            foreach (ComboBox comboBox in outFilterPanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Приточная воздушная заслонка
+            foreach (ComboBox comboBox in dampPanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Вытяжная воздушная заслонка
+            foreach (ComboBox comboBox in outDampPanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Основная панель нагревателя
+            foreach (ComboBox comboBox in heatPanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Водяной нагреватель
+            foreach (ComboBox comboBox in watHeatPanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Электрический нагреватель
+            foreach (ComboBox comboBox in elHeatPanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Основная панель второго нагревателя
+            foreach (ComboBox comboBox in secHeatPanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Водяной второй нагреватель
+            foreach (ComboBox comboBox in watAddHeatPanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Электрический второй нагреватель
+            foreach (ComboBox comboBox in elAddHeatPanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Основная панель охладителя
+            foreach (ComboBox comboBox in coolPanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Водяной охладитель
+            foreach (ComboBox comboBox in watCoolPanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Фреоновый охладитель
+            foreach (ComboBox comboBox in frCoolPanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Увлажнитель
+            foreach (ComboBox comboBox in humidPanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Рециркуляция
+            foreach (ComboBox comboBox in recircPanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Основная панель рекуператора
+            foreach (ComboBox comboBox in recupPanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Роторный рекуператор
+            foreach (ComboBox comboBox in rotorRecupPanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Пластинчатый рекуператор
+            foreach (ComboBox comboBox in plastRecupPanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+        }
+
+        ///<summary>Блокировка прокрутки колёсиком мыши таблицы сигналов</summary>
+        private void MouseWheelEvent_tableSignals(bool disable)
+        {
+            // Сигналы UI, контроллер
+            foreach (ComboBox comboBox in plk_UIpanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Сигналы UI, блок расширения 1
+            foreach (ComboBox comboBox in block1_UIpanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Сигналы UI, блок расширения 2
+            foreach (ComboBox comboBox in block2_UIpanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Сигналы UI, блок расширения 3
+            foreach (ComboBox comboBox in block3_UIpanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Сигналы DO, контроллер
+            foreach (ComboBox comboBox in plk_DOpanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Сигналы DO, блок расширения 1
+            foreach (ComboBox comboBox in block1_DOpanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Сигналы DO, блок расширения 2
+            foreach (ComboBox comboBox in block2_DOpanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Сигналы DO, блок расширения 3
+            foreach (ComboBox comboBox in block3_DOpanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Сигналы AO, контроллер
+            foreach (ComboBox comboBox in plk_AOpanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Сигналы AO, блок расширения 1
+            foreach (ComboBox comboBox in block1_AOpanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Сигналы AO, блок расширения 2
+            foreach (ComboBox comboBox in block2_AOpanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+
+            // Сигналы AO, блок расширения 3
+            foreach (ComboBox comboBox in block3_AOpanel.Controls.OfType<ComboBox>())
+                MouseWheel_comboBox(comboBox, disable);
+        }
+
+        ///<summary>Блокировка события прокрутки колёсиком мыши</summary>
+        private void ComboBox_MouseWheel(object sender, MouseEventArgs e) =>
+            ((HandledMouseEventArgs)e).Handled = true;
+       
 
         ///<summary>Нажали кнопку "Загрузить в ПЛК" в панели сигналов</summary>
         private void LoadPLC_SignalsButton_Click(object sender, EventArgs e)

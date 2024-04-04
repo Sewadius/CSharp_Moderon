@@ -879,7 +879,7 @@ namespace Moderon
         ///<summary>Выбрали сигнал переключателя "Стоп/Пуск"</summary>
         private void StopStartCheck_CheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 1000;                                                                   // Переключатель "Стоп/Пуск"
+            ushort code_1 = 1001;                                                                   // Переключатель "Стоп/Пуск"
 
             if (stopStartCheck.Checked)                                                             // Выбрали сигнал для переключателя
                 CheckAddUIToList("Переключатель \"Стоп/Пуск\"", code_1, DI);

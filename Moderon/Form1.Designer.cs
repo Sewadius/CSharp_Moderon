@@ -35,14 +35,15 @@ namespace Moderon
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenuItem_file = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveSpecToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem_exit = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItem_help = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_help = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_options = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_about = new System.Windows.Forms.ToolStripMenuItem();
             this.mainPage = new System.Windows.Forms.TabControl();
             this.sensorsPage = new System.Windows.Forms.TabPage();
             this.sensorsPanel = new System.Windows.Forms.Panel();
@@ -328,7 +329,7 @@ namespace Moderon
             this.ipAddressBox = new System.Windows.Forms.TextBox();
             this.label59 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.backOptionsButton = new System.Windows.Forms.Button();
+            this.backModbusButton = new System.Windows.Forms.Button();
             this.formSignalsButton = new System.Windows.Forms.Button();
             this.signalsPanel = new System.Windows.Forms.Panel();
             this.resetButtonSignals = new System.Windows.Forms.Button();
@@ -720,7 +721,6 @@ namespace Moderon
             this.cmdWordsTextBox = new System.Windows.Forms.RichTextBox();
             this.backSignalsButton = new System.Windows.Forms.Button();
             this.helpPanel = new System.Windows.Forms.Panel();
-            this.showHintCheck = new System.Windows.Forms.CheckBox();
             this.PDF_manual = new AxAcroPDFLib.AxAcroPDF();
             this.label140 = new System.Windows.Forms.Label();
             this.linkModeronWeb = new System.Windows.Forms.LinkLabel();
@@ -761,7 +761,12 @@ namespace Moderon
             this.label61 = new System.Windows.Forms.Label();
             this.pic_signalsReady = new System.Windows.Forms.PictureBox();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
-            this.menuStrip1.SuspendLayout();
+            this.optionsPanel = new System.Windows.Forms.Panel();
+            this.backOptionsButton = new System.Windows.Forms.Button();
+            this.mouseWheelCheck = new System.Windows.Forms.CheckBox();
+            this.tooltipsCheck = new System.Windows.Forms.CheckBox();
+            this.label64 = new System.Windows.Forms.Label();
+            this.menuStrip.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.sensorsPage.SuspendLayout();
             this.sensorsPanel.SuspendLayout();
@@ -836,32 +841,34 @@ namespace Moderon
             this.panelBlocks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_signalsReady)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
+            this.optionsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // menuStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.файлToolStripMenuItem,
-            this.ToolStripMenuItem_help,
-            this.aboutToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(979, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem_file,
+            this.toolStripMenuItem_help,
+            this.toolStripMenuItem_options,
+            this.toolStripMenuItem_about});
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
+            this.menuStrip.Size = new System.Drawing.Size(979, 24);
+            this.menuStrip.TabIndex = 0;
+            this.menuStrip.Text = "menuStrip";
             // 
-            // файлToolStripMenuItem
+            // toolStripMenuItem_file
             // 
-            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem_file.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveToolStripMenuItem,
             this.loadToolStripMenuItem,
             this.saveSpecToolStripMenuItem,
             this.ToolStripMenuItem_exit});
-            this.файлToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
-            this.файлToolStripMenuItem.Text = "Файл";
+            this.toolStripMenuItem_file.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.toolStripMenuItem_file.Name = "toolStripMenuItem_file";
+            this.toolStripMenuItem_file.Size = new System.Drawing.Size(53, 20);
+            this.toolStripMenuItem_file.Text = "Файл";
             // 
             // saveToolStripMenuItem
             // 
@@ -892,21 +899,29 @@ namespace Moderon
             this.ToolStripMenuItem_exit.Text = "Выход";
             this.ToolStripMenuItem_exit.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
-            // ToolStripMenuItem_help
+            // toolStripMenuItem_help
             // 
-            this.ToolStripMenuItem_help.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ToolStripMenuItem_help.Name = "ToolStripMenuItem_help";
-            this.ToolStripMenuItem_help.Size = new System.Drawing.Size(71, 20);
-            this.ToolStripMenuItem_help.Text = "Помощь";
-            this.ToolStripMenuItem_help.Click += new System.EventHandler(this.ToolStripMenuItem_help_Click);
+            this.toolStripMenuItem_help.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.toolStripMenuItem_help.Name = "toolStripMenuItem_help";
+            this.toolStripMenuItem_help.Size = new System.Drawing.Size(71, 20);
+            this.toolStripMenuItem_help.Text = "Помощь";
+            this.toolStripMenuItem_help.Click += new System.EventHandler(this.ToolStripMenuItem_help_Click);
             // 
-            // aboutToolStripMenuItem
+            // toolStripMenuItem_options
             // 
-            this.aboutToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(103, 20);
-            this.aboutToolStripMenuItem.Text = "О программе";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
+            this.toolStripMenuItem_options.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.toolStripMenuItem_options.Name = "toolStripMenuItem_options";
+            this.toolStripMenuItem_options.Size = new System.Drawing.Size(88, 20);
+            this.toolStripMenuItem_options.Text = "Настройка";
+            this.toolStripMenuItem_options.Click += new System.EventHandler(this.ToolStripMenuItem_options_Click);
+            // 
+            // toolStripMenuItem_about
+            // 
+            this.toolStripMenuItem_about.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.toolStripMenuItem_about.Name = "toolStripMenuItem_about";
+            this.toolStripMenuItem_about.Size = new System.Drawing.Size(103, 20);
+            this.toolStripMenuItem_about.Text = "О программе";
+            this.toolStripMenuItem_about.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // mainPage
             // 
@@ -923,7 +938,7 @@ namespace Moderon
             this.mainPage.Location = new System.Drawing.Point(15, 75);
             this.mainPage.Name = "mainPage";
             this.mainPage.SelectedIndex = 0;
-            this.mainPage.Size = new System.Drawing.Size(750, 586);
+            this.mainPage.Size = new System.Drawing.Size(750, 558);
             this.mainPage.TabIndex = 1;
             // 
             // sensorsPage
@@ -932,7 +947,7 @@ namespace Moderon
             this.sensorsPage.Controls.Add(this.sensorsPanel);
             this.sensorsPage.Location = new System.Drawing.Point(4, 22);
             this.sensorsPage.Name = "sensorsPage";
-            this.sensorsPage.Size = new System.Drawing.Size(742, 560);
+            this.sensorsPage.Size = new System.Drawing.Size(742, 532);
             this.sensorsPage.TabIndex = 9;
             this.sensorsPage.Text = "ДАТЧИКИ/СИГНАЛЫ";
             // 
@@ -1178,7 +1193,7 @@ namespace Moderon
             this.fanPage.Location = new System.Drawing.Point(4, 22);
             this.fanPage.Name = "fanPage";
             this.fanPage.Padding = new System.Windows.Forms.Padding(3);
-            this.fanPage.Size = new System.Drawing.Size(742, 560);
+            this.fanPage.Size = new System.Drawing.Size(742, 41);
             this.fanPage.TabIndex = 0;
             this.fanPage.Text = "ВЕНТИЛЯТОР";
             // 
@@ -1852,7 +1867,7 @@ namespace Moderon
             this.filterPage.Controls.Add(this.filterPanel);
             this.filterPage.Location = new System.Drawing.Point(4, 22);
             this.filterPage.Name = "filterPage";
-            this.filterPage.Size = new System.Drawing.Size(742, 560);
+            this.filterPage.Size = new System.Drawing.Size(742, 41);
             this.filterPage.TabIndex = 6;
             this.filterPage.Text = "ФИЛЬТР";
             // 
@@ -1975,7 +1990,7 @@ namespace Moderon
             this.dampPage.Controls.Add(this.dampPanel);
             this.dampPage.Location = new System.Drawing.Point(4, 22);
             this.dampPage.Name = "dampPage";
-            this.dampPage.Size = new System.Drawing.Size(742, 560);
+            this.dampPage.Size = new System.Drawing.Size(742, 41);
             this.dampPage.TabIndex = 7;
             this.dampPage.Text = "ЗАСЛОНКА";
             // 
@@ -2408,7 +2423,7 @@ namespace Moderon
             this.heatPage.Location = new System.Drawing.Point(4, 22);
             this.heatPage.Name = "heatPage";
             this.heatPage.Padding = new System.Windows.Forms.Padding(3);
-            this.heatPage.Size = new System.Drawing.Size(742, 560);
+            this.heatPage.Size = new System.Drawing.Size(742, 41);
             this.heatPage.TabIndex = 1;
             this.heatPage.Text = "НАГРЕВАТЕЛЬ";
             // 
@@ -2778,7 +2793,7 @@ namespace Moderon
             this.coolPage.Location = new System.Drawing.Point(4, 22);
             this.coolPage.Name = "coolPage";
             this.coolPage.Padding = new System.Windows.Forms.Padding(3);
-            this.coolPage.Size = new System.Drawing.Size(742, 560);
+            this.coolPage.Size = new System.Drawing.Size(742, 41);
             this.coolPage.TabIndex = 2;
             this.coolPage.Text = "ОХЛАДИТЕЛЬ";
             // 
@@ -3005,7 +3020,7 @@ namespace Moderon
             this.humidPage.Location = new System.Drawing.Point(4, 22);
             this.humidPage.Name = "humidPage";
             this.humidPage.Padding = new System.Windows.Forms.Padding(3);
-            this.humidPage.Size = new System.Drawing.Size(742, 560);
+            this.humidPage.Size = new System.Drawing.Size(742, 41);
             this.humidPage.TabIndex = 3;
             this.humidPage.Text = "УВЛАЖНИТЕЛЬ";
             // 
@@ -3165,7 +3180,7 @@ namespace Moderon
             this.recircPage.Location = new System.Drawing.Point(4, 22);
             this.recircPage.Name = "recircPage";
             this.recircPage.Padding = new System.Windows.Forms.Padding(3);
-            this.recircPage.Size = new System.Drawing.Size(742, 560);
+            this.recircPage.Size = new System.Drawing.Size(742, 41);
             this.recircPage.TabIndex = 4;
             this.recircPage.Text = "РЕЦИРКУЛЯЦИЯ";
             // 
@@ -3382,7 +3397,7 @@ namespace Moderon
             this.recupPage.Controls.Add(this.recupPanel);
             this.recupPage.Location = new System.Drawing.Point(4, 22);
             this.recupPage.Name = "recupPage";
-            this.recupPage.Size = new System.Drawing.Size(742, 560);
+            this.recupPage.Size = new System.Drawing.Size(742, 41);
             this.recupPage.TabIndex = 5;
             this.recupPage.Text = "РЕКУПЕРАТОР";
             // 
@@ -3790,7 +3805,7 @@ namespace Moderon
             this.addHeatPage.Controls.Add(this.secHeatPanel);
             this.addHeatPage.Location = new System.Drawing.Point(4, 22);
             this.addHeatPage.Name = "addHeatPage";
-            this.addHeatPage.Size = new System.Drawing.Size(742, 560);
+            this.addHeatPage.Size = new System.Drawing.Size(742, 41);
             this.addHeatPage.TabIndex = 8;
             this.addHeatPage.Text = "ДОП НАГРЕВ";
             // 
@@ -4335,10 +4350,10 @@ namespace Moderon
             this.loadModbusPanel.Controls.Add(this.ipAddressBox);
             this.loadModbusPanel.Controls.Add(this.label59);
             this.loadModbusPanel.Controls.Add(this.label1);
-            this.loadModbusPanel.Controls.Add(this.backOptionsButton);
-            this.loadModbusPanel.Location = new System.Drawing.Point(9, 872);
+            this.loadModbusPanel.Controls.Add(this.backModbusButton);
+            this.loadModbusPanel.Location = new System.Drawing.Point(8, 848);
             this.loadModbusPanel.Name = "loadModbusPanel";
-            this.loadModbusPanel.Size = new System.Drawing.Size(749, 37);
+            this.loadModbusPanel.Size = new System.Drawing.Size(749, 34);
             this.loadModbusPanel.TabIndex = 12;
             this.loadModbusPanel.Visible = false;
             // 
@@ -4558,19 +4573,19 @@ namespace Moderon
             this.label1.TabIndex = 45;
             this.label1.Text = "НАСТРОЙКА СЕТИ";
             // 
-            // backOptionsButton
+            // backModbusButton
             // 
-            this.backOptionsButton.BackColor = System.Drawing.Color.DarkGreen;
-            this.backOptionsButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.backOptionsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.backOptionsButton.ForeColor = System.Drawing.Color.White;
-            this.backOptionsButton.Location = new System.Drawing.Point(24, 200);
-            this.backOptionsButton.Name = "backOptionsButton";
-            this.backOptionsButton.Size = new System.Drawing.Size(94, 27);
-            this.backOptionsButton.TabIndex = 15;
-            this.backOptionsButton.Text = "НАЗАД";
-            this.backOptionsButton.UseVisualStyleBackColor = false;
-            this.backOptionsButton.Click += new System.EventHandler(this.BackOptionsButton_Click);
+            this.backModbusButton.BackColor = System.Drawing.Color.DarkGreen;
+            this.backModbusButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.backModbusButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.backModbusButton.ForeColor = System.Drawing.Color.White;
+            this.backModbusButton.Location = new System.Drawing.Point(24, 200);
+            this.backModbusButton.Name = "backModbusButton";
+            this.backModbusButton.Size = new System.Drawing.Size(94, 27);
+            this.backModbusButton.TabIndex = 15;
+            this.backModbusButton.Text = "НАЗАД";
+            this.backModbusButton.UseVisualStyleBackColor = false;
+            this.backModbusButton.Click += new System.EventHandler(this.BackModbusButton_Click);
             // 
             // formSignalsButton
             // 
@@ -4594,9 +4609,9 @@ namespace Moderon
             this.signalsPanel.Controls.Add(this.signalsReadyLabel);
             this.signalsPanel.Controls.Add(this.tabControlSignals);
             this.signalsPanel.Controls.Add(this.backSignalsButton);
-            this.signalsPanel.Location = new System.Drawing.Point(9, 808);
+            this.signalsPanel.Location = new System.Drawing.Point(3, 990);
             this.signalsPanel.Name = "signalsPanel";
-            this.signalsPanel.Size = new System.Drawing.Size(740, 58);
+            this.signalsPanel.Size = new System.Drawing.Size(740, 53);
             this.signalsPanel.TabIndex = 16;
             this.signalsPanel.Visible = false;
             // 
@@ -4607,7 +4622,7 @@ namespace Moderon
             this.resetButtonSignals.Cursor = System.Windows.Forms.Cursors.Hand;
             this.resetButtonSignals.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.resetButtonSignals.ForeColor = System.Drawing.Color.White;
-            this.resetButtonSignals.Location = new System.Drawing.Point(741, 26);
+            this.resetButtonSignals.Location = new System.Drawing.Point(741, 21);
             this.resetButtonSignals.Name = "resetButtonSignals";
             this.resetButtonSignals.Size = new System.Drawing.Size(97, 27);
             this.resetButtonSignals.TabIndex = 62;
@@ -4622,7 +4637,7 @@ namespace Moderon
             this.loadToExl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loadToExl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadToExl.ForeColor = System.Drawing.Color.White;
-            this.loadToExl.Location = new System.Drawing.Point(561, 26);
+            this.loadToExl.Location = new System.Drawing.Point(561, 21);
             this.loadToExl.Name = "loadToExl";
             this.loadToExl.Size = new System.Drawing.Size(173, 27);
             this.loadToExl.TabIndex = 61;
@@ -4637,7 +4652,7 @@ namespace Moderon
             this.loadPLC_SignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loadPLC_SignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadPLC_SignalsButton.ForeColor = System.Drawing.Color.White;
-            this.loadPLC_SignalsButton.Location = new System.Drawing.Point(408, 26);
+            this.loadPLC_SignalsButton.Location = new System.Drawing.Point(408, 21);
             this.loadPLC_SignalsButton.Name = "loadPLC_SignalsButton";
             this.loadPLC_SignalsButton.Size = new System.Drawing.Size(147, 27);
             this.loadPLC_SignalsButton.TabIndex = 60;
@@ -4651,7 +4666,7 @@ namespace Moderon
             this.signalsReadyLabel.AutoSize = true;
             this.signalsReadyLabel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.signalsReadyLabel.ForeColor = System.Drawing.Color.Green;
-            this.signalsReadyLabel.Location = new System.Drawing.Point(123, 32);
+            this.signalsReadyLabel.Location = new System.Drawing.Point(123, 27);
             this.signalsReadyLabel.Name = "signalsReadyLabel";
             this.signalsReadyLabel.Size = new System.Drawing.Size(272, 14);
             this.signalsReadyLabel.TabIndex = 23;
@@ -4683,7 +4698,7 @@ namespace Moderon
             this.tabUI.Padding = new System.Windows.Forms.Padding(3);
             this.tabUI.Size = new System.Drawing.Size(721, 762);
             this.tabUI.TabIndex = 4;
-            this.tabUI.Text = "Входные сигналы";
+            this.tabUI.Text = "Входные UI сигналы";
             // 
             // block3_UIpanel
             // 
@@ -9845,7 +9860,7 @@ namespace Moderon
             this.backSignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.backSignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.backSignalsButton.ForeColor = System.Drawing.Color.White;
-            this.backSignalsButton.Location = new System.Drawing.Point(10, 26);
+            this.backSignalsButton.Location = new System.Drawing.Point(10, 21);
             this.backSignalsButton.Name = "backSignalsButton";
             this.backSignalsButton.Size = new System.Drawing.Size(94, 27);
             this.backSignalsButton.TabIndex = 58;
@@ -9855,35 +9870,20 @@ namespace Moderon
             // 
             // helpPanel
             // 
-            this.helpPanel.Controls.Add(this.showHintCheck);
             this.helpPanel.Controls.Add(this.PDF_manual);
             this.helpPanel.Controls.Add(this.label140);
             this.helpPanel.Controls.Add(this.linkModeronWeb);
             this.helpPanel.Controls.Add(this.backHelpButton);
-            this.helpPanel.Location = new System.Drawing.Point(3, 978);
+            this.helpPanel.Location = new System.Drawing.Point(9, 931);
             this.helpPanel.Name = "helpPanel";
-            this.helpPanel.Size = new System.Drawing.Size(746, 28);
+            this.helpPanel.Size = new System.Drawing.Size(746, 50);
             this.helpPanel.TabIndex = 17;
             this.helpPanel.Visible = false;
-            // 
-            // showHintCheck
-            // 
-            this.showHintCheck.AutoSize = true;
-            this.showHintCheck.Checked = true;
-            this.showHintCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showHintCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.showHintCheck.Location = new System.Drawing.Point(28, 45);
-            this.showHintCheck.Name = "showHintCheck";
-            this.showHintCheck.Size = new System.Drawing.Size(267, 18);
-            this.showHintCheck.TabIndex = 67;
-            this.showHintCheck.Text = "Показывать всплывающие подсказки";
-            this.showHintCheck.UseVisualStyleBackColor = true;
-            this.showHintCheck.CheckedChanged += new System.EventHandler(this.ShowHintCheck_CheckedChanged);
             // 
             // PDF_manual
             // 
             this.PDF_manual.Enabled = true;
-            this.PDF_manual.Location = new System.Drawing.Point(28, 76);
+            this.PDF_manual.Location = new System.Drawing.Point(26, 48);
             this.PDF_manual.Name = "PDF_manual";
             this.PDF_manual.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("PDF_manual.OcxState")));
             this.PDF_manual.Size = new System.Drawing.Size(710, 346);
@@ -9962,9 +9962,9 @@ namespace Moderon
             this.loadCanPanel.Controls.Add(this.label174);
             this.loadCanPanel.Controls.Add(this.label173);
             this.loadCanPanel.Controls.Add(this.netOptionLabel);
-            this.loadCanPanel.Location = new System.Drawing.Point(6, 921);
+            this.loadCanPanel.Location = new System.Drawing.Point(9, 809);
             this.loadCanPanel.Name = "loadCanPanel";
-            this.loadCanPanel.Size = new System.Drawing.Size(749, 37);
+            this.loadCanPanel.Size = new System.Drawing.Size(749, 33);
             this.loadCanPanel.TabIndex = 45;
             this.loadCanPanel.Visible = false;
             // 
@@ -10360,11 +10360,77 @@ namespace Moderon
             this.pictureBoxLogo.TabIndex = 2;
             this.pictureBoxLogo.TabStop = false;
             // 
+            // optionsPanel
+            // 
+            this.optionsPanel.Controls.Add(this.backOptionsButton);
+            this.optionsPanel.Controls.Add(this.mouseWheelCheck);
+            this.optionsPanel.Controls.Add(this.tooltipsCheck);
+            this.optionsPanel.Controls.Add(this.label64);
+            this.optionsPanel.Location = new System.Drawing.Point(9, 890);
+            this.optionsPanel.Name = "optionsPanel";
+            this.optionsPanel.Size = new System.Drawing.Size(749, 35);
+            this.optionsPanel.TabIndex = 64;
+            this.optionsPanel.Visible = false;
+            // 
+            // backOptionsButton
+            // 
+            this.backOptionsButton.BackColor = System.Drawing.Color.DarkGreen;
+            this.backOptionsButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.backOptionsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.backOptionsButton.ForeColor = System.Drawing.Color.White;
+            this.backOptionsButton.Location = new System.Drawing.Point(27, 140);
+            this.backOptionsButton.Name = "backOptionsButton";
+            this.backOptionsButton.Size = new System.Drawing.Size(94, 27);
+            this.backOptionsButton.TabIndex = 71;
+            this.backOptionsButton.Text = "НАЗАД";
+            this.backOptionsButton.UseVisualStyleBackColor = false;
+            this.backOptionsButton.Click += new System.EventHandler(this.BackOptionsButton_Click_1);
+            // 
+            // mouseWheelCheck
+            // 
+            this.mouseWheelCheck.AutoSize = true;
+            this.mouseWheelCheck.Checked = true;
+            this.mouseWheelCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mouseWheelCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.mouseWheelCheck.Location = new System.Drawing.Point(30, 90);
+            this.mouseWheelCheck.Name = "mouseWheelCheck";
+            this.mouseWheelCheck.Size = new System.Drawing.Size(350, 18);
+            this.mouseWheelCheck.TabIndex = 49;
+            this.mouseWheelCheck.Text = "Прокрутка выпадающих списков колёсиком мыши";
+            this.mouseWheelCheck.UseVisualStyleBackColor = true;
+            this.mouseWheelCheck.CheckedChanged += new System.EventHandler(this.MouseWheelCheck_CheckedChanged);
+            // 
+            // tooltipsCheck
+            // 
+            this.tooltipsCheck.AutoSize = true;
+            this.tooltipsCheck.Checked = true;
+            this.tooltipsCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tooltipsCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tooltipsCheck.Location = new System.Drawing.Point(31, 59);
+            this.tooltipsCheck.Name = "tooltipsCheck";
+            this.tooltipsCheck.Size = new System.Drawing.Size(291, 18);
+            this.tooltipsCheck.TabIndex = 48;
+            this.tooltipsCheck.Text = "Всплывающие подсказки при наведении";
+            this.tooltipsCheck.UseVisualStyleBackColor = true;
+            this.tooltipsCheck.CheckedChanged += new System.EventHandler(this.TooltipsCheck_CheckedChanged);
+            // 
+            // label64
+            // 
+            this.label64.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label64.AutoSize = true;
+            this.label64.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label64.Location = new System.Drawing.Point(28, 17);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(305, 16);
+            this.label64.TabIndex = 47;
+            this.label64.Text = "ГЛОБАЛЬНЫЕ ПАРАМЕТРЫ ПРОГРАММЫ";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(979, 1061);
+            this.Controls.Add(this.optionsPanel);
             this.Controls.Add(this.pic_signalsReady);
             this.Controls.Add(this.panelBlocks);
             this.Controls.Add(this.comboPlkType);
@@ -10378,17 +10444,17 @@ namespace Moderon
             this.Controls.Add(this.comboSysType);
             this.Controls.Add(this.pictureBoxLogo);
             this.Controls.Add(this.mainPage);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.menuStrip);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.menuStrip;
             this.MinimumSize = new System.Drawing.Size(920, 620);
             this.Name = "Form1";
             this.Text = "MODERON HVAC";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.mainPage.ResumeLayout(false);
             this.sensorsPage.ResumeLayout(false);
             this.sensorsPanel.ResumeLayout(false);
@@ -10506,6 +10572,8 @@ namespace Moderon
             this.panelBlocks.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_signalsReady)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
+            this.optionsPanel.ResumeLayout(false);
+            this.optionsPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -10513,13 +10581,13 @@ namespace Moderon
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip menuStrip;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_file;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_exit;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_help;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_help;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_about;
         private System.Windows.Forms.TabControl mainPage;
         private System.Windows.Forms.TabPage fanPage;
         private System.Windows.Forms.TabPage heatPage;
@@ -10716,7 +10784,7 @@ namespace Moderon
         private System.Windows.Forms.CheckBox addHeatCheck;
         private System.Windows.Forms.PictureBox sensorPicture;
         private System.Windows.Forms.Panel loadModbusPanel;
-        private System.Windows.Forms.Button backOptionsButton;
+        private System.Windows.Forms.Button backModbusButton;
         private System.Windows.Forms.TextBox netPortBox;
         private System.Windows.Forms.Label label60;
         private System.Windows.Forms.TextBox ipAddressBox;
@@ -10927,7 +10995,6 @@ namespace Moderon
         private System.Windows.Forms.Label label174;
         private System.Windows.Forms.ComboBox speedCanCombo;
         private System.Windows.Forms.Label label176;
-        private System.Windows.Forms.CheckBox showHintCheck;
         private System.Windows.Forms.Label label178;
         private System.Windows.Forms.Label label177;
         private System.Windows.Forms.ComboBox parityCanCombo;
@@ -11239,6 +11306,12 @@ namespace Moderon
         private ProgressBar progressBarWrite;
         private Label processWriteLabel;
         private Label backConnectLabel;
+        private ToolStripMenuItem toolStripMenuItem_options;
+        private Panel optionsPanel;
+        private Label label64;
+        private CheckBox mouseWheelCheck;
+        private CheckBox tooltipsCheck;
+        private Button backOptionsButton;
     }
 }
 

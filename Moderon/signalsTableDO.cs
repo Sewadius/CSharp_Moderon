@@ -126,7 +126,7 @@ namespace Moderon
             formSignalsButton.Show();                       // Отображение кнопки "Сформировать IO"
             // ToolStripMenuItem_load.Enabled = true;       // Разблокировка "Настройка" (опция оключена!)
             fromSignalsMove = false;                        // Сброс признака перехода с панели выбора сигналов
-            ToolStripMenuItem_help.Enabled = true;          // Разблокировка "Помощь"
+            toolStripMenuItem_help.Enabled = true;          // Разблокировка "Помощь"
         }
 
         ///<summary>Сигналы ПЛК при загрузке формы</summary> 
