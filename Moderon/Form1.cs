@@ -310,9 +310,10 @@ namespace Moderon
             toolTip.SetToolTip(outFanAlarmCheck, di_sig);
             toolTip.SetToolTip(outDampFanCheck, do_sig);
             toolTip.SetToolTip(outFanSpeedCheck, ao_sig);
-            // Воздушные заслонки
+            // Приточная и выттяжная воздушные заслонки
             toolTip.SetToolTip(confPrDampCheck, di_sig);
             toolTip.SetToolTip(confOutDampCheck, di_sig);
+            toolTip.SetToolTip(outDampCheck, do_sig);
             toolTip.SetToolTip(heatPrDampCheck, do_sig);
             toolTip.SetToolTip(heatOutDampCheck, do_sig);
             // Основной водяной нагреватель
@@ -330,15 +331,24 @@ namespace Moderon
             toolTip.SetToolTip(pumpAddHeatCheck, do_sig);
             // Фреоновый охладитель
             toolTip.SetToolTip(alarmFrCoolCheck, di_sig);
-
+            toolTip.SetToolTip(thermoCoolerCheck, di_sig);
+            toolTip.SetToolTip(analogFreonCheck, ao_sig);
             // Увлажнитель
             toolTip.SetToolTip(alarmHumidCheck, di_sig);
             // Рециркуляция
             toolTip.SetToolTip(recircAOSigCheck, ao_sig);
-            // Рекуператор
+            toolTip.SetToolTip(recircPrDampAOCheck, ao_sig);
+            // Защита рекуператора PS и датчик температуры
             toolTip.SetToolTip(recDefTempCheck, ai_sig_temp);
             toolTip.SetToolTip(recDefPsCheck, di_sig);
+            // Гликолевый рекуператор
+            toolTip.SetToolTip(pumpGlikConfCheck, di_sig);
+            toolTip.SetToolTip(pumpGlikCurProtect, di_sig);
+            toolTip.SetToolTip(confGlikResPumpCheck, di_sig);
+            toolTip.SetToolTip(pumpGlikResCurProtect, di_sig);
             toolTip.SetToolTip(pumpGlicRecCheck, do_sig);
+            toolTip.SetToolTip(reservPumpGlik, do_sig);
+            // Роторный рекуператор
             toolTip.SetToolTip(outSigAlarmRotRecCheck, di_sig);
             toolTip.SetToolTip(startRotRecCheck, do_sig);
             // Зеленые галочки при подборе приводов заслонок

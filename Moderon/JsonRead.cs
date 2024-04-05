@@ -421,7 +421,8 @@ namespace Moderon
                 // Охладитель
                 alarmFrCoolCheck, thermoCoolerCheck, thermoCoolerCheck, dehumModeCheck,
                 // Увлажнитель, рециркуляция и рекуператор
-                alarmHumidCheck, recircPrDampAOCheck, springRetRecircCheck, pumpGlicRecCheck, recDefTempCheck, recDefPsCheck,
+                alarmHumidCheck, springRetRecircCheck, pumpGlicRecCheck, pumpGlikConfCheck, pumpGlikCurProtect, reservPumpGlik,
+                confGlikResPumpCheck, pumpGlikResCurProtect, recDefTempCheck, recDefPsCheck,
                 // Датчики и сигналы
                 prChanSensCheck, roomTempSensCheck, chanHumSensCheck, roomHumSensCheck, outdoorChanSensCheck, outChanSensCheck,
                 sigWorkCheck, sigAlarmCheck, sigFilAlarmCheck, stopStartCheck, fireCheck,
@@ -434,6 +435,20 @@ namespace Moderon
             };
 
             foreach (var el in comboBoxes) el.Checked = json_read.checkBoxState[el.Name];
+
+            // Разблокировка элементов при выборе, основной насос гликолевого рекуператора
+            if (pumpGlicRecCheck.Checked)
+            {
+                pumpGlikConfCheck.Enabled = true;
+                pumpGlikCurProtect.Enabled = true;
+            }
+
+            // Разблокировка элементов при выборе, резервный насос гликолевого рекуператора
+            if (reservPumpGlik.Checked)
+            {
+                confGlikResPumpCheck.Enabled = true;
+                pumpGlikResCurProtect.Enabled = true;
+            }
         }
 
         ///<summary>Загрузка для всех comboBox элементов</summary>
@@ -444,7 +459,7 @@ namespace Moderon
                 // Выбор типа системы
                 comboSysType,
                 // Приточный и вытяжной вентилятор
-                prFanPowCombo, prFanControlCombo, outFanPowCombo, outFanControlCombo,
+                prFanPowCombo, prFanControlCombo, outFanPowCombo, outFanControlCombo, prFanFcTypeCombo, outFanFcTypeCombo,
                 // Воздушные фильтры и заслонки
                 filterPrCombo, filterOutCombo, prDampPowCombo, outDampPowCombo,
                 // Нагреватель
@@ -454,22 +469,25 @@ namespace Moderon
                 // Охладитель и увлажнитель
                 coolTypeCombo, frCoolStagesCombo, powWatCoolCombo, humidTypeCombo,
                 // Рециркуляция, рекуператор и датчики
-                recircPowCombo, recircPowCombo, rotorPowCombo, bypassPlastCombo, fireTypeCombo
+                recircPowCombo, recupTypeCombo, rotorPowCombo, bypassPlastCombo, fireTypeCombo
             };
 
             foreach (var el in comboBoxes) el.SelectedIndex = json_read.comboBoxElemState[el.Name];
 
-            // Блокировка опций для Modbus П и В вентилятора
+            // Операции при выборе Modbus П вентилятора
             if (prFanControlCombo.SelectedIndex == 1)   // Приточный вентилятор
             {
                 prFanAlarmCheck.Enabled = false;        // Сигнал аварии
                 prFanSpeedCheck.Enabled = false;        // Скорость 0-10 В
+                prFanFcTypeCombo.Enabled = true;        // Разблокировка выбора модели ПЧ
             }
 
+            // Операции при выборе Modbus П вентилятора
             if (outFanControlCombo.SelectedIndex == 1)  // Вытяжной вентилятор
             {
                 outFanAlarmCheck.Enabled = false;       // Сигнал аварии
                 outFanSpeedCheck.Enabled = false;       // Скорость 0-10 В
+                outFanFcTypeCombo.Enabled = true;       // Разблокировка выбора модели ПЧ
             }
         }
 

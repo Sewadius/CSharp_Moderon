@@ -510,7 +510,8 @@ namespace Moderon
                 // Охладитель и увлажнитель
                 alarmFrCoolCheck, thermoCoolerCheck, analogFreonCheck, dehumModeCheck, alarmHumidCheck,
                 // Рециркуляция и рекуператор
-                recircPrDampAOCheck, springRetRecircCheck, pumpGlicRecCheck, recDefTempCheck, recDefPsCheck,
+                recircPrDampAOCheck, springRetRecircCheck, pumpGlicRecCheck, pumpGlikConfCheck, pumpGlikCurProtect, reservPumpGlik,
+                confGlikResPumpCheck, pumpGlikResCurProtect, recDefTempCheck, recDefPsCheck,
                 // Датчики и сигналы
                 prChanSensCheck, roomTempSensCheck, chanHumSensCheck, roomHumSensCheck, outdoorChanSensCheck, 
                 outChanSensCheck, sigWorkCheck, sigAlarmCheck, sigFilAlarmCheck, stopStartCheck, fireCheck,
@@ -531,7 +532,8 @@ namespace Moderon
             var combo_boxes = new List<ComboBox>()
             {
                 // Тип системы, приточный и вытяжной вентиляторы
-                comboSysType, prFanPowCombo, prFanControlCombo, outFanPowCombo, outFanControlCombo,
+                comboSysType, prFanPowCombo, prFanControlCombo, outFanPowCombo, outFanControlCombo, prFanFcTypeCombo,
+                outFanFcTypeCombo,
                 // Воздушные фильтры и заслонки
                 filterPrCombo, filterOutCombo, prDampPowCombo, outDampPowCombo,
                 // Нагреватель
