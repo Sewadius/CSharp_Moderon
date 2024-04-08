@@ -706,8 +706,8 @@ namespace Moderon
                 block2_DOpanel.Show(); block2_DOpanel.Enabled = true;
 
                 // Положение по высоте для панели DO блока расширения 2
-                block2_DOpanel.Location = new Point(block2_DOpanel.Location.X, plk_DOpanel.Height +
-                    block1_DOpanel.Height + BETWEEN_PANELS);
+                block2_DOpanel.Location = new Point(block2_DOpanel.Location.X,
+                    block1_DOpanel.Location.Y + block1_DOpanel.Height);
             }
             else if (panel == block3_DOpanel && !block3_DOpanel.Enabled)                // Для блока расширения 3
             {
@@ -1379,13 +1379,14 @@ namespace Moderon
             {
                 expansion_blocks.Remove(M72E12RA);                                  // Удаление блока M72E16NA из списка блоков
                 CheckSignals_block1_M72E12RA();                                     // Автораспределение ранее выбранных сигналов с блока M72E12RA
-                if (!blocks.ContainsKey(M72E16NA))
+                
+                if (!blocks.ContainsKey(M72E16NA))                                  // Если нет подобранного блока UI
                 {
                     block1_UIpanel.Hide(); block1_UIpanel.Enabled = false;          // Скрытие и блокировка панели UI для блока расширения 1
                     UICombosBlock_1_Reset();                                        // Скрытие и блокировка элементов UI блока расширения 1
                 }
 
-                if (!blocks.ContainsKey(M72E08RA) && !blocks.ContainsKey(M72E12RB))
+                if (!blocks.ContainsKey(M72E08RA) && !blocks.ContainsKey(M72E12RB)) // Если нет подобранного блока DO + UI или DO
                 {
                     block1_DOpanel.Hide(); block1_DOpanel.Enabled = false;          // Скрытие и блокировка панели DO для блока расширения 1
                     DOCombosBlock_1_Reset();                                        // Скрытие и блокировка элементов DO блока расширения 1

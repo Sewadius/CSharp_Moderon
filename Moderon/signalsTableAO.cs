@@ -299,7 +299,7 @@ namespace Moderon
         }
 
         ///<summary>Удаление AO из определённого comboBox</summary>
-        private void RemoveAO_FromComboBox(ComboBox comboBox, string name, Label label, string text, int index)
+        private void RemoveAO_FromComboBox(ComboBox comboBox, string name, ref Label label, ref string text, ref int index)
         {
             for (int i = 0; i < comboBox.Items.Count; i++)
                 if (comboBox.Items[i].ToString() == name)                                                   // Есть совпадение по имени в списке
@@ -344,18 +344,18 @@ namespace Moderon
             subAOcondition = true;                                                              // Признак удаления AO, не работает событие indexChanged
 
             // ПЛК
-            RemoveAO_FromComboBox(AO1_combo, name, AO1_lab, AO1combo_text, AO1combo_index);
-            RemoveAO_FromComboBox(AO2_combo, name, AO2_lab, AO2combo_text, AO2combo_index);
-            RemoveAO_FromComboBox(AO3_combo, name, AO3_lab, AO3combo_text, AO3combo_index);
+            RemoveAO_FromComboBox(AO1_combo, name, ref AO1_lab, ref AO1combo_text, ref AO1combo_index);
+            RemoveAO_FromComboBox(AO2_combo, name, ref AO2_lab, ref AO2combo_text, ref AO2combo_index);
+            RemoveAO_FromComboBox(AO3_combo, name, ref AO3_lab, ref AO3combo_text, ref AO3combo_index);
             // Блок расширения 1
-            RemoveAO_FromComboBox(AO1bl1_combo, name, AO1bl1_lab, AO1bl1combo_text, AO1bl1combo_index);
-            RemoveAO_FromComboBox(AO2bl1_combo, name, AO2bl1_lab, AO2bl1combo_text, AO2bl1combo_index);
+            RemoveAO_FromComboBox(AO1bl1_combo, name, ref AO1bl1_lab, ref AO1bl1combo_text, ref AO1bl1combo_index);
+            RemoveAO_FromComboBox(AO2bl1_combo, name, ref AO2bl1_lab, ref AO2bl1combo_text, ref AO2bl1combo_index);
             // Блок расширения 2
-            RemoveAO_FromComboBox(AO1bl2_combo, name, AO1bl2_lab, AO1bl2combo_text, AO1bl2combo_index);
-            RemoveAO_FromComboBox(AO2bl2_combo, name, AO2bl2_lab, AO2bl2combo_text, AO2bl2combo_index);
+            RemoveAO_FromComboBox(AO1bl2_combo, name, ref AO1bl2_lab, ref AO1bl2combo_text, ref AO1bl2combo_index);
+            RemoveAO_FromComboBox(AO2bl2_combo, name, ref AO2bl2_lab, ref AO2bl2combo_text, ref AO2bl2combo_index);
             // Блок расширения 2
-            RemoveAO_FromComboBox(AO1bl3_combo, name, AO1bl3_lab, AO1bl3combo_text, AO1bl3combo_index);
-            RemoveAO_FromComboBox(AO2bl3_combo, name, AO2bl3_lab, AO2bl3combo_text, AO2bl3combo_index);
+            RemoveAO_FromComboBox(AO1bl3_combo, name, ref AO1bl3_lab, ref AO1bl3combo_text, ref AO1bl3combo_index);
+            RemoveAO_FromComboBox(AO2bl3_combo, name, ref AO2bl3_lab, ref AO2bl3combo_text, ref AO2bl3combo_index);
 
             subAOcondition = false;                         // Сброс признака удаления из AO
             list_ao.Remove(findAo);                         // Удаление сигнала из списка AO

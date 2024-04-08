@@ -72,249 +72,249 @@ namespace Moderon
             };
 
             for (int i = 0; i < ui_combos_type.Count; i++)
-                ui_combos_type[i].Enabled = json_read.uiTypeEnable[ui_combos_type[i].Name];
+                ui_combos_type[i].Enabled = json_read.UiTypeEnable[ui_combos_type[i].Name];
         }
 
         ///<summary>Загрузка выбранного ранее индекса для comboBox сигналов</summary>
         private void LoadComboIndex()
         {
             // AO сигналы ПЛК
-            AO1combo_index = json_read.comboIndex["AO1combo_index"];
-            AO2combo_index = json_read.comboIndex["AO2combo_index"];
-            AO3combo_index = json_read.comboIndex["AO3combo_index"];
+            AO1combo_index = json_read.ComboIndex["AO1combo_index"];
+            AO2combo_index = json_read.ComboIndex["AO2combo_index"];
+            AO3combo_index = json_read.ComboIndex["AO3combo_index"];
             // AO сигналы блок расширения 1
-            AO1bl1combo_index = json_read.comboIndex["AO1bl1combo_index"];
-            AO2bl1combo_index = json_read.comboIndex["AO2bl1combo_index"];
+            AO1bl1combo_index = json_read.ComboIndex["AO1bl1combo_index"];
+            AO2bl1combo_index = json_read.ComboIndex["AO2bl1combo_index"];
             // AO сигналы блок расширения 2
-            AO1bl2combo_index = json_read.comboIndex["AO1bl2combo_index"];
-            AO2bl2combo_index = json_read.comboIndex["AO2bl2combo_index"];
+            AO1bl2combo_index = json_read.ComboIndex["AO1bl2combo_index"];
+            AO2bl2combo_index = json_read.ComboIndex["AO2bl2combo_index"];
             // AO сигналы блок расширения 3
-            AO1bl3combo_index = json_read.comboIndex["AO1bl3combo_index"];
-            AO2bl3combo_index = json_read.comboIndex["AO2bl3combo_index"];
+            AO1bl3combo_index = json_read.ComboIndex["AO1bl3combo_index"];
+            AO2bl3combo_index = json_read.ComboIndex["AO2bl3combo_index"];
             // DO сигналы ПЛК
-            DO1combo_index = json_read.comboIndex["DO1combo_index"];
-            DO2combo_index = json_read.comboIndex["DO1combo_index"];
-            DO3combo_index = json_read.comboIndex["DO1combo_index"];
-            DO4combo_index = json_read.comboIndex["DO1combo_index"];
-            DO5combo_index = json_read.comboIndex["DO1combo_index"];
-            DO6combo_index = json_read.comboIndex["DO1combo_index"];
+            DO1combo_index = json_read.ComboIndex["DO1combo_index"];
+            DO2combo_index = json_read.ComboIndex["DO2combo_index"];
+            DO3combo_index = json_read.ComboIndex["DO3combo_index"];
+            DO4combo_index = json_read.ComboIndex["DO4combo_index"];
+            DO5combo_index = json_read.ComboIndex["DO5combo_index"];
+            DO6combo_index = json_read.ComboIndex["DO6combo_index"];
             // DO сигналы блок расширения 1
-            DO1bl1combo_index = json_read.comboIndex["DO1bl1combo_index"];
-            DO2bl1combo_index = json_read.comboIndex["DO2bl1combo_index"];
-            DO3bl1combo_index = json_read.comboIndex["DO3bl1combo_index"];
-            DO4bl1combo_index = json_read.comboIndex["DO4bl1combo_index"];
-            DO5bl1combo_index = json_read.comboIndex["DO5bl1combo_index"];
-            DO6bl1combo_index = json_read.comboIndex["DO6bl1combo_index"];
-            DO7bl1combo_index = json_read.comboIndex["DO7bl1combo_index"];
-            DO8bl1combo_index = json_read.comboIndex["DO8bl1combo_index"];
+            DO1bl1combo_index = json_read.ComboIndex["DO1bl1combo_index"];
+            DO2bl1combo_index = json_read.ComboIndex["DO2bl1combo_index"];
+            DO3bl1combo_index = json_read.ComboIndex["DO3bl1combo_index"];
+            DO4bl1combo_index = json_read.ComboIndex["DO4bl1combo_index"];
+            DO5bl1combo_index = json_read.ComboIndex["DO5bl1combo_index"];
+            DO6bl1combo_index = json_read.ComboIndex["DO6bl1combo_index"];
+            DO7bl1combo_index = json_read.ComboIndex["DO7bl1combo_index"];
+            DO8bl1combo_index = json_read.ComboIndex["DO8bl1combo_index"];
             // DO сигналы блок расширения 2
-            DO1bl2combo_index = json_read.comboIndex["DO1bl2combo_index"];
-            DO2bl2combo_index = json_read.comboIndex["DO2bl2combo_index"];
-            DO3bl2combo_index = json_read.comboIndex["DO3bl2combo_index"];
-            DO4bl2combo_index = json_read.comboIndex["DO4bl2combo_index"];
-            DO5bl2combo_index = json_read.comboIndex["DO5bl2combo_index"];
-            DO6bl2combo_index = json_read.comboIndex["DO6bl2combo_index"];
-            DO7bl2combo_index = json_read.comboIndex["DO7bl2combo_index"];
-            DO8bl2combo_index = json_read.comboIndex["DO8bl2combo_index"];
+            DO1bl2combo_index = json_read.ComboIndex["DO1bl2combo_index"];
+            DO2bl2combo_index = json_read.ComboIndex["DO2bl2combo_index"];
+            DO3bl2combo_index = json_read.ComboIndex["DO3bl2combo_index"];
+            DO4bl2combo_index = json_read.ComboIndex["DO4bl2combo_index"];
+            DO5bl2combo_index = json_read.ComboIndex["DO5bl2combo_index"];
+            DO6bl2combo_index = json_read.ComboIndex["DO6bl2combo_index"];
+            DO7bl2combo_index = json_read.ComboIndex["DO7bl2combo_index"];
+            DO8bl2combo_index = json_read.ComboIndex["DO8bl2combo_index"];
             // DO сигналы блок расширения 3
-            DO1bl3combo_index = json_read.comboIndex["DO1bl3combo_index"];
-            DO2bl3combo_index = json_read.comboIndex["DO2bl3combo_index"];
-            DO3bl3combo_index = json_read.comboIndex["DO3bl3combo_index"];
-            DO4bl3combo_index = json_read.comboIndex["DO4bl3combo_index"];
-            DO5bl3combo_index = json_read.comboIndex["DO5bl3combo_index"];
-            DO6bl3combo_index = json_read.comboIndex["DO6bl3combo_index"];
-            DO7bl3combo_index = json_read.comboIndex["DO7bl3combo_index"];
-            DO8bl3combo_index = json_read.comboIndex["DO8bl3combo_index"];
+            DO1bl3combo_index = json_read.ComboIndex["DO1bl3combo_index"];
+            DO2bl3combo_index = json_read.ComboIndex["DO2bl3combo_index"];
+            DO3bl3combo_index = json_read.ComboIndex["DO3bl3combo_index"];
+            DO4bl3combo_index = json_read.ComboIndex["DO4bl3combo_index"];
+            DO5bl3combo_index = json_read.ComboIndex["DO5bl3combo_index"];
+            DO6bl3combo_index = json_read.ComboIndex["DO6bl3combo_index"];
+            DO7bl3combo_index = json_read.ComboIndex["DO7bl3combo_index"];
+            DO8bl3combo_index = json_read.ComboIndex["DO8bl3combo_index"];
             // UI сигналы ПЛК
-            UI1combo_index = json_read.comboIndex["UI1combo_index"];
-            UI2combo_index = json_read.comboIndex["UI2combo_index"];
-            UI3combo_index = json_read.comboIndex["UI3combo_index"];
-            UI4combo_index = json_read.comboIndex["UI4combo_index"];
-            UI5combo_index = json_read.comboIndex["UI5combo_index"];
-            UI6combo_index = json_read.comboIndex["UI6combo_index"];
-            UI7combo_index = json_read.comboIndex["UI7combo_index"];
-            UI8combo_index = json_read.comboIndex["UI8combo_index"];
-            UI9combo_index = json_read.comboIndex["UI9combo_index"];
-            UI10combo_index = json_read.comboIndex["UI10combo_index"];
-            UI11combo_index = json_read.comboIndex["UI11combo_index"];
+            UI1combo_index = json_read.ComboIndex["UI1combo_index"];
+            UI2combo_index = json_read.ComboIndex["UI2combo_index"];
+            UI3combo_index = json_read.ComboIndex["UI3combo_index"];
+            UI4combo_index = json_read.ComboIndex["UI4combo_index"];
+            UI5combo_index = json_read.ComboIndex["UI5combo_index"];
+            UI6combo_index = json_read.ComboIndex["UI6combo_index"];
+            UI7combo_index = json_read.ComboIndex["UI7combo_index"];
+            UI8combo_index = json_read.ComboIndex["UI8combo_index"];
+            UI9combo_index = json_read.ComboIndex["UI9combo_index"];
+            UI10combo_index = json_read.ComboIndex["UI10combo_index"];
+            UI11combo_index = json_read.ComboIndex["UI11combo_index"];
             // UI сигналы блок расширения 1
-            UI1bl1combo_index = json_read.comboIndex["UI1bl1combo_index"];
-            UI2bl1combo_index = json_read.comboIndex["UI2bl1combo_index"];
-            UI3bl1combo_index = json_read.comboIndex["UI3bl1combo_index"];
-            UI4bl1combo_index = json_read.comboIndex["UI4bl1combo_index"];
-            UI5bl1combo_index = json_read.comboIndex["UI5bl1combo_index"];
-            UI6bl1combo_index = json_read.comboIndex["UI6bl1combo_index"];
-            UI7bl1combo_index = json_read.comboIndex["UI7bl1combo_index"];
-            UI8bl1combo_index = json_read.comboIndex["UI8bl1combo_index"];
-            UI9bl1combo_index = json_read.comboIndex["UI9bl1combo_index"];
-            UI10bl1combo_index = json_read.comboIndex["UI10bl1combo_index"];
-            UI11bl1combo_index = json_read.comboIndex["UI11bl1combo_index"];
-            UI12bl1combo_index = json_read.comboIndex["UI12bl1combo_index"];
-            UI13bl1combo_index = json_read.comboIndex["UI13bl1combo_index"];
-            UI14bl1combo_index = json_read.comboIndex["UI14bl1combo_index"];
-            UI15bl1combo_index = json_read.comboIndex["UI15bl1combo_index"];
-            UI16bl1combo_index = json_read.comboIndex["UI16bl1combo_index"];
+            UI1bl1combo_index = json_read.ComboIndex["UI1bl1combo_index"];
+            UI2bl1combo_index = json_read.ComboIndex["UI2bl1combo_index"];
+            UI3bl1combo_index = json_read.ComboIndex["UI3bl1combo_index"];
+            UI4bl1combo_index = json_read.ComboIndex["UI4bl1combo_index"];
+            UI5bl1combo_index = json_read.ComboIndex["UI5bl1combo_index"];
+            UI6bl1combo_index = json_read.ComboIndex["UI6bl1combo_index"];
+            UI7bl1combo_index = json_read.ComboIndex["UI7bl1combo_index"];
+            UI8bl1combo_index = json_read.ComboIndex["UI8bl1combo_index"];
+            UI9bl1combo_index = json_read.ComboIndex["UI9bl1combo_index"];
+            UI10bl1combo_index = json_read.ComboIndex["UI10bl1combo_index"];
+            UI11bl1combo_index = json_read.ComboIndex["UI11bl1combo_index"];
+            UI12bl1combo_index = json_read.ComboIndex["UI12bl1combo_index"];
+            UI13bl1combo_index = json_read.ComboIndex["UI13bl1combo_index"];
+            UI14bl1combo_index = json_read.ComboIndex["UI14bl1combo_index"];
+            UI15bl1combo_index = json_read.ComboIndex["UI15bl1combo_index"];
+            UI16bl1combo_index = json_read.ComboIndex["UI16bl1combo_index"];
             // UI сигналы блок расширения 2
-            UI1bl2combo_index = json_read.comboIndex["UI1bl2combo_index"];
-            UI2bl2combo_index = json_read.comboIndex["UI2bl2combo_index"];
-            UI3bl2combo_index = json_read.comboIndex["UI3bl2combo_index"];
-            UI4bl2combo_index = json_read.comboIndex["UI4bl2combo_index"];
-            UI5bl2combo_index = json_read.comboIndex["UI5bl2combo_index"];
-            UI6bl2combo_index = json_read.comboIndex["UI6bl2combo_index"];
-            UI7bl2combo_index = json_read.comboIndex["UI7bl2combo_index"];
-            UI8bl2combo_index = json_read.comboIndex["UI8bl2combo_index"];
-            UI9bl2combo_index = json_read.comboIndex["UI9bl2combo_index"];
-            UI10bl2combo_index = json_read.comboIndex["UI10bl2combo_index"];
-            UI11bl2combo_index = json_read.comboIndex["UI11bl2combo_index"];
-            UI12bl2combo_index = json_read.comboIndex["UI12bl2combo_index"];
-            UI13bl2combo_index = json_read.comboIndex["UI13bl2combo_index"];
-            UI14bl2combo_index = json_read.comboIndex["UI14bl2combo_index"];
-            UI15bl2combo_index = json_read.comboIndex["UI15bl2combo_index"];
-            UI16bl2combo_index = json_read.comboIndex["UI16bl2combo_index"];
+            UI1bl2combo_index = json_read.ComboIndex["UI1bl2combo_index"];
+            UI2bl2combo_index = json_read.ComboIndex["UI2bl2combo_index"];
+            UI3bl2combo_index = json_read.ComboIndex["UI3bl2combo_index"];
+            UI4bl2combo_index = json_read.ComboIndex["UI4bl2combo_index"];
+            UI5bl2combo_index = json_read.ComboIndex["UI5bl2combo_index"];
+            UI6bl2combo_index = json_read.ComboIndex["UI6bl2combo_index"];
+            UI7bl2combo_index = json_read.ComboIndex["UI7bl2combo_index"];
+            UI8bl2combo_index = json_read.ComboIndex["UI8bl2combo_index"];
+            UI9bl2combo_index = json_read.ComboIndex["UI9bl2combo_index"];
+            UI10bl2combo_index = json_read.ComboIndex["UI10bl2combo_index"];
+            UI11bl2combo_index = json_read.ComboIndex["UI11bl2combo_index"];
+            UI12bl2combo_index = json_read.ComboIndex["UI12bl2combo_index"];
+            UI13bl2combo_index = json_read.ComboIndex["UI13bl2combo_index"];
+            UI14bl2combo_index = json_read.ComboIndex["UI14bl2combo_index"];
+            UI15bl2combo_index = json_read.ComboIndex["UI15bl2combo_index"];
+            UI16bl2combo_index = json_read.ComboIndex["UI16bl2combo_index"];
             // UI сигналы блок расширения 3
-            UI1bl3combo_index = json_read.comboIndex["UI1bl3combo_index"];
-            UI2bl3combo_index = json_read.comboIndex["UI2bl3combo_index"];
-            UI3bl3combo_index = json_read.comboIndex["UI3bl3combo_index"];
-            UI4bl3combo_index = json_read.comboIndex["UI4bl3combo_index"];
-            UI5bl3combo_index = json_read.comboIndex["UI5bl3combo_index"];
-            UI6bl3combo_index = json_read.comboIndex["UI6bl3combo_index"];
-            UI7bl3combo_index = json_read.comboIndex["UI7bl3combo_index"];
-            UI8bl3combo_index = json_read.comboIndex["UI8bl3combo_index"];
-            UI9bl3combo_index = json_read.comboIndex["UI9bl3combo_index"];
-            UI10bl3combo_index = json_read.comboIndex["UI10bl3combo_index"];
-            UI11bl3combo_index = json_read.comboIndex["UI11bl3combo_index"];
-            UI12bl3combo_index = json_read.comboIndex["UI12bl3combo_index"];
-            UI13bl3combo_index = json_read.comboIndex["UI13bl3combo_index"];
-            UI14bl3combo_index = json_read.comboIndex["UI14bl3combo_index"];
-            UI15bl3combo_index = json_read.comboIndex["UI15bl3combo_index"];
-            UI16bl3combo_index = json_read.comboIndex["UI16bl3combo_index"];
+            UI1bl3combo_index = json_read.ComboIndex["UI1bl3combo_index"];
+            UI2bl3combo_index = json_read.ComboIndex["UI2bl3combo_index"];
+            UI3bl3combo_index = json_read.ComboIndex["UI3bl3combo_index"];
+            UI4bl3combo_index = json_read.ComboIndex["UI4bl3combo_index"];
+            UI5bl3combo_index = json_read.ComboIndex["UI5bl3combo_index"];
+            UI6bl3combo_index = json_read.ComboIndex["UI6bl3combo_index"];
+            UI7bl3combo_index = json_read.ComboIndex["UI7bl3combo_index"];
+            UI8bl3combo_index = json_read.ComboIndex["UI8bl3combo_index"];
+            UI9bl3combo_index = json_read.ComboIndex["UI9bl3combo_index"];
+            UI10bl3combo_index = json_read.ComboIndex["UI10bl3combo_index"];
+            UI11bl3combo_index = json_read.ComboIndex["UI11bl3combo_index"];
+            UI12bl3combo_index = json_read.ComboIndex["UI12bl3combo_index"];
+            UI13bl3combo_index = json_read.ComboIndex["UI13bl3combo_index"];
+            UI14bl3combo_index = json_read.ComboIndex["UI14bl3combo_index"];
+            UI15bl3combo_index = json_read.ComboIndex["UI15bl3combo_index"];
+            UI16bl3combo_index = json_read.ComboIndex["UI16bl3combo_index"];
         }
 
         ///<summary>Загрузка выбранного ранее названия для comboBox сигналов</summary>
         private void LoadComboText()
         {
             // AO сигналы ПЛК
-            AO1combo_text = json_read.comboText["AO1combo_text"];
-            AO2combo_text = json_read.comboText["AO2combo_text"];
-            AO3combo_text = json_read.comboText["AO3combo_text"];
+            AO1combo_text = json_read.ComboText["AO1combo_text"];
+            AO2combo_text = json_read.ComboText["AO2combo_text"];
+            AO3combo_text = json_read.ComboText["AO3combo_text"];
             // AO сигналы блок расширения 1
-            AO1bl1combo_text = json_read.comboText["AO1bl1combo_text"];
-            AO2bl1combo_text = json_read.comboText["AO2bl1combo_text"];
+            AO1bl1combo_text = json_read.ComboText["AO1bl1combo_text"];
+            AO2bl1combo_text = json_read.ComboText["AO2bl1combo_text"];
             // AO сигналы блок расширения 2
-            AO1bl2combo_text = json_read.comboText["AO1bl2combo_text"];
-            AO2bl2combo_text = json_read.comboText["AO2bl2combo_text"];
+            AO1bl2combo_text = json_read.ComboText["AO1bl2combo_text"];
+            AO2bl2combo_text = json_read.ComboText["AO2bl2combo_text"];
             // AO сигналы блок расширения 3
-            AO1bl3combo_text = json_read.comboText["AO1bl3combo_text"];
-            AO2bl3combo_text = json_read.comboText["AO2bl3combo_text"];
+            AO1bl3combo_text = json_read.ComboText["AO1bl3combo_text"];
+            AO2bl3combo_text = json_read.ComboText["AO2bl3combo_text"];
             // DO сигналы ПЛК
-            DO1combo_text = json_read.comboText["DO1combo_text"];
-            DO2combo_text = json_read.comboText["DO2combo_text"];
-            DO3combo_text = json_read.comboText["DO3combo_text"];
-            DO4combo_text = json_read.comboText["DO4combo_text"];
-            DO5combo_text = json_read.comboText["DO5combo_text"];
-            DO6combo_text = json_read.comboText["DO6combo_text"];
+            DO1combo_text = json_read.ComboText["DO1combo_text"];
+            DO2combo_text = json_read.ComboText["DO2combo_text"];
+            DO3combo_text = json_read.ComboText["DO3combo_text"];
+            DO4combo_text = json_read.ComboText["DO4combo_text"];
+            DO5combo_text = json_read.ComboText["DO5combo_text"];
+            DO6combo_text = json_read.ComboText["DO6combo_text"];
             // DO сигналы блок расширения 1
-            DO1bl1combo_text = json_read.comboText["DO1bl1combo_text"];
-            DO2bl1combo_text = json_read.comboText["DO2bl1combo_text"];
-            DO3bl1combo_text = json_read.comboText["DO3bl1combo_text"];
-            DO4bl1combo_text = json_read.comboText["DO4bl1combo_text"];
-            DO5bl1combo_text = json_read.comboText["DO5bl1combo_text"];
-            DO6bl1combo_text = json_read.comboText["DO6bl1combo_text"];
-            DO7bl1combo_text = json_read.comboText["DO7bl1combo_text"];
-            DO8bl1combo_text = json_read.comboText["DO8bl1combo_text"];
+            DO1bl1combo_text = json_read.ComboText["DO1bl1combo_text"];
+            DO2bl1combo_text = json_read.ComboText["DO2bl1combo_text"];
+            DO3bl1combo_text = json_read.ComboText["DO3bl1combo_text"];
+            DO4bl1combo_text = json_read.ComboText["DO4bl1combo_text"];
+            DO5bl1combo_text = json_read.ComboText["DO5bl1combo_text"];
+            DO6bl1combo_text = json_read.ComboText["DO6bl1combo_text"];
+            DO7bl1combo_text = json_read.ComboText["DO7bl1combo_text"];
+            DO8bl1combo_text = json_read.ComboText["DO8bl1combo_text"];
             // DO сигналы блок расширения 2
-            DO1bl2combo_text = json_read.comboText["DO1bl2combo_text"];
-            DO2bl2combo_text = json_read.comboText["DO2bl2combo_text"];
-            DO3bl2combo_text = json_read.comboText["DO3bl2combo_text"];
-            DO4bl2combo_text = json_read.comboText["DO4bl2combo_text"];
-            DO5bl2combo_text = json_read.comboText["DO5bl2combo_text"];
-            DO6bl2combo_text = json_read.comboText["DO6bl2combo_text"];
-            DO7bl2combo_text = json_read.comboText["DO7bl2combo_text"];
-            DO8bl2combo_text = json_read.comboText["DO8bl2combo_text"];
+            DO1bl2combo_text = json_read.ComboText["DO1bl2combo_text"];
+            DO2bl2combo_text = json_read.ComboText["DO2bl2combo_text"];
+            DO3bl2combo_text = json_read.ComboText["DO3bl2combo_text"];
+            DO4bl2combo_text = json_read.ComboText["DO4bl2combo_text"];
+            DO5bl2combo_text = json_read.ComboText["DO5bl2combo_text"];
+            DO6bl2combo_text = json_read.ComboText["DO6bl2combo_text"];
+            DO7bl2combo_text = json_read.ComboText["DO7bl2combo_text"];
+            DO8bl2combo_text = json_read.ComboText["DO8bl2combo_text"];
             // DO сигналы блок расширения 3
-            DO1bl3combo_text = json_read.comboText["DO1bl3combo_text"];
-            DO2bl3combo_text = json_read.comboText["DO2bl3combo_text"];
-            DO3bl3combo_text = json_read.comboText["DO3bl3combo_text"];
-            DO4bl3combo_text = json_read.comboText["DO4bl3combo_text"];
-            DO5bl3combo_text = json_read.comboText["DO5bl3combo_text"];
-            DO6bl3combo_text = json_read.comboText["DO6bl3combo_text"];
-            DO7bl3combo_text = json_read.comboText["DO7bl3combo_text"];
-            DO8bl3combo_text = json_read.comboText["DO8bl3combo_text"];
+            DO1bl3combo_text = json_read.ComboText["DO1bl3combo_text"];
+            DO2bl3combo_text = json_read.ComboText["DO2bl3combo_text"];
+            DO3bl3combo_text = json_read.ComboText["DO3bl3combo_text"];
+            DO4bl3combo_text = json_read.ComboText["DO4bl3combo_text"];
+            DO5bl3combo_text = json_read.ComboText["DO5bl3combo_text"];
+            DO6bl3combo_text = json_read.ComboText["DO6bl3combo_text"];
+            DO7bl3combo_text = json_read.ComboText["DO7bl3combo_text"];
+            DO8bl3combo_text = json_read.ComboText["DO8bl3combo_text"];
             // UI сигналы ПЛК
-            UI1combo_text = json_read.comboText["UI1combo_text"];
-            UI2combo_text = json_read.comboText["UI2combo_text"];
-            UI3combo_text = json_read.comboText["UI3combo_text"];
-            UI4combo_text = json_read.comboText["UI4combo_text"];
-            UI5combo_text = json_read.comboText["UI5combo_text"];
-            UI6combo_text = json_read.comboText["UI6combo_text"];
-            UI7combo_text = json_read.comboText["UI7combo_text"];
-            UI8combo_text = json_read.comboText["UI8combo_text"];
-            UI9combo_text = json_read.comboText["UI9combo_text"];
-            UI10combo_text = json_read.comboText["UI10combo_text"];
-            UI11combo_text = json_read.comboText["UI11combo_text"];
+            UI1combo_text = json_read.ComboText["UI1combo_text"];
+            UI2combo_text = json_read.ComboText["UI2combo_text"];
+            UI3combo_text = json_read.ComboText["UI3combo_text"];
+            UI4combo_text = json_read.ComboText["UI4combo_text"];
+            UI5combo_text = json_read.ComboText["UI5combo_text"];
+            UI6combo_text = json_read.ComboText["UI6combo_text"];
+            UI7combo_text = json_read.ComboText["UI7combo_text"];
+            UI8combo_text = json_read.ComboText["UI8combo_text"];
+            UI9combo_text = json_read.ComboText["UI9combo_text"];
+            UI10combo_text = json_read.ComboText["UI10combo_text"];
+            UI11combo_text = json_read.ComboText["UI11combo_text"];
             // UI сигналы блок расширения 1
-            UI1bl1combo_text = json_read.comboText["UI1bl1combo_text"];
-            UI2bl1combo_text = json_read.comboText["UI2bl1combo_text"];
-            UI3bl1combo_text = json_read.comboText["UI3bl1combo_text"];
-            UI4bl1combo_text = json_read.comboText["UI4bl1combo_text"];
-            UI5bl1combo_text = json_read.comboText["UI5bl1combo_text"];
-            UI6bl1combo_text = json_read.comboText["UI6bl1combo_text"];
-            UI7bl1combo_text = json_read.comboText["UI7bl1combo_text"];
-            UI8bl1combo_text = json_read.comboText["UI8bl1combo_text"];
-            UI9bl1combo_text = json_read.comboText["UI9bl1combo_text"];
-            UI10bl1combo_text = json_read.comboText["UI10bl1combo_text"];
-            UI11bl1combo_text = json_read.comboText["UI11bl1combo_text"];
-            UI12bl1combo_text = json_read.comboText["UI12bl1combo_text"];
-            UI13bl1combo_text = json_read.comboText["UI13bl1combo_text"];
-            UI14bl1combo_text = json_read.comboText["UI14bl1combo_text"];
-            UI15bl1combo_text = json_read.comboText["UI15bl1combo_text"];
-            UI16bl1combo_text = json_read.comboText["UI16bl1combo_text"];
+            UI1bl1combo_text = json_read.ComboText["UI1bl1combo_text"];
+            UI2bl1combo_text = json_read.ComboText["UI2bl1combo_text"];
+            UI3bl1combo_text = json_read.ComboText["UI3bl1combo_text"];
+            UI4bl1combo_text = json_read.ComboText["UI4bl1combo_text"];
+            UI5bl1combo_text = json_read.ComboText["UI5bl1combo_text"];
+            UI6bl1combo_text = json_read.ComboText["UI6bl1combo_text"];
+            UI7bl1combo_text = json_read.ComboText["UI7bl1combo_text"];
+            UI8bl1combo_text = json_read.ComboText["UI8bl1combo_text"];
+            UI9bl1combo_text = json_read.ComboText["UI9bl1combo_text"];
+            UI10bl1combo_text = json_read.ComboText["UI10bl1combo_text"];
+            UI11bl1combo_text = json_read.ComboText["UI11bl1combo_text"];
+            UI12bl1combo_text = json_read.ComboText["UI12bl1combo_text"];
+            UI13bl1combo_text = json_read.ComboText["UI13bl1combo_text"];
+            UI14bl1combo_text = json_read.ComboText["UI14bl1combo_text"];
+            UI15bl1combo_text = json_read.ComboText["UI15bl1combo_text"];
+            UI16bl1combo_text = json_read.ComboText["UI16bl1combo_text"];
             // UI сигналы блок расширения 2
-            UI1bl2combo_text = json_read.comboText["UI1bl2combo_text"];
-            UI2bl2combo_text = json_read.comboText["UI2bl2combo_text"];
-            UI3bl2combo_text = json_read.comboText["UI3bl2combo_text"];
-            UI4bl2combo_text = json_read.comboText["UI4bl2combo_text"];
-            UI5bl2combo_text = json_read.comboText["UI5bl2combo_text"];
-            UI6bl2combo_text = json_read.comboText["UI6bl2combo_text"];
-            UI7bl2combo_text = json_read.comboText["UI7bl2combo_text"];
-            UI8bl2combo_text = json_read.comboText["UI8bl2combo_text"];
-            UI9bl2combo_text = json_read.comboText["UI9bl2combo_text"];
-            UI10bl2combo_text = json_read.comboText["UI10bl2combo_text"];
-            UI11bl2combo_text = json_read.comboText["UI11bl2combo_text"];
-            UI12bl2combo_text = json_read.comboText["UI12bl2combo_text"];
-            UI13bl2combo_text = json_read.comboText["UI13bl2combo_text"];
-            UI14bl2combo_text = json_read.comboText["UI14bl2combo_text"];
-            UI15bl2combo_text = json_read.comboText["UI15bl2combo_text"];
-            UI16bl2combo_text = json_read.comboText["UI16bl2combo_text"];
+            UI1bl2combo_text = json_read.ComboText["UI1bl2combo_text"];
+            UI2bl2combo_text = json_read.ComboText["UI2bl2combo_text"];
+            UI3bl2combo_text = json_read.ComboText["UI3bl2combo_text"];
+            UI4bl2combo_text = json_read.ComboText["UI4bl2combo_text"];
+            UI5bl2combo_text = json_read.ComboText["UI5bl2combo_text"];
+            UI6bl2combo_text = json_read.ComboText["UI6bl2combo_text"];
+            UI7bl2combo_text = json_read.ComboText["UI7bl2combo_text"];
+            UI8bl2combo_text = json_read.ComboText["UI8bl2combo_text"];
+            UI9bl2combo_text = json_read.ComboText["UI9bl2combo_text"];
+            UI10bl2combo_text = json_read.ComboText["UI10bl2combo_text"];
+            UI11bl2combo_text = json_read.ComboText["UI11bl2combo_text"];
+            UI12bl2combo_text = json_read.ComboText["UI12bl2combo_text"];
+            UI13bl2combo_text = json_read.ComboText["UI13bl2combo_text"];
+            UI14bl2combo_text = json_read.ComboText["UI14bl2combo_text"];
+            UI15bl2combo_text = json_read.ComboText["UI15bl2combo_text"];
+            UI16bl2combo_text = json_read.ComboText["UI16bl2combo_text"];
             // UI сигналы блок расширения 3
-            UI1bl3combo_text = json_read.comboText["UI1bl3combo_text"];
-            UI2bl3combo_text = json_read.comboText["UI2bl3combo_text"];
-            UI3bl3combo_text = json_read.comboText["UI3bl3combo_text"];
-            UI4bl3combo_text = json_read.comboText["UI4bl3combo_text"];
-            UI5bl3combo_text = json_read.comboText["UI5bl3combo_text"];
-            UI6bl3combo_text = json_read.comboText["UI6bl3combo_text"];
-            UI7bl3combo_text = json_read.comboText["UI7bl3combo_text"];
-            UI8bl3combo_text = json_read.comboText["UI8bl3combo_text"];
-            UI9bl3combo_text = json_read.comboText["UI9bl3combo_text"];
-            UI10bl3combo_text = json_read.comboText["UI10bl3combo_text"];
-            UI11bl3combo_text = json_read.comboText["UI11bl3combo_text"];
-            UI12bl3combo_text = json_read.comboText["UI12bl3combo_text"];
-            UI13bl3combo_text = json_read.comboText["UI13bl3combo_text"];
-            UI14bl3combo_text = json_read.comboText["UI14bl3combo_text"];
-            UI15bl3combo_text = json_read.comboText["UI15bl3combo_text"];
-            UI16bl3combo_text = json_read.comboText["UI16bl3combo_text"];
+            UI1bl3combo_text = json_read.ComboText["UI1bl3combo_text"];
+            UI2bl3combo_text = json_read.ComboText["UI2bl3combo_text"];
+            UI3bl3combo_text = json_read.ComboText["UI3bl3combo_text"];
+            UI4bl3combo_text = json_read.ComboText["UI4bl3combo_text"];
+            UI5bl3combo_text = json_read.ComboText["UI5bl3combo_text"];
+            UI6bl3combo_text = json_read.ComboText["UI6bl3combo_text"];
+            UI7bl3combo_text = json_read.ComboText["UI7bl3combo_text"];
+            UI8bl3combo_text = json_read.ComboText["UI8bl3combo_text"];
+            UI9bl3combo_text = json_read.ComboText["UI9bl3combo_text"];
+            UI10bl3combo_text = json_read.ComboText["UI10bl3combo_text"];
+            UI11bl3combo_text = json_read.ComboText["UI11bl3combo_text"];
+            UI12bl3combo_text = json_read.ComboText["UI12bl3combo_text"];
+            UI13bl3combo_text = json_read.ComboText["UI13bl3combo_text"];
+            UI14bl3combo_text = json_read.ComboText["UI14bl3combo_text"];
+            UI15bl3combo_text = json_read.ComboText["UI15bl3combo_text"];
+            UI16bl3combo_text = json_read.ComboText["UI16bl3combo_text"];
         }
 
         ///<summary>Загрузка выбранного ранее типа контроллера</summary>
         private void LoadPlkType()
         {
-            comboPlkType.SelectedIndex = json_read.plkType["comboPlkType"];
+            comboPlkType.SelectedIndex = json_read.PlkType["comboPlkType"];
         }
 
         ///<summary>Загрузка количества и типов блоков расширения</summary>
         private void LoadExpBlocks()
         {
-            Dictionary<string, int> exp_blocks = json_read.expBlocks;
+            Dictionary<string, int> exp_blocks = json_read.ExpBlocks;
 
             // Для блока расширения AO
             if (exp_blocks.ContainsKey("M72E12RB"))
@@ -419,9 +419,9 @@ namespace Moderon
                 TF_addHeaterCheck, pumpAddHeatCheck, confAddHeatPumpCheck, pumpCurAddProtect, reservPumpAddHeater,
                 confAddHeatResPumpCheck, pumpCurResAddProtect, sensWatAddHeatCheck,
                 // Охладитель
-                alarmFrCoolCheck, thermoCoolerCheck, thermoCoolerCheck, dehumModeCheck,
+                alarmFrCoolCheck, thermoCoolerCheck, analogFreonCheck, dehumModeCheck, alarmHumidCheck,
                 // Увлажнитель, рециркуляция и рекуператор
-                alarmHumidCheck, springRetRecircCheck, pumpGlicRecCheck, pumpGlikConfCheck, pumpGlikCurProtect, reservPumpGlik,
+                recircPrDampAOCheck, springRetRecircCheck, pumpGlicRecCheck, pumpGlikConfCheck, pumpGlikCurProtect, reservPumpGlik,
                 confGlikResPumpCheck, pumpGlikResCurProtect, recDefTempCheck, recDefPsCheck,
                 // Датчики и сигналы
                 prChanSensCheck, roomTempSensCheck, chanHumSensCheck, roomHumSensCheck, outdoorChanSensCheck, outChanSensCheck,
@@ -434,7 +434,7 @@ namespace Moderon
                 outDampConfirmFanCheck, outFanAlarmCheck, outFanStStopCheck, outFanSpeedCheck
             };
 
-            foreach (var el in comboBoxes) el.Checked = json_read.checkBoxState[el.Name];
+            foreach (var el in comboBoxes) el.Checked = json_read.CheckBoxState[el.Name];
 
             // Разблокировка элементов при выборе, основной насос гликолевого рекуператора
             if (pumpGlicRecCheck.Checked)
@@ -472,7 +472,7 @@ namespace Moderon
                 recircPowCombo, recupTypeCombo, rotorPowCombo, bypassPlastCombo, fireTypeCombo
             };
 
-            foreach (var el in comboBoxes) el.SelectedIndex = json_read.comboBoxElemState[el.Name];
+            foreach (var el in comboBoxes) el.SelectedIndex = json_read.ComboBoxElemState[el.Name];
 
             // Операции при выборе Modbus П вентилятора
             if (prFanControlCombo.SelectedIndex == 1)   // Приточный вентилятор
@@ -506,7 +506,7 @@ namespace Moderon
                 b_recircBox, h_recircBox, powRotRecBox
             };
 
-            foreach (var el in textBoxes) el.Text = json_read.textBoxElemState[el.Name];
+            foreach (var el in textBoxes) el.Text = json_read.TextBoxElemState[el.Name];
         }
 
         ///<summary>Загрузка для подписей кодов таблицы сигналов</summary>
@@ -537,7 +537,7 @@ namespace Moderon
                 DO1bl3_lab, DO2bl3_lab, DO3bl3_lab, DO4bl3_lab, DO5bl3_lab, DO6bl3_lab, DO7bl3_lab, DO8bl3_lab
             };
 
-            foreach (var el in labels) el.Text = json_read.labelSignalsState[el.Name];
+            foreach (var el in labels) el.Text = json_read.LabelSignalsState[el.Name];
         }
 
         ///<summary>Сброс сигналов перед загрузкой сигналов</summary>
@@ -610,8 +610,8 @@ namespace Moderon
             };
 
             foreach (var el in comboBoxes)
-                for (int i = 0; i < json_read.comboSignalsItems[el.Name].Length; i++)
-                    el.Items.Add(json_read.comboSignalsItems[el.Name][i]);
+                for (int i = 0; i < json_read.ComboSignalsItems[el.Name].Length; i++)
+                    el.Items.Add(json_read.ComboSignalsItems[el.Name][i]);
         }
 
         ///<summary>Загрузка состояний для comboBox таблицы сигналов</summary>
@@ -656,7 +656,7 @@ namespace Moderon
             };
 
             for (var i = 0; i < comboBoxes.Count; i++)
-                comboBoxes[i].SelectedItem = json_read.comboSignalsState[comboBoxes[i].Name];
+                comboBoxes[i].SelectedItem = json_read.ComboSignalsState[comboBoxes[i].Name];
         }
 
         ///<summary>Загрузка для массивов сигналов</summary>
@@ -671,26 +671,26 @@ namespace Moderon
             list_ao.Clear();                                                    // Очистка прежнего списка сигналов AO
             list_do.Clear();                                                    // Очистка прежнего списка сигналов DO 
 
-            foreach (var elem in json_read.uiCode)                              // Загрузка по сигналам UI
+            foreach (var elem in json_read.UiCode)                              // Загрузка по сигналам UI
             {
                 name = elem.Key;
-                code = json_read.uiCode[name];
-                type = json_read.uiType[name];
-                active = json_read.uiActive[name];
+                code = json_read.UiCode[name];
+                type = json_read.UiType[name];
+                active = json_read.UiActive[name];
                 list_ui.Add(new Ui(name, code, type, active));
             }
-            foreach (var elem in json_read.aoCode)                              // Загрузка по сигналам AO
+            foreach (var elem in json_read.AoCode)                              // Загрузка по сигналам AO
             {
                 name = elem.Key;
-                code = json_read.aoCode[name];
-                active = json_read.aoActive[name];
+                code = json_read.AoCode[name];
+                active = json_read.AoActive[name];
                 list_ao.Add(new Ao(name, code, active));
             }
-            foreach (var elem in json_read.doCode)                              // Загрузка по сигналам DO
+            foreach (var elem in json_read.DoCode)                              // Загрузка по сигналам DO
             {
                 name = elem.Key;
-                code = json_read.doCode[name];
-                active = json_read.doActive[name];
+                code = json_read.DoCode[name];
+                active = json_read.DoActive[name];
                 list_do.Add(new Do(name, code, active));
             }
 

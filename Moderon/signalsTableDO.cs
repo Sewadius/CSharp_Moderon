@@ -55,15 +55,12 @@ namespace Moderon
         ///<summary>Начальная установка для сигналов DO таблицы сигналов</summary> 
         public void Set_DOComboTextIndex()
         {
-            string workSignal = "Сигнал \"Работа\"";
-            DO1combo_text = "Сигнал \"Пуск/Стоп\" приточного вентилятора 1";
-            DO2combo_text = workSignal; DO3combo_text = workSignal;
-
-            DO1combo_index = 1; DO2combo_index = 1; DO3combo_index = 1;
+            // Установка сигнала "Пуск\Стоп" приточного вентилятора 1
+            DO1combo_text = "Сигнал \"Пуск/Стоп\" приточного вентилятора 1"; DO1combo_index = 1;
 
             var do_signals = new List<string>()
             {
-                DO4combo_text, DO5combo_text, DO6combo_text,
+                DO2combo_text, DO3combo_text, DO4combo_text, DO5combo_text, DO6combo_text,
                 DO1bl1combo_text, DO2bl1combo_text, DO3bl1combo_text, DO4bl1combo_text, DO5bl1combo_text, DO6bl1combo_text, DO7bl1combo_text, DO8bl1combo_text,
                 DO1bl2combo_text, DO2bl2combo_text, DO3bl2combo_text, DO4bl2combo_text, DO5bl2combo_text, DO6bl2combo_text, DO7bl2combo_text, DO8bl2combo_text,
                 DO1bl3combo_text, DO2bl3combo_text, DO3bl3combo_text, DO4bl3combo_text, DO5bl3combo_text, DO6bl3combo_text, DO7bl3combo_text, DO8bl3combo_text
@@ -71,7 +68,7 @@ namespace Moderon
 
             var do_signals_index = new List<int>()
             {
-                DO4combo_index, DO5combo_index, DO6combo_index,
+                DO2combo_index, DO3combo_index, DO4combo_index, DO5combo_index, DO6combo_index,
                 DO1bl1combo_index, DO2bl1combo_index, DO3bl1combo_index, DO4bl1combo_index, DO5bl1combo_index, DO6bl1combo_index, DO7bl1combo_index, DO8bl1combo_index,
                 DO1bl2combo_index, DO2bl2combo_index, DO3bl2combo_index, DO4bl2combo_index, DO5bl2combo_index, DO6bl2combo_index, DO7bl2combo_index, DO8bl2combo_index,
                 DO1bl3combo_index, DO2bl3combo_index, DO3bl3combo_index, DO4bl3combo_index, DO5bl3combo_index, DO6bl3combo_index, DO7bl3combo_index, DO8bl3combo_index
@@ -105,6 +102,7 @@ namespace Moderon
             signalsPanel.Location = p1;
             signalsPanel.Show();
             signalsPanel.Height = 845;
+            
             // Отображение выбора типа контроллера
             comboPlkType.Location = p2;
             comboPlkType.Show();
@@ -124,7 +122,6 @@ namespace Moderon
             // Отображение панели блоков расширения при наличии
             if (expansion_blocks.Count > 0) panelBlocks.Show();
             formSignalsButton.Show();                       // Отображение кнопки "Сформировать IO"
-            // ToolStripMenuItem_load.Enabled = true;       // Разблокировка "Настройка" (опция оключена!)
             fromSignalsMove = false;                        // Сброс признака перехода с панели выбора сигналов
             toolStripMenuItem_help.Enabled = true;          // Разблокировка "Помощь"
         }
@@ -134,66 +131,54 @@ namespace Moderon
         {
             SetComboInitial_signals(); // Начальная установка для comboBox
 
-            const ushort start_signal_code = 1001;    // UI сигнал пуск/стоп
-            const ushort fire_signal_code = 1098;     // UI сигнал пожарной сигнализации  
-            const ushort fanPr_1_start_code = 8;      // DO сигнал пуск/стоп приточного вентилятора 1
+            const ushort startStopSignal = 1001;    // UI сигнал пуск/стоп
+            const ushort fireSignal = 1098;         // UI сигнал пожарной сигнализации  
+            const ushort fanStartStop = 8;          // DO сигнал пуск/стоп приточного вентилятора 1
 
             // Добавление начальных DI
-            list_ui.Add(new Ui("Переключатель \"Стоп/Пуск\"", start_signal_code, DI));
-            list_ui.Add(new Ui("Сигнал пожарной сигнализации", fire_signal_code, DI));
+            list_ui.Add(new Ui("Переключатель \"Стоп/Пуск\"", startStopSignal, DI));
+            list_ui.Add(new Ui("Сигнал пожарной сигнализации", fireSignal, DI));
+            
             // Добавление начальных DO
-            list_do.Add(new Do("Сигнал \"Пуск/Стоп\" приточного вентилятора 1", fanPr_1_start_code));
-            //list_do.Add(new Do("Сигнал \"Работа\"", 1));
-            //list_do.Add(new Do("Сигнал \"Авария\"", 3));
-            // Выбор сигналов "Работа" и "Авария" по умолчанию после сброса
+            list_do.Add(new Do("Сигнал \"Пуск/Стоп\" приточного вентилятора 1", fanStartStop));
             ignoreEvents = true;
-            //sigWorkCheck.Checked = true;
-            //sigAlarmCheck.Checked = true;
 
             // Выбор сигналов "Пуск/Стоп" для вентиляторов по умолчанию после сброса
             prFanStStopCheck.Checked = true;        // Приточный вентилятор
             outFanStStopCheck.Checked = true;       // Вытяжной вентилятор
             fireCheck.Checked = true;               // Сигнал пожарной сигнализации
+            
             ignoreEvents = false;
             
             // Добавление к выбору начальных сигналов
 
             // UI сигналы
-            Ui start_stop = list_ui.Find(x => x.Code == start_signal_code);         // Дискретный сигнал "Пуск/Старт"
+            Ui start_stop = list_ui.Find(x => x.Code == startStopSignal);           // Дискретный сигнал "Пуск/Старт"
             string start_stop_name = start_stop.Name; 
 
             UI1_combo.Items.Add(start_stop_name);                                  
             start_stop.Select();
             UI1_combo.SelectedIndex = 1;                                            // Выбор сигнала
-            if (showCode) UI1_lab.Text = start_signal_code.ToString();
+            if (showCode) UI1_lab.Text = startStopSignal.ToString();
 
-            Ui fire_signal = list_ui.Find(x => x.Code == fire_signal_code);
+            Ui fire_signal = list_ui.Find(x => x.Code == fireSignal);
             string fire_signal_name = fire_signal.Name;
 
             UI2_combo.Items.Add(fire_signal_name);
             fire_signal.Select();
             UI2_combo.SelectedIndex = 1;
-            if (showCode) UI2_lab.Text = fire_signal_code.ToString();
+            if (showCode) UI2_lab.Text = fireSignal.ToString();
 
             // DO сигналы
-            Do start_fan = list_do.Find(x => x.Code == fanPr_1_start_code);
+            Do start_fan = list_do.Find(x => x.Code == fanStartStop);
             string start_fan_name = start_fan.Name;
 
             DO1_combo.Items.Add(start_fan_name);                                    // Сигнал "Пуск/Стоп" приточного вентилятора 1
             start_fan.Select();
-            DO1_combo.SelectedIndex = 1; // Выбор сигнала
-            if (showCode) DO1_lab.Text = fanPr_1_start_code.ToString();
+            DO1_combo.SelectedIndex = 1;
+            if (showCode) DO1_lab.Text = fanStartStop.ToString();
 
-            /*DO2_combo.Items.Add(list_do.Find(x => x.Code == 1).Name);             // Сигнал "Работа"
-            DO2_combo.SelectedIndex = 1;
-            if (showCode) DO2_lab.Text = 1.ToString();
-            list_do.Find(x => x.Code == 1).Select();
-            DO3_combo.Items.Add(list_do.Find(x => x.Code == 3).Name);               // Сигнал "Авария"
-            DO3_combo.SelectedIndex = 1;
-            if (showCode) DO3_lab.Text = 3.ToString();
-            list_do.Find(x => x.Code == 3).Select(); */
-
-            initialComboSignals = false; // Сброс признака начальной настройки comboBox
+            initialComboSignals = false;                                            // Сброс признака начальной настройки comboBox
         }
 
         ///<summary>Очистка массивов сигналов DI, DO, AI, AO</summary>
@@ -306,7 +291,7 @@ namespace Moderon
             {
                 comboPlkType.Enabled = false;                                       // Блокировка смены типа ПЛК
                 saveToolStripMenuItem.Enabled = false;                              // Блокировка сохранения файла
-                backSignalsButton.Enabled = false;                                  // Блокировка кнопки "Назад"
+                // backSignalsButton.Enabled = false;                                  // Блокировка кнопки "Назад"
                 signalsReadyLabel.Text = "Карта входов/выходов некорректна";
                 signalsReadyLabel.ForeColor = Color.Red;
                 loadPLC_SignalsButton.Hide();                                       // Кнопка "Далее"
@@ -703,7 +688,7 @@ namespace Moderon
         }
 
         ///<summary>Удаление DO из определённого comboBox</summary>
-        private void RemoveDO_FromComboBox(ComboBox comboBox, string name, Label label, string text, int index)
+        private void RemoveDO_FromComboBox(ComboBox comboBox, string name, ref Label label, ref string text, ref int index)
         {
             for (int i = 0; i < comboBox.Items.Count; i++)
                 if (comboBox.Items[i].ToString() == name)                                                   // Есть совпадение по имени в списке
@@ -748,39 +733,39 @@ namespace Moderon
             subDOcondition = true;                                          // Признак удаления DO, не работает событие indexChanged
 
             // ПЛК
-            RemoveDO_FromComboBox(DO1_combo, name, DO1_lab, DO1combo_text, DO1combo_index);                 // DO1
-            RemoveDO_FromComboBox(DO2_combo, name, DO2_lab, DO2combo_text, DO2combo_index);                 // DO2
-            RemoveDO_FromComboBox(DO3_combo, name, DO3_lab, DO3combo_text, DO3combo_index);                 // DO3
-            RemoveDO_FromComboBox(DO4_combo, name, DO4_lab, DO4combo_text, DO4combo_index);                 // DO4
-            RemoveDO_FromComboBox(DO5_combo, name, DO5_lab, DO5combo_text, DO5combo_index);                 // DO5
-            RemoveDO_FromComboBox(DO6_combo, name, DO6_lab, DO6combo_text, DO6combo_index);                 // DO6
+            RemoveDO_FromComboBox(DO1_combo, name, ref DO1_lab, ref DO1combo_text, ref DO1combo_index);                 // DO1
+            RemoveDO_FromComboBox(DO2_combo, name, ref DO2_lab, ref DO2combo_text, ref DO2combo_index);                 // DO2
+            RemoveDO_FromComboBox(DO3_combo, name, ref DO3_lab, ref DO3combo_text, ref DO3combo_index);                 // DO3
+            RemoveDO_FromComboBox(DO4_combo, name, ref DO4_lab, ref DO4combo_text, ref DO4combo_index);                 // DO4
+            RemoveDO_FromComboBox(DO5_combo, name, ref DO5_lab, ref DO5combo_text, ref DO5combo_index);                 // DO5
+            RemoveDO_FromComboBox(DO6_combo, name, ref DO6_lab, ref DO6combo_text, ref DO6combo_index);                 // DO6
             // Блок расширения 1
-            RemoveDO_FromComboBox(DO1bl1_combo, name, DO1bl1_lab, DO1bl1combo_text, DO1bl1combo_index);     // DO1
-            RemoveDO_FromComboBox(DO2bl1_combo, name, DO2bl1_lab, DO2bl1combo_text, DO2bl1combo_index);     // DO2
-            RemoveDO_FromComboBox(DO3bl1_combo, name, DO3bl1_lab, DO3bl1combo_text, DO3bl1combo_index);     // DO3
-            RemoveDO_FromComboBox(DO4bl1_combo, name, DO4bl1_lab, DO4bl1combo_text, DO4bl1combo_index);     // DO4
-            RemoveDO_FromComboBox(DO5bl1_combo, name, DO5bl1_lab, DO5bl1combo_text, DO5bl1combo_index);     // DO5
-            RemoveDO_FromComboBox(DO6bl1_combo, name, DO6bl1_lab, DO6bl1combo_text, DO6bl1combo_index);     // DO6
-            RemoveDO_FromComboBox(DO7bl1_combo, name, DO7bl1_lab, DO7bl1combo_text, DO7bl1combo_index);     // DO7
-            RemoveDO_FromComboBox(DO8bl1_combo, name, DO8bl1_lab, DO8bl1combo_text, DO8bl1combo_index);     // DO8
+            RemoveDO_FromComboBox(DO1bl1_combo, name, ref DO1bl1_lab, ref DO1bl1combo_text, ref DO1bl1combo_index);     // DO1
+            RemoveDO_FromComboBox(DO2bl1_combo, name, ref DO2bl1_lab, ref DO2bl1combo_text, ref DO2bl1combo_index);     // DO2
+            RemoveDO_FromComboBox(DO3bl1_combo, name, ref DO3bl1_lab, ref DO3bl1combo_text, ref DO3bl1combo_index);     // DO3
+            RemoveDO_FromComboBox(DO4bl1_combo, name, ref DO4bl1_lab, ref DO4bl1combo_text, ref DO4bl1combo_index);     // DO4
+            RemoveDO_FromComboBox(DO5bl1_combo, name, ref DO5bl1_lab, ref DO5bl1combo_text, ref DO5bl1combo_index);     // DO5
+            RemoveDO_FromComboBox(DO6bl1_combo, name, ref DO6bl1_lab, ref DO6bl1combo_text, ref DO6bl1combo_index);     // DO6
+            RemoveDO_FromComboBox(DO7bl1_combo, name, ref DO7bl1_lab, ref DO7bl1combo_text, ref DO7bl1combo_index);     // DO7
+            RemoveDO_FromComboBox(DO8bl1_combo, name, ref DO8bl1_lab, ref DO8bl1combo_text, ref DO8bl1combo_index);     // DO8
             // Блок расширения 2
-            RemoveDO_FromComboBox(DO1bl2_combo, name, DO1bl2_lab, DO1bl2combo_text, DO1bl2combo_index);     // DO1
-            RemoveDO_FromComboBox(DO2bl2_combo, name, DO2bl2_lab, DO2bl2combo_text, DO2bl2combo_index);     // DO2
-            RemoveDO_FromComboBox(DO3bl2_combo, name, DO3bl2_lab, DO3bl2combo_text, DO3bl2combo_index);     // DO3
-            RemoveDO_FromComboBox(DO4bl2_combo, name, DO4bl2_lab, DO4bl2combo_text, DO4bl2combo_index);     // DO4
-            RemoveDO_FromComboBox(DO5bl2_combo, name, DO5bl2_lab, DO5bl2combo_text, DO5bl2combo_index);     // DO5
-            RemoveDO_FromComboBox(DO6bl2_combo, name, DO6bl2_lab, DO6bl2combo_text, DO6bl2combo_index);     // DO6
-            RemoveDO_FromComboBox(DO7bl2_combo, name, DO7bl2_lab, DO7bl2combo_text, DO7bl2combo_index);     // DO7
-            RemoveDO_FromComboBox(DO8bl2_combo, name, DO8bl2_lab, DO8bl2combo_text, DO8bl2combo_index);     // DO8
+            RemoveDO_FromComboBox(DO1bl2_combo, name, ref DO1bl2_lab, ref DO1bl2combo_text, ref DO1bl2combo_index);     // DO1
+            RemoveDO_FromComboBox(DO2bl2_combo, name, ref DO2bl2_lab, ref DO2bl2combo_text, ref DO2bl2combo_index);     // DO2
+            RemoveDO_FromComboBox(DO3bl2_combo, name, ref DO3bl2_lab, ref DO3bl2combo_text, ref DO3bl2combo_index);     // DO3
+            RemoveDO_FromComboBox(DO4bl2_combo, name, ref DO4bl2_lab, ref DO4bl2combo_text, ref DO4bl2combo_index);     // DO4
+            RemoveDO_FromComboBox(DO5bl2_combo, name, ref DO5bl2_lab, ref DO5bl2combo_text, ref DO5bl2combo_index);     // DO5
+            RemoveDO_FromComboBox(DO6bl2_combo, name, ref DO6bl2_lab, ref DO6bl2combo_text, ref DO6bl2combo_index);     // DO6
+            RemoveDO_FromComboBox(DO7bl2_combo, name, ref DO7bl2_lab, ref DO7bl2combo_text, ref DO7bl2combo_index);     // DO7
+            RemoveDO_FromComboBox(DO8bl2_combo, name, ref DO8bl2_lab, ref DO8bl2combo_text, ref DO8bl2combo_index);     // DO8
             // Блок расширения 3
-            RemoveDO_FromComboBox(DO1bl3_combo, name, DO1bl3_lab, DO1bl3combo_text, DO1bl3combo_index);     // DO1
-            RemoveDO_FromComboBox(DO2bl3_combo, name, DO2bl3_lab, DO2bl3combo_text, DO2bl3combo_index);     // DO2
-            RemoveDO_FromComboBox(DO3bl3_combo, name, DO3bl3_lab, DO3bl3combo_text, DO3bl3combo_index);     // DO3
-            RemoveDO_FromComboBox(DO4bl3_combo, name, DO4bl3_lab, DO4bl3combo_text, DO4bl3combo_index);     // DO4
-            RemoveDO_FromComboBox(DO5bl3_combo, name, DO5bl3_lab, DO5bl3combo_text, DO5bl3combo_index);     // DO5
-            RemoveDO_FromComboBox(DO6bl3_combo, name, DO6bl3_lab, DO6bl3combo_text, DO6bl3combo_index);     // DO6
-            RemoveDO_FromComboBox(DO7bl3_combo, name, DO7bl3_lab, DO7bl3combo_text, DO7bl3combo_index);     // DO7
-            RemoveDO_FromComboBox(DO8bl3_combo, name, DO8bl3_lab, DO8bl3combo_text, DO8bl3combo_index);     // DO8
+            RemoveDO_FromComboBox(DO1bl3_combo, name, ref DO1bl3_lab, ref DO1bl3combo_text, ref DO1bl3combo_index);     // DO1
+            RemoveDO_FromComboBox(DO2bl3_combo, name, ref DO2bl3_lab, ref DO2bl3combo_text, ref DO2bl3combo_index);     // DO2
+            RemoveDO_FromComboBox(DO3bl3_combo, name, ref DO3bl3_lab, ref DO3bl3combo_text, ref DO3bl3combo_index);     // DO3
+            RemoveDO_FromComboBox(DO4bl3_combo, name, ref DO4bl3_lab, ref DO4bl3combo_text, ref DO4bl3combo_index);     // DO4
+            RemoveDO_FromComboBox(DO5bl3_combo, name, ref DO5bl3_lab, ref DO5bl3combo_text, ref DO5bl3combo_index);     // DO5
+            RemoveDO_FromComboBox(DO6bl3_combo, name, ref DO6bl3_lab, ref DO6bl3combo_text, ref DO6bl3combo_index);     // DO6
+            RemoveDO_FromComboBox(DO7bl3_combo, name, ref DO7bl3_lab, ref DO7bl3combo_text, ref DO7bl3combo_index);     // DO7
+            RemoveDO_FromComboBox(DO8bl3_combo, name, ref DO8bl3_lab, ref DO8bl3combo_text, ref DO8bl3combo_index);     // DO8
 
             subDOcondition = false;                     // Сброс признака удаление из DO
             list_do.Remove(find_do);                    // Удаление сигнала из списка DO

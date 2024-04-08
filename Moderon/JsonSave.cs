@@ -13,80 +13,69 @@ namespace Moderon
 {
     class JsonObject
     {
-        [JsonProperty("checkBoxState")]
-        public Dictionary<string, bool> checkBoxState { get; set; }                 // Состояние всех checkBox
+        [JsonProperty("CheckBoxState")]
+        public Dictionary<string, bool> CheckBoxState { get; set; }                 // Состояние всех checkBox
 
-        [JsonProperty("comboBoxElemState")]
-        public Dictionary<string, int> comboBoxElemState { get; set; }              // Состояние всех comboBox элементов
+        [JsonProperty("ComboBoxElemState")]
+        public Dictionary<string, int> ComboBoxElemState { get; set; }              // Состояние всех comboBox элементов
 
-        [JsonProperty("textBoxElemState")]
-        public Dictionary<string, string> textBoxElemState { get; set; }            // Значение для textBox элементов
+        [JsonProperty("TextBoxElemState")]
+        public Dictionary<string, string> TextBoxElemState { get; set; }            // Значение для textBox элементов
 
-        [JsonProperty("labelSignalsState")]
-        public Dictionary<string, string> labelSignalsState { get; set; }           // Значение для label таблицы сигналов
+        [JsonProperty("LabelSignalsState")]
+        public Dictionary<string, string> LabelSignalsState { get; set; }           // Значение для label таблицы сигналов
 
-        [JsonProperty("comboSignalsItems")]
-        public Dictionary<string, string[]> comboSignalsItems { get; set; }         // Элементы для comboBox таблицы сигналов
+        [JsonProperty("ComboSignalsItems")]
+        public Dictionary<string, string[]> ComboSignalsItems { get; set; }         // Элементы для comboBox таблицы сигналов
 
-        [JsonProperty("comboSignalsState")]
-        public Dictionary<string, string> comboSignalsState { get; set; }           // Значение для comboBox таблицы сигналов
+        [JsonProperty("ComboSignalsState")]
+        public Dictionary<string, string> ComboSignalsState { get; set; }           // Значение для comboBox таблицы сигналов
 
-        [JsonProperty("uiCode")]
-        public Dictionary<string, ushort> uiCode { get; set; }                      // Словарь для кодов сигналов UI
+        [JsonProperty("UiCode")]
+        public Dictionary<string, ushort> UiCode { get; set; }                      // Словарь для кодов сигналов UI
 
-        [JsonProperty("uiType")]
-        public Dictionary<string, string> uiType { get; set; }                      // Словарь для типов сигналов UI
+        [JsonProperty("UiType")]
+        public Dictionary<string, string> UiType { get; set; }                      // Словарь для типов сигналов UI
 
-        [JsonProperty("uiActive")]
-        public Dictionary<string, bool> uiActive { get; set; }                      // Словарь для активности сигналов UI
+        [JsonProperty("UiActive")]
+        public Dictionary<string, bool> UiActive { get; set; }                      // Словарь для активности сигналов UI
 
-        [JsonProperty("aoCode")]
-        public Dictionary<string, ushort> aoCode { get; set; }                      // Словарь для кодов сигналов AO
+        [JsonProperty("AoCode")]
+        public Dictionary<string, ushort> AoCode { get; set; }                      // Словарь для кодов сигналов AO
 
-        [JsonProperty("aoActive")]
-        public Dictionary<string, bool> aoActive { get; set; }                      // Словарь для активности сигналов AO
+        [JsonProperty("AoActive")]
+        public Dictionary<string, bool> AoActive { get; set; }                      // Словарь для активности сигналов AO
 
-        [JsonProperty("doCode")]
-        public Dictionary<string, ushort> doCode { get; set; }                      // Словарь для кодов сигналов DO
+        [JsonProperty("DoCode")]
+        public Dictionary<string, ushort> DoCode { get; set; }                      // Словарь для кодов сигналов DO
 
-        [JsonProperty("doActive")]
-        public Dictionary<string, bool> doActive { get; set; }                      // Словарь для активности сигналов DO
+        [JsonProperty("DoActive")]
+        public Dictionary<string, bool> DoActive { get; set; }                      // Словарь для активности сигналов DO
 
-        [JsonProperty("uiTypeEnable")]
-        public Dictionary<string, bool> uiTypeEnable { get; set; }                  // Словарь для доступности типа UI сигналов
+        [JsonProperty("UiTypeEnable")]
+        public Dictionary<string, bool> UiTypeEnable { get; set; }                  // Словарь для доступности типа UI сигналов
 
-        [JsonProperty("comboIndex")]
-        public Dictionary<string, int> comboIndex { get; set; }                     // Словарь для сохранения выбранного ранее индекса comboBox
+        [JsonProperty("CommandWords")]
+        public Dictionary<string, ushort> CommandWords { get; set; }                // Словарь для командных слов программы
 
-        [JsonProperty("comboText")]
-        public Dictionary<string, string> comboText { get; set; }                   // Словарь для сохранения текста выбранного сигнала comboBox
+        [JsonProperty("ComboIndex")]
+        public Dictionary<string, int> ComboIndex { get; set; }                     // Словарь для сохранения выбранного ранее индекса comboBox
 
-        [JsonProperty("expBlocks")]                                                 
-        public Dictionary<string, int> expBlocks { get; set; }                      // Словарь для сохранения количества блоков расширения
+        [JsonProperty("ComboText")]
+        public Dictionary<string, string> ComboText { get; set; }                   // Словарь для сохранения текста выбранного сигнала comboBox
 
-        [JsonProperty("plkType")]                                                   // Опция для сохранения типа выбранного ПЛК
-        public Dictionary<string, int> plkType { get; set; }
+        [JsonProperty("ExpBlocks")]                                                 
+        public Dictionary<string, int> ExpBlocks { get; set; }                      // Словарь для сохранения количества блоков расширения
+
+        [JsonProperty("PlkType")]                                                   
+        public Dictionary<string, int> PlkType { get; set; }                        // Опция для сохранения типа выбранного ПЛК
 
         [JsonConstructor]
         public JsonObject(){
-            checkBoxState = new Dictionary<string, bool>();
-            comboBoxElemState = new Dictionary<string, int>();
-            textBoxElemState = new Dictionary<string, string>();
-            labelSignalsState = new Dictionary<string, string>();
-            comboSignalsItems = new Dictionary<string, string[]>();
-            comboSignalsState = new Dictionary<string, string>();
-            uiCode = new Dictionary<string, ushort>();
-            uiType = new Dictionary<string, string>();
-            uiActive = new Dictionary<string, bool>();
-            aoCode = new Dictionary<string, ushort>();
-            aoActive = new Dictionary<string, bool>();
-            uiTypeEnable = new Dictionary<string, bool>();
-            doCode = new Dictionary<string, ushort>();
-            doActive = new Dictionary<string, bool>();
-            comboIndex = new Dictionary<string, int>();
-            comboText = new Dictionary<string, string>();
-            expBlocks = new Dictionary<string, int>();
-            plkType = new Dictionary<string, int>();
+            CheckBoxState = []; ComboBoxElemState = []; TextBoxElemState = []; LabelSignalsState = [];
+            ComboSignalsItems = []; ComboSignalsState = []; UiCode = []; UiType = []; UiActive = [];
+            AoCode = []; AoActive = []; UiTypeEnable = []; CommandWords = []; DoCode = []; DoActive = [];
+            ComboIndex = []; ComboText = []; ExpBlocks = []; PlkType = [];
         }
     }
 
@@ -109,8 +98,20 @@ namespace Moderon
             BuildComboText();                           // Сохранение ранее выбранного текста comboBox таблицы сигналов
             BuildExpBlocks();                           // Сохранение количества и типов блоков расширения
             Build_UITypeEnable();                       // Сохранение доступности типов UI сигналов
+            Build_CommandWords();                       // Сохранение командных слов программы
             BuildPlkType();                             // Сохранение типа выбранного контроллера
             SaveJsonFile();                             // Сохранение файла JSON  
+        }
+
+        ///<summary>Сохранение кодов командных слов программы</summary>
+        private void Build_CommandWords()
+        {
+            BuildCmdWords();        // Сборка командных слов перед сохранением
+
+            for (ushort i = 0; i < cmdWords.Length; i++)
+                json.CommandWords.Add($"Cmd_{i + 1}", cmdWords[i]);
+           
+            json.CommandWords.Add("Cmd_31", cmdW_fire);
         }
 
         ///<summary>Сохранение состояния доступности для UI типов сигналов</summary>
@@ -137,7 +138,7 @@ namespace Moderon
             };
 
             foreach (var el in ui_combos_type)
-                json.uiTypeEnable.Add(el.Name, el.Enabled);
+                json.UiTypeEnable.Add(el.Name, el.Enabled);
         }
 
         ///<summary>Сохранение ранее выбранного текста сигнала comboBox таблицы сигналов</summary>
@@ -257,7 +258,7 @@ namespace Moderon
                 { "UI16bl3combo_text", UI16bl3combo_text }
             };
 
-            foreach (var el in texts) json.comboText.Add(el.Key, el.Value);
+            foreach (var el in texts) json.ComboText.Add(el.Key, el.Value);
         }
 
         ///<summary>Сохранение ранее выбранного индекса comboBox таблицы сигналов</summary>
@@ -377,13 +378,13 @@ namespace Moderon
                 { "UI16bl3combo_index", UI16bl3combo_index }
             };
 
-            foreach (var el in indexes) json.comboIndex.Add(el.Key, el.Value);
+            foreach (var el in indexes) json.ComboIndex.Add(el.Key, el.Value);
         }
 
         ///<summary>Сохранение выбранного типа ПЛК</summary>
         private void BuildPlkType()
         {
-            json.plkType.Add("comboPlkType", comboPlkType.SelectedIndex);
+            json.PlkType.Add("comboPlkType", comboPlkType.SelectedIndex);
         }
 
         ///<summary>Сохранение количеcтва и типов блоков расширения</summary>
@@ -398,7 +399,7 @@ namespace Moderon
 
             foreach (var el in exp_blocks)
                 if (currentBlocks.ContainsKey(el))
-                    json.expBlocks.Add(el.Name, currentBlocks[el]);
+                    json.ExpBlocks.Add(el.Name, currentBlocks[el]);
         }
 
         ///<summary>Перенос перечня сигналов, массивы UI, AO, DO</summary>
@@ -407,23 +408,23 @@ namespace Moderon
             // Значения полей для сигналов UI
             for (int i = 0; i < list_ui.Count; i++)
             {
-                json.uiCode.Add(list_ui[i].Name, list_ui[i].Code);
-                json.uiType.Add(list_ui[i].Name, list_ui[i].Type);
-                json.uiActive.Add(list_ui[i].Name, list_ui[i].Active);
+                json.UiCode.Add(list_ui[i].Name, list_ui[i].Code);
+                json.UiType.Add(list_ui[i].Name, list_ui[i].Type);
+                json.UiActive.Add(list_ui[i].Name, list_ui[i].Active);
             }
 
             // Значения полей для сигналов AO
             for (int i = 0; i < list_ao.Count; i++)
             {
-                json.aoCode.Add(list_ao[i].Name, list_ao[i].Code);
-                json.aoActive.Add(list_ao[i].Name, list_ao[i].Active);
+                json.AoCode.Add(list_ao[i].Name, list_ao[i].Code);
+                json.AoActive.Add(list_ao[i].Name, list_ao[i].Active);
             }
 
             // Значения полей для сигналов DO
             for (int i = 0; i < list_do.Count; i++)
             {
-                json.doCode.Add(list_do[i].Name, list_do[i].Code);
-                json.doActive.Add(list_do[i].Name, list_do[i].Active);
+                json.DoCode.Add(list_do[i].Name, list_do[i].Code);
+                json.DoActive.Add(list_do[i].Name, list_do[i].Active);
             }
         }
 
@@ -523,7 +524,7 @@ namespace Moderon
                 outFanSpeedCheck, outDampFanCheck, outDampConfirmFanCheck
             };
 
-            foreach (var el in check_boxes) json.checkBoxState.Add(el.Name, el.Checked);
+            foreach (var el in check_boxes) json.CheckBoxState.Add(el.Name, el.Checked);
         }
 
         ///<summary>Сохранение для всех comboBox элементов программы</summary>
@@ -546,7 +547,7 @@ namespace Moderon
                 recircPowCombo, recupTypeCombo, rotorPowCombo, bypassPlastCombo, fireTypeCombo
             };
 
-            foreach (var el in combo_boxes) json.comboBoxElemState.Add(el.Name, el.SelectedIndex);
+            foreach (var el in combo_boxes) json.ComboBoxElemState.Add(el.Name, el.SelectedIndex);
         }
 
         ///<summary>Сохранение для всех textBox элементов программы</summary>
@@ -562,12 +563,12 @@ namespace Moderon
                 elHeatPowBox, elAddHeatPowBox, b_recircBox, h_recircBox, powRotRecBox
             };
 
-            foreach (var el in text_boxes) json.textBoxElemState.Add(el.Name, el.Text);
+            foreach (var el in text_boxes) json.TextBoxElemState.Add(el.Name, el.Text);
         }
 
         ///<summary>Добавление подписи кода таблицы сигналов</summary>
         private void AddLabelSignalsState(Label el) =>
-            json.labelSignalsState.Add(el.Name, el.Text);       
+            json.LabelSignalsState.Add(el.Name, el.Text);       
 
         ///<summary>Сохранение для подписей кодов таблицы сигналов</summary>
         private void BuildLabelSignalsAll()
@@ -617,7 +618,7 @@ namespace Moderon
 
         ///<summary>Добавление состояния для comboBox по таблице сигналов</summary>
         private void AddComboSignalsState(ComboBox el) =>
-            json.comboSignalsState.Add(el.Name, el.SelectedItem.ToString());
+            json.ComboSignalsState.Add(el.Name, el.SelectedItem.ToString());
         
         ///<summary>Сохранение состояний для comboBox таблицы сигналов</summary>
         private void BuildComboSignalsAll()
@@ -693,7 +694,7 @@ namespace Moderon
             string[] arr_combo = new string[el.Items.Count];
             for (int i = 0; i < el.Items.Count; i++)
                 arr_combo[i] = el.GetItemText(el.Items[i]);
-            json.comboSignalsItems.Add(el.Name, arr_combo);
+            json.ComboSignalsItems.Add(el.Name, arr_combo);
         }
 
         ///<summary>Сохранение коллекций элементов для таблицы сигналов</summary>

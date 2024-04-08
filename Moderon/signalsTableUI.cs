@@ -756,7 +756,7 @@ namespace Moderon
         }
 
         ///<summary>Удаление UI из определённого comboBox</summary>
-        private void RemoveUI_FromComboBox(ComboBox cm, string name, Label label, string text, int index, ComboBox typeCombo)
+        private void RemoveUI_FromComboBox(ComboBox cm, string name, ref Label label, ref string text, ref int index, ComboBox typeCombo)
         {
             Ui find_ui;                                                                             // UI вход для поиска
 
@@ -805,71 +805,71 @@ namespace Moderon
             subUIcondition = true;      // Признак удаления UI, не работает событие indexChanged                                                    
 
             // ПЛК (до 11 UI входов)
-            RemoveUI_FromComboBox(UI1_combo, name, UI1_lab, UI1combo_text, UI1combo_index, UI1_typeCombo);                          // UI1 ПЛК
-            RemoveUI_FromComboBox(UI2_combo, name, UI2_lab, UI2combo_text, UI2combo_index, UI2_typeCombo);                          // UI2 ПЛК
-            RemoveUI_FromComboBox(UI3_combo, name, UI3_lab, UI3combo_text, UI3combo_index, UI3_typeCombo);                          // UI3 ПЛК
-            RemoveUI_FromComboBox(UI4_combo, name, UI4_lab, UI4combo_text, UI4combo_index, UI4_typeCombo);                          // UI4 ПЛК
-            RemoveUI_FromComboBox(UI5_combo, name, UI5_lab, UI5combo_text, UI5combo_index, UI5_typeCombo);                          // UI5 ПЛК
-            RemoveUI_FromComboBox(UI6_combo, name, UI6_lab, UI6combo_text, UI6combo_index, UI6_typeCombo);                          // UI6 ПЛК
-            RemoveUI_FromComboBox(UI7_combo, name, UI7_lab, UI7combo_text, UI7combo_index, UI7_typeCombo);                          // UI7 ПЛК
-            RemoveUI_FromComboBox(UI8_combo, name, UI8_lab, UI8combo_text, UI8combo_index, UI8_typeCombo);                          // UI8 ПЛК
-            RemoveUI_FromComboBox(UI9_combo, name, UI9_lab, UI9combo_text, UI9combo_index, UI9_typeCombo);                          // UI9 ПЛК
-            RemoveUI_FromComboBox(UI10_combo, name, UI10_lab, UI10combo_text, UI10combo_index, UI10_typeCombo);                     // UI10 ПЛК
-            RemoveUI_FromComboBox(UI11_combo, name, UI11_lab, UI11combo_text, UI11combo_index, UI11_typeCombo);                     // UI11 ПЛК
+            RemoveUI_FromComboBox(UI1_combo, name, ref UI1_lab, ref UI1combo_text, ref UI1combo_index, UI1_typeCombo);          // UI1 ПЛК
+            RemoveUI_FromComboBox(UI2_combo, name, ref UI2_lab, ref UI2combo_text, ref UI2combo_index, UI2_typeCombo);          // UI2 ПЛК
+            RemoveUI_FromComboBox(UI3_combo, name, ref UI3_lab, ref UI3combo_text, ref UI3combo_index, UI3_typeCombo);          // UI3 ПЛК
+            RemoveUI_FromComboBox(UI4_combo, name, ref UI4_lab, ref UI4combo_text, ref UI4combo_index, UI4_typeCombo);          // UI4 ПЛК
+            RemoveUI_FromComboBox(UI5_combo, name, ref UI5_lab, ref UI5combo_text, ref UI5combo_index, UI5_typeCombo);          // UI5 ПЛК
+            RemoveUI_FromComboBox(UI6_combo, name, ref UI6_lab, ref UI6combo_text, ref UI6combo_index, UI6_typeCombo);          // UI6 ПЛК
+            RemoveUI_FromComboBox(UI7_combo, name, ref UI7_lab, ref UI7combo_text, ref UI7combo_index, UI7_typeCombo);          // UI7 ПЛК
+            RemoveUI_FromComboBox(UI8_combo, name, ref UI8_lab, ref UI8combo_text, ref UI8combo_index, UI8_typeCombo);          // UI8 ПЛК
+            RemoveUI_FromComboBox(UI9_combo, name, ref UI9_lab, ref UI9combo_text, ref UI9combo_index, UI9_typeCombo);          // UI9 ПЛК
+            RemoveUI_FromComboBox(UI10_combo, name, ref UI10_lab, ref UI10combo_text, ref UI10combo_index, UI10_typeCombo);     // UI10 ПЛК
+            RemoveUI_FromComboBox(UI11_combo, name, ref UI11_lab, ref UI11combo_text, ref UI11combo_index, UI11_typeCombo);     // UI11 ПЛК
             
             // Блок расширения 1 (до 16 UI входов)
-            RemoveUI_FromComboBox(UI1bl1_combo, name, UI1bl1_lab, UI1bl1combo_text, UI1bl1combo_index, UI1bl1_typeCombo);           // UI1 блок 1
-            RemoveUI_FromComboBox(UI2bl1_combo, name, UI2bl1_lab, UI2bl1combo_text, UI2bl1combo_index, UI2bl1_typeCombo);           // UI2 блок 1
-            RemoveUI_FromComboBox(UI3bl1_combo, name, UI3bl1_lab, UI3bl1combo_text, UI3bl1combo_index, UI3bl1_typeCombo);           // UI3 блок 1
-            RemoveUI_FromComboBox(UI4bl1_combo, name, UI4bl1_lab, UI4bl1combo_text, UI4bl1combo_index, UI4bl1_typeCombo);           // UI4 блок 1
-            RemoveUI_FromComboBox(UI5bl1_combo, name, UI5bl1_lab, UI5bl1combo_text, UI5bl1combo_index, UI5bl1_typeCombo);           // UI5 блок 1
-            RemoveUI_FromComboBox(UI6bl1_combo, name, UI6bl1_lab, UI6bl1combo_text, UI6bl1combo_index, UI6bl1_typeCombo);           // UI6 блок 1
-            RemoveUI_FromComboBox(UI7bl1_combo, name, UI7bl1_lab, UI7bl1combo_text, UI7bl1combo_index, UI7bl1_typeCombo);           // UI7 блок 1
-            RemoveUI_FromComboBox(UI8bl1_combo, name, UI8bl1_lab, UI8bl1combo_text, UI8bl1combo_index, UI8bl1_typeCombo);           // UI8 блок 1
-            RemoveUI_FromComboBox(UI9bl1_combo, name, UI9bl1_lab, UI9bl1combo_text, UI9bl1combo_index, UI9bl1_typeCombo);           // UI9 блок 1
-            RemoveUI_FromComboBox(UI10bl1_combo, name, UI10bl1_lab, UI10bl1combo_text, UI10bl1combo_index, UI10bl1_typeCombo);      // UI10 блок 1
-            RemoveUI_FromComboBox(UI11bl1_combo, name, UI11bl1_lab, UI11bl1combo_text, UI11bl1combo_index, UI11bl1_typeCombo);      // UI11 блок 1
-            RemoveUI_FromComboBox(UI12bl1_combo, name, UI12bl1_lab, UI12bl1combo_text, UI12bl1combo_index, UI12bl1_typeCombo);      // UI12 блок 1
-            RemoveUI_FromComboBox(UI13bl1_combo, name, UI13bl1_lab, UI13bl1combo_text, UI13bl1combo_index, UI13bl1_typeCombo);      // UI13 блок 1
-            RemoveUI_FromComboBox(UI14bl1_combo, name, UI14bl1_lab, UI14bl1combo_text, UI14bl1combo_index, UI14bl1_typeCombo);      // UI14 блок 1
-            RemoveUI_FromComboBox(UI15bl1_combo, name, UI15bl1_lab, UI15bl1combo_text, UI15bl1combo_index, UI15bl1_typeCombo);      // UI15 блок 1
-            RemoveUI_FromComboBox(UI16bl1_combo, name, UI16bl1_lab, UI16bl1combo_text, UI16bl1combo_index, UI16bl1_typeCombo);      // UI16 блок 1
+            RemoveUI_FromComboBox(UI1bl1_combo, name, ref UI1bl1_lab, ref UI1bl1combo_text, ref UI1bl1combo_index, UI1bl1_typeCombo);           // UI1 блок 1
+            RemoveUI_FromComboBox(UI2bl1_combo, name, ref UI2bl1_lab, ref UI2bl1combo_text, ref UI2bl1combo_index, UI2bl1_typeCombo);           // UI2 блок 1
+            RemoveUI_FromComboBox(UI3bl1_combo, name, ref UI3bl1_lab, ref UI3bl1combo_text, ref UI3bl1combo_index, UI3bl1_typeCombo);           // UI3 блок 1
+            RemoveUI_FromComboBox(UI4bl1_combo, name, ref UI4bl1_lab, ref UI4bl1combo_text, ref UI4bl1combo_index, UI4bl1_typeCombo);           // UI4 блок 1
+            RemoveUI_FromComboBox(UI5bl1_combo, name, ref UI5bl1_lab, ref UI5bl1combo_text, ref UI5bl1combo_index, UI5bl1_typeCombo);           // UI5 блок 1
+            RemoveUI_FromComboBox(UI6bl1_combo, name, ref UI6bl1_lab, ref UI6bl1combo_text, ref UI6bl1combo_index, UI6bl1_typeCombo);           // UI6 блок 1
+            RemoveUI_FromComboBox(UI7bl1_combo, name, ref UI7bl1_lab, ref UI7bl1combo_text, ref UI7bl1combo_index, UI7bl1_typeCombo);           // UI7 блок 1
+            RemoveUI_FromComboBox(UI8bl1_combo, name, ref UI8bl1_lab, ref UI8bl1combo_text, ref UI8bl1combo_index, UI8bl1_typeCombo);           // UI8 блок 1
+            RemoveUI_FromComboBox(UI9bl1_combo, name, ref UI9bl1_lab, ref UI9bl1combo_text, ref UI9bl1combo_index, UI9bl1_typeCombo);           // UI9 блок 1
+            RemoveUI_FromComboBox(UI10bl1_combo, name, ref UI10bl1_lab, ref UI10bl1combo_text, ref UI10bl1combo_index, UI10bl1_typeCombo);      // UI10 блок 1
+            RemoveUI_FromComboBox(UI11bl1_combo, name, ref UI11bl1_lab, ref UI11bl1combo_text, ref UI11bl1combo_index, UI11bl1_typeCombo);      // UI11 блок 1
+            RemoveUI_FromComboBox(UI12bl1_combo, name, ref UI12bl1_lab, ref UI12bl1combo_text, ref UI12bl1combo_index, UI12bl1_typeCombo);      // UI12 блок 1
+            RemoveUI_FromComboBox(UI13bl1_combo, name, ref UI13bl1_lab, ref UI13bl1combo_text, ref UI13bl1combo_index, UI13bl1_typeCombo);      // UI13 блок 1
+            RemoveUI_FromComboBox(UI14bl1_combo, name, ref UI14bl1_lab, ref UI14bl1combo_text, ref UI14bl1combo_index, UI14bl1_typeCombo);      // UI14 блок 1
+            RemoveUI_FromComboBox(UI15bl1_combo, name, ref UI15bl1_lab, ref UI15bl1combo_text, ref UI15bl1combo_index, UI15bl1_typeCombo);      // UI15 блок 1
+            RemoveUI_FromComboBox(UI16bl1_combo, name, ref UI16bl1_lab, ref UI16bl1combo_text, ref UI16bl1combo_index, UI16bl1_typeCombo);      // UI16 блок 1
             
             // Блок расширения 2 (до 16 UI входов)
-            RemoveUI_FromComboBox(UI1bl2_combo, name, UI1bl2_lab, UI1bl2combo_text, UI1bl2combo_index, UI1bl2_typeCombo);           // UI1 блок 2
-            RemoveUI_FromComboBox(UI2bl2_combo, name, UI2bl2_lab, UI2bl2combo_text, UI2bl2combo_index, UI2bl2_typeCombo);           // UI2 блок 2
-            RemoveUI_FromComboBox(UI3bl2_combo, name, UI3bl2_lab, UI3bl2combo_text, UI3bl2combo_index, UI3bl2_typeCombo);           // UI3 блок 2
-            RemoveUI_FromComboBox(UI4bl2_combo, name, UI4bl2_lab, UI4bl2combo_text, UI4bl2combo_index, UI4bl2_typeCombo);           // UI4 блок 2
-            RemoveUI_FromComboBox(UI5bl2_combo, name, UI5bl2_lab, UI5bl2combo_text, UI5bl2combo_index, UI5bl2_typeCombo);           // UI5 блок 2
-            RemoveUI_FromComboBox(UI6bl2_combo, name, UI6bl2_lab, UI6bl2combo_text, UI6bl2combo_index, UI6bl2_typeCombo);           // UI6 блок 2
-            RemoveUI_FromComboBox(UI7bl2_combo, name, UI7bl2_lab, UI7bl2combo_text, UI7bl2combo_index, UI7bl2_typeCombo);           // UI7 блок 2
-            RemoveUI_FromComboBox(UI8bl2_combo, name, UI8bl2_lab, UI8bl2combo_text, UI8bl2combo_index, UI8bl2_typeCombo);           // UI8 блок 2
-            RemoveUI_FromComboBox(UI9bl2_combo, name, UI9bl2_lab, UI9bl2combo_text, UI9bl2combo_index, UI9bl2_typeCombo);           // UI9 блок 2
-            RemoveUI_FromComboBox(UI10bl2_combo, name, UI10bl2_lab, UI10bl2combo_text, UI10bl2combo_index, UI10bl2_typeCombo);      // UI10 блок 2
-            RemoveUI_FromComboBox(UI11bl2_combo, name, UI11bl2_lab, UI11bl2combo_text, UI11bl2combo_index, UI11bl2_typeCombo);      // UI11 блок 2
-            RemoveUI_FromComboBox(UI12bl2_combo, name, UI12bl2_lab, UI12bl2combo_text, UI12bl2combo_index, UI12bl2_typeCombo);      // UI12 блок 2
-            RemoveUI_FromComboBox(UI13bl2_combo, name, UI13bl2_lab, UI13bl2combo_text, UI13bl2combo_index, UI13bl2_typeCombo);      // UI13 блок 2
-            RemoveUI_FromComboBox(UI14bl2_combo, name, UI14bl2_lab, UI14bl2combo_text, UI14bl2combo_index, UI14bl2_typeCombo);      // UI14 блок 2
-            RemoveUI_FromComboBox(UI15bl2_combo, name, UI15bl2_lab, UI15bl2combo_text, UI15bl2combo_index, UI15bl2_typeCombo);      // UI15 блок 2
-            RemoveUI_FromComboBox(UI16bl2_combo, name, UI16bl2_lab, UI16bl2combo_text, UI16bl2combo_index, UI16bl2_typeCombo);      // UI16 блок 2
+            RemoveUI_FromComboBox(UI1bl2_combo, name, ref UI1bl2_lab, ref UI1bl2combo_text, ref UI1bl2combo_index, UI1bl2_typeCombo);           // UI1 блок 2
+            RemoveUI_FromComboBox(UI2bl2_combo, name, ref UI2bl2_lab, ref UI2bl2combo_text, ref UI2bl2combo_index, UI2bl2_typeCombo);           // UI2 блок 2
+            RemoveUI_FromComboBox(UI3bl2_combo, name, ref UI3bl2_lab, ref UI3bl2combo_text, ref UI3bl2combo_index, UI3bl2_typeCombo);           // UI3 блок 2
+            RemoveUI_FromComboBox(UI4bl2_combo, name, ref UI4bl2_lab, ref UI4bl2combo_text, ref UI4bl2combo_index, UI4bl2_typeCombo);           // UI4 блок 2
+            RemoveUI_FromComboBox(UI5bl2_combo, name, ref UI5bl2_lab, ref UI5bl2combo_text, ref UI5bl2combo_index, UI5bl2_typeCombo);           // UI5 блок 2
+            RemoveUI_FromComboBox(UI6bl2_combo, name, ref UI6bl2_lab, ref UI6bl2combo_text, ref UI6bl2combo_index, UI6bl2_typeCombo);           // UI6 блок 2
+            RemoveUI_FromComboBox(UI7bl2_combo, name, ref UI7bl2_lab, ref UI7bl2combo_text, ref UI7bl2combo_index, UI7bl2_typeCombo);           // UI7 блок 2
+            RemoveUI_FromComboBox(UI8bl2_combo, name, ref UI8bl2_lab, ref UI8bl2combo_text, ref UI8bl2combo_index, UI8bl2_typeCombo);           // UI8 блок 2
+            RemoveUI_FromComboBox(UI9bl2_combo, name, ref UI9bl2_lab, ref UI9bl2combo_text, ref UI9bl2combo_index, UI9bl2_typeCombo);           // UI9 блок 2
+            RemoveUI_FromComboBox(UI10bl2_combo, name, ref UI10bl2_lab, ref UI10bl2combo_text, ref UI10bl2combo_index, UI10bl2_typeCombo);      // UI10 блок 2
+            RemoveUI_FromComboBox(UI11bl2_combo, name, ref UI11bl2_lab, ref UI11bl2combo_text, ref UI11bl2combo_index, UI11bl2_typeCombo);      // UI11 блок 2
+            RemoveUI_FromComboBox(UI12bl2_combo, name, ref UI12bl2_lab, ref UI12bl2combo_text, ref UI12bl2combo_index, UI12bl2_typeCombo);      // UI12 блок 2
+            RemoveUI_FromComboBox(UI13bl2_combo, name, ref UI13bl2_lab, ref UI13bl2combo_text, ref UI13bl2combo_index, UI13bl2_typeCombo);      // UI13 блок 2
+            RemoveUI_FromComboBox(UI14bl2_combo, name, ref UI14bl2_lab, ref UI14bl2combo_text, ref UI14bl2combo_index, UI14bl2_typeCombo);      // UI14 блок 2
+            RemoveUI_FromComboBox(UI15bl2_combo, name, ref UI15bl2_lab, ref UI15bl2combo_text, ref UI15bl2combo_index, UI15bl2_typeCombo);      // UI15 блок 2
+            RemoveUI_FromComboBox(UI16bl2_combo, name, ref UI16bl2_lab, ref UI16bl2combo_text, ref UI16bl2combo_index, UI16bl2_typeCombo);      // UI16 блок 2
             
             // Блок расширения 3 (до 16 UI входов)
-            RemoveUI_FromComboBox(UI1bl3_combo, name, UI1bl3_lab, UI1bl3combo_text, UI1bl3combo_index, UI1bl3_typeCombo);           // UI1 блок 3
-            RemoveUI_FromComboBox(UI2bl3_combo, name, UI2bl3_lab, UI2bl3combo_text, UI2bl3combo_index, UI2bl3_typeCombo);           // UI2 блок 3
-            RemoveUI_FromComboBox(UI3bl3_combo, name, UI3bl3_lab, UI3bl3combo_text, UI3bl3combo_index, UI3bl3_typeCombo);           // UI3 блок 3
-            RemoveUI_FromComboBox(UI4bl3_combo, name, UI4bl3_lab, UI4bl3combo_text, UI4bl3combo_index, UI4bl3_typeCombo);           // UI4 блок 3
-            RemoveUI_FromComboBox(UI5bl3_combo, name, UI5bl3_lab, UI5bl3combo_text, UI5bl3combo_index, UI5bl3_typeCombo);           // UI5 блок 3
-            RemoveUI_FromComboBox(UI6bl3_combo, name, UI6bl3_lab, UI6bl3combo_text, UI6bl3combo_index, UI6bl3_typeCombo);           // UI6 блок 3
-            RemoveUI_FromComboBox(UI7bl3_combo, name, UI7bl3_lab, UI7bl3combo_text, UI7bl3combo_index, UI7bl3_typeCombo);           // UI7 блок 3
-            RemoveUI_FromComboBox(UI8bl3_combo, name, UI8bl3_lab, UI8bl3combo_text, UI8bl3combo_index, UI8bl3_typeCombo);           // UI8 блок 3
-            RemoveUI_FromComboBox(UI9bl3_combo, name, UI9bl3_lab, UI9bl3combo_text, UI9bl3combo_index, UI9bl3_typeCombo);           // UI9 блок 3
-            RemoveUI_FromComboBox(UI10bl3_combo, name, UI10bl3_lab, UI10bl3combo_text, UI10bl3combo_index, UI10bl3_typeCombo);      // UI10 блок 3
-            RemoveUI_FromComboBox(UI11bl3_combo, name, UI11bl3_lab, UI11bl3combo_text, UI11bl3combo_index, UI11bl3_typeCombo);      // UI11 блок 3
-            RemoveUI_FromComboBox(UI12bl3_combo, name, UI12bl3_lab, UI12bl3combo_text, UI12bl3combo_index, UI12bl3_typeCombo);      // UI12 блок 3
-            RemoveUI_FromComboBox(UI13bl3_combo, name, UI13bl3_lab, UI13bl3combo_text, UI13bl3combo_index, UI13bl3_typeCombo);      // UI13 блок 3
-            RemoveUI_FromComboBox(UI14bl3_combo, name, UI14bl3_lab, UI14bl3combo_text, UI14bl3combo_index, UI14bl3_typeCombo);      // UI14 блок 3
-            RemoveUI_FromComboBox(UI15bl3_combo, name, UI15bl3_lab, UI15bl3combo_text, UI15bl3combo_index, UI15bl3_typeCombo);      // UI15 блок 3
-            RemoveUI_FromComboBox(UI16bl3_combo, name, UI16bl3_lab, UI16bl3combo_text, UI16bl3combo_index, UI16bl3_typeCombo);      // UI16 блок 3
+            RemoveUI_FromComboBox(UI1bl3_combo, name, ref UI1bl3_lab, ref UI1bl3combo_text, ref UI1bl3combo_index, UI1bl3_typeCombo);           // UI1 блок 3
+            RemoveUI_FromComboBox(UI2bl3_combo, name, ref UI2bl3_lab, ref UI2bl3combo_text, ref UI2bl3combo_index, UI2bl3_typeCombo);           // UI2 блок 3
+            RemoveUI_FromComboBox(UI3bl3_combo, name, ref UI3bl3_lab, ref UI3bl3combo_text, ref UI3bl3combo_index, UI3bl3_typeCombo);           // UI3 блок 3
+            RemoveUI_FromComboBox(UI4bl3_combo, name, ref UI4bl3_lab, ref UI4bl3combo_text, ref UI4bl3combo_index, UI4bl3_typeCombo);           // UI4 блок 3
+            RemoveUI_FromComboBox(UI5bl3_combo, name, ref UI5bl3_lab, ref UI5bl3combo_text, ref UI5bl3combo_index, UI5bl3_typeCombo);           // UI5 блок 3
+            RemoveUI_FromComboBox(UI6bl3_combo, name, ref UI6bl3_lab, ref UI6bl3combo_text, ref UI6bl3combo_index, UI6bl3_typeCombo);           // UI6 блок 3
+            RemoveUI_FromComboBox(UI7bl3_combo, name, ref UI7bl3_lab, ref UI7bl3combo_text, ref UI7bl3combo_index, UI7bl3_typeCombo);           // UI7 блок 3
+            RemoveUI_FromComboBox(UI8bl3_combo, name, ref UI8bl3_lab, ref UI8bl3combo_text, ref UI8bl3combo_index, UI8bl3_typeCombo);           // UI8 блок 3
+            RemoveUI_FromComboBox(UI9bl3_combo, name, ref UI9bl3_lab, ref UI9bl3combo_text, ref UI9bl3combo_index, UI9bl3_typeCombo);           // UI9 блок 3
+            RemoveUI_FromComboBox(UI10bl3_combo, name, ref UI10bl3_lab, ref UI10bl3combo_text, ref UI10bl3combo_index, UI10bl3_typeCombo);      // UI10 блок 3
+            RemoveUI_FromComboBox(UI11bl3_combo, name, ref UI11bl3_lab, ref UI11bl3combo_text, ref UI11bl3combo_index, UI11bl3_typeCombo);      // UI11 блок 3
+            RemoveUI_FromComboBox(UI12bl3_combo, name, ref UI12bl3_lab, ref UI12bl3combo_text, ref UI12bl3combo_index, UI12bl3_typeCombo);      // UI12 блок 3
+            RemoveUI_FromComboBox(UI13bl3_combo, name, ref UI13bl3_lab, ref UI13bl3combo_text, ref UI13bl3combo_index, UI13bl3_typeCombo);      // UI13 блок 3
+            RemoveUI_FromComboBox(UI14bl3_combo, name, ref UI14bl3_lab, ref UI14bl3combo_text, ref UI14bl3combo_index, UI14bl3_typeCombo);      // UI14 блок 3
+            RemoveUI_FromComboBox(UI15bl3_combo, name, ref UI15bl3_lab, ref UI15bl3combo_text, ref UI15bl3combo_index, UI15bl3_typeCombo);      // UI15 блок 3
+            RemoveUI_FromComboBox(UI16bl3_combo, name, ref UI16bl3_lab, ref UI16bl3combo_text, ref UI16bl3combo_index, UI16bl3_typeCombo);      // UI16 блок 3
 
             subUIcondition = false;         // Сброс признака удаления UI
             list_ui.Remove(find_ui);        // Удаление сигнала из списка UI

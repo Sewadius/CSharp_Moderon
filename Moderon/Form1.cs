@@ -4,8 +4,6 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
-using System.Runtime.CompilerServices;
-using System.Diagnostics.Eventing.Reader;
 
 namespace Moderon
 {
@@ -310,7 +308,7 @@ namespace Moderon
             toolTip.SetToolTip(outFanAlarmCheck, di_sig);
             toolTip.SetToolTip(outDampFanCheck, do_sig);
             toolTip.SetToolTip(outFanSpeedCheck, ao_sig);
-            // Приточная и выттяжная воздушные заслонки
+            // Приточная и вытяжная воздушные заслонки
             toolTip.SetToolTip(confPrDampCheck, di_sig);
             toolTip.SetToolTip(confOutDampCheck, di_sig);
             toolTip.SetToolTip(outDampCheck, do_sig);
@@ -578,9 +576,9 @@ namespace Moderon
                 } 
                 else                                                            // Отмена выбора насоса гликолевого рекуператора
                 {
-                    pumpGlikConfCheck.Checked = false;                          // Блокировка и снятие выбора элементов
+                    pumpGlikConfCheck.Checked = false;                          // Снятие выбора элементов
                     pumpGlikCurProtect.Checked = false;
-                    pumpGlikConfCheck.Enabled = false;
+                    pumpGlikConfCheck.Enabled = false;                          // Блокировка элементов
                     pumpGlikCurProtect.Enabled = false;
                 }
             }
