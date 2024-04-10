@@ -825,3 +825,13 @@
 - `analogFreonCheck` добавлен в алгоритм загрузки - `JsonRead.cs`
 - `recircPrDampAOCheck` добавлен в загрузку - `JsonRead.cs`
 - подправлено положение панели `DO` в `DO_panelBlock_change()`
+
+09.04.24 (вторник)
+
+- `AddSecondBlockUI_M72E16NA()` подбор 2-го блока расширения UI
+
+10.04.24 (среда)
+
+- `AddSecondBlockUI_M72E16NA()` изменения для алгоритма подбора
+- `RemoveSecondBlockUI_M72E16NA()` удаление 2-го блока `UI`
+- `CheckSignals_block2_M72E12RB()` условие `UI` для отмены распределения 

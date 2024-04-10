@@ -264,6 +264,10 @@ namespace Moderon
             RemoveSecondBlock_DOUI_M72E12RA(blocks);        // Проверка удаления 2-го блока расширения M72E12RA
             RemoveFirstBlock_DOUI_M72E12RA(blocks);         // Проверка удаления 1-го блока расширения M72E12RA
 
+            RemoveThirdBlockDO_M72E08RA(blocks);            // Проверка удаления 3-го блока расширения M72E08RA 
+            RemoveSecondBlockDO_M72E08RA(blocks);           // Проверка удаления 2-го блока расширения M72E08RA
+            RemoveFirstBlockDO_M72E08RA(blocks);            // Проверка удаления 1-го блока расширения M72E08RA
+
             RemoveThirdBlockUI_M72E16NA(blocks);            // Проверка удаления 3-го блока расширения M72E16NA
             RemoveSecondBlockUI_M72E16NA(blocks);           // Проверка удаления 2-го блока расширения M72E16NA
             RemoveFirstBlockUI_M72E16NA(blocks);            // Проверка удаления 1-го блока расширения M72E16NA
