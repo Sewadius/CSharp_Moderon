@@ -660,7 +660,7 @@ namespace Moderon
         ///<summary>Загрузка состояний для comboBox таблицы сигналов</summary>
         private void LoadComboSignalsAll()
         {
-            var comboBoxes = new List<ComboBox>()
+            var comboBoxes = new List<ComboBox>()           // comboBox для выбранных сигналов
             {
                 // AO сигналы, ПЛК и блоки расширения
                 AO1_combo, AO2_combo, AO3_combo, AO1bl1_combo, AO2bl1_combo, AO1bl2_combo, AO2bl2_combo,
@@ -680,7 +680,11 @@ namespace Moderon
                 UI9bl2_combo, UI10bl2_combo, UI11bl2_combo, UI12bl2_combo, UI13bl2_combo, UI14bl2_combo, UI15bl2_combo, UI16bl2_combo,
                 // UI сигналы, блок расширения 3
                 UI1bl3_combo, UI2bl3_combo, UI3bl3_combo, UI4bl3_combo, UI5bl3_combo, UI6bl3_combo, UI7bl3_combo, UI8bl3_combo,
-                UI9bl3_combo, UI10bl3_combo, UI11bl3_combo, UI12bl3_combo, UI13bl3_combo, UI14bl3_combo, UI15bl3_combo, UI16bl3_combo,
+                UI9bl3_combo, UI10bl3_combo, UI11bl3_combo, UI12bl3_combo, UI13bl3_combo, UI14bl3_combo, UI15bl3_combo, UI16bl3_combo
+            };
+
+            var comboBoxesType = new List<ComboBox>()       
+            {
                 // UI сигналы, тип сигнала, ПЛК
                 UI1_typeCombo, UI2_typeCombo, UI3_typeCombo, UI4_typeCombo, UI5_typeCombo, UI6_typeCombo, UI7_typeCombo, UI8_typeCombo,
                 UI9_typeCombo, UI10_typeCombo, UI11_typeCombo,
@@ -698,8 +702,20 @@ namespace Moderon
                 UI15bl3_typeCombo, UI16bl3_typeCombo
             };
 
-            for (var i = 0; i < comboBoxes.Count; i++)
+            // Расстановка элементов сигналов
+            for (var i = 0; i < comboBoxes.Count; i++) 
                 comboBoxes[i].SelectedItem = json_read.ComboSignalsState[comboBoxes[i].Name];
+
+            // Расстановка типов сигналов
+            for (var i = 0; i < comboBoxesType.Count; i++)
+            {
+                string selectedItem = json_read.ComboSignalsState[comboBoxesType[i].Name];
+                comboBoxesType[i].SelectedItem = selectedItem;
+
+                // Удаление опции DI из typeComboBox
+                if (selectedItem != DI)
+                    comboBoxesType[i].Items.Remove(DI);
+            }
         }
 
         ///<summary>Загрузка для массивов сигналов</summary>

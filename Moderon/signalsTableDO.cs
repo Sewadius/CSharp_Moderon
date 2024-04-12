@@ -683,7 +683,12 @@ namespace Moderon
                 SelectComboBox_DO(DO7bl3_combo, code, DO7bl3_lab, DO7bl3combo_text, DO7bl3combo_index);
             else if (DO8bl3_combo.SelectedIndex == 0 && DO8bl3_combo.Enabled) 
                 SelectComboBox_DO(DO8bl3_combo, code, DO8bl3_lab, DO8bl3combo_text, DO8bl3combo_index);
-            
+            // Когда все DO выходы заполнены и выбран Mini, то переходим на ПЛК Optimize
+            else if (comboPlkType.SelectedIndex == 0)
+            {
+                comboPlkType.SelectedIndex = 1;
+                AddNewDO(code);
+            }
             CheckSignalsReady();    // Проверка распределения сигналов
         }
 

@@ -1383,6 +1383,7 @@ namespace Moderon
         {
             mainPage.Hide();                                                                // Скрытие панели опций элементов
             signalsPanel.Hide();                                                            // Скрытие панели распределения сигналов
+            optionsPanel.Hide();                                                            // Скрытие панели настроек
             label_comboSysType.Text = "ПОМОЩЬ И РУКОВОДСТВО";
             comboSysType.Hide(); panelElements.Hide();
             helpPanel.Location = PANEL_POSITION;

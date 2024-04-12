@@ -835,3 +835,12 @@
 - `AddSecondBlockUI_M72E16NA()` изменения для алгоритма подбора
 - `RemoveSecondBlockUI_M72E16NA()` удаление 2-го блока `UI`
 - `CheckSignals_block2_M72E12RB()` условие `UI` для отмены распределения 
+
+11.04.24 (четверг)
+
+- `LoadComboSignalsAll()` изменения для загрузки состояний `typeCombo`
+
+12.04.24 (пятница)
+
+- `AddNewDO()` переход на `Optimized`, если выбран `Mini` и нет DO
+- `ToolStripMenuItem_help_Click()` добавлено скрытие панели настроек
