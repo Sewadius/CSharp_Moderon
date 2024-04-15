@@ -30,6 +30,8 @@
         {
             this.closeInfoButton = new System.Windows.Forms.Button();
             this.pictureBoxInfo = new System.Windows.Forms.PictureBox();
+            this.label_aboutVersion = new System.Windows.Forms.Label();
+            this.label_EditionNumber = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInfo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -40,9 +42,9 @@
             this.closeInfoButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.closeInfoButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.closeInfoButton.ForeColor = System.Drawing.Color.White;
-            this.closeInfoButton.Location = new System.Drawing.Point(206, 303);
+            this.closeInfoButton.Location = new System.Drawing.Point(215, 303);
             this.closeInfoButton.Name = "closeInfoButton";
-            this.closeInfoButton.Size = new System.Drawing.Size(94, 27);
+            this.closeInfoButton.Size = new System.Drawing.Size(81, 27);
             this.closeInfoButton.TabIndex = 63;
             this.closeInfoButton.Text = "ОК";
             this.closeInfoButton.UseVisualStyleBackColor = false;
@@ -60,11 +62,33 @@
             this.pictureBoxInfo.TabIndex = 64;
             this.pictureBoxInfo.TabStop = false;
             // 
+            // label_aboutVersion
+            // 
+            this.label_aboutVersion.AutoSize = true;
+            this.label_aboutVersion.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_aboutVersion.Location = new System.Drawing.Point(12, 309);
+            this.label_aboutVersion.Name = "label_aboutVersion";
+            this.label_aboutVersion.Size = new System.Drawing.Size(181, 14);
+            this.label_aboutVersion.TabIndex = 65;
+            this.label_aboutVersion.Text = "Версия программы - v.1.1.2";
+            // 
+            // label_EditionNumber
+            // 
+            this.label_EditionNumber.AutoSize = true;
+            this.label_EditionNumber.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_EditionNumber.Location = new System.Drawing.Point(355, 309);
+            this.label_EditionNumber.Name = "label_EditionNumber";
+            this.label_EditionNumber.Size = new System.Drawing.Size(128, 14);
+            this.label_EditionNumber.TabIndex = 66;
+            this.label_EditionNumber.Text = "Номер редакции: 1";
+            // 
             // FormInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(520, 342);
+            this.ClientSize = new System.Drawing.Size(524, 342);
+            this.Controls.Add(this.label_EditionNumber);
+            this.Controls.Add(this.label_aboutVersion);
             this.Controls.Add(this.pictureBoxInfo);
             this.Controls.Add(this.closeInfoButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -76,6 +100,7 @@
             this.Text = "О программе";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInfo)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -83,5 +108,7 @@
 
         private System.Windows.Forms.Button closeInfoButton;
         private System.Windows.Forms.PictureBox pictureBoxInfo;
+        private System.Windows.Forms.Label label_aboutVersion;
+        private System.Windows.Forms.Label label_EditionNumber;
     }
 }

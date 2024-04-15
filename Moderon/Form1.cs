@@ -4,31 +4,42 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
+using System.Net;
 
 namespace Moderon
 {
     public partial class Form1 : Form
     {
-        // Статус для состояния входов/выходов
-        readonly static public string NOT_SELECTED = "Не выбрано"; 
+        readonly static public string 
+            NOT_SELECTED = "Не выбрано",                                // Статус для состояния входов/выходов
+            VERSION = "v.1.1.3.9";                                      // Текущая версия программы
 
-        private const int HEIGHT = 280;                                 // Высота для панелей настройки элементов
-        private const int DELTA = 31;                                   // Расстояние между comboBox в таблице сигналов
-        private const int HEIGHT_RECUP = 221, HEIGHT_GLICK = 398;       // Высота изображения для обычного рекуператора / гликолевый
-        private Point MENU_POSITION = new(3, 36);                       // Позиция для меню элементов
-        private Point PANEL_POSITION = new(15, 90);                     // Позиция для остальных панелей
+        private const int 
+            WIDTH_MAIN = 995,                                           // Ширина основной формы
+            HEIGHT_MAIN = 730,                                          // Высота основной формы
+            HEIGHT = 280,                                               // Высота для панелей настройки элементов
+            DELTA = 31,                                                 // Расстояние между comboBox в таблице сигналов
+            HEIGHT_RECUP = 221,                                         // Высота изображения для обычного рекуператора
+            HEIGHT_GLICK = 398;                                         // Высота изображения для гликолевого рекуператора
+
+        private Point 
+            MENU_POSITION = new(3, 36),                                 // Позиция для меню элементов
+            PANEL_POSITION = new(15, 90);                               // Позиция для остальных панелей
+
         readonly private bool showCode = true;                          // Код сигнала отображается по умолчанию в таблице сигналов
         
-        private bool initialConfigure = true;                           // Признак начальной конфигурации (при загрузке и после сброса)
-        private bool optimizeOnly = false;                              // Признак 8 датчиков температуры (для отключения разблокировки типа ПЛК)
+        private bool 
+            initialConfigure = true,                                    // Признак начальной конфигурации (при загрузке и после сброса)
+            optimizeOnly = false;                                       // Признак 8 датчиков температуры (для отключения разблокировки типа ПЛК)
         
         // Ранее сохраненные значения индексов для элементов
-        private int plkChangeIndexLast = 1;                             // Значение для выбранного типа контроллера (по умолчанию Optimized для сброса)
-        private int heatTypeComboIndex = 0;                             // Значение для типа основного нагревателя
-        private int coolTypeComboIndex = 0;                             // Значение для типа охладителя
-        private int heatAddTypeComboIndex = 0;                          // Значение для типа дополнительного нагревателя
-        private int humidTypeComboIndex = 0;                            // Значение для типа увлажнителя
-        private int recupTypeComboIndex = 0;                            // Значение для типа рекуператора
+        private int 
+            plkChangeIndexLast = 1,                                     // Значение для выбранного типа контроллера (по умолчанию Optimized для сброса)
+            heatTypeComboIndex = 0,                                     // Значение для типа основного нагревателя
+            coolTypeComboIndex = 0,                                     // Значение для типа охладителя
+            heatAddTypeComboIndex = 0,                                  // Значение для типа дополнительного нагревателя
+            humidTypeComboIndex = 0,                                    // Значение для типа увлажнителя
+            recupTypeComboIndex = 0;                                    // Значение для типа рекуператора
         
         private bool 
             hintEnabled = true,                                         // Отображение подсказок выбрано по умолчанию
@@ -45,13 +56,13 @@ namespace Moderon
             torq_recircDamp = 0;                                        // Крутящий момент для рециркуляционной заслонки
 
         // Класс для всплывающих подсказок (основные элементы)
-        readonly ToolTip toolTip = new ToolTip
+        readonly ToolTip toolTip = new()
         {
             AutoPopDelay = 3000, InitialDelay = 1000, ReshowDelay = 500, ShowAlways = true
         };
 
         // Класс для всплывающих подсказок (зеленые галочки подбора приводов)
-        readonly ToolTip driveTip = new ToolTip
+        readonly ToolTip driveTip = new()
         {
             AutoPopDelay = 3000, InitialDelay = 1000, ReshowDelay = 500, ShowAlways = true
         };
@@ -63,21 +74,21 @@ namespace Moderon
             SelectComboBoxesInitial();      // Изначальный выбор для comboBox
             SizePanels();                   // Изменение размера панелей
             ClearIO_codes();                // Очистка наименования кодов для входов/выходов
-
             InitialSet_ComboTextIndex();    // Начальная установка для входов и выходов
           
             // Подготовка для блоков расширения
             DoCombosBlocks_Reset();         // Скрытие и блокировка comboBox DO блоков расширение, скрытие Label подписей
             UiCombosBlocks_Reset();         // Скрытие и блокировка comboBox UI блоков расширение, скрытие Label подписей
 
-            Size = new Size(995, 730);      // Размер для основной формы (было 995, 680)
+            // Размер для основной формы
+            Size = new Size(WIDTH_MAIN, HEIGHT_MAIN);      
         }
 
         ///<summary>Начальная установка для входов и выходов</summary>
         private void InitialSet_ComboTextIndex()
         {
             Set_UIComboTextIndex();         // Входные сигналы, UI
-            Set_AOComboTextIndex();         // Аналоговый выходы, AO
+            Set_AOComboTextIndex();         // Аналоговые выходы, AO
             Set_DOComboTextIndex();         // Дискретные выходы, DO
         }
 
@@ -115,6 +126,9 @@ namespace Moderon
 
             // Положение для блока защиты рекуператора
             defRecupSensPanel.Location = new Point(3, 365);
+
+            // Положение для label версии программы
+            label_progVersion.Location = new Point(Size.Width - 90, Size.Height - 60);
 
             PicturesMove(Size.Width);                       // Перемещение изображений
             PDF_ReSize(Size.Width, Size.Height);            // Область для отображения PDF
@@ -363,6 +377,9 @@ namespace Moderon
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadHints();                                    // Обработка для всплывающих подсказок
+
+            // Установка текущей версии программы для label основной формы
+            label_progVersion.Text = VERSION.Substring(0, VERSION.Length - 2);
 
             mainPage.Height = 465;                          // Изменение размера для tabControl выбора оборудования, 465px
             Form1_InitCmdWord(this, e);                     // Подготовка командных слов
@@ -1636,7 +1653,7 @@ namespace Moderon
             System.Diagnostics.Process.Start("http://moderon-electric.ru/");
         }
 
-        // Настройка для поля мощности основного приточного вентилятора
+        /// <summary>Настройка для поля мощности основного приточного вентилятора</summary>
         private void PowPrFanBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Числа, точка и Backspace
@@ -1644,7 +1661,7 @@ namespace Moderon
                 e.Handled = true;
         }
 
-        // Настройка для поля мощности резервного приточного вентилятора
+        /// <summary>Настройка для поля мощности резервного приточного вентилятора</summary>
         private void PowPrResFanBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Числа, точка и Backspace
@@ -1652,7 +1669,7 @@ namespace Moderon
                 e.Handled = true;
         }
 
-        // Настройка для поля мощности основного вытяжного вентилятора
+        /// <summary>Настройка для поля мощности основного вытяжного вентилятора</summary>
         private void PowOutFanBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Числа, точка и Backspace

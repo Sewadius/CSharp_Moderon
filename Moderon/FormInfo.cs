@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Moderon
@@ -15,6 +8,13 @@ namespace Moderon
         public FormInfo()
         {
             InitializeComponent();
+
+            // Задание версии приложения
+            label_aboutVersion.Text = "Версия программы - " + 
+                Form1.VERSION.Substring(0, Form1.VERSION.Length - 2);
+
+            label_EditionNumber.Text = "Номер редакции: " +
+                Form1.VERSION.Substring(Form1.VERSION.Length - 1, 1);
         }
 
         // Закрытие информационного окна

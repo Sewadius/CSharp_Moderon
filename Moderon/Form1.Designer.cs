@@ -766,6 +766,7 @@ namespace Moderon
             this.mouseWheelCheck = new System.Windows.Forms.CheckBox();
             this.tooltipsCheck = new System.Windows.Forms.CheckBox();
             this.label64 = new System.Windows.Forms.Label();
+            this.label_progVersion = new System.Windows.Forms.Label();
             this.menuStrip.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.sensorsPage.SuspendLayout();
@@ -1193,7 +1194,7 @@ namespace Moderon
             this.fanPage.Location = new System.Drawing.Point(4, 22);
             this.fanPage.Name = "fanPage";
             this.fanPage.Padding = new System.Windows.Forms.Padding(3);
-            this.fanPage.Size = new System.Drawing.Size(742, 41);
+            this.fanPage.Size = new System.Drawing.Size(742, 532);
             this.fanPage.TabIndex = 0;
             this.fanPage.Text = "ВЕНТИЛЯТОР";
             // 
@@ -1867,7 +1868,7 @@ namespace Moderon
             this.filterPage.Controls.Add(this.filterPanel);
             this.filterPage.Location = new System.Drawing.Point(4, 22);
             this.filterPage.Name = "filterPage";
-            this.filterPage.Size = new System.Drawing.Size(742, 41);
+            this.filterPage.Size = new System.Drawing.Size(742, 532);
             this.filterPage.TabIndex = 6;
             this.filterPage.Text = "ФИЛЬТР";
             // 
@@ -1990,7 +1991,7 @@ namespace Moderon
             this.dampPage.Controls.Add(this.dampPanel);
             this.dampPage.Location = new System.Drawing.Point(4, 22);
             this.dampPage.Name = "dampPage";
-            this.dampPage.Size = new System.Drawing.Size(742, 41);
+            this.dampPage.Size = new System.Drawing.Size(742, 532);
             this.dampPage.TabIndex = 7;
             this.dampPage.Text = "ЗАСЛОНКА";
             // 
@@ -2423,7 +2424,7 @@ namespace Moderon
             this.heatPage.Location = new System.Drawing.Point(4, 22);
             this.heatPage.Name = "heatPage";
             this.heatPage.Padding = new System.Windows.Forms.Padding(3);
-            this.heatPage.Size = new System.Drawing.Size(742, 41);
+            this.heatPage.Size = new System.Drawing.Size(742, 532);
             this.heatPage.TabIndex = 1;
             this.heatPage.Text = "НАГРЕВАТЕЛЬ";
             // 
@@ -2793,7 +2794,7 @@ namespace Moderon
             this.coolPage.Location = new System.Drawing.Point(4, 22);
             this.coolPage.Name = "coolPage";
             this.coolPage.Padding = new System.Windows.Forms.Padding(3);
-            this.coolPage.Size = new System.Drawing.Size(742, 41);
+            this.coolPage.Size = new System.Drawing.Size(742, 532);
             this.coolPage.TabIndex = 2;
             this.coolPage.Text = "ОХЛАДИТЕЛЬ";
             // 
@@ -3020,7 +3021,7 @@ namespace Moderon
             this.humidPage.Location = new System.Drawing.Point(4, 22);
             this.humidPage.Name = "humidPage";
             this.humidPage.Padding = new System.Windows.Forms.Padding(3);
-            this.humidPage.Size = new System.Drawing.Size(742, 41);
+            this.humidPage.Size = new System.Drawing.Size(742, 532);
             this.humidPage.TabIndex = 3;
             this.humidPage.Text = "УВЛАЖНИТЕЛЬ";
             // 
@@ -3180,7 +3181,7 @@ namespace Moderon
             this.recircPage.Location = new System.Drawing.Point(4, 22);
             this.recircPage.Name = "recircPage";
             this.recircPage.Padding = new System.Windows.Forms.Padding(3);
-            this.recircPage.Size = new System.Drawing.Size(742, 41);
+            this.recircPage.Size = new System.Drawing.Size(742, 532);
             this.recircPage.TabIndex = 4;
             this.recircPage.Text = "РЕЦИРКУЛЯЦИЯ";
             // 
@@ -3397,7 +3398,7 @@ namespace Moderon
             this.recupPage.Controls.Add(this.recupPanel);
             this.recupPage.Location = new System.Drawing.Point(4, 22);
             this.recupPage.Name = "recupPage";
-            this.recupPage.Size = new System.Drawing.Size(742, 41);
+            this.recupPage.Size = new System.Drawing.Size(742, 532);
             this.recupPage.TabIndex = 5;
             this.recupPage.Text = "РЕКУПЕРАТОР";
             // 
@@ -3805,7 +3806,7 @@ namespace Moderon
             this.addHeatPage.Controls.Add(this.secHeatPanel);
             this.addHeatPage.Location = new System.Drawing.Point(4, 22);
             this.addHeatPage.Name = "addHeatPage";
-            this.addHeatPage.Size = new System.Drawing.Size(742, 41);
+            this.addHeatPage.Size = new System.Drawing.Size(742, 532);
             this.addHeatPage.TabIndex = 8;
             this.addHeatPage.Text = "ДОП НАГРЕВ";
             // 
@@ -10425,11 +10426,22 @@ namespace Moderon
             this.label64.TabIndex = 47;
             this.label64.Text = "ГЛОБАЛЬНЫЕ ПАРАМЕТРЫ ПРОГРАММЫ";
             // 
+            // label_progVersion
+            // 
+            this.label_progVersion.AutoSize = true;
+            this.label_progVersion.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_progVersion.Location = new System.Drawing.Point(913, 620);
+            this.label_progVersion.Name = "label_progVersion";
+            this.label_progVersion.Size = new System.Drawing.Size(54, 14);
+            this.label_progVersion.TabIndex = 20;
+            this.label_progVersion.Text = "v. 1.1.2";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(979, 1061);
+            this.Controls.Add(this.label_progVersion);
             this.Controls.Add(this.optionsPanel);
             this.Controls.Add(this.pic_signalsReady);
             this.Controls.Add(this.panelBlocks);
@@ -11312,6 +11324,7 @@ namespace Moderon
         private CheckBox mouseWheelCheck;
         private CheckBox tooltipsCheck;
         private Button backOptionsButton;
+        private Label label_progVersion;
     }
 }
 
