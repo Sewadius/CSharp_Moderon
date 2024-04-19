@@ -12,7 +12,7 @@ namespace Moderon
     {
         readonly static public string 
             NOT_SELECTED = "Не выбрано",                                // Статус для состояния входов/выходов
-            VERSION = "v.1.1.4.1";                                      // Текущая версия программы
+            VERSION = "v.1.1.4.2";                                      // Текущая версия программы
 
         private const int 
             WIDTH_MAIN = 995,                                           // Ширина основной формы
@@ -221,7 +221,6 @@ namespace Moderon
             };
 
             foreach (var panel in panels) panel.Height = HEIGHT;
-            
         }
         
         /// <summary>Очистка для подписей кодов у comboBox входов/выходов</summary>
