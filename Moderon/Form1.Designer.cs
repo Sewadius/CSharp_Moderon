@@ -939,7 +939,7 @@ namespace Moderon
             this.mainPage.Location = new System.Drawing.Point(15, 75);
             this.mainPage.Name = "mainPage";
             this.mainPage.SelectedIndex = 0;
-            this.mainPage.Size = new System.Drawing.Size(750, 558);
+            this.mainPage.Size = new System.Drawing.Size(750, 80);
             this.mainPage.TabIndex = 1;
             // 
             // sensorsPage
@@ -948,7 +948,7 @@ namespace Moderon
             this.sensorsPage.Controls.Add(this.sensorsPanel);
             this.sensorsPage.Location = new System.Drawing.Point(4, 22);
             this.sensorsPage.Name = "sensorsPage";
-            this.sensorsPage.Size = new System.Drawing.Size(742, 532);
+            this.sensorsPage.Size = new System.Drawing.Size(742, 54);
             this.sensorsPage.TabIndex = 9;
             this.sensorsPage.Text = "ДАТЧИКИ/СИГНАЛЫ";
             // 
@@ -4610,9 +4610,9 @@ namespace Moderon
             this.signalsPanel.Controls.Add(this.signalsReadyLabel);
             this.signalsPanel.Controls.Add(this.tabControlSignals);
             this.signalsPanel.Controls.Add(this.backSignalsButton);
-            this.signalsPanel.Location = new System.Drawing.Point(3, 990);
+            this.signalsPanel.Location = new System.Drawing.Point(17, 162);
             this.signalsPanel.Name = "signalsPanel";
-            this.signalsPanel.Size = new System.Drawing.Size(740, 53);
+            this.signalsPanel.Size = new System.Drawing.Size(740, 502);
             this.signalsPanel.TabIndex = 16;
             this.signalsPanel.Visible = false;
             // 
@@ -4623,7 +4623,7 @@ namespace Moderon
             this.resetButtonSignals.Cursor = System.Windows.Forms.Cursors.Hand;
             this.resetButtonSignals.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.resetButtonSignals.ForeColor = System.Drawing.Color.White;
-            this.resetButtonSignals.Location = new System.Drawing.Point(741, 21);
+            this.resetButtonSignals.Location = new System.Drawing.Point(741, 470);
             this.resetButtonSignals.Name = "resetButtonSignals";
             this.resetButtonSignals.Size = new System.Drawing.Size(97, 27);
             this.resetButtonSignals.TabIndex = 62;
@@ -4638,7 +4638,7 @@ namespace Moderon
             this.loadToExl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loadToExl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadToExl.ForeColor = System.Drawing.Color.White;
-            this.loadToExl.Location = new System.Drawing.Point(561, 21);
+            this.loadToExl.Location = new System.Drawing.Point(561, 470);
             this.loadToExl.Name = "loadToExl";
             this.loadToExl.Size = new System.Drawing.Size(173, 27);
             this.loadToExl.TabIndex = 61;
@@ -4653,7 +4653,7 @@ namespace Moderon
             this.loadPLC_SignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loadPLC_SignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadPLC_SignalsButton.ForeColor = System.Drawing.Color.White;
-            this.loadPLC_SignalsButton.Location = new System.Drawing.Point(408, 21);
+            this.loadPLC_SignalsButton.Location = new System.Drawing.Point(408, 470);
             this.loadPLC_SignalsButton.Name = "loadPLC_SignalsButton";
             this.loadPLC_SignalsButton.Size = new System.Drawing.Size(147, 27);
             this.loadPLC_SignalsButton.TabIndex = 60;
@@ -4667,7 +4667,7 @@ namespace Moderon
             this.signalsReadyLabel.AutoSize = true;
             this.signalsReadyLabel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.signalsReadyLabel.ForeColor = System.Drawing.Color.Green;
-            this.signalsReadyLabel.Location = new System.Drawing.Point(123, 27);
+            this.signalsReadyLabel.Location = new System.Drawing.Point(123, 476);
             this.signalsReadyLabel.Name = "signalsReadyLabel";
             this.signalsReadyLabel.Size = new System.Drawing.Size(272, 14);
             this.signalsReadyLabel.TabIndex = 23;
@@ -9861,7 +9861,7 @@ namespace Moderon
             this.backSignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.backSignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.backSignalsButton.ForeColor = System.Drawing.Color.White;
-            this.backSignalsButton.Location = new System.Drawing.Point(10, 21);
+            this.backSignalsButton.Location = new System.Drawing.Point(10, 470);
             this.backSignalsButton.Name = "backSignalsButton";
             this.backSignalsButton.Size = new System.Drawing.Size(94, 27);
             this.backSignalsButton.TabIndex = 58;

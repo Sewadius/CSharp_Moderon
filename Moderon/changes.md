@@ -873,3 +873,23 @@
 18.04.24 (пятница)
 
 - `AddThirdBlock_DOUI_M72E12RA()` изменение условий добавления блока
+
+25.04.24 (четверг)
+
+- `AddThirdBlock_DOUI_M72E12RA()` отображение `comboBox` блока 3 
+- `RemoveThirdBlock_DOUI_M72E12RA()` удаление блока 3, `(DO + UI)`
+- добавлен `AO_panelBlock_change()` положения панелей `AO`
+- `RemoveThirdBlockAO_M72E12RB()` изменение условий удаления блока AO 3
+- добавлены временные сообщения добавления/удаления блоков
+
+26.04.24 (пятница)
+
+- добавлена проверка параметра `DEBUG` при выводе сообщений
+- `ResetButton_Click()` начальная расстановка, Optimize в конец
+- `correctFile` добавлен признак корректного файла для загрузки
+- добавлен параметр `PanelsEnable` для сохранения и расстановки блоков
+- метод `BuildPanelsEnable()` сохранения статуса - `JsonSave.cs`
+- `BuildPanelsHeaders()` сохранение заголовков панелей - `JsonSave.cs`
+- `LoadPanelsEnable()` загрузка доступности панелей - `JsonRead.cs`
+- `DO_panelBlock_change()` изменения блок DO - `ExpBlocks.cs`
+- `LoadExpBlocks()` для загрузки блока DO - `JsonRead.cs`

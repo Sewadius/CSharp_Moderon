@@ -629,12 +629,10 @@ namespace Moderon
             comboSysType.Enabled = true;                    // Разблокировка выбора типа системы
             comboSysType.SelectedIndex = 0;                 // Выбор приточной системы
             expansion_blocks.Clear();                       // Очистка списка задействованных блоков расширения
-            initialConfigure = true;                        // Возврат признака начальной расстановки системы
-            optimizeOnly = false;                           // Сброс признака блокировки выбора ПЛК Optimize
-
+           
             // Возврат checkBox панели настроек в состояние по умолчанию
-            tooltipsCheck.Checked = true;
-            mouseWheelCheck.Checked = true;
+            tooltipsCheck.Checked = true;                   // Выбор подсказок по умолчанию
+            mouseWheelCheck.Checked = true;                 // События колёсика мыши
 
             var mainOptions = new List<CheckBox>()
             {
@@ -671,6 +669,7 @@ namespace Moderon
             ResetButton_signalsDOClick(this, e);            // Сброс сигналов ПЛК, DO
             ResetButton_signalsAOClick(this, e);            // Сброс сигналов ПЛК, AO
             ClearIO_codes();                                // Очистка кодов для comboBox
+            
             // Очистка панелей для блоков расширения
             DoCombosBlocks_Reset();                         // Блок и скрытие элементов для DO панелей блоков расширения
             UiCombosBlocks_Reset();                         // Блок и скрытие элементов для UI панелей блоков расширения
@@ -678,6 +677,11 @@ namespace Moderon
             Hide_panelBlocks_elements();                    // Скрытие элементов для панели блоков расширения
             InitialSet_ComboTextIndex();                    // Изначальная установка для подписей/индексов comboBox
             Form1_InitSignals(this, e);                     // Начальная расстановка сигналов
+
+            // Различные признаки-флаги для программы
+            correctFile = false;                            // Установка начального признака корректного файла загрузки
+            initialConfigure = true;                        // Установка признака начальной расстановки системы
+            optimizeOnly = false;                           // Сброс признака блокировки выбора ПЛК Optimize
         }
 
         ///<summary>Сброс настроек для всего оборудования</summary>

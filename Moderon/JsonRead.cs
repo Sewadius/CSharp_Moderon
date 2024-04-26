@@ -12,7 +12,6 @@ namespace Moderon
         ///<summary>Нажали "Загрузить" в главном меню</summary> 
         private void LoadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //
             if (!initialConfigure)      // Если не начальная расстановка
             {
                 const string
@@ -24,11 +23,12 @@ namespace Moderon
 
                 if (result == DialogResult.No) return;
             }
-            //
 
             ResetButton_Click(sender, e);                               // Первоначальный сброс перед загрузкой файла
             LoadJsonFile();                                             // Загрузка файла JSON в программу
-            ignoreEvents = true;                                        // Временное отключение событий
+            if (!correctFile) return;                                   // Выход при некорректном файле
+
+            ignoreEvents = true;                                        // Отключение событий на время загрузки
             if (json_read != null)                                      // Загрузочный файл содержит информацию
             {
                 LoadCheckBoxAll();                                      // Загрузка для всех сheckBox
@@ -38,6 +38,8 @@ namespace Moderon
                 LoadComboItemsSignals();                                // Загрузка элементов для comboBox таблицы сигналов
                 LoadComboSignalsAll();                                  // Загрузка состояний для comboBox таблицы сигналов
                 LoadSignalArrays();                                     // Загрузка для массива сигналов
+                LoadPanelsEnable();                                     // Загрузка статуса доступности панелей блоков расширения
+                LoadPanelsHeaders();                                    // Загрузка заголовков панелей блоков расширения
                 LoadExpBlocks();                                        // Загрузка количества и типов блоков расширения
                 LoadComboIndex();                                       // Загрузка выбранного ранее индекса для comboBox сигналов
                 LoadComboText();                                        // Загрузка выбранного ранее названия для comboBox сигналов
@@ -305,6 +307,40 @@ namespace Moderon
             UI16bl3combo_text = json_read.ComboText["UI16bl3combo_text"];
         }
 
+        ///<summary>Загрузка статуса доступности панелей блоков расширения</summary>
+        private void LoadPanelsEnable()
+        {
+            // Панели AO
+            block1_AOpanel.Enabled = json_read.PanelsEnable["block1_AOpanel"];
+            block2_AOpanel.Enabled = json_read.PanelsEnable["block2_AOpanel"];
+            block3_AOpanel.Enabled = json_read.PanelsEnable["block3_AOpanel"];
+            // Панели DO
+            block1_DOpanel.Enabled = json_read.PanelsEnable["block1_DOpanel"];
+            block2_DOpanel.Enabled = json_read.PanelsEnable["block2_DOpanel"];
+            block3_DOpanel.Enabled = json_read.PanelsEnable["block3_DOpanel"];
+            // Панели UI
+            block1_UIpanel.Enabled = json_read.PanelsEnable["block1_UIpanel"];
+            block2_UIpanel.Enabled = json_read.PanelsEnable["block2_UIpanel"];
+            block3_UIpanel.Enabled = json_read.PanelsEnable["block3_UIpanel"];
+        }
+
+        ///<summary>Загрузка заголовков панелей блоков расширения</summary>
+        private void LoadPanelsHeaders()
+        {
+            // Панели AO
+            AOblock1_header.Text = json_read.PanelsHeaders["AOblock1_header"];
+            AOblock2_header.Text = json_read.PanelsHeaders["AOblock2_header"];
+            AOblock3_header.Text = json_read.PanelsHeaders["AOblock3_header"];
+            // Панели DO
+            DOblock1_header.Text = json_read.PanelsHeaders["DOblock1_header"];
+            DOblock2_header.Text = json_read.PanelsHeaders["DOblock2_header"];
+            DOblock3_header.Text = json_read.PanelsHeaders["DOblock3_header"];
+            // Панели UI
+            UIblock1_header.Text = json_read.PanelsHeaders["UIblock1_header"];
+            UIblock2_header.Text = json_read.PanelsHeaders["UIblock2_header"];
+            UIblock3_header.Text = json_read.PanelsHeaders["UIblock3_header"];
+        }
+
         ///<summary>Загрузка выбранного ранее типа контроллера</summary>
         private void LoadPlkType()
         {
@@ -316,7 +352,7 @@ namespace Moderon
         {
             Dictionary<string, int> exp_blocks = json_read.ExpBlocks;
 
-            // Для блока расширения AO
+            // Блок расширения AO
             if (exp_blocks.ContainsKey("M72E12RB"))
             {
                 AO_block1_panelChanged_M72E12RB();                          // AO панель блок 1
@@ -341,7 +377,7 @@ namespace Moderon
                 }
             }
 
-            // Для блока расширения UI + DO
+            // Блок расширения UI + DO
             if (exp_blocks.ContainsKey("M72E12RA"))
             {
                 if (!block1_DOpanel.Enabled && !block1_UIpanel.Enabled)
@@ -386,36 +422,52 @@ namespace Moderon
                 }
             }
 
-            // Для блока расширения DO
-            if (exp_blocks.ContainsKey("M72E08RA"))
+            // Блок расширения DO
+            if (exp_blocks.ContainsKey("M72E08RA"))                         // Один блок DO
             {
-                if (!block1_DOpanel.Enabled)
-                    DO_block1_panelChanged_M72E08RA();                      // DO панель блок 1
-                else if (!block2_DOpanel.Enabled)
-                    DO_block2_panelChanged_M72E08RA();                      // DO панель блок 2
-                else if (!block3_DOpanel.Enabled)
-                    DO_block3_panelChanged_M72E08RA();                      // DO панель блок 3
+                bool do_block2_locked = false, do_block3_locked = false;    // Признаки занятых панелей DO2 и DO3
 
+                if (DOblock1_header.Text.Contains("M72E08RA") /*!block1_DOpanel.Enabled*/)
+                {
+                    DO_block1_panelChanged_M72E08RA();                      // DO панель блок 1
+                }
+                else if (DOblock2_header.Text.Contains("M72E08RA") /*!block2_DOpanel.Enabled*/)
+                {
+                    DO_block2_panelChanged_M72E08RA();                      // DO панель блок 2
+                    do_block2_locked = true;                                // Установка признака занятой панели DO2
+                }
+                else if (DOblock3_header.Text.Contains("M72E08RA") /*!block3_DOpanel.Enabled*/)
+                {
+                    DO_block3_panelChanged_M72E08RA();                      // DO панель блок 3
+                    do_block3_locked = true;                                // Установка признака занятой панели DO3
+                }
+                    
                 expansion_blocks.Add(M72E08RA);
 
-                if (exp_blocks["M72E08RA"] > 1)
+                if (exp_blocks["M72E08RA"] > 1)                             // Два блока DO
                 {
-                    if (!block2_DOpanel.Enabled)
+                    if (DOblock2_header.Text.Contains("M72E08RA") && !do_block2_locked /*!block2_DOpanel.Enabled*/)
                         DO_block2_panelChanged_M72E08RA();                  // DO панель блок 2
-                    else if (!block3_DOpanel.Enabled)
+                    else if (DOblock3_header.Text.Contains("M72E08RA") && !do_block3_locked /*!block3_DOpanel.Enabled*/)
+                    {
                         DO_block3_panelChanged_M72E08RA();                  // DO панель блок 3
+                        do_block3_locked = true;                            // Установка признака занятой панели DO3
+                    }
 
                     expansion_blocks.Add(M72E08RA);
 
-                    if (exp_blocks["M72E08RA"] > 2)
+                    if (exp_blocks["M72E08RA"] > 2)                         // Три блока DO
                     {
-                        DO_block3_panelChanged_M72E08RA();                  // DO панель блок 3
-                        expansion_blocks.Add(M72E08RA);
+                        if (DOblock3_header.Text.Contains("M72E08RA") && !do_block3_locked)
+                        {
+                            DO_block3_panelChanged_M72E08RA();              // DO панель блок 3
+                            expansion_blocks.Add(M72E08RA);
+                        }
                     }
                 }
             }
 
-            // Для блока расширения UI
+            // Блок расширения UI
             if (exp_blocks.ContainsKey("M72E16NA"))
             {
                 if (!block1_UIpanel.Enabled)

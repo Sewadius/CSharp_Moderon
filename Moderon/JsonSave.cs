@@ -64,6 +64,12 @@ namespace Moderon
         [JsonProperty("ComboText")]
         public Dictionary<string, string> ComboText { get; set; }                   // Словарь для сохранения текста выбранного сигнала comboBox
 
+        [JsonProperty("PanelsEnable")]                                          
+        public Dictionary<string, bool> PanelsEnable { get; set; }                  // Словарь для сохранения доступности панелей блоков расширения
+
+        [JsonProperty("PanelsHeaders")]
+        public Dictionary<string, string> PanelsHeaders { get; set; }               // Словарь для сохранения названия заголовков панелей
+
         [JsonProperty("ExpBlocks")]                                                 
         public Dictionary<string, int> ExpBlocks { get; set; }                      // Словарь для сохранения количества блоков расширения
 
@@ -75,13 +81,14 @@ namespace Moderon
             CheckBoxState = []; ComboBoxElemState = []; TextBoxElemState = []; LabelSignalsState = [];
             ComboSignalsItems = []; ComboSignalsState = []; UiCode = []; UiType = []; UiActive = [];
             AoCode = []; AoActive = []; UiTypeEnable = []; CommandWords = []; DoCode = []; DoActive = [];
-            ComboIndex = []; ComboText = []; ExpBlocks = []; PlkType = [];
+            ComboIndex = []; ComboText = []; PanelsEnable = []; PanelsHeaders = []; ExpBlocks = []; PlkType = [];
         }
     }
 
     public partial class Form1 : Form
     {
         JsonObject json;                                // Объект для сохранения файла
+        bool correctFile = false;                       // Выбран корректный файл для загрузки конфигурации
 
         ///<summary>Нажали "Сохранить" в главном меню</summary> 
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -96,6 +103,8 @@ namespace Moderon
             BuildSignalArrays();                        // Сохранение для перечня сигналов, массивы
             BuildComboIndex();                          // Сохранение ранее выбранного индекса для comboBox таблицы сигналов
             BuildComboText();                           // Сохранение ранее выбранного текста comboBox таблицы сигналов
+            BuildPanelsEnable();                        // Сохранение статуса доступности панелей блоков расширения
+            BuildPanelsHeaders();                       // Сохранение заголовков подписей панелей блоков расширения
             BuildExpBlocks();                           // Сохранение количества и типов блоков расширения
             Build_UITypeEnable();                       // Сохранение доступности типов UI сигналов
             Build_CommandWords();                       // Сохранение командных слов программы
@@ -259,6 +268,50 @@ namespace Moderon
             };
 
             foreach (var el in texts) json.ComboText.Add(el.Key, el.Value);
+        }
+
+        ///<summary>Сохранение признака доступности панелей блоков расширения</summary>
+        private void BuildPanelsEnable()
+        {
+            var panels = new Dictionary<string, bool>()
+            {
+                // AO панели
+                { "block1_AOpanel", block1_AOpanel.Enabled },
+                { "block2_AOpanel", block2_AOpanel.Enabled },
+                { "block3_AOpanel", block3_AOpanel.Enabled },
+                // DO панели
+                { "block1_DOpanel", block1_DOpanel.Enabled },
+                { "block2_DOpanel", block2_DOpanel.Enabled },
+                { "block3_DOpanel", block3_DOpanel.Enabled },
+                // UI панели
+                { "block1_UIpanel", block1_UIpanel.Enabled },
+                { "block2_UIpanel", block2_UIpanel.Enabled },
+                { "block3_UIpanel", block3_UIpanel.Enabled }
+            };
+
+            foreach (var el in panels) json.PanelsEnable.Add(el.Key, el.Value);
+        }
+
+        ///<summary>Сохранение заголовков панелей блоков расширения</summary>
+        private void BuildPanelsHeaders()
+        {
+            var headers = new Dictionary<string, string>()
+            {
+                // AO панели
+                { "AOblock1_header", AOblock1_header.Text },
+                { "AOblock2_header", AOblock2_header.Text },
+                { "AOblock3_header", AOblock3_header.Text },
+                // DO панели
+                { "DOblock1_header", DOblock1_header.Text },
+                { "DOblock2_header", DOblock2_header.Text },
+                { "DOblock3_header", DOblock3_header.Text },
+                // UI панели
+                { "UIblock1_header", UIblock1_header.Text },
+                { "UIblock2_header", UIblock2_header.Text },
+                { "UIblock3_header", UIblock3_header.Text }
+            };
+
+            foreach (var el in headers) json.PanelsHeaders.Add(el.Key, el.Value);
         }
 
         ///<summary>Сохранение ранее выбранного индекса comboBox таблицы сигналов</summary>
@@ -454,42 +507,39 @@ namespace Moderon
                 }
         }
 
-        
-
         ///<summary>Загрузка Json файла в программу</summary>
         private void LoadJsonFile()
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            using OpenFileDialog openFileDialog = new();
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            openFileDialog.Filter = "Json file (.json)|*.json";
+            
+            if (openFileDialog.ShowDialog() == DialogResult.OK)             // Выбрали нужный файл и подтвердили выбор
             {
-                openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                openFileDialog.Filter = "Json file (.json)|*.json";
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+                string message, caption;
+                var filePath = openFileDialog.FileName;
+                using Stream fileStream = openFileDialog.OpenFile();
+                try
                 {
-                    MessageBoxButtons buttons = MessageBoxButtons.OK;
-                    DialogResult result;
-                    string message, caption;
-                    var filePath = openFileDialog.FileName;
-                    using (Stream fileStream = openFileDialog.OpenFile())
-                    {
-                        try
-                        {
-                            json_read = JsonConvert.DeserializeObject<JsonObject>(System.IO.File.ReadAllText(filePath));
-                            message = "Файл успешно загружен!";
-                            caption = "Загрузка файла";
-                            result = MessageBox.Show(message, caption, buttons);
-                            if (result == DialogResult.OK) return;
-                        }
-                        catch
-                        {
-                            message = "Файл поврежден!";
-                            caption = "Ошибка загрузки файла";
-                            result = MessageBox.Show(message, caption, buttons);
-                            if (result == DialogResult.OK) return;
-                        }
-                        fileStream.Close(); fileStream.Dispose();
-                    }
+                    json_read = JsonConvert.DeserializeObject<JsonObject>(File.ReadAllText(filePath));
+                    message = "Файл успешно загружен!";
+                    caption = "Загрузка файла";
+                    result = MessageBox.Show(message, caption, buttons);
+                    correctFile = true;                                     // Признак корректного файла для загрузки
+                    if (result == DialogResult.OK) return;
                 }
+                catch
+                {
+                    message = "Файл поврежден!";
+                    caption = "Ошибка загрузки файла";
+                    result = MessageBox.Show(message, caption, buttons);
+                    if (result == DialogResult.OK) return;
+                }
+                fileStream.Close(); fileStream.Dispose();
             }
+
         }
 
         
