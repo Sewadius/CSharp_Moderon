@@ -29,6 +29,7 @@ namespace Moderon
             if (!correctFile) return;                                   // Выход при некорректном файле
 
             ignoreEvents = true;                                        // Отключение событий на время загрузки
+
             if (json_read != null)                                      // Загрузочный файл содержит информацию
             {
                 LoadCheckBoxAll();                                      // Загрузка для всех сheckBox
@@ -47,6 +48,7 @@ namespace Moderon
                 LoadPlkType();                                          // Загрузка ранее выбранного типа контроллера
                 CheckPanelBlocks(CalcExpBlocks_typeNums());             // Проверка отображения панели блоков расширения Form1, тип и количество
             }
+
             ignoreEvents = false;                                       // Возврат активации событий
         }
 
@@ -355,9 +357,25 @@ namespace Moderon
             // Блок расширения AO
             if (exp_blocks.ContainsKey("M72E12RB"))
             {
-                AO_block1_panelChanged_M72E12RB();                          // AO панель блок 1
-                UI_block1_panelChanged_M72E12RB();                          // UI панель блок 1
-                DO_block1_panelChanged_M72E12RB();                          // DO панель блок 1
+                if (DOblock1_header.Text.Contains("M72E12RB") && block1_DOpanel.Enabled)
+                {
+                    AO_block1_panelChanged_M72E12RB();                      // AO панель блок 1
+                    UI_block1_panelChanged_M72E12RB();                      // UI панель блок 1
+                    DO_block1_panelChanged_M72E12RB();                      // DO панель блок 1
+                }
+                else if (DOblock2_header.Text.Contains("M72E12RB") && block2_DOpanel.Enabled)
+                {
+                    AO_block2_panelChanged_M72E12RB();                      // AO панель блок 2
+                    UI_block2_panelChanged_M72E12RB();                      // UI панель блок 2
+                    DO_block2_panelChanged_M72E12RB();                      // DO панель блок 2
+                }
+                else if (DOblock3_header.Text.Contains("M72E12RB") && block3_DOpanel.Enabled)
+                {
+                    AO_block3_panelChanged_M72E12RB();                      // AO панель блок 3
+                    UI_block3_panelChanged_M72E12RB();                      // UI панель блок 3
+                    DO_block3_panelChanged_M72E12RB();                      // DO панель блок 3
+                }
+                
                 expansion_blocks.Add(M72E12RB);
 
                 if (exp_blocks["M72E12RB"] > 1)                             // Два блока расширения AO
@@ -427,16 +445,16 @@ namespace Moderon
             {
                 bool do_block2_locked = false, do_block3_locked = false;    // Признаки занятых панелей DO2 и DO3
 
-                if (DOblock1_header.Text.Contains("M72E08RA") /*!block1_DOpanel.Enabled*/)
+                if (DOblock1_header.Text.Contains("M72E08RA") && block1_DOpanel.Enabled)
                 {
                     DO_block1_panelChanged_M72E08RA();                      // DO панель блок 1
                 }
-                else if (DOblock2_header.Text.Contains("M72E08RA") /*!block2_DOpanel.Enabled*/)
+                else if (DOblock2_header.Text.Contains("M72E08RA") && block2_DOpanel.Enabled)
                 {
                     DO_block2_panelChanged_M72E08RA();                      // DO панель блок 2
                     do_block2_locked = true;                                // Установка признака занятой панели DO2
                 }
-                else if (DOblock3_header.Text.Contains("M72E08RA") /*!block3_DOpanel.Enabled*/)
+                else if (DOblock3_header.Text.Contains("M72E08RA") && block3_DOpanel.Enabled)
                 {
                     DO_block3_panelChanged_M72E08RA();                      // DO панель блок 3
                     do_block3_locked = true;                                // Установка признака занятой панели DO3
@@ -446,9 +464,9 @@ namespace Moderon
 
                 if (exp_blocks["M72E08RA"] > 1)                             // Два блока DO
                 {
-                    if (DOblock2_header.Text.Contains("M72E08RA") && !do_block2_locked /*!block2_DOpanel.Enabled*/)
+                    if (DOblock2_header.Text.Contains("M72E08RA") && block2_DOpanel.Enabled && !do_block2_locked)
                         DO_block2_panelChanged_M72E08RA();                  // DO панель блок 2
-                    else if (DOblock3_header.Text.Contains("M72E08RA") && !do_block3_locked /*!block3_DOpanel.Enabled*/)
+                    else if (DOblock3_header.Text.Contains("M72E08RA") && block3_DOpanel.Enabled && !do_block3_locked)
                     {
                         DO_block3_panelChanged_M72E08RA();                  // DO панель блок 3
                         do_block3_locked = true;                            // Установка признака занятой панели DO3

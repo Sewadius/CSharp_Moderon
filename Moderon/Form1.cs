@@ -390,6 +390,7 @@ namespace Moderon
             Form1_SizeChanged(this, e);                     // Изменение размеров для формы
             ComboPlkType_SelectedIndexChanged(this, e);     // Блокировка изначально входов/выходов для контроллера "Mini"
             MouseWheelCheck_CheckedChanged(this, e);        // Обработка блокировки прокрутки колёсиком мыши элементов comboBox
+            ClearPanelHeaders();                            // Начальная очистка заголовков для панелей блоков расширения
         }
 
         /// <summary>Скрытие всех вкладок элементов</summary>
@@ -675,6 +676,7 @@ namespace Moderon
             UiCombosBlocks_Reset();                         // Блок и скрытие элементов для UI панелей блоков расширения
             HidePanelBlocks();                              // Скрытие отображения для блоков расширения
             Hide_panelBlocks_elements();                    // Скрытие элементов для панели блоков расширения
+            ClearPanelHeaders();                            // Очистка заголовков для панелей блоков расширения
             InitialSet_ComboTextIndex();                    // Изначальная установка для подписей/индексов comboBox
             Form1_InitSignals(this, e);                     // Начальная расстановка сигналов
 
