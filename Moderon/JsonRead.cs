@@ -29,6 +29,7 @@ namespace Moderon
             if (!correctFile) return;                                   // Выход при некорректном файле
 
             ignoreEvents = true;                                        // Отключение событий на время загрузки
+            initialConfigure = false;                                   // Сброс признака начальной расстановки при загрузке
 
             if (json_read != null)                                      // Загрузочный файл содержит информацию
             {
