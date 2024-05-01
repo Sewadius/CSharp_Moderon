@@ -291,7 +291,9 @@ namespace Moderon
             {
                 comboPlkType.Enabled = false;                                       // Блокировка смены типа ПЛК
                 saveToolStripMenuItem.Enabled = false;                              // Блокировка сохранения файла
-                // backSignalsButton.Enabled = false;                                  // Блокировка кнопки "Назад"
+                #if !DEBUG
+                    backSignalsButton.Enabled = false;                              // Блокировка кнопки "Назад"
+                #endif
                 signalsReadyLabel.Text = "Карта входов/выходов некорректна";
                 signalsReadyLabel.ForeColor = Color.Red;
                 loadPLC_SignalsButton.Hide();                                       // Кнопка "Далее"

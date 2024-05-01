@@ -375,6 +375,10 @@ namespace Moderon
         /// <summary>Действия при загрузке Form1</summary>
         private void Form1_Load(object sender, EventArgs e)
         {
+            #if !DEBUG
+                resetButtonSignals.Hide();                  // Скрытие кнопки "Сброс" в таблице сигналов, Release
+            #endif
+
             LoadHints();                                    // Обработка для всплывающих подсказок
 
             // Установка текущей версии программы для label основной формы
