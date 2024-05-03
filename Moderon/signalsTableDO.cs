@@ -284,8 +284,14 @@ namespace Moderon
                 loadPLC_SignalsButton.Show();                                       // Кнопка "Далее"
                 loadToExl.Show();                                                   // Кнопка экспорта таблицы сигналов в Excel
                 saveSpecToolStripMenuItem.Enabled = true;                           // Возможность сохранить спецификацию
+                sig_distributionBtn.Hide();                                         // Скрытие кнопки распределения сигналов      
+                resetButtonSignals.Location =                                       // Положение кнопки "Сброс" по кнопке экспорта Excel
+                    new Point(loadToExl.Location.X + loadToExl.Width, resetButtonSignals.Location.Y);
+
                 // Установка изображения, подобрано
                 pic_signalsReady.Image = Properties.Resources.green_check;
+
+                
             } 
             else // Сигналы не распределены
             {
@@ -299,11 +305,15 @@ namespace Moderon
                 loadPLC_SignalsButton.Hide();                                       // Кнопка "Далее"
                 loadToExl.Hide();                                                   // Скрытие кнопки экспорта таблицы сигналов в Excel
                 saveSpecToolStripMenuItem.Enabled = false;                          // Невозможность сохранить спецификацию
+                sig_distributionBtn.Show();                                         // Отображение кнопки распределения сигналов  
+                resetButtonSignals.Location =                                       // Положение кнопки "Сброс" по кнопке распределения сигналов
+                    new Point(sig_distributionBtn.Location.X + sig_distributionBtn.Width, resetButtonSignals.Location.Y);
+
                 // Установка изображения, не подобрано
                 pic_signalsReady.Image = Properties.Resources.red_cross;
             }
 
-            CheckPanelBlocks(CalcExpBlocks_typeNums());             // Проверка отображения панели блоков расширения Form1, тип и количество
+            CheckPanelBlocks(CalcExpBlocks_typeNums());                             // Проверка отображения панели блоков расширения Form1, тип и количество
             return a;
         }
 

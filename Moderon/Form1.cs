@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
-using System.Net;
 
 namespace Moderon
 {
@@ -12,10 +11,10 @@ namespace Moderon
     {
         readonly static public string 
             NOT_SELECTED = "Не выбрано",                                // Статус для состояния входов/выходов
-            VERSION = "v.1.1.4.2";                                      // Текущая версия программы
+            VERSION = "v.1.1.4.4";                                      // Текущая версия программы
 
         private const int 
-            WIDTH_MAIN = 995,                                           // Ширина основной формы
+            WIDTH_MAIN = 955,                                           // Ширина основной формы
             HEIGHT_MAIN = 730,                                          // Высота основной формы
             HEIGHT = 280,                                               // Высота для панелей настройки элементов
             DELTA = 31,                                                 // Расстояние между comboBox в таблице сигналов
@@ -81,7 +80,11 @@ namespace Moderon
             UiCombosBlocks_Reset();         // Скрытие и блокировка comboBox UI блоков расширение, скрытие Label подписей
 
             // Размер для основной формы
-            Size = new Size(WIDTH_MAIN, HEIGHT_MAIN);      
+            Size = new Size(WIDTH_MAIN, HEIGHT_MAIN);
+
+            // Положение кнопки распределения сигналов по подписи сформированной карты
+            sig_distributionBtn.Location = 
+                new Point(signalsReadyLabel.Location.X + signalsReadyLabel.Width, sig_distributionBtn.Location.Y);
         }
 
         ///<summary>Начальная установка для входов и выходов</summary>
@@ -131,7 +134,6 @@ namespace Moderon
             label_progVersion.Location = new Point(Size.Width - 90, Size.Height - 60);
 
             PicturesMove(Size.Width);                       // Перемещение изображений
-            PDF_ReSize(Size.Width, Size.Height);            // Область для отображения PDF
             SignalsTableReSize(Size.Width, Size.Height);    // Таблица сигналов
         }
 
@@ -177,13 +179,6 @@ namespace Moderon
 
             foreach (var el in block_AO) { el.Hide(); el.Enabled = false; }         // Скрытие и блокировка для AO панелей
             foreach (var el in block_DO) { el.Hide(); el.Enabled = false; }         // Скрытие и блокировка для DO панелей
-        }
-
-        ///<summary>Изменение размера области для отображения руковоства PDF</summary>
-        private void PDF_ReSize(int width, int height)
-        {
-            helpPanel.Size = new Size(width - 50, height - 50);
-            PDF_manual.Size = new Size(helpPanel.Width, helpPanel.Height - 140);
         }
 
         ///<summary>Изменение размера области для таблицы сигналов</summary>
@@ -375,10 +370,6 @@ namespace Moderon
         /// <summary>Действия при загрузке Form1</summary>
         private void Form1_Load(object sender, EventArgs e)
         {
-            #if !DEBUG
-                resetButtonSignals.Hide();                  // Скрытие кнопки "Сброс" в таблице сигналов, Release
-            #endif
-
             LoadHints();                                    // Обработка для всплывающих подсказок
 
             // Установка текущей версии программы для label основной формы
@@ -412,11 +403,11 @@ namespace Moderon
         ///<summary>Проверка выбора опций для разблокировки типа системы</summary>
         private void CheckOptions()
         {
-            List<bool> options = new List<bool> {
+            List<bool> options = [
                 filterCheck.Checked, dampCheck.Checked, heaterCheck.Checked,
                 addHeatCheck.Checked, coolerCheck.Checked, humidCheck.Checked,
                 recircCheck.Checked, recupCheck.Checked
-            };
+            ];
 
             if (options.All(el => el == false)) comboSysType.Enabled = true;
         }
@@ -633,7 +624,6 @@ namespace Moderon
         {
             comboSysType.Enabled = true;                    // Разблокировка выбора типа системы
             comboSysType.SelectedIndex = 0;                 // Выбор приточной системы
-            expansion_blocks.Clear();                       // Очистка списка задействованных блоков расширения
            
             // Возврат checkBox панели настроек в состояние по умолчанию
             tooltipsCheck.Checked = true;                   // Выбор подсказок по умолчанию
@@ -688,6 +678,8 @@ namespace Moderon
             correctFile = false;                            // Установка начального признака корректного файла загрузки
             initialConfigure = true;                        // Установка признака начальной расстановки системы
             optimizeOnly = false;                           // Сброс признака блокировки выбора ПЛК Optimize
+
+            expansion_blocks.Clear();                       // Очистка списка задействованных блоков расширения
         }
 
         ///<summary>Сброс настроек для всего оборудования</summary>
@@ -1420,11 +1412,6 @@ namespace Moderon
             comboPlkType.Hide();                                                            // Скрытие выбора типа ПЛК
             panelBlocks.Hide();                                                             // Скрытие панели выбора блоков расширения
             pic_signalsReady.Hide();                                                        // Скрытие изображения статуса распределения сигналов
-            //ToolStripMenuItem_options.Enabled = false; // Блокировка "Настройки"
-            PDF_manual.Width = helpPanel.Width;                                             // Ширина по границе панели
-            PDF_manual.src = Directory.GetCurrentDirectory() + @"\ManualModeron.pdf";       // В папке приложения
-            PDF_ReSize(Size.Width, Size.Height);                                            // Область для отображения PDF
-            //ToolStripMenuItem_help.Enabled = false;                                       // Блокировка повторного выбора "Помощь"
         }
 
         // Нажали кнопку "Назад" в панели загрузки Modbus
@@ -1662,7 +1649,15 @@ namespace Moderon
             System.Diagnostics.Process.Start("http://moderon-electric.ru/");
         }
 
-        /// <summary>Настройка для поля мощности основного приточного вентилятора</summary>
+        ///<summary>Нажали на ссылку руководства по эксплуатации Moderon</summary>
+        private void LinkManualModeron_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            linkManualModeron.LinkVisited = true;
+            System.Diagnostics.Process.Start(
+                "https://moderon-electric.ru/software/moderon-hvac/docs-moderon-hvac/");
+        }
+
+        ///<summary>Настройка для поля мощности основного приточного вентилятора</summary>
         private void PowPrFanBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Числа, точка и Backspace
@@ -1670,7 +1665,7 @@ namespace Moderon
                 e.Handled = true;
         }
 
-        /// <summary>Настройка для поля мощности резервного приточного вентилятора</summary>
+        ///<summary>Настройка для поля мощности резервного приточного вентилятора</summary>
         private void PowPrResFanBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Числа, точка и Backspace
@@ -1678,7 +1673,7 @@ namespace Moderon
                 e.Handled = true;
         }
 
-        /// <summary>Настройка для поля мощности основного вытяжного вентилятора</summary>
+        ///<summary>Настройка для поля мощности основного вытяжного вентилятора</summary>
         private void PowOutFanBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Числа, точка и Backspace
@@ -1686,7 +1681,7 @@ namespace Moderon
                 e.Handled = true;
         }
 
-        // Настройка для поля мощности резервного вытяжного вентилятора
+        ///<summary>Настройка для поля мощности резервного вытяжного вентилятора</summary>
         private void PowOutResFanBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Числа, точка и Backspace
@@ -1694,7 +1689,7 @@ namespace Moderon
                 e.Handled = true;
         }
 
-        // Настройка для поля мощности основного электрического калорифера
+        ///<summary>Настройка для поля мощности основного электрического калорифера</summary>
         private void ElHeatPowBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Числа, точка и Backspace
@@ -1702,7 +1697,7 @@ namespace Moderon
                 e.Handled = true;
         }
 
-        // Настройка для поля мощности второго электрического калорифера
+        ///<summary>Настройка для поля мощности второго электрического калорифера</summary>
         private void ElAddHeatPowBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Числа, точка и Backspace
@@ -1710,7 +1705,7 @@ namespace Moderon
                 e.Handled = true;
         }
 
-        // Настройка для поля мощности роторного рекуператора
+        ///<summary>Настройка для поля мощности роторного рекуператора</summary>
         private void PowRotRecBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Числа, точка и Backspace
@@ -1718,11 +1713,11 @@ namespace Moderon
                 e.Handled = true;
         }
 
-        // Нажали на пункт "О программе"
+        ///<summary>Нажали на пункт "О программе"</summary>
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Отображение информационного окна
-            FormInfo formInfo = new FormInfo();
+            FormInfo formInfo = new();
             formInfo.Show(this);
         }
 
@@ -1758,12 +1753,6 @@ namespace Moderon
             formSignalsButton.Hide();
             pic_signalsReady.Show();                        // Отображение изображения сфомированной карты сигналов
             SignalsTableReSize(Size.Width, Size.Height);    // Таблица сигналов, пересчёт размеров
-        }
-
-        ///<summary>Нажали "Сброс" в панели таблицы сигналов</summary>
-        private void ResetButtonSignals_Click(object sender, EventArgs e)     
-        {
-            ResetButton_Click(sender, e);
         }
 
         ///<summary>Обработка клика при переходе по вкладке "Командные слова"</summary>

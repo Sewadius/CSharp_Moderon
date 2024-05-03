@@ -399,17 +399,17 @@ namespace Moderon
             // Блок расширения UI + DO
             if (exp_blocks.ContainsKey("M72E12RA"))
             {
-                if (!block1_DOpanel.Enabled && !block1_UIpanel.Enabled)
+                if (DOblock1_header.Text.Contains("M72E12RA") && block1_DOpanel.Enabled && block1_UIpanel.Enabled)
                 {
                     DO_block1_panelChanged_M72E12RA();                      // DO панель блок 1
                     UI_block1_panelChanged_M72E12RA();                      // UI панель блок 1
                 } 
-                else if (!block2_DOpanel.Enabled && !block2_UIpanel.Enabled)
+                else if (DOblock2_header.Text.Contains("M72E12RA") && block2_DOpanel.Enabled && block2_UIpanel.Enabled)
                 {
                     DO_block2_panelChanged_M72E12RA();                      // DO панель блок 2
                     UI_block2_panelChanged_M72E12RA();                      // UI панель блок 2
                 }
-                else if (!block3_DOpanel.Enabled && !block3_UIpanel.Enabled)
+                else if (DOblock3_header.Text.Contains("M72E12RA") && block3_DOpanel.Enabled && block3_UIpanel.Enabled)
                 {
                     DO_block3_panelChanged_M72E12RA();                      // DO панель блок 3
                     UI_block3_panelChanged_M72E12RA();                      // UI панель блок 3
@@ -419,12 +419,12 @@ namespace Moderon
 
                 if (exp_blocks["M72E12RA"] > 1)                             // Два блока расширения UI + DO
                 {
-                    if (!block2_DOpanel.Enabled && !block2_UIpanel.Enabled)
+                    if (DOblock2_header.Text.Contains("M72E12RA") && block2_DOpanel.Enabled && block2_UIpanel.Enabled)
                     {
                         DO_block2_panelChanged_M72E12RA();                  // DO панель блок 2
                         UI_block2_panelChanged_M72E12RA();                  // UI панель блок 2
                     }
-                    else if (!block3_DOpanel.Enabled && !block3_UIpanel.Enabled)
+                    else if (DOblock3_header.Text.Contains("M72E12RA") && block3_DOpanel.Enabled && block3_UIpanel.Enabled)
                     {
                         DO_block3_panelChanged_M72E12RA();                  // DO панель блок 3
                         UI_block3_panelChanged_M72E12RA();                  // UI панель блок 3
@@ -444,7 +444,9 @@ namespace Moderon
             // Блок расширения DO
             if (exp_blocks.ContainsKey("M72E08RA"))                         // Один блок DO
             {
-                bool do_block2_locked = false, do_block3_locked = false;    // Признаки занятых панелей DO2 и DO3
+                bool 
+                    do_block2_locked = false,                               // Признак занятой панели DO2
+                    do_block3_locked = false;                               // Признак занятой панели DO3
 
                 if (DOblock1_header.Text.Contains("M72E08RA") && block1_DOpanel.Enabled)
                 {
@@ -489,27 +491,29 @@ namespace Moderon
             // Блок расширения UI
             if (exp_blocks.ContainsKey("M72E16NA"))
             {
-                if (!block1_UIpanel.Enabled)
-                    UI_block1_panelChanged_M72E16NA();     // UI панель блок 1
-                else if (!block2_UIpanel.Enabled)
-                    UI_block2_panelChanged_M72E16NA();     // UI панель блок 2
-                else if (!block3_UIpanel.Enabled)
-                    UI_block3_panelChanged_M72E16NA();     // UI панель блок 3
+                if (UIblock1_header.Text.Contains("M72E16NA") && block1_UIpanel.Enabled)
+                    UI_block1_panelChanged_M72E16NA();          // UI панель блок 1
+                else if (UIblock2_header.Text.Contains("M72E16NA") && block2_UIpanel.Enabled)
+                    UI_block2_panelChanged_M72E16NA();          // UI панель блок 2
+                else if (UIblock3_header.Text.Contains("M72E16NA") && block3_UIpanel.Enabled)
+                    UI_block3_panelChanged_M72E16NA();          // UI панель блок 3
 
                 expansion_blocks.Add(M72E16NA);
 
                 if (exp_blocks["M72E16NA"] > 1)
                 {
-                    if (!block2_UIpanel.Enabled)
-                        UI_block2_panelChanged_M72E16NA();  // UI панель блок 2
-                    else if (!block3_UIpanel.Enabled)
-                        UI_block3_panelChanged_M72E16NA();  // UI панель блок 3
+                    if (UIblock2_header.Text.Contains("M72E16NA") && block2_UIpanel.Enabled)
+                        UI_block2_panelChanged_M72E16NA();      // UI панель блок 2
+                    else if (UIblock3_header.Text.Contains("M72E16NA") && block3_UIpanel.Enabled)
+                        UI_block3_panelChanged_M72E16NA();      // UI панель блок 3
 
                     expansion_blocks.Add(M72E16NA);
 
                     if (exp_blocks["M72E16NA"] > 2)
                     {
-                        UI_block3_panelChanged_M72E16NA();  // UI панель блок 3
+                        if (UIblock3_header.Text.Contains("M72E16NA") && block3_UIpanel.Enabled)
+                            UI_block3_panelChanged_M72E16NA();  // UI панель блок 3
+
                         expansion_blocks.Add(M72E16NA);
                     }
                 }
