@@ -381,9 +381,19 @@ namespace Moderon
 
                 if (exp_blocks["M72E12RB"] > 1)                             // Два блока расширения AO
                 {
-                    AO_block2_panelChanged_M72E12RB();                      // AO панель блок 2
-                    UI_block2_panelChanged_M72E12RB();                      // UI панель блок 2
-                    DO_block2_panelChanged_M72E12RB();                      // DO панель блок 2
+                    if (block1_UIpanel.Enabled || block1_DOpanel.Enabled)   // Есть активная панель 1-го блока
+                    {
+                        AO_block2_panelChanged_M72E12RB();                  // AO панель блок 2
+                        UI_block2_panelChanged_M72E12RB();                  // UI панель блок 2
+                        DO_block2_panelChanged_M72E12RB();                  // DO панель блок 2
+                    }
+                    else
+                    {
+                        AO_block3_panelChanged_M72E12RB();                  // AO панель блок 3
+                        UI_block3_panelChanged_M72E12RB();                  // UI панель блок 3
+                        DO_block3_panelChanged_M72E12RB();                  // DO панель блок 3
+                    }
+                    
                     expansion_blocks.Add(M72E12RB);
 
                     if (exp_blocks["M72E12RB"] > 2)                         // Три блока расширения AO
