@@ -175,6 +175,7 @@
     <None Include="Resources\fan380.png" />
     <None Include="Resources\plastRecupBypass.png" />
     <None Include="Resources\glikRecup.png" />
+    <None Include="Resources\download.png" />
     <Content Include="Resources\refresh_red.png" />
     <Content Include="Template.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

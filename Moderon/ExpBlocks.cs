@@ -714,7 +714,13 @@ namespace Moderon
                     if (block1_DOpanel.Enabled || block1_UIpanel.Enabled)
                         UIblock3_header.Text = "Блок расширения 3 - " + block.Name;
                     else
-                        UIblock3_header.Text = "Блок расширения 2 - " + block.Name;
+                    {
+                        if (!block1_UIpanel.Enabled && !block2_UIpanel.Enabled)     // Нет других занятых слотов UI
+                            UIblock3_header.Text = "Блок расширения 1 - " + block.Name;
+                        else
+                            UIblock3_header.Text = "Блок расширения 2 - " + block.Name;
+                    }
+                        
                 }
                 block3_UIpanel.Height = height;
                 block3_UIpanel.Show(); block3_UIpanel.Enabled = true;
@@ -785,7 +791,12 @@ namespace Moderon
                     if (block1_DOpanel.Enabled || block1_UIpanel.Enabled)
                         DOblock3_header.Text = "Блок расширения 3 - " + block.Name;
                     else
-                        DOblock3_header.Text = "Блок расширения 2 - " + block.Name;
+                    {
+                        if (DOblock2_header.Text.Contains("Блок расширения 2"))         // Остался только один блок под номером 2
+                            DOblock3_header.Text = "Блок расширения 1 - " + block.Name;
+                        else
+                            DOblock3_header.Text = "Блок расширения 2 - " + block.Name;
+                    }
                 }
                 block3_DOpanel.Height = height;
                 block3_DOpanel.Show(); block3_DOpanel.Enabled = true;
@@ -854,7 +865,12 @@ namespace Moderon
                     if (block1_DOpanel.Enabled || block1_UIpanel.Enabled)
                         AOblock3_header.Text = "Блок расширения 3 - " + expBlock.Name;
                     else
-                        AOblock3_header.Text = "Блок расширения 2 - " + expBlock.Name;
+                    {
+                        if (!block1_DOpanel.Enabled && DOblock2_header.Text.Contains("Блок расширения 2"))
+                            AOblock3_header.Text = "Блок расширения 1 - " + expBlock.Name;
+                        else
+                            AOblock3_header.Text = "Блок расширения 2 - " + expBlock.Name;
+                    }
                 }
                 block3_AOpanel.Height = height;
                 block3_AOpanel.Show(); block3_AOpanel.Enabled = true;
@@ -1408,7 +1424,35 @@ namespace Moderon
                     DO_block2_panelChanged_M72E12RA();                              // Изменение панели блока расширения 2 для сигналов DO
                     UI_block2_panelChanged_M72E12RA();                              // Изменение панели блока расширения 2 для сигналов UI
                 }
-                
+
+                // Положение панели DO блока 3
+                if (block3_DOpanel.Enabled)
+                {
+                    if (block2_DOpanel.Enabled)                                     // Есть доступная панель DO блока 2
+                        block3_DOpanel.Location = new Point(block3_DOpanel.Location.X,
+                            block2_DOpanel.Location.Y + block2_DOpanel.Height);
+                    else if (block1_DOpanel.Enabled)                                // Есть доступная панель DO блока 1
+                        block3_DOpanel.Location = new Point(block3_DOpanel.Location.X,
+                            block1_DOpanel.Location.Y + block1_DOpanel.Height);
+                    else                                                            // Положение по панели контроллера
+                        block3_DOpanel.Location = new Point(block3_DOpanel.Location.X,
+                            plk_DOpanel.Location.Y + plk_DOpanel.Height);
+                }
+
+                // Положение панели UI блока 3
+                if (block3_UIpanel.Enabled)
+                {
+                    if (block2_UIpanel.Enabled)                                     // Есть доступная панель UI блока 2
+                        block3_UIpanel.Location = new Point(block3_UIpanel.Location.X,
+                            block2_UIpanel.Location.Y + block2_UIpanel.Height);
+                    else if (block1_UIpanel.Enabled)                                // Есть доступная панель UI блока 1
+                        block3_UIpanel.Location = new Point(block3_UIpanel.Location.X,
+                            block1_UIpanel.Location.Y + block1_UIpanel.Height);
+                    else                                                            // Положение по панели контроллера
+                        block3_UIpanel.Location = new Point(block3_UIpanel.Location.X,
+                            plk_UIpanel.Location.Y + plk_UIpanel.Height);
+                }
+
                 #if DEBUG
                     MessageBox.Show("Добавлен 2-й блок (DO + UI)");
                 #endif
@@ -1860,7 +1904,7 @@ namespace Moderon
                         UICombosBlock_2_Reset();                                    // Скрытие и блокировка элементов UI блока расширения 2
                     }
                     else if (number == 3)
-                    {
+                    {   
                         block3_UIpanel.Hide(); block3_UIpanel.Enabled = false;      // Скрытие и блокировка панели UI для блока расширения 3
                         UIblock3_header.Text = "";                                  // Очистка заголовка UI блока расширения 3
                         UICombosBlock_3_Reset();                                    // Скрытие и блокировка элементов UI блока расширения 3
@@ -1880,7 +1924,7 @@ namespace Moderon
                         DOCombosBlock_2_Reset();                                    // Скрытие и блокировка элементов DO блока расширения 2
                     }
                     else if (number == 3)
-                    {
+                    {   
                         block3_DOpanel.Hide(); block3_DOpanel.Enabled = false;      // Скрытие и блокировка панели DO для блока расширения 3
                         DOblock3_header.Text = "";                                  // Очистка заголовка DO блока расширения 3
                         DOCombosBlock_3_Reset();                                    // Скрытие и блокировка элементов DO блока расширения 3
@@ -2392,7 +2436,7 @@ namespace Moderon
                             DO6bl2_combo, DO7bl2_combo, DO8bl2_combo];
 
                         foreach (var el in do_block2)                               // Выбор сигнала для блока DO2
-                            if (el.Enabled && el.Items.Count > 1 && el.SelectedIndex == 0)
+                            if (el.Enabled && el.Items.Count > 1 && el.SelectedIndex == 0)  
                                 el.SelectedIndex = 1;
                     }
                     // Вторая панель используется для блока расширения AO
@@ -2406,10 +2450,14 @@ namespace Moderon
                     // Третья панель используется для блока расширения AO
                     else if (block3_DOpanel.Enabled && DOblock3_header.Text.Contains("M72E12RB"))
                     {
-                        CheckSignals_block3_M72E12RB();                             // Автораспределение ранее выбранных сигналов с блока 2
+                        CheckSignals_block3_M72E12RB();                             // Автораспределение ранее выбранных сигналов с блока 3
                         RemoveBlockPanel("AO", 3);                                  // Скрытие панели AO3
-                        RemoveBlockPanel("DO", 3);                                  // Скрытие панели DO3
-                        RemoveBlockPanel("UI", 3);                                  // Скрытие панели UI3
+
+                        if (DOblock3_header.Text.Contains("M72E12RB"))
+                        {
+                            RemoveBlockPanel("DO", 3);                              // Скрытие панели DO3
+                            RemoveBlockPanel("UI", 3);                              // Скрытие панели UI3
+                        }
                     }
                 }
                 else                                                                // Другие варианты
@@ -2433,10 +2481,13 @@ namespace Moderon
                 // Положение панели AO блока 3
                 if (block3_AOpanel.Enabled)
                 {
-                    if (block1_AOpanel.Enabled)                             // Есть доступная панель AO блока 1
+                    if (block2_AOpanel.Enabled)                                     // Есть доступная панель AO блока 2
+                        block3_AOpanel.Location = new Point(block3_AOpanel.Location.X,
+                            block2_AOpanel.Location.Y + block2_AOpanel.Height);
+                    else if (block1_AOpanel.Enabled)                                // Есть доступная панель AO блока 1
                         block3_AOpanel.Location = new Point(block3_AOpanel.Location.X,
                             block1_AOpanel.Location.Y + block1_AOpanel.Height);
-                    else                                                    // Положение по панели контроллера
+                    else                                                            // Положение по панели контроллера
                         block3_AOpanel.Location = new Point(block3_AOpanel.Location.X,
                             plk_AOpanel.Location.Y + plk_AOpanel.Height);
                 }
@@ -2444,10 +2495,13 @@ namespace Moderon
                 // Положение панели DO блока 3
                 if (block3_DOpanel.Enabled)
                 {
-                    if (block1_DOpanel.Enabled)                             // Есть доступная панель DO блока 1
+                    if (block2_DOpanel.Enabled)                                     // Есть доступная панель DO блока 2
+                        block3_DOpanel.Location = new Point(block3_DOpanel.Location.X,
+                            block2_DOpanel.Location.Y + block2_DOpanel.Height);
+                    else if (block1_DOpanel.Enabled)                                // Есть доступная панель DO блока 1
                         block3_DOpanel.Location = new Point(block3_DOpanel.Location.X,
                             block1_DOpanel.Location.Y + block1_DOpanel.Height);
-                    else                                                    // Положение по панели контроллера
+                    else                                                            // Положение по панели контроллера
                         block3_DOpanel.Location = new Point(block3_DOpanel.Location.X,
                             plk_DOpanel.Location.Y + plk_DOpanel.Height);
                 }
@@ -2455,10 +2509,13 @@ namespace Moderon
                 // Положение панели UI блока 3
                 if (block3_UIpanel.Enabled)
                 {
-                    if (block1_UIpanel.Enabled)                             // Есть доступная панель UI блока 1
+                    if (block2_UIpanel.Enabled)                                     // Есть доступная панель UI блока 2
+                        block3_UIpanel.Location = new Point(block3_UIpanel.Location.X,
+                            block2_UIpanel.Location.Y + block2_UIpanel.Height);
+                    else if (block1_UIpanel.Enabled)                                // Есть доступная панель UI блока 1
                         block3_UIpanel.Location = new Point(block3_UIpanel.Location.X,
                             block1_UIpanel.Location.Y + block1_UIpanel.Height);
-                    else                                                    // Положение по панели контроллера
+                    else                                                            // Положение по панели контроллера
                         block3_UIpanel.Location = new Point(block3_UIpanel.Location.X,
                             plk_UIpanel.Location.Y + plk_UIpanel.Height);
                 }

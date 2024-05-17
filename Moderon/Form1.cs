@@ -57,7 +57,7 @@ namespace Moderon
         // Класс для всплывающих подсказок (основные элементы)
         readonly ToolTip toolTip = new()
         {
-            AutoPopDelay = 3000, InitialDelay = 1000, ReshowDelay = 500, ShowAlways = true
+            AutoPopDelay = 1500, InitialDelay = 500, ReshowDelay = 500, ShowAlways = true
         };
 
         // Класс для всплывающих подсказок (зеленые галочки подбора приводов)

@@ -729,6 +729,7 @@ namespace Moderon
             this.backHelpButton = new System.Windows.Forms.Button();
             this.label_comboSysType = new System.Windows.Forms.Label();
             this.loadCanPanel = new System.Windows.Forms.Panel();
+            this.firmwareDownload = new System.Windows.Forms.PictureBox();
             this.progressBarWrite = new System.Windows.Forms.ProgressBar();
             this.processWriteLabel = new System.Windows.Forms.Label();
             this.backConnectLabel = new System.Windows.Forms.Label();
@@ -761,14 +762,14 @@ namespace Moderon
             this.M72E08RA_label = new System.Windows.Forms.Label();
             this.M72E12RB_label = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
-            this.pic_signalsReady = new System.Windows.Forms.PictureBox();
-            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.optionsPanel = new System.Windows.Forms.Panel();
             this.backOptionsButton = new System.Windows.Forms.Button();
             this.mouseWheelCheck = new System.Windows.Forms.CheckBox();
             this.tooltipsCheck = new System.Windows.Forms.CheckBox();
             this.label64 = new System.Windows.Forms.Label();
             this.label_progVersion = new System.Windows.Forms.Label();
+            this.pic_signalsReady = new System.Windows.Forms.PictureBox();
+            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.menuStrip.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.sensorsPage.SuspendLayout();
@@ -839,11 +840,12 @@ namespace Moderon
             this.tabCmdWord.SuspendLayout();
             this.helpPanel.SuspendLayout();
             this.loadCanPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.firmwareDownload)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.refreshCanPorts)).BeginInit();
             this.panelBlocks.SuspendLayout();
+            this.optionsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_signalsReady)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
-            this.optionsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -941,7 +943,7 @@ namespace Moderon
             this.mainPage.Location = new System.Drawing.Point(15, 75);
             this.mainPage.Name = "mainPage";
             this.mainPage.SelectedIndex = 0;
-            this.mainPage.Size = new System.Drawing.Size(750, 547);
+            this.mainPage.Size = new System.Drawing.Size(750, 40);
             this.mainPage.TabIndex = 1;
             // 
             // sensorsPage
@@ -950,7 +952,7 @@ namespace Moderon
             this.sensorsPage.Controls.Add(this.sensorsPanel);
             this.sensorsPage.Location = new System.Drawing.Point(4, 22);
             this.sensorsPage.Name = "sensorsPage";
-            this.sensorsPage.Size = new System.Drawing.Size(742, 521);
+            this.sensorsPage.Size = new System.Drawing.Size(742, 14);
             this.sensorsPage.TabIndex = 9;
             this.sensorsPage.Text = "ДАТЧИКИ/СИГНАЛЫ";
             // 
@@ -1196,7 +1198,7 @@ namespace Moderon
             this.fanPage.Location = new System.Drawing.Point(4, 22);
             this.fanPage.Name = "fanPage";
             this.fanPage.Padding = new System.Windows.Forms.Padding(3);
-            this.fanPage.Size = new System.Drawing.Size(742, 54);
+            this.fanPage.Size = new System.Drawing.Size(742, 14);
             this.fanPage.TabIndex = 0;
             this.fanPage.Text = "ВЕНТИЛЯТОР";
             // 
@@ -1870,7 +1872,7 @@ namespace Moderon
             this.filterPage.Controls.Add(this.filterPanel);
             this.filterPage.Location = new System.Drawing.Point(4, 22);
             this.filterPage.Name = "filterPage";
-            this.filterPage.Size = new System.Drawing.Size(742, 54);
+            this.filterPage.Size = new System.Drawing.Size(742, 14);
             this.filterPage.TabIndex = 6;
             this.filterPage.Text = "ФИЛЬТР";
             // 
@@ -1993,7 +1995,7 @@ namespace Moderon
             this.dampPage.Controls.Add(this.dampPanel);
             this.dampPage.Location = new System.Drawing.Point(4, 22);
             this.dampPage.Name = "dampPage";
-            this.dampPage.Size = new System.Drawing.Size(742, 54);
+            this.dampPage.Size = new System.Drawing.Size(742, 14);
             this.dampPage.TabIndex = 7;
             this.dampPage.Text = "ЗАСЛОНКА";
             // 
@@ -2426,7 +2428,7 @@ namespace Moderon
             this.heatPage.Location = new System.Drawing.Point(4, 22);
             this.heatPage.Name = "heatPage";
             this.heatPage.Padding = new System.Windows.Forms.Padding(3);
-            this.heatPage.Size = new System.Drawing.Size(742, 54);
+            this.heatPage.Size = new System.Drawing.Size(742, 14);
             this.heatPage.TabIndex = 1;
             this.heatPage.Text = "НАГРЕВАТЕЛЬ";
             // 
@@ -2796,7 +2798,7 @@ namespace Moderon
             this.coolPage.Location = new System.Drawing.Point(4, 22);
             this.coolPage.Name = "coolPage";
             this.coolPage.Padding = new System.Windows.Forms.Padding(3);
-            this.coolPage.Size = new System.Drawing.Size(742, 54);
+            this.coolPage.Size = new System.Drawing.Size(742, 14);
             this.coolPage.TabIndex = 2;
             this.coolPage.Text = "ОХЛАДИТЕЛЬ";
             // 
@@ -3023,7 +3025,7 @@ namespace Moderon
             this.humidPage.Location = new System.Drawing.Point(4, 22);
             this.humidPage.Name = "humidPage";
             this.humidPage.Padding = new System.Windows.Forms.Padding(3);
-            this.humidPage.Size = new System.Drawing.Size(742, 54);
+            this.humidPage.Size = new System.Drawing.Size(742, 14);
             this.humidPage.TabIndex = 3;
             this.humidPage.Text = "УВЛАЖНИТЕЛЬ";
             // 
@@ -3183,7 +3185,7 @@ namespace Moderon
             this.recircPage.Location = new System.Drawing.Point(4, 22);
             this.recircPage.Name = "recircPage";
             this.recircPage.Padding = new System.Windows.Forms.Padding(3);
-            this.recircPage.Size = new System.Drawing.Size(742, 54);
+            this.recircPage.Size = new System.Drawing.Size(742, 14);
             this.recircPage.TabIndex = 4;
             this.recircPage.Text = "РЕЦИРКУЛЯЦИЯ";
             // 
@@ -3400,7 +3402,7 @@ namespace Moderon
             this.recupPage.Controls.Add(this.recupPanel);
             this.recupPage.Location = new System.Drawing.Point(4, 22);
             this.recupPage.Name = "recupPage";
-            this.recupPage.Size = new System.Drawing.Size(742, 521);
+            this.recupPage.Size = new System.Drawing.Size(742, 14);
             this.recupPage.TabIndex = 5;
             this.recupPage.Text = "РЕКУПЕРАТОР";
             // 
@@ -3809,7 +3811,7 @@ namespace Moderon
             this.addHeatPage.Controls.Add(this.secHeatPanel);
             this.addHeatPage.Location = new System.Drawing.Point(4, 22);
             this.addHeatPage.Name = "addHeatPage";
-            this.addHeatPage.Size = new System.Drawing.Size(742, 54);
+            this.addHeatPage.Size = new System.Drawing.Size(742, 14);
             this.addHeatPage.TabIndex = 8;
             this.addHeatPage.Text = "ДОП НАГРЕВ";
             // 
@@ -4614,7 +4616,7 @@ namespace Moderon
             this.signalsPanel.Controls.Add(this.signalsReadyLabel);
             this.signalsPanel.Controls.Add(this.tabControlSignals);
             this.signalsPanel.Controls.Add(this.backSignalsButton);
-            this.signalsPanel.Location = new System.Drawing.Point(10, 628);
+            this.signalsPanel.Location = new System.Drawing.Point(8, 747);
             this.signalsPanel.Name = "signalsPanel";
             this.signalsPanel.Size = new System.Drawing.Size(740, 47);
             this.signalsPanel.TabIndex = 16;
@@ -9895,7 +9897,7 @@ namespace Moderon
             this.helpPanel.Controls.Add(this.label140);
             this.helpPanel.Controls.Add(this.linkModeronWeb);
             this.helpPanel.Controls.Add(this.backHelpButton);
-            this.helpPanel.Location = new System.Drawing.Point(10, 681);
+            this.helpPanel.Location = new System.Drawing.Point(8, 800);
             this.helpPanel.Name = "helpPanel";
             this.helpPanel.Size = new System.Drawing.Size(746, 41);
             this.helpPanel.TabIndex = 17;
@@ -9971,6 +9973,7 @@ namespace Moderon
             // 
             // loadCanPanel
             // 
+            this.loadCanPanel.Controls.Add(this.firmwareDownload);
             this.loadCanPanel.Controls.Add(this.progressBarWrite);
             this.loadCanPanel.Controls.Add(this.processWriteLabel);
             this.loadCanPanel.Controls.Add(this.backConnectLabel);
@@ -9996,11 +9999,22 @@ namespace Moderon
             this.loadCanPanel.Controls.Add(this.label174);
             this.loadCanPanel.Controls.Add(this.label173);
             this.loadCanPanel.Controls.Add(this.netOptionLabel);
-            this.loadCanPanel.Location = new System.Drawing.Point(9, 809);
+            this.loadCanPanel.Location = new System.Drawing.Point(16, 121);
             this.loadCanPanel.Name = "loadCanPanel";
-            this.loadCanPanel.Size = new System.Drawing.Size(749, 33);
+            this.loadCanPanel.Size = new System.Drawing.Size(749, 590);
             this.loadCanPanel.TabIndex = 45;
             this.loadCanPanel.Visible = false;
+            // 
+            // firmwareDownload
+            // 
+            this.firmwareDownload.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.firmwareDownload.Image = global::Moderon.Properties.Resources.download;
+            this.firmwareDownload.Location = new System.Drawing.Point(291, 55);
+            this.firmwareDownload.Name = "firmwareDownload";
+            this.firmwareDownload.Size = new System.Drawing.Size(30, 30);
+            this.firmwareDownload.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.firmwareDownload.TabIndex = 80;
+            this.firmwareDownload.TabStop = false;
             // 
             // progressBarWrite
             // 
@@ -10372,28 +10386,6 @@ namespace Moderon
             this.label61.TabIndex = 15;
             this.label61.Text = "БЛОКИ РАСШИРЕНИЯ";
             // 
-            // pic_signalsReady
-            // 
-            this.pic_signalsReady.Image = global::Moderon.Properties.Resources.green_check;
-            this.pic_signalsReady.Location = new System.Drawing.Point(785, 75);
-            this.pic_signalsReady.Name = "pic_signalsReady";
-            this.pic_signalsReady.Size = new System.Drawing.Size(40, 40);
-            this.pic_signalsReady.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pic_signalsReady.TabIndex = 63;
-            this.pic_signalsReady.TabStop = false;
-            // 
-            // pictureBoxLogo
-            // 
-            this.pictureBoxLogo.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBoxLogo.Image = global::Moderon.Properties.Resources.logo_moderon;
-            this.pictureBoxLogo.InitialImage = global::Moderon.Properties.Resources.logo_moderon;
-            this.pictureBoxLogo.Location = new System.Drawing.Point(843, 25);
-            this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(136, 42);
-            this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxLogo.TabIndex = 2;
-            this.pictureBoxLogo.TabStop = false;
-            // 
             // optionsPanel
             // 
             this.optionsPanel.Controls.Add(this.backOptionsButton);
@@ -10468,6 +10460,28 @@ namespace Moderon
             this.label_progVersion.Size = new System.Drawing.Size(54, 14);
             this.label_progVersion.TabIndex = 20;
             this.label_progVersion.Text = "v. 1.1.2";
+            // 
+            // pic_signalsReady
+            // 
+            this.pic_signalsReady.Image = global::Moderon.Properties.Resources.green_check;
+            this.pic_signalsReady.Location = new System.Drawing.Point(785, 75);
+            this.pic_signalsReady.Name = "pic_signalsReady";
+            this.pic_signalsReady.Size = new System.Drawing.Size(40, 40);
+            this.pic_signalsReady.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_signalsReady.TabIndex = 63;
+            this.pic_signalsReady.TabStop = false;
+            // 
+            // pictureBoxLogo
+            // 
+            this.pictureBoxLogo.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxLogo.Image = global::Moderon.Properties.Resources.logo_moderon;
+            this.pictureBoxLogo.InitialImage = global::Moderon.Properties.Resources.logo_moderon;
+            this.pictureBoxLogo.Location = new System.Drawing.Point(843, 25);
+            this.pictureBoxLogo.Name = "pictureBoxLogo";
+            this.pictureBoxLogo.Size = new System.Drawing.Size(136, 42);
+            this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxLogo.TabIndex = 2;
+            this.pictureBoxLogo.TabStop = false;
             // 
             // Form1
             // 
@@ -10611,13 +10625,14 @@ namespace Moderon
             this.helpPanel.PerformLayout();
             this.loadCanPanel.ResumeLayout(false);
             this.loadCanPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.firmwareDownload)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.refreshCanPorts)).EndInit();
             this.panelBlocks.ResumeLayout(false);
             this.panelBlocks.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_signalsReady)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.optionsPanel.ResumeLayout(false);
             this.optionsPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_signalsReady)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -11359,6 +11374,7 @@ namespace Moderon
         private Button sig_distributionBtn;
         private LinkLabel linkManualModeron;
         private Label label65;
+        private PictureBox firmwareDownload;
     }
 }
 
