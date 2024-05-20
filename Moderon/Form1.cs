@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
+using System.Threading;
 
 namespace Moderon
 {
@@ -55,15 +56,15 @@ namespace Moderon
             torq_recircDamp = 0;                                        // Крутящий момент для рециркуляционной заслонки
 
         // Класс для всплывающих подсказок (основные элементы)
-        readonly ToolTip toolTip = new()
+        public ToolTip toolTip = new()
         {
             AutoPopDelay = 1500, InitialDelay = 500, ReshowDelay = 500, ShowAlways = true
         };
 
         // Класс для всплывающих подсказок (зеленые галочки подбора приводов)
-        readonly ToolTip driveTip = new()
+        public ToolTip driveTip = new()
         {
-            AutoPopDelay = 3000, InitialDelay = 1000, ReshowDelay = 500, ShowAlways = true
+            AutoPopDelay = 1500, InitialDelay = 500, ReshowDelay = 500, ShowAlways = true
         };
 
         public Form1()
@@ -85,6 +86,8 @@ namespace Moderon
             // Положение кнопки распределения сигналов по подписи сформированной карты
             sig_distributionBtn.Location = 
                 new Point(signalsReadyLabel.Location.X + signalsReadyLabel.Width, sig_distributionBtn.Location.Y);
+
+            //LoadHints();                    // Загрузка всплывающих подсказок
         }
 
         ///<summary>Начальная установка для входов и выходов</summary>
@@ -283,9 +286,8 @@ namespace Moderon
 
                 drive = "Привод добавлен в спецификацию",
                 pic_sig_ready = "Состояние карты входов/выходов",
-                pic_refresh = "Обновить список COM портов";
-
-            toolTip.Active = hintEnabled;   // Признак активации отображения подсказок
+                pic_refresh = "Обновить список COM портов",
+                pic_download = "Загрузить прошивку в ПЛК";
 
             // Датчики температуры и внешние сигналы
             toolTip.SetToolTip(prChanSensCheck, ai_sig_temp);
@@ -357,21 +359,26 @@ namespace Moderon
             // Роторный рекуператор
             toolTip.SetToolTip(outSigAlarmRotRecCheck, di_sig);
             toolTip.SetToolTip(startRotRecCheck, do_sig);
-            // Зеленые галочки при подборе приводов заслонок
-            driveTip.SetToolTip(markPrDampPanel, drive);
-            driveTip.SetToolTip(markOutDampPanel, drive);
-            driveTip.SetToolTip(markRecircPanel, drive);
             // Изображение для карты входов/выходов
             toolTip.SetToolTip(pic_signalsReady, pic_sig_ready);
             // Изображение для обновления списка CAN портов
             toolTip.SetToolTip(refreshCanPorts, pic_refresh);
+            // Изображение для загрузки прошивки в контроллер
+            toolTip.SetToolTip(firmwareDownload, pic_download);
+
+            // Зеленые галочки при подборе приводов заслонок
+            driveTip.SetToolTip(markPrDampPanel, drive);
+            driveTip.SetToolTip(markOutDampPanel, drive);
+            driveTip.SetToolTip(markRecircPanel, drive);
+            
+
+            toolTip.Active = hintEnabled;   // Признак активации отображения подсказок элементов
+            driveTip.Active = hintEnabled;  // Признак активации отобрежения подсказок приводов
         }
 
         /// <summary>Действия при загрузке Form1</summary>
         private void Form1_Load(object sender, EventArgs e)
         {
-            LoadHints();                                    // Обработка для всплывающих подсказок
-
             // Установка текущей версии программы для label основной формы
             label_progVersion.Text = VERSION.Substring(0, VERSION.Length - 2);
 
@@ -386,6 +393,8 @@ namespace Moderon
             ComboPlkType_SelectedIndexChanged(this, e);     // Блокировка изначально входов/выходов для контроллера "Mini"
             MouseWheelCheck_CheckedChanged(this, e);        // Обработка блокировки прокрутки колёсиком мыши элементов comboBox
             ClearPanelHeaders();                            // Начальная очистка заголовков для панелей блоков расширения
+
+            LoadHints();                                    // Обработка для всплывающих подсказок
         }
 
         /// <summary>Скрытие всех вкладок элементов</summary>

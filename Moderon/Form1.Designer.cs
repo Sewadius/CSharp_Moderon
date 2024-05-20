@@ -10015,6 +10015,7 @@ namespace Moderon
             this.firmwareDownload.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.firmwareDownload.TabIndex = 80;
             this.firmwareDownload.TabStop = false;
+            this.firmwareDownload.Click += new System.EventHandler(this.FirmwareDownload_Click);
             // 
             // progressBarWrite
             // 

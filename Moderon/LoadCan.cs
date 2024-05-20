@@ -68,6 +68,26 @@ namespace Moderon
             thread.Start();
         }
 
+        ///<summary>Нажали на загрузку прошивки в ПЛК</summary>
+        private void FirmwareDownload_Click(object sender, EventArgs e)
+        {
+            const string
+                CAPTION = "Загрузка прошивки в ПЛК",
+                MESSAGE = "Загрузить файл прошивки в контроллер?";
+
+            var result = MessageBox.Show(MESSAGE, CAPTION, MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            // Выбрали "Да", загрузка файла прошивки через сторонний процесс
+            if (result == DialogResult.Yes)
+            {
+                GetSerialPorts();                       // Формирование comboBox с актуальными CAN портами
+
+                string port = canSelectBox.SelectedItem.ToString();
+
+            }
+        }
+
         ///<summary>Выбор чётности в зависимости от выбора comboBox</summary>
         private Parity SetParity()
         {
