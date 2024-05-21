@@ -68,8 +68,8 @@ namespace Moderon
             thread.Start();
         }
 
-        ///<summary>Нажали на загрузку прошивки в ПЛК</summary>
-        private void FirmwareDownload_Click(object sender, EventArgs e)
+        ///<summary>Нажали на кнопку загрузки прошивки в ПЛК</summary>
+        private void FirmwareBtn_Click(object sender, EventArgs e)
         {
             const string
                 CAPTION = "Загрузка прошивки в ПЛК",
@@ -81,10 +81,26 @@ namespace Moderon
             // Выбрали "Да", загрузка файла прошивки через сторонний процесс
             if (result == DialogResult.Yes)
             {
-                GetSerialPorts();                       // Формирование comboBox с актуальными CAN портами
+                GetSerialPorts();                                       // Формирование comboBox с актуальными CAN портами
 
-                string port = canSelectBox.SelectedItem.ToString();
+                string port = canSelectBox.SelectedItem.ToString();     // Сохранение подключенного CAN порта
+                string parity;                                          // Определяет чётность 
 
+                parity = CheckPLC_connection() ? "even" : "no";
+                //MessageBox.Show(port);
+
+                System.Diagnostics.Process process = new();
+                System.Diagnostics.ProcessStartInfo startInfo = new()
+                {
+                    FileName = "cmd.exe",
+                    Arguments = "/C eflash.exe ./progDE.alf -nogui -port " + port + " -speed 9600" +
+                        " -parity " + parity + " -stopbits 1 -cmd flash & pause",
+                    UseShellExecute = false,
+                    CreateNoWindow = false
+                };
+                //MessageBox.Show(startInfo.Arguments);
+                process.StartInfo = startInfo;
+                process.Start();
             }
         }
 
@@ -253,7 +269,7 @@ namespace Moderon
                     cts.Cancel();
                     return false;
                 }
-            }
+            }  
             catch { return false; }
         }
 

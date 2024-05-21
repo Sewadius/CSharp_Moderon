@@ -146,6 +146,9 @@
       <SubType>Form</SubType>
     </Compile>
     <None Include="ClassDiagram1.cd" />
+    <None Include="progDE.alf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\red_cross.png" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -175,7 +178,9 @@
     <None Include="Resources\fan380.png" />
     <None Include="Resources\plastRecupBypass.png" />
     <None Include="Resources\glikRecup.png" />
-    <None Include="Resources\download.png" />
+    <Content Include="eflash.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\refresh_red.png" />
     <Content Include="Template.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -186,9 +191,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\fan.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\waterHeater.png" />
@@ -207,9 +209,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\rotorRecup.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\fan_2.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\electroHeater.png" />

@@ -286,8 +286,7 @@ namespace Moderon
 
                 drive = "Привод добавлен в спецификацию",
                 pic_sig_ready = "Состояние карты входов/выходов",
-                pic_refresh = "Обновить список COM портов",
-                pic_download = "Загрузить прошивку в ПЛК";
+                pic_refresh = "Обновить список COM портов";
 
             // Датчики температуры и внешние сигналы
             toolTip.SetToolTip(prChanSensCheck, ai_sig_temp);
@@ -363,8 +362,6 @@ namespace Moderon
             toolTip.SetToolTip(pic_signalsReady, pic_sig_ready);
             // Изображение для обновления списка CAN портов
             toolTip.SetToolTip(refreshCanPorts, pic_refresh);
-            // Изображение для загрузки прошивки в контроллер
-            toolTip.SetToolTip(firmwareDownload, pic_download);
 
             // Зеленые галочки при подборе приводов заслонок
             driveTip.SetToolTip(markPrDampPanel, drive);
