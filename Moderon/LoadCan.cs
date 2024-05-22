@@ -4,6 +4,7 @@ using System.IO.Ports;
 using System.Threading;
 using System.Drawing;
 using System.Threading.Tasks;
+using System.Linq;
 
 // Файл для соединения, подготовки и загрузки файла в ПЛК через CAN-порт
 
@@ -69,7 +70,7 @@ namespace Moderon
         }
 
         ///<summary>Нажали на кнопку загрузки прошивки в ПЛК</summary>
-        private void FirmwareBtn_Click(object sender, EventArgs e)
+        private async void FirmwareBtn_Click(object sender, EventArgs e)
         {
             const string
                 CAPTION = "Загрузка прошивки в ПЛК",
@@ -77,6 +78,8 @@ namespace Moderon
 
             var result = MessageBox.Show(MESSAGE, CAPTION, MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
+
+            bool correctDownload = true;
 
             // Выбрали "Да", загрузка файла прошивки через сторонний процесс
             if (result == DialogResult.Yes)
@@ -95,13 +98,78 @@ namespace Moderon
                     FileName = "cmd.exe",
                     Arguments = "/C eflash.exe ./progDE.alf -nogui -port " + port + " -speed 9600" +
                         " -parity " + parity + " -stopbits 1 -cmd flash & pause",
-                    UseShellExecute = false,
-                    CreateNoWindow = false
+                    RedirectStandardOutput = true,
+                    UseShellExecute = false,            // false
+                    CreateNoWindow = true               // true
                 };
+
                 //MessageBox.Show(startInfo.Arguments);
                 process.StartInfo = startInfo;
                 process.Start();
+
+                progressFirmware.Show();
+
+                await Task.Run(async () =>
+                {
+                    using var reader = process.StandardOutput;
+                    string line;                                    // Строка из вывода
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        string number = line.Split().Last();        // Код для прогресса progressBar
+                        string error = line.Split().First();        // В консольном выводе есть ошибка
+
+                        if (error == "Error:")                      // Обработка ошибки во время загрузки
+                        {
+                            MessageBox.Show("Произошла ошибка во время загрузки прошивки!");
+                            correctDownload = false;
+                            process.Kill();
+                        }
+
+                        if (int.TryParse(number, out int progressValue))
+                        {
+                            //UpdateProgressFirmware(progressValue);
+                            Invoke(new Action(() => UpdateProgressFirmware(progressValue)));
+                            await Task.Delay(160);
+                        }
+                        if (!process.HasExited) process.Kill();
+                    }
+                    //progressFirmware.Hide();
+                    //Invoke(new Action(progressFirmware.Hide));
+                });
+
+                //process.Kill();
+                //process.WaitForExit();
+
+                if (!process.HasExited) process.Kill();
+
+                Invoke(new Action(progressFirmware.Hide));
+
+                if (correctDownload)
+                    MessageBox.Show("Загрузка успешно завершена!");
+
+                /*Invoke(new Action(() =>
+                {
+                    .Hide();
+                    progressFirmware.Value = 0;
+                    progressFirmware.Update();
+                })); */
             }
+        }
+
+        ///<summary>Обновление статуса для progressFirmware</summary>
+        private void UpdateProgressFirmware(int value)
+        {
+            progressFirmware.Value = value;
+
+            /*if (InvokeRequired)
+            {
+                Invoke(new Action<int>(UpdateProgressFirmware), value);
+            }
+            else
+            {
+                progressFirmware.Value = Math.Min(progressFirmware.Maximum,
+                    Math.Max(progressFirmware.Minimum, value));
+            }*/
         }
 
         ///<summary>Выбор чётности в зависимости от выбора comboBox</summary>

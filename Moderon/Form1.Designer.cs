@@ -9998,7 +9998,7 @@ namespace Moderon
             this.loadCanPanel.Controls.Add(this.netOptionLabel);
             this.loadCanPanel.Location = new System.Drawing.Point(16, 128);
             this.loadCanPanel.Name = "loadCanPanel";
-            this.loadCanPanel.Size = new System.Drawing.Size(749, 596);
+            this.loadCanPanel.Size = new System.Drawing.Size(749, 595);
             this.loadCanPanel.TabIndex = 45;
             this.loadCanPanel.Visible = false;
             // 
@@ -10092,6 +10092,7 @@ namespace Moderon
             // refreshCanPorts
             // 
             this.refreshCanPorts.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.refreshCanPorts.Image = global::Moderon.Properties.Resources.refresh;
             this.refreshCanPorts.Location = new System.Drawing.Point(254, 55);
             this.refreshCanPorts.Name = "refreshCanPorts";
             this.refreshCanPorts.Size = new System.Drawing.Size(30, 30);
