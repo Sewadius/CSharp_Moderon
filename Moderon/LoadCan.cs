@@ -28,6 +28,8 @@ namespace Moderon
         private readonly string[] DO_TEXT = ["DO", "EX1_DO", "EX2_DO", "EX3_DO"];
         private readonly string[] AO_TEXT = ["AO", "EX1_AO", "EX2_AO", "EX3_AO"];
 
+        private bool isConnected = false;       // Статус подключения к ПЛК
+
         ///<summary>Инициализация для загрузки по CAN порту</summary>
         public void InitializeCAN()
         {
@@ -69,6 +71,51 @@ namespace Moderon
             thread.Start();
         }
 
+        ///<summary>Отображение/скрытие элементов при загрузке прошивки</summary>
+        private void ShowHideElements_firmware(bool active)
+        {
+            if (active)                                         // При активной загрузке
+            {
+                // Отображение элементов статуса загрузки
+                progressFirmware.Show(); progressLabel.Show();
+                // Блокировка кнопок
+                connectPlkBtn.Enabled = false;
+                firmwareBtn.Enabled = false;
+                backCanPanelButton.Enabled = false;
+                // Блокировка элементов настроек соединения
+                canSelectBox.Enabled = false;
+                canAddressBox.Enabled = false;
+                speedCanCombo.Enabled = false;
+                parityCanCombo.Enabled = false;
+                refreshCanPorts.Enabled = false;
+                // Отображение статуса ПЛК
+                connectCanLabel.Text = "Загрузка прошивки...";
+                connectCanLabel.ForeColor = Color.DarkOrange;
+            }
+            else                                                // При завершении загрузки
+            {
+                Invoke(new Action(() =>
+                {
+                    // Скрытие элементов статуса загрузки
+                    progressFirmware.Hide();
+                    progressLabel.Hide();
+                    // Доступность кнопок
+                    connectPlkBtn.Enabled = true;
+                    firmwareBtn.Enabled = true;
+                    backCanPanelButton.Enabled = true;
+                    // Разбокировка элементов настроек соединения
+                    canSelectBox.Enabled = true;
+                    canAddressBox.Enabled = true;
+                    speedCanCombo.Enabled = true;
+                    parityCanCombo.Enabled = true;
+                    refreshCanPorts.Enabled = true;
+                    // Отображение статуса ПЛК
+                    connectCanLabel.Text = "Нет соединения";
+                    connectCanLabel.ForeColor = Color.Red;
+                }));
+            }
+        }
+
         ///<summary>Нажали на кнопку загрузки прошивки в ПЛК</summary>
         private async void FirmwareBtn_Click(object sender, EventArgs e)
         {
@@ -87,10 +134,30 @@ namespace Moderon
                 GetSerialPorts();                                       // Формирование comboBox с актуальными CAN портами
 
                 string port = canSelectBox.SelectedItem.ToString();     // Сохранение подключенного CAN порта
-                string parity;                                          // Определяет чётность 
+                string parity = "no";                                   // Определяет чётность 
 
-                parity = CheckPLC_connection() ? "even" : "no";
-                //MessageBox.Show(port);
+                // Закрытие соединения (или проверка подключения), установка чётности
+                if (!isConnected)
+                {
+                    await Task.Run(async () =>
+                    {
+                        Invoke(new Action(() => ConnectPlkBtn_Click(this, e)));     // Попытка подключения к ПЛК
+                        await Task.Delay(500);
+
+
+                        if (isConnected)
+                        {
+                            parity = "even";                                        // Установка чётности even
+                            Invoke(new Action(() => ConnectPlkBtn_Click(this, e))); // Отключение от ПЛК
+                            //await Task.Delay(500);
+                        }
+                    });
+                } 
+                else
+                {
+                    parity = "even";
+                    ConnectPlkBtn_Click(this, e);                                   // Отключение от ПЛК
+                }
 
                 System.Diagnostics.Process process = new();
                 System.Diagnostics.ProcessStartInfo startInfo = new()
@@ -103,11 +170,10 @@ namespace Moderon
                     CreateNoWindow = true               // true
                 };
 
-                //MessageBox.Show(startInfo.Arguments);
                 process.StartInfo = startInfo;
                 process.Start();
 
-                progressFirmware.Show();
+                ShowHideElements_firmware(true);                    // Скрытие элентов при загрузке прошивки
 
                 await Task.Run(async () =>
                 {
@@ -120,7 +186,13 @@ namespace Moderon
 
                         if (error == "Error:")                      // Обработка ошибки во время загрузки
                         {
-                            MessageBox.Show("Произошла ошибка во время загрузки прошивки!");
+                            if (line.Contains("Can't find devices"))
+                                MessageBox.Show("Нет связи с ПЛК!", "Ошибка загрузки",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            else
+                                MessageBox.Show("Ошибка загрузки!", "Ошибка",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                             correctDownload = false;
                             process.Kill();
                         }
@@ -133,33 +205,28 @@ namespace Moderon
                         }
                         if (!process.HasExited) process.Kill();
                     }
-                    //progressFirmware.Hide();
-                    //Invoke(new Action(progressFirmware.Hide));
                 });
-
-                //process.Kill();
-                //process.WaitForExit();
 
                 if (!process.HasExited) process.Kill();
 
-                Invoke(new Action(progressFirmware.Hide));
+                // Действия при закрытии процесса
+                ShowHideElements_firmware(false);
 
                 if (correctDownload)
-                    MessageBox.Show("Загрузка успешно завершена!");
-
-                /*Invoke(new Action(() =>
-                {
-                    .Hide();
-                    progressFirmware.Value = 0;
-                    progressFirmware.Update();
-                })); */
+                    MessageBox.Show("Загрузка прошивки успешно завершена!",
+                "Операция выполнена", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         ///<summary>Обновление статуса для progressFirmware</summary>
         private void UpdateProgressFirmware(int value)
         {
-            progressFirmware.Value = value;
+            // Проверка диапазона между минимальным и максимальным значением
+            if (value >= progressFirmware.Minimum && value <= progressFirmware.Maximum)
+            {
+                progressFirmware.Value = value;
+                progressLabel.Text = $"Прогресс: {value}%";
+            }
 
             /*if (InvokeRequired)
             {
@@ -210,7 +277,7 @@ namespace Moderon
                 Thread thread = new(() =>
                 {
                     Thread.Sleep(MS_500);
-                    bool isConnected = CheckPLC_connection();
+                    isConnected = CheckPLC_connection();
 
                     if (!isConnected)
                     {
@@ -365,6 +432,7 @@ namespace Moderon
             connectPlkBtn.Enabled = false;
             loadCanButton.Enabled = false;
             readCanButton.Enabled = false;
+            firmwareBtn.Enabled = false;
 
             // Запись для UI сигналов
             for (ushort i = 0; i < uiSignals.Length; i++)
@@ -461,6 +529,7 @@ namespace Moderon
 
             processWriteLabel.Visible = false;          // Скрытие панели прогресса загрузки
             progressBarWrite.Visible = false;           // Скрытие прогресса записи после загрузки
+            firmwareBtn.Enabled = true;                 // Разблокировка кнопки загрузки прошивки
 
             if (writeSuccess)                           // При успешной записи данных
             {

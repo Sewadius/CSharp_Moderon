@@ -1362,7 +1362,7 @@ namespace Moderon
             label_comboSysType.Text = "ЗАГРУЗКА ПРОГРАММЫ";
             comboSysType.Hide(); panelElements.Hide();
             loadCanPanel.Location = PANEL_POSITION;
-            loadCanPanel.Height = 550;
+            loadCanPanel.Height = 595;                          // Высота панели загрузки через CAN порт
             loadCanPanel.Show();
             InitializeCAN();                                    // Инициализация для загрузки по CAN порту
             formSignalsButton.Hide();                           // Скрытие кнопки "Сформировать"

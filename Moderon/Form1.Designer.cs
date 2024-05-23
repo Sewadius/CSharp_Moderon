@@ -729,6 +729,7 @@ namespace Moderon
             this.backHelpButton = new System.Windows.Forms.Button();
             this.label_comboSysType = new System.Windows.Forms.Label();
             this.loadCanPanel = new System.Windows.Forms.Panel();
+            this.progressFirmware = new System.Windows.Forms.ProgressBar();
             this.firmwareBtn = new System.Windows.Forms.Button();
             this.progressBarWrite = new System.Windows.Forms.ProgressBar();
             this.processWriteLabel = new System.Windows.Forms.Label();
@@ -770,7 +771,7 @@ namespace Moderon
             this.label_progVersion = new System.Windows.Forms.Label();
             this.pic_signalsReady = new System.Windows.Forms.PictureBox();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
-            this.progressFirmware = new System.Windows.Forms.ProgressBar();
+            this.progressLabel = new System.Windows.Forms.Label();
             this.menuStrip.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.sensorsPage.SuspendLayout();
@@ -1198,7 +1199,7 @@ namespace Moderon
             this.fanPage.Location = new System.Drawing.Point(4, 22);
             this.fanPage.Name = "fanPage";
             this.fanPage.Padding = new System.Windows.Forms.Padding(3);
-            this.fanPage.Size = new System.Drawing.Size(742, 403);
+            this.fanPage.Size = new System.Drawing.Size(742, 14);
             this.fanPage.TabIndex = 0;
             this.fanPage.Text = "ВЕНТИЛЯТОР";
             // 
@@ -1871,7 +1872,7 @@ namespace Moderon
             this.filterPage.Controls.Add(this.filterPanel);
             this.filterPage.Location = new System.Drawing.Point(4, 22);
             this.filterPage.Name = "filterPage";
-            this.filterPage.Size = new System.Drawing.Size(742, 403);
+            this.filterPage.Size = new System.Drawing.Size(742, 14);
             this.filterPage.TabIndex = 6;
             this.filterPage.Text = "ФИЛЬТР";
             // 
@@ -1993,7 +1994,7 @@ namespace Moderon
             this.dampPage.Controls.Add(this.dampPanel);
             this.dampPage.Location = new System.Drawing.Point(4, 22);
             this.dampPage.Name = "dampPage";
-            this.dampPage.Size = new System.Drawing.Size(742, 403);
+            this.dampPage.Size = new System.Drawing.Size(742, 14);
             this.dampPage.TabIndex = 7;
             this.dampPage.Text = "ЗАСЛОНКА";
             // 
@@ -2426,7 +2427,7 @@ namespace Moderon
             this.heatPage.Location = new System.Drawing.Point(4, 22);
             this.heatPage.Name = "heatPage";
             this.heatPage.Padding = new System.Windows.Forms.Padding(3);
-            this.heatPage.Size = new System.Drawing.Size(742, 403);
+            this.heatPage.Size = new System.Drawing.Size(742, 14);
             this.heatPage.TabIndex = 1;
             this.heatPage.Text = "НАГРЕВАТЕЛЬ";
             // 
@@ -2796,7 +2797,7 @@ namespace Moderon
             this.coolPage.Location = new System.Drawing.Point(4, 22);
             this.coolPage.Name = "coolPage";
             this.coolPage.Padding = new System.Windows.Forms.Padding(3);
-            this.coolPage.Size = new System.Drawing.Size(742, 403);
+            this.coolPage.Size = new System.Drawing.Size(742, 14);
             this.coolPage.TabIndex = 2;
             this.coolPage.Text = "ОХЛАДИТЕЛЬ";
             // 
@@ -3023,7 +3024,7 @@ namespace Moderon
             this.humidPage.Location = new System.Drawing.Point(4, 22);
             this.humidPage.Name = "humidPage";
             this.humidPage.Padding = new System.Windows.Forms.Padding(3);
-            this.humidPage.Size = new System.Drawing.Size(742, 403);
+            this.humidPage.Size = new System.Drawing.Size(742, 14);
             this.humidPage.TabIndex = 3;
             this.humidPage.Text = "УВЛАЖНИТЕЛЬ";
             // 
@@ -3182,7 +3183,7 @@ namespace Moderon
             this.recircPage.Location = new System.Drawing.Point(4, 22);
             this.recircPage.Name = "recircPage";
             this.recircPage.Padding = new System.Windows.Forms.Padding(3);
-            this.recircPage.Size = new System.Drawing.Size(742, 403);
+            this.recircPage.Size = new System.Drawing.Size(742, 14);
             this.recircPage.TabIndex = 4;
             this.recircPage.Text = "РЕЦИРКУЛЯЦИЯ";
             // 
@@ -3332,7 +3333,7 @@ namespace Moderon
             // 
             // recircPicture
             // 
-            this.recircPicture.Image = global::Moderon.Properties.Resources.damp;
+            this.recircPicture.Image = ((System.Drawing.Image)(resources.GetObject("recircPicture.Image")));
             this.recircPicture.Location = new System.Drawing.Point(580, 3);
             this.recircPicture.Name = "recircPicture";
             this.recircPicture.Size = new System.Drawing.Size(132, 236);
@@ -3398,7 +3399,7 @@ namespace Moderon
             this.recupPage.Controls.Add(this.recupPanel);
             this.recupPage.Location = new System.Drawing.Point(4, 22);
             this.recupPage.Name = "recupPage";
-            this.recupPage.Size = new System.Drawing.Size(742, 403);
+            this.recupPage.Size = new System.Drawing.Size(742, 14);
             this.recupPage.TabIndex = 5;
             this.recupPage.Text = "РЕКУПЕРАТОР";
             // 
@@ -3807,7 +3808,7 @@ namespace Moderon
             this.addHeatPage.Controls.Add(this.secHeatPanel);
             this.addHeatPage.Location = new System.Drawing.Point(4, 22);
             this.addHeatPage.Name = "addHeatPage";
-            this.addHeatPage.Size = new System.Drawing.Size(742, 403);
+            this.addHeatPage.Size = new System.Drawing.Size(742, 14);
             this.addHeatPage.TabIndex = 8;
             this.addHeatPage.Text = "ДОП НАГРЕВ";
             // 
@@ -9969,6 +9970,7 @@ namespace Moderon
             // 
             // loadCanPanel
             // 
+            this.loadCanPanel.Controls.Add(this.progressLabel);
             this.loadCanPanel.Controls.Add(this.progressFirmware);
             this.loadCanPanel.Controls.Add(this.firmwareBtn);
             this.loadCanPanel.Controls.Add(this.progressBarWrite);
@@ -10001,6 +10003,15 @@ namespace Moderon
             this.loadCanPanel.Size = new System.Drawing.Size(749, 595);
             this.loadCanPanel.TabIndex = 45;
             this.loadCanPanel.Visible = false;
+            // 
+            // progressFirmware
+            // 
+            this.progressFirmware.ForeColor = System.Drawing.Color.DarkGreen;
+            this.progressFirmware.Location = new System.Drawing.Point(30, 502);
+            this.progressFirmware.Name = "progressFirmware";
+            this.progressFirmware.Size = new System.Drawing.Size(306, 15);
+            this.progressFirmware.TabIndex = 82;
+            this.progressFirmware.Visible = false;
             // 
             // firmwareBtn
             // 
@@ -10041,7 +10052,7 @@ namespace Moderon
             this.backConnectLabel.AutoSize = true;
             this.backConnectLabel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.backConnectLabel.ForeColor = System.Drawing.Color.DarkGreen;
-            this.backConnectLabel.Location = new System.Drawing.Point(28, 511);
+            this.backConnectLabel.Location = new System.Drawing.Point(28, 533);
             this.backConnectLabel.Name = "backConnectLabel";
             this.backConnectLabel.Size = new System.Drawing.Size(312, 13);
             this.backConnectLabel.TabIndex = 79;
@@ -10138,7 +10149,7 @@ namespace Moderon
             this.backCanPanelButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.backCanPanelButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.backCanPanelButton.ForeColor = System.Drawing.Color.White;
-            this.backCanPanelButton.Location = new System.Drawing.Point(28, 533);
+            this.backCanPanelButton.Location = new System.Drawing.Point(28, 555);
             this.backCanPanelButton.Name = "backCanPanelButton";
             this.backCanPanelButton.Size = new System.Drawing.Size(94, 27);
             this.backCanPanelButton.TabIndex = 70;
@@ -10480,14 +10491,16 @@ namespace Moderon
             this.pictureBoxLogo.TabIndex = 2;
             this.pictureBoxLogo.TabStop = false;
             // 
-            // progressFirmware
+            // progressLabel
             // 
-            this.progressFirmware.ForeColor = System.Drawing.Color.DarkGreen;
-            this.progressFirmware.Location = new System.Drawing.Point(30, 487);
-            this.progressFirmware.Name = "progressFirmware";
-            this.progressFirmware.Size = new System.Drawing.Size(306, 15);
-            this.progressFirmware.TabIndex = 82;
-            this.progressFirmware.Visible = false;
+            this.progressLabel.AutoSize = true;
+            this.progressLabel.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.progressLabel.Location = new System.Drawing.Point(33, 480);
+            this.progressLabel.Name = "progressLabel";
+            this.progressLabel.Size = new System.Drawing.Size(102, 16);
+            this.progressLabel.TabIndex = 83;
+            this.progressLabel.Text = "Прогресс: 0%";
+            this.progressLabel.Visible = false;
             // 
             // Form1
             // 
@@ -11381,6 +11394,7 @@ namespace Moderon
         private Label label65;
         private Button firmwareBtn;
         private ProgressBar progressFirmware;
+        private Label progressLabel;
     }
 }
 
