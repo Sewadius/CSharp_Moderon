@@ -125,7 +125,7 @@ namespace Moderon
 
             var result = MessageBox.Show(MESSAGE, CAPTION, MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
-
+              
             bool correctDownload = true;
 
             // Выбрали "Да", загрузка файла прошивки через сторонний процесс
@@ -144,12 +144,11 @@ namespace Moderon
                         Invoke(new Action(() => ConnectPlkBtn_Click(this, e)));     // Попытка подключения к ПЛК
                         await Task.Delay(500);
 
-
-                        if (isConnected)
+                        if (isConnected)                                            // Удалось подключиться к ПЛК
                         {
                             parity = "even";                                        // Установка чётности even
                             Invoke(new Action(() => ConnectPlkBtn_Click(this, e))); // Отключение от ПЛК
-                            //await Task.Delay(500);
+                            isConnected = false;                                    // Закрытие соединения
                         }
                     });
                 } 
@@ -194,7 +193,7 @@ namespace Moderon
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                             correctDownload = false;
-                            process.Kill();
+                            if (!process.HasExited) process.Kill();
                         }
 
                         if (int.TryParse(number, out int progressValue))
@@ -227,16 +226,6 @@ namespace Moderon
                 progressFirmware.Value = value;
                 progressLabel.Text = $"Прогресс: {value}%";
             }
-
-            /*if (InvokeRequired)
-            {
-                Invoke(new Action<int>(UpdateProgressFirmware), value);
-            }
-            else
-            {
-                progressFirmware.Value = Math.Min(progressFirmware.Maximum,
-                    Math.Max(progressFirmware.Minimum, value));
-            }*/
         }
 
         ///<summary>Выбор чётности в зависимости от выбора comboBox</summary>
