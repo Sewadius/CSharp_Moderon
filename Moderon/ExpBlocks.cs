@@ -752,10 +752,12 @@ namespace Moderon
             {
                 if (!ignoreEvents)
                 {
-                    if (!block2_DOpanel.Enabled && !block3_DOpanel.Enabled)
-                        DOblock1_header.Text = "Блок расширения 1 - " + block.Name;
-                    else if (block2_DOpanel.Enabled && block3_DOpanel.Enabled)
+                    if (block2_DOpanel.Enabled && block3_DOpanel.Enabled)
                         DOblock1_header.Text = "Блок расширения 3 - " + block.Name;
+                    else if (block1_DOpanel.Enabled || block2_DOpanel.Enabled || block3_DOpanel.Enabled)
+                        DOblock1_header.Text = "Блок расширения 2 - " + block.Name;
+                    else
+                        DOblock1_header.Text = "Блок расширения 1 - " + block.Name;
                 }
                 block1_DOpanel.Height = height;
                 block1_DOpanel.Show(); block1_DOpanel.Enabled = true;
@@ -1533,12 +1535,17 @@ namespace Moderon
                 else if (!block1_UIpanel.Enabled)
                 {
                     UI_block1_panelChanged_M72E16NA();                              // Изменение панели блока расширения 1 для сигналов UI
-                    
+
+                    // Сдвиг для панели UI1
+                    if (block1_UIpanel.Enabled)
+                        block1_UIpanel.Location = new Point(block1_UIpanel.Location.X,
+                            plk_UIpanel.Location.Y + plk_UIpanel.Height);
+
+
                     // Сдвиг для панели UI2
                     if (block2_UIpanel.Enabled)
                         block2_UIpanel.Location = new Point(block2_UIpanel.Location.X,
-                            block2_UIpanel.Location.Y + block1_UIpanel.Height);
-
+                            block1_UIpanel.Location.Y + block1_UIpanel.Height);
                 }
 
                 // Выбор сигнала для comboBox UI, автораспределение 
@@ -1614,7 +1621,7 @@ namespace Moderon
                 .Where(x => x == M72E08RA).Count();
 
             if (blocks.ContainsKey(M72E08RA))
-                count_M72E08RA = blocks[M72E08RA];
+                count_M72E08RA = blocks[M72E08RA]; 
 
             bool one = count_M72E08RA == 1 && now_M72E08RA == 0;       // Первый блок, два разных типа
             bool two = count_M72E08RA == 2 && now_M72E08RA == 1;       // Второй блок, один тип
@@ -1622,7 +1629,24 @@ namespace Moderon
             if ((type == 1 || type == 2) && (one || two) && expansion_blocks.Count == 1)
             {
                 expansion_blocks.Add(M72E08RA);                                     // Добавление 2-го блока M72E08RA в список блоков расширения                   
-                DO_block2_panelChanged_M72E08RA();                                  // Изменение панели блока расширения 2 для сигналов DO
+                
+                if (!block2_DOpanel.Enabled)
+                    DO_block2_panelChanged_M72E08RA();                              // Изменение панели блока расширения 2 для сигналов DO
+                else if (!block1_DOpanel.Enabled)
+                {
+                    DO_block1_panelChanged_M72E08RA();                              // Изменение панели блока расширения 1 для сигналов DO
+
+                    // Сдвиг для панели DO1
+                    if (block1_DOpanel.Enabled)
+                        block1_DOpanel.Location = new Point(block1_DOpanel.Location.X,
+                            plk_DOpanel.Location.Y + plk_DOpanel.Height);
+
+                    // Сдвиг для панели DO2
+                    if (block2_DOpanel.Enabled)
+                        block2_DOpanel.Location = new Point(block2_DOpanel.Location.X,
+                            block1_DOpanel.Location.Y + block1_DOpanel.Height);
+                }
+
 
                 #if DEBUG
                     MessageBox.Show("Добавлен 2-й блок DO");
@@ -1691,7 +1715,7 @@ namespace Moderon
             foreach (var el in blocks.Values) total_blocks += el;
 
             // Добавление блока, если не было и всего блоков 1 или 2
-            if (count_M72E12RB == 1 && (type == 1 || type == 2) && now_M72E12RB == 0 && (total_blocks == 1 || total_blocks == 2))
+            if (count_M72E12RB == 1 && (type == 1 || type == 2) && now_M72E12RB == 0 && total_blocks == 1)
             {
                 expansion_blocks.Add(M72E12RB);                                     // Добавление 1-го блока M72E12RB в список блоков расширения
                 AO_block1_panelChanged_M72E12RB();                                  // Отображение и разблокировка панели AO для блока расширения 1
@@ -2167,7 +2191,7 @@ namespace Moderon
                     // Проверка положения панели UI2
                     if (block2_UIpanel.Enabled)
                         block2_UIpanel.Location = new Point(block2_UIpanel.Location.X,
-                            plk_UIpanel.Location.X + plk_UIpanel.Height);
+                            plk_UIpanel.Location.Y + plk_UIpanel.Height);
                 }
 
                 // Положение панели UI блока 3
@@ -2279,7 +2303,7 @@ namespace Moderon
                 else if (one)                                                       // Один блок DO
                 {
                     // Панель 1 заблокирована и панель 3 - не блок DO
-                    if (block3_DOpanel.Enabled && !DOblock3_header.Text.Contains("M72E08RA"))
+                    if (block3_DOpanel.Enabled && !DOblock3_header.Text.Contains("M72E08RA") && DOblock2_header.Text.Contains("M72E08RA"))
                     {
                         CheckSignals_block2_M72E08RA();                             // Автораспределение ранее выбранных сигналов блока 2
                         RemoveBlockPanel("DO", 2);                                  // Скрытие панели DO2
@@ -2300,11 +2324,26 @@ namespace Moderon
                         AOblock3_header.Text =
                             AOblock3_header.Text.Replace("Блок расширения 2", "Блок расширения 1");
                     }
+                    else if (DOblock1_header.Text.Contains("M72E08RA"))
+                    {
+                        CheckSignals_block1_M72E08RA();                             // Автораспределение ранее выбранных сигналов блока 1
+                        RemoveBlockPanel("DO", 1);                                  // Скрытие панели DO1
+
+                        // Положение панели DO2
+                        if (block2_DOpanel.Enabled)
+                            block2_DOpanel.Location = new Point(block2_DOpanel.Location.X,
+                                plk_DOpanel.Location.Y + plk_DOpanel.Height);
+                    }
                 }
-                else                                                                // Использование панели DO2 в остальных случаях
+                else if (DOblock2_header.Text.Contains("M72E08RA"))                 // Использование панели DO2
                 {
                     CheckSignals_block2_M72E08RA();                                 // Автораспределение ранее выбранных сигналов блока 2
                     RemoveBlockPanel("DO", 2);                                      // Скрытие панели DO2
+                } 
+                else if (DOblock1_header.Text.Contains("M72E08RA"))                 // Использование панели DO1
+                {
+                    CheckSignals_block1_M72E08RA();                                 // Автораспределение ранее выбранных сигналов блока 1
+                    RemoveBlockPanel("DO", 1);                                      // Скрытие панели DO1
                 }
 
                 #if DEBUG
