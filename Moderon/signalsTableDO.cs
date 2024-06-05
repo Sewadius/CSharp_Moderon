@@ -1320,7 +1320,7 @@ namespace Moderon
                 if (humidTypeCombo.SelectedIndex == 0)                          // Паровой увлажнитель
                     AddToListDo("Сигнал ПУСК/СТОП увлажнителя", code_1);
                 else if (humidTypeCombo.SelectedIndex == 1)                     // Сотовый увлажнитель
-                    AddToListDo("Запуск насоса увлажнителя", code_1);
+                    AddToListDo("Сигнал ПУСК/СТОП насоса увлажнителя", code_1);
             }
             else // Отмена выбора увлажнителя
             {
@@ -1342,7 +1342,7 @@ namespace Moderon
                 else if (humidTypeCombo.SelectedIndex == 1)                     // Сотовый увлажнитель
                 {
                     SubFromCombosDO(code_1);
-                    AddToListDo("Запуск насоса увлажнителя", code_1);
+                    AddToListDo("Сигнал ПУСК/СТОП насоса увлажнителя", code_1);
                 }
             }
         }

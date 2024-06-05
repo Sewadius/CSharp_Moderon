@@ -850,7 +850,6 @@ namespace Moderon
         private void ConfPrDampCheck_cmdCheckedChanged(object sender, EventArgs e)
         {
             CommandWord_2();
-            CheckMarkPrDamp_Spec();                                                             // Проверка для подобранного привода
             if (ignoreEvents) return;
             ConfPrDampCheck_signalsDICheckedChanged(this, e);                                   // Сигналы DI ПЛК
         }
@@ -871,7 +870,6 @@ namespace Moderon
         private void ConfOutDampCheck_cmdCheckedChanged(object sender, EventArgs e)
         {
             CommandWord_3();
-            CheckMarkOutDamp_Spec();                                                            // Проверка для подобранного привода
             if (ignoreEvents) return;
             ConfOutDampCheck_signalsDICheckedChanged(this, e);                                  // Сигналы DI ПЛК
         }

@@ -552,7 +552,7 @@ namespace Moderon
                 // Выбор элементов (боковая панель)
                 filterCheck, dampCheck, heaterCheck, addHeatCheck, coolerCheck, humidCheck, recircCheck, recupCheck,
                 // Заслонки
-                confPrDampCheck, heatPrDampCheck, springRetPrDampCheck, outDampCheck, confOutDampCheck, heatOutDampCheck, springRetOutDampCheck,
+                confPrDampCheck, heatPrDampCheck, outDampCheck, confOutDampCheck, heatOutDampCheck,
                 // Основной нагреватель
                 TF_heaterCheck, confHeatPumpCheck, pumpCurProtect, reservPumpHeater, confHeatResPumpCheck, pumpCurResProtect, watSensHeatCheck,
                 // Второй нагреватель
@@ -561,7 +561,7 @@ namespace Moderon
                 // Охладитель и увлажнитель
                 alarmFrCoolCheck, thermoCoolerCheck, analogFreonCheck, dehumModeCheck, alarmHumidCheck,
                 // Рециркуляция и рекуператор
-                recircPrDampAOCheck, springRetRecircCheck, pumpGlicRecCheck, pumpGlikConfCheck, pumpGlikCurProtect, reservPumpGlik,
+                recircPrDampAOCheck, pumpGlicRecCheck, pumpGlikConfCheck, pumpGlikCurProtect, reservPumpGlik,
                 confGlikResPumpCheck, pumpGlikResCurProtect, recDefTempCheck, recDefPsCheck,
                 // Датчики и сигналы
                 prChanSensCheck, roomTempSensCheck, chanHumSensCheck, roomHumSensCheck, outdoorChanSensCheck, 
@@ -585,16 +585,16 @@ namespace Moderon
                 // Тип системы, приточный и вытяжной вентиляторы
                 comboSysType, prFanPowCombo, prFanControlCombo, outFanPowCombo, outFanControlCombo, prFanFcTypeCombo,
                 outFanFcTypeCombo,
-                // Воздушные фильтры и заслонки
-                filterPrCombo, filterOutCombo, prDampPowCombo, outDampPowCombo,
+                // Воздушные фильтры
+                filterPrCombo, filterOutCombo,
                 // Нагреватель
-                heatTypeCombo, powPumpCombo, elHeatStagesCombo, firstStHeatCombo, thermSwitchCombo,
+                heatTypeCombo, elHeatStagesCombo, firstStHeatCombo, thermSwitchCombo,
                 // Второй нагреватель
-                heatAddTypeCombo, powPumpAddCombo, elHeatAddStagesCombo, firstStAddHeatCombo, thermAddSwitchCombo,
+                heatAddTypeCombo, elHeatAddStagesCombo, firstStAddHeatCombo, thermAddSwitchCombo,
                 // Охладитель и увлажнитель
-                coolTypeCombo, frCoolStagesCombo, powWatCoolCombo, humidTypeCombo,
-                // Рециркуляция и рекуператор
-                recircPowCombo, recupTypeCombo, rotorPowCombo, bypassPlastCombo, fireTypeCombo
+                coolTypeCombo, frCoolStagesCombo, humidTypeCombo,
+                // Рекуператор и датчики
+                recupTypeCombo, rotorPowCombo, bypassPlastCombo, fireTypeCombo
             };
 
             foreach (var el in combo_boxes) json.ComboBoxElemState.Add(el.Name, el.SelectedIndex);
@@ -605,12 +605,8 @@ namespace Moderon
         {
             var text_boxes = new List<TextBox>()
             {
-                // Приточный и вытяжной вентилятор
-                powPrFanBox, powPrResFanBox, powOutFanBox, powOutResFanBox,
-                // Воздушные заслонки
-                b_prDampBox, h_prDampBox, b_outDampBox, h_outDampBox,
-                // Нагреватель, второй нагреватель, рециркуляция и рекуператор
-                elHeatPowBox, elAddHeatPowBox, b_recircBox, h_recircBox, powRotRecBox
+                // Нагреватель, второй нагреватель и рекуператор
+                elHeatPowBox, elAddHeatPowBox, powRotRecBox
             };
 
             foreach (var el in text_boxes) json.TextBoxElemState.Add(el.Name, el.Text);

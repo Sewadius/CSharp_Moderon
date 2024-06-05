@@ -43,25 +43,9 @@ namespace Moderon
         private bool 
             hintEnabled = true,                                         // Отображение подсказок выбрано по умолчанию
             fromSignalsMove = false;                                    // Переход из панели выбора сигналов
-        
-        double 
-            s_prDamp = 0,                                               // Площадь для приточной заслонки
-            s_outDamp = 0,                                              // Площадь для вытяжной заслонки
-            s_recircDamp = 0;                                           // Площадь для рециркуляционной заслонки
-        
-        int 
-            torq_prDamp = 0,                                            // Крутящий момент для приточной заслонки
-            torq_outDamp = 0,                                           // Крутящий момент для вытяжной заслонки
-            torq_recircDamp = 0;                                        // Крутящий момент для рециркуляционной заслонки
 
         // Класс для всплывающих подсказок (основные элементы)
         public ToolTip toolTip = new()
-        {
-            AutoPopDelay = 1500, InitialDelay = 500, ReshowDelay = 500, ShowAlways = true
-        };
-
-        // Класс для всплывающих подсказок (зеленые галочки подбора приводов)
-        public ToolTip driveTip = new()
         {
             AutoPopDelay = 1500, InitialDelay = 500, ReshowDelay = 500, ShowAlways = true
         };
@@ -197,10 +181,10 @@ namespace Moderon
             {
                 comboSysType, comboPlkType, filterPrCombo, filterOutCombo, prFanPowCombo, prFanControlCombo,
                 prFanFcTypeCombo, outFanFcTypeCombo,
-                outFanPowCombo, outFanControlCombo, prDampPowCombo, outDampPowCombo, heatTypeCombo,
-                powPumpCombo, elHeatStagesCombo, thermSwitchCombo, coolTypeCombo, frCoolStagesCombo,
-                powWatCoolCombo, humidTypeCombo, recircPowCombo, recupTypeCombo, rotorPowCombo,
-                heatAddTypeCombo, elHeatAddStagesCombo, thermAddSwitchCombo, powPumpAddCombo,
+                outFanPowCombo, outFanControlCombo, heatTypeCombo,
+                elHeatStagesCombo, thermSwitchCombo, coolTypeCombo, frCoolStagesCombo,
+                humidTypeCombo, recupTypeCombo, rotorPowCombo,
+                heatAddTypeCombo, elHeatAddStagesCombo, thermAddSwitchCombo,
                 bypassPlastCombo, firstStHeatCombo, firstStAddHeatCombo, comboReadType, fireTypeCombo
             };
 
@@ -283,7 +267,6 @@ namespace Moderon
                 do_sig = "Добавляет DO сигнал дискретного выхода",
                 ao_sig = "Добавляет AO сигнал аналогового выхода",
 
-                drive = "Привод добавлен в спецификацию",
                 pic_sig_ready = "Состояние карты входов/выходов",
                 pic_refresh = "Обновить список COM портов";
 
@@ -362,14 +345,7 @@ namespace Moderon
             // Изображение для обновления списка CAN портов
             toolTip.SetToolTip(refreshCanPorts, pic_refresh);
 
-            // Зеленые галочки при подборе приводов заслонок
-            driveTip.SetToolTip(markPrDampPanel, drive);
-            driveTip.SetToolTip(markOutDampPanel, drive);
-            driveTip.SetToolTip(markRecircPanel, drive);
-            
-
             toolTip.Active = hintEnabled;   // Признак активации отображения подсказок элементов
-            driveTip.Active = hintEnabled;  // Признак активации отобрежения подсказок приводов
         }
 
         /// <summary>Действия при загрузке Form1</summary>
@@ -712,36 +688,24 @@ namespace Moderon
                 outFanAlarmCheck, outFanStStopCheck, outFanSpeedCheck
             };
 
-            var fanTextBox = new List<TextBox>()
-            {
-                powPrFanBox, powPrResFanBox, powOutFanBox, powOutResFanBox
-            };
-
             var fanOptionsUnenabled = new List<CheckBox>()
             {
                 prFanAlarmCheck, prFanSpeedCheck, outFanAlarmCheck, outFanSpeedCheck
             };
 
             foreach (var el in fanPrOutOptions) el.Checked = false;
-            foreach (var el in fanTextBox) el.Text = "1,5";
             foreach (var el in fanOptionsUnenabled) el.Enabled = false;
         }
 
         /// <summary>Сброс настроек для воздушных заслонок</summary>
         private void ResetDampOptions()
         {
-            var dampText = new List<TextBox>()
-            {
-                b_prDampBox, h_prDampBox, b_outDampBox, h_outDampBox
-            };
-
             var dampCheck = new List<CheckBox>()
             {
-                confPrDampCheck, heatPrDampCheck, springRetPrDampCheck, confOutDampCheck,
-                heatOutDampCheck, outDampCheck, springRetOutDampCheck
+                confPrDampCheck, heatPrDampCheck, confOutDampCheck,
+                heatOutDampCheck, outDampCheck
             };
 
-            foreach (var el in dampText) el.Text = "";
             foreach (var el in dampCheck) el.Checked = false;
         }
 
@@ -800,9 +764,6 @@ namespace Moderon
         /// <summary>Сброс настроек для рециркуляции</summary>
         private void ResetRecircOptions()
         {
-            b_recircBox.Text = "";
-            h_recircBox.Text = "";
-            springRetRecircCheck.Checked = false;
             recircPrDampAOCheck.Checked = false;
         }
 
@@ -1060,12 +1021,10 @@ namespace Moderon
         {
             if (checkResPrFan.Checked)                                                      // Выбрали резерв приточного
             {
-                labelResPrFan.Show(); powPrResFanBox.Show(); labelResPrFan_2.Show();
                 prDampFanCheck.Enabled = true;                                              // Разблокировка выбора заслонки приточного вентилятора
             }
             else                                                                            // Отмена выбора резерва приточного
             {
-                labelResPrFan.Hide(); powPrResFanBox.Hide(); labelResPrFan_2.Hide();
                 prDampFanCheck.Checked = false;                                             // Отмена выбора заслонки приточного вентилятора
                 prDampFanCheck.Enabled = false;                                             // Блокировка выбора заслонки приточного вентилятора
             }
@@ -1081,12 +1040,10 @@ namespace Moderon
         {
             if (checkResOutFan.Checked)                                                     // Выбрали резерв вытяжного
             {
-                labelResOutFan.Show(); powOutResFanBox.Show(); labelResOutFan_2.Show();
                 outDampFanCheck.Enabled = true;                                             // Разблокировка выбора заслонки вытяжного вентилятора
             }
             else                                                                            // Отмена выбора резерва вытяжного
             {
-                labelResOutFan.Hide(); powOutResFanBox.Hide(); labelResOutFan_2.Hide();
                 outDampFanCheck.Checked = false;                                            // Отмена выбора заслонки вытяжного вентилятора
                 outDampFanCheck.Enabled = false;                                            // Блокировка выбора заслонки вытяжного вентилятора
             }
@@ -1294,13 +1251,11 @@ namespace Moderon
         {
             if (pumpAddHeatCheck.Checked)                                               // Выбрали циркуляционный насос
             {
-                powPumpAddCombo.Enabled = true;
                 confAddHeatPumpCheck.Enabled = true;                                    // Подтверждение работы
                 pumpCurAddProtect.Enabled = true;                                       // Защита по току
             }
             else                                                                        // Отмена выбора насоса
             {
-                powPumpAddCombo.Enabled = false;
                 // Подтверждение работы насоса
                 confAddHeatPumpCheck.Checked = false;
                 confAddHeatPumpCheck.Enabled = false;
@@ -1322,28 +1277,11 @@ namespace Moderon
                 };
 
                 foreach (var el in outDampCheck) el.Enabled = true;
-
-                outDampPowCombo.Enabled = true;
-                
-                // Элементы для подбора приводов
-                springRetOutDampCheck.Enabled = true;
-                bOutDampLabel.Show(); hOutDampLabel.Show();
-                b_outDampBox.Show(); h_outDampBox.Show();
-                cmbOutDampLabel.Show(); cmhOutDampLabel.Show();
-                B_outDampBox_TextChanged(this, e); // Пересчет для привода 
             }
             else // Отмена выбора вытяжной заслонки
             {
-                outDampPowCombo.Enabled = false;
                 confOutDampCheck.Enabled = false;
                 heatOutDampCheck.Enabled = false;
-                // Элементы для подбора приводов
-                springRetOutDampCheck.Enabled = false;
-                bOutDampLabel.Hide(); hOutDampLabel.Hide();
-                b_outDampBox.Hide(); h_outDampBox.Hide();
-                cmbOutDampLabel.Hide(); cmhOutDampLabel.Hide();
-                outDampSLabel.Hide(); outDampTorqLabel.Hide();
-                markOutDampPanel.Hide();
             }
             OutDampCheck_cmdCheckedChanged(this, e);        // Командное слово
             if (ignoreEvents) return;
@@ -1662,38 +1600,6 @@ namespace Moderon
                 "https://moderon-electric.ru/software/moderon-hvac/docs-moderon-hvac/");
         }
 
-        ///<summary>Настройка для поля мощности основного приточного вентилятора</summary>
-        private void PowPrFanBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Числа, точка и Backspace
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != (char)Keys.Back) 
-                e.Handled = true;
-        }
-
-        ///<summary>Настройка для поля мощности резервного приточного вентилятора</summary>
-        private void PowPrResFanBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Числа, точка и Backspace
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != (char)Keys.Back)
-                e.Handled = true;
-        }
-
-        ///<summary>Настройка для поля мощности основного вытяжного вентилятора</summary>
-        private void PowOutFanBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Числа, точка и Backspace
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != (char)Keys.Back)
-                e.Handled = true;
-        }
-
-        ///<summary>Настройка для поля мощности резервного вытяжного вентилятора</summary>
-        private void PowOutResFanBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Числа, точка и Backspace
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != (char)Keys.Back)
-                e.Handled = true;
-        }
-
         ///<summary>Настройка для поля мощности основного электрического калорифера</summary>
         private void ElHeatPowBox_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -1724,20 +1630,6 @@ namespace Moderon
             // Отображение информационного окна
             FormInfo formInfo = new();
             formInfo.Show(this);
-        }
-
-        ///<summary>Настройка поля для ширины приточной заслонки</summary>
-        private void B_prDampBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Числа и Backspace
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back) e.Handled = true;
-        }
-
-        ///<summary>Настройка поля для высоты приточной заслонки</summary>
-        private void H_prDampBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Числа и Backspace
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back) e.Handled = true;
         }
 
         ///<summary>Кнопка "Назад" из панели загрузки по CAN порту</summary>
@@ -1790,34 +1682,6 @@ namespace Moderon
                 fanPicture2.Image = Properties.Resources.fan380;
             else
                 fanPicture2.Image = Properties.Resources.fan220;
-        }
-
-        ///<summary>Настройка поля для ширины вытяжной заслонки</summary>
-        private void B_outDampBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Числа и Backspace
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back) e.Handled = true;
-        } 
-
-        ///<summary>Настройка поля для высоты вытяжной заслонки</summary>
-        private void H_outDampBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Числа и Backspace
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back) e.Handled = true;
-        }
-
-        ///<summary>Настройка поля для ширины рециркуляционной заслонки</summary>
-        private void B_recircBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Числа и Backspace
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back) e.Handled = true;
-        }
-
-        ///<summary>Настройка поля для высоты рециркуляционной заслонки</summary>
-        private void H_recircBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Числа и Backspace
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back) e.Handled = true;
         }
 
         ///<summary>Загрузка бинарного файла для контроллера</summary>
