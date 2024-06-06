@@ -671,8 +671,8 @@ namespace Moderon
             bit12 = false;                              // Позисторные термоконтакты
             bit13 = false;                              // Поддержание давления по аналоговому датчику
             bit14 = false;
-            bit15 = modbus_selected &&                  // Наличие Modbus и ПЧ Veda
-                prFanFcTypeCombo.SelectedIndex == 0;
+            bit15 = modbus_selected &&                  // Наличие Modbus и ПЧ Veda (или Ридан, Овен)
+                prFanFcTypeCombo.SelectedIndex != 1;
 
             cmdW19 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2) +
                 8 * Convert.ToUInt16(bit3) + 16 * Convert.ToUInt16(bit4) + 32 * Convert.ToUInt16(bit5) +
@@ -709,8 +709,8 @@ namespace Moderon
                 bit12 = false;                                  // Позисторные термоконтакты
                 bit13 = false;                                  // Поддержание давления по аналоговому датчику
                 bit14 = false;
-                bit15 = modbus_selected &&                      // Наличие Modbus и ПЧ Veda
-                    prFanFcTypeCombo.SelectedIndex == 0;
+                bit15 = modbus_selected &&                      // Наличие Modbus и ПЧ Veda (или Ридан, Овен)
+                    prFanFcTypeCombo.SelectedIndex != 1;
             }
             else                                                // Не выбран резервный двигатель
                 bit0 = bit1 = bit2 = bit3 = bit4 = bit5 = bit6 = bit7 = bit8 = bit9 = bit10 =
@@ -751,8 +751,8 @@ namespace Moderon
                 bit12 = false;                                  // Позисторные термоконтакты
                 bit13 = false;                                  // Поддержание давления по аналоговому датчику
                 bit14 = false;
-                bit15 = modbus_selected &&                      // Наличие Modbus и ПЧ Veda
-                    outFanFcTypeCombo.SelectedIndex == 0;
+                bit15 = modbus_selected &&                      // Наличие Modbus и ПЧ Veda (или Ридан, Овен)
+                    outFanFcTypeCombo.SelectedIndex != 1;
             }
             else                                                // Не выбрана ПВ-система
                 bit0 = bit1 = bit2 = bit3 = bit4 = bit5 = bit6 = bit7 = bit8 = bit9 = bit10 =
@@ -793,8 +793,8 @@ namespace Moderon
                 bit12 = false;                                                  // Позисторные термоконтакты
                 bit13 = false;                                                  // Поддержание давления по аналоговому датчику
                 bit14 = false;
-                bit15 = modbus_selected &&                                      // Наличие Modbus и ПЧ Veda
-                    outFanFcTypeCombo.SelectedIndex == 0;
+                bit15 = modbus_selected &&                                      // Наличие Modbus и ПЧ Veda (или Ридан, Овен)
+                    outFanFcTypeCombo.SelectedIndex != 1;
 
             } else                                                              // Не выбрана ПВ-система или резерв вытяжного вентилятора
                 bit0 = bit1 = bit2 = bit3 = bit4 = bit5 = bit6 = bit7 = bit8 = bit9 = bit10 =

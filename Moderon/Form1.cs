@@ -345,7 +345,7 @@ namespace Moderon
             // Изображение для обновления списка CAN портов
             toolTip.SetToolTip(refreshCanPorts, pic_refresh);
 
-            toolTip.Active = hintEnabled;   // Признак активации отображения подсказок элементов
+            toolTip.Active = hintEnabled;               // Признак активации отображения подсказок элементов
         }
 
         /// <summary>Действия при загрузке Form1</summary>
@@ -1383,7 +1383,8 @@ namespace Moderon
             label_comboSysType.Text = "ТИП СИСТЕМЫ";
             comboSysType.Show();
             formSignalsButton.Show();                                                   // Отображение кнопки "Сформировать"
-            pic_signalsReady.Show();                                                    // Отображение статуса распределения сигналов
+            if (pic_signalsReady.Image == Properties.Resources.red_cross)
+                pic_signalsReady.Show();                                                // Отображение статуса распределения сигналов
             if (expansion_blocks.Count > 0) panelBlocks.Show();                         // Отображение панели блоков расширения при наличии
         }
 
@@ -1396,7 +1397,8 @@ namespace Moderon
             label_comboSysType.Text = "ТИП СИСТЕМЫ";
             comboSysType.Show();
             formSignalsButton.Show();                                                   // Отображение кнопки "Сформировать"
-            pic_signalsReady.Show();                                                    // Отображение статуса распределения сигналов
+            if (pic_signalsReady.Image == Properties.Resources.red_cross)
+                pic_signalsReady.Show();                                                // Отображение статуса распределения сигналов
             if (expansion_blocks.Count > 0) panelBlocks.Show();                         // Отображение панели блоков расширения при наличии
         }
 
@@ -1648,7 +1650,8 @@ namespace Moderon
             comboPlkType.Location = p2;
             comboPlkType.Show();
             formSignalsButton.Hide();
-            pic_signalsReady.Show();                        // Отображение изображения сфомированной карты сигналов
+            if (pic_signalsReady.Image == Properties.Resources.red_cross)
+                pic_signalsReady.Show();                    // Отображение изображения сфомированной карты сигналов
             SignalsTableReSize(Size.Width, Size.Height);    // Таблица сигналов, пересчёт размеров
         }
 

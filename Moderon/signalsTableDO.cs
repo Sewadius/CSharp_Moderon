@@ -290,8 +290,7 @@ namespace Moderon
 
                 // Установка изображения, подобрано
                 pic_signalsReady.Image = Properties.Resources.green_check;
-
-                
+                pic_signalsReady.Hide();                                            // Скрытие изображения при подобранном варианте 
             } 
             else // Сигналы не распределены
             {
@@ -311,6 +310,7 @@ namespace Moderon
 
                 // Установка изображения, не подобрано
                 pic_signalsReady.Image = Properties.Resources.red_cross;
+                pic_signalsReady.Show();                                            // Отображение при неподобранном варианте
             }
 
             CheckPanelBlocks(CalcExpBlocks_typeNums());                             // Проверка отображения панели блоков расширения Form1, тип и количество

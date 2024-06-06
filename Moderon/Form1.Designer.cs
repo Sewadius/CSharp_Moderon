@@ -891,7 +891,7 @@ namespace Moderon
             this.mainPage.Location = new System.Drawing.Point(15, 75);
             this.mainPage.Name = "mainPage";
             this.mainPage.SelectedIndex = 0;
-            this.mainPage.Size = new System.Drawing.Size(750, 614);
+            this.mainPage.Size = new System.Drawing.Size(750, 762);
             this.mainPage.TabIndex = 1;
             // 
             // sensorsPage
@@ -900,7 +900,7 @@ namespace Moderon
             this.sensorsPage.Controls.Add(this.sensorsPanel);
             this.sensorsPage.Location = new System.Drawing.Point(4, 22);
             this.sensorsPage.Name = "sensorsPage";
-            this.sensorsPage.Size = new System.Drawing.Size(742, 588);
+            this.sensorsPage.Size = new System.Drawing.Size(742, 55);
             this.sensorsPage.TabIndex = 9;
             this.sensorsPage.Text = "ДАТЧИКИ/СИГНАЛЫ";
             // 
@@ -1146,7 +1146,7 @@ namespace Moderon
             this.fanPage.Location = new System.Drawing.Point(4, 22);
             this.fanPage.Name = "fanPage";
             this.fanPage.Padding = new System.Windows.Forms.Padding(3);
-            this.fanPage.Size = new System.Drawing.Size(742, 588);
+            this.fanPage.Size = new System.Drawing.Size(742, 736);
             this.fanPage.TabIndex = 0;
             this.fanPage.Text = "ВЕНТИЛЯТОР";
             // 
@@ -1187,7 +1187,9 @@ namespace Moderon
             this.outFanFcTypeCombo.FormattingEnabled = true;
             this.outFanFcTypeCombo.Items.AddRange(new object[] {
             "Veda VF-51 / VF-101",
-            "Systeme Electric STV600"});
+            "Systeme Electric STV600",
+            "Ридан RF-51 / RF-101",
+            "ОВЕН ПЧВ1 [M01]"});
             this.outFanFcTypeCombo.Location = new System.Drawing.Point(109, 290);
             this.outFanFcTypeCombo.Name = "outFanFcTypeCombo";
             this.outFanFcTypeCombo.Size = new System.Drawing.Size(212, 21);
@@ -1445,7 +1447,9 @@ namespace Moderon
             this.prFanFcTypeCombo.FormattingEnabled = true;
             this.prFanFcTypeCombo.Items.AddRange(new object[] {
             "Veda VF-51 / VF-101",
-            "Systeme Electric STV600"});
+            "Systeme Electric STV600",
+            "Ридан RF-51 / RF-101",
+            "ОВЕН ПЧВ1 [M01]"});
             this.prFanFcTypeCombo.Location = new System.Drawing.Point(109, 290);
             this.prFanFcTypeCombo.Name = "prFanFcTypeCombo";
             this.prFanFcTypeCombo.Size = new System.Drawing.Size(212, 21);
@@ -1673,7 +1677,7 @@ namespace Moderon
             this.filterPage.Controls.Add(this.filterPanel);
             this.filterPage.Location = new System.Drawing.Point(4, 22);
             this.filterPage.Name = "filterPage";
-            this.filterPage.Size = new System.Drawing.Size(742, 588);
+            this.filterPage.Size = new System.Drawing.Size(742, 55);
             this.filterPage.TabIndex = 6;
             this.filterPage.Text = "ФИЛЬТР";
             // 
@@ -1795,7 +1799,7 @@ namespace Moderon
             this.dampPage.Controls.Add(this.dampPanel);
             this.dampPage.Location = new System.Drawing.Point(4, 22);
             this.dampPage.Name = "dampPage";
-            this.dampPage.Size = new System.Drawing.Size(742, 588);
+            this.dampPage.Size = new System.Drawing.Size(742, 55);
             this.dampPage.TabIndex = 7;
             this.dampPage.Text = "ЗАСЛОНКА";
             // 
@@ -1922,7 +1926,7 @@ namespace Moderon
             this.heatPage.Location = new System.Drawing.Point(4, 22);
             this.heatPage.Name = "heatPage";
             this.heatPage.Padding = new System.Windows.Forms.Padding(3);
-            this.heatPage.Size = new System.Drawing.Size(742, 588);
+            this.heatPage.Size = new System.Drawing.Size(742, 55);
             this.heatPage.TabIndex = 1;
             this.heatPage.Text = "НАГРЕВАТЕЛЬ";
             // 
@@ -2278,7 +2282,7 @@ namespace Moderon
             this.coolPage.Location = new System.Drawing.Point(4, 22);
             this.coolPage.Name = "coolPage";
             this.coolPage.Padding = new System.Windows.Forms.Padding(3);
-            this.coolPage.Size = new System.Drawing.Size(742, 588);
+            this.coolPage.Size = new System.Drawing.Size(742, 55);
             this.coolPage.TabIndex = 2;
             this.coolPage.Text = "ОХЛАДИТЕЛЬ";
             // 
@@ -2476,7 +2480,7 @@ namespace Moderon
             this.humidPage.Location = new System.Drawing.Point(4, 22);
             this.humidPage.Name = "humidPage";
             this.humidPage.Padding = new System.Windows.Forms.Padding(3);
-            this.humidPage.Size = new System.Drawing.Size(742, 588);
+            this.humidPage.Size = new System.Drawing.Size(742, 55);
             this.humidPage.TabIndex = 3;
             this.humidPage.Text = "УВЛАЖНИТЕЛЬ";
             // 
@@ -2635,7 +2639,7 @@ namespace Moderon
             this.recircPage.Location = new System.Drawing.Point(4, 22);
             this.recircPage.Name = "recircPage";
             this.recircPage.Padding = new System.Windows.Forms.Padding(3);
-            this.recircPage.Size = new System.Drawing.Size(742, 588);
+            this.recircPage.Size = new System.Drawing.Size(742, 736);
             this.recircPage.TabIndex = 4;
             this.recircPage.Text = "РЕЦИРКУЛЯЦИЯ";
             // 
@@ -2702,7 +2706,7 @@ namespace Moderon
             this.recupPage.Controls.Add(this.recupPanel);
             this.recupPage.Location = new System.Drawing.Point(4, 22);
             this.recupPage.Name = "recupPage";
-            this.recupPage.Size = new System.Drawing.Size(742, 588);
+            this.recupPage.Size = new System.Drawing.Size(742, 736);
             this.recupPage.TabIndex = 5;
             this.recupPage.Text = "РЕКУПЕРАТОР";
             // 
@@ -2837,9 +2841,9 @@ namespace Moderon
             this.glikRecupPanel.Controls.Add(this.pumpGlicRecCheck);
             this.glikRecupPanel.Controls.Add(this.analogGlikRecCheck);
             this.glikRecupPanel.Controls.Add(this.label50);
-            this.glikRecupPanel.Location = new System.Drawing.Point(3, 165);
+            this.glikRecupPanel.Location = new System.Drawing.Point(3, 412);
             this.glikRecupPanel.Name = "glikRecupPanel";
-            this.glikRecupPanel.Size = new System.Drawing.Size(322, 368);
+            this.glikRecupPanel.Size = new System.Drawing.Size(322, 67);
             this.glikRecupPanel.TabIndex = 45;
             this.glikRecupPanel.Visible = false;
             // 
@@ -2958,7 +2962,7 @@ namespace Moderon
             this.rotorRecupPanel.Controls.Add(this.label44);
             this.rotorRecupPanel.Location = new System.Drawing.Point(6, 40);
             this.rotorRecupPanel.Name = "rotorRecupPanel";
-            this.rotorRecupPanel.Size = new System.Drawing.Size(322, 119);
+            this.rotorRecupPanel.Size = new System.Drawing.Size(322, 292);
             this.rotorRecupPanel.TabIndex = 32;
             // 
             // analogRotRecCheck
@@ -2981,7 +2985,6 @@ namespace Moderon
             this.startRotRecCheck.AutoSize = true;
             this.startRotRecCheck.Checked = true;
             this.startRotRecCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.startRotRecCheck.Enabled = false;
             this.startRotRecCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.startRotRecCheck.Location = new System.Drawing.Point(15, 174);
             this.startRotRecCheck.Name = "startRotRecCheck";
@@ -2996,7 +2999,6 @@ namespace Moderon
             this.outSigAlarmRotRecCheck.AutoSize = true;
             this.outSigAlarmRotRecCheck.Checked = true;
             this.outSigAlarmRotRecCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.outSigAlarmRotRecCheck.Enabled = false;
             this.outSigAlarmRotRecCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.outSigAlarmRotRecCheck.Location = new System.Drawing.Point(15, 134);
             this.outSigAlarmRotRecCheck.Name = "outSigAlarmRotRecCheck";
@@ -3111,7 +3113,7 @@ namespace Moderon
             this.addHeatPage.Controls.Add(this.secHeatPanel);
             this.addHeatPage.Location = new System.Drawing.Point(4, 22);
             this.addHeatPage.Name = "addHeatPage";
-            this.addHeatPage.Size = new System.Drawing.Size(742, 588);
+            this.addHeatPage.Size = new System.Drawing.Size(742, 55);
             this.addHeatPage.TabIndex = 8;
             this.addHeatPage.Text = "ДОП НАГРЕВ";
             // 
@@ -3628,7 +3630,7 @@ namespace Moderon
             this.loadModbusPanel.Controls.Add(this.label59);
             this.loadModbusPanel.Controls.Add(this.label1);
             this.loadModbusPanel.Controls.Add(this.backModbusButton);
-            this.loadModbusPanel.Location = new System.Drawing.Point(8, 848);
+            this.loadModbusPanel.Location = new System.Drawing.Point(5, 978);
             this.loadModbusPanel.Name = "loadModbusPanel";
             this.loadModbusPanel.Size = new System.Drawing.Size(749, 34);
             this.loadModbusPanel.TabIndex = 12;
@@ -3887,9 +3889,9 @@ namespace Moderon
             this.signalsPanel.Controls.Add(this.signalsReadyLabel);
             this.signalsPanel.Controls.Add(this.tabControlSignals);
             this.signalsPanel.Controls.Add(this.backSignalsButton);
-            this.signalsPanel.Location = new System.Drawing.Point(8, 747);
+            this.signalsPanel.Location = new System.Drawing.Point(5, 878);
             this.signalsPanel.Name = "signalsPanel";
-            this.signalsPanel.Size = new System.Drawing.Size(740, 47);
+            this.signalsPanel.Size = new System.Drawing.Size(749, 47);
             this.signalsPanel.TabIndex = 16;
             this.signalsPanel.Visible = false;
             // 
@@ -9168,7 +9170,7 @@ namespace Moderon
             this.helpPanel.Controls.Add(this.label140);
             this.helpPanel.Controls.Add(this.linkModeronWeb);
             this.helpPanel.Controls.Add(this.backHelpButton);
-            this.helpPanel.Location = new System.Drawing.Point(8, 800);
+            this.helpPanel.Location = new System.Drawing.Point(5, 931);
             this.helpPanel.Name = "helpPanel";
             this.helpPanel.Size = new System.Drawing.Size(746, 41);
             this.helpPanel.TabIndex = 17;
@@ -9272,9 +9274,9 @@ namespace Moderon
             this.loadCanPanel.Controls.Add(this.label174);
             this.loadCanPanel.Controls.Add(this.label173);
             this.loadCanPanel.Controls.Add(this.netOptionLabel);
-            this.loadCanPanel.Location = new System.Drawing.Point(8, 711);
+            this.loadCanPanel.Location = new System.Drawing.Point(5, 843);
             this.loadCanPanel.Name = "loadCanPanel";
-            this.loadCanPanel.Size = new System.Drawing.Size(749, 30);
+            this.loadCanPanel.Size = new System.Drawing.Size(749, 29);
             this.loadCanPanel.TabIndex = 45;
             this.loadCanPanel.Visible = false;
             // 
@@ -9282,7 +9284,7 @@ namespace Moderon
             // 
             this.progressLabel.AutoSize = true;
             this.progressLabel.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.progressLabel.Location = new System.Drawing.Point(33, 480);
+            this.progressLabel.Location = new System.Drawing.Point(33, 482);
             this.progressLabel.Name = "progressLabel";
             this.progressLabel.Size = new System.Drawing.Size(102, 16);
             this.progressLabel.TabIndex = 83;
@@ -9292,7 +9294,7 @@ namespace Moderon
             // progressFirmware
             // 
             this.progressFirmware.ForeColor = System.Drawing.Color.DarkGreen;
-            this.progressFirmware.Location = new System.Drawing.Point(30, 502);
+            this.progressFirmware.Location = new System.Drawing.Point(30, 504);
             this.progressFirmware.Name = "progressFirmware";
             this.progressFirmware.Size = new System.Drawing.Size(306, 15);
             this.progressFirmware.TabIndex = 82;
@@ -9304,11 +9306,11 @@ namespace Moderon
             this.firmwareBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.firmwareBtn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.firmwareBtn.ForeColor = System.Drawing.Color.White;
-            this.firmwareBtn.Location = new System.Drawing.Point(28, 438);
+            this.firmwareBtn.Location = new System.Drawing.Point(30, 440);
             this.firmwareBtn.Name = "firmwareBtn";
-            this.firmwareBtn.Size = new System.Drawing.Size(213, 33);
+            this.firmwareBtn.Size = new System.Drawing.Size(256, 35);
             this.firmwareBtn.TabIndex = 81;
-            this.firmwareBtn.Text = "ЗАГРУЗИТЬ ПРОШИВКУ В ПЛК";
+            this.firmwareBtn.Text = "ЗАГРУЗИТЬ БАЗОВУЮ ПРОШИВКУ";
             this.firmwareBtn.UseVisualStyleBackColor = false;
             this.firmwareBtn.Click += new System.EventHandler(this.FirmwareBtn_Click);
             // 
@@ -9337,7 +9339,7 @@ namespace Moderon
             this.backConnectLabel.AutoSize = true;
             this.backConnectLabel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.backConnectLabel.ForeColor = System.Drawing.Color.DarkGreen;
-            this.backConnectLabel.Location = new System.Drawing.Point(28, 533);
+            this.backConnectLabel.Location = new System.Drawing.Point(28, 535);
             this.backConnectLabel.Name = "backConnectLabel";
             this.backConnectLabel.Size = new System.Drawing.Size(312, 13);
             this.backConnectLabel.TabIndex = 79;
@@ -9362,11 +9364,11 @@ namespace Moderon
             this.readCanButton.Enabled = false;
             this.readCanButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.readCanButton.ForeColor = System.Drawing.Color.White;
-            this.readCanButton.Location = new System.Drawing.Point(30, 335);
+            this.readCanButton.Location = new System.Drawing.Point(30, 328);
             this.readCanButton.Name = "readCanButton";
-            this.readCanButton.Size = new System.Drawing.Size(209, 33);
+            this.readCanButton.Size = new System.Drawing.Size(211, 35);
             this.readCanButton.TabIndex = 75;
-            this.readCanButton.Text = "ЧИТАТЬ ДАННЫЕ ИЗ ПЛК";
+            this.readCanButton.Text = "ЧИТАТЬ КОНФИГУРАЦИЮ";
             this.readCanButton.UseVisualStyleBackColor = false;
             this.readCanButton.Click += new System.EventHandler(this.ReadCanButton_Click);
             // 
@@ -9375,13 +9377,13 @@ namespace Moderon
             this.loadCanButton.BackColor = System.Drawing.Color.DarkGreen;
             this.loadCanButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loadCanButton.Enabled = false;
-            this.loadCanButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.loadCanButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.loadCanButton.ForeColor = System.Drawing.Color.White;
-            this.loadCanButton.Location = new System.Drawing.Point(30, 295);
+            this.loadCanButton.Location = new System.Drawing.Point(30, 288);
             this.loadCanButton.Name = "loadCanButton";
-            this.loadCanButton.Size = new System.Drawing.Size(209, 33);
+            this.loadCanButton.Size = new System.Drawing.Size(211, 35);
             this.loadCanButton.TabIndex = 74;
-            this.loadCanButton.Text = "ЗАГРУЗИТЬ ДАННЫЕ В ПЛК";
+            this.loadCanButton.Text = "ЗАГРУЗИТЬ КОНФИГУРАЦИЮ";
             this.loadCanButton.UseVisualStyleBackColor = false;
             this.loadCanButton.Click += new System.EventHandler(this.LoadCanButton_Click);
             // 
@@ -9434,7 +9436,7 @@ namespace Moderon
             this.backCanPanelButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.backCanPanelButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.backCanPanelButton.ForeColor = System.Drawing.Color.White;
-            this.backCanPanelButton.Location = new System.Drawing.Point(28, 555);
+            this.backCanPanelButton.Location = new System.Drawing.Point(28, 557);
             this.backCanPanelButton.Name = "backCanPanelButton";
             this.backCanPanelButton.Size = new System.Drawing.Size(94, 27);
             this.backCanPanelButton.TabIndex = 70;
@@ -9489,7 +9491,7 @@ namespace Moderon
             this.connectPlkBtn.ForeColor = System.Drawing.Color.White;
             this.connectPlkBtn.Location = new System.Drawing.Point(30, 207);
             this.connectPlkBtn.Name = "connectPlkBtn";
-            this.connectPlkBtn.Size = new System.Drawing.Size(209, 33);
+            this.connectPlkBtn.Size = new System.Drawing.Size(211, 33);
             this.connectPlkBtn.TabIndex = 65;
             this.connectPlkBtn.Text = "УСТАНОВИТЬ СОЕДИНЕНИЕ";
             this.connectPlkBtn.UseVisualStyleBackColor = false;
@@ -9688,7 +9690,7 @@ namespace Moderon
             this.optionsPanel.Controls.Add(this.mouseWheelCheck);
             this.optionsPanel.Controls.Add(this.tooltipsCheck);
             this.optionsPanel.Controls.Add(this.label64);
-            this.optionsPanel.Location = new System.Drawing.Point(9, 890);
+            this.optionsPanel.Location = new System.Drawing.Point(5, 1018);
             this.optionsPanel.Name = "optionsPanel";
             this.optionsPanel.Size = new System.Drawing.Size(749, 35);
             this.optionsPanel.TabIndex = 64;
