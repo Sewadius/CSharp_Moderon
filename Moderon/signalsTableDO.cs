@@ -1424,6 +1424,21 @@ namespace Moderon
             }
         }
 
+        ///<summary>Выбрали сигнал ПУСК/СТОП роторного рекуператора</summary>
+        private void StartRotRecCheck_signalsDOCheckedChanged(object sender, EventArgs e)
+        {
+            ushort code_1 = 56;
+
+            // ПВ-система и выбран роторный рекуператор
+            if (recupCheck.Checked && comboSysType.SelectedIndex == 1 && recupTypeCombo.SelectedIndex == 0)
+            {
+                if (startRotRecCheck.Checked)
+                    AddToListDo("Сигнал ПУСК/СТОП рекуператора", code_1);
+                else
+                    SubFromCombosDO(code_1);
+            }
+        }
+
         ///<summary>Выбрали внешний сигнал "Работа"</summary>
         private void SigWorkCheck_signalsDOCheckedChanged(object sender, EventArgs e)
         {

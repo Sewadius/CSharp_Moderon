@@ -1044,11 +1044,19 @@ namespace Moderon
 
         ///<summary>Выбрали сигнал аварии роторного рекуператора</summary>
         private void OutSigAlarmRotRecCheck_cmdCheckedChanged(object sender, EventArgs e)
-            => CommandWord_9();
+        {
+            CommandWord_9();
+            if (ignoreEvents) return;
+            OutSigAlarmRotRecCheck_signalsDICheckedChanged(this, e);                            // Сигналы DI
+        }
         
-        ///<summary>Выбрали сигнал 0-10 В роторного рекуператора</summary>
+        ///<summary>Выбрали сигнал ПУСК/СТОП роторного рекуператора</summary>
         private void StartRotRecCheck_cmdCheckedChanged(object sender, EventArgs e)
-            => CommandWord_9();
+        {
+            CommandWord_9();
+            if (ignoreEvents) return;
+            StartRotRecCheck_signalsDOCheckedChanged(this, e);                                  // Сигналы DO
+        }
 
         ///<summary>Выбрали сигнал 0-10 В роторного рекуператора</summary>
         private void AnalogRotRecCheck_cmdCheckedChanged(object sender, EventArgs e)
@@ -1119,7 +1127,6 @@ namespace Moderon
             CommandWord_10();
             if (ignoreEvents) return;
             ThermSwitchCombo_signalsDISelectedIndexChanged(this, e);                            // Сигналы DI
-
         }
 
         ///<summary>Подтверждение работы основного насоса водяного калорифера</summary>
@@ -1311,7 +1318,11 @@ namespace Moderon
 
         ///<summary>Выбрали управляющий сигнал 0-10 В увлажнителя</summary>
         private void AnalogHumCheck_cmdCheckedChanged(object sender, EventArgs e)
-            => CommandWord_15();
+        {
+            CommandWord_15();
+            if (ignoreEvents) return;
+            AnalogHumCheck_signalsAOCheckedChanged(this, e);                                    // Сигналы AO
+        }
 
         ///<summary>Выбрали сигнал аварии парового увлажнителя</summary>
         private void AlarmHumidCheck_cmdCheckedChanged(object sender, EventArgs e)

@@ -876,6 +876,21 @@ namespace Moderon
             }
         }
 
+        ///<summary>Выбрали сигнал аварии роторного рекуператора</summary>
+        private void OutSigAlarmRotRecCheck_signalsDICheckedChanged(object sender, EventArgs e)
+        {
+            ushort code_1 = 1091;
+
+            // ПВ-система и выбран роторный рекуператор
+            if (comboSysType.SelectedIndex == 1 && recupCheck.Checked && recupTypeCombo.SelectedIndex == 0)
+            {
+                if (outSigAlarmRotRecCheck.Checked)
+                    CheckAddUIToList("Авария роторного рекуператора", code_1, DI);
+                else 
+                    SubFromCombosUI(code_1);
+            }
+        }
+
         ///<summary>Выбрали сигнал переключателя "Стоп/Пуск"</summary>
         private void StopStartCheck_CheckedChanged(object sender, EventArgs e)
         {

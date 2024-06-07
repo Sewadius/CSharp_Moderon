@@ -55,7 +55,7 @@ namespace Moderon
             InitializeComponent();          // Загрузка конструктора формы
             BlockTabControlInitial();       // Скрытие вкладок элементов
             SelectComboBoxesInitial();      // Изначальный выбор для comboBox
-            SizePanels();                   // Изменение размера панелей
+            SizePanels();                   // Изменение размера панелей элементов
             ClearIO_codes();                // Очистка наименования кодов для входов/выходов
             InitialSet_ComboTextIndex();    // Начальная установка для входов и выходов
           
@@ -65,6 +65,18 @@ namespace Moderon
 
             // Размер для основной формы
             Size = new Size(WIDTH_MAIN, HEIGHT_MAIN);
+
+            // Положение для панелей резервов вентиляторов
+            resFanPrPanel.Location = new Point(resFanPrPanel.Location.X, 239);
+            resFanOutPanel.Location = new Point(resFanOutPanel.Location.X, 239);
+
+            // Размер панелей вентиляторов без учёта высоты панелей ПЧ
+            prFanPanel.Size = new Size(prFanPanel.Width, prFanPanel.Height - FC_fanPrPanel.Height);
+            outFanPanel.Size = new Size(outFanPanel.Width, outFanPanel.Height - FC_fanOutPanel.Height);
+
+            // Положение панели вытяжного вентилятора с учётом высоты ПЧ приточного
+            outFanPanel.Location = new Point(outFanPanel.Location.X, 
+                outFanPanel.Location.Y - FC_fanPrPanel.Height);
 
             // Положение кнопки распределения сигналов по подписи сформированной карты
             sig_distributionBtn.Location = 
@@ -183,7 +195,7 @@ namespace Moderon
                 prFanFcTypeCombo, outFanFcTypeCombo,
                 outFanPowCombo, outFanControlCombo, heatTypeCombo,
                 elHeatStagesCombo, thermSwitchCombo, coolTypeCombo, frCoolStagesCombo,
-                humidTypeCombo, recupTypeCombo, rotorPowCombo,
+                humidTypeCombo, recupTypeCombo,
                 heatAddTypeCombo, elHeatAddStagesCombo, thermAddSwitchCombo,
                 bypassPlastCombo, firstStHeatCombo, firstStAddHeatCombo, comboReadType, fireTypeCombo
             };
@@ -194,14 +206,12 @@ namespace Moderon
         /// <summary>Установка размера для панелей настройки элементов</summary>
         private void SizePanels()
         {
-            watHeatPanel.Height = watAddHeatPanel.Height = 400;
+            watHeatPanel.Height = watAddHeatPanel.Height = 400;         // Водяной основной и второй нагреватель
+            glikRecupPanel.Height = 330;                                // Гликолевый рекуператор
+            plastRecupPanel.Height = 95;                                // Пластинчатый рекуператор
 
-            var panels = new List<Panel>()
-            {
-                steamHumidPanel, rotorRecupPanel
-            };
-
-            foreach (var panel in panels) panel.Height = HEIGHT;
+            rotorRecupPanel.Height = 170;                               // Роторный рекуператор
+            steamHumidPanel.Height = HEIGHT;                            // Паровой увлажнитель
         }
         
         /// <summary>Очистка для подписей кодов у comboBox входов/выходов</summary>
@@ -543,17 +553,18 @@ namespace Moderon
             }
             else // Отмена выбора рекуператора
             {
-                prChanSensCheck.Enabled = true;             // Разблокировка канального датчика температуры
+                prChanSensCheck.Enabled = true;                         // Разблокировка канального датчика температуры
                 recupPage.Parent = null;
                 defRecupSensPanel.Hide();
                 CheckOptions();
             }
-            RecupCheck_cmdCheckedChanged(this, e);          // Командное слово
+            DefRecupSensPanel_Location(recupTypeCombo.SelectedIndex);   // Положение для панели защиты от заморозки
+            RecupCheck_cmdCheckedChanged(this, e);                      // Командное слово
             if (ignoreEvents) return;
-            RecupCheck_signalsAOCheckedChanged(this, e);    // Сигналы AO ПЛК
-            RecupCheck_signalsDOCheckedChanged(this, e);    // Сигналы DO ПЛК
-            RecupCheck_signalsDICheckedChanged(this, e);    // Сигналы DI ПЛК
-            RecupCheck_signalsAICheckedChanged(this, e);    // Сигналы AI ПЛК
+            RecupCheck_signalsAOCheckedChanged(this, e);                // Сигналы AO ПЛК
+            RecupCheck_signalsDOCheckedChanged(this, e);                // Сигналы DO ПЛК
+            RecupCheck_signalsDICheckedChanged(this, e);                // Сигналы DI ПЛК
+            RecupCheck_signalsAICheckedChanged(this, e);                // Сигналы AI ПЛК
         }
 
         ///<summary>Выбрали насос гликолевого рекуператора</summary>
@@ -759,6 +770,7 @@ namespace Moderon
         private void ResetHumidOptions()
         {
             alarmHumidCheck.Checked = false;
+            analogHumCheck.Checked = true;
         }
 
         /// <summary>Сброс настроек для рециркуляции</summary>
@@ -774,7 +786,8 @@ namespace Moderon
             recDefTempCheck.Checked = false;
             recDefPsCheck.Checked = false;
             // Роторный рекуператор
-            powRotRecBox.Text = "0,18";
+            outSigAlarmRotRecCheck.Checked = true;
+            startRotRecCheck.Checked = true;
             // Гликолевый рекуператор, основной насос
             pumpGlicRecCheck.Checked = false;
             pumpGlikConfCheck.Checked = false;
@@ -975,6 +988,20 @@ namespace Moderon
             HumidTypeCombo_signalsDISelectedIndexChanged(this, e);                  // Сигналы DI ПЛК
         }
 
+        ///<summary>Положение панели защиты от заморозки рекуператора, зависит от типа</summary>
+        private void DefRecupSensPanel_Location(int index)
+        {
+            if (index == 0)         // Роторный рекуператор
+                defRecupSensPanel.Location = new Point(rotorRecupPanel.Location.X,
+                    rotorRecupPanel.Location.Y + rotorRecupPanel.Height);
+            else if (index == 1)    // Пластинчатый рекуператор
+                defRecupSensPanel.Location = new Point(plastRecupPanel.Location.X,
+                    plastRecupPanel.Location.Y + plastRecupPanel.Height);
+            else if (index == 2)    // Гликолевый рекуператор
+                defRecupSensPanel.Location = new Point(glikRecupPanel.Location.X,
+                    glikRecupPanel.Location.Y + glikRecupPanel.Height);
+        }
+
         ///<summary>Изменили тип рекуператора</summary>
         private void RecupTypeCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1002,13 +1029,13 @@ namespace Moderon
             else if (recupTypeCombo.SelectedIndex == 2)                             // Гликолевый
             {
                 recupTypeComboIndex = 2;
-                //Point p1 = new Point(Size.Width - delta_2, height);
                 plastRecupPanel.Hide(); rotorRecupPanel.Hide(); glikRecupPanel.Show();
                 recupPicture.Image = Properties.Resources.glikRecup;
                 recupPicture.Size = new Size(recupPicture.Width, recupPicture.Height + 100);
                 glikRecupPanel.Location = MENU_POSITION;
                 recupPicture.Size = new Size(recupPicture.Width, HEIGHT_GLICK);     // Размер для изображения рекуператора
             }
+            DefRecupSensPanel_Location(recupTypeComboIndex);                        // Положение для панели защиты от заморозки
             RecupTypeCombo_cmdSelectedIndexChanged(this, e);                        // Командное слово
             if (ignoreEvents) return;
             RecupTypeCombo_signalsDOSelectedIndexChanged(this, e);                  // Сигналы DO ПЛК
@@ -1130,6 +1157,17 @@ namespace Moderon
             {
                 prFanControlCombo.Enabled = true;                   // Разблокировка типа управления ПЧ
 
+                FC_fanPrPanel.Show();                               // Отображение панели ПЧ приточного вентилятора
+
+                // Изменение размера панели П вентилятора
+                prFanPanel.Size = new Size(prFanPanel.Width, prFanPanel.Height + FC_fanPrPanel.Height);
+
+                // Сдвиг для панели резерва приточного вентилятора и панели вытяжного вентилятора
+                resFanPrPanel.Location = new Point(resFanPrPanel.Location.X, 
+                    resFanPrPanel.Location.Y + FC_fanPrPanel.Height);
+                outFanPanel.Location = new Point(outFanPanel.Location.X,
+                    outFanPanel.Location.Y + FC_fanPrPanel.Height);
+
                 if (prFanControlCombo.SelectedIndex == 0)           // Внешние контакты 
                 {
                     prFanAlarmCheck.Enabled = true;                 // Разблокировка сигнала аварии ПЧ
@@ -1144,6 +1182,17 @@ namespace Moderon
             }  
             else                                                    // Отмена выбора ПЧ приточного вентилятора
             {
+                FC_fanPrPanel.Hide();                               // Скрытие панели ПЧ приточного вентилятора
+
+                // Изменение размера панели П вентилятора
+                prFanPanel.Size = new Size(prFanPanel.Width, prFanPanel.Height - FC_fanPrPanel.Height);
+
+                // Сдвиг для панели резерва приточного вентилятора и панели вытяжного вентилятора
+                resFanPrPanel.Location = new Point(resFanPrPanel.Location.X,
+                    resFanPrPanel.Location.Y - FC_fanPrPanel.Height);
+                outFanPanel.Location = new Point(outFanPanel.Location.X,
+                    outFanPanel.Location.Y - FC_fanPrPanel.Height);
+
                 prFanControlCombo.Enabled = false;                  // Блокировка типа управления ПЧ
                 prFanSpeedCheck.Enabled = false;                    // Блокировка выбора скорости 0-10 В
                 prFanAlarmCheck.Enabled = false;                    // Блокировка выбора сигнала аварии ПЧ
@@ -1186,6 +1235,15 @@ namespace Moderon
         {
             if (outFanFC_check.Checked)                         // Выбрали ПЧ вытяжного вентилятора
             {
+                FC_fanOutPanel.Show();                          // Отображение панели ПЧ вытяжного вентилятора
+
+                // Изменение размера панели В вентилятора
+                outFanPanel.Size = new Size(outFanPanel.Width, outFanPanel.Height + FC_fanOutPanel.Height);
+
+                // Сдвиг для панели резерва вытяжного вентилятора
+                resFanOutPanel.Location = new Point(resFanOutPanel.Location.X,
+                    resFanOutPanel.Location.Y + FC_fanOutPanel.Height);
+
                 outFanControlCombo.Enabled = true;              // Разблокировка типа управления ПЧ
                 if (outFanControlCombo.SelectedIndex == 0)      // Внешние контакты
                 {
@@ -1201,6 +1259,15 @@ namespace Moderon
             } 
             else                                                // Отмена выбора ПЧ вытяжного вентилятора
             {
+                FC_fanOutPanel.Hide();                          // Скрытие панели ПЧ вытяжного вентилятора
+
+                // Изменение размера панели В вентилятора
+                outFanPanel.Size = new Size(outFanPanel.Width, outFanPanel.Height - FC_fanOutPanel.Height);
+
+                // Сдвиг для панели резерва вытяжного вентилятора
+                resFanOutPanel.Location = new Point(resFanOutPanel.Location.X,
+                    resFanOutPanel.Location.Y - FC_fanOutPanel.Height);
+
                 outFanControlCombo.Enabled = false;             // Блокировка типа управления ПЧ
                 outFanSpeedCheck.Enabled = false;               // Блокировка выбора скорости 0-10 В
                 outFanAlarmCheck.Enabled = false;               // Блокировка сигнала аварии ПЧ
@@ -1612,14 +1679,6 @@ namespace Moderon
 
         ///<summary>Настройка для поля мощности второго электрического калорифера</summary>
         private void ElAddHeatPowBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Числа, точка и Backspace
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != (char)Keys.Back)
-                e.Handled = true;
-        }
-
-        ///<summary>Настройка для поля мощности роторного рекуператора</summary>
-        private void PowRotRecBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Числа, точка и Backspace
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != (char)Keys.Back)

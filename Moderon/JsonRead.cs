@@ -546,10 +546,11 @@ namespace Moderon
                 TF_addHeaterCheck, pumpAddHeatCheck, confAddHeatPumpCheck, pumpCurAddProtect, reservPumpAddHeater,
                 confAddHeatResPumpCheck, pumpCurResAddProtect, sensWatAddHeatCheck,
                 // Охладитель
-                alarmFrCoolCheck, thermoCoolerCheck, analogFreonCheck, dehumModeCheck, alarmHumidCheck,
+                alarmFrCoolCheck, thermoCoolerCheck, analogFreonCheck, dehumModeCheck, alarmHumidCheck, analogHumCheck,
                 // Увлажнитель, рециркуляция и рекуператор
                 recircPrDampAOCheck, pumpGlicRecCheck, pumpGlikConfCheck, pumpGlikCurProtect, reservPumpGlik,
-                confGlikResPumpCheck, pumpGlikResCurProtect, recDefTempCheck, recDefPsCheck,
+                confGlikResPumpCheck, pumpGlikResCurProtect, recDefTempCheck, recDefPsCheck, outSigAlarmRotRecCheck,
+                startRotRecCheck,
                 // Датчики и сигналы
                 prChanSensCheck, roomTempSensCheck, chanHumSensCheck, roomHumSensCheck, outdoorChanSensCheck, outChanSensCheck,
                 sigWorkCheck, sigAlarmCheck, sigFilAlarmCheck, stopStartCheck, fireCheck,
@@ -596,7 +597,7 @@ namespace Moderon
                 // Охладитель и увлажнитель
                 coolTypeCombo, frCoolStagesCombo, humidTypeCombo,
                 // Рекуператор и датчики
-                recupTypeCombo, rotorPowCombo, bypassPlastCombo, fireTypeCombo
+                recupTypeCombo, bypassPlastCombo, fireTypeCombo
             };
 
             foreach (var el in comboBoxes) el.SelectedIndex = json_read.ComboBoxElemState[el.Name];
@@ -623,8 +624,8 @@ namespace Moderon
         {
             var textBoxes = new List<TextBox>()
             {
-                // Нагреватель, второй нагреватель и рекуператор
-                elHeatPowBox, elAddHeatPowBox, powRotRecBox
+                // Нагреватель и второй нагреватель
+                elHeatPowBox, elAddHeatPowBox
             };
 
             foreach (var el in textBoxes) el.Text = json_read.TextBoxElemState[el.Name];

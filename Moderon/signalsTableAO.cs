@@ -682,9 +682,23 @@ namespace Moderon
 
             if (humidCheck.Checked)                                                 // Когда выбран увлажнитель
             {
-                if (humidTypeCombo.SelectedIndex == 0)                              // Паровой увлажнитель
+                if (humidTypeCombo.SelectedIndex == 0 && analogHumCheck.Checked)    // Паровой увлажнитель, выбран 0-10 В
                     AddToListAO("Увлажнитель 0-10 В", code_1);
                 else if (humidTypeCombo.SelectedIndex == 1)                         // Сотовый увлажнитель
+                    SubFromCombosAO(code_1);                                        // Удаление сигнала
+            }
+        }
+
+        ///<summary>Выбрали сигнал 0-10 В парового увлажнителя</summary>
+        private void AnalogHumCheck_signalsAOCheckedChanged(object sender, EventArgs e)
+        {
+            ushort code_1 = 25;                                                     // Аналоговое управление увлажнителем
+
+            if (humidCheck.Checked && humidTypeCombo.SelectedIndex == 0)            // Выбран паровой увлажнитель
+            {
+                if (analogHumCheck.Checked)
+                    AddToListAO("Увлажнитель 0-10 В", code_1);
+                else
                     SubFromCombosAO(code_1);                                        // Удаление сигнала
             }
         }
