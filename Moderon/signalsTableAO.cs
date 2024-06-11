@@ -452,7 +452,8 @@ namespace Moderon
         {
             ushort code_1 = 7;                                                  // Скорость вытяжного вентилятора 2
 
-            if (checkResOutFan.Checked && comboSysType.SelectedIndex == 1)      // Выбран резервный вентилятор, ПВ-система
+            // Выбран В вентилятор, резервный вентилятор В, ПВ-система
+            if (outFanCheck.Checked && checkResOutFan.Checked && comboSysType.SelectedIndex == 1)      
             {
                 if (outFanSpeedCheck.Checked)                                   // Выбрана скорость для вытяжного вентилятора
                     AddToListAO("Скорость вытяжного вентилятора 2", code_1);
@@ -796,7 +797,7 @@ namespace Moderon
         {
             ushort code_1 = 5, code_2 = 7;                                          // Скорость вытяжного 1 и 2
 
-            if (outFanSpeedCheck.Checked)                                           // Выбрали управление скоростью вентилятора
+            if (outFanCheck.Checked && outFanSpeedCheck.Checked)                    // В вентилятор и выбрали управление скоростью вентилятора
             {
                 AddToListAO("Скорость вытяжного вентилятора 1", code_1);
                 if (checkResPrFan.Checked)                                          // Если выбран резерв В

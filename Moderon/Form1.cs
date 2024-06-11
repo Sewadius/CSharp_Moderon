@@ -4,6 +4,9 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
+using System.Threading;
+using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace Moderon
 {
@@ -11,7 +14,7 @@ namespace Moderon
     {
         readonly static public string 
             NOT_SELECTED = "Не выбрано",                                // Статус для состояния входов/выходов
-            VERSION = "v.1.1.4.8";                                      // Текущая версия программы
+            VERSION = "v.1.1.5.1";                                      // Текущая версия программы
 
         private const int 
             WIDTH_MAIN = 955,                                           // Ширина основной формы
@@ -39,6 +42,9 @@ namespace Moderon
             heatAddTypeComboIndex = 0,                                  // Значение для типа дополнительного нагревателя
             humidTypeComboIndex = 0,                                    // Значение для типа увлажнителя
             recupTypeComboIndex = 0;                                    // Значение для типа рекуператора
+
+        private int
+            panelOutFan_height;                                         // Значение для высоты панели вытяжного вентилятора
         
         private bool 
             hintEnabled = true,                                         // Отображение подсказок выбрано по умолчанию
@@ -616,7 +622,7 @@ namespace Moderon
         {
             comboSysType.Enabled = true;                    // Разблокировка выбора типа системы
             comboSysType.SelectedIndex = 0;                 // Выбор приточной системы
-           
+
             // Возврат checkBox панели настроек в состояние по умолчанию
             tooltipsCheck.Checked = true;                   // Выбор подсказок по умолчанию
             mouseWheelCheck.Checked = true;                 // События колёсика мыши
@@ -636,18 +642,19 @@ namespace Moderon
             {
                 prFanControlCombo, outFanControlCombo, fireTypeCombo
             };
-            
+
             foreach (var el in mainOptions) el.Checked = false;
             foreach (var el in checkElements) el.Enabled = false;
             foreach (var el in comboElements) el.Enabled = false;
 
             loadCanButton.Enabled = false;                  // Блокировка кнопки загрузки данных в ПЛК
             readCanButton.Enabled = false;                  // Блокировка кнопки чтения данных из ПЛК
-            
+
             // Установка размера изображения для рекуператора по умолчанию
             recupPicture.Size = new Size(recupPicture.Width, HEIGHT_RECUP);
 
             outFanPanel.Hide();                             // Скрытие панели вытяжного вентилятора
+            
             HideExpansionBlocksPanels();                    // Скрытие панелей для блоков расширения в таблице сигналов
             SelectComboBoxesInitial();                      // Возврат к изначальным значения выбора
             ResetElementsOptions();                         // Сброс настроек для элементов
@@ -656,7 +663,7 @@ namespace Moderon
             ResetButton_signalsDOClick(this, e);            // Сброс сигналов ПЛК, DO
             ResetButton_signalsAOClick(this, e);            // Сброс сигналов ПЛК, AO
             ClearIO_codes();                                // Очистка кодов для comboBox
-            
+
             // Очистка панелей для блоков расширения
             DoCombosBlocks_Reset();                         // Блок и скрытие элементов для DO панелей блоков расширения
             UiCombosBlocks_Reset();                         // Блок и скрытие элементов для UI панелей блоков расширения
@@ -672,7 +679,42 @@ namespace Moderon
             optimizeOnly = false;                           // Сброс признака блокировки выбора ПЛК Optimize
 
             expansion_blocks.Clear();                       // Очистка списка задействованных блоков расширения
+
+            //HideScrollBarHandler(this, e);                  // Скрытие полосы прокрутки
         }
+
+        /* Скрытие полосы прокрутки справа
+        private void HideScrollBar()
+        {
+            Height -= 10;
+            Height += 10;
+
+            prFanPanel.VerticalScroll.Enabled = false;
+            prFanPanel.VerticalScroll.Visible = false;
+
+            // Force layout update
+            prFanPanel.PerformLayout();
+            prFanPanel.Invalidate();
+            prFanPanel.Update();
+
+            int originalWidth = prFanPanel.Width;
+            int originalHeight = prFanPanel.Height;
+
+            prFanPanel.Width += 1;
+            prFanPanel.Height += 1;
+
+            prFanPanel.Width = originalWidth;
+            prFanPanel.Height = originalHeight;
+
+            prFanPanel.AutoScrollPosition = new Point(0, 0);
+        }
+
+        private async void HideScrollBarHandler(object sender, EventArgs e)
+        {
+            await Task.Delay(200);
+            HideScrollBar();
+            await Task.Delay(200);
+        } */
 
         ///<summary>Сброс настроек для всего оборудования</summary>
         private void ResetElementsOptions()
@@ -706,6 +748,8 @@ namespace Moderon
 
             foreach (var el in fanPrOutOptions) el.Checked = false;
             foreach (var el in fanOptionsUnenabled) el.Enabled = false;
+
+            outFanCheck.Checked = true;                     // Выбор наличия вытяжного вентилятора
         }
 
         /// <summary>Сброс настроек для воздушных заслонок</summary>
@@ -1076,7 +1120,7 @@ namespace Moderon
             }
             CheckResOutFan_cmdCheckedChanged(this, e);                                      // Командное слово
             if (ignoreEvents) return;
-            CheckResOutFan_signalsCheckedChanged(this, e);                                  // Сигналы DO ПЛК
+            CheckResOutFan_signalsDOCheckedChanged(this, e);                                // Сигналы DO ПЛК
             CheckResOutFan_signalsAOCheckedChanged(this, e);                                // Сигналы AO ПЛК
             CheckResOutFan_signalsDICheckedChanged(this, e);                                // Сигналы DI ПЛК
         }
@@ -1277,6 +1321,7 @@ namespace Moderon
                 // Отмена сигнала аварии ПЧ
                 if (outFanAlarmCheck.Checked) outFanAlarmCheck.Checked = false;
             }
+
             OutFanFC_check_cmdCheckedChanged(this, e);          // Командное слово
         }
 
@@ -1583,6 +1628,32 @@ namespace Moderon
             // Пластинчатый рекуператор
             foreach (ComboBox comboBox in plastRecupPanel.Controls.OfType<ComboBox>())
                 MouseWheel_comboBox(comboBox, disable);
+        }
+
+        ///<summary>Выбор и отмена выбора вытяжного вентилятора</summary>
+        private void OutFanCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            if (outFanCheck.Checked)                                        // Выбрали наличие вытяжного вентилятора
+            {
+                outFanPanel.Size = new Size(outFanPanel.Width, panelOutFan_height);
+                fanPicture2.Show();                                         // Отображение изображения
+            }
+            else                                                            // Отмена выбора вытяжного вентилятора
+            {
+                panelOutFan_height = outFanPanel.Height;
+                outFanPanel.Size = new Size(outFanPanel.Width, 30);         // Сужение высоты для одной настройки
+                fanPicture2.Hide();                                         // Скрытие изображения
+            }
+            
+            OutFanPSCheck_cmdCheckedChanged(this, e);                       // Настройка PS вытяжного вентилятора
+            OutFanThermoCheck_cmdCheckedChanged(this, e);                   // Термоконтакты вытяжного вентилятора
+            CurDefOutFanCheck_cmdCheckedChanged(this, e);                   // Защита по току вытяжного вентилятора
+            OutFanStStopCheck_CheckedChanged(this, e);                      // Сигнал "ПУСК/СТОП" с ПЧ вытяжного
+            OutFanAlarmCheck_cmdCheckedChanged(this, e);                    // Сигнал аварии ПЧ вытяжного
+            OutFanSpeedCheck_cmdCheckedChanged(this, e);                    // Скорость ПЧ вытяжного
+            CheckResOutFan_CheckedChanged(this, e);                         // Резервный двигатель вытяжного
+            OutDampFanCheck_CheckedChanged(this, e);                        // Заслонка вытяжного вентилятора
+            OutDampConfirmFanCheck_CheckedChanged(this, e);                 // Подтверждение открытия заслонки вытяжного 
         }
 
         ///<summary>Блокировка прокрутки колёсиком мыши таблицы сигналов</summary>

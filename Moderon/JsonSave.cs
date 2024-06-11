@@ -572,7 +572,7 @@ namespace Moderon
                 prFanSpeedCheck, prDampFanCheck, prDampConfirmFanCheck,
                 // Вытяжной вентилятор
                 outFanPSCheck, outFanFC_check, outFanThermoCheck, curDefOutFanCheck, checkResOutFan, outFanAlarmCheck, outFanStStopCheck,
-                outFanSpeedCheck, outDampFanCheck, outDampConfirmFanCheck
+                outFanSpeedCheck, outDampFanCheck, outDampConfirmFanCheck, outFanCheck
             };
 
             foreach (var el in check_boxes) json.CheckBoxState.Add(el.Name, el.Checked);

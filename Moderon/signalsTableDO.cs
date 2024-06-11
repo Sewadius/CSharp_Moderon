@@ -1295,12 +1295,13 @@ namespace Moderon
         }
 
         ///<summary>Выбрали резерв вытяжного вентилятора</summary>
-        private void CheckResOutFan_signalsCheckedChanged(object sender, EventArgs e)
+        private void CheckResOutFan_signalsDOCheckedChanged(object sender, EventArgs e)
         {
             // Сигнал "Пуск/Стоп" вытяжного вентилятора 2 / сигнал подачи питания вытяжного вентилятора 2
             ushort code_1 = 28;
 
-            if (comboSysType.SelectedIndex == 1 && checkResOutFan.Checked)                      // ПВ-система и резерв вытяжного
+            // ПВ-система, выбран В вентилятор и резерв вытяжного
+            if (comboSysType.SelectedIndex == 1 && outFanCheck.Checked && checkResOutFan.Checked)                      
             {
                 if (outFanStStopCheck.Checked)                                                  // Выбран сигнал "Пуск/Стоп"
                     AddToListDo("Сигнал \"Пуск/Стоп\" вытяжного вентилятора 2", code_1);
@@ -1504,8 +1505,7 @@ namespace Moderon
 
             ushort code_1 = 22, code_2 = 28;                                                            // Сигнал "Пуск/Стоп" вентилятор В основной / резерв
 
-
-            if (outFanStStopCheck.Checked)                                                              // Выбрали сигнал "Пуск/Стоп"
+            if (outFanCheck.Checked && outFanStStopCheck.Checked)                                       // Выбрали сигнал "Пуск/Стоп" и В вентилятор
             {
                 AddToListDo("Сигнал \"Пуск/Стоп\" вытяжного вентилятора 1", code_1);
                 if (checkResOutFan.Checked)                                                             // Если выбран резерв вытяжного
@@ -1561,7 +1561,7 @@ namespace Moderon
         {
             ushort code = 26;                                                                           // Сигнал открытия заслонки вытяжного вентилятора
 
-            if (outDampFanCheck.Checked)                                                                // Выбрана заслонка вытяжного вентилятора
+            if (outFanCheck.Checked && outDampFanCheck.Checked)                                         // В вентилятор, выбрана заслонка вытяжного вентилятора
             {
                 AddToListDo("Открытие заслонки вытяжного вентилятора", code);
             }

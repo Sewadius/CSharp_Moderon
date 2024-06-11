@@ -731,7 +731,8 @@ namespace Moderon
 
             bool modbus_selected = outFanFC_check.Checked && outFanControlCombo.SelectedIndex == 1;
 
-            if (comboSysType.SelectedIndex == 1)                // Выбрана ПВ-система
+            // Выбрана ПВ-система и В вентилятор
+            if (comboSysType.SelectedIndex == 1 && outFanCheck.Checked)                
             { 
                 bit0 = true;                                    // Наличие вентилятора
                 bit1 = outFanPSCheck.Checked;                   // Подтверждение работы вентилятора
@@ -773,7 +774,8 @@ namespace Moderon
 
             bool modbus_selected = outFanFC_check.Checked && outFanControlCombo.SelectedIndex == 1;
 
-            if (comboSysType.SelectedIndex == 1 && checkResOutFan.Checked)      // Выбрана ПВ-система и резерв вытяжного вентилятора
+            // Выбрана ПВ-система, выбран В вентилятор и резерв В вентилятора
+            if (comboSysType.SelectedIndex == 1 && outFanCheck.Checked && checkResOutFan.Checked)      
             { 
                 bit0 = true;                                                    // Наличие вентилятора
                 bit1 = outFanPSCheck.Checked;                                   // Подтверждение работы вентилятора

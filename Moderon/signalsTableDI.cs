@@ -174,7 +174,7 @@ namespace Moderon
         {
             ushort code_1 = 1044, code_2 = 1055;                                                    // Сигнал PS вытяжного вентилятора 1 и 2
 
-            if (comboSysType.SelectedIndex == 1 && outFanPSCheck.Checked)                           // Выбрали PS вытяжного вентилятора
+            if (comboSysType.SelectedIndex == 1 && outFanCheck.Checked && outFanPSCheck.Checked)    // Выбрали PS вытяжного вентилятора
             {
                 CheckAddUIToList("PS вытяжного вентилятора 1", code_1, DI);
                 if (checkResOutFan.Checked)                                                         // Если выбран резерв
@@ -191,7 +191,7 @@ namespace Moderon
         {
             ushort code_1 = 1046, code_2 = 1057;                                                    // Термоконтакты вытяжного вентилятора 1 и 2
             
-            if (comboSysType.SelectedIndex == 1 && outFanThermoCheck.Checked)
+            if (comboSysType.SelectedIndex == 1 && outFanCheck.Checked && outFanThermoCheck.Checked)
             {
                 CheckAddUIToList("Термоконтакты вытяжного вентилятора 1", code_1, DI);
                 if (checkResOutFan.Checked)                                                         // Если выбран резерв
@@ -230,7 +230,7 @@ namespace Moderon
         {
             ushort code_1 = 1047, code_2 = 1058;                                                    // Защита по току вытяжного вентилятора 1 и 2
 
-            if (comboSysType.SelectedIndex == 1 && curDefOutFanCheck.Checked)
+            if (comboSysType.SelectedIndex == 1 && outFanCheck.Checked && curDefOutFanCheck.Checked)
             {
                 CheckAddUIToList("Защита по току вытяжного вентилятора 1", code_1, DI);
                 if (checkResOutFan.Checked)                                                         // Если выбран резерв
@@ -250,7 +250,7 @@ namespace Moderon
             ushort code_3 = 1056;                     // Сигнал аварии вытяжного вентилятора 2
             ushort code_4 = 1058;                     // Защита по току вытяжного вентилятора 2
 
-            if (comboSysType.SelectedIndex == 1 && checkResOutFan.Checked)                          // Выбран резерв вытяжного
+            if (comboSysType.SelectedIndex == 1 && outFanCheck.Checked && checkResOutFan.Checked)  // Выбран резерв вытяжного
             {
                 if (outFanPSCheck.Checked)                                                          // Выбран сигнал PS
                     CheckAddUIToList("PS вытяжного вентилятора 2", code_1, DI);
@@ -263,7 +263,8 @@ namespace Moderon
             }
             else // Отмена выбора резерва вытяжного
             {
-                SubFromCombosUI(code_1); SubFromCombosUI(code_2); SubFromCombosUI(code_3); SubFromCombosUI(code_4);
+                SubFromCombosUI(code_1); SubFromCombosUI(code_2); 
+                SubFromCombosUI(code_3); SubFromCombosUI(code_4);
             }
         }
 
@@ -272,7 +273,8 @@ namespace Moderon
         {
             ushort code = 1050;                                                                     // Сигнал подтверждения открытия заслонки вытяжного вентилятора
 
-            if (outDampFanCheck.Checked && outDampConfirmFanCheck.Checked)                          // Выбрали подтверждение открытия
+            // Вытяжной вентилятор, вытяжная заслонка и подтверждение открытия
+            if (outFanCheck.Checked && outDampFanCheck.Checked && outDampConfirmFanCheck.Checked)   
             {
                 CheckAddUIToList("Подтверждение для заслонки вытяжного вентилятора", code, DI);
             }
@@ -923,8 +925,8 @@ namespace Moderon
         private void OutFanAlarmCheck_CheckedChanged(object sender, EventArgs e)
         {
             ushort code_1 = 1045, code_2 = 1056;                                                    // Сигнал аварии 1 и 2
-
-            if (outFanAlarmCheck.Checked)                                                           // Выбрали сигнал аварии
+            
+            if (outFanCheck.Checked && outFanAlarmCheck.Checked)                                    // В вентилятор и выбрали сигнал аварии                                                 
             {
                 CheckAddUIToList("Сигнал аварии вытяжного вентилятора 1", code_1, DI);
                 if (checkResOutFan.Checked)                                                         // Выбран резерв вытяжного вентилятора

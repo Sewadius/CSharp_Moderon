@@ -66,6 +66,7 @@ namespace Moderon
             this.label42 = new System.Windows.Forms.Label();
             this.fanPage = new System.Windows.Forms.TabPage();
             this.outFanPanel = new System.Windows.Forms.Panel();
+            this.outFanCheck = new System.Windows.Forms.CheckBox();
             this.FC_fanOutPanel = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
             this.outFanControlCombo = new System.Windows.Forms.ComboBox();
@@ -85,7 +86,6 @@ namespace Moderon
             this.outFanPSCheck = new System.Windows.Forms.CheckBox();
             this.outFanPowCombo = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.prFanPanel = new System.Windows.Forms.Panel();
             this.FC_fanPrPanel = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
@@ -1155,6 +1155,8 @@ namespace Moderon
             // 
             // outFanPanel
             // 
+            this.outFanPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.outFanPanel.Controls.Add(this.outFanCheck);
             this.outFanPanel.Controls.Add(this.FC_fanOutPanel);
             this.outFanPanel.Controls.Add(this.resFanOutPanel);
             this.outFanPanel.Controls.Add(this.fanPicture2);
@@ -1164,12 +1166,25 @@ namespace Moderon
             this.outFanPanel.Controls.Add(this.outFanPSCheck);
             this.outFanPanel.Controls.Add(this.outFanPowCombo);
             this.outFanPanel.Controls.Add(this.label12);
-            this.outFanPanel.Controls.Add(this.label4);
             this.outFanPanel.Location = new System.Drawing.Point(2, 581);
             this.outFanPanel.Name = "outFanPanel";
             this.outFanPanel.Size = new System.Drawing.Size(717, 562);
             this.outFanPanel.TabIndex = 15;
             this.outFanPanel.Visible = false;
+            // 
+            // outFanCheck
+            // 
+            this.outFanCheck.AutoSize = true;
+            this.outFanCheck.Checked = true;
+            this.outFanCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.outFanCheck.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.outFanCheck.Location = new System.Drawing.Point(15, 14);
+            this.outFanCheck.Name = "outFanCheck";
+            this.outFanCheck.Size = new System.Drawing.Size(212, 20);
+            this.outFanCheck.TabIndex = 57;
+            this.outFanCheck.Text = "ВЫТЯЖНОЙ ВЕНТИЛЯТОР";
+            this.outFanCheck.UseVisualStyleBackColor = true;
+            this.outFanCheck.CheckedChanged += new System.EventHandler(this.OutFanCheck_CheckedChanged);
             // 
             // FC_fanOutPanel
             // 
@@ -1416,16 +1431,6 @@ namespace Moderon
             this.label12.Size = new System.Drawing.Size(154, 16);
             this.label12.TabIndex = 21;
             this.label12.Text = "Питание вентилятора";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(15, 14);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(193, 16);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "ВЫТЯЖНОЙ ВЕНТИЛЯТОР";
             // 
             // prFanPanel
             // 
@@ -9954,7 +9959,6 @@ namespace Moderon
         private System.Windows.Forms.PictureBox recupPicture;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel outFanPanel;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox fanPicture2;
         private System.Windows.Forms.ComboBox filterPrCombo;
         private System.Windows.Forms.Label label6;
@@ -10591,6 +10595,7 @@ namespace Moderon
         private Panel resFanPrPanel;
         private Panel FC_fanPrPanel;
         private Panel FC_fanOutPanel;
+        private CheckBox outFanCheck;
     }
 }
 
