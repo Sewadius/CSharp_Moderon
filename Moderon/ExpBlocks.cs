@@ -681,7 +681,14 @@ namespace Moderon
                     if (block1_DOpanel.Enabled && block2_DOpanel.Enabled)
                         UIblock1_header.Text = "Блок расширения 3 - " + block.Name;
                     else if (block1_DOpanel.Enabled || block2_DOpanel.Enabled || block3_DOpanel.Enabled)
-                        UIblock1_header.Text = "Блок расширения 2 - " + block.Name;
+                    {
+                        // Для блока AO1 или 16 UI, DO панель уже активна
+                        if (block1_DOpanel.Enabled && (block == M72E12RB || block == M72E16NA))            
+                            UIblock1_header.Text = "Блок расширения 1 - " + block.Name;
+                        else
+                            UIblock1_header.Text = "Блок расширения 2 - " + block.Name;
+                    }
+                        
                     else
                         UIblock1_header.Text = "Блок расширения 1 - " + block.Name;
                 }
@@ -755,7 +762,13 @@ namespace Moderon
                     if (block2_DOpanel.Enabled && block3_DOpanel.Enabled)
                         DOblock1_header.Text = "Блок расширения 3 - " + block.Name;
                     else if (block1_DOpanel.Enabled || block2_DOpanel.Enabled || block3_DOpanel.Enabled)
-                        DOblock1_header.Text = "Блок расширения 2 - " + block.Name;
+                    {
+                        // Переход с блока AO к блоку DO
+                        if (block1_DOpanel.Enabled && DOblock1_header.Text.Contains("M72E12RB"))
+                            DOblock1_header.Text = "Блок расширения 1 - " + block.Name; 
+                        else
+                            DOblock1_header.Text = "Блок расширения 2 - " + block.Name;
+                    }
                     else
                         DOblock1_header.Text = "Блок расширения 1 - " + block.Name;
                 }

@@ -47,11 +47,12 @@ namespace Moderon
             this.mainPage = new System.Windows.Forms.TabControl();
             this.sensorsPage = new System.Windows.Forms.TabPage();
             this.sensorsPanel = new System.Windows.Forms.Panel();
+            this.stopStartCombo = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.fireTypeCombo = new System.Windows.Forms.ComboBox();
             this.label169 = new System.Windows.Forms.Label();
             this.label138 = new System.Windows.Forms.Label();
             this.fireCheck = new System.Windows.Forms.CheckBox();
-            this.stopStartCheck = new System.Windows.Forms.CheckBox();
             this.sigFilAlarmCheck = new System.Windows.Forms.CheckBox();
             this.sigAlarmCheck = new System.Windows.Forms.CheckBox();
             this.sigWorkCheck = new System.Windows.Forms.CheckBox();
@@ -830,14 +831,14 @@ namespace Moderon
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
-            this.saveToolStripMenuItem.Text = "Сохранить подбор";
+            this.saveToolStripMenuItem.Text = "Сохранить конфигурацию";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
             this.loadToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
-            this.loadToolStripMenuItem.Text = "Загрузить подбор";
+            this.loadToolStripMenuItem.Text = "Загрузить конфигурацию";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.LoadToolStripMenuItem_Click);
             // 
             // saveSpecToolStripMenuItem
@@ -909,11 +910,12 @@ namespace Moderon
             // 
             // sensorsPanel
             // 
+            this.sensorsPanel.Controls.Add(this.stopStartCombo);
+            this.sensorsPanel.Controls.Add(this.label4);
             this.sensorsPanel.Controls.Add(this.fireTypeCombo);
             this.sensorsPanel.Controls.Add(this.label169);
             this.sensorsPanel.Controls.Add(this.label138);
             this.sensorsPanel.Controls.Add(this.fireCheck);
-            this.sensorsPanel.Controls.Add(this.stopStartCheck);
             this.sensorsPanel.Controls.Add(this.sigFilAlarmCheck);
             this.sensorsPanel.Controls.Add(this.sigAlarmCheck);
             this.sensorsPanel.Controls.Add(this.sigWorkCheck);
@@ -930,6 +932,36 @@ namespace Moderon
             this.sensorsPanel.Name = "sensorsPanel";
             this.sensorsPanel.Size = new System.Drawing.Size(736, 479);
             this.sensorsPanel.TabIndex = 3;
+            // 
+            // stopStartCombo
+            // 
+            this.stopStartCombo.BackColor = System.Drawing.Color.DarkGreen;
+            this.stopStartCombo.DisplayMember = "380 В";
+            this.stopStartCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.stopStartCombo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.stopStartCombo.ForeColor = System.Drawing.Color.White;
+            this.stopStartCombo.FormattingEnabled = true;
+            this.stopStartCombo.Items.AddRange(new object[] {
+            "Переключатель \"СТОП/ПУСК\"",
+            "Кнопка \"СТОП/ПУСК\"",
+            "Кнопки \"ПУСК\" и \"СТОП\"",
+            "Нет / Запуск по сети"});
+            this.stopStartCombo.Location = new System.Drawing.Point(75, 322);
+            this.stopStartCombo.Name = "stopStartCombo";
+            this.stopStartCombo.Size = new System.Drawing.Size(240, 21);
+            this.stopStartCombo.TabIndex = 64;
+            this.stopStartCombo.SelectedIndexChanged += new System.EventHandler(this.StopStartCombo_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(15, 324);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 16);
+            this.label4.TabIndex = 63;
+            this.label4.Text = "Запуск";
             // 
             // fireTypeCombo
             // 
@@ -965,7 +997,7 @@ namespace Moderon
             this.label138.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label138.AutoSize = true;
             this.label138.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label138.Location = new System.Drawing.Point(350, 289);
+            this.label138.Location = new System.Drawing.Point(403, 289);
             this.label138.Name = "label138";
             this.label138.Size = new System.Drawing.Size(183, 16);
             this.label138.TabIndex = 60;
@@ -983,26 +1015,12 @@ namespace Moderon
             this.fireCheck.UseVisualStyleBackColor = true;
             this.fireCheck.CheckedChanged += new System.EventHandler(this.FireCheck_cmdCheckedChanged);
             // 
-            // stopStartCheck
-            // 
-            this.stopStartCheck.AutoSize = true;
-            this.stopStartCheck.Checked = true;
-            this.stopStartCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.stopStartCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.stopStartCheck.Location = new System.Drawing.Point(15, 324);
-            this.stopStartCheck.Name = "stopStartCheck";
-            this.stopStartCheck.Size = new System.Drawing.Size(211, 18);
-            this.stopStartCheck.TabIndex = 58;
-            this.stopStartCheck.Text = "Переключатель \"Стоп/Пуск\"";
-            this.stopStartCheck.UseVisualStyleBackColor = true;
-            this.stopStartCheck.CheckedChanged += new System.EventHandler(this.StopStartCheck_CheckedChanged);
-            // 
             // sigFilAlarmCheck
             // 
             this.sigFilAlarmCheck.AutoSize = true;
             this.sigFilAlarmCheck.Enabled = false;
             this.sigFilAlarmCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.sigFilAlarmCheck.Location = new System.Drawing.Point(350, 384);
+            this.sigFilAlarmCheck.Location = new System.Drawing.Point(403, 384);
             this.sigFilAlarmCheck.Name = "sigFilAlarmCheck";
             this.sigFilAlarmCheck.Size = new System.Drawing.Size(230, 18);
             this.sigFilAlarmCheck.TabIndex = 57;
@@ -1014,7 +1032,7 @@ namespace Moderon
             // 
             this.sigAlarmCheck.AutoSize = true;
             this.sigAlarmCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.sigAlarmCheck.Location = new System.Drawing.Point(350, 354);
+            this.sigAlarmCheck.Location = new System.Drawing.Point(403, 354);
             this.sigAlarmCheck.Name = "sigAlarmCheck";
             this.sigAlarmCheck.Size = new System.Drawing.Size(134, 18);
             this.sigAlarmCheck.TabIndex = 56;
@@ -1026,7 +1044,7 @@ namespace Moderon
             // 
             this.sigWorkCheck.AutoSize = true;
             this.sigWorkCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.sigWorkCheck.Location = new System.Drawing.Point(350, 324);
+            this.sigWorkCheck.Location = new System.Drawing.Point(403, 324);
             this.sigWorkCheck.Name = "sigWorkCheck";
             this.sigWorkCheck.Size = new System.Drawing.Size(135, 18);
             this.sigWorkCheck.TabIndex = 55;
@@ -10244,7 +10262,6 @@ namespace Moderon
         private System.Windows.Forms.ComboBox DO3bl3_combo;
         private System.Windows.Forms.Label DO3_bl3Label;
         private System.Windows.Forms.ToolStripMenuItem saveSpecToolStripMenuItem;
-        private System.Windows.Forms.CheckBox stopStartCheck;
         private System.Windows.Forms.CheckBox prFanAlarmCheck;
         private System.Windows.Forms.CheckBox outFanAlarmCheck;
         private System.Windows.Forms.CheckBox outFanSpeedCheck;
@@ -10596,6 +10613,8 @@ namespace Moderon
         private Panel FC_fanPrPanel;
         private Panel FC_fanOutPanel;
         private CheckBox outFanCheck;
+        private ComboBox stopStartCombo;
+        private Label label4;
     }
 }
 

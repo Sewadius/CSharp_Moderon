@@ -136,7 +136,7 @@ namespace Moderon
             const ushort fanStartStop = 8;          // DO сигнал пуск/стоп приточного вентилятора 1
 
             // Добавление начальных DI
-            list_ui.Add(new Ui("Переключатель \"Стоп/Пуск\"", startStopSignal, DI));
+            list_ui.Add(new Ui("Переключатель \"СТОП/ПУСК\"", startStopSignal, DI));
             list_ui.Add(new Ui("Сигнал пожарной сигнализации", fireSignal, DI));
             
             // Добавление начальных DO
@@ -147,6 +147,9 @@ namespace Moderon
             prFanStStopCheck.Checked = true;        // Приточный вентилятор
             outFanStStopCheck.Checked = true;       // Вытяжной вентилятор
             fireCheck.Checked = true;               // Сигнал пожарной сигнализации
+
+            // Выбор сигнала переключателя "СТОП/ПУСК"
+            stopStartCombo.SelectedIndex = 0;
             
             ignoreEvents = false;
             
@@ -1561,7 +1564,7 @@ namespace Moderon
         {
             ushort code = 26;                                                                           // Сигнал открытия заслонки вытяжного вентилятора
 
-            if (outFanCheck.Checked && outDampFanCheck.Checked)                                         // В вентилятор, выбрана заслонка вытяжного вентилятора
+            if (outFanCheck.Checked && outDampFanCheck.Checked)                                         // Выбрана заслонка вытяжного вентилятора
             {
                 AddToListDo("Открытие заслонки вытяжного вентилятора", code);
             }

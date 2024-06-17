@@ -4,9 +4,6 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
-using System.Threading;
-using System.ComponentModel;
-using System.Threading.Tasks;
 
 namespace Moderon
 {
@@ -197,8 +194,8 @@ namespace Moderon
         {
             var elements = new List<ComboBox>()
             {
-                comboSysType, comboPlkType, filterPrCombo, filterOutCombo, prFanPowCombo, prFanControlCombo,
-                prFanFcTypeCombo, outFanFcTypeCombo,
+                comboSysType, comboPlkType, filterPrCombo, filterOutCombo, 
+                prFanPowCombo, prFanControlCombo, prFanFcTypeCombo, outFanFcTypeCombo,
                 outFanPowCombo, outFanControlCombo, heatTypeCombo,
                 elHeatStagesCombo, thermSwitchCombo, coolTypeCombo, frCoolStagesCombo,
                 humidTypeCombo, recupTypeCombo,
@@ -291,7 +288,6 @@ namespace Moderon
             toolTip.SetToolTip(roomTempSensCheck, ai_sig_temp);
             toolTip.SetToolTip(outdoorChanSensCheck, ai_sig_temp);
             toolTip.SetToolTip(outChanSensCheck, ai_sig_temp);
-            toolTip.SetToolTip(stopStartCheck, di_sig);
             toolTip.SetToolTip(fireCheck, di_sig);
             toolTip.SetToolTip(sigWorkCheck, do_sig);
             toolTip.SetToolTip(sigAlarmCheck, do_sig);
@@ -679,42 +675,7 @@ namespace Moderon
             optimizeOnly = false;                           // Сброс признака блокировки выбора ПЛК Optimize
 
             expansion_blocks.Clear();                       // Очистка списка задействованных блоков расширения
-
-            //HideScrollBarHandler(this, e);                  // Скрытие полосы прокрутки
         }
-
-        /* Скрытие полосы прокрутки справа
-        private void HideScrollBar()
-        {
-            Height -= 10;
-            Height += 10;
-
-            prFanPanel.VerticalScroll.Enabled = false;
-            prFanPanel.VerticalScroll.Visible = false;
-
-            // Force layout update
-            prFanPanel.PerformLayout();
-            prFanPanel.Invalidate();
-            prFanPanel.Update();
-
-            int originalWidth = prFanPanel.Width;
-            int originalHeight = prFanPanel.Height;
-
-            prFanPanel.Width += 1;
-            prFanPanel.Height += 1;
-
-            prFanPanel.Width = originalWidth;
-            prFanPanel.Height = originalHeight;
-
-            prFanPanel.AutoScrollPosition = new Point(0, 0);
-        }
-
-        private async void HideScrollBarHandler(object sender, EventArgs e)
-        {
-            await Task.Delay(200);
-            HideScrollBar();
-            await Task.Delay(200);
-        } */
 
         ///<summary>Сброс настроек для всего оборудования</summary>
         private void ResetElementsOptions()
@@ -749,7 +710,7 @@ namespace Moderon
             foreach (var el in fanPrOutOptions) el.Checked = false;
             foreach (var el in fanOptionsUnenabled) el.Enabled = false;
 
-            outFanCheck.Checked = true;                     // Выбор наличия вытяжного вентилятора
+            outFanCheck.Checked = false;                     // Сброс наличия вытяжного вентилятора
         }
 
         /// <summary>Сброс настроек для воздушных заслонок</summary>
@@ -858,7 +819,6 @@ namespace Moderon
             foreach (var el in sensorCheck) el.Checked= false;
             
             ignoreEvents = true;                    // Отключение событий
-            stopStartCheck.Checked = true;
             fireCheck.Checked = false;
             ignoreEvents = false;                   // Возврат обработки событий
         }

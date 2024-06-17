@@ -318,8 +318,10 @@ namespace Moderon
         {
             bool bit0, bit1, bit2, bit3, bit4;
 
-            bit0 = stopStartCheck.Checked;                                      // Переключатель пуск/стоп
-            bit1 = bit2 = bit3 = bit4 = false;                                  // Не используются
+            bit0 = stopStartCombo.SelectedIndex == 0;                           // Переключатель СТОП/ПУСК
+            bit1 = stopStartCombo.SelectedIndex == 1;                           // Импульсная кнопка СТОП/ПУСК
+            bit2 = stopStartCombo.SelectedIndex == 2;                           // Кнопки ПУСК и СТОП
+            bit3 = bit4 = false;                                                // Не используются
 
             cmdW1 = (ushort)(Convert.ToUInt16(bit0) + 2 * Convert.ToUInt16(bit1) + 4 * Convert.ToUInt16(bit2) +
                 8 * Convert.ToUInt16(bit3) + 16 * Convert.ToUInt16(bit4));

@@ -893,15 +893,32 @@ namespace Moderon
             }
         }
 
-        ///<summary>Выбрали сигнал переключателя "Стоп/Пуск"</summary>
-        private void StopStartCheck_CheckedChanged(object sender, EventArgs e)
+        ///<summary>Изменили тип запуска</summary>
+        private void StopStartCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 1001;                                                                   // Переключатель "Стоп/Пуск"
+            ushort
+                code_1 = 1001,                                                                      // Переключатель/кнопка "СТОП/ПУСК"
+                code_2 = 1002;                                                                      // Кнопка "СТОП"
 
-            if (stopStartCheck.Checked)                                                             // Выбрали сигнал для переключателя
-                CheckAddUIToList("Переключатель \"Стоп/Пуск\"", code_1, DI);
-            else // Отмена выбора сигнала переключателя
-                SubFromCombosUI(code_1);
+            CommandWord_1();                                                                        // Определение командного слова
+
+            if (ignoreEvents) return;
+
+            SubFromCombosUI(code_1); SubFromCombosUI(code_2);                                       // Удаление сигналов
+
+            if (stopStartCombo.SelectedIndex == 0)                                                  // Переключатель
+            {
+                CheckAddUIToList("Переключатель \"СТОП/ПУСК\"", code_1, DI);
+            }
+            else if (stopStartCombo.SelectedIndex == 1)                                             // Кнопка "СТОП/ПУСК" 
+            {
+                CheckAddUIToList("Импульсная кнопка \"СТОП/ПУСК\"", code_1, DI);
+            }
+            else if (stopStartCombo.SelectedIndex == 2)                                             // Кнопки "ПУСК" и "СТОП"
+            {
+                CheckAddUIToList("Кнопка \"ПУСК\"", code_1, DI);                                    // Кнопка "ПУСК"
+                CheckAddUIToList("Кнопка \"СТОП\"", code_2, DI);                                    // Кнопка "СТОП"
+            }
         }
 
         ///<summary>Выбрали сигнал аварии для приточного вентилятора</summary> 

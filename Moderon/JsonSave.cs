@@ -566,7 +566,7 @@ namespace Moderon
                 startRotRecCheck,
                 // Датчики и сигналы
                 prChanSensCheck, roomTempSensCheck, chanHumSensCheck, roomHumSensCheck, outdoorChanSensCheck, 
-                outChanSensCheck, sigWorkCheck, sigAlarmCheck, sigFilAlarmCheck, stopStartCheck, fireCheck,
+                outChanSensCheck, sigWorkCheck, sigAlarmCheck, sigFilAlarmCheck, fireCheck,
                 // Приточный вентилятор
                 prFanPSCheck, prFanFC_check, prFanThermoCheck, curDefPrFanCheck, checkResPrFan, prFanAlarmCheck, prFanStStopCheck,
                 prFanSpeedCheck, prDampFanCheck, prDampConfirmFanCheck,
@@ -583,6 +583,8 @@ namespace Moderon
         {
             var combo_boxes = new List<ComboBox>()
             {
+                // Сигналы и датчики
+                stopStartCombo,
                 // Тип системы, приточный и вытяжной вентиляторы
                 comboSysType, prFanPowCombo, prFanControlCombo, outFanPowCombo, outFanControlCombo, prFanFcTypeCombo,
                 outFanFcTypeCombo,
