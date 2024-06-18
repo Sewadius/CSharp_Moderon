@@ -11,11 +11,11 @@ namespace Moderon
     {
         readonly static public string 
             NOT_SELECTED = "Не выбрано",                                // Статус для состояния входов/выходов
-            VERSION = "v.1.1.5.1";                                      // Текущая версия программы
+            VERSION = "v.1.1.5.2";                                      // Текущая версия программы
 
         private const int 
             WIDTH_MAIN = 955,                                           // Ширина основной формы
-            HEIGHT_MAIN = 730,                                          // Высота основной формы
+            HEIGHT_MAIN = 750,                                          // Высота основной формы
             HEIGHT = 280,                                               // Высота для панелей настройки элементов
             DELTA = 31,                                                 // Расстояние между comboBox в таблице сигналов
             HEIGHT_RECUP = 221,                                         // Высота изображения для обычного рекуператора
@@ -125,6 +125,10 @@ namespace Moderon
             panelElements.Location = new Point(Size.Width - deltaW_panel, height_panel1);
             panelBlocks.Location = new Point(Size.Width - deltaW_panel, height_panel1 + 
                 panelElements.Height + BETWEEN_PANELS);
+
+            // Положенеи для панели второго дополнительного выбора типа ПЛК
+            Plk_copyPanel.Location = new Point(Size.Width - deltaW_panel, height_panel1 +
+                panelElements.Height + panelBlocks.Height + BETWEEN_PANELS + 5);
             pic_signalsReady.Location = new Point(panelElements.Location.X, panelElements.Location.Y - BETWEEN_PANELS * 4);
             pictureBoxLogo.Location = new Point(panelElements.Location.X + logo_X_delta, pictureBoxLogo.Location.Y);
 
@@ -194,7 +198,7 @@ namespace Moderon
         {
             var elements = new List<ComboBox>()
             {
-                comboSysType, comboPlkType, filterPrCombo, filterOutCombo, 
+                comboSysType, comboPlkType, comboPlkType_copy, filterPrCombo, filterOutCombo, 
                 prFanPowCombo, prFanControlCombo, prFanFcTypeCombo, outFanFcTypeCombo,
                 outFanPowCombo, outFanControlCombo, heatTypeCombo,
                 elHeatStagesCombo, thermSwitchCombo, coolTypeCombo, frCoolStagesCombo,
@@ -1355,10 +1359,10 @@ namespace Moderon
                 confOutDampCheck.Enabled = false;
                 heatOutDampCheck.Enabled = false;
             }
-            OutDampCheck_cmdCheckedChanged(this, e);        // Командное слово
+            OutDampCheck_cmdCheckedChanged(this, e);            // Командное слово
             if (ignoreEvents) return;
-            OutDampCheck_signalsDOCheckedChanged(this, e);  // Сигналы DO ПЛК
-            OutDampCheck_signalsDICheckedChanged(this, e);  // Сигналы DI ПЛК
+            OutDampCheck_signalsDOCheckedChanged(this, e);      // Сигналы DO ПЛК
+            OutDampCheck_signalsDICheckedChanged(this, e);      // Сигналы DI ПЛК
         }
 
         ///<summary>Метод для открытия панели загрузки через CAN-порт</summary>
@@ -1408,25 +1412,27 @@ namespace Moderon
             formSignalsButton.Hide();                           // Скрытие кнопки "Сформировать"
             comboPlkType.Hide();                                // Скрытие выбора типа ПЛК
             panelBlocks.Hide();                                 // Скрытие панели выбора блоков расширения
+            Plk_copyPanel.Hide();                               // Скрытие панели выбора типа контроллера
             pic_signalsReady.Hide();                            // Скрытие изображения статуса распределения сигналов
         }
 
         ///<summary>Нажали вкладку "Помощь" в главном меню</summary>
         private void ToolStripMenuItem_help_Click(object sender, EventArgs e)
         {
-            mainPage.Hide();                                                                // Скрытие панели опций элементов
-            signalsPanel.Hide();                                                            // Скрытие панели распределения сигналов
-            optionsPanel.Hide();                                                            // Скрытие панели настроек
+            mainPage.Hide();                                    // Скрытие панели опций элементов
+            signalsPanel.Hide();                                // Скрытие панели распределения сигналов
+            optionsPanel.Hide();                                // Скрытие панели настроек
             label_comboSysType.Text = "ПОМОЩЬ И РУКОВОДСТВО";
             comboSysType.Hide(); panelElements.Hide();
             helpPanel.Location = PANEL_POSITION;
             helpPanel.Height = 485;
-            helpPanel.Width = Width - 50;                                                   // Ширина по границе окна
+            helpPanel.Width = Width - 50;                       // Ширина по границе окна
             helpPanel.Show();
-            formSignalsButton.Hide();                                                       // Скрытие кнопки "Сформировать"
-            comboPlkType.Hide();                                                            // Скрытие выбора типа ПЛК
-            panelBlocks.Hide();                                                             // Скрытие панели выбора блоков расширения
-            pic_signalsReady.Hide();                                                        // Скрытие изображения статуса распределения сигналов
+            formSignalsButton.Hide();                           // Скрытие кнопки "Сформировать"
+            comboPlkType.Hide();                                // Скрытие выбора типа ПЛК
+            panelBlocks.Hide();                                 // Скрытие панели выбора блоков расширения
+            Plk_copyPanel.Hide();                               // Скрытие панели выбора типа контроллера
+            pic_signalsReady.Hide();                            // Скрытие изображения статуса распределения сигналов
         }
 
         // Нажали кнопку "Назад" в панели загрузки Modbus
@@ -1458,6 +1464,7 @@ namespace Moderon
             if (pic_signalsReady.Image == Properties.Resources.red_cross)
                 pic_signalsReady.Show();                                                // Отображение статуса распределения сигналов
             if (expansion_blocks.Count > 0) panelBlocks.Show();                         // Отображение панели блоков расширения при наличии
+            Plk_copyPanel.Show();                                                       // Отображение панели выбора типа контроллера
         }
 
         ///<summary>Нажали кнопку "Назад" в панели помощи</summary>
@@ -1472,6 +1479,7 @@ namespace Moderon
             if (pic_signalsReady.Image == Properties.Resources.red_cross)
                 pic_signalsReady.Show();                                                // Отображение статуса распределения сигналов
             if (expansion_blocks.Count > 0) panelBlocks.Show();                         // Отображение панели блоков расширения при наличии
+            Plk_copyPanel.Show();                                                       // Отображение панели выбора типа контроллера
         }
 
         /// <summary>Опция для включения всплывающих подсказок</summary>
@@ -1614,6 +1622,12 @@ namespace Moderon
             CheckResOutFan_CheckedChanged(this, e);                         // Резервный двигатель вытяжного
             OutDampFanCheck_CheckedChanged(this, e);                        // Заслонка вытяжного вентилятора
             OutDampConfirmFanCheck_CheckedChanged(this, e);                 // Подтверждение открытия заслонки вытяжного 
+        }
+
+        ///<summary>Изменили тип контроллера (на основной форме)</summary>
+        private void ComboPlkType_copy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboPlkType.SelectedIndex = comboPlkType_copy.SelectedIndex;
         }
 
         ///<summary>Блокировка прокрутки колёсиком мыши таблицы сигналов</summary>

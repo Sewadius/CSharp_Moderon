@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace Moderon
@@ -456,7 +457,8 @@ namespace Moderon
                         {
                             comboPlkType.SelectedIndex = 1;     // Выбор ПЛК Optimized
                             optimizeOnly = true;                // Установка признака блокировки ПЛК Optimize
-                            comboPlkType.Enabled = false;       // Блокировка переключателя
+                            // Блокировка выбора типа ПЛК comboBox
+                            comboPlkType.Enabled = false; comboPlkType_copy.Enabled = false;       
                         }
                         continue;
                     }

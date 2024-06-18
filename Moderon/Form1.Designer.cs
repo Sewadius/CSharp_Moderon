@@ -719,6 +719,9 @@ namespace Moderon
             this.label_progVersion = new System.Windows.Forms.Label();
             this.pic_signalsReady = new System.Windows.Forms.PictureBox();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
+            this.comboPlkType_copy = new System.Windows.Forms.ComboBox();
+            this.Plk_copyPanel = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
             this.menuStrip.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.sensorsPage.SuspendLayout();
@@ -798,6 +801,7 @@ namespace Moderon
             this.optionsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_signalsReady)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
+            this.Plk_copyPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -9767,11 +9771,50 @@ namespace Moderon
             this.pictureBoxLogo.TabIndex = 2;
             this.pictureBoxLogo.TabStop = false;
             // 
+            // comboPlkType_copy
+            // 
+            this.comboPlkType_copy.BackColor = System.Drawing.Color.DarkGreen;
+            this.comboPlkType_copy.DisplayMember = "380 В";
+            this.comboPlkType_copy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboPlkType_copy.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboPlkType_copy.ForeColor = System.Drawing.Color.White;
+            this.comboPlkType_copy.FormattingEnabled = true;
+            this.comboPlkType_copy.Items.AddRange(new object[] {
+            "M72 Mini",
+            "M72 Optimized"});
+            this.comboPlkType_copy.Location = new System.Drawing.Point(10, 36);
+            this.comboPlkType_copy.Name = "comboPlkType_copy";
+            this.comboPlkType_copy.Size = new System.Drawing.Size(163, 21);
+            this.comboPlkType_copy.TabIndex = 65;
+            this.comboPlkType_copy.SelectedIndexChanged += new System.EventHandler(this.ComboPlkType_copy_SelectedIndexChanged);
+            // 
+            // Plk_copyPanel
+            // 
+            this.Plk_copyPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Plk_copyPanel.Controls.Add(this.label14);
+            this.Plk_copyPanel.Controls.Add(this.comboPlkType_copy);
+            this.Plk_copyPanel.Location = new System.Drawing.Point(785, 655);
+            this.Plk_copyPanel.Name = "Plk_copyPanel";
+            this.Plk_copyPanel.Size = new System.Drawing.Size(182, 69);
+            this.Plk_copyPanel.TabIndex = 66;
+            // 
+            // label14
+            // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label14.Location = new System.Drawing.Point(37, 11);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(102, 14);
+            this.label14.TabIndex = 20;
+            this.label14.Text = "КОНТРОЛЛЕР";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(979, 1061);
+            this.Controls.Add(this.Plk_copyPanel);
             this.Controls.Add(this.label_progVersion);
             this.Controls.Add(this.optionsPanel);
             this.Controls.Add(this.pic_signalsReady);
@@ -9791,7 +9834,7 @@ namespace Moderon
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
-            this.MinimumSize = new System.Drawing.Size(920, 620);
+            this.MinimumSize = new System.Drawing.Size(920, 750);
             this.Name = "Form1";
             this.Text = "MODERON HVAC";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -9924,6 +9967,8 @@ namespace Moderon
             this.optionsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_signalsReady)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
+            this.Plk_copyPanel.ResumeLayout(false);
+            this.Plk_copyPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -10615,6 +10660,9 @@ namespace Moderon
         private CheckBox outFanCheck;
         private ComboBox stopStartCombo;
         private Label label4;
+        private ComboBox comboPlkType_copy;
+        private Panel Plk_copyPanel;
+        private Label label14;
     }
 }
 

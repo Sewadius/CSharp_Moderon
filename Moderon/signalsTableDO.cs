@@ -32,7 +32,7 @@ namespace Moderon
 
     public partial class Form1 : Form
     {
-        List<Do> list_do = new List<Do>();
+        List<Do> list_do = [];
 
         /// <summary>Начальная установка comboBox для сигналов ПЛК</summary>
         bool initialComboSignals = true;        // Начальная расстановка
@@ -99,6 +99,7 @@ namespace Moderon
             label_comboSysType.Text = "ТАБЛИЦА СИГНАЛОВ";
             comboSysType.Hide(); 
             panelElements.Hide(); panelBlocks.Hide();       // Скрытие панели выбора элементов и блоков расширения
+            Plk_copyPanel.Hide();                           // Скрытие панели выбора типа контроллера
             signalsPanel.Location = p1;
             signalsPanel.Show();
             signalsPanel.Height = 845;
@@ -121,6 +122,7 @@ namespace Moderon
             panelElements.Show();                           // Отображение панели выбора элементов
             // Отображение панели блоков расширения при наличии
             if (expansion_blocks.Count > 0) panelBlocks.Show();
+            Plk_copyPanel.Show();                           // Отображение панели выбора типа контроллера
             formSignalsButton.Show();                       // Отображение кнопки "Сформировать IO"
             fromSignalsMove = false;                        // Сброс признака перехода с панели выбора сигналов
             toolStripMenuItem_help.Enabled = true;          // Разблокировка "Помощь"
@@ -279,7 +281,11 @@ namespace Moderon
 
             if (a) // Сигналы распределены
             {
-                if (!optimizeOnly) comboPlkType.Enabled = true;                     // Разблокировка смены типа ПЛК (если нет блокировки Optimize)
+                if (!optimizeOnly)
+                {
+                    // Разблокировка смены типа ПЛК (если нет блокировки Optimize)
+                    comboPlkType.Enabled = true; comboPlkType_copy.Enabled = true;                                    
+                }
                 saveToolStripMenuItem.Enabled = true;                               // Разблокировка сохранения файла
                 backSignalsButton.Enabled = true;                                   // Разблокировка кнопки "Назад"
                 signalsReadyLabel.Text = "Карта входов/выходов сформирована";
@@ -297,7 +303,7 @@ namespace Moderon
             } 
             else // Сигналы не распределены
             {
-                comboPlkType.Enabled = false;                                       // Блокировка смены типа ПЛК
+                comboPlkType.Enabled = false; comboPlkType_copy.Enabled = false;    // Блокировка смены типа ПЛК
                 saveToolStripMenuItem.Enabled = false;                              // Блокировка сохранения файла
                 #if !DEBUG
                     backSignalsButton.Enabled = false;                              // Блокировка кнопки "Назад"

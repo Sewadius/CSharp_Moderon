@@ -555,6 +555,7 @@ namespace Moderon
             if (comboPlkType.SelectedIndex == 0)                                    // Выбрали контроллер "Mini"
             {
                 //MessageBox.Show(expansion_blocks.Count.ToString());
+                comboPlkType_copy.SelectedIndex = 0;                                // Выбор типа контроллера на основной форме
                 plkChangeIndexLast = 0;                                             // Сохранение нового значения состояния "Mini"
                 blocks = CalcExpBlocks_typeNums();                                  // Расчёт нового количества блоков расширения
 
@@ -614,6 +615,7 @@ namespace Moderon
             else if (comboPlkType.SelectedIndex == 1)                               // Выбрали контроллер "Optimized"
             {
                 plkChangeIndexLast = 1;                                             // Сохранение нового значения состояния "Optimized"
+                comboPlkType_copy.SelectedIndex = 1;                                // Выбор типа контроллера на основной форме
                 blocks = CalcExpBlocks_typeNums();                                  // Расчёт нового количества блоков расширения
 
                 ChangePlk_Headers(false);                                           // Подписи заголовков для контроллера "Optimized"
@@ -683,7 +685,7 @@ namespace Moderon
                     else if (block1_DOpanel.Enabled || block2_DOpanel.Enabled || block3_DOpanel.Enabled)
                     {
                         // Для блока AO1 или 16 UI, DO панель уже активна
-                        if (block1_DOpanel.Enabled && (block == M72E12RB || block == M72E16NA))            
+                        if (block1_DOpanel.Enabled && (block == M72E12RB || block == M72E16NA || block == M72E12RA))            
                             UIblock1_header.Text = "Блок расширения 1 - " + block.Name;
                         else
                             UIblock1_header.Text = "Блок расширения 2 - " + block.Name;
@@ -764,7 +766,8 @@ namespace Moderon
                     else if (block1_DOpanel.Enabled || block2_DOpanel.Enabled || block3_DOpanel.Enabled)
                     {
                         // Переход с блока AO к блоку DO
-                        if (block1_DOpanel.Enabled && DOblock1_header.Text.Contains("M72E12RB"))
+                        if (block1_DOpanel.Enabled && (DOblock1_header.Text.Contains("M72E12RB") || 
+                                DOblock1_header.Text.Contains("M72E12RA")))
                             DOblock1_header.Text = "Блок расширения 1 - " + block.Name; 
                         else
                             DOblock1_header.Text = "Блок расширения 2 - " + block.Name;
