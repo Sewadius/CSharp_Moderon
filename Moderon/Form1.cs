@@ -121,16 +121,19 @@ namespace Moderon
             recupPanel.Size = new Size(Size.Width - deltaW_FanPanel, recupPanel.Height);
             secHeatPanel.Size = new Size(Size.Width - deltaW_FanPanel, secHeatPanel.Height);
 
-            // Положение для панели элементов, панели блоков расширения и изображения подбора оборудования
+            // Положение для панели элементов, панели выбора ПЛК и изображения подбора оборудования
             panelElements.Location = new Point(Size.Width - deltaW_panel, height_panel1);
-            panelBlocks.Location = new Point(Size.Width - deltaW_panel, height_panel1 + 
-                panelElements.Height + BETWEEN_PANELS);
-
-            // Положенеи для панели второго дополнительного выбора типа ПЛК
             Plk_copyPanel.Location = new Point(Size.Width - deltaW_panel, height_panel1 +
-                panelElements.Height + panelBlocks.Height + BETWEEN_PANELS + 5);
+                panelElements.Height + BETWEEN_PANELS);
+            //panelBlocks.Location = new Point(Size.Width - deltaW_panel, height_panel1 + 
+            //    panelElements.Height + BETWEEN_PANELS);
             pic_signalsReady.Location = new Point(panelElements.Location.X, panelElements.Location.Y - BETWEEN_PANELS * 4);
             pictureBoxLogo.Location = new Point(panelElements.Location.X + logo_X_delta, pictureBoxLogo.Location.Y);
+
+            // Положенеи для панели блоков расширения
+            panelBlocks.Location = new Point(Size.Width - deltaW_panel, height_panel1 +
+                panelElements.Height + Plk_copyPanel.Height + BETWEEN_PANELS + 5);
+            
 
             // Положение для блока защиты рекуператора
             defRecupSensPanel.Location = new Point(3, 365);
