@@ -11,7 +11,7 @@ namespace Moderon
     {
         readonly static public string 
             NOT_SELECTED = "Не выбрано",                                // Статус для состояния входов/выходов
-            VERSION = "v.1.1.5.2";                                      // Текущая версия программы
+            VERSION = "v.1.1.5.3";                                      // Текущая версия программы
 
         private const int 
             WIDTH_MAIN = 955,                                           // Ширина основной формы
@@ -737,7 +737,6 @@ namespace Moderon
         {
             TF_heaterCheck.Checked = false;             // Термостат
             confHeatPumpCheck.Checked = false;          // Подтверждение работы основного насоса
-            elHeatPowBox.Text = "4,0";                  // Мощность ступени
             pumpCurProtect.Checked = false;             // Защита по току основного насоса
             reservPumpHeater.Checked = false;           // Резервный насос калорифера
             // Подтверждение работы резервного насоса
@@ -756,9 +755,7 @@ namespace Moderon
 
             foreach (var el in addHeatCheck) el.Checked = false;
             
-            pumpAddHeatCheck.Checked = true;
-            elAddHeatPowBox.Text = "4,0";
-
+            pumpAddHeatCheck.Checked = true;        // Насос второго нагревателя
             pumpCurAddProtect.Checked = false;      // Защита по току основного насоса
             reservPumpAddHeater.Checked = false;    // Резервный насос калорифера
             // Подтверждение работы резервного насоса
@@ -1715,22 +1712,6 @@ namespace Moderon
             linkManualModeron.LinkVisited = true;
             System.Diagnostics.Process.Start(
                 "https://moderon-electric.ru/software/moderon-hvac/docs-moderon-hvac/");
-        }
-
-        ///<summary>Настройка для поля мощности основного электрического калорифера</summary>
-        private void ElHeatPowBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Числа, точка и Backspace
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != (char)Keys.Back)
-                e.Handled = true;
-        }
-
-        ///<summary>Настройка для поля мощности второго электрического калорифера</summary>
-        private void ElAddHeatPowBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Числа, точка и Backspace
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != (char)Keys.Back)
-                e.Handled = true;
         }
 
         ///<summary>Нажали на пункт "О программе"</summary>

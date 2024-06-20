@@ -15,8 +15,8 @@ namespace Moderon
             if (!initialConfigure)      // Если не начальная расстановка
             {
                 const string
-                MESSAGE = "Загрузка сбросит текущую конфигурацию. Вы уверены?",
-                CAPTION = "Загрузка файла";
+                    MESSAGE = "Загрузка сбросит текущую конфигурацию. Вы уверены?",
+                    CAPTION = "Загрузка файла";
 
                 var result = MessageBox.Show(MESSAGE, CAPTION, MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question);
@@ -35,7 +35,6 @@ namespace Moderon
             {
                 LoadCheckBoxAll();                                      // Загрузка для всех сheckBox
                 LoadComboBoxElemAll();                                  // Загрузка для всех comboBox элементов
-                LoadTextBoxAll();                                       // Загрузка для всех textBox элементов
                 LoadLabelSignalsAll();                                  // Загрузка для подписей кодов таблицы сигналов
                 LoadComboItemsSignals();                                // Загрузка элементов для comboBox таблицы сигналов
                 LoadComboSignalsAll();                                  // Загрузка состояний для comboBox таблицы сигналов
@@ -619,18 +618,6 @@ namespace Moderon
                 outFanSpeedCheck.Enabled = false;       // Скорость 0-10 В
                 outFanFcTypeCombo.Enabled = true;       // Разблокировка выбора модели ПЧ
             }
-        }
-
-        ///<summary>Загрузка для всех textBox</summary>
-        private void LoadTextBoxAll()
-        {
-            var textBoxes = new List<TextBox>()
-            {
-                // Нагреватель и второй нагреватель
-                elHeatPowBox, elAddHeatPowBox
-            };
-
-            foreach (var el in textBoxes) el.Text = json_read.TextBoxElemState[el.Name];
         }
 
         ///<summary>Загрузка для подписей кодов таблицы сигналов</summary>

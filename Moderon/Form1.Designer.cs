@@ -135,9 +135,6 @@ namespace Moderon
             this.elHeatPanel = new System.Windows.Forms.Panel();
             this.firstStHeatCombo = new System.Windows.Forms.ComboBox();
             this.label38 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.elHeatPowBox = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
             this.thermSwitchCombo = new System.Windows.Forms.ComboBox();
             this.label22 = new System.Windows.Forms.Label();
             this.elHeatStagesCombo = new System.Windows.Forms.ComboBox();
@@ -224,9 +221,6 @@ namespace Moderon
             this.elAddHeatPanel = new System.Windows.Forms.Panel();
             this.firstStAddHeatCombo = new System.Windows.Forms.ComboBox();
             this.label40 = new System.Windows.Forms.Label();
-            this.label51 = new System.Windows.Forms.Label();
-            this.elAddHeatPowBox = new System.Windows.Forms.TextBox();
-            this.label52 = new System.Windows.Forms.Label();
             this.thermAddSwitchCombo = new System.Windows.Forms.ComboBox();
             this.label53 = new System.Windows.Forms.Label();
             this.elHeatAddStagesCombo = new System.Windows.Forms.ComboBox();
@@ -899,7 +893,7 @@ namespace Moderon
             this.mainPage.Location = new System.Drawing.Point(15, 75);
             this.mainPage.Name = "mainPage";
             this.mainPage.SelectedIndex = 0;
-            this.mainPage.Size = new System.Drawing.Size(750, 762);
+            this.mainPage.Size = new System.Drawing.Size(750, 51);
             this.mainPage.TabIndex = 1;
             // 
             // sensorsPage
@@ -2011,17 +2005,14 @@ namespace Moderon
             // 
             this.elHeatPanel.Controls.Add(this.firstStHeatCombo);
             this.elHeatPanel.Controls.Add(this.label38);
-            this.elHeatPanel.Controls.Add(this.label24);
-            this.elHeatPanel.Controls.Add(this.elHeatPowBox);
-            this.elHeatPanel.Controls.Add(this.label23);
             this.elHeatPanel.Controls.Add(this.thermSwitchCombo);
             this.elHeatPanel.Controls.Add(this.label22);
             this.elHeatPanel.Controls.Add(this.elHeatStagesCombo);
             this.elHeatPanel.Controls.Add(this.label21);
             this.elHeatPanel.Controls.Add(this.label20);
-            this.elHeatPanel.Location = new System.Drawing.Point(358, 309);
+            this.elHeatPanel.Location = new System.Drawing.Point(355, 304);
             this.elHeatPanel.Name = "elHeatPanel";
-            this.elHeatPanel.Size = new System.Drawing.Size(350, 226);
+            this.elHeatPanel.Size = new System.Drawing.Size(350, 167);
             this.elHeatPanel.TabIndex = 31;
             this.elHeatPanel.Visible = false;
             // 
@@ -2053,38 +2044,6 @@ namespace Moderon
             this.label38.Size = new System.Drawing.Size(176, 16);
             this.label38.TabIndex = 36;
             this.label38.Text = "Управление 1-й ступени";
-            // 
-            // label24
-            // 
-            this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label24.Location = new System.Drawing.Point(307, 174);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(30, 16);
-            this.label24.TabIndex = 35;
-            this.label24.Text = "кВт";
-            // 
-            // elHeatPowBox
-            // 
-            this.elHeatPowBox.Location = new System.Drawing.Point(246, 174);
-            this.elHeatPowBox.MaxLength = 4;
-            this.elHeatPowBox.Name = "elHeatPowBox";
-            this.elHeatPowBox.Size = new System.Drawing.Size(54, 21);
-            this.elHeatPowBox.TabIndex = 34;
-            this.elHeatPowBox.Text = "4,0";
-            this.elHeatPowBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ElHeatPowBox_KeyPress);
-            // 
-            // label23
-            // 
-            this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label23.Location = new System.Drawing.Point(11, 174);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(228, 16);
-            this.label23.TabIndex = 33;
-            this.label23.Text = "Номинальная мощность ступени";
             // 
             // thermSwitchCombo
             // 
@@ -3104,7 +3063,7 @@ namespace Moderon
             this.addHeatPage.Controls.Add(this.secHeatPanel);
             this.addHeatPage.Location = new System.Drawing.Point(4, 22);
             this.addHeatPage.Name = "addHeatPage";
-            this.addHeatPage.Size = new System.Drawing.Size(742, 736);
+            this.addHeatPage.Size = new System.Drawing.Size(742, 25);
             this.addHeatPage.TabIndex = 8;
             this.addHeatPage.Text = "ДОП НАГРЕВ";
             // 
@@ -3133,17 +3092,14 @@ namespace Moderon
             // 
             this.elAddHeatPanel.Controls.Add(this.firstStAddHeatCombo);
             this.elAddHeatPanel.Controls.Add(this.label40);
-            this.elAddHeatPanel.Controls.Add(this.label51);
-            this.elAddHeatPanel.Controls.Add(this.elAddHeatPowBox);
-            this.elAddHeatPanel.Controls.Add(this.label52);
             this.elAddHeatPanel.Controls.Add(this.thermAddSwitchCombo);
             this.elAddHeatPanel.Controls.Add(this.label53);
             this.elAddHeatPanel.Controls.Add(this.elHeatAddStagesCombo);
             this.elAddHeatPanel.Controls.Add(this.label54);
             this.elAddHeatPanel.Controls.Add(this.label55);
-            this.elAddHeatPanel.Location = new System.Drawing.Point(363, 409);
+            this.elAddHeatPanel.Location = new System.Drawing.Point(325, 351);
             this.elAddHeatPanel.Name = "elAddHeatPanel";
-            this.elAddHeatPanel.Size = new System.Drawing.Size(351, 220);
+            this.elAddHeatPanel.Size = new System.Drawing.Size(351, 169);
             this.elAddHeatPanel.TabIndex = 31;
             this.elAddHeatPanel.Visible = false;
             // 
@@ -3175,38 +3131,6 @@ namespace Moderon
             this.label40.Size = new System.Drawing.Size(176, 16);
             this.label40.TabIndex = 38;
             this.label40.Text = "Управление 1-й ступени";
-            // 
-            // label51
-            // 
-            this.label51.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label51.AutoSize = true;
-            this.label51.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label51.Location = new System.Drawing.Point(305, 174);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(30, 16);
-            this.label51.TabIndex = 35;
-            this.label51.Text = "кВт";
-            // 
-            // elAddHeatPowBox
-            // 
-            this.elAddHeatPowBox.Location = new System.Drawing.Point(244, 174);
-            this.elAddHeatPowBox.MaxLength = 4;
-            this.elAddHeatPowBox.Name = "elAddHeatPowBox";
-            this.elAddHeatPowBox.Size = new System.Drawing.Size(54, 21);
-            this.elAddHeatPowBox.TabIndex = 34;
-            this.elAddHeatPowBox.Text = "4,0";
-            this.elAddHeatPowBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ElAddHeatPowBox_KeyPress);
-            // 
-            // label52
-            // 
-            this.label52.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label52.AutoSize = true;
-            this.label52.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label52.Location = new System.Drawing.Point(9, 174);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(228, 16);
-            this.label52.TabIndex = 33;
-            this.label52.Text = "Номинальная мощность ступени";
             // 
             // thermAddSwitchCombo
             // 
@@ -3880,9 +3804,9 @@ namespace Moderon
             this.signalsPanel.Controls.Add(this.signalsReadyLabel);
             this.signalsPanel.Controls.Add(this.tabControlSignals);
             this.signalsPanel.Controls.Add(this.backSignalsButton);
-            this.signalsPanel.Location = new System.Drawing.Point(5, 878);
+            this.signalsPanel.Location = new System.Drawing.Point(15, 135);
             this.signalsPanel.Name = "signalsPanel";
-            this.signalsPanel.Size = new System.Drawing.Size(749, 47);
+            this.signalsPanel.Size = new System.Drawing.Size(749, 44);
             this.signalsPanel.TabIndex = 16;
             this.signalsPanel.Visible = false;
             // 
@@ -3893,7 +3817,7 @@ namespace Moderon
             this.sig_distributionBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.sig_distributionBtn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.sig_distributionBtn.ForeColor = System.Drawing.Color.White;
-            this.sig_distributionBtn.Location = new System.Drawing.Point(716, 15);
+            this.sig_distributionBtn.Location = new System.Drawing.Point(716, 12);
             this.sig_distributionBtn.Name = "sig_distributionBtn";
             this.sig_distributionBtn.Size = new System.Drawing.Size(193, 27);
             this.sig_distributionBtn.TabIndex = 63;
@@ -3908,7 +3832,7 @@ namespace Moderon
             this.resetButtonSignals.Cursor = System.Windows.Forms.Cursors.Hand;
             this.resetButtonSignals.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.resetButtonSignals.ForeColor = System.Drawing.Color.White;
-            this.resetButtonSignals.Location = new System.Drawing.Point(908, 15);
+            this.resetButtonSignals.Location = new System.Drawing.Point(908, 12);
             this.resetButtonSignals.Name = "resetButtonSignals";
             this.resetButtonSignals.Size = new System.Drawing.Size(97, 27);
             this.resetButtonSignals.TabIndex = 62;
@@ -3923,7 +3847,7 @@ namespace Moderon
             this.loadToExl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loadToExl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadToExl.ForeColor = System.Drawing.Color.White;
-            this.loadToExl.Location = new System.Drawing.Point(543, 15);
+            this.loadToExl.Location = new System.Drawing.Point(543, 12);
             this.loadToExl.Name = "loadToExl";
             this.loadToExl.Size = new System.Drawing.Size(173, 27);
             this.loadToExl.TabIndex = 61;
@@ -3938,7 +3862,7 @@ namespace Moderon
             this.loadPLC_SignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loadPLC_SignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadPLC_SignalsButton.ForeColor = System.Drawing.Color.White;
-            this.loadPLC_SignalsButton.Location = new System.Drawing.Point(397, 15);
+            this.loadPLC_SignalsButton.Location = new System.Drawing.Point(397, 12);
             this.loadPLC_SignalsButton.Name = "loadPLC_SignalsButton";
             this.loadPLC_SignalsButton.Size = new System.Drawing.Size(147, 27);
             this.loadPLC_SignalsButton.TabIndex = 60;
@@ -3952,7 +3876,7 @@ namespace Moderon
             this.signalsReadyLabel.AutoSize = true;
             this.signalsReadyLabel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.signalsReadyLabel.ForeColor = System.Drawing.Color.Green;
-            this.signalsReadyLabel.Location = new System.Drawing.Point(123, 21);
+            this.signalsReadyLabel.Location = new System.Drawing.Point(123, 18);
             this.signalsReadyLabel.Name = "signalsReadyLabel";
             this.signalsReadyLabel.Size = new System.Drawing.Size(272, 14);
             this.signalsReadyLabel.TabIndex = 23;
@@ -9146,7 +9070,7 @@ namespace Moderon
             this.backSignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.backSignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.backSignalsButton.ForeColor = System.Drawing.Color.White;
-            this.backSignalsButton.Location = new System.Drawing.Point(10, 15);
+            this.backSignalsButton.Location = new System.Drawing.Point(10, 12);
             this.backSignalsButton.Name = "backSignalsButton";
             this.backSignalsButton.Size = new System.Drawing.Size(94, 27);
             this.backSignalsButton.TabIndex = 58;
@@ -10059,9 +9983,6 @@ namespace Moderon
         private System.Windows.Forms.ComboBox elHeatStagesCombo;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.TextBox elHeatPowBox;
-        private System.Windows.Forms.Label label23;
         private System.Windows.Forms.ComboBox thermSwitchCombo;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Panel frCoolPanel;
@@ -10099,9 +10020,6 @@ namespace Moderon
         private System.Windows.Forms.TabPage addHeatPage;
         private System.Windows.Forms.Panel secHeatPanel;
         private System.Windows.Forms.Panel elAddHeatPanel;
-        private System.Windows.Forms.Label label51;
-        private System.Windows.Forms.TextBox elAddHeatPowBox;
-        private System.Windows.Forms.Label label52;
         private System.Windows.Forms.ComboBox thermAddSwitchCombo;
         private System.Windows.Forms.Label label53;
         private System.Windows.Forms.ComboBox elHeatAddStagesCombo;

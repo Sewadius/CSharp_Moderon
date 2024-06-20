@@ -111,9 +111,14 @@ namespace Moderon
             SignalsTableReSize(Size.Width, Size.Height);    // Таблица сигналов
         }
 
-        ///<summary>Нажали кнопку "Назад" в панели сигналов</summary> 
+        ///<summary>Нажали кнопку "Назад" в панели сигналов</summary>   
         private void BackSignalsButton_Click(object sender, EventArgs e)
         {
+            if (signalsReadyLabel.ForeColor == Color.Red)   // Карта сигналов не сформирована
+            {
+                Sig_distributionBtn_Click(sender, e);       // Распределение сигналов перед алгоритмом
+            }
+
             signalsPanel.Hide();                            // Скрытие панели сигналов
             comboPlkType.Hide();                            // Скрытие comboBox выбора типа контроллера
             mainPage.Show();
@@ -287,7 +292,7 @@ namespace Moderon
                     comboPlkType.Enabled = true; comboPlkType_copy.Enabled = true;                                    
                 }
                 saveToolStripMenuItem.Enabled = true;                               // Разблокировка сохранения файла
-                backSignalsButton.Enabled = true;                                   // Разблокировка кнопки "Назад"
+                //backSignalsButton.Enabled = true;                                   // Разблокировка кнопки "Назад"
                 signalsReadyLabel.Text = "Карта входов/выходов сформирована";
                 signalsReadyLabel.ForeColor = Color.Green;
                 loadPLC_SignalsButton.Show();                                       // Кнопка "Далее"
@@ -305,9 +310,9 @@ namespace Moderon
             {
                 comboPlkType.Enabled = false; comboPlkType_copy.Enabled = false;    // Блокировка смены типа ПЛК
                 saveToolStripMenuItem.Enabled = false;                              // Блокировка сохранения файла
-                #if !DEBUG
+                /*#if !DEBUG
                     backSignalsButton.Enabled = false;                              // Блокировка кнопки "Назад"
-                #endif
+                #endif */
                 signalsReadyLabel.Text = "Карта входов/выходов некорректна";
                 signalsReadyLabel.ForeColor = Color.Red;
                 loadPLC_SignalsButton.Hide();                                       // Кнопка "Далее"

@@ -96,7 +96,6 @@ namespace Moderon
             json = new JsonObject();                    // Создание файла для сохранения
             BuildCheckBoxAll();                         // Сохранение для всех элементов checkBox
             BuildComboBoxElemAll();                     // Сохранение для всех элементов comboBox
-            BuildTextBoxAll();                          // Сохранение для всех элементов textBox
             BuildLabelSignalsAll();                     // Сохранение для подписей кодов таблицы сигналов
             BuildComboItemsSignals();                   // Сохранение элементов comboBox таблицы сигналов
             BuildComboSignalsAll();                     // Сохранение выбранного элемента для comboBox таблицы сигналов
@@ -601,18 +600,6 @@ namespace Moderon
             };
 
             foreach (var el in combo_boxes) json.ComboBoxElemState.Add(el.Name, el.SelectedIndex);
-        }
-
-        ///<summary>Сохранение для всех textBox элементов программы</summary>
-        private void BuildTextBoxAll()
-        {
-            var text_boxes = new List<TextBox>()
-            {
-                // Нагреватель и второй нагреватель
-                elHeatPowBox, elAddHeatPowBox
-            };
-
-            foreach (var el in text_boxes) json.TextBoxElemState.Add(el.Name, el.Text);
         }
 
         ///<summary>Добавление подписи кода таблицы сигналов</summary>
