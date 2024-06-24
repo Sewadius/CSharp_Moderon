@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection.Emit;
 using System.Windows.Forms;
 
 // Файл для формирования и вывода готовых командных слов под запись
@@ -63,6 +64,13 @@ namespace Moderon
             ushort value_index = 1;
 
             writeCanTextBox.Text = "";                  // Очистка textBox перед заполнением
+
+            // Версия прошивки контроллера
+            short firmware_file = short.Parse(FIRMWARE_FILE.Substring(5, 4));
+            string firmwre_version = ParseFirmware_toDate(firmware_file, false);
+            
+            writeCanTextBox.Text += $"Версия прошивки: {firmware_file} ({firmwre_version})";
+            for (int i = 0; i < 2; i++) writeCanTextBox.Text += Environment.NewLine;
             
             // Запись textBox для UI сигналов
             for (int i = 0; i < uiSignals.Length; i++)

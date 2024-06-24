@@ -893,7 +893,7 @@ namespace Moderon
             this.mainPage.Location = new System.Drawing.Point(15, 75);
             this.mainPage.Name = "mainPage";
             this.mainPage.SelectedIndex = 0;
-            this.mainPage.Size = new System.Drawing.Size(750, 51);
+            this.mainPage.Size = new System.Drawing.Size(750, 708);
             this.mainPage.TabIndex = 1;
             // 
             // sensorsPage
@@ -1165,7 +1165,7 @@ namespace Moderon
             this.fanPage.Location = new System.Drawing.Point(4, 22);
             this.fanPage.Name = "fanPage";
             this.fanPage.Padding = new System.Windows.Forms.Padding(3);
-            this.fanPage.Size = new System.Drawing.Size(742, 736);
+            this.fanPage.Size = new System.Drawing.Size(742, 682);
             this.fanPage.TabIndex = 0;
             this.fanPage.Text = "ВЕНТИЛЯТОР";
             // 
@@ -1283,7 +1283,6 @@ namespace Moderon
             this.outFanStStopCheck.AutoSize = true;
             this.outFanStStopCheck.Checked = true;
             this.outFanStStopCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.outFanStStopCheck.Enabled = false;
             this.outFanStStopCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.outFanStStopCheck.Location = new System.Drawing.Point(10, 90);
             this.outFanStStopCheck.Name = "outFanStStopCheck";
@@ -1526,7 +1525,6 @@ namespace Moderon
             this.prFanStStopCheck.AutoSize = true;
             this.prFanStStopCheck.Checked = true;
             this.prFanStStopCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.prFanStStopCheck.Enabled = false;
             this.prFanStStopCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.prFanStStopCheck.Location = new System.Drawing.Point(10, 90);
             this.prFanStStopCheck.Name = "prFanStStopCheck";
@@ -3063,7 +3061,7 @@ namespace Moderon
             this.addHeatPage.Controls.Add(this.secHeatPanel);
             this.addHeatPage.Location = new System.Drawing.Point(4, 22);
             this.addHeatPage.Name = "addHeatPage";
-            this.addHeatPage.Size = new System.Drawing.Size(742, 25);
+            this.addHeatPage.Size = new System.Drawing.Size(742, 682);
             this.addHeatPage.TabIndex = 8;
             this.addHeatPage.Text = "ДОП НАГРЕВ";
             // 
@@ -3804,7 +3802,7 @@ namespace Moderon
             this.signalsPanel.Controls.Add(this.signalsReadyLabel);
             this.signalsPanel.Controls.Add(this.tabControlSignals);
             this.signalsPanel.Controls.Add(this.backSignalsButton);
-            this.signalsPanel.Location = new System.Drawing.Point(15, 135);
+            this.signalsPanel.Location = new System.Drawing.Point(5, 839);
             this.signalsPanel.Name = "signalsPanel";
             this.signalsPanel.Size = new System.Drawing.Size(749, 44);
             this.signalsPanel.TabIndex = 16;
@@ -9189,9 +9187,9 @@ namespace Moderon
             this.loadCanPanel.Controls.Add(this.label174);
             this.loadCanPanel.Controls.Add(this.label173);
             this.loadCanPanel.Controls.Add(this.netOptionLabel);
-            this.loadCanPanel.Location = new System.Drawing.Point(5, 843);
+            this.loadCanPanel.Location = new System.Drawing.Point(5, 889);
             this.loadCanPanel.Name = "loadCanPanel";
-            this.loadCanPanel.Size = new System.Drawing.Size(749, 29);
+            this.loadCanPanel.Size = new System.Drawing.Size(749, 36);
             this.loadCanPanel.TabIndex = 45;
             this.loadCanPanel.Visible = false;
             // 

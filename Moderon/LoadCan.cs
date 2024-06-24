@@ -12,15 +12,16 @@ namespace Moderon
 {
     public partial class Form1 : Form
     {
-        private SerialPort serialPort = new SerialPort();
+        private SerialPort serialPort = new();
         private ModbusRTU modbusRTU = new();
+
+        private readonly string FIRMWARE_FILE = "prog_3054.alf";
 
         private readonly int MS_200 = 200;      // Задержка 200 мс
         private readonly int MS_500 = 500;      // Задержка 500 мс
         private readonly int MS_1000 = 1000;    // Задержка 1000 мс
         
         private readonly byte WRITE_TRY = 10;   // Количество попыток записи для одного регистра
-
         private ushort countNote = 0;           // Счётчик записи для отображения адреса значения
 
         // Массивы для записи текста в textBox с прочитанными данными
@@ -29,6 +30,13 @@ namespace Moderon
         private readonly string[] AO_TEXT = ["AO", "EX1_AO", "EX2_AO", "EX3_AO"];
 
         private bool isConnected = false;       // Статус подключения к ПЛК
+        private bool updateNeeded = false;      // Признак обновления прошивки ПЛК
+
+        private int                             // Год/месяц/день версии прошивки, записано в ПЛК
+            year_plc, month_plc, day_plc;
+
+        private int                             // Год/месяц/день версии прошивки, в файле
+            year_file, month_file, day_file;    
 
         ///<summary>Инициализация для загрузки по CAN порту</summary>
         public void InitializeCAN()
@@ -162,7 +170,7 @@ namespace Moderon
                 System.Diagnostics.ProcessStartInfo startInfo = new()
                 {
                     FileName = "cmd.exe",
-                    Arguments = "/C eflash.exe ./progDE.alf -nogui -port " + port + " -speed 9600" +
+                    Arguments = $"/C eflash.exe ./{FIRMWARE_FILE} -nogui -port " + port + " -speed 9600" +
                         " -parity " + parity + " -stopbits 1 -cmd flash & pause",
                     RedirectStandardOutput = true,
                     UseShellExecute = false,            // false
@@ -331,6 +339,7 @@ namespace Moderon
                 modbusRTU.StopSession();                // Закрытие COM порта
                 BlockElements_forConnection(true);      // Разблокировка элементов для подключения
                 dataCanTextBox.Text = "";               // Очистка текстового поля с прочтёнными данными
+                updateNeeded = false;                   // Сброс признака обновления прошивки ПЛК
             }
 
             Thread.Sleep(MS_200);                        // Задержка 200 ms
@@ -378,8 +387,9 @@ namespace Moderon
 
             try
             {
-                // Create a CancellationTokenSource with timeout
+                // Задание с отменой, таймаут 200 мс
                 using CancellationTokenSource cts = new(MS_200);
+                
                 Task<bool> sendTask = Task.Run(() => 
                     modbusRTU.SendFc3(modbusRTU.Address, 0, 1, ref values), cts.Token);
 
@@ -554,20 +564,14 @@ namespace Moderon
             dataCanTextBox.Text = "";                       // Очистка текстового поля для прочтённых данных
             countNote = 0;                                  // Обнуление счётчика по адресам ПЛК
 
-            // Чтение UI сигналов из ПЛК
-            ReadUI_Values_fromPLC(); dataCanTextBox.Text += Environment.NewLine;
-
-            // Чтение DO сигналов из ПЛК
-            ReadDO_Values_fromPLC(); dataCanTextBox.Text += Environment.NewLine;
-
-            // Чтение AO сигналов из ПЛК
-            ReadAO_Values_fromPLC(); dataCanTextBox.Text += Environment.NewLine;
-
-            // Чтение командных слов из ПЛК
-            ReadCMD_Values_fromPLC();
+            ReadFirmware_version_fromPLC();                 // Чтение версии прошивки в ПЛК
+            ReadUI_Values_fromPLC();                        // Чтение UI сигналов из ПЛК
+            ReadDO_Values_fromPLC();                        // Чтение DO сигналов из ПЛК
+            ReadAO_Values_fromPLC();                        // Чтение AO сигналов из ПЛК
+            ReadCMD_Values_fromPLC();                       // Чтение командных слов из ПЛК
 
             // Проверка совпадения данных в окнах для чтения / записи
-            if (dataCanTextBox.Text == writeCanTextBox.Text)                    // Данные совпадают
+            if (dataCanTextBox.Text == writeCanTextBox.Text)                    // Данные чтения/записи совпадают
             {
                 dataMatchPLC_label.Text = "Данные в ПЛК совпадают";
                 dataMatchPLC_label.ForeColor = Color.DarkGreen;
@@ -577,21 +581,106 @@ namespace Moderon
                 dataMatchPLC_label.Text = "Данные в ПЛК не совпадают";
                 dataMatchPLC_label.ForeColor = Color.Red;
             }
+
+            // Ещё не было сообщения об обновлении в текущую сессию подключения к ПЛК
+            if (!updateNeeded)                                                  
+            {
+                if (CheckUpdate_firmware_version())
+                {
+                    updateNeeded = true;
+                    MessageBox.Show("Рекомендуется обновить прошивку в контроллере!", "Обновление прошивки",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        ///<summary>Проверка обновления версии прошивки в файле и ПЛК</summary>
+        private bool CheckUpdate_firmware_version()
+        {
+            bool year = year_file > year_plc;
+            bool month = year_file == year_plc && month_file > month_plc;
+            bool day = year_file == year_plc && month_file == month_plc && day_file > day_plc;
+
+            if (year || month || day) return true;
+            return false;
+        }
+
+        ///<summary>Чтение версии прошивки, записанной в ПЛК</summary>
+        private void ReadFirmware_version_fromPLC()
+        {
+            const ushort firmwareAddress = 16377;               // Адрес ПЛК с версией прошивки
+            short[] value = new short[1];
+
+            modbusRTU.SendFc3(modbusRTU.Address, firmwareAddress, 1, ref value);
+
+            // Разбор считанной версии прошивки
+            string firmware_date = ParseFirmware_toDate(value[0], true);
+            dataCanTextBox.Text += $"Версия прошивки: {value[0]} ({firmware_date})";
+            for (int i = 0; i < 2; i++) dataCanTextBox.Text += Environment.NewLine;
+        }
+
+        ///<summary>Разбор версии прошивки в текстовую дату ПЛК/файл прошивки</summary>
+        private string ParseFirmware_toDate(short value, bool fromPlc)
+        {
+            string firmware = value.ToString();                                 // Строковое представление версии
+            string year, month, day;                                            // Строкое значения год/месяц/день
+
+            year = firmware[firmware.Length - 1].ToString();                    // Год - последняя цифра
+            
+            month = firmware.Length > 4 ? firmware.Substring(2, 2) :            // Месяц зависит от длины
+                firmware.Substring(1, 2);
+
+            day = firmware.Length > 4 ? firmware.Substring(0, 2) :              // День - одна или две цифры
+                firmware.Substring(0, 1);
+               
+            if (fromPlc)                                                        // Чтение данных из ПЛК
+            {
+                year_plc = 2020 + int.Parse(year);
+                month_plc = int.Parse(month);
+                day_plc = int.Parse(day);
+            }
+            else                                                                // Данные из файла прошивки
+            {
+                year_file = 2020 + int.Parse(year);
+                month_file = int.Parse(month);
+                day_file = int.Parse(day);
+            }
+
+            string nameMonth = month switch
+            {
+                "01" => "января",
+                "02" => "февраля",
+                "03" => "марта",
+                "04" => "апреля",
+                "05" => "мая",
+                "06" => "июня",
+                "07" => "июля",
+                "08" => "августа",
+                "09" => "сентября",
+                "10" => "октября",
+                "11" => "ноября",
+                "12" => "декабря",
+                _ => "",
+            };
+
+            return $"от {day} {nameMonth} {2020 + int.Parse(year)} г.";
         }
 
         ///<summary>Чтение данных по UI входам из регистров ПЛК</summary>
         private void ReadUI_Values_fromPLC()
         {
-            ushort UI_PLC_LENGTH = 16;
+            ushort UI_PLC_LENGTH = 16;                                          // Количество UI сигналов по 16 
 
             // ПЛК, UI сигналы
             short[] values = new short[UI_PLC_LENGTH];
-
-            for (int i = 0; i < 3; i++)
+             
+            for (int i = 0; i < 3; i++)                                         // ПЛК и два блока расширения
             {
                 modbusRTU.SendFc3(modbusRTU.Address, countNote, UI_PLC_LENGTH, ref values);
                 WriteUI_Values_toTextBox(i, UI_PLC_LENGTH, values);
-            }   
+            }
+
+            dataCanTextBox.Text += Environment.NewLine;
         }
 
         ///<summary>Запись для группы UI сигналов в текстовое поле textBox</summary>
@@ -625,6 +714,8 @@ namespace Moderon
                 modbusRTU.SendFc3(modbusRTU.Address, countNote, DO_PLC_LENGTH, ref values);
                 WriteDO_Values_toTextBox(i, DO_PLC_LENGTH, values);
             }
+
+            dataCanTextBox.Text += Environment.NewLine;
         }
 
         ///<summary>Запись для группы DO сигналов в текстовое поле textBox</summary>
@@ -660,6 +751,8 @@ namespace Moderon
                 modbusRTU.SendFc3(modbusRTU.Address, countNote, AO_PLC_LENGTH, ref values);
                 WriteAO_Values_toTextBox(i, AO_PLC_LENGTH, values);
             }
+
+            dataCanTextBox.Text += Environment.NewLine;
         }
 
         ///<summary>Запись для группы AO сигналов в текстовое поле textBox</summary>

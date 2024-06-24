@@ -1536,10 +1536,16 @@ namespace Moderon
         {
             if (prFanFC_check.Checked)                                                                  // Когда выбран ПЧ
             {
-                if (prFanControlCombo.SelectedIndex == 0 && !prFanStStopCheck.Checked)                  // Внешние контакты и не выбран сигнал "Пуск/Стоп"
-                    prFanStStopCheck.Checked = true;
-                else if (prFanControlCombo.SelectedIndex == 1 && prFanStStopCheck.Checked)              // Modbus, был выбран сигнал "Пуск/Стоп"
-                    prFanStStopCheck.Checked = false;
+                if (prFanControlCombo.SelectedIndex == 0)                                               // Внешние контакты, разблокировка сигнала "Пуск/Стоп"
+                {
+                    prFanStStopCheck.Enabled = true;
+                    if (!prFanStStopCheck.Checked) prFanStStopCheck.Checked = true;
+                }
+                else if (prFanControlCombo.SelectedIndex == 1)                                          // Modbus, отмена выбора сигнала и блокировка
+                {
+                    if (prFanStStopCheck.Checked) prFanStStopCheck.Checked = false;
+                    prFanStStopCheck.Enabled = false;
+                }
             }
         }
 
@@ -1563,10 +1569,17 @@ namespace Moderon
         {
             if (comboSysType.SelectedIndex == 1 && outFanFC_check.Checked)                              // Выбран ПЧ и ПВ-система
             {
-                if (outFanControlCombo.SelectedIndex == 0 && !outFanStStopCheck.Checked)                // Внешние контакты и не выбран сигнал "Пуск/Стоп"
-                    outFanStStopCheck.Checked = true;
-                else if (outFanControlCombo.SelectedIndex == 1 && outFanStStopCheck.Checked)            // Modbus, был выбран сигнал "Пуск/Стоп"
-                    outFanStStopCheck.Checked = false;
+                if (outFanControlCombo.SelectedIndex == 0)                                              // Внешние контакты, разблокировка сигнала "Пуск/Стоп"
+                {
+                    outFanStStopCheck.Enabled = true;
+                    if (!outFanStStopCheck.Checked) outFanStStopCheck.Checked = true;
+                }
+                else if (outFanControlCombo.SelectedIndex == 1)                                         // Modbus, отмена выбора сигнала и блокировка
+                {
+                    if (outFanStStopCheck.Checked) outFanStStopCheck.Checked = false;
+                    outFanStStopCheck.Enabled = false;
+                }
+                    
             }
         }
 
