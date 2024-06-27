@@ -284,9 +284,9 @@ namespace Moderon
                     connectCanLabel.Invoke((MethodInvoker)(() =>
                     {
                         connectCanLabel.ForeColor = 
-                            isConnected ? Color.DarkGreen : Color.Red;
+                            isConnected ? Color.DarkGreen : Color.Blue;
                         connectCanLabel.Text =
-                            isConnected ? "Соединение установлено" : "Нет соединения"; 
+                            isConnected ? "Установлено соединение с ПЛК" : "Порт " + canSelectBox.SelectedItem + " открыт"; 
                     }));
 
                     connectPlkBtn.Invoke((MethodInvoker)(() =>
@@ -349,23 +349,30 @@ namespace Moderon
         ///<summary>Изменение текста, цвета и блокировка кнопки загрузки</summary>
         private void LabelButtonChange(bool portOpen)
         {
-            string[] PORT_STATUS = ["Порт COM открыт", "Нет соединения"];
-            string[] CONNECT_STATUS = ["ЗАКРЫТЬ СОЕДИНЕНИЕ", "УСТАНОВИТЬ СОЕДИНЕНИЕ"];
+            string[] PORT_STATUS = 
+                ["Порт " + canSelectBox.SelectedItem + " открыт", "Нет соединения"];        // Порт COM открыт, соединение
+            string[] CONNECT_STATUS = ["ЗАКРЫТЬ СОЕДИНЕНИЕ", "УСТАНОВИТЬ СОЕДИНЕНИЕ"];      // Закрыть/установить соединение
 
+            connectCanLabel.ForeColor = Color.Blue;
+            connectCanLabel.Text = PORT_STATUS[0];
+            
             if (portOpen)                                   // Если порт открыт
             {
-                connectCanLabel.Text = PORT_STATUS[0];      // Порт открыт
-                connectCanLabel.ForeColor = Color.Blue;
                 connectPlkBtn.Text = CONNECT_STATUS[0];
             }
             else                                            // Если порт закрыт
             {
-                connectCanLabel.Text = PORT_STATUS[1];      // Нет соединения
-                connectCanLabel.ForeColor = Color.Red;
                 connectPlkBtn.Text = CONNECT_STATUS[1];
                 loadCanButton.Enabled = false;              // Загрузка данных
                 readCanButton.Enabled = false;              // Чтение данных
             }
+        }
+
+        ///<summary>Изменение активного COM порта в списке портов</summary>
+        private void CanSelectBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            connectCanLabel.Text = "Нет соединения";
+            connectCanLabel.ForeColor = Color.Red;
         }
 
         ///<summary>Блокировка полей ввода и выбора при подключении</summary>

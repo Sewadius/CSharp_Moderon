@@ -11,7 +11,7 @@ namespace Moderon
     {
         readonly static public string 
             NOT_SELECTED = "Не выбрано",                                // Статус для состояния входов/выходов
-            VERSION = "v.1.1.5.3";                                      // Текущая версия программы
+            VERSION = "v.1.1.5.4";                                      // Текущая версия программы
 
         private const int 
             WIDTH_MAIN = 955,                                           // Ширина основной формы

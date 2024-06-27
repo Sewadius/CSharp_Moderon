@@ -50,7 +50,7 @@ namespace Moderon
 				MBmaster.OnException += new Master.ExceptionData(MBmaster_OnException);
 				if (MBmaster.connected) // Соединение установлено
 				{
-					connectLabel.Text = "Соединение установлено";
+					connectLabel.Text = "Установлено соединение с ПЛК";
 					connectLabel.ForeColor = Color.Green;
 				}
 			}
