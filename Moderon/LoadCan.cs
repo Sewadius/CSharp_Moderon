@@ -51,7 +51,7 @@ namespace Moderon
 
         /// <summary>Получение доступных CAN портов для выбора</summary>
         public void GetSerialPorts()
-        {
+        {   
             canSelectBox.Items.Clear();
 
             string[] ports = SerialPort.GetPortNames();
@@ -266,10 +266,10 @@ namespace Moderon
                 Address = byte.Parse(canAddressBox.Text)
             };
 
-            if (!modbusRTU.mySp.IsOpen)  // Изначально порт COM закрыт, открытие соединия
+            if (!modbusRTU.mySp.IsOpen)                     // Изначально порт COM закрыт, открытие соединия
             {
                 modbusRTU.StartSession();
-                connectPlkBtn.Enabled = false;  // Блокировка кнопки на время запроса
+                connectPlkBtn.Enabled = false;              // Блокировка кнопки на время запроса
 
                 Thread thread = new(() =>
                 {
@@ -278,15 +278,17 @@ namespace Moderon
 
                     if (!isConnected)
                     {
-                        modbusRTU.StopSession();         // Закрытие COM порта
+                        modbusRTU.StopSession();            // Закрытие COM порта
                     }
 
                     connectCanLabel.Invoke((MethodInvoker)(() =>
                     {
-                        connectCanLabel.ForeColor = 
-                            isConnected ? Color.DarkGreen : Color.Blue;
+                        connectCanLabel.ForeColor =
+                            isConnected ? Color.DarkGreen : Color.Red; // Color.Blue;
+                        /*connectCanLabel.Text =
+                            isConnected ? "Установлено соединение с ПЛК" : "Порт " + canSelectBox.SelectedItem + " открыт"; */
                         connectCanLabel.Text =
-                            isConnected ? "Установлено соединение с ПЛК" : "Порт " + canSelectBox.SelectedItem + " открыт"; 
+                            isConnected ? "Установлено соединение с ПЛК" : "Нет соединения";
                     }));
 
                     connectPlkBtn.Invoke((MethodInvoker)(() =>
