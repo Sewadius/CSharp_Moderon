@@ -30,6 +30,7 @@ namespace Moderon
         private readonly string[] AO_TEXT = ["AO", "EX1_AO", "EX2_AO", "EX3_AO"];
 
         private bool isConnected = false;       // Статус подключения к ПЛК
+        private bool wasConnected = false;      // Ранее было соединение с ПЛК
         private bool updateNeeded = false;      // Признак обновления прошивки ПЛК
 
         private int                             // Год/месяц/день версии прошивки, записано в ПЛК
@@ -253,6 +254,8 @@ namespace Moderon
         ///<summary>Нажали на кнопку "Подключить/Отключиться"</summary>
         private void ConnectPlkBtn_Click(object sender, EventArgs e)
         {
+            bool connectError = false;                      // Ошибка при попытке подключения к COM порту
+
             if (canSelectBox.SelectedItem == null) return;
 
             modbusRTU = new()
@@ -268,27 +271,42 @@ namespace Moderon
 
             if (!modbusRTU.mySp.IsOpen)                     // Изначально порт COM закрыт, открытие соединия
             {
-                modbusRTU.StartSession();
+                try
+                {
+                    modbusRTU.StartSession();
+                }
+                catch (Exception)
+                {
+                    connectCanLabel.ForeColor = Color.Red;
+                    connectCanLabel.Text = "Нет соединения";
+                    connectError = true;
+                }
+
                 connectPlkBtn.Enabled = false;              // Блокировка кнопки на время запроса
 
                 Thread thread = new(() =>
                 {
                     Thread.Sleep(MS_500);
                     isConnected = CheckPLC_connection();
+                    wasConnected = isConnected;
 
                     if (!isConnected)
                     {
                         modbusRTU.StopSession();            // Закрытие COM порта
                     }
 
+                    // Изменение цвета и текста при попытке подключения к выбранному COM порту
                     connectCanLabel.Invoke((MethodInvoker)(() =>
                     {
-                        connectCanLabel.ForeColor =
-                            isConnected ? Color.DarkGreen : Color.Red; // Color.Blue;
+                        if (!connectError)                  // Нет ошибки подключения к COM порту
+                        {
+                            connectCanLabel.ForeColor =
+                                isConnected ? Color.DarkGreen : Color.Blue; // Color.Red;
+                            connectCanLabel.Text =
+                                isConnected ? "Установлено соединение с ПЛК" : "Порт " + canSelectBox.SelectedItem + " открыт";
+                        }
                         /*connectCanLabel.Text =
-                            isConnected ? "Установлено соединение с ПЛК" : "Порт " + canSelectBox.SelectedItem + " открыт"; */
-                        connectCanLabel.Text =
-                            isConnected ? "Установлено соединение с ПЛК" : "Нет соединения";
+                            isConnected ? "Установлено соединение с ПЛК" : "Нет соединения"; */
                     }));
 
                     connectPlkBtn.Invoke((MethodInvoker)(() =>
@@ -355,19 +373,29 @@ namespace Moderon
                 ["Порт " + canSelectBox.SelectedItem + " открыт", "Нет соединения"];        // Порт COM открыт, соединение
             string[] CONNECT_STATUS = ["ЗАКРЫТЬ СОЕДИНЕНИЕ", "УСТАНОВИТЬ СОЕДИНЕНИЕ"];      // Закрыть/установить соединение
 
-            connectCanLabel.ForeColor = Color.Blue;
-            connectCanLabel.Text = PORT_STATUS[0];
+            //connectCanLabel.ForeColor = Color.Blue;
+            //connectCanLabel.Text = PORT_STATUS[0];
             
             if (portOpen)                                   // Если порт открыт
             {
                 connectPlkBtn.Text = CONNECT_STATUS[0];
+
+                connectCanLabel.ForeColor = Color.Blue;
+                connectCanLabel.Text = PORT_STATUS[0];
             }
             else                                            // Если порт закрыт
             {
+                if (wasConnected)                           // Только если ранее было подключение к ПЛК
+                {
+                    connectCanLabel.ForeColor = Color.Red;
+                    connectCanLabel.Text = PORT_STATUS[1];
+                }
+
                 connectPlkBtn.Text = CONNECT_STATUS[1];
                 loadCanButton.Enabled = false;              // Загрузка данных
                 readCanButton.Enabled = false;              // Чтение данных
             }
+            wasConnected = false;                           // Сброс признака ранее подключён к ПЛК
         }
 
         ///<summary>Изменение активного COM порта в списке портов</summary>

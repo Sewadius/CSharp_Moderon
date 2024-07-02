@@ -47,6 +47,7 @@ namespace Moderon
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                throw new Exception("Ошибка подключения");
             }
         }
 
