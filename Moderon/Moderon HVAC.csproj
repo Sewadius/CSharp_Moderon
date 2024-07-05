@@ -30,7 +30,7 @@
     <PublisherName>Moderon</PublisherName>
     <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>7</ApplicationRevision>
     <ApplicationVersion>1.1.5.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -145,7 +145,8 @@
       <SubType>Form</SubType>
     </Compile>
     <None Include="ClassDiagram1.cd" />
-    <Content Include="prog_3054.alf">
+    <None Include="prog_3054.alf" />
+    <Content Include="opt_1074.alf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\red_cross.png" />
@@ -244,6 +245,18 @@
     <Content Include="imgs\logo_green.png" />
     <Content Include="imgs\logo_grey.png" />
     <Content Include="imgs\logo_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="prog_3054.alf">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>False</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

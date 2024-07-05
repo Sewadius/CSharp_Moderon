@@ -66,7 +66,7 @@ namespace Moderon
             writeCanTextBox.Text = "";                  // Очистка textBox перед заполнением
 
             // Версия прошивки контроллера
-            short firmware_file = short.Parse(FIRMWARE_FILE.Substring(5, 4));
+            short firmware_file = short.Parse(FIRMWARE_FILE.Substring(4, 4));
             string firmwre_version = ParseFirmware_toDate(firmware_file, false);
             
             writeCanTextBox.Text += $"Версия прошивки: {firmware_file} ({firmwre_version})";

@@ -15,7 +15,7 @@ namespace Moderon
         private SerialPort serialPort = new();
         private ModbusRTU modbusRTU = new();
 
-        private readonly string FIRMWARE_FILE = "prog_3054.alf";
+        private readonly string FIRMWARE_FILE = "opt_1074.alf";
 
         private readonly int MS_200 = 200;      // Задержка 200 мс
         private readonly int MS_500 = 500;      // Задержка 500 мс
