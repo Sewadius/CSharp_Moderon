@@ -15,7 +15,8 @@ namespace Moderon
         private SerialPort serialPort = new();
         private ModbusRTU modbusRTU = new();
 
-        private readonly string FIRMWARE_FILE = "opt_1074.alf";
+        private readonly string FIRMWARE_FILE_OPT = "opt_1074.alf";     // Файл прошивки для Optimize
+        private readonly string FIRMWARE_FILE_MINI = "mini_3054.alf";   // Файл прошивки для Mini
 
         private readonly int MS_200 = 200;      // Задержка 200 мс
         private readonly int MS_500 = 500;      // Задержка 500 мс
@@ -137,6 +138,9 @@ namespace Moderon
               
             bool correctDownload = true;
 
+            // Определяет версию прошивки в зависимости от выбранной модели ПЛК
+            string firmwareType = comboPlkType.SelectedIndex == 0 ? FIRMWARE_FILE_MINI : FIRMWARE_FILE_OPT;
+
             // Выбрали "Да", загрузка файла прошивки через сторонний процесс
             if (result == DialogResult.Yes)
             {
@@ -171,7 +175,7 @@ namespace Moderon
                 System.Diagnostics.ProcessStartInfo startInfo = new()
                 {
                     FileName = "cmd.exe",
-                    Arguments = $"/C eflash.exe ./{FIRMWARE_FILE} -nogui -port " + port + " -speed 9600" +
+                    Arguments = $"/C eflash.exe ./{firmwareType} -nogui -port " + port + " -speed 9600" +
                         " -parity " + parity + " -stopbits 1 -cmd flash & pause",
                     RedirectStandardOutput = true,
                     UseShellExecute = false,            // false

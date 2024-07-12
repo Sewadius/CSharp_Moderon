@@ -62,11 +62,14 @@ namespace Moderon
         {  
             ushort count = 0;                           // Глобальный счётчик учёта номера позиции
             ushort value_index = 1;
+            string firmwareType = comboPlkType.SelectedIndex == 0 ? FIRMWARE_FILE_MINI : FIRMWARE_FILE_OPT;
 
             writeCanTextBox.Text = "";                  // Очистка textBox перед заполнением
 
-            // Версия прошивки контроллера
-            short firmware_file = short.Parse(FIRMWARE_FILE.Substring(4, 4));
+            // Версия прошивки контроллера в зависимости от типа ПЛК
+            short firmware_file = firmwareType == FIRMWARE_FILE_OPT ?
+                short.Parse(firmwareType.Substring(4, 4)) : short.Parse(firmwareType.Substring(5, 4));
+
             string firmwre_version = ParseFirmware_toDate(firmware_file, false);
             
             writeCanTextBox.Text += $"Версия прошивки: {firmware_file} ({firmwre_version})";
