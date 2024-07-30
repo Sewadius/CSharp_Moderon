@@ -26,10 +26,11 @@ namespace Moderon
             PANEL_POSITION = new(15, 90);                               // Позиция для остальных панелей
 
         readonly private bool showCode = true;                          // Код сигнала отображается по умолчанию в таблице сигналов
-        
-        private bool 
+
+        private bool
             initialConfigure = true,                                    // Признак начальной конфигурации (при загрузке и после сброса)
-            optimizeOnly = false;                                       // Признак 8 датчиков температуры (для отключения разблокировки типа ПЛК)
+            optimizeOnly = false,                                       // Признак 8 датчиков температуры (для отключения разблокировки типа ПЛК)
+            isAutoSelect = true;                                        // Признак автоматического подбора блоков расширения
         
         // Ранее сохраненные значения индексов для элементов
         private int 
@@ -57,7 +58,8 @@ namespace Moderon
         {
             InitializeComponent();          // Загрузка конструктора формы
             BlockTabControlInitial();       // Скрытие вкладок элементов
-            SelectComboBoxesInitial();      // Изначальный выбор для comboBox
+            SelectComboBoxesInitial();      // Изначальный выбор для comboBox элементов
+            SelectManBlocksCombos();        // Изначальный выбор для comboBox ручного выбора блоков расширения
             SizePanels();                   // Изменение размера панелей элементов
             ClearIO_codes();                // Очистка наименования кодов для входов/выходов
             InitialSet_ComboTextIndex();    // Начальная установка для входов и выходов
@@ -125,12 +127,19 @@ namespace Moderon
             panelElements.Location = new Point(Size.Width - deltaW_panel, height_panel1);
             Plk_copyPanel.Location = new Point(Size.Width - deltaW_panel, height_panel1 +
                 panelElements.Height + BETWEEN_PANELS);
-            //panelBlocks.Location = new Point(Size.Width - deltaW_panel, height_panel1 + 
-            //    panelElements.Height + BETWEEN_PANELS);
+
+            // Положение для выбора опции автоподбора блоков
+            autoSelectBlocks_check.Location = new Point(Size.Width - deltaW_panel, height_panel1 +
+                panelElements.Height + Plk_copyPanel.Height + BETWEEN_PANELS * 2);
+
+            // Положение для панели ручного выбора блоков расширения
+            panManBlocks.Location = new Point(Size.Width - deltaW_panel, height_panel1 +
+                panelElements.Height + Plk_copyPanel.Height + BETWEEN_PANELS * 4);
+
             pic_signalsReady.Location = new Point(panelElements.Location.X, panelElements.Location.Y - BETWEEN_PANELS * 4);
             pictureBoxLogo.Location = new Point(panelElements.Location.X + logo_X_delta, pictureBoxLogo.Location.Y);
 
-            // Положенеи для панели блоков расширения
+            // Положение для панели блоков расширения
             panelBlocks.Location = new Point(Size.Width - deltaW_panel, height_panel1 +
                 panelElements.Height + Plk_copyPanel.Height + BETWEEN_PANELS + 5);
             
@@ -196,7 +205,7 @@ namespace Moderon
             tabControlSignals.Size = new Size(signalsPanel.Width - 20, signalsPanel.Height - 50);
         }
 
-        ///<summary>Изначальный выбор для comboBox</summary>
+        ///<summary>Изначальный выбор для comboBox элементов</summary>
         private void SelectComboBoxesInitial()
         {
             var elements = new List<ComboBox>()
@@ -211,6 +220,17 @@ namespace Moderon
             };
 
             foreach (var element in elements) element.SelectedIndex = 0;
+        }
+
+        ///<summary>Изначальный выбор для comboBox ручного выбора блоков расширения</summary>
+        private void SelectManBlocksCombos()
+        {
+            var combos = new List<ComboBox>()
+            {
+                comboManBl_1, comboManBl_2, comboManBl_3
+            };
+
+            foreach (var el in combos) el.SelectedIndex = 0;
         }
 
         /// <summary>Установка размера для панелей настройки элементов</summary>
@@ -660,6 +680,7 @@ namespace Moderon
             
             HideExpansionBlocksPanels();                    // Скрытие панелей для блоков расширения в таблице сигналов
             SelectComboBoxesInitial();                      // Возврат к изначальным значения выбора
+            SelectManBlocksCombos();                        // Возврат к изначальным индексам ручного выбора блоков расширения
             ResetElementsOptions();                         // Сброс настроек для элементов
             ResetSignalsLists();                            // Очистка массивов сигналов
             ResetButton_signalsUIClick(this, e);            // Сброс сигналов ПЛК, UI
@@ -1596,6 +1617,64 @@ namespace Moderon
             // Пластинчатый рекуператор
             foreach (ComboBox comboBox in plastRecupPanel.Controls.OfType<ComboBox>())
                 MouseWheel_comboBox(comboBox, disable);
+        }
+
+        ///<summary>Изменили выбор блока 1 в ручном подборе</summary>
+        private void ComboManBl_1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboManBl_1.SelectedIndex != 0)
+            {
+                autoSelectBlocks_check.Enabled = false;
+                manBl2_label.Show(); comboManBl_2.Show();
+            }
+            else
+            {
+                autoSelectBlocks_check.Enabled = true;
+                manBl2_label.Hide(); comboManBl_2.Hide();
+            }
+        }
+
+        ///<summary>Изменили выбор блока 2 в ручном подборе</summary>
+        private void ComboManBl_2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboManBl_2.SelectedIndex != 0)
+            {
+                manBl3_label.Show(); comboManBl_3.Show();
+                comboManBl_1.Enabled = false;
+            }
+            else
+            {
+                manBl3_label.Hide(); comboManBl_3.Hide();
+                comboManBl_1.Enabled= true;
+            }
+        }
+
+        ///<summary>Изменили выбор блока 3 в ручном подборе</summary>
+        private void ComboManBl_3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboManBl_3.SelectedIndex != 0)
+            {
+                comboManBl_2.Enabled = false;
+            }
+            else
+            {
+                comboManBl_2.Enabled = true;
+            }
+        }
+
+        ///<summary>Выбор автоматического подбора блоков расширения</summary>
+        private void AutoSelectBlocks_check_CheckedChanged(object sender, EventArgs e)
+        {
+            if (autoSelectBlocks_check.Checked)                             // Выбор автоматического подбора блоков
+            {
+                isAutoSelect = true;
+                panManBlocks.Hide();
+            }
+            else                                                            // Выбор ручного подбора блоков
+            {
+                isAutoSelect = false;
+                panManBlocks.Show();
+            }
         }
 
         ///<summary>Выбор и отмена выбора вытяжного вентилятора</summary>

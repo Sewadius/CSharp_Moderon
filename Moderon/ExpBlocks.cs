@@ -76,7 +76,8 @@ namespace Moderon
             ];
 
             foreach (var el in blocks_labels) el.Hide();
-            panelBlocks.Hide();
+            panelBlocks.Hide();                                                 // Скрытие панели отображения блоков
+            autoSelectBlocks_check.Show();                                      // Отображение выбора типа расстановки блоков
         }
 
         ///<summary>Сброс заголовков для панелей блоков расширения</summary>
@@ -130,7 +131,11 @@ namespace Moderon
 
             List<Label> labels_to_show = [];                                                        // Подписи для отображения
             Hide_panelBlocks_elements();                                                            // Скрытие панели блоков и подписей изначально
-            if (blocks.Count > 0 && panelElements.Visible) panelBlocks.Show();                      // Отображение панели блоков расширения
+            if (blocks.Count > 0 && panelElements.Visible && isAutoSelect)                          
+            {
+                panelBlocks.Show();                                                                 // Отображение панели блоков расширения
+                autoSelectBlocks_check.Hide();                                                      // Скрытие выбора режима расстановки блоков
+            }
 
             if (blocks.Count == 1)                                                                  // Один тип блока расширения
             {
@@ -1388,6 +1393,8 @@ namespace Moderon
         ///<summary>Проверка для добавления 1-го блока расширения M72E12RA сигналов DO + UI</summary>
         private void AddFirstBlock_DOUI_M72E12RA(Dictionary<ExpBlock, int> blocks)
         {
+            if (!isAutoSelect) return;  // Ручной режим расстановки блоков
+
             int type = blocks.Count;                                                // Общее количество типов задействованных блоков
             int count_M72E12RA = 0;                                                 // Расчётное количество блоков M72E12RA
             int now_M72E12RA = expansion_blocks                                     // Текущее количество блоков M72E12RA
@@ -1419,6 +1426,8 @@ namespace Moderon
         ///<summary>Проверка для добавления 2-го блока расширения M72E12RA сигналов DO + UI</summary>
         private void AddSecondBlock_DOUI_M72E12RA(Dictionary<ExpBlock, int> blocks)
         {
+            if (!isAutoSelect) return;  // Ручной режим расстановки блоков
+
             int type = blocks.Count;                                                // Общее количество типов задействованных блоков
             int count_M72E12RA = 0;                                                 // Расчётное количество блоков M72E12RA
             int now_M72E12RA = expansion_blocks                                     // Текущее количество блоков M72E12RA
@@ -1482,6 +1491,8 @@ namespace Moderon
         ///<summary>Проверка для добавления 3-го блока расширения M72E12RA сигналов DO + UI</summary>
         private void AddThirdBlock_DOUI_M72E12RA(Dictionary<ExpBlock, int> blocks)
         {
+            if (!isAutoSelect) return;  // Ручной режим расстановки блоков
+
             int type = blocks.Count;                                                // Общее количество типов задействованных блоков
             int count_M72E12RA = 0;                                                 // Расчётное количество блоков M72E12RA
             int now_M72E12RA = expansion_blocks                                     // Текущее количество блоков M72E12RA
@@ -1511,6 +1522,8 @@ namespace Moderon
         ///<summary>Проверка для добавления 1-го блока расширения M72E16NA сигналов UI</summary>
         private void AddFirstBlockUI_M72E16NA(Dictionary<ExpBlock, int> blocks)
         {
+            if (!isAutoSelect) return;  // Ручной режим расстановки блоков
+
             int total_blocks = 0;                                                   // Общее количество расчётных блоков
             foreach (var el in blocks.Values) total_blocks += el;                   
 
@@ -1528,6 +1541,8 @@ namespace Moderon
         ///<summary>Проверка для добавления 2-го блока расширения M72E16NA сигналов UI</summary>
         private void AddSecondBlockUI_M72E16NA(Dictionary<ExpBlock, int> blocks)
         {
+            if (!isAutoSelect) return;  // Ручной режим расстановки блоков
+
             int type = blocks.Count;                                                // Общее количество типов задействованных блоков
             int count_M72E16NA = 0;                                                 // Расчётное количество блоков M72E16NA
             int now_M72E16NA = expansion_blocks                                     // Текущее количество блоков M72E16NA
@@ -1583,6 +1598,8 @@ namespace Moderon
         ///<summary>Проверка для добавления 3-го блока расширения M72E16NA сигналов UI</summary>
         private void AddThirdBlockUI_M72E16NA(Dictionary<ExpBlock, int> blocks)
         {
+            if (!isAutoSelect) return;  // Ручной режим расстановки блоков
+
             int type = blocks.Count;                                                // Общее количество типов задействованных блоков
             int count_M72E16NA = 0;                                                 // Расчётное количество блоков M72E16NA
             int now_M72E16NA = expansion_blocks                                     // Текущее количество блоков M72E16NA
@@ -1611,6 +1628,8 @@ namespace Moderon
         ///<summary>Проверка для добавления 1-го блока расширения M72E08RA сигналов DO</summary>
         private void AddFirstBlockDO_M72E08RA(Dictionary<ExpBlock, int> blocks)
         {
+            if (!isAutoSelect) return;  // Ручной режим расстановки блоков
+
             int type = blocks.Count;                                                // Общее количество типов задействованных блоков
             int count_M72E08RA = 0;                                                 // Расчётное количество блоков M72E08RA
 
@@ -1631,6 +1650,8 @@ namespace Moderon
         ///<summary>Проверка для добавления 2-го блока расширения M72E08RA сигналов DO</summary>
         private void AddSecondBlockDO_M72E08RA(Dictionary<ExpBlock, int> blocks)
         {
+            if (!isAutoSelect) return;  // Ручной режим расстановки блоков
+
             int type = blocks.Count;                                               // Общее количество типов задействованных блоков
             int count_M72E08RA = 0;                                                // Расчётное количество блоков M72E08RA
             int now_M72E08RA = expansion_blocks                                    // Текущее количество блоков M72E08RA
@@ -1673,6 +1694,8 @@ namespace Moderon
         ///<summary>Проверка для добавления 3-го блока расширения M72E08RA сигналов DO</summary>
         private void AddThirdBlockDO_M72E08RA(Dictionary<ExpBlock, int> blocks)
         {
+            if (!isAutoSelect) return;  // Ручной режим расстановки блоков
+
             int type = blocks.Count;                                                // Общее количество типов задействованных блоков
             int count_M72E08RA = 0;                                                 // Расчётное количество блоков M72E08RA
             int now_M72E08RA = expansion_blocks                                     // Текущее количество блоков M72E08RA
@@ -1719,6 +1742,8 @@ namespace Moderon
         ///<summary>Проверка для добавления 1-го блока расширения M72E12RB сигналов AO</summary>
         private void AddFirstBlockAO_M72E12RB(Dictionary<ExpBlock, int> blocks)
         {
+            if (!isAutoSelect) return;  // Ручной режим расстановки блоков
+
             int type = blocks.Count;                                                // Общее количество типов задействованных блоков
             int count_M72E12RB = 0;                                                 // Расчётное количество блоков M72E12RB
             int now_M72E12RB = expansion_blocks                                     // Текущее количество блоков M72E12RB
@@ -1761,6 +1786,8 @@ namespace Moderon
         ///<summary>Проверка для добавления 2-го блока расширения M72E12RB сигналов AO</summary>
         private void AddSecondBlockAO_M72E12RB(Dictionary<ExpBlock, int> blocks)
         {
+            if (!isAutoSelect) return;  // Ручной режим расстановки блоков
+
             int type = blocks.Count;                                                            // Общее количество типов блоков
             int count_M72E12RB = 0;                                                             // Расчётное количество блоков M72E12RB
             int now_M72E12RB = expansion_blocks                                                 // Текущее количество блоков M72E12RB
@@ -1857,6 +1884,8 @@ namespace Moderon
         ///<summary>Проверка для добавления 3-го блока расширения M72E12RB сигналов AO</summary>
         private void AddThirdBlockAO_M72E12RB(Dictionary<ExpBlock, int> blocks)
         {
+            if (!isAutoSelect) return;  // Ручной режим расстановки блоков
+
             int type = blocks.Count;                                                // Общее количество задействованных типов блоков
             int count_M72E12RB = 0;                                                 // Расчётное количество блоков
             int now_M72E12RB = expansion_blocks                                     // Текущее количество блоков
@@ -2007,6 +2036,8 @@ namespace Moderon
         ///<summary>Проверка для удаления 1-го блока расширения M72E12RA сигналов (DO + UI)</summary>
         private void RemoveFirstBlock_DOUI_M72E12RA(Dictionary<ExpBlock, int> blocks)
         {
+            if (!isAutoSelect) return;  // Ручной режим расстановки блоков
+
             // Условия для удаления M72E12RA в качестве 1-го блока расширения
             int count_M72E12RA = 0;                                                 // Расчётное количество блоков M72E12RA
             int now_M72E12RA = expansion_blocks                                     // Текущее количество блоков M72E12RA
@@ -2046,8 +2077,8 @@ namespace Moderon
                     RemoveBlockPanel("DO", 3);                                      // Скрытие панели DO3
                 }
 
-#if DEBUG
-                MessageBox.Show("Удален 1-й блок (DO + UI)");
+                #if DEBUG
+                    MessageBox.Show("Удален 1-й блок (DO + UI)");
                 #endif
             }
         }
@@ -2055,6 +2086,8 @@ namespace Moderon
         ///<summary>Проверка для удаления 2-го блока расширения M72E12RA сигналов (DO + UI)</summary>
         private void RemoveSecondBlock_DOUI_M72E12RA(Dictionary<ExpBlock, int> blocks)
         {
+            if (!isAutoSelect) return;  // Ручной режим расстановки блоков
+
             // Условия для удаления M72E12RA в качестве 2-го блока расширения
             int type = blocks.Count;                                               // Общее количество задействованных типов блоков
             int count_M72E12RA = 0;                                                // Расчётное количество блоков
@@ -2119,6 +2152,8 @@ namespace Moderon
         ///<summary>Проверка для удаления 3-го блока расширения M72E12RA сигналов (DO + UI)</summary>
         private void RemoveThirdBlock_DOUI_M72E12RA(Dictionary<ExpBlock, int> blocks)
         {
+            if (!isAutoSelect) return;  // Ручной режим расстановки блоков
+
             int type = blocks.Count;                                                // Общее количество задействованных типов блоков
             int count_M72E12RA = 0;                                                 // Расчётное количество блоков
             int now_M72E12RA = expansion_blocks                                     // Текущее количество блоков
@@ -2152,6 +2187,8 @@ namespace Moderon
         ///<summary>Проверка для удаления 1-го блока расширения M72E16NA сигналов UI</summary>
         private void RemoveFirstBlockUI_M72E16NA(Dictionary<ExpBlock, int> blocks)
         {
+            if (!isAutoSelect) return;  // Ручной режим расстановки блоков
+
             // Условия для удаления M72E16NA в качестве 1-го блока расширения
             int count = 0;                                                          // Общее количество задействованных блоков
             foreach (var el in blocks.Values) count += el;
@@ -2175,6 +2212,8 @@ namespace Moderon
         ///<summary>Проверка для удаления 2-го блока расширения M72E16NA сигналов UI</summary>
         private void RemoveSecondBlockUI_M72E16NA(Dictionary<ExpBlock, int> blocks)
         {
+            if (!isAutoSelect) return;  // Ручной режим расстановки блоков
+
             // Условия для удаления M72E16NA в качестве 2-го блока расширения
             int type = blocks.Count;                                                // Количество типов задействованных блоков
             int count_M72E16NA = 0;                                                 // Расчётное количество блоков
@@ -2230,6 +2269,8 @@ namespace Moderon
         ///<summary>Проверка для удаления 3-го блока расширения M72E16NA сигналов UI</summary>
         private void RemoveThirdBlockUI_M72E16NA(Dictionary<ExpBlock, int> blocks)
         {
+            if (!isAutoSelect) return;  // Ручной режим расстановки блоков
+
             // Условия для удаления M72E16NA в качестве 3-го блока расширения
             int type = blocks.Count;                                                // Количество типов задействованных блоков
             int count_M72E16NA = 0;                                                 // Расчётное количество блоков
@@ -2262,6 +2303,8 @@ namespace Moderon
         ///<summary>Проверка для удаления 1-го блока расширения M72E08RA сигналов DO</summary>
         private void RemoveFirstBlockDO_M72E08RA(Dictionary<ExpBlock, int> blocks)
         {
+            if (!isAutoSelect) return;  // Ручной режим расстановки блоков
+
             // Условия для удаления M72E08RA в качестве 1-го блока расширения
             int count_M72E08RA = 0;                                                 // Расчётное количество блоков M72E08RA 
 
@@ -2287,6 +2330,8 @@ namespace Moderon
         ///<summary>Проверка для удаления 2-го блока расширения M72E08RA сигналов DO</summary>
         private void RemoveSecondBlockDO_M72E08RA(Dictionary<ExpBlock, int> blocks)
         {
+            if (!isAutoSelect) return;  // Ручной режим расстановки блоков
+
             // Условия для удаления M72E08RA в качестве 2-го блока расширения
             int type = blocks.Count;                                               // Общее количество типов задействованных блоков
             int count_M72E08RA = 0;                                                // Расчётное количество блоков M72E08RA
@@ -2371,6 +2416,8 @@ namespace Moderon
         ///<summary>Проверка для удаления 3-го блока расширения M72E08RA сигналов DO</summary>
         private void RemoveThirdBlockDO_M72E08RA(Dictionary<ExpBlock, int> blocks)
         {
+            if (!isAutoSelect) return;  // Ручной режим расстановки блоков
+
             // Условия для удаления M72E08RA в качестве 3-го блока расширения
             int type = blocks.Count;                                                // Общее количество типов задействованных блоков
             int count_M72E08RA = 0;                                                 // Расчётное количество блоков M72E08RA
@@ -2443,6 +2490,8 @@ namespace Moderon
         ///<summary>Проверка для удаления 1-го блока расширения M72E12RB сигналов AO</summary>
         private void RemoveFirstBlockAO_M72E12RB(Dictionary<ExpBlock, int> blocks)
         {
+            if (!isAutoSelect) return;  // Ручной режим расстановки блоков
+
             // Условия для удаления M72E12RB в качестве 1-го блока расширения
             int count_M72E12RB = 0;                                                 // Расчётное количество блоков M72E12RB
             int now_M72E12RB = expansion_blocks                                     // Текущее количество блоков M72E12RB
@@ -2488,6 +2537,8 @@ namespace Moderon
         ///<summary>Проверка для удаления 2-го блока расширения M72E12RB сигналов AO</summary>
         private void RemoveSecondBlockAO_M72E12RB(Dictionary<ExpBlock, int> blocks)
         {
+            if (!isAutoSelect) return;  // Ручной режим расстановки блоков
+
             // Условия для удаления M72E12RB в качестве второго блока расширения
             int type = blocks.Count;                                                // Общее количество задействованных блоков
             int count_M72E12RB = 0;                                                 // Расчётное количество блоков
@@ -2640,6 +2691,8 @@ namespace Moderon
         ///<summary>Проверка для удаления 3-го блока расширения M72E12RB сигналов AO</summary>
         private void RemoveThirdBlockAO_M72E12RB(Dictionary<ExpBlock, int> blocks)
         {
+            if (!isAutoSelect) return;  // Ручной режим расстановки блоков
+
             int type = blocks.Count;                                                // Общее количество типов задействованных блоков
             int count_M72E12RB = 0;                                                 // Расчётное количество блоков M72E12RB
             int now_M72E12RB = expansion_blocks                                     // Текущее количество блоков M72E12RB
