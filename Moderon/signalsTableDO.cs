@@ -97,9 +97,12 @@ namespace Moderon
 
             mainPage.Hide(); loadModbusPanel.Hide();
             label_comboSysType.Text = "ТАБЛИЦА СИГНАЛОВ";
-            comboSysType.Hide(); 
+            comboSysType.Hide();
             panelElements.Hide(); panelBlocks.Hide();       // Скрытие панели выбора элементов и блоков расширения
             Plk_copyPanel.Hide();                           // Скрытие панели выбора типа контроллера
+            panManBlocks.Hide();                            // Скрытие панели ручного выбора блоков
+            autoSelectBlocks_check.Hide();                  // Скрытие выбора режима подбора блоков
+
             signalsPanel.Location = p1;
             signalsPanel.Show();
             signalsPanel.Height = 845;
@@ -125,8 +128,20 @@ namespace Moderon
             label_comboSysType.Text = "ТИП СИСТЕМЫ";
             comboSysType.Show();
             panelElements.Show();                           // Отображение панели выбора элементов
-            // Отображение панели блоков расширения при наличии
-            if (expansion_blocks.Count > 0) panelBlocks.Show();
+
+
+            // Отображение панели блоков расширения при наличии и автоматическом подборе
+            if (expansion_blocks.Count > 0 && isAutoSelect) panelBlocks.Show();
+
+            if (!isAutoSelect)                              // При ручном варианте подбора блоков расширения
+            {
+                autoSelectBlocks_check.Show(); panManBlocks.Show();
+            }
+            else if (isAutoSelect && !panelBlocks.Visible)  // При авто варианте подбора блоков расширения
+            {
+                autoSelectBlocks_check.Show();
+            }
+
             Plk_copyPanel.Show();                           // Отображение панели выбора типа контроллера
             formSignalsButton.Show();                       // Отображение кнопки "Сформировать IO"
             fromSignalsMove = false;                        // Сброс признака перехода с панели выбора сигналов

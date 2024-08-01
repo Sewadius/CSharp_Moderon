@@ -77,7 +77,7 @@ namespace Moderon
 
             foreach (var el in blocks_labels) el.Hide();
             panelBlocks.Hide();                                                 // Скрытие панели отображения блоков
-            autoSelectBlocks_check.Show();                                      // Отображение выбора типа расстановки блоков
+            if (Plk_copyPanel.Visible) autoSelectBlocks_check.Show();           // Отображение выбора ручной/авто при нахождении на главном экране
         }
 
         ///<summary>Сброс заголовков для панелей блоков расширения</summary>
@@ -550,10 +550,7 @@ namespace Moderon
             var ui_combos_type = new List<ComboBox>() { UI8_typeCombo, UI9_typeCombo, UI10_typeCombo, UI11_typeCombo };     // UI_typeCombo
             var ui_labels = new List<Label>() { UI8_plkLabel, UI9_plkLabel, UI10_plkLabel, UI11_plkLabel };                 // UI подписи сигналов
             var do_combos = new List<ComboBox>() { DO5_combo, DO6_combo };                                                  // DO_combo
-            var do_labels = new List<Label>() { DO5_plkLabel, DO6_plkLabel };                                               // DO подписи сигналов
-
-            // Количество и тип блоков расширения, расчётное значение
-            Dictionary<ExpBlock, int> blocks;                                                                
+            var do_labels = new List<Label>() { DO5_plkLabel, DO6_plkLabel };                                               // DO подписи сигналов                                                          
 
             if (comboPlkType.SelectedIndex == plkChangeIndexLast) return;           // Выбранный индекс не изменился
 
@@ -562,7 +559,6 @@ namespace Moderon
                 //MessageBox.Show(expansion_blocks.Count.ToString());
                 comboPlkType_copy.SelectedIndex = 0;                                // Выбор типа контроллера на основной форме
                 plkChangeIndexLast = 0;                                             // Сохранение нового значения состояния "Mini"
-                blocks = CalcExpBlocks_typeNums();                                  // Расчёт нового количества блоков расширения
 
                 ChangePlk_Headers(true);                                            // Подписи заголовков для контроллера "Mini"
 
@@ -585,43 +581,12 @@ namespace Moderon
                 if (ignoreEvents) return;
                 CheckSignals_plkChange();                                           // Проверка распределённых сигналов на Optimized  
 
-                RemoveThirdBlockUI_M72E16NA(blocks);                                // Проверка на удаление 3-го блока расширения UI
-                RemoveSecondBlockUI_M72E16NA(blocks);                               // Проверка на удаление 2-го блока расширения UI
-                RemoveFirstBlockUI_M72E16NA(blocks);                                // Проверка на удаление 1-го блока расширения UI
-
-                RemoveThirdBlockDO_M72E08RA(blocks);                                // Проверка на удаление 3-го блока расширения DO
-                RemoveSecondBlockDO_M72E08RA(blocks);                               // Проверка на удаление 2-го блока расширения DO
-                RemoveFirstBlockDO_M72E08RA(blocks);                                // Проверка на удаление 1-го блока расширения DO
-
-                RemoveThirdBlock_DOUI_M72E12RA(blocks);                             // Проверка на удаление 3-го блока расширения DO + UI
-                RemoveSecondBlock_DOUI_M72E12RA(blocks);                            // Проверка на удаление 2-го блока расширения DO + UI
-                RemoveFirstBlock_DOUI_M72E12RA(blocks);                             // Проверка на удаление 1-го блока расширения DO + UI
-
-                RemoveThirdBlockAO_M72E12RB(blocks);                                // Проверка на удаление 3-го блока расширения AO
-                RemoveSecondBlockAO_M72E12RB(blocks);                               // Проверка на удаление 2-го блока расширения AO
-                RemoveFirstBlockAO_M72E12RB(blocks);                                // Проверка на удаление 1-го блока расширения AO
-
-                AddFirstBlockAO_M72E12RB(blocks);                                   // Проверка на добавление 1-го блока расширения AO
-                AddSecondBlockAO_M72E12RB(blocks);                                  // Проверка на добавление 2-го блока расширения AO
-                AddThirdBlockAO_M72E12RB(blocks);                                   // Проверка на добавление 3-го блока расширения AO
-
-                AddFirstBlock_DOUI_M72E12RA(blocks);                                // Проверка на добавление 1-го блока расширения DO + UI
-                AddSecondBlock_DOUI_M72E12RA(blocks);                               // Проверка на добавление 2-го блока расширения DO + UI
-                AddThirdBlock_DOUI_M72E12RA(blocks);                                // Проверка на добавление 3-го блока расширения DO + UI
-
-                AddFirstBlockDO_M72E08RA(blocks);                                   // Проверка на добавление 1-го блока расширения DO
-                AddSecondBlockDO_M72E08RA(blocks);                                  // Проверка на добавление 2-го блока расширения DO
-                AddThirdBlockDO_M72E08RA(blocks);                                   // Проверка на добавление 3-го блока расширения DO
-
-                AddFirstBlockUI_M72E16NA(blocks);                                   // Проверка на добавление 1-го блока расширения UI
-                AddSecondBlockUI_M72E16NA(blocks);                                  // Проверка на добавление 2-го блока расширения UI
-                AddThirdBlockUI_M72E16NA(blocks);                                   // Проверка на добавление 3-го блока расширения UI
+                ChangeBlocks_panels();                                              // Удаление/отображение панелей
             }
             else if (comboPlkType.SelectedIndex == 1)                               // Выбрали контроллер "Optimized"
             {
                 plkChangeIndexLast = 1;                                             // Сохранение нового значения состояния "Optimized"
                 comboPlkType_copy.SelectedIndex = 1;                                // Выбор типа контроллера на основной форме
-                blocks = CalcExpBlocks_typeNums();                                  // Расчёт нового количества блоков расширения
 
                 ChangePlk_Headers(false);                                           // Подписи заголовков для контроллера "Optimized"
 
@@ -644,34 +609,46 @@ namespace Moderon
 
                 if (ignoreEvents) return;
 
-                RemoveThirdBlockUI_M72E16NA(blocks);                                // Проверка на удаление 3-го блока расширения UI
-                RemoveSecondBlockUI_M72E16NA(blocks);                               // Проверка на удаление 2-го блока расширения UI
-                RemoveFirstBlockUI_M72E16NA(blocks);                                // Проверка на удаление 1-го блока расширения UI
-
-                RemoveThirdBlockDO_M72E08RA(blocks);                                // Проверка на удаление 3-го блока расширения DO
-                RemoveSecondBlockDO_M72E08RA(blocks);                               // Проверка на удаление 2-го блока расширения DO
-                RemoveFirstBlockDO_M72E08RA(blocks);                                // Проверка на удаление 1-го блока расширения DO
-
-                RemoveThirdBlock_DOUI_M72E12RA(blocks);                             // Проверка на удаление 3-го блока расширения DO + UI
-                RemoveSecondBlock_DOUI_M72E12RA(blocks);                            // Проверка на удаление 2-го блока расширения DO + UI
-                RemoveFirstBlock_DOUI_M72E12RA(blocks);                             // Проверка на удаление 1-го блока расширения DO + UI
-
-                RemoveThirdBlockAO_M72E12RB(blocks);                                // Проверка на удаление 3-го блока расширения AO
-                RemoveSecondBlockAO_M72E12RB(blocks);                               // Проверка на удаление 2-го блока расширения AO
-                RemoveFirstBlockAO_M72E12RB(blocks);                                // Проверка на удаление 1-го блока расширения AO
-
-                AddFirstBlock_DOUI_M72E12RA(blocks);                                // Проверка на добавление 1-го блока расширения DO + UI
-                AddSecondBlock_DOUI_M72E12RA(blocks);                               // Проверка на добавление 2-го блока расширения DO + UI
-                AddThirdBlock_DOUI_M72E12RA(blocks);                                // Проверка на добавление 3-го блока расширения DO + UI
-
-                AddFirstBlockDO_M72E08RA(blocks);                                   // Проверка на добавление 1-го блока расширения DO
-                AddSecondBlockDO_M72E08RA(blocks);                                  // Проверка на добавление 2-го блока расширения DO
-                AddThirdBlockDO_M72E08RA(blocks);                                   // Проверка на добавление 3-го блока расширения DO
-
-                AddFirstBlockUI_M72E16NA(blocks);                                   // Проверка на добавление 1-го блока расширения UI
-                AddSecondBlockUI_M72E16NA(blocks);                                  // Проверка на добавление 2-го блока расширения UI
-                AddThirdBlockUI_M72E16NA(blocks);                                   // Проверка на добавление 3-го блока расширения UI
+                ChangeBlocks_panels();                                              // Удаление/отображение панелей
             }
+        }
+
+        ///<summary>Удаление и отображение панелей для блоков расширения</summary>
+        private void ChangeBlocks_panels()
+        {
+            Dictionary<ExpBlock, int> blocks = CalcExpBlocks_typeNums();        // Расчёт нового количества блоков расширения
+
+            RemoveThirdBlockUI_M72E16NA(blocks);                                // Проверка на удаление 3-го блока расширения UI
+            RemoveSecondBlockUI_M72E16NA(blocks);                               // Проверка на удаление 2-го блока расширения UI
+            RemoveFirstBlockUI_M72E16NA(blocks);                                // Проверка на удаление 1-го блока расширения UI
+
+            RemoveThirdBlockDO_M72E08RA(blocks);                                // Проверка на удаление 3-го блока расширения DO
+            RemoveSecondBlockDO_M72E08RA(blocks);                               // Проверка на удаление 2-го блока расширения DO
+            RemoveFirstBlockDO_M72E08RA(blocks);                                // Проверка на удаление 1-го блока расширения DO
+
+            RemoveThirdBlock_DOUI_M72E12RA(blocks);                             // Проверка на удаление 3-го блока расширения DO + UI
+            RemoveSecondBlock_DOUI_M72E12RA(blocks);                            // Проверка на удаление 2-го блока расширения DO + UI
+            RemoveFirstBlock_DOUI_M72E12RA(blocks);                             // Проверка на удаление 1-го блока расширения DO + UI
+
+            RemoveThirdBlockAO_M72E12RB(blocks);                                // Проверка на удаление 3-го блока расширения AO
+            RemoveSecondBlockAO_M72E12RB(blocks);                               // Проверка на удаление 2-го блока расширения AO
+            RemoveFirstBlockAO_M72E12RB(blocks);                                // Проверка на удаление 1-го блока расширения AO
+
+            AddFirstBlockAO_M72E12RB(blocks);                                   // Проверка на добавление 1-го блока расширения AO
+            AddSecondBlockAO_M72E12RB(blocks);                                  // Проверка на добавление 2-го блока расширения AO
+            AddThirdBlockAO_M72E12RB(blocks);                                   // Проверка на добавление 3-го блока расширения AO
+
+            AddFirstBlock_DOUI_M72E12RA(blocks);                                // Проверка на добавление 1-го блока расширения DO + UI
+            AddSecondBlock_DOUI_M72E12RA(blocks);                               // Проверка на добавление 2-го блока расширения DO + UI
+            AddThirdBlock_DOUI_M72E12RA(blocks);                                // Проверка на добавление 3-го блока расширения DO + UI
+
+            AddFirstBlockDO_M72E08RA(blocks);                                   // Проверка на добавление 1-го блока расширения DO
+            AddSecondBlockDO_M72E08RA(blocks);                                  // Проверка на добавление 2-го блока расширения DO
+            AddThirdBlockDO_M72E08RA(blocks);                                   // Проверка на добавление 3-го блока расширения DO
+
+            AddFirstBlockUI_M72E16NA(blocks);                                   // Проверка на добавление 1-го блока расширения UI
+            AddSecondBlockUI_M72E16NA(blocks);                                  // Проверка на добавление 2-го блока расширения UI
+            AddThirdBlockUI_M72E16NA(blocks);                                   // Проверка на добавление 3-го блока расширения UI
         }
 
         ///<summary>Изменение панелей UI при добавлении блока расширения с DO</summary>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Moderon
 {
@@ -258,6 +259,12 @@ namespace Moderon
         {
             initialConfigure = false;                       // Сброс признака начальной расстановки
 
+            var ao_combos = new List<ComboBox>()
+            {
+                AO1_combo, AO2_combo, AO3_combo,
+                AO1bl1_combo, AO2bl1_combo, AO1bl2_combo, AO2bl2_combo, AO1bl3_combo, AO2bl3_combo
+            };
+
             var blocks = CalcExpBlocks_typeNums();          // Определение типов и количества блоков расширения
 
             RemoveThirdBlock_DOUI_M72E12RA(blocks);         // Проверка удаления 3-го блока расширения M72E12RA
@@ -298,6 +305,23 @@ namespace Moderon
                 SelectComboBox_AO(AO1bl3_combo, code, AO1bl3_lab, ref AO1bl3combo_text, ref AO1bl3combo_index);
             else if (AO2bl3_combo.SelectedIndex == 0 && block3_AOpanel.Enabled) 
                 SelectComboBox_AO(AO2bl3_combo, code, AO2bl3_lab, ref AO2bl3combo_text, ref AO2bl3combo_index);
+            // Нет свободного места для распределения, в ручном режиме добавление к comboBox
+            else if (!isAutoSelect)
+            {
+                Ao ao_find = list_ao.Find(x => x.Code == code);
+                bool isFound = false;
+
+                if (ao_find != null)
+                {
+                    string name = ao_find.Name;
+                    foreach (var el in ao_combos)
+                    {
+                        if (el.Items.Contains(name)) isFound = true;
+                        if (!isFound) el.Items.Add(name);
+                        isFound = false;
+                    }
+                }
+            }
 
             CheckSignalsReady();                // Проверка распределения сигналов
         }

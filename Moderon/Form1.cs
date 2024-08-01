@@ -700,7 +700,10 @@ namespace Moderon
             // Различные признаки-флаги для программы
             correctFile = false;                            // Установка начального признака корректного файла загрузки
             initialConfigure = true;                        // Установка признака начальной расстановки системы
-            optimizeOnly = false;                           // Сброс признака блокировки выбора ПЛК Optimize
+            optimizeOnly = false;                           // Сброс признака блокировки выбора ПЛК Optimize                       
+
+            autoSelectBlocks_check.Checked = true;          // Сброс признака автоматическог подбора блоков расширения
+            autoSelectBlocks_check.Show();
 
             expansion_blocks.Clear();                       // Очистка списка задействованных блоков расширения
         }
@@ -1435,6 +1438,8 @@ namespace Moderon
             panelBlocks.Hide();                                 // Скрытие панели выбора блоков расширения
             Plk_copyPanel.Hide();                               // Скрытие панели выбора типа контроллера
             pic_signalsReady.Hide();                            // Скрытие изображения статуса распределения сигналов
+            panManBlocks.Hide();                                // Скрытие панели ручного выбора блоков
+            autoSelectBlocks_check.Hide();                      // Скрытие выбора режима подбора блоков
         }
 
         ///<summary>Нажали вкладку "Помощь" в главном меню</summary>
@@ -1454,6 +1459,8 @@ namespace Moderon
             panelBlocks.Hide();                                 // Скрытие панели выбора блоков расширения
             Plk_copyPanel.Hide();                               // Скрытие панели выбора типа контроллера
             pic_signalsReady.Hide();                            // Скрытие изображения статуса распределения сигналов
+            panManBlocks.Hide();                                // Скрытие панели ручного выбора блоков
+            autoSelectBlocks_check.Hide();                      // Скрытие выбора режима подбора блоков
         }
 
         // Нажали кнопку "Назад" в панели загрузки Modbus
@@ -1484,7 +1491,19 @@ namespace Moderon
             formSignalsButton.Show();                                                   // Отображение кнопки "Сформировать"
             if (pic_signalsReady.Image == Properties.Resources.red_cross)
                 pic_signalsReady.Show();                                                // Отображение статуса распределения сигналов
-            if (expansion_blocks.Count > 0) panelBlocks.Show();                         // Отображение панели блоков расширения при наличии
+            
+            // Отображение панели блоков расширения при наличии и автоматическом подборе
+            if (expansion_blocks.Count > 0 && isAutoSelect) panelBlocks.Show();
+
+            if (!isAutoSelect)                                                          // При ручном варианте подбора блоков расширения
+            {
+                autoSelectBlocks_check.Show(); panManBlocks.Show();
+            }
+            else if (isAutoSelect && !panelBlocks.Visible)                              // При авто варианте подбора блоков расширения
+            {
+                autoSelectBlocks_check.Show();
+            }
+
             Plk_copyPanel.Show();                                                       // Отображение панели выбора типа контроллера
         }
 
@@ -1499,7 +1518,19 @@ namespace Moderon
             formSignalsButton.Show();                                                   // Отображение кнопки "Сформировать"
             if (pic_signalsReady.Image == Properties.Resources.red_cross)
                 pic_signalsReady.Show();                                                // Отображение статуса распределения сигналов
-            if (expansion_blocks.Count > 0) panelBlocks.Show();                         // Отображение панели блоков расширения при наличии
+            
+            // Отображение панели блоков расширения при наличии и автоматическом подборе
+            if (expansion_blocks.Count > 0 && isAutoSelect) panelBlocks.Show();
+
+            if (!isAutoSelect)                                                          // При ручном варианте подбора блоков расширения
+            {
+                autoSelectBlocks_check.Show(); panManBlocks.Show();
+            }
+            else if (isAutoSelect && !panelBlocks.Visible)                              // При авто варианте подбора блоков расширения
+            {
+                autoSelectBlocks_check.Show();
+            }
+
             Plk_copyPanel.Show();                                                       // Отображение панели выбора типа контроллера
         }
 
@@ -1622,43 +1653,118 @@ namespace Moderon
         ///<summary>Изменили выбор блока 1 в ручном подборе</summary>
         private void ComboManBl_1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboManBl_1.SelectedIndex != 0)
+            RemoveBlockPanel("AO", 1);                                  // Скрытие панели AO1
+            RemoveBlockPanel("DO", 1);                                  // Скрытие панели DO1
+            RemoveBlockPanel("UI", 1);                                  // Скрытие панели UI1
+
+            if (comboManBl_1.SelectedIndex != 0)                        // Есть выбранный блок расширения
             {
                 autoSelectBlocks_check.Enabled = false;
                 manBl2_label.Show(); comboManBl_2.Show();
             }
-            else
+            else                                                        // Выбрали "Нет"
             {
                 autoSelectBlocks_check.Enabled = true;
                 manBl2_label.Hide(); comboManBl_2.Hide();
+            }
+
+            // Алгоритм при выборе блоков расширения
+            if (comboManBl_1.SelectedIndex == 1)                        // Блок расширения M72E08RA 
+            {
+                DO_block1_panelChanged_M72E08RA();                      // Отображение панели DO1
+            }
+            else if (comboManBl_1.SelectedIndex == 2)                   // Блок расширения M72E12RA
+            {
+                DO_block1_panelChanged_M72E12RA();
+                UI_block1_panelChanged_M72E12RA();
+            }
+            else if (comboManBl_1.SelectedIndex == 3)                   // Блок расширения M72E12RB
+            {
+                DO_block1_panelChanged_M72E12RB();
+                UI_block1_panelChanged_M72E12RB();
+                AO_block1_panelChanged_M72E12RB();
+            }
+            else if (comboManBl_1.SelectedIndex == 4)                   // Блок расширения M72E16NA
+            {
+                UI_block1_panelChanged_M72E16NA();
             }
         }
 
         ///<summary>Изменили выбор блока 2 в ручном подборе</summary>
         private void ComboManBl_2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboManBl_2.SelectedIndex != 0)
+            RemoveBlockPanel("AO", 2);                                  // Скрытие панели AO2
+            RemoveBlockPanel("DO", 2);                                  // Скрытие панели DO2
+            RemoveBlockPanel("UI", 2);                                  // Скрытие панели UI2
+
+            if (comboManBl_2.SelectedIndex != 0)                        // Есть выбранный блок расширения
             {
                 manBl3_label.Show(); comboManBl_3.Show();
                 comboManBl_1.Enabled = false;
             }
-            else
+            else                                                        // Выбрали "Нет"
             {
                 manBl3_label.Hide(); comboManBl_3.Hide();
                 comboManBl_1.Enabled= true;
+            }
+
+            // Алгоритм при выборе блоков расширения
+            if (comboManBl_2.SelectedIndex == 1)                        // Блок расширения M72E08RA 
+            {
+                DO_block2_panelChanged_M72E08RA();                      // Отображение панели DO1
+            }
+            else if (comboManBl_2.SelectedIndex == 2)                   // Блок расширения M72E12RA
+            {
+                DO_block2_panelChanged_M72E12RA();
+                UI_block2_panelChanged_M72E12RA();
+            }
+            else if (comboManBl_2.SelectedIndex == 3)                   // Блок расширения M72E12RB
+            {
+                DO_block2_panelChanged_M72E12RB();
+                UI_block2_panelChanged_M72E12RB();
+                AO_block2_panelChanged_M72E12RB();
+            }
+            else if (comboManBl_2.SelectedIndex == 4)                   // Блок расширения M72E16NA
+            {
+                UI_block2_panelChanged_M72E16NA();
             }
         }
 
         ///<summary>Изменили выбор блока 3 в ручном подборе</summary>
         private void ComboManBl_3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboManBl_3.SelectedIndex != 0)
+            RemoveBlockPanel("AO", 3);                                  // Скрытие панели AO3
+            RemoveBlockPanel("DO", 3);                                  // Скрытие панели DO3
+            RemoveBlockPanel("UI", 3);                                  // Скрытие панели UI3
+
+            if (comboManBl_3.SelectedIndex != 0)                        // Есть выбранный блок расширения
             {
                 comboManBl_2.Enabled = false;
             }
-            else
+            else                                                        // Выбрали "Нет"
             {
                 comboManBl_2.Enabled = true;
+            }
+
+            // Алгоритм при выборе блоков расширения
+            if (comboManBl_3.SelectedIndex == 1)                        // Блок расширения M72E08RA 
+            {
+                DO_block3_panelChanged_M72E08RA();                      // Отображение панели DO1
+            }
+            else if (comboManBl_3.SelectedIndex == 2)                   // Блок расширения M72E12RA
+            {
+                DO_block3_panelChanged_M72E12RA();
+                UI_block3_panelChanged_M72E12RA();
+            }
+            else if (comboManBl_3.SelectedIndex == 3)                   // Блок расширения M72E12RB
+            {
+                DO_block3_panelChanged_M72E12RB();
+                UI_block3_panelChanged_M72E12RB();
+                AO_block3_panelChanged_M72E12RB();
+            }
+            else if (comboManBl_3.SelectedIndex == 4)                   // Блок расширения M72E16NA
+            {
+                UI_block3_panelChanged_M72E16NA();
             }
         }
 
@@ -1667,13 +1773,20 @@ namespace Moderon
         {
             if (autoSelectBlocks_check.Checked)                             // Выбор автоматического подбора блоков
             {
-                isAutoSelect = true;
-                panManBlocks.Hide();
+                isAutoSelect = true;                                        // Признак автоматического подбора
+                panManBlocks.Hide();                                        // Скрытие панели ручного выбора блоков
+
+                // Автоматическое распределение сигналов, если карта сигналов не сформирована
+                if (signalsReadyLabel.ForeColor == Color.Red)
+                {
+                    ChangeBlocks_panels();                                  // Определение удаления/отображения панелей
+                    Sig_distributionBtn_Click(this, e);                     // Распределение сигналов
+                }
             }
             else                                                            // Выбор ручного подбора блоков
             {
-                isAutoSelect = false;
-                panManBlocks.Show();
+                isAutoSelect = false;                                       // Сброс признака автоматического подбора
+                panManBlocks.Show();                                        // Оторажение панели ручного выбора блоков
             }
         }
 
