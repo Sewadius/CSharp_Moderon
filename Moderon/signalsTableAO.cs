@@ -336,7 +336,7 @@ namespace Moderon
                     if (comboBox.Items.Count > 1)                                                           // Осталось больше одного элемента в списке
                     {
                         comboBox.SelectedIndex = comboBox.Items.Count - 1;                                  // Выбор последнего элемента
-                        if (comboBox.SelectedItem.ToString() == NOT_SELECTED)
+                        if (comboBox.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosAO(comboBox.SelectedItem.ToString(), comboBox);                    // Удаление из других comboBox выбранного элемента
                             Ao find_ao = list_ao.Find(x => x.Name == comboBox.SelectedItem.ToString());     // Распределение выбранного AO из списка

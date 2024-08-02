@@ -726,7 +726,7 @@ namespace Moderon
 
             if (humidCheck.Checked)                                                                 // Когда выбран увлажнитель
             {
-                if (humidTypeCombo.SelectedIndex == 0)                                              // Паровой увлажнитель
+                if (humidTypeCombo.SelectedIndex == 0 && alarmHumidCheck.Checked)                   // Паровой увлажнитель и выбран аварийный сигнал
                     CheckAddUIToList("Авария парового увлажнителя", code_1, DI);
             }
             else                                                                                    // Отмена выбора увлажнителя

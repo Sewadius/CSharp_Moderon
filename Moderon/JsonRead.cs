@@ -33,6 +33,7 @@ namespace Moderon
 
             if (json_read != null)                                      // Загрузочный файл содержит информацию
             {
+                LoadManBlocksState();                                   // Загрузка режимов блоков расширения
                 LoadCheckBoxAll();                                      // Загрузка для всех сheckBox
                 LoadComboBoxElemAll();                                  // Загрузка для всех comboBox элементов
                 LoadLabelSignalsAll();                                  // Загрузка для подписей кодов таблицы сигналов
@@ -527,6 +528,20 @@ namespace Moderon
                     }
                 }
             }
+        }
+
+        ///<summary>Загрузка состояния режима выбора блоков расширения</summary>
+        private void LoadManBlocksState()
+        {
+            int autoModeBlocksSelect = json_read.ManBlocksState[autoSelectBlocks_check.Name];
+            autoSelectBlocks_check.Checked = autoModeBlocksSelect == 1 ? true : false;
+
+            var check_blocks = new List<ComboBox>()
+            {
+                comboManBl_1, comboManBl_2, comboManBl_3
+            };
+
+            foreach (var el in check_blocks) el.SelectedIndex = json_read.ManBlocksState[el.Name];
         }
 
         ///<summary>Загрузка для всех checkBox</summary>

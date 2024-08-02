@@ -13,6 +13,10 @@ namespace Moderon
 {
     class JsonObject
     {
+        [JsonProperty("ProgVersion")]
+        public string Version { get; set; }                                         // Значение для текущей версии программы
+        [JsonProperty("ManBlocksState")]
+        public Dictionary<string, int> ManBlocksState { get; set; }                 // Состояние для сохранения ручного выбора блоков
         [JsonProperty("CheckBoxState")]
         public Dictionary<string, bool> CheckBoxState { get; set; }                 // Состояние всех checkBox
 
@@ -78,7 +82,9 @@ namespace Moderon
 
         [JsonConstructor]
         public JsonObject(){
-            CheckBoxState = []; ComboBoxElemState = []; TextBoxElemState = []; LabelSignalsState = [];
+            Version = "";
+            ManBlocksState = []; CheckBoxState = []; ComboBoxElemState = []; 
+            TextBoxElemState = []; LabelSignalsState = [];
             ComboSignalsItems = []; ComboSignalsState = []; UiCode = []; UiType = []; UiActive = [];
             AoCode = []; AoActive = []; UiTypeEnable = []; CommandWords = []; DoCode = []; DoActive = [];
             ComboIndex = []; ComboText = []; PanelsEnable = []; PanelsHeaders = []; ExpBlocks = []; PlkType = [];
@@ -94,6 +100,8 @@ namespace Moderon
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             json = new JsonObject();                    // Создание файла для сохранения
+            BuildProgVersion();                         // Сохранение текущей версии программы
+            BuildManBlocksState();                      // Сохранение состояния для ручного выбора блоков расширения
             BuildCheckBoxAll();                         // Сохранение для всех элементов checkBox
             BuildComboBoxElemAll();                     // Сохранение для всех элементов comboBox
             BuildLabelSignalsAll();                     // Сохранение для подписей кодов таблицы сигналов
@@ -541,7 +549,24 @@ namespace Moderon
 
         }
 
-        
+        ///<summary>Сохранение текущей версии программы</summary>
+        private void BuildProgVersion() =>
+            json.Version = VERSION;
+
+        ///<summary>Сохранение состояния ручного выбора блоков расширения</summary>
+        private void BuildManBlocksState()
+        {
+            // Сохранение режима выбора расстановки блоков расширения
+            int autoModeBlocksSelect = autoSelectBlocks_check.Checked ? 1 : 0;
+            json.ManBlocksState.Add(autoSelectBlocks_check.Name, autoModeBlocksSelect);
+
+            var check_blocks = new List<ComboBox>()
+            {
+                comboManBl_1, comboManBl_2, comboManBl_3
+            };
+
+            foreach (var el in check_blocks) json.ManBlocksState.Add(el.Name, el.SelectedIndex);
+        }
 
         ///<summary>Сохранение для всех checkBox программы</summary>
         private void BuildCheckBoxAll()

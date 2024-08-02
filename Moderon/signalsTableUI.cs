@@ -277,6 +277,24 @@ namespace Moderon
         private void AddNewUI(ushort code, string type)
         {
             initialConfigure = false;                                   // Сброс признака начальной расстановки
+
+            var ui_combos_plk = new List<ComboBox>()
+            {
+                UI1_combo, UI2_combo, UI3_combo, UI4_combo, UI5_combo, UI6_combo, UI7_combo, UI8_combo, UI9_combo, UI10_combo, UI11_combo
+            };
+
+            var ui_combos_blocks = new List<ComboBox>()
+            {
+                // Блок расширения 1
+                UI1bl1_combo, UI2bl1_combo, UI3bl1_combo, UI4bl1_combo, UI5bl1_combo, UI6bl1_combo, UI7bl1_combo, UI8bl1_combo,
+                UI9bl1_combo, UI10bl1_combo, UI11bl1_combo, UI12bl1_combo, UI13bl1_combo, UI14bl1_combo, UI15bl1_combo, UI16bl1_combo,
+                // Блок расширения 2
+                UI1bl2_combo, UI2bl2_combo, UI3bl2_combo, UI4bl2_combo, UI5bl2_combo, UI6bl2_combo, UI7bl2_combo, UI8bl2_combo,
+                UI9bl2_combo, UI10bl2_combo, UI11bl2_combo, UI12bl2_combo, UI13bl2_combo, UI14bl2_combo, UI15bl2_combo, UI16bl2_combo,
+                // Блок расширения 3
+                UI1bl3_combo, UI2bl3_combo, UI3bl3_combo, UI4bl3_combo, UI5bl3_combo, UI6bl3_combo, UI7bl3_combo, UI8bl3_combo,
+                UI9bl3_combo, UI10bl3_combo, UI11bl3_combo, UI12bl3_combo, UI13bl3_combo, UI14bl3_combo, UI15bl3_combo, UI16bl3_combo
+            };
             
             var blocks = CalcExpBlocks_typeNums();                      // Определение типов и количества блоков расширения
 
@@ -749,8 +767,33 @@ namespace Moderon
                 {
                     SelectComboBox_UI(UI16bl3_combo, code, UI16bl3_lab, UI16bl3combo_text, UI16bl3combo_index, type, UI16bl3_typeCombo); break;
                 }
-                else
-                    break;  // Не удалось распределить сигнал
+                else if (isAutoSelect) break;  // Не удалось распределить сигнал, автоматический алгоритм
+                else                           // Ручной алгоритм, добавление сигнала к другим comboBox
+                {
+                    Ui ui_find = list_ui.Find(x => x.Code == code);
+                    bool isFound = false;
+
+                    if (ui_find != null)
+                    {
+                        string name = ui_find.Name;                             // Получение имени сигнала
+                        foreach (var el in ui_combos_plk)                       // Добавление к сигналам ПЛК, все типы сигналов
+                        {
+                            if (el.Items.Contains(name)) isFound = true;
+                            if (!isFound) el.Items.Add(name);
+                            isFound = false;
+                        }
+                        if (!sensor)                                            // Если не сигнал датчика, обычный DI
+                        {
+                            foreach (var el in ui_combos_blocks)                // Добавление к сигналам блоков расширения
+                            {
+                                if (el.Items.Contains(name)) isFound = true;
+                                if (!isFound) el.Items.Add(name);
+                                isFound = false;
+                            }
+                        }
+                    }
+                    break;
+                }
 
             } while (signalUI != null);     // Пока есть сигнал к распределению
 
@@ -775,7 +818,7 @@ namespace Moderon
                     if (cm.Items.Count > 1)                                                         // Осталось больше одного элемента в списке
                     {
                         cm.SelectedIndex = cm.Items.Count - 1;                                      // Выбор последнего элемента
-                        if (cm.SelectedItem.ToString() == NOT_SELECTED)
+                        if (cm.SelectedItem.ToString() != NOT_SELECTED)
                         {
                             SubFromCombosUI(cm.SelectedItem.ToString(), cm);                        // Удаление из других comboBox выбранного элемента
                             find_ui = list_ui.Find(x => x.Name == cm.SelectedItem.ToString());

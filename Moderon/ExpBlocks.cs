@@ -9,16 +9,12 @@ using System.Windows.Forms;
 namespace Moderon
 {
     /// <summary>Класс для представления блока расширения</summary>
-    class ExpBlock
+    class ExpBlock(string name, short do_num, short ao_num, short ui_num)
     {
-        public string Name { get; private set; }
-        public short DO {  get; private set; }
-        public short AO { get; private set; }
-        public short UI { get; private set; }
-        public ExpBlock(string name, short do_num, short ao_num, short ui_num)
-        {
-            Name = name; DO = do_num; AO = ao_num; UI = ui_num;
-        }
+        public string Name { get; private set; } = name; 
+        public short DO { get; private set; } = do_num; 
+        public short AO { get; private set; } = ao_num; 
+        public short UI { get; private set; } = ui_num;
     }
 
     public partial class Form1 : Form
@@ -1995,16 +1991,19 @@ namespace Moderon
                     {
                         block1_AOpanel.Hide(); block1_AOpanel.Enabled = false;      // Скрытие и блокировка панели AO 1
                         AOblock1_header.Text = "";                                  // Очистка заголовка панели AO1
+                        AOCombosBlock_1_Reset();                                    // Сброс выбранных сигналов с блока расширения AO1
                     }
                     else if (number == 2)
                     {
                         block2_AOpanel.Hide(); block2_AOpanel.Enabled = false;      // Скрытие и блокировка панели AO 2
                         AOblock2_header.Text = "";                                  // Очистка заголовка панели AO2
+                        AOCombosBlock_2_Reset();                                    // Сброс выбранных сигналов с блока расширения AO2
                     }
                     else if (number == 3)
                     {
                         block3_AOpanel.Hide(); block3_AOpanel.Enabled = false;      // Скрытие и блокировка панели AO 3
                         AOblock3_header.Text = "";                                  // Очистка заголовка панели AO3
+                        AOCombosBlock_3_Reset();                                    // Сброс выбранных сигналов с блока расширения AO3
                     }
                     break;
             }
@@ -2795,6 +2794,39 @@ namespace Moderon
             }
         }
 
+        /// <summary>Снятие сигналов для comboBox AO блока расширения 1</summary>
+        private void AOCombosBlock_1_Reset()
+        {
+            var ao_combos = new List<ComboBox>()
+            {
+                AO1bl1_combo, AO2bl1_combo
+            };
+
+            foreach (var el in ao_combos) el.SelectedIndex = 0;
+        }
+
+        /// <summary>Снятие сигналов для comboBox AO блока расширения 2</summary>
+        private void AOCombosBlock_2_Reset()
+        {
+            var ao_combos = new List<ComboBox>()
+            {
+                AO1bl2_combo, AO2bl2_combo
+            };
+
+            foreach (var el in ao_combos) el.SelectedIndex = 0;
+        }
+
+        /// <summary>Снятие сигналов для comboBox AO блока расширения 3</summary>
+        private void AOCombosBlock_3_Reset()
+        {
+            var ao_combos = new List<ComboBox>()
+            {
+                AO1bl3_combo, AO2bl3_combo
+            };
+
+            foreach (var el in ao_combos) el.SelectedIndex = 0;
+        }
+
         /// <summary>Блокировка и скрытие comboBox DO блока расширения 1, скрытие подписей сигналов</summary>
         private void DOCombosBlock_1_Reset()
         {
@@ -2863,7 +2895,7 @@ namespace Moderon
             //UIblock1_header.Text = "";  // Очистка заголовка для панели UI блока расширения 1
 
             foreach (var el in ui_combos) { el.SelectedIndex = 0; el.Hide(); el.Enabled = false; }
-            foreach (var el in ui_type_combos) { el.SelectedIndex = 0; el.Hide(); el.Enabled = false; }
+            foreach (var el in ui_type_combos) { el.SelectedIndex = 2; el.Hide(); el.Enabled = false; }
             foreach (var el in ui_labels) el.Hide();
         }
 
@@ -2890,7 +2922,7 @@ namespace Moderon
             //UIblock2_header.Text = "";  // Очистка заголовка для панели UI блока расширения 2
 
             foreach (var el in ui_combos) { el.SelectedIndex = 0; el.Hide(); el.Enabled = false; }
-            foreach (var el in ui_type_combos) { el.SelectedIndex = 0; el.Hide(); el.Enabled = false; }
+            foreach (var el in ui_type_combos) { el.SelectedIndex = 2; el.Hide(); el.Enabled = false; }
             foreach (var el in ui_labels) el.Hide();
         }
 
@@ -2915,7 +2947,7 @@ namespace Moderon
             };
 
             foreach (var el in ui_combos) { el.SelectedIndex = 0; el.Hide(); el.Enabled = false; }
-            foreach (var el in ui_type_combos) { el.SelectedIndex = 0; el.Hide(); el.Enabled = false; }
+            foreach (var el in ui_type_combos) { el.SelectedIndex = 2; el.Hide(); el.Enabled = false; }
             foreach (var el in ui_labels) el.Hide();
         }
 
@@ -3002,7 +3034,7 @@ namespace Moderon
                         }  
                     }
 
-                    if (!isSelected && el.SelectedIndex == 0) el.SelectedIndex = 1;     // "Не выбрано" меняет на сигнал
+                    if (!isSelected && el.SelectedIndex == 0) el.SelectedIndex = 1;     // "Не выбрано" меняется на сигнал
                 }
                     
             foreach (var el in ui_bl1_combos)                                           // UI сигналы, блок расширения 1

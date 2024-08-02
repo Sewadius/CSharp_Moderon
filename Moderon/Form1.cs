@@ -1688,6 +1688,10 @@ namespace Moderon
             {
                 UI_block1_panelChanged_M72E16NA();
             }
+
+            // Распределение сигналов, если после добавления блока 1 карта сигналов не сформирована
+            if (comboManBl_1.SelectedIndex != 0 && signalsReadyLabel.ForeColor == Color.Red) 
+                Sig_distributionBtn_Click(this, e);
         }
 
         ///<summary>Изменили выбор блока 2 в ручном подборе</summary>
@@ -1728,6 +1732,10 @@ namespace Moderon
             {
                 UI_block2_panelChanged_M72E16NA();
             }
+
+            // Распределение сигналов, если после добавления блока 2 карта сигналов не сформирована
+            if (comboManBl_2.SelectedIndex != 0 && signalsReadyLabel.ForeColor == Color.Red)
+                Sig_distributionBtn_Click(this, e);
         }
 
         ///<summary>Изменили выбор блока 3 в ручном подборе</summary>
@@ -1766,6 +1774,10 @@ namespace Moderon
             {
                 UI_block3_panelChanged_M72E16NA();
             }
+
+            // Распределение сигналов, если после добавления блока 1 карта сигналов не сформирована
+            if (comboManBl_3.SelectedIndex != 0 && signalsReadyLabel.ForeColor == Color.Red)
+                Sig_distributionBtn_Click(this, e);
         }
 
         ///<summary>Выбор автоматического подбора блоков расширения</summary>

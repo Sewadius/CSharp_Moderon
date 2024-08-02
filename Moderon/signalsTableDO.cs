@@ -290,14 +290,17 @@ namespace Moderon
         ///<summary>Проверка распределения сигналов</summary>
         private bool CheckSignalsReady()
         {
-            bool a = true;                      // Сигналы распределены по умолчанию
+            bool a;                                                         // Признак распределения сигналов
+            bool do_active = false, ao_active = false, ui_active= false;    // Признаки нераспределенных сигналов по группам
 
-            foreach (var elem in list_do)       // Нераспеределённый сигнал в DO
-                if (elem.Active) a = false;
-            foreach (var elem in list_ao)       // Нераспеределённый сигнал в AO
-                if (elem.Active) a = false;
-            foreach (var elem in list_ui)       // Нераспеределённый сигнал в UI
-                if (elem.Active) a = false;
+            foreach (var elem in list_do)           // Нераспеределённый сигнал в DO
+                if (elem.Active) do_active = true;
+            foreach (var elem in list_ao)           // Нераспеределённый сигнал в AO
+                if (elem.Active) ao_active = true;
+            foreach (var elem in list_ui)           // Нераспеределённый сигнал в UI
+                if (elem.Active) ui_active = true;
+
+            a = !do_active && !ao_active && !ui_active;                     // Если нет нераспределённых сигналов
 
             if (a) // Сигналы распределены
             {
@@ -652,6 +655,14 @@ namespace Moderon
         {
             initialConfigure = false;                                       // Сброс признака начальной расстановки
 
+            var do_combos = new List<ComboBox>()
+            {
+                DO1_combo, DO2_combo, DO3_combo, DO4_combo, DO5_combo, DO6_combo,
+                DO1bl1_combo, DO2bl1_combo, DO3bl1_combo, DO4bl1_combo, DO5bl1_combo, DO6bl1_combo, DO7bl1_combo, DO8bl1_combo,
+                DO1bl2_combo, DO2bl2_combo, DO3bl2_combo, DO4bl2_combo, DO5bl2_combo, DO6bl2_combo, DO7bl2_combo, DO8bl2_combo,
+                DO1bl3_combo, DO2bl3_combo, DO3bl3_combo, DO4bl3_combo, DO5bl3_combo, DO6bl3_combo, DO7bl3_combo, DO8bl3_combo
+            };
+
             var blocks = CalcExpBlocks_typeNums();                          // Определение типов и количества блоков расширения
 
             RemoveThirdBlockUI_M72E16NA(blocks);                            // Проверка на удаление 3-го блока расширения UI
@@ -730,6 +741,24 @@ namespace Moderon
                 comboPlkType.SelectedIndex = 1;         // Принудительный выбор ПЛК Optimize
                 AddNewDO(code);                         // Распределение дискретного выхода
             }
+            // Если нет свободного места для распределения, в ручном режиме добавление к comboBox
+            else if (!isAutoSelect)
+            {
+                Do do_find = list_do.Find(x => x.Code == code);
+                bool isFound = false;
+
+                if (do_find != null)
+                {
+                    string name = do_find.Name;
+                    foreach (var el in do_combos)
+                    {
+                        if (el.Items.Contains(name)) isFound = true;
+                        if (!isFound) el.Items.Add(name);
+                        isFound = false;
+                    }
+                }
+            }
+
             CheckSignalsReady();    // Проверка распределения сигналов
         }
 
