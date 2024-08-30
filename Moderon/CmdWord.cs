@@ -498,8 +498,8 @@ namespace Moderon
                 bit7 = elHeatStagesCombo.SelectedIndex > 1;                     // Ступень 3
                 bit8 = elHeatStagesCombo.SelectedIndex > 0;                     // Ступень 2
                 bit9 = true;                                                    // Ступень 1 по умолчанию
-                bit10 = thermSwitchCombo.SelectedIndex > 0;                     // Термовыключатель 1
-                bit11 = thermSwitchCombo.SelectedIndex > 1;                     // Термовыключатель 2
+                bit10 = fireThermCheck.Checked;                                 // Термовыключатель 1, пожар ТЭНов
+                bit11 = overheatThermCheck.Checked;                             // Термовыключатель 2, перегрев ТЭНов
             }
             else                                                                // Не выбран электрический нагреватель
                 bit0 = bit1 = bit2 = bit3 = bit4 = bit5 = bit6 = bit7 = bit8 = bit9 = bit10 = bit11 = false;
@@ -617,8 +617,8 @@ namespace Moderon
                 bit7 = elHeatAddStagesCombo.SelectedIndex > 1;                          // Ступень 3
                 bit8 = elHeatAddStagesCombo.SelectedIndex > 0;                          // Ступень 2
                 bit9 = true;                                                            // Ступень 1 по умолчанию
-                bit10 = thermAddSwitchCombo.SelectedIndex > 0;                          // Термовыключатель 1
-                bit11 = thermAddSwitchCombo.SelectedIndex > 1;                          // Термовыключатель 2
+                bit10 = fireAddThermCheck.Checked;                                      // Термовыключатель, пожар
+                bit11 = overheatAddThermCheck.Checked;                                  // Термовыключатель, перегрев
             }
             else
                 bit0 = bit1 = bit2 = bit3 = bit4 = bit5 = bit6 = bit7 = bit8 = bit9 = bit10 = bit11 = false;
@@ -664,7 +664,8 @@ namespace Moderon
         {
             bool bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8, bit9, bit10, bit11, bit12, bit13, bit14, bit15;
 
-            bool modbus_selected = prFanFC_check.Checked && prFanControlCombo.SelectedIndex == 1;
+            // Признак выбранного сигнала Modbus (выбран ПЧ и тип управления Modbus)
+            bool modbus_selected = prFanFC_ECcombo.SelectedIndex == 1 && prFanControlCombo.SelectedIndex == 1;
 
             bit0 = true;                                // Наличие вентилятора
             bit1 = prFanPSCheck.Checked;                // Подтверждение работы вентилятора
@@ -700,7 +701,8 @@ namespace Moderon
         {
             bool bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8, bit9, bit10, bit11, bit12, bit13, bit14, bit15;
 
-            bool modbus_selected = prFanFC_check.Checked && prFanControlCombo.SelectedIndex == 1;
+            // Признак выбранного сигнала Modbus (выбран ПЧ и тип управления Modbus)
+            bool modbus_selected = prFanFC_ECcombo.SelectedIndex == 1 && prFanControlCombo.SelectedIndex == 1;
 
             if (checkResPrFan.Checked)                          // Выбран резервный двигатель
             { 
@@ -1136,12 +1138,20 @@ namespace Moderon
             FirstStHeatCombo_SignalsAOSelectedIndexChanged(this, e);                            // Сигналы AO ПЛК
         }
 
-        ///<summary>Изменили количество термовыключателей калорифера</summary>
-        private void ThermSwitchCombo_cmdSelectedIndexChanged(object sender, EventArgs e)
+        ///<summary>Выбрали термовыключатель перегрева основного нагревателя</summary>
+        private void OverheatThermCheck_cmdCheckedChanged(object sender, EventArgs e)
         {
             CommandWord_10();
             if (ignoreEvents) return;
-            ThermSwitchCombo_signalsDISelectedIndexChanged(this, e);                            // Сигналы DI
+            OverheatThermCheck_signalsDICheckedChanged(this, e);                                // Сигналы DI ПЛК
+        }
+
+        ///<summary>Выбрали термовыключатель пожара основного нагревателя</summary>
+        private void FireThermCheck_cmdCheckedChanged(object sender, EventArgs e)
+        {
+            CommandWord_10();
+            if (ignoreEvents) return;
+            FireThermCheck_signalsDICheckedChanged(this, e);                                    // Сигналы DI ПЛК
         }
 
         ///<summary>Подтверждение работы основного насоса водяного калорифера</summary>
@@ -1311,12 +1321,20 @@ namespace Moderon
             FirstStAddHeatCombo_signalsAOSelectedIndexChanged(this, e);
         }
 
-        ///<summary>Изменили количество термовыключателей</summary>
-        private void ThermAddSwitchCombo_cmdSelectedIndexChanged(object sender, EventArgs e)
+        ///<summary>Выбрали термовыключатель перегрева догревателя</summary>
+        private void OverheatAddThermCheck_cmdCheckedChanged(object sender, EventArgs e)
         {
             CommandWord_14();
             if (ignoreEvents) return;
-            ThermAddSwitchCombo_signalsDISelectedIndexChanged(this, e);                         // Сигналы DI
+            OverheatAddThermCheck_signalsDICheckedChanged(this, e);                             // Сигналы DI
+        }
+
+        ///<summary>Выбрали термовыключатель перегрева догревателя</summary>
+        private void FireAddThermCheck_cmdCheckedChanged(object sender, EventArgs e)
+        {
+            CommandWord_14();
+            if (ignoreEvents) return;
+            FireAddThermCheck_signalsDICheckedChanged(this, e);                                 // Сигналы DI
         }
 
         ///<summary>Выбрали увлажнитель</summary>

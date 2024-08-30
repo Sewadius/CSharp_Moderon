@@ -418,7 +418,7 @@ namespace Moderon
         private void PrFanControlCombo_signalsAOSelectedIndexChanged(object sender, EventArgs e)
         {
             if (ignoreEvents) return;
-            if (prFanFC_check.Checked)                                          // Если выбран ПЧ
+            if (prFanFC_ECcombo.SelectedIndex == 1)                             // Если выбран ПЧ
             {
                 if (prFanControlCombo.SelectedIndex == 0)                       // Внешние контакты
                 {
@@ -433,6 +433,7 @@ namespace Moderon
                     prFanFcTypeCombo.Enabled = true;                            // Разблокировка выбора типа ПЧ
                 }
             }
+
             PrFanControlCombo_signalsDISelectedIndexChanged(this, e);           // Проверка для сигналов DI
             PrFanControlCombo_signalsDOSelectedIndexChanged(this, e);           // Проверка для сигналов DO
         }

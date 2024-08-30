@@ -11,7 +11,7 @@ namespace Moderon
     {
         readonly static public string 
             NOT_SELECTED = "Не выбрано",                                // Статус для состояния входов/выходов
-            VERSION = "v.1.1.6.1";                                      // Текущая версия программы
+            VERSION = "v.1.1.6.2";                                      // Текущая версия программы
 
         private const int 
             WIDTH_MAIN = 955,                                           // Ширина основной формы
@@ -213,9 +213,9 @@ namespace Moderon
                 comboSysType, comboPlkType, comboPlkType_copy, filterPrCombo, filterOutCombo, 
                 prFanPowCombo, prFanControlCombo, prFanFcTypeCombo, outFanFcTypeCombo,
                 outFanPowCombo, outFanControlCombo, heatTypeCombo,
-                elHeatStagesCombo, thermSwitchCombo, coolTypeCombo, frCoolStagesCombo,
+                elHeatStagesCombo, coolTypeCombo, frCoolStagesCombo,
                 humidTypeCombo, recupTypeCombo,
-                heatAddTypeCombo, elHeatAddStagesCombo, thermAddSwitchCombo,
+                heatAddTypeCombo, elHeatAddStagesCombo,
                 bypassPlastCombo, firstStHeatCombo, firstStAddHeatCombo, comboReadType, fireTypeCombo
             };
 
@@ -727,7 +727,7 @@ namespace Moderon
         {
             var fanPrOutOptions = new List<CheckBox>()
             {
-                prFanPSCheck, prFanFC_check, prFanThermoCheck, curDefPrFanCheck, checkResPrFan, 
+                prFanPSCheck, prFanThermoCheck, curDefPrFanCheck, checkResPrFan, 
                 prFanAlarmCheck, prFanStStopCheck, prFanSpeedCheck,
                 outFanPSCheck, outFanFC_check, outFanThermoCheck, curDefOutFanCheck, checkResOutFan,
                 outFanAlarmCheck, outFanStStopCheck, outFanSpeedCheck
@@ -741,6 +741,7 @@ namespace Moderon
             foreach (var el in fanPrOutOptions) el.Checked = false;
             foreach (var el in fanOptionsUnenabled) el.Enabled = false;
 
+            prFanFC_ECcombo.SelectedIndex = 0;               // Сброс выбора ПЧ/ЕС двигателя
             outFanCheck.Checked = false;                     // Сброс наличия вытяжного вентилятора
         }
 
@@ -763,6 +764,9 @@ namespace Moderon
             confHeatPumpCheck.Checked = false;          // Подтверждение работы основного насоса
             pumpCurProtect.Checked = false;             // Защита по току основного насоса
             reservPumpHeater.Checked = false;           // Резервный насос калорифера
+            overheatThermCheck.Checked = false;         // Термовыключатель перегрева ТЭНов
+            fireThermCheck.Checked = false;             // Термовыключатель пожара ТЭНов
+
             // Подтверждение работы резервного насоса
             confHeatResPumpCheck.Checked = false; confHeatResPumpCheck.Enabled = false;
             // Защита резервного насоса по току
@@ -782,6 +786,9 @@ namespace Moderon
             pumpAddHeatCheck.Checked = true;        // Насос второго нагревателя
             pumpCurAddProtect.Checked = false;      // Защита по току основного насоса
             reservPumpAddHeater.Checked = false;    // Резервный насос калорифера
+            overheatAddThermCheck.Checked = false;  // Термовыключатель перегрева
+            fireAddThermCheck.Checked = false;      // Термовыключатель пожара
+
             // Подтверждение работы резервного насоса
             confAddHeatResPumpCheck.Checked = false; confAddHeatResPumpCheck.Enabled = false;
             // Защита резервного насоса по току
@@ -1234,7 +1241,17 @@ namespace Moderon
                 // Отмена выбора сигнала аварии ПЧ
                 if (prFanAlarmCheck.Checked) prFanAlarmCheck.Checked = false;
             }
+
             PrFanFC_check_cmdCheckedChanged(this, e);              // Командное слово
+        }
+
+        ///<summary>Выбрали "Нет/ПЧ/ЕС" для приточного вентилятора</summary>
+        private void PrFanFC_ECcombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (prFanFC_ECcombo.SelectedIndex == 1 || prFanFC_ECcombo.SelectedIndex == 2)       // Выбран ПЧ или ЕС-двигатель
+            {
+
+            }
         }
 
         ///<summary>Выбрали воздушную заслонку приточного вентилятора</summary>

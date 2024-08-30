@@ -96,7 +96,7 @@ namespace Moderon
         ///<summary>Изменили тип управления ПЧ приточного вентилятора</summary>
         private void PrFanControlCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
-            if (prFanFC_check.Checked)                                                                  // Когда выбран ПЧ
+            if (prFanFC_ECcombo.SelectedIndex == 1)                                                     // Когда выбран ПЧ
             {
                 if (prFanControlCombo.SelectedIndex == 0)                                               // Внешние контакты
                 {
@@ -300,7 +300,9 @@ namespace Moderon
             {
                 SubFromCombosUI(code_1); SubFromCombosUI(code_2);
             }
-            ThermSwitchCombo_signalsDISelectedIndexChanged(this, e);                                // Проверка термовыключателей
+
+            OverheatThermCheck_signalsDICheckedChanged(this, e);                                    // Проверка термовыключателя перегрева
+            FireThermCheck_signalsDICheckedChanged(this, e);                                        // Проверка термовыключателя пожара
         }
 
         ///<summary>Изменили тип основного нагревателя</summary>
@@ -324,7 +326,9 @@ namespace Moderon
                 {
                     SubFromCombosUI(code_1); SubFromCombosUI(code_2); SubFromCombosUI(code_3);
                 }
-                ThermSwitchCombo_signalsDISelectedIndexChanged(this, e); // Проверка термовыключателей
+
+                OverheatThermCheck_signalsDICheckedChanged(this, e);                                // Проверка термовыключателя перегрева
+                FireThermCheck_signalsDICheckedChanged(this, e);                                    // Проверка термовыключателя пожара
             }
         }
 
@@ -398,33 +402,36 @@ namespace Moderon
             }
         }
 
-        ///<summary>Изменили количество термовыключателей основного нагревателя</summary>
-        private void ThermSwitchCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
+        ///<summary>Выбрали термовыключатель перегрева ТЭНов</summary>
+        private void OverheatThermCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 1079, code_2 = 1078;                                                    // Термовыключатель 1 - пожар, 2 - перегрев
+            ushort code_1 = 1078;                                                                   // Термовыключатель перегрева ТЭНов
 
             if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 1)                            // Выбран электрокалорифер
-            { 
-                if (thermSwitchCombo.SelectedIndex == 0)                                            // Нет термовыключателей
-                {
-                    SubFromCombosUI(code_1); SubFromCombosUI(code_2);
-                }
-                else if (thermSwitchCombo.SelectedIndex == 1)                                       // Один термовыключатель
-                {
-                    SubFromCombosUI(code_2);
-                    CheckAddUIToList("Термовыключатель пожара ТЭНов калорифера", code_1, DI);
-                }
-                else if (thermSwitchCombo.SelectedIndex == 2)                                       // Два термовыключателя
-                {
-                    CheckAddUIToList("Термовыключатель пожара ТЭНов калорифера", code_1, DI);
-                    CheckAddUIToList("Термовыключатель перегрева ТЭНов калорифера", code_2, DI);
-                }
+            {
+                if (overheatThermCheck.Checked)
+                    CheckAddUIToList("Термовыключатель перегрева ТЭНов калорифера", code_1, DI);
+                else
+                    SubFromCombosUI(code_1);
+
             }
-            // Выбран водяной калорифер, либо нет нагревателя
-            if ((heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0) || !heaterCheck.Checked)
-            { 
-                SubFromCombosUI(code_1); SubFromCombosUI(code_2);                                   // Удаление сигналов
+            else SubFromCombosUI(code_1);
+        }
+
+        ///<summary>Выбрали термовыключатель пожара ТЭНов</summary>
+        private void FireThermCheck_signalsDICheckedChanged(object sender, EventArgs e)
+        {
+            ushort code_1 = 1079;                                                                   // Термовыключатель пожара ТЭНов
+
+            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 1)                            // Выбран электрокалорифер
+            {
+                if (fireThermCheck.Checked)
+                    CheckAddUIToList("Термовыключатель пожара ТЭНов калорифера", code_1, DI);
+                else
+                    SubFromCombosUI(code_1);
+
             }
+            else SubFromCombosUI(code_1);
         }
 
         ///<summary>Выбрали догреватель</summary>
@@ -443,7 +450,9 @@ namespace Moderon
             {
                 SubFromCombosUI(code_1); SubFromCombosUI(code_2);
             }
-            ThermAddSwitchCombo_signalsDISelectedIndexChanged(this, e);                             // Проверка для термовыключателей
+
+            OverheatAddThermCheck_signalsDICheckedChanged(this, e);                                 // Проверка для термовыключателя перегрева
+            FireAddThermCheck_signalsDICheckedChanged(this, e);                                     // Проверка для термовыключателя пожара
         }
 
         ///<summary>Изменили тип догревателя</summary>
@@ -464,7 +473,9 @@ namespace Moderon
                 {
                     SubFromCombosUI(code_1); SubFromCombosUI(code_2);                               // Удаление сигналов
                 }
-                ThermAddSwitchCombo_signalsDISelectedIndexChanged(this, e);                         // Проверка для термовыключателей
+
+                OverheatAddThermCheck_signalsDICheckedChanged(this, e);                             // Проверка для термовыключателя перегрева
+                FireAddThermCheck_signalsDICheckedChanged(this, e);                                 // Проверка для термовыключателя пожара
             }
         }
 
@@ -536,35 +547,36 @@ namespace Moderon
                 else                                                                                            // Отмена выбора
                     SubFromCombosUI(code_1);
             }
-        }
+        }  
 
-        ///<summary>Изменили количество термовыключателей догревателя</summary>
-        private void ThermAddSwitchCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
+        ///<summary>Выбрали термовыключатель перегрева догревателя</summary>
+        private void OverheatAddThermCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 1129, code_2 = 1128;                                                    // Термовыключатель 1 - пожар, 2 - перегрев
+            ushort code_1 = 1128;                                                                   // Термовыключатель перегрева догревателя
 
             if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 1)                        // Выбран электрический догреватель
-            { 
-                if (thermAddSwitchCombo.SelectedIndex == 0)                                         // Нет термовыключателей
-                {
-                    SubFromCombosUI(code_1); SubFromCombosUI(code_2);
-                }
-                else if (thermAddSwitchCombo.SelectedIndex == 1)                                    // Один термовыключатель
-                {
-                    SubFromCombosUI(code_2);
-                    CheckAddUIToList("Термовыключатель пожара ТЭНов догревателя", code_1, DI);
-                }
-                else if (thermAddSwitchCombo.SelectedIndex == 2)                                    // Два термовыключателя
-                {
-                    CheckAddUIToList("Термовыключатель пожара ТЭНов догревателя", code_1, DI);
-                    CheckAddUIToList("Термовыключатель перегрева ТЭНов догревателя", code_2, DI);
-                }
+            {
+                if (overheatAddThermCheck.Checked)
+                    CheckAddUIToList("Термовыключатель перегрева ТЭНов догревателя", code_1, DI);
+                else
+                    SubFromCombosUI(code_1);
             }
-            // Выбран водяной догреватель, либо нет догревателя
-            if ((addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 0) || !addHeatCheck.Checked)
-            { 
-                SubFromCombosUI(code_1); SubFromCombosUI(code_2);                                   // Удаление сигналов
-            } 
+            else SubFromCombosUI(code_1);
+        }
+
+        ///<summary>Выбрали термовыключатель пожара догревателя</summary>
+        private void FireAddThermCheck_signalsDICheckedChanged(object sender, EventArgs e)
+        {
+            ushort code_1 = 1129;                                                                   // Термовыключатель пожара догревателя
+
+            if (addHeatCheck.Checked && heatAddTypeCombo.SelectedIndex == 1)                        // Выбран электрический догреватель
+            {
+                if (overheatAddThermCheck.Checked)
+                    CheckAddUIToList("Термовыключатель пожара ТЭНов догревателя", code_1, DI);
+                else
+                    SubFromCombosUI(code_1);
+            }
+            else SubFromCombosUI(code_1);
         }
 
         ///<summary>Выбрали фильтр</summary>

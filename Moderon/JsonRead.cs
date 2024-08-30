@@ -555,10 +555,10 @@ namespace Moderon
                 confPrDampCheck, heatPrDampCheck, outDampCheck, confOutDampCheck, heatOutDampCheck,
                 // Нагреватель
                 TF_heaterCheck, confHeatPumpCheck, pumpCurProtect, reservPumpHeater, confHeatResPumpCheck,
-                pumpCurResProtect, watSensHeatCheck,
+                pumpCurResProtect, watSensHeatCheck, overheatThermCheck, fireThermCheck,
                 // Второй нагреватель
                 TF_addHeaterCheck, pumpAddHeatCheck, confAddHeatPumpCheck, pumpCurAddProtect, reservPumpAddHeater,
-                confAddHeatResPumpCheck, pumpCurResAddProtect, sensWatAddHeatCheck,
+                confAddHeatResPumpCheck, pumpCurResAddProtect, sensWatAddHeatCheck, overheatAddThermCheck, fireAddThermCheck,
                 // Охладитель
                 alarmFrCoolCheck, thermoCoolerCheck, analogFreonCheck, dehumModeCheck, alarmHumidCheck, analogHumCheck,
                 // Увлажнитель, рециркуляция и рекуператор
@@ -569,7 +569,7 @@ namespace Moderon
                 prChanSensCheck, roomTempSensCheck, chanHumSensCheck, roomHumSensCheck, outdoorChanSensCheck, outChanSensCheck,
                 sigWorkCheck, sigAlarmCheck, sigFilAlarmCheck, fireCheck,
                 // Приточный вентилятор
-                prFanPSCheck, prFanFC_check, prFanThermoCheck, curDefPrFanCheck, checkResPrFan, prDampFanCheck,
+                prFanPSCheck, prFanThermoCheck, curDefPrFanCheck, checkResPrFan, prDampFanCheck,
                 prDampConfirmFanCheck, prFanAlarmCheck, prFanStStopCheck, prFanSpeedCheck,
                 // Вытяжной вентилятор
                 outFanPSCheck, outFanFC_check, outFanThermoCheck, curDefOutFanCheck, checkResOutFan, outDampFanCheck,
@@ -598,6 +598,8 @@ namespace Moderon
         {
             var comboBoxes = new List<ComboBox>()
             {
+                // Вентиляторы
+                prFanFC_ECcombo,
                 // Сигналы и датчики
                 stopStartCombo,
                 // Выбор типа системы
@@ -607,9 +609,9 @@ namespace Moderon
                 // Воздушные фильтры
                 filterPrCombo, filterOutCombo,
                 // Нагреватель
-                heatTypeCombo, elHeatStagesCombo, firstStHeatCombo, thermSwitchCombo,
+                heatTypeCombo, elHeatStagesCombo, firstStHeatCombo,
                 // Второй нагреватель
-                heatAddTypeCombo, elHeatAddStagesCombo, firstStAddHeatCombo, thermAddSwitchCombo,
+                heatAddTypeCombo, elHeatAddStagesCombo, firstStAddHeatCombo,
                 // Охладитель и увлажнитель
                 coolTypeCombo, frCoolStagesCombo, humidTypeCombo,
                 // Рекуператор и датчики

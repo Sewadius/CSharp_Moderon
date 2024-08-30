@@ -1578,7 +1578,7 @@ namespace Moderon
         ///<summary>Изменили тип управления приточного ПЧ</summary>
         private void PrFanControlCombo_signalsDOSelectedIndexChanged(object sender, EventArgs e)
         {
-            if (prFanFC_check.Checked)                                                                  // Когда выбран ПЧ
+            if (prFanFC_ECcombo.SelectedIndex == 1)                                                     // Когда выбран ПЧ
             {
                 if (prFanControlCombo.SelectedIndex == 0)                                               // Внешние контакты, разблокировка сигнала "Пуск/Стоп"
                 {
