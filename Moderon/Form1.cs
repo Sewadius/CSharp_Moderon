@@ -31,15 +31,17 @@ namespace Moderon
             initialConfigure = true,                                    // Признак начальной конфигурации (при загрузке и после сброса)
             optimizeOnly = false,                                       // Признак 8 датчиков температуры (для отключения разблокировки типа ПЛК)
             isAutoSelect = true;                                        // Признак автоматического подбора блоков расширения
-        
+
         // Ранее сохраненные значения индексов для элементов
-        private int 
+        private int
             plkChangeIndexLast = 1,                                     // Значение для выбранного типа контроллера (по умолчанию Optimized для сброса)
             heatTypeComboIndex = 0,                                     // Значение для типа основного нагревателя
             coolTypeComboIndex = 0,                                     // Значение для типа охладителя
             heatAddTypeComboIndex = 0,                                  // Значение для типа дополнительного нагревателя
             humidTypeComboIndex = 0,                                    // Значение для типа увлажнителя
-            recupTypeComboIndex = 0;                                    // Значение для типа рекуператора
+            recupTypeComboIndex = 0,                                    // Значение для типа рекуператора
+            prFanFC_EC_Index = 0,                                       // Значение для выбранного типа (нет/ПЧ/ЕС) приточного вентилятора
+            outFanFC_EC_Index = 0;                                      // Значение для выбранного типа (нет/ПЧ/ЕС) вытяжного вентилятора
 
         private int
             panelOutFan_height;                                         // Значение для высоты панели вытяжного вентилятора
@@ -210,8 +212,8 @@ namespace Moderon
         {
             var elements = new List<ComboBox>()
             {
-                comboSysType, comboPlkType, comboPlkType_copy, filterPrCombo, filterOutCombo, 
-                prFanPowCombo, prFanControlCombo, prFanFcTypeCombo, outFanFcTypeCombo,
+                comboSysType, comboPlkType, comboPlkType_copy, filterPrCombo, filterOutCombo,
+                prFanFC_ECcombo, prFanPowCombo, prFanControlCombo, prFanFcTypeCombo, outFanFcTypeCombo,
                 outFanPowCombo, outFanControlCombo, heatTypeCombo,
                 elHeatStagesCombo, coolTypeCombo, frCoolStagesCombo,
                 humidTypeCombo, recupTypeCombo,
@@ -1189,37 +1191,62 @@ namespace Moderon
             }
         }
 
-        ///<summary>Выбрали ПЧ приточного вентилятора</summary>
-        private void PrFanFC_check_CheckedChanged(object sender, EventArgs e)
+        ///<summary>Выбрали "Нет/ПЧ/ЕС" для приточного вентилятора</summary>
+        private void PrFanFC_ECcombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (prFanFC_check.Checked)                              // Выбрали ПЧ приточного вентилятора
+            int delta_Y = 80;                                           // Сдвиг по координате Y для элементов 
+
+            if (prFanFC_ECcombo.SelectedIndex == prFanFC_EC_Index)      // Индекс не изменился
+                return;
+
+            // Выбран ПЧ или ЕС-двигатель
+            if (prFanFC_ECcombo.SelectedIndex == 1 || prFanFC_ECcombo.SelectedIndex == 2)       
             {
-                prFanControlCombo.Enabled = true;                   // Разблокировка типа управления ПЧ
-
-                FC_fanPrPanel.Show();                               // Отображение панели ПЧ приточного вентилятора
-
-                // Изменение размера панели П вентилятора
-                prFanPanel.Size = new Size(prFanPanel.Width, prFanPanel.Height + FC_fanPrPanel.Height);
-
-                // Сдвиг для панели резерва приточного вентилятора и панели вытяжного вентилятора
-                resFanPrPanel.Location = new Point(resFanPrPanel.Location.X, 
-                    resFanPrPanel.Location.Y + FC_fanPrPanel.Height);
-                outFanPanel.Location = new Point(outFanPanel.Location.X,
-                    outFanPanel.Location.Y + FC_fanPrPanel.Height);
-
-                if (prFanControlCombo.SelectedIndex == 0)           // Внешние контакты 
+                FC_fanPrPanel.Show();                                   // Отображение панели ПЧ приточного вентилятора
+                
+                if (prFanFC_ECcombo.SelectedIndex == 1)                 // Выбран ПЧ приточного вентилятора 
                 {
-                    prFanAlarmCheck.Enabled = true;                 // Разблокировка сигнала аварии ПЧ
-                    prFanSpeedCheck.Enabled = true;                 // Разблокировка выбора скорости 0-10 В
-                    // Выбор сигнала аварии ПЧ
-                    if (!prFanAlarmCheck.Checked) prFanAlarmCheck.Checked = true;
+                    // Отображение элементов управления
+                    prFanControlCombo.Show(); prFanControlCombo_label.Show();
+                    prFanFcTypeCombo.Show(); prFanFcTypeCombo_label.Show();
+
+                    prFanControlCombo.Enabled = true;                   // Разблокировка типа управления ПЧ приточного вентилятора
+
+                    if (prFanControlCombo.SelectedIndex == 0)           // Внешние контакты 
+                    {
+                        prFanAlarmCheck.Enabled = true;                 // Разблокировка сигнала аварии ПЧ
+                        prFanSpeedCheck.Enabled = true;                 // Разблокировка выбора скорости 0-10 В
+                                                                        
+                        if (!prFanAlarmCheck.Checked) 
+                            prFanAlarmCheck.Checked = true;             // Выбор сигнала аварии ПЧ
+                    }
+                    else if (prFanControlCombo.SelectedIndex == 1)      // Modbus
+                    {
+                        prFanFcTypeCombo.Enabled = true;                // Разблокировка выбора типа ПЧ
+                    }
                 }
-                else if (prFanControlCombo.SelectedIndex == 1)      // Modbus
+
+                // Выбран EC-двигатель
+                else if (prFanFC_ECcombo.SelectedIndex == 2)
                 {
-                    prFanFcTypeCombo.Enabled = true;                // Разблокировка выбора типа ПЧ
+                    // Скрытие элементов управления
+                    prFanControlCombo.Hide(); prFanControlCombo_label.Hide();
+                    prFanFcTypeCombo.Hide(); prFanFcTypeCombo_label.Hide();
                 }
-            }  
-            else                                                    // Отмена выбора ПЧ приточного вентилятора
+                    
+                if (prFanFC_EC_Index == 0)                              // Не было ранее выбранного ПЧ или ЕС
+                {
+                    // Изменение размера панели П вентилятора
+                    prFanPanel.Size = new Size(prFanPanel.Width, prFanPanel.Height + FC_fanPrPanel.Height);
+
+                    // Сдвиг вниз для панели резерва приточного вентилятора и панели вытяжного вентилятора
+                    resFanPrPanel.Location = new Point(resFanPrPanel.Location.X,
+                        resFanPrPanel.Location.Y + FC_fanPrPanel.Height);
+                    outFanPanel.Location = new Point(outFanPanel.Location.X,
+                        outFanPanel.Location.Y + FC_fanPrPanel.Height);
+                }
+            }
+            else
             {
                 FC_fanPrPanel.Hide();                               // Скрытие панели ПЧ приточного вентилятора
 
@@ -1236,22 +1263,33 @@ namespace Moderon
                 prFanSpeedCheck.Enabled = false;                    // Блокировка выбора скорости 0-10 В
                 prFanAlarmCheck.Enabled = false;                    // Блокировка выбора сигнала аварии ПЧ
                 prFanFcTypeCombo.Enabled = false;                   // Блокировка выбора типа ПЧ
+                
                 // Отмена сигнала скорости 0-10 В
                 if (prFanSpeedCheck.Checked) prFanSpeedCheck.Checked = false;
                 // Отмена выбора сигнала аварии ПЧ
                 if (prFanAlarmCheck.Checked) prFanAlarmCheck.Checked = false;
             }
 
-            PrFanFC_check_cmdCheckedChanged(this, e);              // Командное слово
-        }
-
-        ///<summary>Выбрали "Нет/ПЧ/ЕС" для приточного вентилятора</summary>
-        private void PrFanFC_ECcombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (prFanFC_ECcombo.SelectedIndex == 1 || prFanFC_ECcombo.SelectedIndex == 2)       // Выбран ПЧ или ЕС-двигатель
+            // Выбрали ЕС, был выбран ПЧ или "Нет"
+            if (prFanFC_ECcombo.SelectedIndex == 2 && (prFanFC_EC_Index == 0 || prFanFC_EC_Index == 1))  
             {
-
+                // Перемещение элементов управления вверх
+                prFanStStopCheck.Location = new Point(prFanStStopCheck.Location.X, prFanStStopCheck.Location.Y - delta_Y);
+                prFanAlarmCheck.Location = new Point(prFanAlarmCheck.Location.X, prFanAlarmCheck.Location.Y - delta_Y);
+                prFanSpeedCheck.Location = new Point(prFanSpeedCheck.Location.X, prFanSpeedCheck.Location.Y - delta_Y);
             }
+
+            // Выбрали "Нет" или ПЧ, был выбран ЕС
+            if ((prFanFC_ECcombo.SelectedIndex == 0 || prFanFC_ECcombo.SelectedIndex == 1) && prFanFC_EC_Index == 2)  
+            {
+                // Перемещение элементов управления вниз
+                prFanStStopCheck.Location = new Point(prFanStStopCheck.Location.X, prFanStStopCheck.Location.Y + delta_Y);
+                prFanAlarmCheck.Location = new Point(prFanAlarmCheck.Location.X, prFanAlarmCheck.Location.Y + delta_Y);
+                prFanSpeedCheck.Location = new Point(prFanSpeedCheck.Location.X, prFanSpeedCheck.Location.Y + delta_Y);
+            }
+
+            prFanFC_EC_Index = prFanFC_ECcombo.SelectedIndex;        // Сохранение значения выбранного индекса
+            PrFanFC_ECcombo_cmdCheckedChanged(this, e);              // Командное слово
         }
 
         ///<summary>Выбрали воздушную заслонку приточного вентилятора</summary>

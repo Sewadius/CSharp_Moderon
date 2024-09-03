@@ -1389,8 +1389,8 @@ namespace Moderon
             CommandWord_19(); CommandWord_20();
         }
  
-        ///<summary>Выбрали ПЧ приточного вентилятора</summary>
-        private void PrFanFC_check_cmdCheckedChanged(object sender, EventArgs e)
+        ///<summary>Выбрали Нет/ПЧ/ЕС двигатель приточного вентилятора</summary>
+        private void PrFanFC_ECcombo_cmdCheckedChanged(object sender, EventArgs e)
         {
             CommandWord_19(); CommandWord_20();
         }

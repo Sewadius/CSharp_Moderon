@@ -91,12 +91,12 @@ namespace Moderon
             this.label16 = new System.Windows.Forms.Label();
             this.prFanFC_ECcombo = new System.Windows.Forms.ComboBox();
             this.FC_fanPrPanel = new System.Windows.Forms.Panel();
-            this.label10 = new System.Windows.Forms.Label();
+            this.prFanControlCombo_label = new System.Windows.Forms.Label();
             this.prFanControlCombo = new System.Windows.Forms.ComboBox();
             this.prFanAlarmCheck = new System.Windows.Forms.CheckBox();
             this.prFanStStopCheck = new System.Windows.Forms.CheckBox();
             this.prFanFcTypeCombo = new System.Windows.Forms.ComboBox();
-            this.label62 = new System.Windows.Forms.Label();
+            this.prFanFcTypeCombo_label = new System.Windows.Forms.Label();
             this.prFanSpeedCheck = new System.Windows.Forms.CheckBox();
             this.resFanPrPanel = new System.Windows.Forms.Panel();
             this.checkResPrFan = new System.Windows.Forms.CheckBox();
@@ -1505,12 +1505,12 @@ namespace Moderon
             // 
             // FC_fanPrPanel
             // 
-            this.FC_fanPrPanel.Controls.Add(this.label10);
+            this.FC_fanPrPanel.Controls.Add(this.prFanControlCombo_label);
             this.FC_fanPrPanel.Controls.Add(this.prFanControlCombo);
             this.FC_fanPrPanel.Controls.Add(this.prFanAlarmCheck);
             this.FC_fanPrPanel.Controls.Add(this.prFanStStopCheck);
             this.FC_fanPrPanel.Controls.Add(this.prFanFcTypeCombo);
-            this.FC_fanPrPanel.Controls.Add(this.label62);
+            this.FC_fanPrPanel.Controls.Add(this.prFanFcTypeCombo_label);
             this.FC_fanPrPanel.Controls.Add(this.prFanSpeedCheck);
             this.FC_fanPrPanel.Location = new System.Drawing.Point(5, 239);
             this.FC_fanPrPanel.Name = "FC_fanPrPanel";
@@ -1518,15 +1518,15 @@ namespace Moderon
             this.FC_fanPrPanel.TabIndex = 54;
             this.FC_fanPrPanel.Visible = false;
             // 
-            // label10
+            // prFanControlCombo_label
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.Location = new System.Drawing.Point(8, 10);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(139, 16);
-            this.label10.TabIndex = 19;
-            this.label10.Text = "Вид управления ПЧ";
+            this.prFanControlCombo_label.AutoSize = true;
+            this.prFanControlCombo_label.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.prFanControlCombo_label.Location = new System.Drawing.Point(8, 10);
+            this.prFanControlCombo_label.Name = "prFanControlCombo_label";
+            this.prFanControlCombo_label.Size = new System.Drawing.Size(139, 16);
+            this.prFanControlCombo_label.TabIndex = 19;
+            this.prFanControlCombo_label.Text = "Вид управления ПЧ";
             // 
             // prFanControlCombo
             // 
@@ -1593,15 +1593,15 @@ namespace Moderon
             this.prFanFcTypeCombo.TabIndex = 52;
             this.prFanFcTypeCombo.SelectedIndexChanged += new System.EventHandler(this.PrFanFcTypeCombo_cmdSelectedIndexChanged);
             // 
-            // label62
+            // prFanFcTypeCombo_label
             // 
-            this.label62.AutoSize = true;
-            this.label62.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label62.Location = new System.Drawing.Point(8, 50);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(80, 16);
-            this.label62.TabIndex = 51;
-            this.label62.Text = "Модель ПЧ";
+            this.prFanFcTypeCombo_label.AutoSize = true;
+            this.prFanFcTypeCombo_label.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.prFanFcTypeCombo_label.Location = new System.Drawing.Point(8, 50);
+            this.prFanFcTypeCombo_label.Name = "prFanFcTypeCombo_label";
+            this.prFanFcTypeCombo_label.Size = new System.Drawing.Size(80, 16);
+            this.prFanFcTypeCombo_label.TabIndex = 51;
+            this.prFanFcTypeCombo_label.Text = "Модель ПЧ";
             // 
             // prFanSpeedCheck
             // 
@@ -10099,7 +10099,7 @@ namespace Moderon
         private System.Windows.Forms.ComboBox prFanPowCombo;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox prFanControlCombo;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label prFanControlCombo_label;
         private System.Windows.Forms.CheckBox prFanPSCheck;
         private System.Windows.Forms.ComboBox outFanControlCombo;
         private System.Windows.Forms.Label label11;
@@ -10679,7 +10679,7 @@ namespace Moderon
         private System.Windows.Forms.CheckBox pumpGlikConfCheck;
         private System.Windows.Forms.CheckBox pumpGlikCurProtect;
         private System.Windows.Forms.ComboBox prFanFcTypeCombo;
-        private System.Windows.Forms.Label label62;
+        private System.Windows.Forms.Label prFanFcTypeCombo_label;
         private System.Windows.Forms.ComboBox outFanFcTypeCombo;
         private System.Windows.Forms.Label label63;
         private System.Windows.Forms.CheckBox pumpGlikResCurProtect;
