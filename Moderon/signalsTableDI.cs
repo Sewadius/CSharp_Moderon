@@ -206,7 +206,7 @@ namespace Moderon
         ///<summary>Изменили тип управления ПЧ вытяжного вентилятора</summary>
         private void OutFanControlCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboSysType.SelectedIndex == 1 && outFanFC_check.Checked)                          // Когда выбран ПЧ
+            if (comboSysType.SelectedIndex == 1 && outFanFC_ECcombo.SelectedIndex == 1)             // Когда выбран ПЧ
             {
                 if (outFanControlCombo.SelectedIndex == 0)                                          // Внешние контакты
                 {

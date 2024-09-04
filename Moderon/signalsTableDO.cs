@@ -1323,7 +1323,7 @@ namespace Moderon
         {
             ushort code_1 = 22, code_2 = 28;                                                // Сигнал "Пуск/Стоп" вытяжного вентилятора 1, 2
 
-            if (comboSysType.SelectedIndex == 1)                                            // Выбрана ПВ-система
+            if (comboSysType.SelectedIndex == 1 && outFanCheck.Checked)                     // Выбрана ПВ-система и вытяжной вентилятор
             {
                 AddToListDo("Сигнал \"Пуск/Стоп\" вытяжного вентилятора 1", code_1);
                 if (checkResOutFan.Checked)                                                 // Выбран резерв вытяжного вентилятора
@@ -1611,7 +1611,7 @@ namespace Moderon
         ///<summary>Изменили тип управления ПЧ вытяжного вентилятора</summary>
         private void OutFanControlCombo_signalsDOSelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboSysType.SelectedIndex == 1 && outFanFC_check.Checked)                              // Выбран ПЧ и ПВ-система
+            if (comboSysType.SelectedIndex == 1 && outFanFC_ECcombo.SelectedIndex == 1)                 // Выбран ПЧ и ПВ-система
             {
                 if (outFanControlCombo.SelectedIndex == 0)                                              // Внешние контакты, разблокировка сигнала "Пуск/Стоп"
                 {
@@ -1623,7 +1623,6 @@ namespace Moderon
                     if (outFanStStopCheck.Checked) outFanStStopCheck.Checked = false;
                     outFanStStopCheck.Enabled = false;
                 }
-                    
             }
         }
 

@@ -572,7 +572,7 @@ namespace Moderon
                 prFanPSCheck, prFanThermoCheck, curDefPrFanCheck, checkResPrFan, prDampFanCheck,
                 prDampConfirmFanCheck, prFanAlarmCheck, prFanStStopCheck, prFanSpeedCheck,
                 // Вытяжной вентилятор
-                outFanPSCheck, outFanFC_check, outFanThermoCheck, curDefOutFanCheck, checkResOutFan, outDampFanCheck,
+                outFanPSCheck, outFanThermoCheck, curDefOutFanCheck, checkResOutFan, outDampFanCheck,
                 outDampConfirmFanCheck, outFanAlarmCheck, outFanStStopCheck, outFanSpeedCheck, outFanCheck
             };
 
@@ -599,7 +599,7 @@ namespace Moderon
             var comboBoxes = new List<ComboBox>()
             {
                 // Вентиляторы
-                prFanFC_ECcombo,
+                prFanFC_ECcombo, outFanFC_ECcombo,
                 // Сигналы и датчики
                 stopStartCombo,
                 // Выбор типа системы

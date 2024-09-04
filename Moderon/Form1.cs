@@ -13,13 +13,14 @@ namespace Moderon
             NOT_SELECTED = "Не выбрано",                                // Статус для состояния входов/выходов
             VERSION = "v.1.1.6.2";                                      // Текущая версия программы
 
-        private const int 
+        private const int
             WIDTH_MAIN = 955,                                           // Ширина основной формы
             HEIGHT_MAIN = 750,                                          // Высота основной формы
             HEIGHT = 280,                                               // Высота для панелей настройки элементов
             DELTA = 31,                                                 // Расстояние между comboBox в таблице сигналов
             HEIGHT_RECUP = 221,                                         // Высота изображения для обычного рекуператора
-            HEIGHT_GLICK = 398;                                         // Высота изображения для гликолевого рекуператора
+            HEIGHT_GLICK = 398,                                         // Высота изображения для гликолевого рекуператора
+            DELTA_Y = 80;                                               // Сдвиг для элементов "Нет/ПЧ/ЕС двигатель"
 
         private Point 
             MENU_POSITION = new(3, 36),                                 // Позиция для меню элементов
@@ -214,7 +215,7 @@ namespace Moderon
             {
                 comboSysType, comboPlkType, comboPlkType_copy, filterPrCombo, filterOutCombo,
                 prFanFC_ECcombo, prFanPowCombo, prFanControlCombo, prFanFcTypeCombo, outFanFcTypeCombo,
-                outFanPowCombo, outFanControlCombo, heatTypeCombo,
+                outFanPowCombo, outFanControlCombo, outFanFC_ECcombo, heatTypeCombo,
                 elHeatStagesCombo, coolTypeCombo, frCoolStagesCombo,
                 humidTypeCombo, recupTypeCombo,
                 heatAddTypeCombo, elHeatAddStagesCombo,
@@ -731,7 +732,7 @@ namespace Moderon
             {
                 prFanPSCheck, prFanThermoCheck, curDefPrFanCheck, checkResPrFan, 
                 prFanAlarmCheck, prFanStStopCheck, prFanSpeedCheck,
-                outFanPSCheck, outFanFC_check, outFanThermoCheck, curDefOutFanCheck, checkResOutFan,
+                outFanPSCheck, outFanThermoCheck, curDefOutFanCheck, checkResOutFan,
                 outFanAlarmCheck, outFanStStopCheck, outFanSpeedCheck
             };
 
@@ -884,7 +885,7 @@ namespace Moderon
                 foreach (var el in prOutPanels) el.Show();
             }
             
-            if (comboSysType.SelectedIndex == 1) comboSysType.Enabled = false;      // Блокировка выбора типа системы
+            if (comboSysType.SelectedIndex == 1) comboSysType.Enabled = false;      // Блокировка выбора типа системы при выборе ПВ
             ComboSysType_cmdSelectedIndexChanged(this, e);                          // Командное слово
             if (ignoreEvents) return;
             ComboSysType_signalsSelectedIndexChanged(this, e);                      // Сигналы ПЛК
@@ -1194,8 +1195,6 @@ namespace Moderon
         ///<summary>Выбрали "Нет/ПЧ/ЕС" для приточного вентилятора</summary>
         private void PrFanFC_ECcombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int delta_Y = 80;                                           // Сдвиг по координате Y для элементов 
-
             if (prFanFC_ECcombo.SelectedIndex == prFanFC_EC_Index)      // Индекс не изменился
                 return;
 
@@ -1274,18 +1273,18 @@ namespace Moderon
             if (prFanFC_ECcombo.SelectedIndex == 2 && (prFanFC_EC_Index == 0 || prFanFC_EC_Index == 1))  
             {
                 // Перемещение элементов управления вверх
-                prFanStStopCheck.Location = new Point(prFanStStopCheck.Location.X, prFanStStopCheck.Location.Y - delta_Y);
-                prFanAlarmCheck.Location = new Point(prFanAlarmCheck.Location.X, prFanAlarmCheck.Location.Y - delta_Y);
-                prFanSpeedCheck.Location = new Point(prFanSpeedCheck.Location.X, prFanSpeedCheck.Location.Y - delta_Y);
+                prFanStStopCheck.Location = new Point(prFanStStopCheck.Location.X, prFanStStopCheck.Location.Y - DELTA_Y);
+                prFanAlarmCheck.Location = new Point(prFanAlarmCheck.Location.X, prFanAlarmCheck.Location.Y - DELTA_Y);
+                prFanSpeedCheck.Location = new Point(prFanSpeedCheck.Location.X, prFanSpeedCheck.Location.Y - DELTA_Y);
             }
 
             // Выбрали "Нет" или ПЧ, был выбран ЕС
             if ((prFanFC_ECcombo.SelectedIndex == 0 || prFanFC_ECcombo.SelectedIndex == 1) && prFanFC_EC_Index == 2)  
             {
                 // Перемещение элементов управления вниз
-                prFanStStopCheck.Location = new Point(prFanStStopCheck.Location.X, prFanStStopCheck.Location.Y + delta_Y);
-                prFanAlarmCheck.Location = new Point(prFanAlarmCheck.Location.X, prFanAlarmCheck.Location.Y + delta_Y);
-                prFanSpeedCheck.Location = new Point(prFanSpeedCheck.Location.X, prFanSpeedCheck.Location.Y + delta_Y);
+                prFanStStopCheck.Location = new Point(prFanStStopCheck.Location.X, prFanStStopCheck.Location.Y + DELTA_Y);
+                prFanAlarmCheck.Location = new Point(prFanAlarmCheck.Location.X, prFanAlarmCheck.Location.Y + DELTA_Y);
+                prFanSpeedCheck.Location = new Point(prFanSpeedCheck.Location.X, prFanSpeedCheck.Location.Y + DELTA_Y);
             }
 
             prFanFC_EC_Index = prFanFC_ECcombo.SelectedIndex;        // Сохранение значения выбранного индекса
@@ -1317,55 +1316,99 @@ namespace Moderon
             PrDampConfirmFanCheck_signalsDICheckedChanged(this, e);   // Сигналы DI ПЛК
         }
 
-        ///<summary>Выбрали ПЧ вытяжного вентилятора</summary>
-        private void OutFanFC_check_CheckedChanged(object sender, EventArgs e)
+        ///<summary>Выбрали "Нет/ПЧ/ЕС" для вытяжного вентилятора</summary>
+        private void OutFanFC_ECcombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (outFanFC_check.Checked)                         // Выбрали ПЧ вытяжного вентилятора
+            if (outFanFC_ECcombo.SelectedIndex == outFanFC_EC_Index)      // Индекс не изменился
+                return;
+
+            // Выбран ПЧ или ЕС-двигатель
+            if (outFanFC_ECcombo.SelectedIndex == 1 || outFanFC_ECcombo.SelectedIndex == 2)
             {
-                FC_fanOutPanel.Show();                          // Отображение панели ПЧ вытяжного вентилятора
+                FC_fanOutPanel.Show();                                   // Отображение панели ПЧ вытяжного вентилятора
+
+                if (outFanFC_ECcombo.SelectedIndex == 1)                 // Выбран ПЧ приточного вентилятора 
+                {
+                    // Отображение элементов управления
+                    outFanControlCombo.Show(); outFanControlCombo_label.Show();
+                    outFanFcTypeCombo.Show(); outFanFcTypeCombo_label.Show();
+
+                    outFanControlCombo.Enabled = true;                   // Разблокировка типа управления ПЧ приточного вентилятора
+
+                    if (outFanControlCombo.SelectedIndex == 0)           // Внешние контакты 
+                    {
+                        outFanAlarmCheck.Enabled = true;                 // Разблокировка сигнала аварии ПЧ
+                        outFanSpeedCheck.Enabled = true;                 // Разблокировка выбора скорости 0-10 В
+
+                        if (!outFanAlarmCheck.Checked)
+                            outFanAlarmCheck.Checked = true;             // Выбор сигнала аварии ПЧ
+                    }
+                    else if (outFanControlCombo.SelectedIndex == 1)      // Modbus
+                    {
+                        outFanFcTypeCombo.Enabled = true;                // Разблокировка выбора типа ПЧ
+                    }
+                }
+
+                // Выбран EC-двигатель
+                else if (outFanFC_ECcombo.SelectedIndex == 2)
+                {
+                    // Скрытие элементов управления
+                    outFanControlCombo.Hide(); outFanControlCombo_label.Hide();
+                    outFanFcTypeCombo.Hide(); outFanFcTypeCombo_label.Hide();
+                }
+
+                if (outFanFC_EC_Index == 0)                              // Не было ранее выбранного ПЧ или ЕС
+                {
+                    // Изменение размера панели В вентилятора
+                    outFanPanel.Size = new Size(outFanPanel.Width, outFanPanel.Height + FC_fanPrPanel.Height);
+
+                    // Сдвиг вниз для панели резерва вытяжного вентилятора
+                    resFanOutPanel.Location = new Point(resFanOutPanel.Location.X,
+                        resFanOutPanel.Location.Y + FC_fanOutPanel.Height);
+                }
+            }
+            else
+            {
+                FC_fanOutPanel.Hide();                               // Скрытие панели ПЧ вытяжного вентилятора
 
                 // Изменение размера панели В вентилятора
-                outFanPanel.Size = new Size(outFanPanel.Width, outFanPanel.Height + FC_fanOutPanel.Height);
-
-                // Сдвиг для панели резерва вытяжного вентилятора
-                resFanOutPanel.Location = new Point(resFanOutPanel.Location.X,
-                    resFanOutPanel.Location.Y + FC_fanOutPanel.Height);
-
-                outFanControlCombo.Enabled = true;              // Разблокировка типа управления ПЧ
-                if (outFanControlCombo.SelectedIndex == 0)      // Внешние контакты
-                {
-                    outFanAlarmCheck.Enabled = true;            // Разблокировка сигнала аварии ПЧ
-                    outFanSpeedCheck.Enabled = true;            // Разблокировка выбора скорости 0-10 В
-                    // Выбор сигнала аварии ПЧ
-                    if (!outFanAlarmCheck.Checked) outFanAlarmCheck.Checked = true;
-                }
-                else if (outFanControlCombo.SelectedIndex == 1) // Modbus
-                {
-                    outFanFcTypeCombo.Enabled = true;           // Разблокировка выбора типа ПЧ
-                }
-            } 
-            else                                                // Отмена выбора ПЧ вытяжного вентилятора
-            {
-                FC_fanOutPanel.Hide();                          // Скрытие панели ПЧ вытяжного вентилятора
-
-                // Изменение размера панели В вентилятора
-                outFanPanel.Size = new Size(outFanPanel.Width, outFanPanel.Height - FC_fanOutPanel.Height);
+                outFanPanel.Size = new Size(outFanPanel.Width, outFanPanel.Height - FC_fanPrPanel.Height);
 
                 // Сдвиг для панели резерва вытяжного вентилятора
                 resFanOutPanel.Location = new Point(resFanOutPanel.Location.X,
                     resFanOutPanel.Location.Y - FC_fanOutPanel.Height);
 
-                outFanControlCombo.Enabled = false;             // Блокировка типа управления ПЧ
-                outFanSpeedCheck.Enabled = false;               // Блокировка выбора скорости 0-10 В
-                outFanAlarmCheck.Enabled = false;               // Блокировка сигнала аварии ПЧ
-                outFanFcTypeCombo.Enabled = false;              // Блокировка выбора типа ПЧ
+                outFanControlCombo.Enabled = false;                  // Блокировка типа управления ПЧ
+                outFanSpeedCheck.Enabled = false;                    // Блокировка выбора скорости 0-10 В
+                outFanAlarmCheck.Enabled = false;                    // Блокировка выбора сигнала аварии ПЧ
+                outFanFcTypeCombo.Enabled = false;                   // Блокировка выбора типа ПЧ
+
                 // Отмена сигнала скорости 0-10 В
                 if (outFanSpeedCheck.Checked) outFanSpeedCheck.Checked = false;
-                // Отмена сигнала аварии ПЧ
+                // Отмена выбора сигнала аварии ПЧ
                 if (outFanAlarmCheck.Checked) outFanAlarmCheck.Checked = false;
             }
 
-            OutFanFC_check_cmdCheckedChanged(this, e);          // Командное слово
+            // Выбрали ЕС, был выбран ПЧ или "Нет"
+            if (outFanFC_ECcombo.SelectedIndex == 2 && (outFanFC_EC_Index == 0 || outFanFC_EC_Index == 1))
+            {
+                // Перемещение элементов управления вверх
+                outFanStStopCheck.Location = new Point(outFanStStopCheck.Location.X, outFanStStopCheck.Location.Y - DELTA_Y);
+                outFanAlarmCheck.Location = new Point(outFanAlarmCheck.Location.X, outFanAlarmCheck.Location.Y - DELTA_Y);
+                outFanSpeedCheck.Location = new Point(outFanSpeedCheck.Location.X, outFanSpeedCheck.Location.Y - DELTA_Y);
+            }
+
+            // Выбрали "Нет" или ПЧ, был выбран ЕС
+            if ((outFanFC_ECcombo.SelectedIndex == 0 || outFanFC_ECcombo.SelectedIndex == 1) && outFanFC_EC_Index == 2)
+            {
+                // Перемещение элементов управления вниз
+                outFanStStopCheck.Location = new Point(outFanStStopCheck.Location.X, outFanStStopCheck.Location.Y + DELTA_Y);
+                outFanAlarmCheck.Location = new Point(outFanAlarmCheck.Location.X, outFanAlarmCheck.Location.Y + DELTA_Y);
+                outFanSpeedCheck.Location = new Point(outFanSpeedCheck.Location.X, outFanSpeedCheck.Location.Y + DELTA_Y);
+            }
+
+            outFanFC_EC_Index = outFanFC_ECcombo.SelectedIndex;        // Сохранение значения выбранного индекса
+            OutFanFC_ECcombo_cmdCheckedChanged(this, e);               // Командное слово
         }
 
         ///<summary>Выбрали воздушную заслонку вытяжного вентилятора</summary>
@@ -1954,8 +1997,13 @@ namespace Moderon
             fromSignalsMove = true;                                                     // Переход из панели выбора сигналов
             FormNetButton_Click(this, e);                                               // Формирование списка сигналов и командных слов для записи
 
+            // Обновление сообщение о статусе данных
             dataMatchPLC_label.Text = "(неизвестно)";
             dataMatchPLC_label.ForeColor = Color.Black;
+
+            // Обновление сообщение о статусе прошивки
+            firmwareMatchPLC_label.Text = "(неизвестно)";
+            firmwareMatchPLC_label.ForeColor = Color.Black;
         }
 
         ///<summary>Нажали на ссылку сайта Moderon</summary>

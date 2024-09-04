@@ -453,7 +453,9 @@ namespace Moderon
         private void OutFanControlCombo_signalsAOSelectedIndexChanged(object sender, EventArgs e)
         {
             if (ignoreEvents) return;
-            if (comboSysType.SelectedIndex == 1 && outFanFC_check.Checked)      // Если выбран ПЧ, ПВ-система
+
+            // Если выбран ПЧ, ПВ-система
+            if (comboSysType.SelectedIndex == 1 && outFanFC_ECcombo.SelectedIndex == 1)      
             {
                 if (outFanControlCombo.SelectedIndex == 0)                      // Внешние контакты
                 {
@@ -825,7 +827,7 @@ namespace Moderon
             if (outFanCheck.Checked && outFanSpeedCheck.Checked)                    // В вентилятор и выбрали управление скоростью вентилятора
             {
                 AddToListAO("Скорость вытяжного вентилятора 1", code_1);
-                if (checkResPrFan.Checked)                                          // Если выбран резерв В
+                if (checkResOutFan.Checked)                                          // Если выбран резерв В
                     AddToListAO("Скорость вытяжного вентилятора 2", code_2);
             }
             else                                                                    // Отмена выбора управления скоростью

@@ -744,7 +744,7 @@ namespace Moderon
         {
             bool bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8, bit9, bit10, bit11, bit12, bit13, bit14, bit15;
 
-            bool modbus_selected = outFanFC_check.Checked && outFanControlCombo.SelectedIndex == 1;
+            bool modbus_selected = prFanFC_ECcombo.SelectedIndex == 1 && outFanControlCombo.SelectedIndex == 1;
 
             // Выбрана ПВ-система и В вентилятор
             if (comboSysType.SelectedIndex == 1 && outFanCheck.Checked)                
@@ -787,7 +787,7 @@ namespace Moderon
         {
             bool bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8, bit9, bit10, bit11, bit12, bit13, bit14, bit15;
 
-            bool modbus_selected = outFanFC_check.Checked && outFanControlCombo.SelectedIndex == 1;
+            bool modbus_selected = prFanFC_ECcombo.SelectedIndex == 1 && outFanControlCombo.SelectedIndex == 1;
 
             // Выбрана ПВ-система, выбран В вентилятор и резерв В вентилятора
             if (comboSysType.SelectedIndex == 1 && outFanCheck.Checked && checkResOutFan.Checked)      
@@ -1464,7 +1464,7 @@ namespace Moderon
         }
 
         ///<summary>Выбрали ПЧ для вытяжного вентилятора</summary>
-        private void OutFanFC_check_cmdCheckedChanged(object sender, EventArgs e)
+        private void OutFanFC_ECcombo_cmdCheckedChanged(object sender, EventArgs e)
         {
             CommandWord_21(); CommandWord_22();
         }

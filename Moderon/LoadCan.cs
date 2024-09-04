@@ -550,6 +550,9 @@ namespace Moderon
                 dataMatchPLC_label.Text = "(неизвестно)";           // Новое сообщение о статусе данных
                 dataMatchPLC_label.ForeColor = Color.Black;         // Изменение цвета для сообщения
 
+                firmwareMatchPLC_label.Text = "(неизвестно)";       // Новое сообщение о статусе прошивки
+                firmwareMatchPLC_label.ForeColor = Color.Black;     // Изменение цвета для сообщения
+
                 ConnectPlkBtn_Click(this, e);                       // Закрытие соединения с ПЛК
                 RefreshCanPorts_Click(this, e);                     // Обновление сведений о COM портах
             }
@@ -588,6 +591,9 @@ namespace Moderon
                 dataMatchPLC_label.Text = "(неизвестно)";           // Новое сообщение о статусе данных
                 dataMatchPLC_label.ForeColor = Color.Black;         // Изменение цвета для сообщения
 
+                firmwareMatchPLC_label.Text = "(неизвестно)";       // Новое сообщение о статусе прошивки
+                firmwareMatchPLC_label.ForeColor = Color.Black;     // Изменение цвета для сообщения
+
                 ConnectPlkBtn_Click(this, e);                       // Закрытие соединения с ПЛК
                 RefreshCanPorts_Click(this, e);                     // Обновление сведений о COM портах
 
@@ -611,8 +617,19 @@ namespace Moderon
             ReadAO_Values_fromPLC();                        // Чтение AO сигналов из ПЛК
             ReadCMD_Values_fromPLC();                       // Чтение командных слов из ПЛК
 
+            // Формирование массива строк из данных в TextBox
+            string[] lines1 = dataCanTextBox.Text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            string[] lines2 = writeCanTextBox.Text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+
+            // Пропуск первой строки, данные конфигурации
+            string confText1 = string.Join(Environment.NewLine, lines1.Skip(1));
+            string confText2 = string.Join(Environment.NewLine, lines2.Skip(1));
+
+            string firmwareText1 = lines1[0];
+            string firmwareText2 = lines2[0];
+
             // Проверка совпадения данных в окнах для чтения / записи
-            if (dataCanTextBox.Text == writeCanTextBox.Text)                    // Данные чтения/записи совпадают
+            if (confText1 == confText2)                                         // Данные чтения/записи совпадают
             {
                 dataMatchPLC_label.Text = "Данные в ПЛК совпадают";
                 dataMatchPLC_label.ForeColor = Color.DarkGreen;
@@ -621,6 +638,18 @@ namespace Moderon
             {
                 dataMatchPLC_label.Text = "Данные в ПЛК не совпадают";
                 dataMatchPLC_label.ForeColor = Color.Red;
+            }
+
+            // Проверка версии прошивки в ПЛК / возможной для загрузки
+            if (firmwareText1 == firmwareText2)
+            {
+                firmwareMatchPLC_label.Text = "Прошивка актуальна";
+                firmwareMatchPLC_label.ForeColor = Color.DarkGreen;
+            }
+            else
+            {
+                firmwareMatchPLC_label.Text = "Прошивка устарела";
+                firmwareMatchPLC_label.ForeColor = Color.Red;
             }
 
             // Ещё не было сообщения об обновлении в текущую сессию подключения к ПЛК
