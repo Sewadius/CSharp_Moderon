@@ -1193,3 +1193,8 @@
 - создана проверка на выбор В `ComboSysType_signalsSelectedIndexChanged()`
 - исправлена ошибка в `OutFanSpeedCheck_signalsAOCheckedChanged()`
 - пропуск 1-й строки в `TextBox` для сравнения данных конфигурации - `LoadCan.cs`
+
+06.09.24 (пятница)
+
+- обновлён файл загрузчика в составе пакета `eflash.exe`
+- обновлены файлы прошивок для `Optimize` и `Mini`, версия _1074

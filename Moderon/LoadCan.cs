@@ -16,7 +16,7 @@ namespace Moderon
         private ModbusRTU modbusRTU = new();
 
         private readonly string FIRMWARE_FILE_OPT = "opt_1074.alf";     // Файл прошивки для Optimize
-        private readonly string FIRMWARE_FILE_MINI = "mini_3054.alf";   // Файл прошивки для Mini
+        private readonly string FIRMWARE_FILE_MINI = "mini_1074.alf";   // Файл прошивки для Mini
 
         private readonly int MS_200 = 200;      // Задержка 200 мс
         private readonly int MS_500 = 500;      // Задержка 500 мс
@@ -676,7 +676,7 @@ namespace Moderon
         }
 
         ///<summary>Чтение версии прошивки, записанной в ПЛК</summary>
-        private void ReadFirmware_version_fromPLC()
+        private void ReadFirmware_version_fromPLC()  
         {
             const ushort firmwareAddress = 16377;               // Адрес ПЛК с версией прошивки
             short[] value = new short[1];
