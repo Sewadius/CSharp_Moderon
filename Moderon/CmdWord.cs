@@ -68,7 +68,7 @@ namespace Moderon
 
             // Версия прошивки контроллера в зависимости от типа ПЛК
             short firmware_file = firmwareType == FIRMWARE_FILE_OPT ?
-                short.Parse(firmwareType.Substring(4, 4)) : short.Parse(firmwareType.Substring(5, 4));
+                short.Parse(firmwareType.Substring(4, 5)) : short.Parse(firmwareType.Substring(5, 5));
 
             string firmwre_version = ParseFirmware_toDate(firmware_file, false);
             

@@ -15,8 +15,8 @@ namespace Moderon
         private SerialPort serialPort = new();
         private ModbusRTU modbusRTU = new();
 
-        private readonly string FIRMWARE_FILE_OPT = "opt_1074.alf";     // Файл прошивки для Optimize
-        private readonly string FIRMWARE_FILE_MINI = "mini_1074.alf";   // Файл прошивки для Mini
+        private readonly string FIRMWARE_FILE_OPT = "opt_23094.alf";     // Файл прошивки для Optimize
+        private readonly string FIRMWARE_FILE_MINI = "mini_23094.alf";   // Файл прошивки для Mini
 
         private readonly int MS_200 = 200;      // Задержка 200 мс
         private readonly int MS_500 = 500;      // Задержка 500 мс
