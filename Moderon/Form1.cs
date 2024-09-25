@@ -11,7 +11,7 @@ namespace Moderon
     {
         readonly static public string 
             NOT_SELECTED = "Не выбрано",                                // Статус для состояния входов/выходов
-            VERSION = "v.1.1.6.4";                                      // Текущая версия программы
+            VERSION = "v.1.1.6.5";                                      // Текущая версия программы
 
         private const int
             WIDTH_MAIN = 955,                                           // Ширина основной формы
@@ -1546,6 +1546,7 @@ namespace Moderon
             mainPage.Hide();                                    // Скрытие панели опций элементов
             signalsPanel.Hide();                                // Скрытие панели распределения сигналов
             optionsPanel.Hide();                                // Скрытие панели настроек
+            loadCanPanel.Hide();                                // Скрытие панели загрузки через CAN-порт
             label_comboSysType.Text = "ПОМОЩЬ И РУКОВОДСТВО";
             comboSysType.Hide(); panelElements.Hide();
             helpPanel.Location = PANEL_POSITION;

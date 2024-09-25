@@ -672,6 +672,8 @@ namespace Moderon
             this.backHelpButton = new System.Windows.Forms.Button();
             this.label_comboSysType = new System.Windows.Forms.Label();
             this.loadCanPanel = new System.Windows.Forms.Panel();
+            this.firmwareMatchPLC_label = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.progressLabel = new System.Windows.Forms.Label();
             this.progressFirmware = new System.Windows.Forms.ProgressBar();
             this.firmwareBtn = new System.Windows.Forms.Button();
@@ -726,8 +728,6 @@ namespace Moderon
             this.manBl2_label = new System.Windows.Forms.Label();
             this.comboManBl_1 = new System.Windows.Forms.ComboBox();
             this.manBl1_label = new System.Windows.Forms.Label();
-            this.firmwareMatchPLC_label = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
             this.menuStrip.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.sensorsPage.SuspendLayout();
@@ -915,7 +915,7 @@ namespace Moderon
             this.sensorsPage.Controls.Add(this.sensorsPanel);
             this.sensorsPage.Location = new System.Drawing.Point(4, 22);
             this.sensorsPage.Name = "sensorsPage";
-            this.sensorsPage.Size = new System.Drawing.Size(742, 713);
+            this.sensorsPage.Size = new System.Drawing.Size(742, 23);
             this.sensorsPage.TabIndex = 9;
             this.sensorsPage.Text = "ДАТЧИКИ/СИГНАЛЫ";
             // 
@@ -1772,7 +1772,7 @@ namespace Moderon
             this.filterPage.Controls.Add(this.filterPanel);
             this.filterPage.Location = new System.Drawing.Point(4, 22);
             this.filterPage.Name = "filterPage";
-            this.filterPage.Size = new System.Drawing.Size(742, 713);
+            this.filterPage.Size = new System.Drawing.Size(742, 23);
             this.filterPage.TabIndex = 6;
             this.filterPage.Text = "ФИЛЬТР";
             // 
@@ -1894,7 +1894,7 @@ namespace Moderon
             this.dampPage.Controls.Add(this.dampPanel);
             this.dampPage.Location = new System.Drawing.Point(4, 22);
             this.dampPage.Name = "dampPage";
-            this.dampPage.Size = new System.Drawing.Size(742, 713);
+            this.dampPage.Size = new System.Drawing.Size(742, 23);
             this.dampPage.TabIndex = 7;
             this.dampPage.Text = "ЗАСЛОНКА";
             // 
@@ -2021,7 +2021,7 @@ namespace Moderon
             this.heatPage.Location = new System.Drawing.Point(4, 22);
             this.heatPage.Name = "heatPage";
             this.heatPage.Padding = new System.Windows.Forms.Padding(3);
-            this.heatPage.Size = new System.Drawing.Size(742, 713);
+            this.heatPage.Size = new System.Drawing.Size(742, 23);
             this.heatPage.TabIndex = 1;
             this.heatPage.Text = "НАГРЕВАТЕЛЬ";
             // 
@@ -2337,7 +2337,7 @@ namespace Moderon
             this.coolPage.Location = new System.Drawing.Point(4, 22);
             this.coolPage.Name = "coolPage";
             this.coolPage.Padding = new System.Windows.Forms.Padding(3);
-            this.coolPage.Size = new System.Drawing.Size(742, 713);
+            this.coolPage.Size = new System.Drawing.Size(742, 23);
             this.coolPage.TabIndex = 2;
             this.coolPage.Text = "ОХЛАДИТЕЛЬ";
             // 
@@ -2535,7 +2535,7 @@ namespace Moderon
             this.humidPage.Location = new System.Drawing.Point(4, 22);
             this.humidPage.Name = "humidPage";
             this.humidPage.Padding = new System.Windows.Forms.Padding(3);
-            this.humidPage.Size = new System.Drawing.Size(742, 713);
+            this.humidPage.Size = new System.Drawing.Size(742, 23);
             this.humidPage.TabIndex = 3;
             this.humidPage.Text = "УВЛАЖНИТЕЛЬ";
             // 
@@ -2693,7 +2693,7 @@ namespace Moderon
             this.recircPage.Location = new System.Drawing.Point(4, 22);
             this.recircPage.Name = "recircPage";
             this.recircPage.Padding = new System.Windows.Forms.Padding(3);
-            this.recircPage.Size = new System.Drawing.Size(742, 713);
+            this.recircPage.Size = new System.Drawing.Size(742, 23);
             this.recircPage.TabIndex = 4;
             this.recircPage.Text = "РЕЦИРКУЛЯЦИЯ";
             // 
@@ -2760,7 +2760,7 @@ namespace Moderon
             this.recupPage.Controls.Add(this.recupPanel);
             this.recupPage.Location = new System.Drawing.Point(4, 22);
             this.recupPage.Name = "recupPage";
-            this.recupPage.Size = new System.Drawing.Size(742, 713);
+            this.recupPage.Size = new System.Drawing.Size(742, 23);
             this.recupPage.TabIndex = 5;
             this.recupPage.Text = "РЕКУПЕРАТОР";
             // 
@@ -3103,7 +3103,7 @@ namespace Moderon
             this.addHeatPage.Controls.Add(this.secHeatPanel);
             this.addHeatPage.Location = new System.Drawing.Point(4, 22);
             this.addHeatPage.Name = "addHeatPage";
-            this.addHeatPage.Size = new System.Drawing.Size(742, 713);
+            this.addHeatPage.Size = new System.Drawing.Size(742, 23);
             this.addHeatPage.TabIndex = 8;
             this.addHeatPage.Text = "ДОП НАГРЕВ";
             // 
@@ -9232,6 +9232,27 @@ namespace Moderon
             this.loadCanPanel.TabIndex = 45;
             this.loadCanPanel.Visible = false;
             // 
+            // firmwareMatchPLC_label
+            // 
+            this.firmwareMatchPLC_label.AutoSize = true;
+            this.firmwareMatchPLC_label.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.firmwareMatchPLC_label.ForeColor = System.Drawing.Color.Red;
+            this.firmwareMatchPLC_label.Location = new System.Drawing.Point(510, 551);
+            this.firmwareMatchPLC_label.Name = "firmwareMatchPLC_label";
+            this.firmwareMatchPLC_label.Size = new System.Drawing.Size(144, 14);
+            this.firmwareMatchPLC_label.TabIndex = 85;
+            this.firmwareMatchPLC_label.Text = "Прошивка устарела";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label19.Location = new System.Drawing.Point(400, 551);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(108, 14);
+            this.label19.TabIndex = 84;
+            this.label19.Text = "Прошивка ПЛК:";
+            // 
             // progressLabel
             // 
             this.progressLabel.AutoSize = true;
@@ -9726,9 +9747,9 @@ namespace Moderon
             // 
             this.pictureBoxLogo.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxLogo.Image = global::Moderon.Properties.Resources.logo_moderon;
-            this.pictureBoxLogo.Location = new System.Drawing.Point(843, 25);
+            this.pictureBoxLogo.Location = new System.Drawing.Point(861, 25);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(136, 42);
+            this.pictureBoxLogo.Size = new System.Drawing.Size(118, 42);
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxLogo.TabIndex = 2;
             this.pictureBoxLogo.TabStop = false;
@@ -9892,27 +9913,6 @@ namespace Moderon
             this.manBl1_label.Size = new System.Drawing.Size(47, 13);
             this.manBl1_label.TabIndex = 20;
             this.manBl1_label.Text = "Блок 1";
-            // 
-            // firmwareMatchPLC_label
-            // 
-            this.firmwareMatchPLC_label.AutoSize = true;
-            this.firmwareMatchPLC_label.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.firmwareMatchPLC_label.ForeColor = System.Drawing.Color.Red;
-            this.firmwareMatchPLC_label.Location = new System.Drawing.Point(510, 551);
-            this.firmwareMatchPLC_label.Name = "firmwareMatchPLC_label";
-            this.firmwareMatchPLC_label.Size = new System.Drawing.Size(144, 14);
-            this.firmwareMatchPLC_label.TabIndex = 85;
-            this.firmwareMatchPLC_label.Text = "Прошивка устарела";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label19.Location = new System.Drawing.Point(400, 551);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(108, 14);
-            this.label19.TabIndex = 84;
-            this.label19.Text = "Прошивка ПЛК:";
             // 
             // Form1
             // 
