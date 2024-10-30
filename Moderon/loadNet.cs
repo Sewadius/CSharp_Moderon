@@ -309,7 +309,7 @@ namespace Moderon
         {
 			ushort ID = 8;
 			byte unit = 1;
-			startAddress = 16410; // Начальный адрес (был 16411)
+			startAddress = 16411; // Начальный адрес (был 16411 и 16410)
 			data = GetDataFireSignal(Convert.ToByte(1)); // Запись сигнала ПС
 			MBmaster.WriteMultipleRegister(ID, unit, startAddress, data);
 		}
