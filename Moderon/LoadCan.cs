@@ -524,8 +524,8 @@ namespace Moderon
 
             startAddress = 84;  // Начальный адрес для записи командных слов
 
-            // Запись для командных слов
-            for (ushort i = 0; i < cmdWords.Length; i++)
+            // Запись для командных слов (30 командных слов, значение 31 для пожарной сигнализации)
+            for (ushort i = 0; i < cmdWords.Length - 1; i++)
             {
                 do  // Проверка кода при попытке записи
                 {
@@ -539,6 +539,16 @@ namespace Moderon
                 startAddress++;
                 progressBarWrite.PerformStep();
             }
+
+            // Запись для пожарной сигнализации
+            startAddress = 16410;
+
+            do  // Проверка кода при попытке записи
+            {
+                codeAnswer = modbusRTU.WriteFc6(modbusRTU.Address, startAddress, cmdWords[30], ref values);
+                if (tryWrite_counter > 0) tryWrite_counter--;
+                else break;
+            } while (codeAnswer != 0);
 
             // Неуспешная запись, сообщение об ошибке
             if (progressBarWrite.Value != progressBarWrite.Maximum)
@@ -616,6 +626,7 @@ namespace Moderon
             ReadDO_Values_fromPLC();                        // Чтение DO сигналов из ПЛК
             ReadAO_Values_fromPLC();                        // Чтение AO сигналов из ПЛК
             ReadCMD_Values_fromPLC();                       // Чтение командных слов из ПЛК
+            ReadFireSig_Value_FromPLC();                    // Чтение для значение пожарной сигнализации из ПЛК
 
             // Формирование массива строк из данных в TextBox
             string[] lines1 = dataCanTextBox.Text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
@@ -868,12 +879,32 @@ namespace Moderon
             {
                 dataCanTextBox.Text += $"{countNote}) Word_{value_index + 1}:\t{values[value_index]}";
                 
-                if (countNote != border - 1)                        // Не добавляет пустую строку для последнего элемента
-                {
+                //if (countNote != border - 1)                        // Не добавляет пустую строку для последнего элемента
+                //{
                     dataCanTextBox.Text += Environment.NewLine;
                     value_index += 1;
-                }
+                //} 
             }
+        }
+
+        ///<summary>Чтение данных по значению сигнала пожарной сигнализации</summary>
+        private void ReadFireSig_Value_FromPLC()
+        {
+            ushort FIRE_PLC_LENGTH = 1;                     // Длина записи для чтения
+            countNote = 16410;                              // Адрес для считывания пожарной сигнализации
+
+            short[] values = new short[FIRE_PLC_LENGTH];
+
+            modbusRTU.SendFc3(modbusRTU.Address, countNote, FIRE_PLC_LENGTH, ref values);
+            WriteFire_Value_toTextBox(FIRE_PLC_LENGTH, values);
+        }
+
+        ///<summary>Запись для группы cmdWords в текстовое поле textBox</summary>
+        private void WriteFire_Value_toTextBox(ushort length, short[] values)
+        {
+            int value_index = 114;
+
+            dataCanTextBox.Text += $"{value_index}) fire_signal:\t{values[0]}";
         }
     }
 }

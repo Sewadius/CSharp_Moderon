@@ -219,7 +219,7 @@ namespace Moderon
 					case 6: // Сигнал пожарной сигнализации
 						dataNetTextBox.Text += "Сигнал пожарной сигнализации";
 						dataNetTextBox.Text += System.Environment.NewLine;
-						Length = 1; startAddress = 16411;
+						Length = 1; startAddress = 16410;
 						MBmaster.ReadHoldingRegister(ID, unit, startAddress, Length);
 						break;
 				}
@@ -309,7 +309,7 @@ namespace Moderon
         {
 			ushort ID = 8;
 			byte unit = 1;
-			startAddress = 16411; // Начальный адрес (был 16411 и 16410)
+			startAddress = 16410; // Начальный адрес (был 16411)
 			data = GetDataFireSignal(Convert.ToByte(1)); // Запись сигнала ПС
 			MBmaster.WriteMultipleRegister(ID, unit, startAddress, data);
 		}
@@ -547,7 +547,7 @@ namespace Moderon
 		private byte[] GetDataFireSignal(int num)
         {
 			int[] word = new int[num];
-			byte[] data = new Byte[num];
+			byte[] data = new byte[num];
 			string[] tempArray = writeNetTextBox.Lines;
 			ushort counter = 0;
 			ushort k = 0;

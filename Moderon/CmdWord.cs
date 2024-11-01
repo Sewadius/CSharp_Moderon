@@ -12,7 +12,7 @@ namespace Moderon
         ushort[] uiSignals = new ushort[48];            // Массив для сигналов UI
         ushort[] doSignals = new ushort[26];            // Массив для сигналов DO
         ushort[] aoSignals = new ushort[7];             // Массив для сигналов AO
-        ushort[] cmdWords = new ushort[30];             // Массив для командных слов
+        ushort[] cmdWords = new ushort[31];             // Массив для командных слов
 
         ushort cmdW1, cmdW2, cmdW3, cmdW4, cmdW5, cmdW6, cmdW7, cmdW8, cmdW9, cmdW10,
             cmdW11, cmdW12, cmdW13, cmdW14, cmdW15, cmdW16, cmdW17, cmdW18, cmdW19, cmdW20,
@@ -41,7 +41,7 @@ namespace Moderon
             cmdWordsTextBox.Text = "";              // Очистка текстового поля вывода командных слов
 
             // Формирование командных слов для вывода в таблице сигналов
-            for (ushort counter = 1; counter <= cmdWords.Length; counter++) 
+            for (ushort counter = 1; counter <= cmdWords.Length - 1; counter++) 
             { // Для командных слов
                 cmdWordsTextBox.Text += counter.ToString() + ") " + 
                     cmdWords[counter - 1].ToString();
@@ -51,7 +51,7 @@ namespace Moderon
             
             // Отображение сигнала пожарной сигнализации
             cmdWordsTextBox.Text += Environment.NewLine;
-            cmdWordsTextBox.Text += count.ToString() + "_fire" + ") " + cmdW_fire.ToString();
+            cmdWordsTextBox.Text += count.ToString() + ") fire " + cmdW_fire.ToString();
 
             // Формирование кодов сигналов и командных слов для записи в ПЛК
             if (loadCanPanel.Visible) FillWriteCanTextBox();              
@@ -166,13 +166,16 @@ namespace Moderon
             count = 84;             // Позиция для начала командных слов
 
             // Командные слова
-            for (int i = 0; i < cmdWords.Length; i++)
+            for (int i = 0; i < cmdWords.Length - 1; i++)
             {
                 writeCanTextBox.Text += $"{count}) Word_{value_index}:\t{cmdWords[i]}";
                 if (i != cmdWords.Length - 1) writeCanTextBox.Text += Environment.NewLine;
                 value_index++;
                 count++;
             }
+
+            // Пожарная сигнализация
+            writeCanTextBox.Text += $"{count}) fire_signal:\t{cmdW_fire}";
         }
 
         ///<summary>Сборка массива командных слов из полученных значений</summary>
@@ -185,7 +188,7 @@ namespace Moderon
             cmdWords[16] = cmdW17; cmdWords[17] = cmdW18; cmdWords[18] = cmdW19; cmdWords[19] = cmdW20;
             cmdWords[20] = cmdW21; cmdWords[21] = cmdW22; cmdWords[22] = cmdW23; cmdWords[23] = cmdW24;
             cmdWords[24] = cmdW25; cmdWords[25] = cmdW26; cmdWords[26] = cmdW27; cmdWords[27] = cmdW28;
-            cmdWords[28] = cmdW29; cmdWords[29] = cmdW30;
+            cmdWords[28] = cmdW29; cmdWords[29] = cmdW30; cmdWords[30] = cmdW_fire;
         }
 
         ///<summary>Сборка массива для сигналов UI</summary>
@@ -852,9 +855,14 @@ namespace Moderon
         ///<summary>Командное слово для пожарной сигнализации</summary>
         private void CommandWord_fire()
         {
-            if (!fireCheck.Checked) cmdW_fire = 0;                                              // Нет сигнала
-            else if (fireCheck.Checked && fireTypeCombo.SelectedIndex == 0) cmdW_fire = 0;      // Сигнал + НО
-            else if (fireCheck.Checked && fireTypeCombo.SelectedIndex == 1) cmdW_fire = 1;      // Сигнал + НЗ
+            if (!fireCheck.Checked || fireTypeCombo.SelectedIndex == 0)
+            {
+                cmdW_fire = 0; // Нет сигнала или НО
+            }
+            else if (fireCheck.Checked && fireTypeCombo.SelectedIndex == 1)
+            {
+                cmdW_fire = 1; // Есть сигнал и НЗ
+            }
         }
 
         ///<summary>Выбрали заслонку</summary>

@@ -906,7 +906,7 @@ namespace Moderon
             this.mainPage.Location = new System.Drawing.Point(15, 75);
             this.mainPage.Name = "mainPage";
             this.mainPage.SelectedIndex = 0;
-            this.mainPage.Size = new System.Drawing.Size(750, 49);
+            this.mainPage.Size = new System.Drawing.Size(750, 40);
             this.mainPage.TabIndex = 1;
             // 
             // sensorsPage
@@ -915,7 +915,7 @@ namespace Moderon
             this.sensorsPage.Controls.Add(this.sensorsPanel);
             this.sensorsPage.Location = new System.Drawing.Point(4, 22);
             this.sensorsPage.Name = "sensorsPage";
-            this.sensorsPage.Size = new System.Drawing.Size(742, 23);
+            this.sensorsPage.Size = new System.Drawing.Size(742, 14);
             this.sensorsPage.TabIndex = 9;
             this.sensorsPage.Text = "ДАТЧИКИ/СИГНАЛЫ";
             // 
@@ -1178,7 +1178,7 @@ namespace Moderon
             this.fanPage.Location = new System.Drawing.Point(4, 22);
             this.fanPage.Name = "fanPage";
             this.fanPage.Padding = new System.Windows.Forms.Padding(3);
-            this.fanPage.Size = new System.Drawing.Size(742, 23);
+            this.fanPage.Size = new System.Drawing.Size(742, 547);
             this.fanPage.TabIndex = 0;
             this.fanPage.Text = "ВЕНТИЛЯТОР";
             // 
@@ -1772,7 +1772,7 @@ namespace Moderon
             this.filterPage.Controls.Add(this.filterPanel);
             this.filterPage.Location = new System.Drawing.Point(4, 22);
             this.filterPage.Name = "filterPage";
-            this.filterPage.Size = new System.Drawing.Size(742, 23);
+            this.filterPage.Size = new System.Drawing.Size(742, 547);
             this.filterPage.TabIndex = 6;
             this.filterPage.Text = "ФИЛЬТР";
             // 
@@ -1894,7 +1894,7 @@ namespace Moderon
             this.dampPage.Controls.Add(this.dampPanel);
             this.dampPage.Location = new System.Drawing.Point(4, 22);
             this.dampPage.Name = "dampPage";
-            this.dampPage.Size = new System.Drawing.Size(742, 23);
+            this.dampPage.Size = new System.Drawing.Size(742, 547);
             this.dampPage.TabIndex = 7;
             this.dampPage.Text = "ЗАСЛОНКА";
             // 
@@ -2021,7 +2021,7 @@ namespace Moderon
             this.heatPage.Location = new System.Drawing.Point(4, 22);
             this.heatPage.Name = "heatPage";
             this.heatPage.Padding = new System.Windows.Forms.Padding(3);
-            this.heatPage.Size = new System.Drawing.Size(742, 23);
+            this.heatPage.Size = new System.Drawing.Size(742, 547);
             this.heatPage.TabIndex = 1;
             this.heatPage.Text = "НАГРЕВАТЕЛЬ";
             // 
@@ -2337,7 +2337,7 @@ namespace Moderon
             this.coolPage.Location = new System.Drawing.Point(4, 22);
             this.coolPage.Name = "coolPage";
             this.coolPage.Padding = new System.Windows.Forms.Padding(3);
-            this.coolPage.Size = new System.Drawing.Size(742, 23);
+            this.coolPage.Size = new System.Drawing.Size(742, 547);
             this.coolPage.TabIndex = 2;
             this.coolPage.Text = "ОХЛАДИТЕЛЬ";
             // 
@@ -2535,7 +2535,7 @@ namespace Moderon
             this.humidPage.Location = new System.Drawing.Point(4, 22);
             this.humidPage.Name = "humidPage";
             this.humidPage.Padding = new System.Windows.Forms.Padding(3);
-            this.humidPage.Size = new System.Drawing.Size(742, 23);
+            this.humidPage.Size = new System.Drawing.Size(742, 547);
             this.humidPage.TabIndex = 3;
             this.humidPage.Text = "УВЛАЖНИТЕЛЬ";
             // 
@@ -2693,7 +2693,7 @@ namespace Moderon
             this.recircPage.Location = new System.Drawing.Point(4, 22);
             this.recircPage.Name = "recircPage";
             this.recircPage.Padding = new System.Windows.Forms.Padding(3);
-            this.recircPage.Size = new System.Drawing.Size(742, 23);
+            this.recircPage.Size = new System.Drawing.Size(742, 547);
             this.recircPage.TabIndex = 4;
             this.recircPage.Text = "РЕЦИРКУЛЯЦИЯ";
             // 
@@ -2760,7 +2760,7 @@ namespace Moderon
             this.recupPage.Controls.Add(this.recupPanel);
             this.recupPage.Location = new System.Drawing.Point(4, 22);
             this.recupPage.Name = "recupPage";
-            this.recupPage.Size = new System.Drawing.Size(742, 23);
+            this.recupPage.Size = new System.Drawing.Size(742, 547);
             this.recupPage.TabIndex = 5;
             this.recupPage.Text = "РЕКУПЕРАТОР";
             // 
@@ -3103,7 +3103,7 @@ namespace Moderon
             this.addHeatPage.Controls.Add(this.secHeatPanel);
             this.addHeatPage.Location = new System.Drawing.Point(4, 22);
             this.addHeatPage.Name = "addHeatPage";
-            this.addHeatPage.Size = new System.Drawing.Size(742, 23);
+            this.addHeatPage.Size = new System.Drawing.Size(742, 547);
             this.addHeatPage.TabIndex = 8;
             this.addHeatPage.Text = "ДОП НАГРЕВ";
             // 
@@ -9226,9 +9226,9 @@ namespace Moderon
             this.loadCanPanel.Controls.Add(this.label174);
             this.loadCanPanel.Controls.Add(this.label173);
             this.loadCanPanel.Controls.Add(this.netOptionLabel);
-            this.loadCanPanel.Location = new System.Drawing.Point(19, 132);
+            this.loadCanPanel.Location = new System.Drawing.Point(15, 121);
             this.loadCanPanel.Name = "loadCanPanel";
-            this.loadCanPanel.Size = new System.Drawing.Size(749, 633);
+            this.loadCanPanel.Size = new System.Drawing.Size(749, 664);
             this.loadCanPanel.TabIndex = 45;
             this.loadCanPanel.Visible = false;
             // 
