@@ -127,7 +127,7 @@ namespace Moderon
             for (ushort i = 0; i < cmdWords.Length; i++)
                 json.CommandWords.Add($"Cmd_{i + 1}", cmdWords[i]);
            
-            json.CommandWords.Add("Cmd_31", cmdW_fire);
+            // json.CommandWords.Add("Cmd_31", cmdW_fire);
         }
 
         ///<summary>Сохранение состояния доступности для UI типов сигналов</summary>
