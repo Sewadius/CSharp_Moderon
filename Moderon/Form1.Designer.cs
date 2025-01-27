@@ -67,6 +67,11 @@ namespace Moderon
             this.label42 = new System.Windows.Forms.Label();
             this.fanPage = new System.Windows.Forms.TabPage();
             this.outFanPanel = new System.Windows.Forms.Panel();
+            this.extraOutFanPanel = new System.Windows.Forms.Panel();
+            this.outFanStStopCheck = new System.Windows.Forms.CheckBox();
+            this.outFanPSCheck = new System.Windows.Forms.CheckBox();
+            this.outFanThermoCheck = new System.Windows.Forms.CheckBox();
+            this.curDefOutFanCheck = new System.Windows.Forms.CheckBox();
             this.label10 = new System.Windows.Forms.Label();
             this.outFanFC_ECcombo = new System.Windows.Forms.ComboBox();
             this.outFanCheck = new System.Windows.Forms.CheckBox();
@@ -75,7 +80,6 @@ namespace Moderon
             this.outFanControlCombo = new System.Windows.Forms.ComboBox();
             this.outFanSpeedCheck = new System.Windows.Forms.CheckBox();
             this.outFanFcTypeCombo = new System.Windows.Forms.ComboBox();
-            this.outFanStStopCheck = new System.Windows.Forms.CheckBox();
             this.outFanAlarmCheck = new System.Windows.Forms.CheckBox();
             this.outFanFcTypeCombo_label = new System.Windows.Forms.Label();
             this.resFanOutPanel = new System.Windows.Forms.Panel();
@@ -83,19 +87,20 @@ namespace Moderon
             this.outDampFanCheck = new System.Windows.Forms.CheckBox();
             this.outDampConfirmFanCheck = new System.Windows.Forms.CheckBox();
             this.fanPicture2 = new System.Windows.Forms.PictureBox();
-            this.curDefOutFanCheck = new System.Windows.Forms.CheckBox();
-            this.outFanThermoCheck = new System.Windows.Forms.CheckBox();
-            this.outFanPSCheck = new System.Windows.Forms.CheckBox();
             this.outFanPowCombo = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.prFanPanel = new System.Windows.Forms.Panel();
+            this.extraPrFanPanel = new System.Windows.Forms.Panel();
+            this.prFanStStopCheck = new System.Windows.Forms.CheckBox();
+            this.prFanPSCheck = new System.Windows.Forms.CheckBox();
+            this.prFanThermoCheck = new System.Windows.Forms.CheckBox();
+            this.curDefPrFanCheck = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
             this.prFanFC_ECcombo = new System.Windows.Forms.ComboBox();
             this.FC_fanPrPanel = new System.Windows.Forms.Panel();
             this.prFanControlCombo_label = new System.Windows.Forms.Label();
             this.prFanControlCombo = new System.Windows.Forms.ComboBox();
             this.prFanAlarmCheck = new System.Windows.Forms.CheckBox();
-            this.prFanStStopCheck = new System.Windows.Forms.CheckBox();
             this.prFanFcTypeCombo = new System.Windows.Forms.ComboBox();
             this.prFanFcTypeCombo_label = new System.Windows.Forms.Label();
             this.prFanSpeedCheck = new System.Windows.Forms.CheckBox();
@@ -104,9 +109,6 @@ namespace Moderon
             this.prDampFanCheck = new System.Windows.Forms.CheckBox();
             this.prDampConfirmFanCheck = new System.Windows.Forms.CheckBox();
             this.fanPicture1 = new System.Windows.Forms.PictureBox();
-            this.curDefPrFanCheck = new System.Windows.Forms.CheckBox();
-            this.prFanThermoCheck = new System.Windows.Forms.CheckBox();
-            this.prFanPSCheck = new System.Windows.Forms.CheckBox();
             this.prFanPowCombo = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -122,8 +124,10 @@ namespace Moderon
             this.label5 = new System.Windows.Forms.Label();
             this.dampPage = new System.Windows.Forms.TabPage();
             this.dampPanel = new System.Windows.Forms.Panel();
+            this.closeOpenPrDampCheck = new System.Windows.Forms.CheckBox();
             this.dampPicture = new System.Windows.Forms.PictureBox();
             this.outDampPanel = new System.Windows.Forms.Panel();
+            this.closeOpenOutDampCheck = new System.Windows.Forms.CheckBox();
             this.outDampCheck = new System.Windows.Forms.CheckBox();
             this.heatOutDampCheck = new System.Windows.Forms.CheckBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -735,10 +739,12 @@ namespace Moderon
             ((System.ComponentModel.ISupportInitialize)(this.sensorPicture)).BeginInit();
             this.fanPage.SuspendLayout();
             this.outFanPanel.SuspendLayout();
+            this.extraOutFanPanel.SuspendLayout();
             this.FC_fanOutPanel.SuspendLayout();
             this.resFanOutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fanPicture2)).BeginInit();
             this.prFanPanel.SuspendLayout();
+            this.extraPrFanPanel.SuspendLayout();
             this.FC_fanPrPanel.SuspendLayout();
             this.resFanPrPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fanPicture1)).BeginInit();
@@ -906,7 +912,7 @@ namespace Moderon
             this.mainPage.Location = new System.Drawing.Point(15, 75);
             this.mainPage.Name = "mainPage";
             this.mainPage.SelectedIndex = 0;
-            this.mainPage.Size = new System.Drawing.Size(750, 40);
+            this.mainPage.Size = new System.Drawing.Size(750, 658);
             this.mainPage.TabIndex = 1;
             // 
             // sensorsPage
@@ -915,7 +921,7 @@ namespace Moderon
             this.sensorsPage.Controls.Add(this.sensorsPanel);
             this.sensorsPage.Location = new System.Drawing.Point(4, 22);
             this.sensorsPage.Name = "sensorsPage";
-            this.sensorsPage.Size = new System.Drawing.Size(742, 14);
+            this.sensorsPage.Size = new System.Drawing.Size(742, 632);
             this.sensorsPage.TabIndex = 9;
             this.sensorsPage.Text = "ДАТЧИКИ/СИГНАЛЫ";
             // 
@@ -1178,22 +1184,20 @@ namespace Moderon
             this.fanPage.Location = new System.Drawing.Point(4, 22);
             this.fanPage.Name = "fanPage";
             this.fanPage.Padding = new System.Windows.Forms.Padding(3);
-            this.fanPage.Size = new System.Drawing.Size(742, 547);
+            this.fanPage.Size = new System.Drawing.Size(742, 632);
             this.fanPage.TabIndex = 0;
             this.fanPage.Text = "ВЕНТИЛЯТОР";
             // 
             // outFanPanel
             // 
             this.outFanPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.outFanPanel.Controls.Add(this.extraOutFanPanel);
             this.outFanPanel.Controls.Add(this.label10);
             this.outFanPanel.Controls.Add(this.outFanFC_ECcombo);
             this.outFanPanel.Controls.Add(this.outFanCheck);
             this.outFanPanel.Controls.Add(this.FC_fanOutPanel);
             this.outFanPanel.Controls.Add(this.resFanOutPanel);
             this.outFanPanel.Controls.Add(this.fanPicture2);
-            this.outFanPanel.Controls.Add(this.curDefOutFanCheck);
-            this.outFanPanel.Controls.Add(this.outFanThermoCheck);
-            this.outFanPanel.Controls.Add(this.outFanPSCheck);
             this.outFanPanel.Controls.Add(this.outFanPowCombo);
             this.outFanPanel.Controls.Add(this.label12);
             this.outFanPanel.Location = new System.Drawing.Point(2, 581);
@@ -1202,11 +1206,73 @@ namespace Moderon
             this.outFanPanel.TabIndex = 15;
             this.outFanPanel.Visible = false;
             // 
+            // extraOutFanPanel
+            // 
+            this.extraOutFanPanel.Controls.Add(this.outFanStStopCheck);
+            this.extraOutFanPanel.Controls.Add(this.outFanPSCheck);
+            this.extraOutFanPanel.Controls.Add(this.outFanThermoCheck);
+            this.extraOutFanPanel.Controls.Add(this.curDefOutFanCheck);
+            this.extraOutFanPanel.Location = new System.Drawing.Point(9, 279);
+            this.extraOutFanPanel.Name = "extraOutFanPanel";
+            this.extraOutFanPanel.Size = new System.Drawing.Size(333, 160);
+            this.extraOutFanPanel.TabIndex = 60;
+            // 
+            // outFanStStopCheck
+            // 
+            this.outFanStStopCheck.AutoSize = true;
+            this.outFanStStopCheck.Checked = true;
+            this.outFanStStopCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.outFanStStopCheck.Enabled = false;
+            this.outFanStStopCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.outFanStStopCheck.Location = new System.Drawing.Point(10, 10);
+            this.outFanStStopCheck.Name = "outFanStStopCheck";
+            this.outFanStStopCheck.Size = new System.Drawing.Size(154, 18);
+            this.outFanStStopCheck.TabIndex = 49;
+            this.outFanStStopCheck.Text = "Сигнал \"Пуск/Стоп\"";
+            this.outFanStStopCheck.UseVisualStyleBackColor = true;
+            this.outFanStStopCheck.CheckedChanged += new System.EventHandler(this.OutFanStStopCheck_CheckedChanged);
+            // 
+            // outFanPSCheck
+            // 
+            this.outFanPSCheck.AutoSize = true;
+            this.outFanPSCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.outFanPSCheck.Location = new System.Drawing.Point(10, 50);
+            this.outFanPSCheck.Name = "outFanPSCheck";
+            this.outFanPSCheck.Size = new System.Drawing.Size(271, 18);
+            this.outFanPSCheck.TabIndex = 23;
+            this.outFanPSCheck.Text = "Подтверждение работы вентилятора";
+            this.outFanPSCheck.UseVisualStyleBackColor = true;
+            this.outFanPSCheck.CheckedChanged += new System.EventHandler(this.OutFanPSCheck_cmdCheckedChanged);
+            // 
+            // outFanThermoCheck
+            // 
+            this.outFanThermoCheck.AutoSize = true;
+            this.outFanThermoCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.outFanThermoCheck.Location = new System.Drawing.Point(10, 90);
+            this.outFanThermoCheck.Name = "outFanThermoCheck";
+            this.outFanThermoCheck.Size = new System.Drawing.Size(196, 18);
+            this.outFanThermoCheck.TabIndex = 46;
+            this.outFanThermoCheck.Text = "Термоконтакты двигателя";
+            this.outFanThermoCheck.UseVisualStyleBackColor = true;
+            this.outFanThermoCheck.CheckedChanged += new System.EventHandler(this.OutFanThermoCheck_cmdCheckedChanged);
+            // 
+            // curDefOutFanCheck
+            // 
+            this.curDefOutFanCheck.AutoSize = true;
+            this.curDefOutFanCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.curDefOutFanCheck.Location = new System.Drawing.Point(10, 130);
+            this.curDefOutFanCheck.Name = "curDefOutFanCheck";
+            this.curDefOutFanCheck.Size = new System.Drawing.Size(129, 18);
+            this.curDefOutFanCheck.TabIndex = 47;
+            this.curDefOutFanCheck.Text = "Защита по току";
+            this.curDefOutFanCheck.UseVisualStyleBackColor = true;
+            this.curDefOutFanCheck.CheckedChanged += new System.EventHandler(this.CurDefOutFanCheck_cmdCheckedChanged);
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.Location = new System.Drawing.Point(11, 214);
+            this.label10.Location = new System.Drawing.Point(15, 94);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(291, 16);
             this.label10.TabIndex = 58;
@@ -1224,7 +1290,7 @@ namespace Moderon
             "Нет",
             "ПЧ",
             "ЕС"});
-            this.outFanFC_ECcombo.Location = new System.Drawing.Point(309, 212);
+            this.outFanFC_ECcombo.Location = new System.Drawing.Point(313, 92);
             this.outFanFC_ECcombo.Name = "outFanFC_ECcombo";
             this.outFanFC_ECcombo.Size = new System.Drawing.Size(59, 21);
             this.outFanFC_ECcombo.TabIndex = 59;
@@ -1250,12 +1316,11 @@ namespace Moderon
             this.FC_fanOutPanel.Controls.Add(this.outFanControlCombo);
             this.FC_fanOutPanel.Controls.Add(this.outFanSpeedCheck);
             this.FC_fanOutPanel.Controls.Add(this.outFanFcTypeCombo);
-            this.FC_fanOutPanel.Controls.Add(this.outFanStStopCheck);
             this.FC_fanOutPanel.Controls.Add(this.outFanAlarmCheck);
             this.FC_fanOutPanel.Controls.Add(this.outFanFcTypeCombo_label);
-            this.FC_fanOutPanel.Location = new System.Drawing.Point(5, 239);
+            this.FC_fanOutPanel.Location = new System.Drawing.Point(9, 119);
             this.FC_fanOutPanel.Name = "FC_fanOutPanel";
-            this.FC_fanOutPanel.Size = new System.Drawing.Size(360, 200);
+            this.FC_fanOutPanel.Size = new System.Drawing.Size(333, 160);
             this.FC_fanOutPanel.TabIndex = 56;
             this.FC_fanOutPanel.Visible = false;
             // 
@@ -1292,7 +1357,7 @@ namespace Moderon
             this.outFanSpeedCheck.AutoSize = true;
             this.outFanSpeedCheck.Enabled = false;
             this.outFanSpeedCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.outFanSpeedCheck.Location = new System.Drawing.Point(10, 170);
+            this.outFanSpeedCheck.Location = new System.Drawing.Point(10, 130);
             this.outFanSpeedCheck.Name = "outFanSpeedCheck";
             this.outFanSpeedCheck.Size = new System.Drawing.Size(131, 18);
             this.outFanSpeedCheck.TabIndex = 50;
@@ -1320,26 +1385,12 @@ namespace Moderon
             this.outFanFcTypeCombo.TabIndex = 54;
             this.outFanFcTypeCombo.SelectedIndexChanged += new System.EventHandler(this.OutFanFcTypeCombo_cmdSelectedIndexChanged);
             // 
-            // outFanStStopCheck
-            // 
-            this.outFanStStopCheck.AutoSize = true;
-            this.outFanStStopCheck.Checked = true;
-            this.outFanStStopCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.outFanStStopCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.outFanStStopCheck.Location = new System.Drawing.Point(10, 90);
-            this.outFanStStopCheck.Name = "outFanStStopCheck";
-            this.outFanStStopCheck.Size = new System.Drawing.Size(154, 18);
-            this.outFanStStopCheck.TabIndex = 49;
-            this.outFanStStopCheck.Text = "Сигнал \"Пуск/Стоп\"";
-            this.outFanStStopCheck.UseVisualStyleBackColor = true;
-            this.outFanStStopCheck.CheckedChanged += new System.EventHandler(this.OutFanStStopCheck_CheckedChanged);
-            // 
             // outFanAlarmCheck
             // 
             this.outFanAlarmCheck.AutoSize = true;
             this.outFanAlarmCheck.Enabled = false;
             this.outFanAlarmCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.outFanAlarmCheck.Location = new System.Drawing.Point(10, 130);
+            this.outFanAlarmCheck.Location = new System.Drawing.Point(10, 90);
             this.outFanAlarmCheck.Name = "outFanAlarmCheck";
             this.outFanAlarmCheck.Size = new System.Drawing.Size(123, 18);
             this.outFanAlarmCheck.TabIndex = 48;
@@ -1362,16 +1413,16 @@ namespace Moderon
             this.resFanOutPanel.Controls.Add(this.checkResOutFan);
             this.resFanOutPanel.Controls.Add(this.outDampFanCheck);
             this.resFanOutPanel.Controls.Add(this.outDampConfirmFanCheck);
-            this.resFanOutPanel.Location = new System.Drawing.Point(5, 440);
+            this.resFanOutPanel.Location = new System.Drawing.Point(8, 439);
             this.resFanOutPanel.Name = "resFanOutPanel";
-            this.resFanOutPanel.Size = new System.Drawing.Size(288, 119);
+            this.resFanOutPanel.Size = new System.Drawing.Size(334, 119);
             this.resFanOutPanel.TabIndex = 55;
             // 
             // checkResOutFan
             // 
             this.checkResOutFan.AutoSize = true;
             this.checkResOutFan.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkResOutFan.Location = new System.Drawing.Point(10, 15);
+            this.checkResOutFan.Location = new System.Drawing.Point(10, 10);
             this.checkResOutFan.Name = "checkResOutFan";
             this.checkResOutFan.Size = new System.Drawing.Size(166, 18);
             this.checkResOutFan.TabIndex = 42;
@@ -1384,7 +1435,7 @@ namespace Moderon
             this.outDampFanCheck.AutoSize = true;
             this.outDampFanCheck.Enabled = false;
             this.outDampFanCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.outDampFanCheck.Location = new System.Drawing.Point(10, 55);
+            this.outDampFanCheck.Location = new System.Drawing.Point(10, 50);
             this.outDampFanCheck.Name = "outDampFanCheck";
             this.outDampFanCheck.Size = new System.Drawing.Size(246, 18);
             this.outDampFanCheck.TabIndex = 51;
@@ -1397,7 +1448,7 @@ namespace Moderon
             this.outDampConfirmFanCheck.AutoSize = true;
             this.outDampConfirmFanCheck.Enabled = false;
             this.outDampConfirmFanCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.outDampConfirmFanCheck.Location = new System.Drawing.Point(10, 95);
+            this.outDampConfirmFanCheck.Location = new System.Drawing.Point(10, 90);
             this.outDampConfirmFanCheck.Name = "outDampConfirmFanCheck";
             this.outDampConfirmFanCheck.Size = new System.Drawing.Size(259, 18);
             this.outDampConfirmFanCheck.TabIndex = 52;
@@ -1413,42 +1464,6 @@ namespace Moderon
             this.fanPicture2.Size = new System.Drawing.Size(217, 242);
             this.fanPicture2.TabIndex = 0;
             this.fanPicture2.TabStop = false;
-            // 
-            // curDefOutFanCheck
-            // 
-            this.curDefOutFanCheck.AutoSize = true;
-            this.curDefOutFanCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.curDefOutFanCheck.Location = new System.Drawing.Point(15, 174);
-            this.curDefOutFanCheck.Name = "curDefOutFanCheck";
-            this.curDefOutFanCheck.Size = new System.Drawing.Size(129, 18);
-            this.curDefOutFanCheck.TabIndex = 47;
-            this.curDefOutFanCheck.Text = "Защита по току";
-            this.curDefOutFanCheck.UseVisualStyleBackColor = true;
-            this.curDefOutFanCheck.CheckedChanged += new System.EventHandler(this.CurDefOutFanCheck_cmdCheckedChanged);
-            // 
-            // outFanThermoCheck
-            // 
-            this.outFanThermoCheck.AutoSize = true;
-            this.outFanThermoCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.outFanThermoCheck.Location = new System.Drawing.Point(15, 134);
-            this.outFanThermoCheck.Name = "outFanThermoCheck";
-            this.outFanThermoCheck.Size = new System.Drawing.Size(196, 18);
-            this.outFanThermoCheck.TabIndex = 46;
-            this.outFanThermoCheck.Text = "Термоконтакты двигателя";
-            this.outFanThermoCheck.UseVisualStyleBackColor = true;
-            this.outFanThermoCheck.CheckedChanged += new System.EventHandler(this.OutFanThermoCheck_cmdCheckedChanged);
-            // 
-            // outFanPSCheck
-            // 
-            this.outFanPSCheck.AutoSize = true;
-            this.outFanPSCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.outFanPSCheck.Location = new System.Drawing.Point(15, 94);
-            this.outFanPSCheck.Name = "outFanPSCheck";
-            this.outFanPSCheck.Size = new System.Drawing.Size(271, 18);
-            this.outFanPSCheck.TabIndex = 23;
-            this.outFanPSCheck.Text = "Подтверждение работы вентилятора";
-            this.outFanPSCheck.UseVisualStyleBackColor = true;
-            this.outFanPSCheck.CheckedChanged += new System.EventHandler(this.OutFanPSCheck_cmdCheckedChanged);
             // 
             // outFanPowCombo
             // 
@@ -1479,14 +1494,12 @@ namespace Moderon
             // 
             // prFanPanel
             // 
+            this.prFanPanel.Controls.Add(this.extraPrFanPanel);
             this.prFanPanel.Controls.Add(this.label16);
             this.prFanPanel.Controls.Add(this.prFanFC_ECcombo);
             this.prFanPanel.Controls.Add(this.FC_fanPrPanel);
             this.prFanPanel.Controls.Add(this.resFanPrPanel);
             this.prFanPanel.Controls.Add(this.fanPicture1);
-            this.prFanPanel.Controls.Add(this.curDefPrFanCheck);
-            this.prFanPanel.Controls.Add(this.prFanThermoCheck);
-            this.prFanPanel.Controls.Add(this.prFanPSCheck);
             this.prFanPanel.Controls.Add(this.prFanPowCombo);
             this.prFanPanel.Controls.Add(this.label9);
             this.prFanPanel.Controls.Add(this.label3);
@@ -1495,11 +1508,73 @@ namespace Moderon
             this.prFanPanel.Size = new System.Drawing.Size(717, 569);
             this.prFanPanel.TabIndex = 1;
             // 
+            // extraPrFanPanel
+            // 
+            this.extraPrFanPanel.Controls.Add(this.prFanStStopCheck);
+            this.extraPrFanPanel.Controls.Add(this.prFanPSCheck);
+            this.extraPrFanPanel.Controls.Add(this.prFanThermoCheck);
+            this.extraPrFanPanel.Controls.Add(this.curDefPrFanCheck);
+            this.extraPrFanPanel.Location = new System.Drawing.Point(9, 279);
+            this.extraPrFanPanel.Name = "extraPrFanPanel";
+            this.extraPrFanPanel.Size = new System.Drawing.Size(333, 160);
+            this.extraPrFanPanel.TabIndex = 56;
+            // 
+            // prFanStStopCheck
+            // 
+            this.prFanStStopCheck.AutoSize = true;
+            this.prFanStStopCheck.Checked = true;
+            this.prFanStStopCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.prFanStStopCheck.Enabled = false;
+            this.prFanStStopCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.prFanStStopCheck.Location = new System.Drawing.Point(10, 10);
+            this.prFanStStopCheck.Name = "prFanStStopCheck";
+            this.prFanStStopCheck.Size = new System.Drawing.Size(154, 18);
+            this.prFanStStopCheck.TabIndex = 47;
+            this.prFanStStopCheck.Text = "Сигнал \"Пуск/Стоп\"";
+            this.prFanStStopCheck.UseVisualStyleBackColor = true;
+            this.prFanStStopCheck.CheckedChanged += new System.EventHandler(this.PrFanStStopCheck_CheckedChanged);
+            // 
+            // prFanPSCheck
+            // 
+            this.prFanPSCheck.AutoSize = true;
+            this.prFanPSCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.prFanPSCheck.Location = new System.Drawing.Point(10, 50);
+            this.prFanPSCheck.Name = "prFanPSCheck";
+            this.prFanPSCheck.Size = new System.Drawing.Size(271, 18);
+            this.prFanPSCheck.TabIndex = 17;
+            this.prFanPSCheck.Text = "Подтверждение работы вентилятора";
+            this.prFanPSCheck.UseVisualStyleBackColor = true;
+            this.prFanPSCheck.CheckedChanged += new System.EventHandler(this.PrFanPSCheck_cmdCheckedChanged);
+            // 
+            // prFanThermoCheck
+            // 
+            this.prFanThermoCheck.AutoSize = true;
+            this.prFanThermoCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.prFanThermoCheck.Location = new System.Drawing.Point(10, 90);
+            this.prFanThermoCheck.Name = "prFanThermoCheck";
+            this.prFanThermoCheck.Size = new System.Drawing.Size(196, 18);
+            this.prFanThermoCheck.TabIndex = 43;
+            this.prFanThermoCheck.Text = "Термоконтакты двигателя";
+            this.prFanThermoCheck.UseVisualStyleBackColor = true;
+            this.prFanThermoCheck.CheckedChanged += new System.EventHandler(this.PrFanThermoCheck_cmdCheckedChanged);
+            // 
+            // curDefPrFanCheck
+            // 
+            this.curDefPrFanCheck.AutoSize = true;
+            this.curDefPrFanCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.curDefPrFanCheck.Location = new System.Drawing.Point(10, 130);
+            this.curDefPrFanCheck.Name = "curDefPrFanCheck";
+            this.curDefPrFanCheck.Size = new System.Drawing.Size(129, 18);
+            this.curDefPrFanCheck.TabIndex = 44;
+            this.curDefPrFanCheck.Text = "Защита по току";
+            this.curDefPrFanCheck.UseVisualStyleBackColor = true;
+            this.curDefPrFanCheck.CheckedChanged += new System.EventHandler(this.CurDefPrFanCheck_cmdCheckedChanged);
+            // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label16.Location = new System.Drawing.Point(11, 214);
+            this.label16.Location = new System.Drawing.Point(15, 94);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(291, 16);
             this.label16.TabIndex = 53;
@@ -1517,7 +1592,7 @@ namespace Moderon
             "Нет",
             "ПЧ",
             "ЕС"});
-            this.prFanFC_ECcombo.Location = new System.Drawing.Point(309, 212);
+            this.prFanFC_ECcombo.Location = new System.Drawing.Point(313, 92);
             this.prFanFC_ECcombo.Name = "prFanFC_ECcombo";
             this.prFanFC_ECcombo.Size = new System.Drawing.Size(59, 21);
             this.prFanFC_ECcombo.TabIndex = 55;
@@ -1528,13 +1603,12 @@ namespace Moderon
             this.FC_fanPrPanel.Controls.Add(this.prFanControlCombo_label);
             this.FC_fanPrPanel.Controls.Add(this.prFanControlCombo);
             this.FC_fanPrPanel.Controls.Add(this.prFanAlarmCheck);
-            this.FC_fanPrPanel.Controls.Add(this.prFanStStopCheck);
             this.FC_fanPrPanel.Controls.Add(this.prFanFcTypeCombo);
             this.FC_fanPrPanel.Controls.Add(this.prFanFcTypeCombo_label);
             this.FC_fanPrPanel.Controls.Add(this.prFanSpeedCheck);
-            this.FC_fanPrPanel.Location = new System.Drawing.Point(5, 239);
+            this.FC_fanPrPanel.Location = new System.Drawing.Point(9, 119);
             this.FC_fanPrPanel.Name = "FC_fanPrPanel";
-            this.FC_fanPrPanel.Size = new System.Drawing.Size(360, 200);
+            this.FC_fanPrPanel.Size = new System.Drawing.Size(333, 160);
             this.FC_fanPrPanel.TabIndex = 54;
             this.FC_fanPrPanel.Visible = false;
             // 
@@ -1571,27 +1645,13 @@ namespace Moderon
             this.prFanAlarmCheck.AutoSize = true;
             this.prFanAlarmCheck.Enabled = false;
             this.prFanAlarmCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.prFanAlarmCheck.Location = new System.Drawing.Point(10, 130);
+            this.prFanAlarmCheck.Location = new System.Drawing.Point(10, 90);
             this.prFanAlarmCheck.Name = "prFanAlarmCheck";
             this.prFanAlarmCheck.Size = new System.Drawing.Size(123, 18);
             this.prFanAlarmCheck.TabIndex = 46;
             this.prFanAlarmCheck.Text = "Сигнал аварии";
             this.prFanAlarmCheck.UseVisualStyleBackColor = true;
             this.prFanAlarmCheck.CheckedChanged += new System.EventHandler(this.PrFanAlarmCheck_cmdCheckedChanged);
-            // 
-            // prFanStStopCheck
-            // 
-            this.prFanStStopCheck.AutoSize = true;
-            this.prFanStStopCheck.Checked = true;
-            this.prFanStStopCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.prFanStStopCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.prFanStStopCheck.Location = new System.Drawing.Point(10, 90);
-            this.prFanStStopCheck.Name = "prFanStStopCheck";
-            this.prFanStStopCheck.Size = new System.Drawing.Size(154, 18);
-            this.prFanStStopCheck.TabIndex = 47;
-            this.prFanStStopCheck.Text = "Сигнал \"Пуск/Стоп\"";
-            this.prFanStStopCheck.UseVisualStyleBackColor = true;
-            this.prFanStStopCheck.CheckedChanged += new System.EventHandler(this.PrFanStStopCheck_CheckedChanged);
             // 
             // prFanFcTypeCombo
             // 
@@ -1628,7 +1688,7 @@ namespace Moderon
             this.prFanSpeedCheck.AutoSize = true;
             this.prFanSpeedCheck.Enabled = false;
             this.prFanSpeedCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.prFanSpeedCheck.Location = new System.Drawing.Point(10, 170);
+            this.prFanSpeedCheck.Location = new System.Drawing.Point(10, 130);
             this.prFanSpeedCheck.Name = "prFanSpeedCheck";
             this.prFanSpeedCheck.Size = new System.Drawing.Size(131, 18);
             this.prFanSpeedCheck.TabIndex = 48;
@@ -1641,16 +1701,16 @@ namespace Moderon
             this.resFanPrPanel.Controls.Add(this.checkResPrFan);
             this.resFanPrPanel.Controls.Add(this.prDampFanCheck);
             this.resFanPrPanel.Controls.Add(this.prDampConfirmFanCheck);
-            this.resFanPrPanel.Location = new System.Drawing.Point(5, 440);
+            this.resFanPrPanel.Location = new System.Drawing.Point(8, 439);
             this.resFanPrPanel.Name = "resFanPrPanel";
-            this.resFanPrPanel.Size = new System.Drawing.Size(288, 118);
+            this.resFanPrPanel.Size = new System.Drawing.Size(334, 118);
             this.resFanPrPanel.TabIndex = 53;
             // 
             // checkResPrFan
             // 
             this.checkResPrFan.AutoSize = true;
             this.checkResPrFan.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkResPrFan.Location = new System.Drawing.Point(10, 15);
+            this.checkResPrFan.Location = new System.Drawing.Point(10, 10);
             this.checkResPrFan.Name = "checkResPrFan";
             this.checkResPrFan.Size = new System.Drawing.Size(166, 18);
             this.checkResPrFan.TabIndex = 39;
@@ -1663,7 +1723,7 @@ namespace Moderon
             this.prDampFanCheck.AutoSize = true;
             this.prDampFanCheck.Enabled = false;
             this.prDampFanCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.prDampFanCheck.Location = new System.Drawing.Point(10, 55);
+            this.prDampFanCheck.Location = new System.Drawing.Point(10, 50);
             this.prDampFanCheck.Name = "prDampFanCheck";
             this.prDampFanCheck.Size = new System.Drawing.Size(246, 18);
             this.prDampFanCheck.TabIndex = 49;
@@ -1676,7 +1736,7 @@ namespace Moderon
             this.prDampConfirmFanCheck.AutoSize = true;
             this.prDampConfirmFanCheck.Enabled = false;
             this.prDampConfirmFanCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.prDampConfirmFanCheck.Location = new System.Drawing.Point(10, 95);
+            this.prDampConfirmFanCheck.Location = new System.Drawing.Point(10, 90);
             this.prDampConfirmFanCheck.Name = "prDampConfirmFanCheck";
             this.prDampConfirmFanCheck.Size = new System.Drawing.Size(259, 18);
             this.prDampConfirmFanCheck.TabIndex = 50;
@@ -1693,42 +1753,6 @@ namespace Moderon
             this.fanPicture1.Size = new System.Drawing.Size(217, 243);
             this.fanPicture1.TabIndex = 0;
             this.fanPicture1.TabStop = false;
-            // 
-            // curDefPrFanCheck
-            // 
-            this.curDefPrFanCheck.AutoSize = true;
-            this.curDefPrFanCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.curDefPrFanCheck.Location = new System.Drawing.Point(15, 174);
-            this.curDefPrFanCheck.Name = "curDefPrFanCheck";
-            this.curDefPrFanCheck.Size = new System.Drawing.Size(129, 18);
-            this.curDefPrFanCheck.TabIndex = 44;
-            this.curDefPrFanCheck.Text = "Защита по току";
-            this.curDefPrFanCheck.UseVisualStyleBackColor = true;
-            this.curDefPrFanCheck.CheckedChanged += new System.EventHandler(this.CurDefPrFanCheck_cmdCheckedChanged);
-            // 
-            // prFanThermoCheck
-            // 
-            this.prFanThermoCheck.AutoSize = true;
-            this.prFanThermoCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.prFanThermoCheck.Location = new System.Drawing.Point(15, 134);
-            this.prFanThermoCheck.Name = "prFanThermoCheck";
-            this.prFanThermoCheck.Size = new System.Drawing.Size(196, 18);
-            this.prFanThermoCheck.TabIndex = 43;
-            this.prFanThermoCheck.Text = "Термоконтакты двигателя";
-            this.prFanThermoCheck.UseVisualStyleBackColor = true;
-            this.prFanThermoCheck.CheckedChanged += new System.EventHandler(this.PrFanThermoCheck_cmdCheckedChanged);
-            // 
-            // prFanPSCheck
-            // 
-            this.prFanPSCheck.AutoSize = true;
-            this.prFanPSCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.prFanPSCheck.Location = new System.Drawing.Point(15, 94);
-            this.prFanPSCheck.Name = "prFanPSCheck";
-            this.prFanPSCheck.Size = new System.Drawing.Size(271, 18);
-            this.prFanPSCheck.TabIndex = 17;
-            this.prFanPSCheck.Text = "Подтверждение работы вентилятора";
-            this.prFanPSCheck.UseVisualStyleBackColor = true;
-            this.prFanPSCheck.CheckedChanged += new System.EventHandler(this.PrFanPSCheck_cmdCheckedChanged);
             // 
             // prFanPowCombo
             // 
@@ -1772,7 +1796,7 @@ namespace Moderon
             this.filterPage.Controls.Add(this.filterPanel);
             this.filterPage.Location = new System.Drawing.Point(4, 22);
             this.filterPage.Name = "filterPage";
-            this.filterPage.Size = new System.Drawing.Size(742, 547);
+            this.filterPage.Size = new System.Drawing.Size(742, 632);
             this.filterPage.TabIndex = 6;
             this.filterPage.Text = "ФИЛЬТР";
             // 
@@ -1894,12 +1918,13 @@ namespace Moderon
             this.dampPage.Controls.Add(this.dampPanel);
             this.dampPage.Location = new System.Drawing.Point(4, 22);
             this.dampPage.Name = "dampPage";
-            this.dampPage.Size = new System.Drawing.Size(742, 547);
+            this.dampPage.Size = new System.Drawing.Size(742, 632);
             this.dampPage.TabIndex = 7;
             this.dampPage.Text = "ЗАСЛОНКА";
             // 
             // dampPanel
             // 
+            this.dampPanel.Controls.Add(this.closeOpenPrDampCheck);
             this.dampPanel.Controls.Add(this.dampPicture);
             this.dampPanel.Controls.Add(this.outDampPanel);
             this.dampPanel.Controls.Add(this.heatPrDampCheck);
@@ -1909,6 +1934,20 @@ namespace Moderon
             this.dampPanel.Name = "dampPanel";
             this.dampPanel.Size = new System.Drawing.Size(736, 441);
             this.dampPanel.TabIndex = 3;
+            // 
+            // closeOpenPrDampCheck
+            // 
+            this.closeOpenPrDampCheck.AutoSize = true;
+            this.closeOpenPrDampCheck.Checked = true;
+            this.closeOpenPrDampCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.closeOpenPrDampCheck.Enabled = false;
+            this.closeOpenPrDampCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.closeOpenPrDampCheck.Location = new System.Drawing.Point(18, 53);
+            this.closeOpenPrDampCheck.Name = "closeOpenPrDampCheck";
+            this.closeOpenPrDampCheck.Size = new System.Drawing.Size(186, 18);
+            this.closeOpenPrDampCheck.TabIndex = 27;
+            this.closeOpenPrDampCheck.Text = "Сигнал закрыть/открыть";
+            this.closeOpenPrDampCheck.UseVisualStyleBackColor = true;
             // 
             // dampPicture
             // 
@@ -1921,21 +1960,34 @@ namespace Moderon
             // 
             // outDampPanel
             // 
+            this.outDampPanel.Controls.Add(this.closeOpenOutDampCheck);
             this.outDampPanel.Controls.Add(this.outDampCheck);
             this.outDampPanel.Controls.Add(this.heatOutDampCheck);
             this.outDampPanel.Controls.Add(this.label15);
             this.outDampPanel.Controls.Add(this.confOutDampCheck);
-            this.outDampPanel.Location = new System.Drawing.Point(2, 122);
+            this.outDampPanel.Location = new System.Drawing.Point(2, 162);
             this.outDampPanel.Name = "outDampPanel";
-            this.outDampPanel.Size = new System.Drawing.Size(351, 168);
+            this.outDampPanel.Size = new System.Drawing.Size(351, 232);
             this.outDampPanel.TabIndex = 26;
             this.outDampPanel.Visible = false;
+            // 
+            // closeOpenOutDampCheck
+            // 
+            this.closeOpenOutDampCheck.AutoSize = true;
+            this.closeOpenOutDampCheck.Enabled = false;
+            this.closeOpenOutDampCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.closeOpenOutDampCheck.Location = new System.Drawing.Point(14, 88);
+            this.closeOpenOutDampCheck.Name = "closeOpenOutDampCheck";
+            this.closeOpenOutDampCheck.Size = new System.Drawing.Size(186, 18);
+            this.closeOpenOutDampCheck.TabIndex = 28;
+            this.closeOpenOutDampCheck.Text = "Сигнал закрыть/открыть";
+            this.closeOpenOutDampCheck.UseVisualStyleBackColor = true;
             // 
             // outDampCheck
             // 
             this.outDampCheck.AutoSize = true;
             this.outDampCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.outDampCheck.Location = new System.Drawing.Point(15, 46);
+            this.outDampCheck.Location = new System.Drawing.Point(14, 48);
             this.outDampCheck.Name = "outDampCheck";
             this.outDampCheck.Size = new System.Drawing.Size(213, 18);
             this.outDampCheck.TabIndex = 31;
@@ -1948,7 +2000,7 @@ namespace Moderon
             this.heatOutDampCheck.AutoSize = true;
             this.heatOutDampCheck.Enabled = false;
             this.heatOutDampCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.heatOutDampCheck.Location = new System.Drawing.Point(15, 126);
+            this.heatOutDampCheck.Location = new System.Drawing.Point(14, 168);
             this.heatOutDampCheck.Name = "heatOutDampCheck";
             this.heatOutDampCheck.Size = new System.Drawing.Size(212, 18);
             this.heatOutDampCheck.TabIndex = 30;
@@ -1961,7 +2013,7 @@ namespace Moderon
             this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label15.Location = new System.Drawing.Point(9, 10);
+            this.label15.Location = new System.Drawing.Point(8, 12);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(275, 16);
             this.label15.TabIndex = 27;
@@ -1972,7 +2024,7 @@ namespace Moderon
             this.confOutDampCheck.AutoSize = true;
             this.confOutDampCheck.Enabled = false;
             this.confOutDampCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.confOutDampCheck.Location = new System.Drawing.Point(15, 86);
+            this.confOutDampCheck.Location = new System.Drawing.Point(14, 128);
             this.confOutDampCheck.Name = "confOutDampCheck";
             this.confOutDampCheck.Size = new System.Drawing.Size(259, 18);
             this.confOutDampCheck.TabIndex = 29;
@@ -1984,7 +2036,7 @@ namespace Moderon
             // 
             this.heatPrDampCheck.AutoSize = true;
             this.heatPrDampCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.heatPrDampCheck.Location = new System.Drawing.Point(18, 93);
+            this.heatPrDampCheck.Location = new System.Drawing.Point(18, 133);
             this.heatPrDampCheck.Name = "heatPrDampCheck";
             this.heatPrDampCheck.Size = new System.Drawing.Size(218, 18);
             this.heatPrDampCheck.TabIndex = 25;
@@ -1996,7 +2048,7 @@ namespace Moderon
             // 
             this.confPrDampCheck.AutoSize = true;
             this.confPrDampCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.confPrDampCheck.Location = new System.Drawing.Point(18, 53);
+            this.confPrDampCheck.Location = new System.Drawing.Point(18, 93);
             this.confPrDampCheck.Name = "confPrDampCheck";
             this.confPrDampCheck.Size = new System.Drawing.Size(259, 18);
             this.confPrDampCheck.TabIndex = 24;
@@ -2021,7 +2073,7 @@ namespace Moderon
             this.heatPage.Location = new System.Drawing.Point(4, 22);
             this.heatPage.Name = "heatPage";
             this.heatPage.Padding = new System.Windows.Forms.Padding(3);
-            this.heatPage.Size = new System.Drawing.Size(742, 547);
+            this.heatPage.Size = new System.Drawing.Size(742, 632);
             this.heatPage.TabIndex = 1;
             this.heatPage.Text = "НАГРЕВАТЕЛЬ";
             // 
@@ -2337,7 +2389,7 @@ namespace Moderon
             this.coolPage.Location = new System.Drawing.Point(4, 22);
             this.coolPage.Name = "coolPage";
             this.coolPage.Padding = new System.Windows.Forms.Padding(3);
-            this.coolPage.Size = new System.Drawing.Size(742, 547);
+            this.coolPage.Size = new System.Drawing.Size(742, 632);
             this.coolPage.TabIndex = 2;
             this.coolPage.Text = "ОХЛАДИТЕЛЬ";
             // 
@@ -2535,7 +2587,7 @@ namespace Moderon
             this.humidPage.Location = new System.Drawing.Point(4, 22);
             this.humidPage.Name = "humidPage";
             this.humidPage.Padding = new System.Windows.Forms.Padding(3);
-            this.humidPage.Size = new System.Drawing.Size(742, 547);
+            this.humidPage.Size = new System.Drawing.Size(742, 632);
             this.humidPage.TabIndex = 3;
             this.humidPage.Text = "УВЛАЖНИТЕЛЬ";
             // 
@@ -2693,7 +2745,7 @@ namespace Moderon
             this.recircPage.Location = new System.Drawing.Point(4, 22);
             this.recircPage.Name = "recircPage";
             this.recircPage.Padding = new System.Windows.Forms.Padding(3);
-            this.recircPage.Size = new System.Drawing.Size(742, 547);
+            this.recircPage.Size = new System.Drawing.Size(742, 632);
             this.recircPage.TabIndex = 4;
             this.recircPage.Text = "РЕЦИРКУЛЯЦИЯ";
             // 
@@ -2760,7 +2812,7 @@ namespace Moderon
             this.recupPage.Controls.Add(this.recupPanel);
             this.recupPage.Location = new System.Drawing.Point(4, 22);
             this.recupPage.Name = "recupPage";
-            this.recupPage.Size = new System.Drawing.Size(742, 547);
+            this.recupPage.Size = new System.Drawing.Size(742, 632);
             this.recupPage.TabIndex = 5;
             this.recupPage.Text = "РЕКУПЕРАТОР";
             // 
@@ -3103,7 +3155,7 @@ namespace Moderon
             this.addHeatPage.Controls.Add(this.secHeatPanel);
             this.addHeatPage.Location = new System.Drawing.Point(4, 22);
             this.addHeatPage.Name = "addHeatPage";
-            this.addHeatPage.Size = new System.Drawing.Size(742, 547);
+            this.addHeatPage.Size = new System.Drawing.Size(742, 632);
             this.addHeatPage.TabIndex = 8;
             this.addHeatPage.Text = "ДОП НАГРЕВ";
             // 
@@ -9087,7 +9139,7 @@ namespace Moderon
             this.tabCmdWord.Name = "tabCmdWord";
             this.tabCmdWord.Size = new System.Drawing.Size(721, 762);
             this.tabCmdWord.TabIndex = 5;
-            this.tabCmdWord.Text = "Командные слова";
+            this.tabCmdWord.Text = "Конфигурация";
             // 
             // cmdWordsTextBox
             // 
@@ -9226,9 +9278,9 @@ namespace Moderon
             this.loadCanPanel.Controls.Add(this.label174);
             this.loadCanPanel.Controls.Add(this.label173);
             this.loadCanPanel.Controls.Add(this.netOptionLabel);
-            this.loadCanPanel.Location = new System.Drawing.Point(15, 121);
+            this.loadCanPanel.Location = new System.Drawing.Point(5, 765);
             this.loadCanPanel.Name = "loadCanPanel";
-            this.loadCanPanel.Size = new System.Drawing.Size(749, 664);
+            this.loadCanPanel.Size = new System.Drawing.Size(749, 27);
             this.loadCanPanel.TabIndex = 45;
             this.loadCanPanel.Visible = false;
             // 
@@ -9956,6 +10008,8 @@ namespace Moderon
             this.fanPage.ResumeLayout(false);
             this.outFanPanel.ResumeLayout(false);
             this.outFanPanel.PerformLayout();
+            this.extraOutFanPanel.ResumeLayout(false);
+            this.extraOutFanPanel.PerformLayout();
             this.FC_fanOutPanel.ResumeLayout(false);
             this.FC_fanOutPanel.PerformLayout();
             this.resFanOutPanel.ResumeLayout(false);
@@ -9963,6 +10017,8 @@ namespace Moderon
             ((System.ComponentModel.ISupportInitialize)(this.fanPicture2)).EndInit();
             this.prFanPanel.ResumeLayout(false);
             this.prFanPanel.PerformLayout();
+            this.extraPrFanPanel.ResumeLayout(false);
+            this.extraPrFanPanel.PerformLayout();
             this.FC_fanPrPanel.ResumeLayout(false);
             this.FC_fanPrPanel.PerformLayout();
             this.resFanPrPanel.ResumeLayout(false);
@@ -10778,6 +10834,10 @@ namespace Moderon
         private ComboBox outFanFC_ECcombo;
         private Label firmwareMatchPLC_label;
         private Label label19;
+        private CheckBox closeOpenPrDampCheck;
+        private CheckBox closeOpenOutDampCheck;
+        private Panel extraPrFanPanel;
+        private Panel extraOutFanPanel;
     }
 }
 

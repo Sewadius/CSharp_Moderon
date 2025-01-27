@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection.Emit;
 using System.Windows.Forms;
 
 // Файл для формирования и вывода готовых командных слов под запись

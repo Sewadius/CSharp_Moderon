@@ -199,7 +199,7 @@ namespace Moderon
                         if (error == "Error:")                      // Обработка ошибки во время загрузки
                         {
                             if (line.Contains("Can't find devices"))
-                                MessageBox.Show("Нет связи с ПЛК!", "Ошибка загрузки",
+                                MessageBox.Show("Нет связи с ПЛК!\nПереведите ПЛК в режим DFU", "Ошибка загрузки",
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                             else
                                 MessageBox.Show("Ошибка загрузки!", "Ошибка",

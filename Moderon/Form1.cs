@@ -11,7 +11,7 @@ namespace Moderon
     {
         readonly static public string 
             NOT_SELECTED = "Не выбрано",                                // Статус для состояния входов/выходов
-            VERSION = "v.1.1.6.8";                                      // Текущая версия программы
+            VERSION = "v.1.1.6.9";                                      // Текущая версия программы
 
         private const int
             WIDTH_MAIN = 955,                                           // Ширина основной формы
@@ -20,7 +20,8 @@ namespace Moderon
             DELTA = 31,                                                 // Расстояние между comboBox в таблице сигналов
             HEIGHT_RECUP = 221,                                         // Высота изображения для обычного рекуператора
             HEIGHT_GLICK = 398,                                         // Высота изображения для гликолевого рекуператора
-            DELTA_Y = 80;                                               // Сдвиг для элементов "Нет/ПЧ/ЕС двигатель"
+            DELTA_Y = 80,                                               // Сдвиг для элементов "Нет/ПЧ/ЕС двигатель"
+            INIT_FAN_LOC = 120;                                         // Изначальное положение для панели П/В вентилятора
 
         private Point 
             MENU_POSITION = new(3, 36),                                 // Позиция для меню элементов
@@ -74,9 +75,13 @@ namespace Moderon
             // Размер для основной формы
             Size = new Size(WIDTH_MAIN, HEIGHT_MAIN);
 
-            // Положение для панелей резервов вентиляторов
-            resFanPrPanel.Location = new Point(resFanPrPanel.Location.X, 239);
-            resFanOutPanel.Location = new Point(resFanOutPanel.Location.X, 239);
+            // Изначальное положение для дополнительной панели приточного/вытяжного вентиляторов
+            extraPrFanPanel.Location = new Point(extraPrFanPanel.Location.X, INIT_FAN_LOC);
+            extraOutFanPanel.Location = new Point(extraOutFanPanel.Location.X, INIT_FAN_LOC);
+
+            // Изначальное положение для панелей резервов вентиляторов
+            resFanPrPanel.Location = new Point(resFanPrPanel.Location.X, INIT_FAN_LOC + extraPrFanPanel.Height);
+            resFanOutPanel.Location = new Point(resFanOutPanel.Location.X, INIT_FAN_LOC + extraOutFanPanel.Height);
 
             // Размер панелей вентиляторов без учёта высоты панелей ПЧ
             prFanPanel.Size = new Size(prFanPanel.Width, prFanPanel.Height - FC_fanPrPanel.Height);
@@ -744,8 +749,8 @@ namespace Moderon
             foreach (var el in fanPrOutOptions) el.Checked = false;
             foreach (var el in fanOptionsUnenabled) el.Enabled = false;
 
-            prFanFC_ECcombo.SelectedIndex = 0;               // Сброс выбора ПЧ/ЕС двигателя
-            outFanCheck.Checked = false;                     // Сброс наличия вытяжного вентилятора
+            prFanFC_ECcombo.SelectedIndex = 0;              // Сброс выбора ПЧ/ЕС двигателя
+            outFanCheck.Checked = true;                     // Выбор наличия вытяжного вентилятора
         }
 
         /// <summary>Сброс настроек для воздушных заслонок</summary>
@@ -1202,6 +1207,7 @@ namespace Moderon
             if (prFanFC_ECcombo.SelectedIndex == 1 || prFanFC_ECcombo.SelectedIndex == 2)       
             {
                 FC_fanPrPanel.Show();                                   // Отображение панели ПЧ приточного вентилятора
+                prFanStStopCheck.Enabled = true;                        // Разблокировка выбора сигнала "Пуск/Стоп"
                 
                 if (prFanFC_ECcombo.SelectedIndex == 1)                 // Выбран ПЧ приточного вентилятора 
                 {
@@ -1238,6 +1244,10 @@ namespace Moderon
                     // Изменение размера панели П вентилятора
                     prFanPanel.Size = new Size(prFanPanel.Width, prFanPanel.Height + FC_fanPrPanel.Height);
 
+                    // Сдвиг вниз для дополнительной панели приточного вентилятора
+                    extraPrFanPanel.Location = new Point(extraPrFanPanel.Location.X,
+                        extraPrFanPanel.Location.Y + FC_fanPrPanel.Height);
+
                     // Сдвиг вниз для панели резерва приточного вентилятора и панели вытяжного вентилятора
                     resFanPrPanel.Location = new Point(resFanPrPanel.Location.X,
                         resFanPrPanel.Location.Y + FC_fanPrPanel.Height);
@@ -1249,10 +1259,19 @@ namespace Moderon
             {
                 FC_fanPrPanel.Hide();                               // Скрытие панели ПЧ приточного вентилятора
 
+                if (!prFanStStopCheck.Checked)                      // Выбор сигнала "Пуск/Стоп"
+                    prFanStStopCheck.Checked = true;
+                
+                prFanStStopCheck.Enabled = false;                   // Блокировка выбора сигнала "Пуск/Стоп"
+
                 // Изменение размера панели П вентилятора
                 prFanPanel.Size = new Size(prFanPanel.Width, prFanPanel.Height - FC_fanPrPanel.Height);
 
-                // Сдвиг для панели резерва приточного вентилятора и панели вытяжного вентилятора
+                // Сдвиг вверх для дополнительной панели приточного вентилятора
+                extraPrFanPanel.Location = new Point(extraPrFanPanel.Location.X,
+                    extraPrFanPanel.Location.Y - FC_fanPrPanel.Height);
+
+                // Сдвиг вверх для панели резерва приточного вентилятора и панели вытяжного вентилятора
                 resFanPrPanel.Location = new Point(resFanPrPanel.Location.X,
                     resFanPrPanel.Location.Y - FC_fanPrPanel.Height);
                 outFanPanel.Location = new Point(outFanPanel.Location.X,
@@ -1273,7 +1292,6 @@ namespace Moderon
             if (prFanFC_ECcombo.SelectedIndex == 2 && (prFanFC_EC_Index == 0 || prFanFC_EC_Index == 1))  
             {
                 // Перемещение элементов управления вверх
-                prFanStStopCheck.Location = new Point(prFanStStopCheck.Location.X, prFanStStopCheck.Location.Y - DELTA_Y);
                 prFanAlarmCheck.Location = new Point(prFanAlarmCheck.Location.X, prFanAlarmCheck.Location.Y - DELTA_Y);
                 prFanSpeedCheck.Location = new Point(prFanSpeedCheck.Location.X, prFanSpeedCheck.Location.Y - DELTA_Y);
             }
@@ -1282,12 +1300,11 @@ namespace Moderon
             if ((prFanFC_ECcombo.SelectedIndex == 0 || prFanFC_ECcombo.SelectedIndex == 1) && prFanFC_EC_Index == 2)  
             {
                 // Перемещение элементов управления вниз
-                prFanStStopCheck.Location = new Point(prFanStStopCheck.Location.X, prFanStStopCheck.Location.Y + DELTA_Y);
                 prFanAlarmCheck.Location = new Point(prFanAlarmCheck.Location.X, prFanAlarmCheck.Location.Y + DELTA_Y);
                 prFanSpeedCheck.Location = new Point(prFanSpeedCheck.Location.X, prFanSpeedCheck.Location.Y + DELTA_Y);
             }
 
-            prFanFC_EC_Index = prFanFC_ECcombo.SelectedIndex;        // Сохранение значения выбранного индекса
+            prFanFC_EC_Index = prFanFC_ECcombo.SelectedIndex;        // Сохранение значения нового выбранного индекса
             PrFanFC_ECcombo_cmdCheckedChanged(this, e);              // Командное слово
         }
 
@@ -1326,6 +1343,7 @@ namespace Moderon
             if (outFanFC_ECcombo.SelectedIndex == 1 || outFanFC_ECcombo.SelectedIndex == 2)
             {
                 FC_fanOutPanel.Show();                                   // Отображение панели ПЧ вытяжного вентилятора
+                outFanStStopCheck.Enabled = true;                        // Разблокировка выбора сигнала "Пуск/Стоп"
 
                 if (outFanFC_ECcombo.SelectedIndex == 1)                 // Выбран ПЧ приточного вентилятора 
                 {
@@ -1362,6 +1380,10 @@ namespace Moderon
                     // Изменение размера панели В вентилятора
                     outFanPanel.Size = new Size(outFanPanel.Width, outFanPanel.Height + FC_fanPrPanel.Height);
 
+                    // Сдвиг вниз для дополнительной панели вытяжного вентилятора
+                    extraOutFanPanel.Location = new Point(extraOutFanPanel.Location.X,
+                        extraOutFanPanel.Location.Y + FC_fanOutPanel.Height);
+
                     // Сдвиг вниз для панели резерва вытяжного вентилятора
                     resFanOutPanel.Location = new Point(resFanOutPanel.Location.X,
                         resFanOutPanel.Location.Y + FC_fanOutPanel.Height);
@@ -1371,10 +1393,19 @@ namespace Moderon
             {
                 FC_fanOutPanel.Hide();                               // Скрытие панели ПЧ вытяжного вентилятора
 
+                if (!outFanStStopCheck.Checked)                      // Выбор сигнала "Пуск/Стоп"
+                    outFanStStopCheck.Checked = true;
+
+                outFanStStopCheck.Enabled = false;                   // Блокировка выбора сигнала "Пуск/Стоп"
+
                 // Изменение размера панели В вентилятора
                 outFanPanel.Size = new Size(outFanPanel.Width, outFanPanel.Height - FC_fanPrPanel.Height);
 
-                // Сдвиг для панели резерва вытяжного вентилятора
+                // Сдвиг вверх для дополнительной панели вытяжного вентилятора
+                extraOutFanPanel.Location = new Point(extraOutFanPanel.Location.X,
+                    extraOutFanPanel.Location.Y - FC_fanOutPanel.Height);
+
+                // Сдвиг вверх для панели резерва вытяжного вентилятора
                 resFanOutPanel.Location = new Point(resFanOutPanel.Location.X,
                     resFanOutPanel.Location.Y - FC_fanOutPanel.Height);
 
@@ -1393,7 +1424,6 @@ namespace Moderon
             if (outFanFC_ECcombo.SelectedIndex == 2 && (outFanFC_EC_Index == 0 || outFanFC_EC_Index == 1))
             {
                 // Перемещение элементов управления вверх
-                outFanStStopCheck.Location = new Point(outFanStStopCheck.Location.X, outFanStStopCheck.Location.Y - DELTA_Y);
                 outFanAlarmCheck.Location = new Point(outFanAlarmCheck.Location.X, outFanAlarmCheck.Location.Y - DELTA_Y);
                 outFanSpeedCheck.Location = new Point(outFanSpeedCheck.Location.X, outFanSpeedCheck.Location.Y - DELTA_Y);
             }
@@ -1402,7 +1432,6 @@ namespace Moderon
             if ((outFanFC_ECcombo.SelectedIndex == 0 || outFanFC_ECcombo.SelectedIndex == 1) && outFanFC_EC_Index == 2)
             {
                 // Перемещение элементов управления вниз
-                outFanStStopCheck.Location = new Point(outFanStStopCheck.Location.X, outFanStStopCheck.Location.Y + DELTA_Y);
                 outFanAlarmCheck.Location = new Point(outFanAlarmCheck.Location.X, outFanAlarmCheck.Location.Y + DELTA_Y);
                 outFanSpeedCheck.Location = new Point(outFanSpeedCheck.Location.X, outFanSpeedCheck.Location.Y + DELTA_Y);
             }
@@ -1469,6 +1498,8 @@ namespace Moderon
         {
             if (outDampCheck.Checked) // Выбрана вытяжная заслонка
             {
+                closeOpenOutDampCheck.Checked = true;
+
                 var outDampCheck = new List<CheckBox>()
                 {
                     confOutDampCheck, heatOutDampCheck
@@ -1478,6 +1509,7 @@ namespace Moderon
             }
             else // Отмена выбора вытяжной заслонки
             {
+                closeOpenOutDampCheck.Checked = false;
                 confOutDampCheck.Enabled = false;
                 heatOutDampCheck.Enabled = false;
             }
