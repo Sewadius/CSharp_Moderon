@@ -1414,7 +1414,7 @@ namespace Moderon
 
             if (recupCheck.Checked && comboSysType.SelectedIndex == 1)                              // Выбран рекуператор и ПВ система
             {
-                if (recupTypeCombo.SelectedIndex == 0)                                              // Роторный рекуператор
+                if (recupTypeCombo.SelectedIndex == 0 && startRotRecCheck.Checked)                  // Роторный рекуператор, сигнал ПУСК/СТОП
                     AddToListDo("Сигнал ПУСК/СТОП рекуператора", code_1);
                 else if (recupTypeCombo.SelectedIndex == 2 && pumpGlicRecCheck.Checked)             // Гликолевый рекуператор, выбран насос
                     AddToListDo("Запуск насоса гликолевого рекуператора", code_2);

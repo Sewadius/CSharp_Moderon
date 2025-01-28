@@ -11,7 +11,7 @@ namespace Moderon
     {
         readonly static public string 
             NOT_SELECTED = "Не выбрано",                                // Статус для состояния входов/выходов
-            VERSION = "v.1.1.6.9";                                      // Текущая версия программы
+            VERSION = "v.1.1.7.1";                                      // Текущая версия программы
 
         private const int
             WIDTH_MAIN = 955,                                           // Ширина основной формы
@@ -834,8 +834,8 @@ namespace Moderon
             recDefTempCheck.Checked = false;
             recDefPsCheck.Checked = false;
             // Роторный рекуператор
-            outSigAlarmRotRecCheck.Checked = true;
-            startRotRecCheck.Checked = true;
+            outSigAlarmRotRecCheck.Checked = false;
+            startRotRecCheck.Checked = false;
             // Гликолевый рекуператор, основной насос
             pumpGlicRecCheck.Checked = false;
             pumpGlikConfCheck.Checked = false;

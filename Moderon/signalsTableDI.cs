@@ -785,7 +785,7 @@ namespace Moderon
             {
                 if (recDefPsCheck.Checked)                                                          // Выбрали сигнал PS
                     CheckAddUIToList("PS рекуператора", code_1, DI);
-                if (recupTypeCombo.SelectedIndex == 0)                                              // Роторный рекуператор
+                if (recupTypeCombo.SelectedIndex == 0 && outSigAlarmRotRecCheck.Checked)            // Роторный рекуператор и выбран сигнал аварии
                     CheckAddUIToList("Авария роторного рекуператора", code_2, DI);
             }
             else // Отмена выбора рекуператора

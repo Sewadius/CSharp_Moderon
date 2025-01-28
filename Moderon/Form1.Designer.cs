@@ -2845,7 +2845,7 @@ namespace Moderon
             this.defRecupSensPanel.Controls.Add(this.recDefPsCheck);
             this.defRecupSensPanel.Controls.Add(this.label49);
             this.defRecupSensPanel.Controls.Add(this.recDefTempCheck);
-            this.defRecupSensPanel.Location = new System.Drawing.Point(5, 183);
+            this.defRecupSensPanel.Location = new System.Drawing.Point(9, 260);
             this.defRecupSensPanel.Name = "defRecupSensPanel";
             this.defRecupSensPanel.Size = new System.Drawing.Size(325, 128);
             this.defRecupSensPanel.TabIndex = 51;
@@ -2891,7 +2891,7 @@ namespace Moderon
             this.plastRecupPanel.Controls.Add(this.bypassPlastCombo);
             this.plastRecupPanel.Controls.Add(this.label48);
             this.plastRecupPanel.Controls.Add(this.label37);
-            this.plastRecupPanel.Location = new System.Drawing.Point(5, 134);
+            this.plastRecupPanel.Location = new System.Drawing.Point(348, 299);
             this.plastRecupPanel.Name = "plastRecupPanel";
             this.plastRecupPanel.Size = new System.Drawing.Size(365, 43);
             this.plastRecupPanel.TabIndex = 33;
@@ -2947,7 +2947,7 @@ namespace Moderon
             this.glikRecupPanel.Controls.Add(this.pumpGlicRecCheck);
             this.glikRecupPanel.Controls.Add(this.analogGlikRecCheck);
             this.glikRecupPanel.Controls.Add(this.label50);
-            this.glikRecupPanel.Location = new System.Drawing.Point(6, 86);
+            this.glikRecupPanel.Location = new System.Drawing.Point(350, 251);
             this.glikRecupPanel.Name = "glikRecupPanel";
             this.glikRecupPanel.Size = new System.Drawing.Size(322, 42);
             this.glikRecupPanel.TabIndex = 45;
@@ -3063,7 +3063,7 @@ namespace Moderon
             this.rotorRecupPanel.Controls.Add(this.label44);
             this.rotorRecupPanel.Location = new System.Drawing.Point(6, 40);
             this.rotorRecupPanel.Name = "rotorRecupPanel";
-            this.rotorRecupPanel.Size = new System.Drawing.Size(322, 39);
+            this.rotorRecupPanel.Size = new System.Drawing.Size(322, 189);
             this.rotorRecupPanel.TabIndex = 32;
             // 
             // analogRotRecCheck
@@ -3084,8 +3084,6 @@ namespace Moderon
             // startRotRecCheck
             // 
             this.startRotRecCheck.AutoSize = true;
-            this.startRotRecCheck.Checked = true;
-            this.startRotRecCheck.CheckState = System.Windows.Forms.CheckState.Checked;
             this.startRotRecCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.startRotRecCheck.Location = new System.Drawing.Point(15, 94);
             this.startRotRecCheck.Name = "startRotRecCheck";
@@ -3098,8 +3096,6 @@ namespace Moderon
             // outSigAlarmRotRecCheck
             // 
             this.outSigAlarmRotRecCheck.AutoSize = true;
-            this.outSigAlarmRotRecCheck.Checked = true;
-            this.outSigAlarmRotRecCheck.CheckState = System.Windows.Forms.CheckState.Checked;
             this.outSigAlarmRotRecCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.outSigAlarmRotRecCheck.Location = new System.Drawing.Point(15, 54);
             this.outSigAlarmRotRecCheck.Name = "outSigAlarmRotRecCheck";
