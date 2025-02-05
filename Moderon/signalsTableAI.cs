@@ -58,7 +58,7 @@ namespace Moderon
         ///<summary>Выбрали рекуператор</summary>
         private void RecupCheck_signalsAICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 14;                                                                         // Датчик температуры защиты рекуператора
+            ushort code_1 = 13;                                                                         // Датчик температуры защиты рекуператора
 
             if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)                                  // Рекуператор
             {
@@ -72,7 +72,7 @@ namespace Moderon
         ///<summary>Выбрали температурный датчик защиты рекуператора</summary>
         private void RecDefTempCheck_signalsAICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 14;                                                                         // Датчик температуры защиты рекуператора
+            ushort code_1 = 13;                                                                         // Датчик температуры защиты рекуператора
 
             if (comboSysType.SelectedIndex == 1 && recupCheck.Checked)                                  // ПВ и рекуператор
             {
