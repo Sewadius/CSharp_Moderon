@@ -669,6 +669,7 @@ namespace Moderon
             this.cmdWordsTextBox = new System.Windows.Forms.RichTextBox();
             this.backSignalsButton = new System.Windows.Forms.Button();
             this.helpPanel = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.linkConnectPlc = new System.Windows.Forms.LinkLabel();
             this.label11 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -736,7 +737,7 @@ namespace Moderon
             this.manBl2_label = new System.Windows.Forms.Label();
             this.comboManBl_1 = new System.Windows.Forms.ComboBox();
             this.manBl1_label = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.updateCheckBtn = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.sensorsPage.SuspendLayout();
@@ -812,6 +813,7 @@ namespace Moderon
             this.block1_AOpanel.SuspendLayout();
             this.tabCmdWord.SuspendLayout();
             this.helpPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.loadCanPanel.SuspendLayout();
@@ -822,7 +824,6 @@ namespace Moderon
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.Plk_copyPanel.SuspendLayout();
             this.panManBlocks.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -9183,9 +9184,19 @@ namespace Moderon
             this.helpPanel.Controls.Add(this.backHelpButton);
             this.helpPanel.Location = new System.Drawing.Point(15, 170);
             this.helpPanel.Name = "helpPanel";
-            this.helpPanel.Size = new System.Drawing.Size(746, 323);
+            this.helpPanel.Size = new System.Drawing.Size(746, 50);
             this.helpPanel.TabIndex = 17;
             this.helpPanel.Visible = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(483, 92);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(140, 140);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 71;
+            this.pictureBox3.TabStop = false;
             // 
             // linkConnectPlc
             // 
@@ -9329,7 +9340,7 @@ namespace Moderon
             this.loadCanPanel.Controls.Add(this.label174);
             this.loadCanPanel.Controls.Add(this.label173);
             this.loadCanPanel.Controls.Add(this.netOptionLabel);
-            this.loadCanPanel.Location = new System.Drawing.Point(25, 130);
+            this.loadCanPanel.Location = new System.Drawing.Point(19, 130);
             this.loadCanPanel.Name = "loadCanPanel";
             this.loadCanPanel.Size = new System.Drawing.Size(749, 27);
             this.loadCanPanel.TabIndex = 45;
@@ -9763,13 +9774,14 @@ namespace Moderon
             // 
             // optionsPanel
             // 
+            this.optionsPanel.Controls.Add(this.updateCheckBtn);
             this.optionsPanel.Controls.Add(this.backOptionsButton);
             this.optionsPanel.Controls.Add(this.mouseWheelCheck);
             this.optionsPanel.Controls.Add(this.tooltipsCheck);
             this.optionsPanel.Controls.Add(this.label64);
-            this.optionsPanel.Location = new System.Drawing.Point(5, 1018);
+            this.optionsPanel.Location = new System.Drawing.Point(12, 228);
             this.optionsPanel.Name = "optionsPanel";
-            this.optionsPanel.Size = new System.Drawing.Size(749, 35);
+            this.optionsPanel.Size = new System.Drawing.Size(749, 326);
             this.optionsPanel.TabIndex = 64;
             this.optionsPanel.Visible = false;
             // 
@@ -10017,15 +10029,19 @@ namespace Moderon
             this.manBl1_label.TabIndex = 20;
             this.manBl1_label.Text = "Блок 1";
             // 
-            // pictureBox3
+            // updateCheckBtn
             // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(483, 92);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(140, 140);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 71;
-            this.pictureBox3.TabStop = false;
+            this.updateCheckBtn.BackColor = System.Drawing.Color.DarkGreen;
+            this.updateCheckBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.updateCheckBtn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.updateCheckBtn.ForeColor = System.Drawing.Color.White;
+            this.updateCheckBtn.Location = new System.Drawing.Point(135, 140);
+            this.updateCheckBtn.Name = "updateCheckBtn";
+            this.updateCheckBtn.Size = new System.Drawing.Size(244, 27);
+            this.updateCheckBtn.TabIndex = 72;
+            this.updateCheckBtn.Text = "ПРОВЕРИТЬ ОБНОВЛЕНИЯ";
+            this.updateCheckBtn.UseVisualStyleBackColor = false;
+            this.updateCheckBtn.Click += new System.EventHandler(this.UpdateCheckBtn_Click);
             // 
             // Form1
             // 
@@ -10182,6 +10198,7 @@ namespace Moderon
             this.tabCmdWord.ResumeLayout(false);
             this.helpPanel.ResumeLayout(false);
             this.helpPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.loadCanPanel.ResumeLayout(false);
@@ -10197,7 +10214,6 @@ namespace Moderon
             this.Plk_copyPanel.PerformLayout();
             this.panManBlocks.ResumeLayout(false);
             this.panManBlocks.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -10907,6 +10923,7 @@ namespace Moderon
         private Label label11;
         private LinkLabel linkConnectPlc;
         private PictureBox pictureBox3;
+        private Button updateCheckBtn;
     }
 }
 

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
+using System.Deployment.Application;
 
 namespace Moderon
 {
@@ -11,7 +12,7 @@ namespace Moderon
     {
         readonly static public string 
             NOT_SELECTED = "Не выбрано",                                // Статус для состояния входов/выходов
-            VERSION = "v.1.1.7.2";                                      // Текущая версия программы
+            VERSION = "v.1.1.7.3";                                      // Текущая версия программы
 
         private const int
             WIDTH_MAIN = 955,                                           // Ширина основной формы
@@ -1822,6 +1823,57 @@ namespace Moderon
         {
             if (disable) comboBox.MouseWheel += ComboBox_MouseWheel;
             else comboBox.MouseWheel -= ComboBox_MouseWheel;
+        }
+
+        ///<summary>Проверка обновления до новой версии</summary>
+        private void UpdateCheckBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ApplicationDeployment.IsNetworkDeployed)
+                {
+                    ApplicationDeployment ad = ApplicationDeployment.CurrentDeployment;
+                    UpdateCheckInfo info = ad.CheckForDetailedUpdate();
+                    
+                    if (info.UpdateAvailable)
+                    {
+                        //You can create a dialog or message that prompts the user that there's an update. Make sure the user knows that your are updating the application.
+                        DialogResult dialogResult = MessageBox.Show("Обнаружена новая версия. Обновить приложение?", "Обновление", MessageBoxButtons.YesNo);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            //var diagRes = DialogResult.Yes;
+                            var diagRes = new UpdateForm(ad).ShowDialog();
+                            if (diagRes != DialogResult.OK)
+                            {
+                                //ad.UpdateAsyncCancel();
+                                MessageBox.Show("Обновление отменено");
+                            }
+                            if (diagRes == DialogResult.OK)
+                            {
+                                Application.Restart();
+                            }
+                            //do something
+                        }
+                        //Updates the application 
+                    }
+                    else
+                    {
+                        if (sender != null)
+                            MessageBox.Show("Обновлений не найдено");
+                    }
+                }
+            }
+            catch (DeploymentDownloadException ex)
+            {
+                MessageBox.Show($"Не удалось проверить наличие обновлений, проверьте подключение к интернету:\n{ex.Message}");
+                Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Что-то пошло не так:\n{ex.Message}");
+                Enabled = true;
+                //ex.Log();
+            }
         }
 
         ///<summary>Активация прокрутки колёсиком мыши элементов comboBox</summary>
