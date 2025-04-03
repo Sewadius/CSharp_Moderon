@@ -5,7 +5,6 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using GemBox.Spreadsheet;
 using System.Linq;
-using System.Xml.Linq;
 
 // Файл для сохранения/загрузки параметров программы в формате JSON
 

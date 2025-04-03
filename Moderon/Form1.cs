@@ -12,7 +12,7 @@ namespace Moderon
     {
         readonly static public string 
             NOT_SELECTED = "Не выбрано",                                // Статус для состояния входов/выходов
-            VERSION = "v.1.1.7.3";                                      // Текущая версия программы
+            VERSION = "v.1.1.9.6";                                      // Текущая версия программы
 
         private const int
             WIDTH_MAIN = 955,                                           // Ширина основной формы
@@ -1830,6 +1830,10 @@ namespace Moderon
         {
             try
             {
+                // Отключаем проверку SSL-сертификатов (осторожно: снижает безопасность!)
+                /*ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, errors) => true;
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; // Убедитесь, что используется актуальный протокол */
+
                 if (ApplicationDeployment.IsNetworkDeployed)
                 {
                     ApplicationDeployment ad = ApplicationDeployment.CurrentDeployment;
