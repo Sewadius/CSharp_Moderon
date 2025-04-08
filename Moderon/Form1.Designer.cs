@@ -719,6 +719,7 @@ namespace Moderon
             this.M72E12RB_label = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
             this.optionsPanel = new System.Windows.Forms.Panel();
+            this.updateCheckBtn = new System.Windows.Forms.Button();
             this.backOptionsButton = new System.Windows.Forms.Button();
             this.mouseWheelCheck = new System.Windows.Forms.CheckBox();
             this.tooltipsCheck = new System.Windows.Forms.CheckBox();
@@ -737,7 +738,6 @@ namespace Moderon
             this.manBl2_label = new System.Windows.Forms.Label();
             this.comboManBl_1 = new System.Windows.Forms.ComboBox();
             this.manBl1_label = new System.Windows.Forms.Label();
-            this.updateCheckBtn = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.sensorsPage.SuspendLayout();
@@ -921,7 +921,7 @@ namespace Moderon
             this.mainPage.Location = new System.Drawing.Point(15, 75);
             this.mainPage.Name = "mainPage";
             this.mainPage.SelectedIndex = 0;
-            this.mainPage.Size = new System.Drawing.Size(750, 49);
+            this.mainPage.Size = new System.Drawing.Size(750, 655);
             this.mainPage.TabIndex = 1;
             // 
             // sensorsPage
@@ -930,7 +930,7 @@ namespace Moderon
             this.sensorsPage.Controls.Add(this.sensorsPanel);
             this.sensorsPage.Location = new System.Drawing.Point(4, 22);
             this.sensorsPage.Name = "sensorsPage";
-            this.sensorsPage.Size = new System.Drawing.Size(742, 23);
+            this.sensorsPage.Size = new System.Drawing.Size(742, 629);
             this.sensorsPage.TabIndex = 9;
             this.sensorsPage.Text = "ДАТЧИКИ/СИГНАЛЫ";
             // 
@@ -1193,7 +1193,7 @@ namespace Moderon
             this.fanPage.Location = new System.Drawing.Point(4, 22);
             this.fanPage.Name = "fanPage";
             this.fanPage.Padding = new System.Windows.Forms.Padding(3);
-            this.fanPage.Size = new System.Drawing.Size(742, 23);
+            this.fanPage.Size = new System.Drawing.Size(742, 629);
             this.fanPage.TabIndex = 0;
             this.fanPage.Text = "ВЕНТИЛЯТОР";
             // 
@@ -1805,7 +1805,7 @@ namespace Moderon
             this.filterPage.Controls.Add(this.filterPanel);
             this.filterPage.Location = new System.Drawing.Point(4, 22);
             this.filterPage.Name = "filterPage";
-            this.filterPage.Size = new System.Drawing.Size(742, 23);
+            this.filterPage.Size = new System.Drawing.Size(742, 629);
             this.filterPage.TabIndex = 6;
             this.filterPage.Text = "ФИЛЬТР";
             // 
@@ -1927,7 +1927,7 @@ namespace Moderon
             this.dampPage.Controls.Add(this.dampPanel);
             this.dampPage.Location = new System.Drawing.Point(4, 22);
             this.dampPage.Name = "dampPage";
-            this.dampPage.Size = new System.Drawing.Size(742, 23);
+            this.dampPage.Size = new System.Drawing.Size(742, 629);
             this.dampPage.TabIndex = 7;
             this.dampPage.Text = "ЗАСЛОНКА";
             // 
@@ -2082,7 +2082,7 @@ namespace Moderon
             this.heatPage.Location = new System.Drawing.Point(4, 22);
             this.heatPage.Name = "heatPage";
             this.heatPage.Padding = new System.Windows.Forms.Padding(3);
-            this.heatPage.Size = new System.Drawing.Size(742, 23);
+            this.heatPage.Size = new System.Drawing.Size(742, 629);
             this.heatPage.TabIndex = 1;
             this.heatPage.Text = "НАГРЕВАТЕЛЬ";
             // 
@@ -2234,7 +2234,7 @@ namespace Moderon
             this.watHeatPanel.Controls.Add(this.TF_heaterCheck);
             this.watHeatPanel.Location = new System.Drawing.Point(3, 37);
             this.watHeatPanel.Name = "watHeatPanel";
-            this.watHeatPanel.Size = new System.Drawing.Size(322, 434);
+            this.watHeatPanel.Size = new System.Drawing.Size(322, 414);
             this.watHeatPanel.TabIndex = 30;
             // 
             // mainPumpHeater
@@ -2244,7 +2244,7 @@ namespace Moderon
             this.mainPumpHeater.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mainPumpHeater.Enabled = false;
             this.mainPumpHeater.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.mainPumpHeater.Location = new System.Drawing.Point(15, 94);
+            this.mainPumpHeater.Location = new System.Drawing.Point(15, 174);
             this.mainPumpHeater.Name = "mainPumpHeater";
             this.mainPumpHeater.Size = new System.Drawing.Size(129, 18);
             this.mainPumpHeater.TabIndex = 42;
@@ -2256,7 +2256,7 @@ namespace Moderon
             this.confHeatResPumpCheck.AutoSize = true;
             this.confHeatResPumpCheck.Enabled = false;
             this.confHeatResPumpCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.confHeatResPumpCheck.Location = new System.Drawing.Point(15, 254);
+            this.confHeatResPumpCheck.Location = new System.Drawing.Point(15, 334);
             this.confHeatResPumpCheck.Name = "confHeatResPumpCheck";
             this.confHeatResPumpCheck.Size = new System.Drawing.Size(241, 18);
             this.confHeatResPumpCheck.TabIndex = 41;
@@ -2269,7 +2269,7 @@ namespace Moderon
             this.pumpCurResProtect.AutoSize = true;
             this.pumpCurResProtect.Enabled = false;
             this.pumpCurResProtect.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.pumpCurResProtect.Location = new System.Drawing.Point(15, 294);
+            this.pumpCurResProtect.Location = new System.Drawing.Point(15, 374);
             this.pumpCurResProtect.Name = "pumpCurResProtect";
             this.pumpCurResProtect.Size = new System.Drawing.Size(256, 18);
             this.pumpCurResProtect.TabIndex = 40;
@@ -2281,7 +2281,7 @@ namespace Moderon
             // 
             this.reservPumpHeater.AutoSize = true;
             this.reservPumpHeater.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.reservPumpHeater.Location = new System.Drawing.Point(15, 214);
+            this.reservPumpHeater.Location = new System.Drawing.Point(15, 294);
             this.reservPumpHeater.Name = "reservPumpHeater";
             this.reservPumpHeater.Size = new System.Drawing.Size(136, 18);
             this.reservPumpHeater.TabIndex = 39;
@@ -2304,7 +2304,7 @@ namespace Moderon
             // 
             this.pumpCurProtect.AutoSize = true;
             this.pumpCurProtect.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.pumpCurProtect.Location = new System.Drawing.Point(15, 174);
+            this.pumpCurProtect.Location = new System.Drawing.Point(15, 254);
             this.pumpCurProtect.Name = "pumpCurProtect";
             this.pumpCurProtect.Size = new System.Drawing.Size(177, 18);
             this.pumpCurProtect.TabIndex = 31;
@@ -2319,7 +2319,7 @@ namespace Moderon
             this.watSensHeatCheck.CheckState = System.Windows.Forms.CheckState.Checked;
             this.watSensHeatCheck.Enabled = false;
             this.watSensHeatCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.watSensHeatCheck.Location = new System.Drawing.Point(15, 374);
+            this.watSensHeatCheck.Location = new System.Drawing.Point(15, 134);
             this.watSensHeatCheck.Name = "watSensHeatCheck";
             this.watSensHeatCheck.Size = new System.Drawing.Size(176, 18);
             this.watSensHeatCheck.TabIndex = 30;
@@ -2333,7 +2333,7 @@ namespace Moderon
             this.analogSigHeatCheck.CheckState = System.Windows.Forms.CheckState.Checked;
             this.analogSigHeatCheck.Enabled = false;
             this.analogSigHeatCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.analogSigHeatCheck.Location = new System.Drawing.Point(15, 334);
+            this.analogSigHeatCheck.Location = new System.Drawing.Point(15, 94);
             this.analogSigHeatCheck.Name = "analogSigHeatCheck";
             this.analogSigHeatCheck.Size = new System.Drawing.Size(210, 18);
             this.analogSigHeatCheck.TabIndex = 29;
@@ -2344,7 +2344,7 @@ namespace Moderon
             // 
             this.confHeatPumpCheck.AutoSize = true;
             this.confHeatPumpCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.confHeatPumpCheck.Location = new System.Drawing.Point(15, 134);
+            this.confHeatPumpCheck.Location = new System.Drawing.Point(15, 214);
             this.confHeatPumpCheck.Name = "confHeatPumpCheck";
             this.confHeatPumpCheck.Size = new System.Drawing.Size(232, 18);
             this.confHeatPumpCheck.TabIndex = 28;
@@ -2373,11 +2373,11 @@ namespace Moderon
             this.heatTypeCombo.ForeColor = System.Drawing.Color.White;
             this.heatTypeCombo.FormattingEnabled = true;
             this.heatTypeCombo.Items.AddRange(new object[] {
-            "Водяной",
+            "Водяной (гликолевый)",
             "Электрический"});
             this.heatTypeCombo.Location = new System.Drawing.Point(144, 9);
             this.heatTypeCombo.Name = "heatTypeCombo";
-            this.heatTypeCombo.Size = new System.Drawing.Size(136, 21);
+            this.heatTypeCombo.Size = new System.Drawing.Size(181, 21);
             this.heatTypeCombo.TabIndex = 29;
             this.heatTypeCombo.SelectedIndexChanged += new System.EventHandler(this.HeatTypeCombo_SelectedIndexChanged);
             // 
@@ -2398,7 +2398,7 @@ namespace Moderon
             this.coolPage.Location = new System.Drawing.Point(4, 22);
             this.coolPage.Name = "coolPage";
             this.coolPage.Padding = new System.Windows.Forms.Padding(3);
-            this.coolPage.Size = new System.Drawing.Size(742, 23);
+            this.coolPage.Size = new System.Drawing.Size(742, 629);
             this.coolPage.TabIndex = 2;
             this.coolPage.Text = "ОХЛАДИТЕЛЬ";
             // 
@@ -2596,7 +2596,7 @@ namespace Moderon
             this.humidPage.Location = new System.Drawing.Point(4, 22);
             this.humidPage.Name = "humidPage";
             this.humidPage.Padding = new System.Windows.Forms.Padding(3);
-            this.humidPage.Size = new System.Drawing.Size(742, 23);
+            this.humidPage.Size = new System.Drawing.Size(742, 629);
             this.humidPage.TabIndex = 3;
             this.humidPage.Text = "УВЛАЖНИТЕЛЬ";
             // 
@@ -2754,7 +2754,7 @@ namespace Moderon
             this.recircPage.Location = new System.Drawing.Point(4, 22);
             this.recircPage.Name = "recircPage";
             this.recircPage.Padding = new System.Windows.Forms.Padding(3);
-            this.recircPage.Size = new System.Drawing.Size(742, 23);
+            this.recircPage.Size = new System.Drawing.Size(742, 629);
             this.recircPage.TabIndex = 4;
             this.recircPage.Text = "РЕЦИРКУЛЯЦИЯ";
             // 
@@ -2821,7 +2821,7 @@ namespace Moderon
             this.recupPage.Controls.Add(this.recupPanel);
             this.recupPage.Location = new System.Drawing.Point(4, 22);
             this.recupPage.Name = "recupPage";
-            this.recupPage.Size = new System.Drawing.Size(742, 23);
+            this.recupPage.Size = new System.Drawing.Size(742, 629);
             this.recupPage.TabIndex = 5;
             this.recupPage.Text = "РЕКУПЕРАТОР";
             // 
@@ -3160,7 +3160,7 @@ namespace Moderon
             this.addHeatPage.Controls.Add(this.secHeatPanel);
             this.addHeatPage.Location = new System.Drawing.Point(4, 22);
             this.addHeatPage.Name = "addHeatPage";
-            this.addHeatPage.Size = new System.Drawing.Size(742, 23);
+            this.addHeatPage.Size = new System.Drawing.Size(742, 629);
             this.addHeatPage.TabIndex = 8;
             this.addHeatPage.Text = "ДОП НАГРЕВ";
             // 
@@ -3312,7 +3312,7 @@ namespace Moderon
             this.watAddHeatPanel.Controls.Add(this.label57);
             this.watAddHeatPanel.Location = new System.Drawing.Point(0, 37);
             this.watAddHeatPanel.Name = "watAddHeatPanel";
-            this.watAddHeatPanel.Size = new System.Drawing.Size(298, 483);
+            this.watAddHeatPanel.Size = new System.Drawing.Size(298, 424);
             this.watAddHeatPanel.TabIndex = 30;
             // 
             // confAddHeatResPumpCheck
@@ -3320,7 +3320,7 @@ namespace Moderon
             this.confAddHeatResPumpCheck.AutoSize = true;
             this.confAddHeatResPumpCheck.Enabled = false;
             this.confAddHeatResPumpCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.confAddHeatResPumpCheck.Location = new System.Drawing.Point(15, 254);
+            this.confAddHeatResPumpCheck.Location = new System.Drawing.Point(15, 334);
             this.confAddHeatResPumpCheck.Name = "confAddHeatResPumpCheck";
             this.confAddHeatResPumpCheck.Size = new System.Drawing.Size(241, 18);
             this.confAddHeatResPumpCheck.TabIndex = 36;
@@ -3333,7 +3333,7 @@ namespace Moderon
             this.pumpCurResAddProtect.AutoSize = true;
             this.pumpCurResAddProtect.Enabled = false;
             this.pumpCurResAddProtect.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.pumpCurResAddProtect.Location = new System.Drawing.Point(15, 294);
+            this.pumpCurResAddProtect.Location = new System.Drawing.Point(15, 374);
             this.pumpCurResAddProtect.Name = "pumpCurResAddProtect";
             this.pumpCurResAddProtect.Size = new System.Drawing.Size(256, 18);
             this.pumpCurResAddProtect.TabIndex = 35;
@@ -3345,7 +3345,7 @@ namespace Moderon
             // 
             this.reservPumpAddHeater.AutoSize = true;
             this.reservPumpAddHeater.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.reservPumpAddHeater.Location = new System.Drawing.Point(15, 214);
+            this.reservPumpAddHeater.Location = new System.Drawing.Point(15, 294);
             this.reservPumpAddHeater.Name = "reservPumpAddHeater";
             this.reservPumpAddHeater.Size = new System.Drawing.Size(136, 18);
             this.reservPumpAddHeater.TabIndex = 34;
@@ -3357,7 +3357,7 @@ namespace Moderon
             // 
             this.pumpCurAddProtect.AutoSize = true;
             this.pumpCurAddProtect.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.pumpCurAddProtect.Location = new System.Drawing.Point(15, 174);
+            this.pumpCurAddProtect.Location = new System.Drawing.Point(15, 254);
             this.pumpCurAddProtect.Name = "pumpCurAddProtect";
             this.pumpCurAddProtect.Size = new System.Drawing.Size(177, 18);
             this.pumpCurAddProtect.TabIndex = 33;
@@ -3371,11 +3371,11 @@ namespace Moderon
             this.pumpAddHeatCheck.Checked = true;
             this.pumpAddHeatCheck.CheckState = System.Windows.Forms.CheckState.Checked;
             this.pumpAddHeatCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.pumpAddHeatCheck.Location = new System.Drawing.Point(15, 94);
+            this.pumpAddHeatCheck.Location = new System.Drawing.Point(15, 174);
             this.pumpAddHeatCheck.Name = "pumpAddHeatCheck";
-            this.pumpAddHeatCheck.Size = new System.Drawing.Size(177, 18);
+            this.pumpAddHeatCheck.Size = new System.Drawing.Size(129, 18);
             this.pumpAddHeatCheck.TabIndex = 32;
-            this.pumpAddHeatCheck.Text = "Циркуляционный насос";
+            this.pumpAddHeatCheck.Text = "Основной насос";
             this.pumpAddHeatCheck.UseVisualStyleBackColor = true;
             this.pumpAddHeatCheck.CheckedChanged += new System.EventHandler(this.PumpAddHeatCheck_CheckedChanged);
             // 
@@ -3383,7 +3383,7 @@ namespace Moderon
             // 
             this.sensWatAddHeatCheck.AutoSize = true;
             this.sensWatAddHeatCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.sensWatAddHeatCheck.Location = new System.Drawing.Point(15, 374);
+            this.sensWatAddHeatCheck.Location = new System.Drawing.Point(15, 134);
             this.sensWatAddHeatCheck.Name = "sensWatAddHeatCheck";
             this.sensWatAddHeatCheck.Size = new System.Drawing.Size(176, 18);
             this.sensWatAddHeatCheck.TabIndex = 31;
@@ -3397,7 +3397,7 @@ namespace Moderon
             this.checkBox27.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox27.Enabled = false;
             this.checkBox27.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBox27.Location = new System.Drawing.Point(15, 334);
+            this.checkBox27.Location = new System.Drawing.Point(15, 94);
             this.checkBox27.Name = "checkBox27";
             this.checkBox27.Size = new System.Drawing.Size(210, 18);
             this.checkBox27.TabIndex = 30;
@@ -3408,7 +3408,7 @@ namespace Moderon
             // 
             this.confAddHeatPumpCheck.AutoSize = true;
             this.confAddHeatPumpCheck.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.confAddHeatPumpCheck.Location = new System.Drawing.Point(15, 134);
+            this.confAddHeatPumpCheck.Location = new System.Drawing.Point(15, 214);
             this.confAddHeatPumpCheck.Name = "confAddHeatPumpCheck";
             this.confAddHeatPumpCheck.Size = new System.Drawing.Size(232, 18);
             this.confAddHeatPumpCheck.TabIndex = 28;
@@ -3448,11 +3448,11 @@ namespace Moderon
             this.heatAddTypeCombo.ForeColor = System.Drawing.Color.White;
             this.heatAddTypeCombo.FormattingEnabled = true;
             this.heatAddTypeCombo.Items.AddRange(new object[] {
-            "Водяной",
+            "Водяной (гликолевый)",
             "Электрический"});
             this.heatAddTypeCombo.Location = new System.Drawing.Point(195, 9);
             this.heatAddTypeCombo.Name = "heatAddTypeCombo";
-            this.heatAddTypeCombo.Size = new System.Drawing.Size(136, 21);
+            this.heatAddTypeCombo.Size = new System.Drawing.Size(181, 21);
             this.heatAddTypeCombo.TabIndex = 29;
             this.heatAddTypeCombo.SelectedIndexChanged += new System.EventHandler(this.HeatAddTypeCombo_SelectedIndexChanged);
             // 
@@ -9182,7 +9182,7 @@ namespace Moderon
             this.helpPanel.Controls.Add(this.label140);
             this.helpPanel.Controls.Add(this.linkModeronWeb);
             this.helpPanel.Controls.Add(this.backHelpButton);
-            this.helpPanel.Location = new System.Drawing.Point(15, 170);
+            this.helpPanel.Location = new System.Drawing.Point(5, 769);
             this.helpPanel.Name = "helpPanel";
             this.helpPanel.Size = new System.Drawing.Size(746, 50);
             this.helpPanel.TabIndex = 17;
@@ -9340,7 +9340,7 @@ namespace Moderon
             this.loadCanPanel.Controls.Add(this.label174);
             this.loadCanPanel.Controls.Add(this.label173);
             this.loadCanPanel.Controls.Add(this.netOptionLabel);
-            this.loadCanPanel.Location = new System.Drawing.Point(19, 130);
+            this.loadCanPanel.Location = new System.Drawing.Point(5, 736);
             this.loadCanPanel.Name = "loadCanPanel";
             this.loadCanPanel.Size = new System.Drawing.Size(749, 27);
             this.loadCanPanel.TabIndex = 45;
@@ -9779,11 +9779,25 @@ namespace Moderon
             this.optionsPanel.Controls.Add(this.mouseWheelCheck);
             this.optionsPanel.Controls.Add(this.tooltipsCheck);
             this.optionsPanel.Controls.Add(this.label64);
-            this.optionsPanel.Location = new System.Drawing.Point(12, 228);
+            this.optionsPanel.Location = new System.Drawing.Point(5, 828);
             this.optionsPanel.Name = "optionsPanel";
-            this.optionsPanel.Size = new System.Drawing.Size(749, 326);
+            this.optionsPanel.Size = new System.Drawing.Size(749, 40);
             this.optionsPanel.TabIndex = 64;
             this.optionsPanel.Visible = false;
+            // 
+            // updateCheckBtn
+            // 
+            this.updateCheckBtn.BackColor = System.Drawing.Color.DarkGreen;
+            this.updateCheckBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.updateCheckBtn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.updateCheckBtn.ForeColor = System.Drawing.Color.White;
+            this.updateCheckBtn.Location = new System.Drawing.Point(135, 140);
+            this.updateCheckBtn.Name = "updateCheckBtn";
+            this.updateCheckBtn.Size = new System.Drawing.Size(244, 27);
+            this.updateCheckBtn.TabIndex = 72;
+            this.updateCheckBtn.Text = "ПРОВЕРИТЬ ОБНОВЛЕНИЯ";
+            this.updateCheckBtn.UseVisualStyleBackColor = false;
+            this.updateCheckBtn.Click += new System.EventHandler(this.UpdateCheckBtn_Click);
             // 
             // backOptionsButton
             // 
@@ -10028,20 +10042,6 @@ namespace Moderon
             this.manBl1_label.Size = new System.Drawing.Size(47, 13);
             this.manBl1_label.TabIndex = 20;
             this.manBl1_label.Text = "Блок 1";
-            // 
-            // updateCheckBtn
-            // 
-            this.updateCheckBtn.BackColor = System.Drawing.Color.DarkGreen;
-            this.updateCheckBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.updateCheckBtn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.updateCheckBtn.ForeColor = System.Drawing.Color.White;
-            this.updateCheckBtn.Location = new System.Drawing.Point(135, 140);
-            this.updateCheckBtn.Name = "updateCheckBtn";
-            this.updateCheckBtn.Size = new System.Drawing.Size(244, 27);
-            this.updateCheckBtn.TabIndex = 72;
-            this.updateCheckBtn.Text = "ПРОВЕРИТЬ ОБНОВЛЕНИЯ";
-            this.updateCheckBtn.UseVisualStyleBackColor = false;
-            this.updateCheckBtn.Click += new System.EventHandler(this.UpdateCheckBtn_Click);
             // 
             // Form1
             // 
