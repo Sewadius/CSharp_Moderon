@@ -176,7 +176,7 @@ namespace Moderon
                 {
                     FileName = "cmd.exe",
                     Arguments = $"/C eflash.exe ./{firmwareType} -nogui -port " + port + " -speed 9600" +
-                        " -parity " + parity + " -stopbits 1 -cmd flash & pause",
+                        " -parity " + parity + " -stopbits 1 -fe -sd -cmd flash & pause",
                     RedirectStandardOutput = true,
                     UseShellExecute = false,            // false
                     CreateNoWindow = true               // true

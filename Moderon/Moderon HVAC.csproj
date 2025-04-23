@@ -30,8 +30,8 @@
     <PublisherName>Moderon</PublisherName>
     <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>7</ApplicationRevision>
-    <ApplicationVersion>1.1.9.%2a</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.2.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -155,10 +155,10 @@
     <Content Include="imgs\connectPlcQR.jpg" />
     <Content Include="imgs\manualQR.jpg" />
     <Content Include="imgs\siteQR.jpg" />
-    <Content Include="mini_31015.alf">
+    <Content Include="opt_31015.alf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="opt_31015.alf">
+    <Content Include="mini_31015.alf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Moderon HVAC_TemporaryKey.pfx" />
