@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace Moderon
 {
@@ -497,13 +496,13 @@ namespace Moderon
             if (heaterCheck.Checked)                                            // Выбрали нагреватель
             {
                 if (heatTypeCombo.SelectedIndex == 0)                           // Водяной нагреватель
-                    AddToListAO("Водяной калорифер 0-10 В", code_1);
+                    AddToListAO("Водяной нагреватель 0-10 В", code_1);
                 else if (heatTypeCombo.SelectedIndex == 1)                      // Электрический нагреватель
                 {
                     if (firstStHeatCombo.SelectedIndex == 1)                    // ШИМ 5 В
-                        list_ao.Add(new Ao("Электрический калорифер ШИМ 5 В", code_2));
+                        list_ao.Add(new Ao("Электрический нагреватель ШИМ 5 В", code_2));
                     else if (firstStHeatCombo.SelectedIndex == 2)               // 0-10 В
-                        list_ao.Add(new Ao("Электрический калорифер 0-10 В", code_2));
+                        list_ao.Add(new Ao("Электрический нагреватель 0-10 В", code_2));
                     if (firstStHeatCombo.SelectedIndex != 0)                    // Если не дискретное управление
                         AddNewAO(code_2);                                       // Добавление AO к свободному comboBox выхода
                 }
@@ -525,16 +524,16 @@ namespace Moderon
                 {
                     SubFromCombosAO(code_2);                                    // Удаление для электронагревателя
                     System.Threading.Thread.Sleep(10);
-                    AddToListAO("Водяной калорифер 0-10 В", code_1);
+                    AddToListAO("Водяной нагреватель 0-10 В", code_1);
                 }
                 else if (heatTypeCombo.SelectedIndex == 1)                      // Электрический нагреватель
                 {
-                    SubFromCombosAO(code_1);                                    // Удаление для водяного калорифера
+                    SubFromCombosAO(code_1);                                    // Удаление для водяного нагревателя
                     System.Threading.Thread.Sleep(10);
                     if (firstStHeatCombo.SelectedIndex == 1)                    // ШИМ 5 В
-                        list_ao.Add(new Ao("Электрический калорифер ШИМ 5 В", code_2));
+                        list_ao.Add(new Ao("Электрический нагреватель ШИМ 5 В", code_2));
                     else if (firstStHeatCombo.SelectedIndex == 2)               // 0-10 В
-                        list_ao.Add(new Ao("Электрический калорифер 0-10 В", code_2));
+                        list_ao.Add(new Ao("Электрический нагреватель 0-10 В", code_2));
                     if (firstStHeatCombo.SelectedIndex != 0)                    // Если не дискретное управление
                         AddNewAO(code_2);                                       // Добавление AO к свободному comboBox выхода
                 }
@@ -554,13 +553,13 @@ namespace Moderon
                 {
                     SubFromCombosAO(code_1);                                    // Удаление сигнала
                     System.Threading.Thread.Sleep(10);
-                    AddToListAO("Электрический калорифер ШИМ 5 В", code_1);
+                    AddToListAO("Электрический нагреватель ШИМ 5 В", code_1);
                 }
                 else if (firstStHeatCombo.SelectedIndex == 2)                   // Сигнал 0-10 В
                 {
                     SubFromCombosAO(code_1);                                    // Удаление сигнала
                     System.Threading.Thread.Sleep(10);
-                    AddToListAO("Электрический калорифер 0-10 В", code_1);
+                    AddToListAO("Электрический нагреватель 0-10 В", code_1);
                 }
             }
         }

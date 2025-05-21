@@ -8,10 +8,10 @@ namespace Moderon
         ///<summary>Выбрали основной нагреватель</summary>
         private void HeaterCheck_signalsAICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 9;                                                                          // Датчик обратной воды калорифера
+            ushort code_1 = 9;                                                                          // Датчик обратной воды нагревателя
 
-            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                                // Водяной калорифер
-                CheckAddUIToList("Датчик обратной воды калорифера", code_1, NTC);
+            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                                // Водяной нагреватель
+                CheckAddUIToList("Датчик обратной воды нагревателя", code_1, NTC);
             else // Отмена выбора нагревателя
                 SubFromCombosUI(code_1);
         }
@@ -19,13 +19,13 @@ namespace Moderon
         ///<summary>Изменили тип основного нагревателя</summary>
         private void HeatTypeCombo_signalsAISelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 9;                                                                          // Датчик обратной воды калорифера
+            ushort code_1 = 9;                                                                          // Датчик обратной воды нагревателя
 
             if (heaterCheck.Checked)                                                                    // Когда выбран нагреватель
             {
-                if (heatTypeCombo.SelectedIndex == 0)                                                   // Водяной калорифер
-                    CheckAddUIToList("Датчик обратной воды калорифера", code_1, NTC);
-                else if (heatTypeCombo.SelectedIndex == 1)                                              // Электрокалорифер
+                if (heatTypeCombo.SelectedIndex == 0)                                                   // Водяной нагреватель
+                    CheckAddUIToList("Датчик обратной воды нагревателя", code_1, NTC);
+                else if (heatTypeCombo.SelectedIndex == 1)                                              // Электрический нагреватель
                     SubFromCombosUI(code_1);
             }
         }
@@ -50,7 +50,7 @@ namespace Moderon
             {
                 if (heatAddTypeCombo.SelectedIndex == 0)                                                // Водяной догреватель
                     CheckAddUIToList("Датчик обратной воды догревателя", code_1, NTC);
-                else if (heatAddTypeCombo.SelectedIndex == 1)                                           // Электрокалорифер
+                else if (heatAddTypeCombo.SelectedIndex == 1)                                           // Электрический нагреватель
                     SubFromCombosUI(code_1);
             }
         }

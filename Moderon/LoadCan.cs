@@ -15,8 +15,8 @@ namespace Moderon
         private SerialPort serialPort = new();
         private ModbusRTU modbusRTU = new();
 
-        private readonly string FIRMWARE_FILE_OPT = "opt_31015.alf";     // Файл прошивки для Optimize
-        private readonly string FIRMWARE_FILE_MINI = "mini_31015.alf";   // Файл прошивки для Mini
+        private readonly string FIRMWARE_FILE_OPT = "opt_19055.alf";     // Файл прошивки для Optimize
+        private readonly string FIRMWARE_FILE_MINI = "mini_19055.alf";   // Файл прошивки для Mini
 
         private readonly int MS_200 = 200;      // Задержка 200 мс
         private readonly int MS_500 = 500;      // Задержка 500 мс
@@ -48,7 +48,7 @@ namespace Moderon
 
             // Выбор скорости и чётности соединения по умолчанию
             speedCanCombo.SelectedIndex = 0;            // Скорость 9600
-            parityCanCombo.SelectedIndex = 0;           // Чётность Even
+            parityCanCombo.SelectedIndex = 2;           // Без проверки чётности по умолчанию
         }
 
         /// <summary>Получение доступных CAN портов для выбора</summary>

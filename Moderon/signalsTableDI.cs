@@ -134,10 +134,11 @@ namespace Moderon
         ///<summary>Выбрали резерв приточного вентилятора</summary>
         private void CheckResPrFan_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 1022;                               // PS приточного вентилятора 2
-            ushort code_2 = 1024;                               // Термоконтакты приточного вентилятора 2
-            ushort code_3 = 1023;                               // Сигнал аварии приточного вентилятора 2
-            ushort code_4 = 1025;                               // Защита по току приточного вентилятора 2
+            ushort
+                code_1 = 1022,                               // PS приточного вентилятора 2
+                code_2 = 1024,                               // Термоконтакты приточного вентилятора 2
+                code_3 = 1023,                               // Сигнал аварии приточного вентилятора 2
+                code_4 = 1025;                               // Защита по току приточного вентилятора 2
 
             if (checkResPrFan.Checked)                                                              // Выбран резерв приточного
             {
@@ -245,10 +246,11 @@ namespace Moderon
         ///<summary>Выбрали резерв вытяжного вентилятора</summary>
         private void CheckResOutFan_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 1055;                     // PS вытяжного вентилятра 2
-            ushort code_2 = 1057;                     // Термоконтакты вытяжного вентилятора 2
-            ushort code_3 = 1056;                     // Сигнал аварии вытяжного вентилятора 2
-            ushort code_4 = 1058;                     // Защита по току вытяжного вентилятора 2
+            ushort 
+                code_1 = 1055,                     // PS вытяжного вентилятра 2
+                code_2 = 1057,                     // Термоконтакты вытяжного вентилятора 2
+                code_3 = 1056,                     // Сигнал аварии вытяжного вентилятора 2
+                code_4 = 1058;                     // Защита по току вытяжного вентилятора 2
 
             if (comboSysType.SelectedIndex == 1 && outFanCheck.Checked && checkResOutFan.Checked)  // Выбран резерв вытяжного
             {
@@ -292,9 +294,9 @@ namespace Moderon
             if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                            // Выбран водяной нагреватель
             { 
                 if (TF_heaterCheck.Checked)                                                         // Выбран термостат
-                    CheckAddUIToList("Термостат водяного калорифера", code_1, DI);
+                    CheckAddUIToList("Термостат водяного нагревателя", code_1, DI);
                 if (confHeatPumpCheck.Checked)                                                      // Подтверждение работы насоса
-                    CheckAddUIToList("Подтверждение работы насоса водяного калорифера", code_2, DI);
+                    CheckAddUIToList("Подтверждение работы насоса водяного нагревателя", code_2, DI);
             }
             else                                                                                    // Отмена выбора нагревателя
             {
@@ -309,22 +311,31 @@ namespace Moderon
         private void HeatTypeCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
             // Воздушный термостат, подтверждение работы насоса, защита по току
-            ushort code_1 = 1072, code_2 = 1073, code_3 = 1075;                                           
+            ushort code_1 = 1072, code_2 = 1073, code_3 = 1075, code_4 = 1074, code_5 = 1076;                                          
 
             if (heaterCheck.Checked)                                                                // Выбран нагреватель
             { 
-                if (heatTypeCombo.SelectedIndex == 0)                                               // Водяной калорифер
+                if (heatTypeCombo.SelectedIndex == 0)                                               // Водяной нагреватель
                 {
                     if (TF_heaterCheck.Checked)                                                     // Воздушный термостат
-                        CheckAddUIToList("Термостат водяного калорифера", code_1, DI);
+                        CheckAddUIToList("Термостат водяного нагревателя", code_1, DI);
                     if (confHeatPumpCheck.Checked)                                                  // Подтверждение работы насоса
-                        CheckAddUIToList("Подтверждение работы насоса водяного калорифера", code_2, DI);
+                        CheckAddUIToList("Подтверждение работы насоса водяного нагревателя", code_2, DI);
                     if (pumpCurProtect.Checked)                                                     // Защита насоса по току
-                        CheckAddUIToList("Защита по току основного насоса калорифера", code_3, DI);
+                        CheckAddUIToList("Защита по току основного насоса нагревателя", code_3, DI);
+
+                    if (reservPumpHeater.Checked)                                                   // Выбран резервный насос
+                    {
+                        if (confHeatResPumpCheck.Checked)                                           // Подтверждение работы резервного насоса
+                            CheckAddUIToList("Подтверждение работы резервного насоса нагревателя", code_4, DI);
+                        if (pumpCurResProtect.Checked)                                              // Защита резервного насоса по току
+                            CheckAddUIToList("Защита по току резервного насоса нагревателя", code_5, DI);
+                    }
                 }
-                else                                                                                // Электрокалорифер
+                else                                                                                // Электрический нагреватель
                 {
                     SubFromCombosUI(code_1); SubFromCombosUI(code_2); SubFromCombosUI(code_3);
+                    SubFromCombosUI(code_4); SubFromCombosUI(code_5);
                 }
 
                 OverheatThermCheck_signalsDICheckedChanged(this, e);                                // Проверка термовыключателя перегрева
@@ -337,66 +348,66 @@ namespace Moderon
         {
             ushort code_1 = 1072;                                                                   // Воздушный термостат
 
-            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                            // Выбран водяной калорифер
+            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                            // Выбран водяной нагреватель
             { 
                 if (TF_heaterCheck.Checked) // Выбрали воздушный термостат
-                    CheckAddUIToList("Термостат водяного калорифера", code_1, DI);
+                    CheckAddUIToList("Термостат водяного нагревателя", code_1, DI);
                 else // Отмена выбора
                     SubFromCombosUI(code_1);
             }
         }
 
-        ///<summary>Подтверждение работы основного насоса водяного калорифера</summary>
+        ///<summary>Подтверждение работы основного насоса водяного нагревателя</summary>
         private void ConfHeatPumpCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 1073;                                                                   // Подтверждение работы основного насоса калорифера
+            ushort code_1 = 1073;                                                                   // Подтверждение работы основного насоса нагревателя
 
-            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                            // Выбран водяной калорифер
+            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                            // Выбран водяной нагреватель
             { 
                 if (confHeatPumpCheck.Checked)                                                      // Выбрали подтверждение работы насоса
-                    CheckAddUIToList("Подтверждение работы основного насоса калорифера", code_1, DI);
+                    CheckAddUIToList("Подтверждение работы основного насоса нагревателя", code_1, DI);
                 else                                                                                // Отмена выбора
                     SubFromCombosUI(code_1);
             }
         }
 
-        ///<summary>Подтверждение работы резервного насоса водяного калорифера</summary>
+        ///<summary>Подтверждение работы резервного насоса водяного нагревателя</summary>
         private void ConfHeatResPumpCheck_signalsDICheckedChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 1074;                                                                       // Подтверждение работы резервного насоса калорифера
+            ushort code_1 = 1074;                                                                       // Подтверждение работы резервного насоса нагревателя
 
-            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                                // Выбран водяной калорифер
+            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                                // Выбран водяной нагреватель
             {
                 if (reservPumpHeater.Checked && confHeatResPumpCheck.Checked)                           // Есть насос и подтверждение работы насоса
-                    CheckAddUIToList("Подтверждение работы резервного насоса калорифера", code_1, DI);
+                    CheckAddUIToList("Подтверждение работы резервного насоса нагревателя", code_1, DI);
                 else
                     SubFromCombosUI(code_1);
             }
         }
 
-        ///<summary>Защита по току основного насоса водяного калорифера</summary>
+        ///<summary>Защита по току основного насоса водяного нагревателя</summary>
         private void PumpCurProtect_signalsDICheckedChanged(object sender, EventArgs e)
         {
             ushort code_1 = 1075;                                                                   // Защита по току основного насоса
 
-            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                            // Выбран водяной калорифер
+            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                            // Выбран водяной нагреватель
             {
                 if (pumpCurProtect.Checked)                                                         // Выбрали защиту по току
-                    CheckAddUIToList("Защита по току основного насоса калорифера", code_1, DI);
+                    CheckAddUIToList("Защита по току основного насоса нагревателя", code_1, DI);
                 else
                     SubFromCombosUI(code_1);                                                        // Отмена выбора
             }
         }
 
-        ///<summary>Защита по току резервного насоса водяного калорифера</summary>
+        ///<summary>Защита по току резервного насоса водяного нагревателя</summary>
         private void PumpCurResProtect_signalsDICheckedChanged(object sender, EventArgs e)
         {
             ushort code_1 = 1076;                                                                   // Защита по току основного насоса
 
-            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                            // Выбран водяной калорифер
+            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)                            // Выбран водяной нагреватель
             {
                 if (reservPumpHeater.Checked && pumpCurResProtect.Checked)                          // Выбран резервный насос и защита по току
-                    CheckAddUIToList("Защита по току резервного насоса калорифера", code_1, DI);
+                    CheckAddUIToList("Защита по току резервного насоса нагревателя", code_1, DI);
                 else
                     SubFromCombosUI(code_1);                                                        // Отмена выбора
             }
@@ -407,10 +418,10 @@ namespace Moderon
         {
             ushort code_1 = 1078;                                                                   // Термовыключатель перегрева ТЭНов
 
-            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 1)                            // Выбран электрокалорифер
+            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 1)                            // Выбран электрический нагреватель
             {
                 if (overheatThermCheck.Checked)
-                    CheckAddUIToList("Термовыключатель перегрева ТЭНов калорифера", code_1, DI);
+                    CheckAddUIToList("Термовыключатель перегрева ТЭНов нагревателя", code_1, DI);
                 else
                     SubFromCombosUI(code_1);
 
@@ -423,10 +434,10 @@ namespace Moderon
         {
             ushort code_1 = 1079;                                                                   // Термовыключатель пожара ТЭНов
 
-            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 1)                            // Выбран электрокалорифер
+            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 1)                            // Выбран электрический нагреватель
             {
                 if (fireThermCheck.Checked)
-                    CheckAddUIToList("Термовыключатель пожара ТЭНов калорифера", code_1, DI);
+                    CheckAddUIToList("Термовыключатель пожара ТЭНов нагревателя", code_1, DI);
                 else
                     SubFromCombosUI(code_1);
 
@@ -458,7 +469,8 @@ namespace Moderon
         ///<summary>Изменили тип догревателя</summary>
         private void HeatAddTypeCombo_signalsDISelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort code_1 = 1133, code_2 = 1134;                                                    // Воздушный термостат и подтверждение работы насоса
+            // Воздушный термостат, подтверждение работы насоса и защита насосов по току
+            ushort code_0 = 1136, code_1 = 1133, code_2 = 1134, code_3 = 1135, code_4 = 1137;                      
 
             if (addHeatCheck.Checked)                                                               // Выбран догреватель
             {
@@ -468,10 +480,22 @@ namespace Moderon
                         CheckAddUIToList("Термостат водяного догревателя", code_1, DI);
                     if (confAddHeatPumpCheck.Checked)                                               // Подтверждение работы насоса
                         CheckAddUIToList("Подтверждение работы насоса водяного догревателя", code_2, DI);
+                    if (pumpCurAddProtect.Checked)                                                  // Защита по току основного насоса
+                        CheckAddUIToList("Защита по току основного насоса догревателя", code_0, DI);
+                    
+                    if (reservPumpAddHeater.Checked)                                                // Для резервного насоса догревателя
+                    {
+                        if (confAddHeatResPumpCheck.Checked)                                        // Подтверждение работы насоса
+                            CheckAddUIToList("Подтверждение работы резервного насоса догревателя", code_3, DI);
+                        if (pumpCurResAddProtect.Checked)                                           // Защита резервного насоса по току
+                            CheckAddUIToList("Защита по току резервного насоса догревателя", code_4, DI);
+                    }
                 }
                 else // Электродогреватель
                 {
-                    SubFromCombosUI(code_1); SubFromCombosUI(code_2);                               // Удаление сигналов
+                    SubFromCombosUI(code_0); SubFromCombosUI(code_1); SubFromCombosUI(code_2);      // Удаление сигналов, основной насос
+                    SubFromCombosUI(code_3); SubFromCombosUI(code_4);                               // Удаление сигналов, резервный насос
+
                 }
 
                 OverheatAddThermCheck_signalsDICheckedChanged(this, e);                             // Проверка для термовыключателя перегрева

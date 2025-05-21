@@ -931,31 +931,31 @@ namespace Moderon
         ///<summary>Выбрали наличие нагревателя</summary>
         private void HeaterCheck_signalsDOCheckedChanged(object sender, EventArgs e)
         {
-            ushort // Насос водяного калорифера и ступени электрокалорифера
+            ushort // Насос водяного нагревателя и ступени электрического нагревателя
                 code_0 = 34, code_1 = 38, code_2 = 39, code_3 = 40,
                 code_4 = 41, code_5 = 42, code_6 = 43, code_7 = 44, code_8 = 45;
 
             if (heaterCheck.Checked) // Выбрали нагреватель
             {
-                if (heatTypeCombo.SelectedIndex == 0)                                   // Водяной калорифер
-                    AddToListDo("Запуск насоса водяного калорифера", code_0);
-                else if (heatTypeCombo.SelectedIndex == 1)                              // Электрокалорифер
+                if (heatTypeCombo.SelectedIndex == 0)                                   // Водяной нагреватель
+                    AddToListDo("Запуск насоса водяного нагревателя", code_0);
+                else if (heatTypeCombo.SelectedIndex == 1)                              // Электрический нагреватель
                 {
-                    AddToListDo("1 ступень электрического калорифера", code_1);         // Первая ступень электрокалорифера
+                    AddToListDo("1 ступень электрического нагревателя", code_1);        // Первая ступень электрического нагревателя
                     if (elHeatStagesCombo.SelectedIndex > 0)                            // Две ступени
-                        AddToListDo("2 ступень электрического калорифера", code_2);
+                        AddToListDo("2 ступень электрического нагревателя", code_2);
                     if (elHeatStagesCombo.SelectedIndex > 1)                            // Три ступени
-                        AddToListDo("3 ступень электрического калорифера", code_3);
+                        AddToListDo("3 ступень электрического нагревателя", code_3);
                     if (elHeatStagesCombo.SelectedIndex > 2)                            // Четыре ступени
-                        AddToListDo("4 ступень электрического калорифера", code_4);
+                        AddToListDo("4 ступень электрического нагревателя", code_4);
                     if (elHeatStagesCombo.SelectedIndex > 3)                            // Пять ступеней
-                        AddToListDo("5 ступень электрического калорифера", code_5);     
+                        AddToListDo("5 ступень электрического нагревателя", code_5);     
                     if (elHeatStagesCombo.SelectedIndex > 4)                            // Шесть ступеней
-                        AddToListDo("6 ступень электрического калорифера", code_6);
+                        AddToListDo("6 ступень электрического нагревателя", code_6);
                     if (elHeatStagesCombo.SelectedIndex > 5)                            // Семь ступеней
-                        AddToListDo("7 ступень электрического калорифера", code_7);
+                        AddToListDo("7 ступень электрического нагревателя", code_7);
                     if (elHeatStagesCombo.SelectedIndex > 6)                            // Восемь ступеней
-                        AddToListDo("8 ступень электрического калорифера", code_8);
+                        AddToListDo("8 ступень электрического нагревателя", code_8);
                 }
             }
             else // Отмена выбора нагревателя, удаление сигналов
@@ -972,13 +972,14 @@ namespace Moderon
         ///<summary>Изменили тип основного нагревателя</summary>
         private void HeatTypeCombo_signalsDOSelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort                                                                      // Насос водяного калорифера и ступени электрокалорифера
+            ushort                                                                      // Насос водяного нагревателя и ступени электрического
                 code_0 = 34, code_1 = 38, code_2 = 39, code_3 = 40,
-                code_4 = 41, code_5 = 42, code_6 = 43, code_7 = 44, code_8 = 45;
+                code_4 = 41, code_5 = 42, code_6 = 43, code_7 = 44,
+                code_8 = 45, code_9 = 35;
 
             if (heaterCheck.Checked)                                                    // Когда выбран нагреватель
             {
-                if (heatTypeCombo.SelectedIndex == 0)                                   // Водяной калорифер
+                if (heatTypeCombo.SelectedIndex == 0)                                   // Водяной нагреватель
                 {
                     var do_list = new List<ushort>()
                     {
@@ -987,53 +988,58 @@ namespace Moderon
 
                     foreach (var el in do_list) SubFromCombosDO(el);
 
-                    AddToListDo("Запуск насоса водяного калорифера", code_0);
+                    AddToListDo("Запуск насоса водяного нагревателя", code_0);          // Запуск основного насоса водяного нагревателя
+
+                    if (reservPumpHeater.Checked)
+                        AddToListDo("Запуск резервного насоса водяного нагревателя", code_9);
                 }
-                else if (heatTypeCombo.SelectedIndex == 1) // Электрокалорифер
+                else if (heatTypeCombo.SelectedIndex == 1) // Электрический нагреватель
                 {
-                    SubFromCombosDO(code_0);                                            // Удаление запуска насоса
-                    AddToListDo("1 ступень электрического калорифера", code_1);         // Первая ступень нагрева
+                    SubFromCombosDO(code_0);                                            // Удаление запуска основного насоса
+                    SubFromCombosDO(code_9);                                            // Удаление запуска резервного насоса
+
+                    AddToListDo("1 ступень электрического нагревателя", code_1);        // Первая ступень нагрева
                     if (elHeatStagesCombo.SelectedIndex > 0)                            // Две ступени
-                        AddToListDo("2 ступень электрического калорифера", code_2);
+                        AddToListDo("2 ступень электрического нагревателя", code_2);
                     if (elHeatStagesCombo.SelectedIndex > 1)                            // Три ступени
-                        AddToListDo("3 ступень электрического калорифера", code_3);
+                        AddToListDo("3 ступень электрического нагревателя", code_3);
                     if (elHeatStagesCombo.SelectedIndex > 2)                            // Четыре ступени
-                        AddToListDo("4 ступень электрического калорифера", code_4);
+                        AddToListDo("4 ступень электрического нагревателя", code_4);
                     if (elHeatStagesCombo.SelectedIndex > 3)                            // Пять ступеней
-                        AddToListDo("5 ступень электрического калорифера", code_5);
+                        AddToListDo("5 ступень электрического нагревателя", code_5);
                     if (elHeatStagesCombo.SelectedIndex > 4)                            // Шесть ступеней
-                        AddToListDo("6 ступень электрического калорифера", code_6);
+                        AddToListDo("6 ступень электрического нагревателя", code_6);
                     if (elHeatStagesCombo.SelectedIndex > 5)                            // Семь ступеней
-                        AddToListDo("7 ступень электрического калорифера", code_7);
+                        AddToListDo("7 ступень электрического нагревателя", code_7);
                     if (elHeatStagesCombo.SelectedIndex > 6)                            // Восемь ступеней
-                        AddToListDo("8 ступень электрического калорифера", code_8);
+                        AddToListDo("8 ступень электрического нагревателя", code_8);
                 }
             }
         }
 
-        ///<summary>Выбрали резервный насос основного водяного калорифера</summary>
+        ///<summary>Выбрали резервный насос основного водяного нагревателя</summary>
         private void ReservPumpHeater_signalsDOCheckedChanged(object sender, EventArgs e)
         {
             ushort code_1 = 35;                                                 // Сигнал "Пуск/стоп" резервного насоса
 
-            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)        // Водяной калорифер
+            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 0)        // Водяной нагреватель
             {
                 if (reservPumpHeater.Checked)                                   // Выбран резервный насос
-                    AddToListDo("Запуск резервного насоса водяного калорифера", code_1);
+                    AddToListDo("Запуск резервного насоса водяного нагревателя", code_1);
                 else                                                            // Отмена выбора резервного насоса                                   
                     SubFromCombosDO(code_1);                                                 
             }
         }
 
-        ///<summary>Изменили количество ступеней основного электрокалорифера</summary>
+        ///<summary>Изменили количество ступеней основного электрического нагревателя</summary>
         private void ElHeatStagesCombo_signalsDOSelectedIndexChanged(object sender, EventArgs e)
         {
-            ushort                                                              // Ступени электрокалорифера
+            ushort                                                              // Ступени электрического нагревателя
                 code_2 = 39, code_3 = 40, code_4 = 41, code_5 = 42, 
                 code_6 = 43, code_7 = 44, code_8 = 45;
 
-            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 1)        // Выбран электрокалорифер
-                switch (elHeatStagesCombo.SelectedIndex)                        // Выборка ступеней электрокалорифера
+            if (heaterCheck.Checked && heatTypeCombo.SelectedIndex == 1)        // Выбран электрический нагреватель
+                switch (elHeatStagesCombo.SelectedIndex)                        // Выборка ступеней электрического нагревателя
                 {
                     case 0: // Одна ступень нагрева
                         SubFromCombosDO(code_8); SubFromCombosDO(code_7); SubFromCombosDO(code_6);
@@ -1042,46 +1048,46 @@ namespace Moderon
                     case 1: // Две ступени нагрева
                         SubFromCombosDO(code_8); SubFromCombosDO(code_7); SubFromCombosDO(code_6);
                         SubFromCombosDO(code_5); SubFromCombosDO(code_4); SubFromCombosDO(code_3);
-                        CheckAddDoToList("2 ступень электрического калорифера", code_2); break;
+                        CheckAddDoToList("2 ступень электрического нагревателя", code_2); break;
                     case 2: // Три ступени нагрева
                         SubFromCombosDO(code_8); SubFromCombosDO(code_7); SubFromCombosDO(code_6);
                         SubFromCombosDO(code_5); SubFromCombosDO(code_4);
-                        CheckAddDoToList("2 ступень электрического калорифера", code_2);
-                        CheckAddDoToList("3 ступень электрического калорифера", code_3); break;
+                        CheckAddDoToList("2 ступень электрического нагревателя", code_2);
+                        CheckAddDoToList("3 ступень электрического нагревателя", code_3); break;
                     case 3: // Четыре ступени нагрева
                         SubFromCombosDO(code_8); SubFromCombosDO(code_7); SubFromCombosDO(code_6); SubFromCombosDO(code_5);
-                        CheckAddDoToList("2 ступень электрического калорифера", code_2);
-                        CheckAddDoToList("3 ступень электрического калорифера", code_3);
-                        CheckAddDoToList("4 ступень электрического калорифера", code_4); break;
+                        CheckAddDoToList("2 ступень электрического нагревателя", code_2);
+                        CheckAddDoToList("3 ступень электрического нагревателя", code_3);
+                        CheckAddDoToList("4 ступень электрического нагревателя", code_4); break;
                     case 4: // Пять ступеней нагрева
                         SubFromCombosDO(code_8); SubFromCombosDO(code_7); SubFromCombosDO(code_6);
-                        CheckAddDoToList("2 ступень электрического калорифера", code_2);
-                        CheckAddDoToList("3 ступень электрического калорифера", code_3);
-                        CheckAddDoToList("4 ступень электрического калорифера", code_4);
-                        CheckAddDoToList("5 ступень электрического калорифера", code_5); break;
+                        CheckAddDoToList("2 ступень электрического нагревателя", code_2);
+                        CheckAddDoToList("3 ступень электрического нагревателя", code_3);
+                        CheckAddDoToList("4 ступень электрического нагревателя", code_4);
+                        CheckAddDoToList("5 ступень электрического нагревателя", code_5); break;
                     case 5: // Шесть ступеней нагрева
                         SubFromCombosDO(code_8); SubFromCombosDO(code_7);
-                        CheckAddDoToList("2 ступень электрического калорифера", code_2);
-                        CheckAddDoToList("3 ступень электрического калорифера", code_3);
-                        CheckAddDoToList("4 ступень электрического калорифера", code_4);
-                        CheckAddDoToList("5 ступень электрического калорифера", code_5);
-                        CheckAddDoToList("6 ступень электрического калорифера", code_6); break;
+                        CheckAddDoToList("2 ступень электрического нагревателя", code_2);
+                        CheckAddDoToList("3 ступень электрического нагревателя", code_3);
+                        CheckAddDoToList("4 ступень электрического нагревателя", code_4);
+                        CheckAddDoToList("5 ступень электрического нагревателя", code_5);
+                        CheckAddDoToList("6 ступень электрического нагревателя", code_6); break;
                     case 6: // Семь ступеней нагрева
                         SubFromCombosDO(code_8);
-                        CheckAddDoToList("2 ступень электрического калорифера", code_2);
-                        CheckAddDoToList("3 ступень электрического калорифера", code_3);
-                        CheckAddDoToList("4 ступень электрического калорифера", code_4);
-                        CheckAddDoToList("5 ступень электрического калорифера", code_5);
-                        CheckAddDoToList("6 ступень электрического калорифера", code_6);
-                        CheckAddDoToList("7 ступень электрического калорифера", code_7); break;
+                        CheckAddDoToList("2 ступень электрического нагревателя", code_2);
+                        CheckAddDoToList("3 ступень электрического нагревателя", code_3);
+                        CheckAddDoToList("4 ступень электрического нагревателя", code_4);
+                        CheckAddDoToList("5 ступень электрического нагревателя", code_5);
+                        CheckAddDoToList("6 ступень электрического нагревателя", code_6);
+                        CheckAddDoToList("7 ступень электрического нагревателя", code_7); break;
                     case 7: // Восемь ступеней нагрева
-                        CheckAddDoToList("2 ступень электрического калорифера", code_2);
-                        CheckAddDoToList("3 ступень электрического калорифера", code_3);
-                        CheckAddDoToList("4 ступень электрического калорифера", code_4);
-                        CheckAddDoToList("5 ступень электрического калорифера", code_5);
-                        CheckAddDoToList("6 ступень электрического калорифера", code_6);
-                        CheckAddDoToList("7 ступень электрического калорифера", code_7);
-                        CheckAddDoToList("8 ступень электрического калорифера", code_8); break;
+                        CheckAddDoToList("2 ступень электрического нагревателя", code_2);
+                        CheckAddDoToList("3 ступень электрического нагревателя", code_3);
+                        CheckAddDoToList("4 ступень электрического нагревателя", code_4);
+                        CheckAddDoToList("5 ступень электрического нагревателя", code_5);
+                        CheckAddDoToList("6 ступень электрического нагревателя", code_6);
+                        CheckAddDoToList("7 ступень электрического нагревателя", code_7);
+                        CheckAddDoToList("8 ступень электрического нагревателя", code_8); break;
                 }
         }
 
@@ -1131,7 +1137,8 @@ namespace Moderon
         {
             ushort
                 code_0 = 78, code_1 = 73, code_2 = 74, code_3 = 75,
-                code_4 = 76, code_5 = 77, code_6 = 88, code_7 = 89, code_8 = 90;
+                code_4 = 76, code_5 = 77, code_6 = 88, code_7 = 89, 
+                code_8 = 90, code_9 = 79;
 
             if (addHeatCheck.Checked)                               // Когда выбран второй нагреватель
             {
@@ -1144,10 +1151,15 @@ namespace Moderon
 
                     foreach (var el in do_codes) SubFromCombosDO(el);
                     AddToListDo("Запуск насоса водяного догревателя", code_0);
+
+                    if (reservPumpAddHeater.Checked)
+                        AddToListDo("Запуск резервного насоса водяного догревателя", code_9);
                 }
                 else if (heatAddTypeCombo.SelectedIndex == 1)       // Электрический догреватель
                 {
-                    SubFromCombosDO(code_0);                        // Удаление запуска насоса
+                    SubFromCombosDO(code_0);                        // Удаление запуска основного насоса
+                    SubFromCombosDO(code_9);                        // Удаление запуска резервного насоса
+
                     AddToListDo("1 ступень электрического догревателя", code_1);
                     if (elHeatAddStagesCombo.SelectedIndex > 0)                             // Две ступени
                         AddToListDo("2 ступень электрического догревателя", code_2);
