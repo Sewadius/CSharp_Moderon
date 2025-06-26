@@ -30,7 +30,7 @@
     <PublisherName>Moderon</PublisherName>
     <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.2.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -152,6 +152,9 @@
     </Compile>
     <Compile Include="UpdateForm.Designer.cs" />
     <None Include="ClassDiagram1.cd" />
+    <Content Include="eflash.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="imgs\connectPlcQR.jpg" />
     <Content Include="imgs\manualQR.jpg" />
     <Content Include="imgs\siteQR.jpg" />
@@ -190,9 +193,6 @@
     <None Include="Resources\fan380.png" />
     <None Include="Resources\plastRecupBypass.png" />
     <None Include="Resources\glikRecup.png" />
-    <Content Include="eflash.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\refresh_red.png" />
     <Content Include="Template.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
