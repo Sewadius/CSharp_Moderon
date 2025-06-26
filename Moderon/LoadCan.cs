@@ -159,7 +159,7 @@ namespace Moderon
 
                         if (isConnected)                                            // Удалось подключиться к ПЛК
                         {
-                            parity = "even";                                        // Установка чётности even
+                            //parity = "even";                                        // Установка чётности even
                             Invoke(new Action(() => ConnectPlkBtn_Click(this, e))); // Отключение от ПЛК
                             isConnected = false;                                    // Закрытие соединения
                         }
@@ -167,7 +167,7 @@ namespace Moderon
                 } 
                 else
                 {
-                    parity = "even";
+                    //parity = "even";
                     ConnectPlkBtn_Click(this, e);                                   // Отключение от ПЛК
                 }
 
@@ -705,6 +705,11 @@ namespace Moderon
         {
             string firmware = value.ToString();                                 // Строковое представление версии
             string year, month, day;                                            // Строкое значения год/месяц/день
+
+            if (firmware == "0")                                                // Нет записанной версии прошивки
+            {
+                return "нет данных";
+            }
 
             year = firmware[firmware.Length - 1].ToString();                    // Год - последняя цифра
             
