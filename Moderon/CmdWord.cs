@@ -8,6 +8,8 @@ namespace Moderon
 {
     public partial class Form1 : Form
     {
+        bool[] uiIsSensor_4_20 = new bool[48];          // Массив признака сигнала 4-20 мА       
+
         ushort[] uiSignals = new ushort[48];            // Массив для сигналов UI
         ushort[] doSignals = new ushort[26];            // Массив для сигналов DO
         ushort[] aoSignals = new ushort[7];             // Массив для сигналов AO
@@ -21,6 +23,7 @@ namespace Moderon
         ///<summary>Предварительная очистка массивов перед формированием значений</summary>
         private void ResetSignalsAll()
         {
+            for (int i = 0; i < uiIsSensor_4_20.Length; i++) uiIsSensor_4_20[i] = false;
             for (int i = 0; i < uiSignals.Length; i++) uiSignals[i] = 0;
             for (int i = 0; i < doSignals.Length; i++) doSignals[i] = 0;
             for (int i = 0; i < aoSignals.Length; i++) aoSignals[i] = 0;
@@ -60,6 +63,7 @@ namespace Moderon
         private void FillWriteCanTextBox()
         {  
             ushort count = 0;                           // Глобальный счётчик учёта номера позиции
+            int signalValue = 0;                        // Значение UI вход с учётом датчика 4-20 мА
             ushort value_index = 1;
             string firmwareType = comboPlkType.SelectedIndex == 0 ? FIRMWARE_FILE_MINI : FIRMWARE_FILE_OPT;
 
@@ -77,21 +81,24 @@ namespace Moderon
             // Запись textBox для UI сигналов
             for (int i = 0; i < uiSignals.Length; i++)
             {
+                // Определение значения сигнала, учёт датчика 4-20 мА
+                signalValue = uiIsSensor_4_20[i] ? uiSignals[i] + 100 : uiSignals[i];
+
                 if (value_index == 17) value_index = 1;
-                
+
                 if (i < 16)                             // ПЛК
                 {
-                    writeCanTextBox.Text += $"{count}) UI{value_index}:\t\t{uiSignals[i]}";
+                    writeCanTextBox.Text += $"{count}) UI{value_index}:\t\t{signalValue}";
                 }
 
                 else if (i >= 16 && i < 32)             // Первый блок расширения
                 {
-                    writeCanTextBox.Text += $"{count}) EX1_UI{value_index}:\t{uiSignals[i]}";
+                    writeCanTextBox.Text += $"{count}) EX1_UI{value_index}:\t{signalValue}";
                 }
 
                 else if (i >= 32 && i < 48)             // Второй блок расширения
                 {
-                    writeCanTextBox.Text += $"{count}) EX2_UI{value_index}:\t{uiSignals[i]}";
+                    writeCanTextBox.Text += $"{count}) EX2_UI{value_index}:\t{signalValue}";
                 }
 
                 writeCanTextBox.Text += Environment.NewLine;
@@ -173,8 +180,16 @@ namespace Moderon
                 count++;
             }
 
+            /* Дополнительные параметры для записи */
+
             // Пожарная сигнализация
+            writeCanTextBox.Text += Environment.NewLine;
             writeCanTextBox.Text += $"{count}) fire_signal:\t{cmdW_fire}";
+            writeCanTextBox.Text += Environment.NewLine;
+            count++;
+
+            // Выносной ЖК-пульт
+            writeCanTextBox.Text += $"{count}) ext_panel:\t{comboExtPanel.SelectedIndex}";
         }
 
         ///<summary>Сборка массива командных слов из полученных значений</summary>
@@ -218,7 +233,11 @@ namespace Moderon
                     Ui find_ui = list_ui.Find(x => x.Name == name);
                     ushort value = find_ui.Code;
 
-                    if (value > 100 && value < 150) value -= 100;   // Коды для датчиков, вычитаем 100
+                    // Коды для датчиков 4-20 мА (вычитаем 100, сохраняем признак)
+                    if (find_ui.Type == mA_4_20)
+                    {
+                        uiIsSensor_4_20[counter] = true;        // Сохранение признака 4-20 мА
+                    }
 
                     uiSignals[counter] = value;
                 }

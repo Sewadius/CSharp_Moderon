@@ -18,6 +18,10 @@ namespace Moderon
         private readonly string FIRMWARE_FILE_OPT = "opt_19055.alf";     // Файл прошивки для Optimize
         private readonly string FIRMWARE_FILE_MINI = "mini_19055.alf";   // Файл прошивки для Mini
 
+        // Сообщение для вывода после загрузки параметров и проверки совпадения
+        private readonly string REBOOT_PLC = 
+            "Перезагрузите контроллер сбросом питания, чтобы применить загруженную конфигурацию!";
+
         private readonly int MS_200 = 200;      // Задержка 200 мс
         private readonly int MS_500 = 500;      // Задержка 500 мс
         private readonly int MS_1000 = 1000;    // Задержка 1000 мс
@@ -33,6 +37,7 @@ namespace Moderon
         private bool isConnected = false;       // Статус подключения к ПЛК
         private bool wasConnected = false;      // Ранее было соединение с ПЛК
         private bool updateNeeded = false;      // Признак обновления прошивки ПЛК
+        private bool restartController = false; // Признак вывода сообщения о перезагрузке ПЛК
 
         private int                             // Год/месяц/день версии прошивки, записано в ПЛК
             year_plc, month_plc, day_plc;
@@ -448,7 +453,7 @@ namespace Moderon
             catch { return false; }
         }
 
-        ///<summary>Нажали на кнопку "Загрузить данные в ПЛК"</summary>
+        ///<summary>Нажали на кнопку "Загрузить конфигурацию"</summary>
         private void LoadCanButton_Click(object sender, EventArgs e)
         {
             if (PLC_connectionError(sender, e)) return;     // Выход при потери связи с ПЛК
@@ -478,8 +483,10 @@ namespace Moderon
             for (ushort i = 0; i < uiSignals.Length; i++)
             {
                 do  // Проверка кода при попытке записи
-                {
-                    codeAnswer = modbusRTU.WriteFc6(modbusRTU.Address, startAddress, uiSignals[i], ref values);
+                {   
+                    // Учёт типа сигнала 4-20 мА для датчика
+                    ushort uiSignal = (ushort)(uiIsSensor_4_20[i] ? uiSignals[i] + 100 : uiSignals[i]);
+                    codeAnswer = modbusRTU.WriteFc6(modbusRTU.Address, startAddress, uiSignal, ref values);
                     if (tryWrite_counter > 0) tryWrite_counter--;
                     else break;
                 } while (codeAnswer != 0);
@@ -550,6 +557,17 @@ namespace Moderon
                 else break;
             } while (codeAnswer != 0);
 
+            // Запись для выносного ЖК-пульта
+            startAddress = 16408;
+            var value = (ushort)comboExtPanel.SelectedIndex;    // 0 - Нет, 1 - Да (значение для записи)
+
+            do  // Проверка кода при попытке записи
+            {
+                codeAnswer = modbusRTU.WriteFc6(modbusRTU.Address, startAddress, value, ref values);
+                if (tryWrite_counter > 0) tryWrite_counter--;
+                else break;
+            } while (codeAnswer != 0);
+
             // Неуспешная запись, сообщение об ошибке
             if (progressBarWrite.Value != progressBarWrite.Maximum)
             {
@@ -586,6 +604,7 @@ namespace Moderon
 
             if (writeSuccess)                           // При успешной записи данных
             {
+                restartController = true;               // Признак вывода сообщения о перезгрузке ПЛК после записи
                 ReadCanButton_Click(this, e);           // Повторное чтение для проверки загрузки
             }
         }
@@ -627,6 +646,7 @@ namespace Moderon
             ReadAO_Values_fromPLC();                        // Чтение AO сигналов из ПЛК
             ReadCMD_Values_fromPLC();                       // Чтение командных слов из ПЛК
             ReadFireSig_Value_FromPLC();                    // Чтение для значение пожарной сигнализации из ПЛК
+            ReadExtPanel_Value_FromPLC();                   // Чтение наличия выносного ЖК-пульта
 
             // Формирование массива строк из данных в TextBox
             string[] lines1 = dataCanTextBox.Text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
@@ -672,6 +692,13 @@ namespace Moderon
                     MessageBox.Show("Рекомендуется обновить прошивку в контроллере!", "Обновление прошивки",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+            }
+                
+            // Вывод сообщения о перезагрузке ПЛК после записи данных
+            if (restartController)
+            {
+                MessageBox.Show(REBOOT_PLC, "Перезагрузите ПЛК", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                restartController = false;
             }
         }
 
@@ -904,12 +931,33 @@ namespace Moderon
             WriteFire_Value_toTextBox(FIRE_PLC_LENGTH, values);
         }
 
-        ///<summary>Запись для группы cmdWords в текстовое поле textBox</summary>
+        ///<summary>Запись для пожарной сигнализации в текстовое поле textBox</summary>
         private void WriteFire_Value_toTextBox(ushort length, short[] values)
         {
             int value_index = 114;
 
+            dataCanTextBox.Text += Environment.NewLine;
             dataCanTextBox.Text += $"{value_index}) fire_signal:\t{values[0]}";
+            dataCanTextBox.Text += Environment.NewLine;
+        }
+
+        ///<summary>Чтение данных по наличию выносного ЖК-пульта</summary>
+        private void ReadExtPanel_Value_FromPLC()
+        {
+            ushort FIRE_PLC_LENGTH = 1;                     // Длина записи для чтения
+            countNote = 16408;                              // Адрес для считывания наличия ЖК-пульта
+
+            short[] values = new short[FIRE_PLC_LENGTH];
+
+            modbusRTU.SendFc3(modbusRTU.Address, countNote, FIRE_PLC_LENGTH, ref values);
+            WriteExtPanel_Value_toTextBox(FIRE_PLC_LENGTH, values);
+        }
+
+        ///<summary>Запись для наличия ЖК-пульта в текстовое поле textBox</summary>
+        private void WriteExtPanel_Value_toTextBox(ushort length, short[] values)
+        {
+            int value_index = 115;
+            dataCanTextBox.Text += $"{value_index}) ext_panel:\t{values[0]}";
         }
     }
 }

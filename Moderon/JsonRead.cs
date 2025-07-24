@@ -598,6 +598,8 @@ namespace Moderon
         {
             var comboBoxes = new List<ComboBox>()
             {
+                // Выбор выносного ЖК-пульта
+                comboExtPanel,
                 // Вентиляторы
                 prFanFC_ECcombo, outFanFC_ECcombo,
                 // Сигналы и датчики

@@ -100,6 +100,7 @@ namespace Moderon
             comboSysType.Hide();
             panelElements.Hide(); panelBlocks.Hide();       // Скрытие панели выбора элементов и блоков расширения
             Plk_copyPanel.Hide();                           // Скрытие панели выбора типа контроллера
+            panExtPanel.Hide();                             // Скрытие панели выбора выносного ЖК-пульта
             panManBlocks.Hide();                            // Скрытие панели ручного выбора блоков
             autoSelectBlocks_check.Hide();                  // Скрытие выбора режима подбора блоков
 
@@ -143,6 +144,7 @@ namespace Moderon
             }
 
             Plk_copyPanel.Show();                           // Отображение панели выбора типа контроллера
+            panExtPanel.Show();                             // Отображение панели выносного ЖК-пульта
             formSignalsButton.Show();                       // Отображение кнопки "Сформировать IO"
             fromSignalsMove = false;                        // Сброс признака перехода с панели выбора сигналов
             toolStripMenuItem_help.Enabled = true;          // Разблокировка "Помощь"

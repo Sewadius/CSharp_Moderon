@@ -16,7 +16,7 @@ namespace Moderon
 
         private const int
             WIDTH_MAIN = 955,                                           // Ширина основной формы
-            HEIGHT_MAIN = 750,                                          // Высота основной формы
+            HEIGHT_MAIN = 760,                                          // Высота основной формы
             HEIGHT = 280,                                               // Высота для панелей настройки элементов
             DELTA = 31,                                                 // Расстояние между comboBox в таблице сигналов
             HEIGHT_RECUP = 221,                                         // Высота изображения для обычного рекуператора
@@ -139,20 +139,25 @@ namespace Moderon
             Plk_copyPanel.Location = new Point(Size.Width - deltaW_panel, height_panel1 +
                 panelElements.Height + BETWEEN_PANELS);
 
+            // Положение для панели выбора выносной ЖК-панели
+            panExtPanel.Location = new Point(Size.Width - deltaW_panel, height_panel1 +
+                panelElements.Height + Plk_copyPanel.Height + BETWEEN_PANELS * 2);
+
             // Положение для выбора опции автоподбора блоков
             autoSelectBlocks_check.Location = new Point(Size.Width - deltaW_panel, height_panel1 +
-                panelElements.Height + Plk_copyPanel.Height + BETWEEN_PANELS * 2);
+                panelElements.Height + Plk_copyPanel.Height + panExtPanel.Height + BETWEEN_PANELS * 3);
 
             // Положение для панели ручного выбора блоков расширения
             panManBlocks.Location = new Point(Size.Width - deltaW_panel, height_panel1 +
-                panelElements.Height + Plk_copyPanel.Height + BETWEEN_PANELS * 4);
+                panelElements.Height + Plk_copyPanel.Height + panExtPanel.Height + BETWEEN_PANELS * 5);
 
-            pic_signalsReady.Location = new Point(panelElements.Location.X, panelElements.Location.Y - BETWEEN_PANELS * 4);
+            // Положение изображения распределения сигналов и логотипа
+            pic_signalsReady.Location = new Point(panelElements.Location.X, panelElements.Location.Y - pic_signalsReady.Height - BETWEEN_PANELS);
             pictureBoxLogo.Location = new Point(panelElements.Location.X + logo_X_delta, pictureBoxLogo.Location.Y);
 
             // Положение для панели блоков расширения
             panelBlocks.Location = new Point(Size.Width - deltaW_panel, height_panel1 +
-                panelElements.Height + Plk_copyPanel.Height + BETWEEN_PANELS + 5);
+                panelElements.Height + Plk_copyPanel.Height + panExtPanel.Height + BETWEEN_PANELS * 3);
             
 
             // Положение для блока защиты рекуператора
@@ -233,7 +238,7 @@ namespace Moderon
         {
             var elements = new List<ComboBox>()
             {
-                comboSysType, comboPlkType, comboPlkType_copy, filterPrCombo, filterOutCombo,
+                comboSysType, comboPlkType, comboPlkType_copy, comboExtPanel, filterPrCombo, filterOutCombo,
                 prFanFC_ECcombo, prFanPowCombo, prFanControlCombo, prFanFcTypeCombo, outFanFcTypeCombo,
                 outFanPowCombo, outFanControlCombo, outFanFC_ECcombo, heatTypeCombo,
                 elHeatStagesCombo, coolTypeCombo, frCoolStagesCombo,
@@ -1678,7 +1683,7 @@ namespace Moderon
             loadCanPanel.Show();
             InitializeCAN();                                    // Инициализация для загрузки по CAN порту
             formSignalsButton.Hide();                           // Скрытие кнопки "Сформировать"
-            pic_signalsReady.Hide();                            // Скртие изображения сформированной карты сигналов
+            pic_signalsReady.Hide();                            // Скрытие изображения сформированной карты сигналов
         }
 
         ///<summary>Нажали на вкладку "Загрузка", панель загрузки через Modbus</summary>
@@ -1712,6 +1717,7 @@ namespace Moderon
             comboPlkType.Hide();                                // Скрытие выбора типа ПЛК
             panelBlocks.Hide();                                 // Скрытие панели выбора блоков расширения
             Plk_copyPanel.Hide();                               // Скрытие панели выбора типа контроллера
+            panExtPanel.Hide();                                 // Скрытие панели выбора ЖК-панели
             pic_signalsReady.Hide();                            // Скрытие изображения статуса распределения сигналов
             panManBlocks.Hide();                                // Скрытие панели ручного выбора блоков
             autoSelectBlocks_check.Hide();                      // Скрытие выбора режима подбора блоков
@@ -1734,6 +1740,7 @@ namespace Moderon
             comboPlkType.Hide();                                // Скрытие выбора типа ПЛК
             panelBlocks.Hide();                                 // Скрытие панели выбора блоков расширения
             Plk_copyPanel.Hide();                               // Скрытие панели выбора типа контроллера
+            panExtPanel.Hide();                                 // Скрытие панели выбора ЖК-панели
             pic_signalsReady.Hide();                            // Скрытие изображения статуса распределения сигналов
             panManBlocks.Hide();                                // Скрытие панели ручного выбора блоков
             autoSelectBlocks_check.Hide();                      // Скрытие выбора режима подбора блоков
@@ -1781,6 +1788,7 @@ namespace Moderon
             }
 
             Plk_copyPanel.Show();                                                       // Отображение панели выбора типа контроллера
+            panExtPanel.Show();                                                         // Отображение панели выбора ЖК-панели
         }
 
         ///<summary>Нажали кнопку "Назад" в панели помощи</summary>
@@ -1808,6 +1816,7 @@ namespace Moderon
             }
 
             Plk_copyPanel.Show();                                                       // Отображение панели выбора типа контроллера
+            panExtPanel.Show();                                                         // Отображение панели выбора ЖК-панели
         }
 
         /// <summary>Опция для включения всплывающих подсказок</summary>
