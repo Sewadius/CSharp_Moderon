@@ -32,7 +32,9 @@ namespace Moderon
         ///<summary>Нажали на кнопку "Собрать", формирование массивов сигналов</summary>
         private void FormNetButton_Click(object sender, EventArgs e)
         {
-            ushort count = 1;                       // Глобальный счетчик учета позиции
+            const ushort START_COUNTER = 84;        // Начальный отсчет (для совпадения с ПЛК)
+            ushort count = START_COUNTER;           // Глобальный счетчик учета позиции
+            ushort no_cmdW = 1;                     // Счетчик номера командного слова
 
             ResetSignalsAll();                      // Сброс для массивов сигналов
             BuildUI_Signals();                      // Сборка массива для сигналов UI
@@ -43,17 +45,22 @@ namespace Moderon
             cmdWordsTextBox.Text = "";              // Очистка текстового поля вывода командных слов
 
             // Формирование командных слов для вывода в таблице сигналов
-            for (ushort counter = 1; counter <= cmdWords.Length - 1; counter++) 
+            for (ushort counter = START_COUNTER; counter < cmdWords.Length + START_COUNTER - 1; counter++) 
             { // Для командных слов
-                cmdWordsTextBox.Text += counter.ToString() + ") " + 
-                    cmdWords[counter - 1].ToString();
-                if (counter < cmdWords.Length) cmdWordsTextBox.Text += Environment.NewLine;
-                ++count;
+                cmdWordsTextBox.Text += $"{counter}) Word_{no_cmdW}: \t{cmdWords[no_cmdW - 1]}";
+                if (counter < cmdWords.Length + START_COUNTER) 
+                    cmdWordsTextBox.Text += Environment.NewLine;
+                
+                ++count; ++no_cmdW;     // Увеличение порядкового номера и командного слова
             } 
             
             // Отображение сигнала пожарной сигнализации
             cmdWordsTextBox.Text += Environment.NewLine;
-            cmdWordsTextBox.Text += count.ToString() + ") fire " + cmdW_fire.ToString();
+            cmdWordsTextBox.Text += $"{count}) fire_sig: \t{cmdW_fire}"; ++count;
+
+            // Отображение сигнала выносного ЖК-пульта
+            cmdWordsTextBox.Text += Environment.NewLine;
+            cmdWordsTextBox.Text += $"{count}) ext_panel: \t{comboExtPanel.SelectedIndex}";
 
             // Формирование кодов сигналов и командных слов для записи в ПЛК
             if (loadCanPanel.Visible) FillWriteCanTextBox();              

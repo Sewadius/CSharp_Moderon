@@ -12,7 +12,7 @@ namespace Moderon
     {
         readonly static public string 
             NOT_SELECTED = "Не выбрано",                                // Статус для состояния входов/выходов
-            VERSION = "v.1.2.1.4";                                      // Текущая версия программы
+            VERSION = "v.1.2.1.6";                                      // Текущая версия программы
 
         private const int
             WIDTH_MAIN = 955,                                           // Ширина основной формы
@@ -2300,7 +2300,7 @@ namespace Moderon
             SignalsTableReSize(Size.Width, Size.Height);    // Таблица сигналов, пересчёт размеров
         }
 
-        ///<summary>Обработка клика при переходе по вкладке "Командные слова"</summary>
+        ///<summary>Обработка клика при переходе по вкладке "Конфигурация"</summary>
         private void TabControlSignals_Selected(object sender, TabControlEventArgs e)
         {
             if (CheckSignalsReady()) FormNetButton_Click(this, e);
