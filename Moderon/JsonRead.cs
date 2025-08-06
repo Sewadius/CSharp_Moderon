@@ -619,8 +619,11 @@ namespace Moderon
                 // Рекуператор и датчики
                 recupTypeCombo, bypassPlastCombo, fireTypeCombo
             };
-
-            foreach (var el in comboBoxes) el.SelectedIndex = json_read.ComboBoxElemState[el.Name];
+               
+            // Проверка, если ключ найден в словаре файла для чтения конфигурации
+            foreach (var el in comboBoxes)
+                if (json_read.ComboBoxElemState.ContainsKey(el.Name))
+                    el.SelectedIndex = json_read.ComboBoxElemState[el.Name];
 
             // Операции при выборе Modbus П вентилятора
             if (prFanControlCombo.SelectedIndex == 1)   // Приточный вентилятор
