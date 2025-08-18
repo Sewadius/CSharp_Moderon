@@ -30,7 +30,7 @@
     <PublisherName>Moderon</PublisherName>
     <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>7</ApplicationRevision>
+    <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>1.2.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -156,6 +156,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="imgs\connectPlcQR.jpg" />
+    <Content Include="imgs\displayQR.png" />
     <Content Include="imgs\manualQR.jpg" />
     <Content Include="imgs\siteQR.jpg" />
     <Content Include="mini_19055.alf">

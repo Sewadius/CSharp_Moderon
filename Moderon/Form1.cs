@@ -12,7 +12,7 @@ namespace Moderon
     {
         readonly static public string 
             NOT_SELECTED = "Не выбрано",                                // Статус для состояния входов/выходов
-            VERSION = "v.1.2.1.7";                                      // Текущая версия программы
+            VERSION = "v.1.2.1.8";                                      // Текущая версия программы
 
         private const int
             WIDTH_MAIN = 955,                                           // Ширина основной формы
@@ -2261,6 +2261,14 @@ namespace Moderon
             linkManualModeron.LinkVisited = true;
             System.Diagnostics.Process.Start(
                 "https://moderon-electric.ru/software/moderon-hvac/docs-moderon-hvac/");
+        }
+
+        ///<summary>Нажали на ссылку руководства по ЖК-ПУ Moderon</summary>
+        private void LinkDisplayModeron_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            linkDisplayModeron.LinkVisited = true;
+            System.Diagnostics.Process.Start(
+                "https://moderon-electric.ru/software/moderon-hvac/docs-moderon-hvac/hmi-hvac/");
         }
 
         ///<summary>Нажали на ссылку подключение к контроллеру</summary>

@@ -669,7 +669,7 @@ namespace Moderon
             this.cmdWordsTextBox = new System.Windows.Forms.RichTextBox();
             this.backSignalsButton = new System.Windows.Forms.Button();
             this.helpPanel = new System.Windows.Forms.Panel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.linkConnectPlc = new System.Windows.Forms.LinkLabel();
             this.label11 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -741,6 +741,9 @@ namespace Moderon
             this.panExtPanel = new System.Windows.Forms.Panel();
             this.label22 = new System.Windows.Forms.Label();
             this.comboExtPanel = new System.Windows.Forms.ComboBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.linkDisplayModeron = new System.Windows.Forms.LinkLabel();
             this.menuStrip.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.sensorsPage.SuspendLayout();
@@ -816,7 +819,7 @@ namespace Moderon
             this.block1_AOpanel.SuspendLayout();
             this.tabCmdWord.SuspendLayout();
             this.helpPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.loadCanPanel.SuspendLayout();
@@ -828,6 +831,7 @@ namespace Moderon
             this.Plk_copyPanel.SuspendLayout();
             this.panManBlocks.SuspendLayout();
             this.panExtPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -3902,7 +3906,7 @@ namespace Moderon
             this.signalsPanel.Controls.Add(this.backSignalsButton);
             this.signalsPanel.Location = new System.Drawing.Point(15, 163);
             this.signalsPanel.Name = "signalsPanel";
-            this.signalsPanel.Size = new System.Drawing.Size(749, 586);
+            this.signalsPanel.Size = new System.Drawing.Size(749, 58);
             this.signalsPanel.TabIndex = 16;
             this.signalsPanel.Visible = false;
             // 
@@ -3913,7 +3917,7 @@ namespace Moderon
             this.sig_distributionBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.sig_distributionBtn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.sig_distributionBtn.ForeColor = System.Drawing.Color.White;
-            this.sig_distributionBtn.Location = new System.Drawing.Point(716, 554);
+            this.sig_distributionBtn.Location = new System.Drawing.Point(716, 26);
             this.sig_distributionBtn.Name = "sig_distributionBtn";
             this.sig_distributionBtn.Size = new System.Drawing.Size(193, 27);
             this.sig_distributionBtn.TabIndex = 63;
@@ -3928,7 +3932,7 @@ namespace Moderon
             this.resetButtonSignals.Cursor = System.Windows.Forms.Cursors.Hand;
             this.resetButtonSignals.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.resetButtonSignals.ForeColor = System.Drawing.Color.White;
-            this.resetButtonSignals.Location = new System.Drawing.Point(908, 554);
+            this.resetButtonSignals.Location = new System.Drawing.Point(908, 26);
             this.resetButtonSignals.Name = "resetButtonSignals";
             this.resetButtonSignals.Size = new System.Drawing.Size(97, 27);
             this.resetButtonSignals.TabIndex = 62;
@@ -3943,7 +3947,7 @@ namespace Moderon
             this.loadToExl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loadToExl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadToExl.ForeColor = System.Drawing.Color.White;
-            this.loadToExl.Location = new System.Drawing.Point(543, 554);
+            this.loadToExl.Location = new System.Drawing.Point(543, 26);
             this.loadToExl.Name = "loadToExl";
             this.loadToExl.Size = new System.Drawing.Size(173, 27);
             this.loadToExl.TabIndex = 61;
@@ -3958,7 +3962,7 @@ namespace Moderon
             this.loadPLC_SignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loadPLC_SignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loadPLC_SignalsButton.ForeColor = System.Drawing.Color.White;
-            this.loadPLC_SignalsButton.Location = new System.Drawing.Point(397, 554);
+            this.loadPLC_SignalsButton.Location = new System.Drawing.Point(397, 26);
             this.loadPLC_SignalsButton.Name = "loadPLC_SignalsButton";
             this.loadPLC_SignalsButton.Size = new System.Drawing.Size(147, 27);
             this.loadPLC_SignalsButton.TabIndex = 60;
@@ -3972,7 +3976,7 @@ namespace Moderon
             this.signalsReadyLabel.AutoSize = true;
             this.signalsReadyLabel.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.signalsReadyLabel.ForeColor = System.Drawing.Color.Green;
-            this.signalsReadyLabel.Location = new System.Drawing.Point(123, 560);
+            this.signalsReadyLabel.Location = new System.Drawing.Point(123, 32);
             this.signalsReadyLabel.Name = "signalsReadyLabel";
             this.signalsReadyLabel.Size = new System.Drawing.Size(272, 14);
             this.signalsReadyLabel.TabIndex = 23;
@@ -9166,7 +9170,7 @@ namespace Moderon
             this.backSignalsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.backSignalsButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.backSignalsButton.ForeColor = System.Drawing.Color.White;
-            this.backSignalsButton.Location = new System.Drawing.Point(10, 554);
+            this.backSignalsButton.Location = new System.Drawing.Point(10, 26);
             this.backSignalsButton.Name = "backSignalsButton";
             this.backSignalsButton.Size = new System.Drawing.Size(94, 27);
             this.backSignalsButton.TabIndex = 58;
@@ -9176,7 +9180,10 @@ namespace Moderon
             // 
             // helpPanel
             // 
+            this.helpPanel.Controls.Add(this.linkDisplayModeron);
             this.helpPanel.Controls.Add(this.pictureBox3);
+            this.helpPanel.Controls.Add(this.label23);
+            this.helpPanel.Controls.Add(this.pictureBox4);
             this.helpPanel.Controls.Add(this.linkConnectPlc);
             this.helpPanel.Controls.Add(this.label11);
             this.helpPanel.Controls.Add(this.pictureBox2);
@@ -9186,27 +9193,27 @@ namespace Moderon
             this.helpPanel.Controls.Add(this.label140);
             this.helpPanel.Controls.Add(this.linkModeronWeb);
             this.helpPanel.Controls.Add(this.backHelpButton);
-            this.helpPanel.Location = new System.Drawing.Point(5, 769);
+            this.helpPanel.Location = new System.Drawing.Point(12, 231);
             this.helpPanel.Name = "helpPanel";
-            this.helpPanel.Size = new System.Drawing.Size(746, 50);
+            this.helpPanel.Size = new System.Drawing.Size(746, 430);
             this.helpPanel.TabIndex = 17;
             this.helpPanel.Visible = false;
             // 
-            // pictureBox3
+            // pictureBox4
             // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(483, 92);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(140, 140);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 71;
-            this.pictureBox3.TabStop = false;
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(711, 92);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(140, 140);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 71;
+            this.pictureBox4.TabStop = false;
             // 
             // linkConnectPlc
             // 
             this.linkConnectPlc.AutoSize = true;
             this.linkConnectPlc.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.linkConnectPlc.Location = new System.Drawing.Point(480, 51);
+            this.linkConnectPlc.Location = new System.Drawing.Point(708, 51);
             this.linkConnectPlc.Name = "linkConnectPlc";
             this.linkConnectPlc.Size = new System.Drawing.Size(187, 14);
             this.linkConnectPlc.TabIndex = 70;
@@ -9218,7 +9225,7 @@ namespace Moderon
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(480, 18);
+            this.label11.Location = new System.Drawing.Point(708, 18);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(163, 14);
             this.label11.TabIndex = 69;
@@ -10084,6 +10091,38 @@ namespace Moderon
             this.comboExtPanel.Size = new System.Drawing.Size(160, 21);
             this.comboExtPanel.TabIndex = 66;
             // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label23.Location = new System.Drawing.Point(486, 18);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(187, 14);
+            this.label23.TabIndex = 72;
+            this.label23.Text = "РУКОВОДСТВО НА ЖК-ПУ";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(489, 92);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(140, 140);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 73;
+            this.pictureBox3.TabStop = false;
+            // 
+            // linkDisplayModeron
+            // 
+            this.linkDisplayModeron.AutoSize = true;
+            this.linkDisplayModeron.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.linkDisplayModeron.Location = new System.Drawing.Point(489, 51);
+            this.linkDisplayModeron.Name = "linkDisplayModeron";
+            this.linkDisplayModeron.Size = new System.Drawing.Size(155, 14);
+            this.linkDisplayModeron.TabIndex = 74;
+            this.linkDisplayModeron.TabStop = true;
+            this.linkDisplayModeron.Text = "Руководство на ЖК-ПУ";
+            this.linkDisplayModeron.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkDisplayModeron_LinkClicked);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -10240,7 +10279,7 @@ namespace Moderon
             this.tabCmdWord.ResumeLayout(false);
             this.helpPanel.ResumeLayout(false);
             this.helpPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.loadCanPanel.ResumeLayout(false);
@@ -10258,6 +10297,7 @@ namespace Moderon
             this.panManBlocks.PerformLayout();
             this.panExtPanel.ResumeLayout(false);
             this.panExtPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -10966,11 +11006,14 @@ namespace Moderon
         private PictureBox pictureBox1;
         private Label label11;
         private LinkLabel linkConnectPlc;
-        private PictureBox pictureBox3;
+        private PictureBox pictureBox4;
         private Button updateCheckBtn;
         private Panel panExtPanel;
         private ComboBox comboExtPanel;
         private Label label22;
+        private Label label23;
+        private PictureBox pictureBox3;
+        private LinkLabel linkDisplayModeron;
     }
 }
 
