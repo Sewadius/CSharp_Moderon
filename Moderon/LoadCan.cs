@@ -138,12 +138,18 @@ namespace Moderon
                 CAPTION = "Загрузка прошивки в ПЛК",
                 MESSAGE = "Загрузить файл прошивки в контроллер?";
 
+            const int VALUE_MAX = 96;       // Значение 96% как признак успешной загрузки прошивки
+            const int VALUE_MIN = 10;       // Значение 10% как признак реактивации счётчика
+
+            int counter = 0;                // Счетчик больше или равно VALUE_MAX (=2 для успешной загрузки)
+            bool counterActive = true;      // Признак активации для счётчика
+
             var result = MessageBox.Show(MESSAGE, CAPTION, MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
               
-            bool correctDownload = true;
+            bool correctDownload = true;       // Признак корректной загрузки прошивки в ПЛК
 
-            // Определяет версию прошивки в зависимости от выбранной модели ПЛК
+            // Определяет версию прошивки в зависимости от выбранной модели ПЛК (Mini / Optimize)
             string firmwareType = comboPlkType.SelectedIndex == 0 ? FIRMWARE_FILE_MINI : FIRMWARE_FILE_OPT;
 
             // Выбрали "Да", загрузка файла прошивки через сторонний процесс
@@ -154,7 +160,7 @@ namespace Moderon
                 string port = canSelectBox.SelectedItem.ToString();     // Сохранение подключенного CAN порта
                 string parity = "no";                                   // Определяет чётность 
 
-                // Закрытие соединения (или проверка подключения), установка чётности
+                // Закрытие соединения (или проверка подключения), без чётности
                 if (!isConnected)
                 {
                     await Task.Run(async () =>
@@ -164,7 +170,6 @@ namespace Moderon
 
                         if (isConnected)                                            // Удалось подключиться к ПЛК
                         {
-                            //parity = "even";                                        // Установка чётности even
                             Invoke(new Action(() => ConnectPlkBtn_Click(this, e))); // Отключение от ПЛК
                             isConnected = false;                                    // Закрытие соединения
                         }
@@ -172,7 +177,6 @@ namespace Moderon
                 } 
                 else
                 {
-                    //parity = "even";
                     ConnectPlkBtn_Click(this, e);                                   // Отключение от ПЛК
                 }
 
@@ -185,8 +189,10 @@ namespace Moderon
                     RedirectStandardOutput = true,
                     UseShellExecute = false,            // false
                     CreateNoWindow = true               // true
+                    
                 };
 
+                // MessageBox.Show(startInfo.Arguments);
                 process.StartInfo = startInfo;
                 process.Start();
 
@@ -196,42 +202,66 @@ namespace Moderon
                 {
                     using var reader = process.StandardOutput;
                     string line;                                    // Строка из вывода
+
                     while ((line = reader.ReadLine()) != null)
                     {
                         string number = line.Split().Last();        // Код для прогресса progressBar
-                        string error = line.Split().First();        // В консольном выводе есть ошибка
+                        // MessageBox.Show(line);
 
-                        if (error == "Error:")                      // Обработка ошибки во время загрузки
+                        // Признак наличия ошибки
+                        bool hasError = line.IndexOf("Can't find devices", StringComparison.OrdinalIgnoreCase) >= 0;
+
+                        // Обработка ошибки во время загрузки
+                        if (hasError)                      
                         {
-                            if (line.Contains("Can't find devices"))
-                                MessageBox.Show("Нет связи с ПЛК!\nПереведите ПЛК в режим DFU", "Ошибка загрузки",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            else
-                                MessageBox.Show("Ошибка загрузки!", "Ошибка",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Нет связи с ПЛК:\n\nПроверьте, что ПЛК в режим DFU\nПроверьте выбранный тип ПЛК\nПроверьте COM-порт", "Ошибка загрузки",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);  
 
                             correctDownload = false;
-                            if (!process.HasExited) process.Kill();
                         }
 
+                        // Преобразование числового значения для отображения прогресса
                         if (int.TryParse(number, out int progressValue))
                         {
-                            //UpdateProgressFirmware(progressValue);
+                            // Добавляется счетчик при достижении высокого процента
+                            if (counterActive && progressValue >= VALUE_MAX)
+                            {
+                                ++counter; counterActive = false;
+                            }
+
+                            // Реактивация счетчика при новом низком проценте загрузки
+                            if (!counterActive && progressValue <= VALUE_MIN) counterActive = true;
+
                             Invoke(new Action(() => UpdateProgressFirmware(progressValue)));
                             await Task.Delay(160);
                         }
-                        if (!process.HasExited) process.Kill();
+
+                        if (!process.HasExited)
+                        {
+                            reader.DiscardBufferedData();   // Очистка буфера
+                            process.Kill();
+                        }
                     }
                 });
 
                 if (!process.HasExited) process.Kill();
 
+                //if (isConnected)                                                // Если подключен к ПЛК
+                //{
+                //    Invoke(new Action(() => ConnectPlkBtn_Click(this, e)));     // Отключение от ПЛК
+                //    isConnected = false;                                        // Закрытие соединения
+                //}
+
                 // Действия при закрытии процесса
                 ShowHideElements_firmware(false);
 
-                if (correctDownload)
+                // При корректной выполненной загрузке, 2 раза было значение больше 96%
+                if (correctDownload && counter == 2)
                     MessageBox.Show("Загрузка прошивки успешно завершена!",
-                "Операция выполнена", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        "Операция выполнена", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("Ошибка во время загрузки прошивки!", "Ошибка",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
