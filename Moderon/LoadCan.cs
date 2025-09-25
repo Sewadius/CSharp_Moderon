@@ -180,6 +180,7 @@ namespace Moderon
                     ConnectPlkBtn_Click(this, e);                                   // Отключение от ПЛК
                 }
 
+                // Команда для загрузки прошивки в ПЛК
                 System.Diagnostics.Process process = new();
                 System.Diagnostics.ProcessStartInfo startInfo = new()
                 {
@@ -188,8 +189,7 @@ namespace Moderon
                         " -parity " + parity + " -stopbits 1 -fe -sd -cmd flash & pause",
                     RedirectStandardOutput = true,
                     UseShellExecute = false,            // false
-                    CreateNoWindow = true               // true
-                    
+                    CreateNoWindow = true,              // true
                 };
 
                 // MessageBox.Show(startInfo.Arguments);
@@ -255,8 +255,12 @@ namespace Moderon
                 // Действия при закрытии процесса
                 ShowHideElements_firmware(false);
 
-                // При корректной выполненной загрузке, 2 раза было значение больше 96%
-                if (correctDownload && counter == 2)
+                // Загрузка из "пустого" состояния, либо 1 итерация уже с существующей прошивкой
+                bool checkDownloadComplete = correctDownload &&
+                    (counter == 2 || counter == 1 && counterActive == false);
+
+                // Выполнены условия корректно выполненной загрузки
+                if (checkDownloadComplete)
                     MessageBox.Show("Загрузка прошивки успешно завершена!",
                         "Операция выполнена", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 else
